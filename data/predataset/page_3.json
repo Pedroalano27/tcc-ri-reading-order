@@ -1,0 +1,77 @@
+{
+    "page_id": "page_3",
+    "dimensions": {
+        "width": 1000,
+        "height": 1400
+    },
+    "bounding_boxes": [
+        {
+            "id": "col1_box1",
+            "text": "RESOLUCAO NUMERO 402 DE 2026",
+            "bbox": [
+                50,
+                100,
+                480,
+                150
+            ]
+        },
+        {
+            "id": "col1_box2",
+            "text": "O Diretor do Instituto de Informatica da UFG, no uso de suas atribuicoes,",
+            "bbox": [
+                50,
+                170,
+                480,
+                250
+            ]
+        },
+        {
+            "id": "col2_box2",
+            "text": "focada na comparacao de BERT e LLMs para ordem de leitura.",
+            "bbox": [
+                520,
+                200,
+                950,
+                280
+            ]
+        },
+        {
+            "id": "col2_box1",
+            "text": "Art. 1 - Fica homologada a proposta de pesquisa do discente",
+            "bbox": [
+                520,
+                100,
+                950,
+                180
+            ]
+        },
+        {
+            "id": "col2_box3",
+            "text": "Art. 2 - Esta portaria entra em vigor na data de sua publicacao.",
+            "bbox": [
+                520,
+                300,
+                950,
+                380
+            ]
+        },
+        {
+            "id": "col1_box3",
+            "text": "resolve designar a banca examinadora do Trabalho de Conclusao de Curso.",
+            "bbox": [
+                50,
+                270,
+                480,
+                350
+            ]
+        }
+    ],
+    "reading_order_ground_truth": [
+        "col1_box1",
+        "col1_box2",
+        "col1_box3",
+        "col2_box1",
+        "col2_box2",
+        "col2_box3"
+    ]
+}
