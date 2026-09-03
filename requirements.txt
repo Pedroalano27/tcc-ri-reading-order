@@ -1,11 +1,41 @@
-torch>=2.0.0
+# ATENCAO - PyTorch com suporte a GPU
+#
+# Instalar este arquivo direto com "pip install -r requirements.txt" traz a
+# build CPU-only do torch (o PyPI nao serve wheels CUDA para Windows).
+# Para usar a GPU, instale o torch ANTES, pelo indice oficial do PyTorch:
+#
+#     pip install torch==2.9.1+cu128 --index-url https://download.pytorch.org/whl/cu128
+#     pip install -r requirements.txt
+#
+# A tag cu128 (CUDA 12.8) foi escolhida por compatibilidade com o driver
+# NVIDIA 577.05 (que suporta ate CUDA 12.9). Se o driver for atualizado para
+# 580 ou superior, e possivel usar cu130 com torch 2.14.
+# Verifique o driver com: nvidia-smi
+# Verifique a instalacao com: python -c "import torch; print(torch.cuda.is_available())"
+
+# Deep learning (LayoutLM e baseline LSTM)
+torch>=2.9.0
 transformers>=4.30.0
-pypdf>=3.9.0
+
+# Datasets (DocLayNet via Hugging Face)
+datasets>=2.14.0
+pillow>=10.0.0
+
+# Extracao de PDF com coordenadas (bounding boxes)
 pdfplumber>=0.9.0
+pypdf>=3.9.0
+
+# Metricas de avaliacao (BLEU de pagina, ARD)
+sacrebleu>=2.3.0
+
+# Cliente LLM local
+ollama>=0.3.0
+requests>=2.31.0
+
+# Analise de dados e visualizacao
 pandas>=2.0.0
 numpy>=1.24.0
 scikit-learn>=1.2.0
-tqdm>=4.65.0
-requests>=2.31.0
-jupyter>=1.0.0
 matplotlib>=3.7.0
+jupyter>=1.0.0
+tqdm>=4.65.0

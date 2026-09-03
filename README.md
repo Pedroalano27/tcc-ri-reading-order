@@ -82,21 +82,45 @@ O projeto trabalha com três conjuntos, em ordem crescente de fidelidade ao caso
 
 ### 1. Clonar e configurar o ambiente
 
+O projeto usa **Python 3.11** (versões mais novas ainda não têm suporte estável no `torch`).
+
 ```bash
 git clone https://github.com/Pedroalano27/tcc-ri-reading-order.git
 cd tcc-ri-reading-order
-python -m venv venv
+python3.11 -m venv venv
 venv\Scripts\activate        # Linux/macOS: source venv/bin/activate
+```
+
+### 2. Instalar as dependências
+
+Instale o `torch` **primeiro**, pelo índice oficial do PyTorch — o PyPI não serve
+wheels com CUDA para Windows, e um `pip install -r requirements.txt` direto traria
+a build CPU-only:
+
+```bash
+pip install torch==2.9.1+cu128 --index-url https://download.pytorch.org/whl/cu128
+```
+
+```bash
 pip install -r requirements.txt
 ```
 
-### 2. Gerar o pré-dataset sintético
+Confirme que a GPU foi reconhecida:
+
+```bash
+python -c "import torch; print(torch.cuda.is_available())"
+```
+
+A tag `cu128` acompanha o driver NVIDIA em uso (577.05, que suporta até CUDA 12.9).
+Verifique o seu com `nvidia-smi` e ajuste a tag se necessário.
+
+### 3. Gerar o pré-dataset sintético
 
 ```bash
 python get_predataset.py
 ```
 
-### 3. Rodar os componentes da pipeline
+### 4. Rodar os componentes da pipeline
 
 ```bash
 python src/data/parser.py
