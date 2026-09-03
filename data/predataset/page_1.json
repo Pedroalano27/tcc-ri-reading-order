@@ -4,74 +4,58 @@
         "width": 1000,
         "height": 1400
     },
+    "layout": {
+        "n_columns": 1,
+        "has_header": true,
+        "has_footer": true,
+        "n_boxes": 4
+    },
     "bounding_boxes": [
         {
-            "id": "col1_box3",
-            "text": "resolve designar a banca examinadora do Trabalho de Conclusao de Curso.",
+            "id": "col1_box1",
+            "text": "PORTARIA DE NOMEACAO - O Secretario de Estado, no uso de suas atribuicoes,",
             "bbox": [
                 50,
-                270,
-                480,
-                350
+                127,
+                950,
+                220
             ]
         },
         {
             "id": "col1_box2",
-            "text": "O Diretor do Instituto de Informatica da UFG, no uso de suas atribuicoes,",
+            "text": "OBJETO: Aquisicao de equipamentos de informatica destinados ao parque tecnologico da autarquia.",
             "bbox": [
                 50,
-                170,
-                480,
-                250
-            ]
-        },
-        {
-            "id": "col2_box3",
-            "text": "Art. 2 - Esta portaria entra em vigor na data de sua publicacao.",
-            "bbox": [
-                520,
-                300,
+                237,
                 950,
-                380
+                324
             ]
         },
         {
-            "id": "col1_box1",
-            "text": "RESOLUCAO NUMERO 402 DE 2026",
+            "id": "footer",
+            "text": "Documento assinado digitalmente conforme MP n. 2.200-2 de 24/08/2001.",
             "bbox": [
                 50,
-                100,
-                480,
-                150
+                1315,
+                950,
+                1350
             ]
         },
         {
-            "id": "col2_box1",
-            "text": "Art. 1 - Fica homologada a proposta de pesquisa do discente",
+            "id": "header",
+            "text": "DIARIO OFICIAL DO ESTADO DE GOIAS - ANO 189 - EDICAO 27.842",
             "bbox": [
-                520,
-                100,
+                50,
+                50,
                 950,
-                180
-            ]
-        },
-        {
-            "id": "col2_box2",
-            "text": "focada na comparacao de BERT e LLMs para ordem de leitura.",
-            "bbox": [
-                520,
-                200,
-                950,
-                280
+                97
             ]
         }
     ],
     "reading_order_ground_truth": [
+        "header",
         "col1_box1",
         "col1_box2",
-        "col1_box3",
-        "col2_box1",
-        "col2_box2",
-        "col2_box3"
+        "footer"
     ]
 }

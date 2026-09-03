@@ -1,0 +1,94 @@
+{
+    "page_id": "page_10",
+    "dimensions": {
+        "width": 1000,
+        "height": 1400
+    },
+    "layout": {
+        "n_columns": 2,
+        "has_header": true,
+        "has_footer": true,
+        "n_boxes": 7
+    },
+    "bounding_boxes": [
+        {
+            "id": "col2_box3",
+            "text": "O Diretor do Instituto de Informatica da Universidade Federal de Goias, no uso de suas atribuicoes legais e regimentais,",
+            "bbox": [
+                520,
+                312,
+                950,
+                400
+            ]
+        },
+        {
+            "id": "col2_box1",
+            "text": "EXTRATO DE CONTRATO - Processo Administrativo numero 202600012345678",
+            "bbox": [
+                520,
+                121,
+                950,
+                174
+            ]
+        },
+        {
+            "id": "col1_box2",
+            "text": "CONTRATANTE: Secretaria de Estado da Economia. CONTRATADA: empresa vencedora do certame licitatorio.",
+            "bbox": [
+                50,
+                234,
+                480,
+                287
+            ]
+        },
+        {
+            "id": "footer",
+            "text": "Pagina publicada em www.diariooficial.go.gov.br",
+            "bbox": [
+                50,
+                1315,
+                950,
+                1350
+            ]
+        },
+        {
+            "id": "col1_box1",
+            "text": "AVISO DE LICITACAO - PREGAO ELETRONICO NUMERO 087/2026",
+            "bbox": [
+                50,
+                121,
+                480,
+                218
+            ]
+        },
+        {
+            "id": "col2_box2",
+            "text": "RESOLVE designar a banca examinadora do Trabalho de Conclusao de Curso do discente abaixo relacionado.",
+            "bbox": [
+                520,
+                191,
+                950,
+                295
+            ]
+        },
+        {
+            "id": "header",
+            "text": "SUPLEMENTO - ATOS DO PODER EXECUTIVO",
+            "bbox": [
+                50,
+                50,
+                950,
+                91
+            ]
+        }
+    ],
+    "reading_order_ground_truth": [
+        "header",
+        "col1_box1",
+        "col1_box2",
+        "col2_box1",
+        "col2_box2",
+        "col2_box3",
+        "footer"
+    ]
+}

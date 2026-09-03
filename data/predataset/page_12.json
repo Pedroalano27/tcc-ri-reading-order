@@ -1,0 +1,94 @@
+{
+    "page_id": "page_12",
+    "dimensions": {
+        "width": 1000,
+        "height": 1400
+    },
+    "layout": {
+        "n_columns": 2,
+        "has_header": false,
+        "has_footer": true,
+        "n_boxes": 7
+    },
+    "bounding_boxes": [
+        {
+            "id": "col1_box2",
+            "text": "ERRATA - Na publicacao veiculada na edicao anterior, onde se le 30 de abril, leia-se 30 de maio.",
+            "bbox": [
+                50,
+                155,
+                480,
+                262
+            ]
+        },
+        {
+            "id": "col1_box3",
+            "text": "VALOR GLOBAL ESTIMADO: R$ 150.000,00 (cento e cinquenta mil reais), conforme dotacao orcamentaria.",
+            "bbox": [
+                50,
+                278,
+                480,
+                333
+            ]
+        },
+        {
+            "id": "footer",
+            "text": "Pagina publicada em www.diariooficial.go.gov.br",
+            "bbox": [
+                50,
+                1315,
+                950,
+                1350
+            ]
+        },
+        {
+            "id": "col1_box1",
+            "text": "A sessao publica sera realizada em 15 de setembro de 2026, as 09h00, no portal de compras do Estado.",
+            "bbox": [
+                50,
+                50,
+                480,
+                132
+            ]
+        },
+        {
+            "id": "col1_box4",
+            "text": "Art. 2 - Esta portaria entra em vigor na data de sua publicacao, revogadas as disposicoes em contrario.",
+            "bbox": [
+                50,
+                361,
+                480,
+                464
+            ]
+        },
+        {
+            "id": "col2_box2",
+            "text": "Art. 2 - Esta portaria entra em vigor na data de sua publicacao, revogadas as disposicoes em contrario.",
+            "bbox": [
+                520,
+                140,
+                950,
+                230
+            ]
+        },
+        {
+            "id": "col2_box1",
+            "text": "nomeia para o cargo de provimento em comissao os servidores constantes do anexo unico desta portaria.",
+            "bbox": [
+                520,
+                50,
+                950,
+                121
+            ]
+        }
+    ],
+    "reading_order_ground_truth": [
+        "col1_box1",
+        "col1_box2",
+        "col1_box3",
+        "col1_box4",
+        "col2_box1",
+        "col2_box2",
+        "footer"
+    ]
+}
