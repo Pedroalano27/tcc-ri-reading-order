@@ -14,3 +14,7 @@ models/*
 *.pth
 *.bin
 data/diagnostico_acervo.json
+
+# Dados processados e artefatos de experimento (regeneraveis)
+data/processed/
+resultados/*.jsonl

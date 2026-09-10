@@ -41,20 +41,23 @@ idêntico, apenas a origem das caixas muda.
 
 ---
 
-## 🎯 O Problema Existe (e é severo)
+## 🎯 O Problema Existe
 
-Medição sobre 155 PDFs, 2 páginas cada:
+Medição sobre 155 PDFs, 2 páginas cada: **46% das páginas são multicoluna**.
 
-| Métrica | Resultado |
-|---|---|
-| Páginas **multicoluna** | **46%** |
-| **Desordem média** — linhas fora de posição na ordem crua do PDF | **86%** |
-
-Em um diário do RJ (Parte I, 2023-04-27, página 4): 2 colunas detectadas,
-**130 de 133 linhas fora de posição (98%)**.
-
-A ordem em que o PDF armazena o texto **não é** a ordem de leitura. O problema
-que o TCC ataca está presente e é massivo.
+> ⚠️ **Correção (2026-09-10).** A versão anterior deste documento reportava
+> "86% de desordem média" e "130 de 133 linhas fora de posição". **Esses números
+> não devem ser citados**, por dois motivos:
+>
+> 1. A medida usada — fração de linhas fora da posição exata — sofre de *efeito
+>    cascata*: um único bloco deslocado no início empurra todos os seguintes, e a
+>    página inteira passa a contar como "fora de posição".
+> 2. A ordem comparada não era a "ordem crua do PDF": o `extract_words()` padrão do
+>    `pdfplumber` já pré-ordena as palavras geometricamente.
+>
+> A medição correta — τ de Kendall entre a ordenação ingênua, a heurística de
+> colunas e o fluxo real do PDF (`use_text_flow=True`) — está em
+> [RESULTADOS_PRELIMINARES.md](RESULTADOS_PRELIMINARES.md), seção 1.
 
 ---
 
@@ -189,8 +192,8 @@ decora o layout e a métrica fica inflada.
   ou reservar uma UF do acervo.
 - **Conjunto de estresse** — páginas com cabeçalho/rodapé de largura inteira e
   3+ colunas, que quebram heurísticas ingênuas.
-- **Baseline obrigatória** — reportar sempre a ordem crua do PDF como piso de
-  comparação. Com 86% de desordem média, é um piso honesto e informativo.
+- **Baselines obrigatórias** — reportar sempre a ordem do detector (sem ordenar)
+  e a ordenação ingênua (topo→base, esquerda→direita) como pisos de comparação.
 
 ---
 

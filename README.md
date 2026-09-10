@@ -120,22 +120,48 @@ Verifique o seu com `nvidia-smi` e ajuste a tag se necessário.
 python get_predataset.py
 ```
 
-### 4. Rodar os componentes da pipeline
+### 4. Rodar o pipeline experimental
+
+Com os diários extraídos em `data/raw/` (ver [docs/ACERVO.md](docs/ACERVO.md)):
 
 ```bash
-python src/data/parser.py
-python src/models/lstm.py
-python src/eval/llm_client.py
+python src/data/extrator.py --pdfs-por-uf 14 --paginas-por-pdf 4 --workers 9
+python src/eval/caracterizar.py
+python src/eval/baselines.py
+python src/models/layoutlm_ordem.py treinar
+python src/models/layoutlm_ordem.py avaliar
+python src/models/lstm_ordem.py --variante geo_texto
+python src/eval/llm_ordem.py --modelo llava:7b --paginas 20
+python src/eval/comparar.py
+python src/eval/figuras.py
 ```
+
+---
+
+## 📚 Documentação
+
+| Documento | Conteúdo |
+|---|---|
+| [docs/RESULTADOS_PRELIMINARES.md](docs/RESULTADOS_PRELIMINARES.md) | Números e figuras dos experimentos |
+| [docs/METODOLOGIA.md](docs/METODOLOGIA.md) | Desenho experimental completo |
+| [docs/DIARIO_DE_BORDO.md](docs/DIARIO_DE_BORDO.md) | Tudo o que foi feito, com decisões e problemas |
+| [docs/ACERVO.md](docs/ACERVO.md) | Diagnóstico dos 4.644 diários do acervo |
+| [docs/ROADMAP.md](docs/ROADMAP.md) | Próximos passos e perguntas para o orientador |
+| [docs/LITERATURA.md](docs/LITERATURA.md) | Fichamento bibliográfico |
 
 ---
 
 ## 🚧 Estado Atual
 
-O repositório está em transição: os módulos em `src/` foram escritos sob um escopo anterior (extração de entidades) e estão sendo migrados para a tarefa de ordem de leitura. Componentes ainda pendentes:
+- [x] Extração de blocos com bounding boxes a partir dos PDFs digitais (`src/data/extrator.py`)
+- [x] Métricas: τ de Kendall, ARD, BLEU de página (`src/eval/metrics.py`)
+- [x] Protocolo experimental com divisão por veículo (`src/eval/protocolo.py`)
+- [x] Baselines: ordem do detector, ingênua, XY-cut (`src/eval/baselines.py`)
+- [x] BiLSTM em três variantes (`src/models/lstm_ordem.py`)
+- [x] LayoutLM como learning-to-rank, com ablação sem layout (`src/models/layoutlm_ordem.py`)
+- [x] LLM zero-shot via Ollama (`src/eval/llm_ordem.py`)
+- [ ] Golden Dataset manual (20 páginas de Goiás)
+- [ ] LLM de texto (qwen2.5) e APIs comerciais (Azure, Google)
+- [ ] LayoutXLM multilíngue e LayoutReader
 
-- [ ] `src/models/layoutlm.py` — instanciação do LayoutLM com encoding das bboxes normalizadas
-- [ ] `src/eval/metrics.py` — implementação de BLEU de página e ARD
-- [ ] `src/eval/llm_client.py` — migrar de extração de entidades para prompt de ordenação via Ollama
-- [ ] `src/data/parser.py` — migrar de `pypdf` (texto corrido) para extração de bboxes com coordenadas
-- [ ] `src/models/lstm.py` — adaptar para baseline de ordenação
+Os módulos `src/data/parser.py`, `src/models/lstm.py` e `src/eval/llm_client.py` são do escopo anterior (extração de entidades) e foram substituídos pelos listados acima.
