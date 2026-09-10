@@ -1,0 +1,363 @@
+<title>Ordem de Leitura em Diários Oficiais</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+  :root {
+    color-scheme: light;
+    --chao: #f4f5f7;
+    --papel: #ffffff;
+    --tinta: #15181d;
+    --tinta-2: #525965;
+    --tinta-3: #79808c;
+    --fio: #dadee4;
+    --acento: #2a78d6;
+    --acento-tinta: #1b5da9;
+    --acento-fundo: #e6effa;
+    --alerta: #85580a;
+    --alerta-fundo: #faf0d8;
+    --alerta-fio: #e8cf95;
+    --ponto: #5d6470;
+    --f-disp: "IBM Plex Sans Condensed", "Roboto Condensed", "Arial Narrow", sans-serif;
+    --f-texto: "IBM Plex Serif", Georgia, "Times New Roman", serif;
+    --f-dados: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --chao: #0f1217; --papel: #171b22; --tinta: #e9ecf1; --tinta-2: #a4abb7; --tinta-3: #7e8692;
+      --fio: #2b323c; --acento: #5a9bea; --acento-tinta: #8bb9f3; --acento-fundo: #152438;
+      --alerta: #e2b865; --alerta-fundo: #262116; --alerta-fio: #5a4a26; --ponto: #a4abb7;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --chao: #0f1217; --papel: #171b22; --tinta: #e9ecf1; --tinta-2: #a4abb7; --tinta-3: #7e8692;
+    --fio: #2b323c; --acento: #5a9bea; --acento-tinta: #8bb9f3; --acento-fundo: #152438;
+    --alerta: #e2b865; --alerta-fundo: #262116; --alerta-fio: #5a4a26; --ponto: #a4abb7;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--chao); color: var(--tinta);
+    font-family: var(--f-texto); font-size: 17px; line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--acento-tinta); text-underline-offset: 3px; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--acento); outline-offset: 3px; border-radius: 2px; }
+  .folha { max-width: 1080px; margin: 0 auto; padding: 0 28px 80px; }
+
+  /* cabeçalho no espírito de um expediente de diário oficial */
+  .expediente {
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 24px;
+    padding: 18px 0 10px; border-bottom: 3px double var(--fio);
+    font-family: var(--f-dados); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--tinta-2);
+  }
+  header.abertura { padding: 44px 0 8px; }
+  h1 {
+    font-family: var(--f-disp); font-weight: 700; text-transform: uppercase;
+    font-size: clamp(2.1rem, 5.2vw, 3.5rem); line-height: 1.02; letter-spacing: .005em;
+    margin: 0 0 18px; text-wrap: balance; max-width: 16ch;
+  }
+  .linha-fina { font-style: italic; color: var(--tinta-2); font-size: 1.16rem; max-width: 60ch; margin: 0; text-wrap: pretty; }
+
+  .numeros {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0 28px;
+    margin: 36px 0 12px; padding: 0; list-style: none;
+  }
+  .numeros li { border-top: 1px solid var(--fio); padding: 14px 0 8px; display: grid; gap: 4px; align-content: start; }
+  .numeros strong { font-family: var(--f-dados); font-weight: 500; font-size: 1.75rem; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .numeros span { font-family: var(--f-disp); font-weight: 500; font-size: .92rem; color: var(--tinta-2); line-height: 1.3; }
+
+  /* seções encadeadas como uma ordem de leitura */
+  main { margin-top: 36px; }
+  .secao { position: relative; padding: 34px 0 10px 64px; }
+  .secao::before {
+    content: ""; position: absolute; left: 17px; top: 76px; bottom: -36px; width: 2px;
+    background: linear-gradient(var(--acento), transparent); opacity: .35;
+  }
+  .secao:last-of-type::before { display: none; }
+  .marco {
+    position: absolute; left: 0; top: 36px; width: 36px; height: 36px; border-radius: 50%;
+    display: grid; place-items: center; background: var(--acento); color: #fff;
+    font-family: var(--f-dados); font-weight: 500; font-size: 15px;
+  }
+  h2 {
+    font-family: var(--f-disp); font-weight: 600; font-size: clamp(1.45rem, 3vw, 1.9rem); line-height: 1.15;
+    margin: 0 0 16px; text-wrap: balance;
+  }
+  h3 { font-family: var(--f-disp); font-weight: 600; font-size: 1.12rem; margin: 26px 0 6px; }
+  .secao p, .secao li { max-width: 68ch; text-wrap: pretty; }
+  .secao > p:first-of-type { margin-top: 0; }
+  strong { font-weight: 600; }
+  .dado { font-family: var(--f-dados); font-size: .92em; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  figure { margin: 26px 0; }
+  .prancha { background: #fff; border: 1px solid var(--fio); border-radius: 3px; padding: 10px; }
+  .prancha img { display: block; width: 100%; height: auto; }
+  :root[data-theme="dark"] .prancha img { filter: brightness(.9); }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .prancha img { filter: brightness(.9); } }
+  figcaption { font-family: var(--f-disp); font-size: .9rem; color: var(--tinta-2); margin-top: 8px; max-width: 80ch; line-height: 1.45; }
+  figcaption b { color: var(--tinta); font-weight: 600; }
+
+  .fluxo { list-style: none; padding: 0; margin: 22px 0 8px; display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+  .fluxo li { background: var(--papel); border: 1px solid var(--fio); border-radius: 3px; padding: 12px 14px; display: grid; gap: 4px; align-content: start; }
+  .fluxo b { font-family: var(--f-disp); font-weight: 600; font-size: 1rem; }
+  .fluxo span { font-size: .88rem; color: var(--tinta-2); line-height: 1.45; }
+  .fluxo .etapa { font-family: var(--f-dados); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--acento-tinta); }
+
+  .grafico { background: var(--papel); border: 1px solid var(--fio); border-radius: 3px; padding: 16px 12px 8px; position: relative; }
+  .grafico svg { display: block; width: 100%; height: auto; overflow: visible; }
+  .grafico text { font-family: var(--f-dados); }
+  .dica {
+    position: absolute; pointer-events: none; background: var(--tinta); color: var(--chao);
+    font-family: var(--f-dados); font-size: 12px; line-height: 1.5; padding: 8px 10px; border-radius: 3px;
+    max-width: 260px; box-shadow: 0 4px 16px rgba(0,0,0,.18);
+  }
+  .dica b { font-family: var(--f-disp); font-size: 13px; font-weight: 600; }
+
+  .tabela { overflow-x: auto; background: var(--papel); border: 1px solid var(--fio); border-radius: 3px; margin: 18px 0; }
+  table { border-collapse: collapse; width: 100%; font-size: .92rem; min-width: 640px; }
+  th, td { padding: 9px 12px; text-align: right; border-bottom: 1px solid var(--fio); font-variant-numeric: tabular-nums; }
+  th { font-family: var(--f-disp); font-weight: 600; font-size: .85rem; color: var(--tinta-2); vertical-align: bottom; line-height: 1.25; }
+  td { font-family: var(--f-dados); font-size: .86rem; }
+  th:first-child, td:first-child { text-align: left; font-family: var(--f-disp); font-size: .95rem; }
+  tr:last-child td { border-bottom: 0; }
+  tr.destaque td { background: var(--acento-fundo); }
+  td .ic { color: var(--tinta-3); font-size: .78rem; }
+  .nota-tabela { font-family: var(--f-disp); font-size: .88rem; color: var(--tinta-2); margin: -8px 0 18px; }
+
+  .leituras { display: grid; gap: 4px; }
+  .leituras p { margin: 10px 0; }
+  .leituras b { font-family: var(--f-disp); font-weight: 600; font-size: 1.05rem; }
+
+  .correcao { background: var(--alerta-fundo); border: 1px solid var(--alerta-fio); border-radius: 3px; padding: 16px 20px; margin: 18px 0; max-width: 76ch; }
+  .correcao .rotulo { font-family: var(--f-dados); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--alerta); }
+  .correcao p { margin: 6px 0 0; }
+
+  ol.perguntas { padding-left: 1.3em; }
+  ol.perguntas li { margin: 10px 0; padding-left: 4px; }
+  ol.perguntas li::marker { font-family: var(--f-dados); color: var(--acento-tinta); }
+
+  footer { margin-top: 56px; padding-top: 18px; border-top: 3px double var(--fio); font-family: var(--f-disp); font-size: .92rem; color: var(--tinta-2); display: grid; gap: 6px; }
+
+  @media (max-width: 640px) {
+    .folha { padding: 0 18px 60px; }
+    .secao { padding-left: 0; padding-top: 72px; }
+    .secao::before { display: none; }
+    .marco { top: 26px; }
+    body { font-size: 16px; }
+  }
+</style>
+
+<div class="folha">
+  <div class="expediente">
+    <span>TCC · Instituto de Informática · UFG</span>
+    <span>Relatório de progresso · {{DATA}} · commit {{COMMIT}}</span>
+  </div>
+
+  <header class="abertura">
+    <h1>Ordem de leitura em Diários Oficiais</h1>
+    <p class="linha-fina">O que o acervo de 4.644 diários mostrou, o que dizem os primeiros experimentos com LayoutLM, heurísticas e LLM, e o que precisa ser decidido com o orientador.</p>
+    <ul class="numeros">
+      <li><strong>4.644</strong><span>PDFs no acervo, 23 UFs e 8 municípios (~310 mil páginas)</span></li>
+      <li><strong>11 de 30</strong><span>veículos em que a ordem interna do PDF segue a leitura</span></li>
+      <li><strong>τ {{TAU_XYCUT}}</strong><span>XY-cut, a heurística de colunas, melhor método até aqui</span></li>
+      <li><strong>~{{RAZAO_LLM}}×</strong><span>mais lenta que o LayoutLM: a LLM zero-shot, com τ {{TAU_LLM}}</span></li>
+    </ul>
+  </header>
+
+  <main>
+    <section class="secao" aria-labelledby="s1">
+      <span class="marco" aria-hidden="true">1</span>
+      <h2 id="s1">O problema existe — mesmo em PDF digital</h2>
+      <p>Um detector de layout entrega os blocos de texto de uma página com suas coordenadas, mas sem ordem. Ordenar de cima para baixo e da esquerda para a direita — o padrão de muitos pipelines — atravessa as colunas no meio das frases e embaralha o texto que alimenta sistemas de RAG e agentes.</p>
+      <figure>
+        <div class="prancha"><img src="{{IMG_FIG2}}" alt="Mesma página de diário oficial duas vezes: à esquerda, os blocos numerados na ordem ingênua saltam entre as colunas; à direita, na ordem de referência, descem cada coluna inteira."></div>
+        <figcaption><b>A mesma página em duas ordens.</b> À esquerda, a ordenação ingênua salta entre as colunas; à direita, a ordem de referência desce cada coluna antes de passar à seguinte.</figcaption>
+      </figure>
+      <p>96% dos diários do acervo são PDFs digitais, com o texto e as coordenadas já dentro do arquivo — dispensam OCR. A pergunta natural era se a ordem interna desses arquivos já resolvia o problema. <strong>Não resolve:</strong> ela só acompanha a leitura em <strong>11 dos 30 veículos</strong>. Mesmo em veículos de coluna única, onde ler é trivialmente de cima para baixo, o fluxo do arquivo discorda — Manaus, Congonhas, Tocantins, Curitiba.</p>
+      <figure>
+        <div class="prancha"><img src="{{IMG_FIG1}}" alt="Gráfico de pontos por veículo comparando duas ordens com o fluxo do PDF; só os veículos no topo passam do limiar de confiabilidade."></div>
+        <figcaption><b>Concordância com o fluxo do PDF, por veículo</b> (τ de Kendall mediano, 777 páginas). Só os veículos à direita do limiar têm fluxo confiável — são os únicos usados como referência de treino e teste.</figcaption>
+      </figure>
+    </section>
+
+    <section class="secao" aria-labelledby="s2">
+      <span class="marco" aria-hidden="true">2</span>
+      <h2 id="s2">Como medimos</h2>
+      <p>Todos os métodos recebem exatamente a mesma entrada — os blocos de cada página embaralhados por uma permutação fixa, como se viessem de um detector — e são medidos contra a mesma referência, em veículos que nunca aparecem no treino.</p>
+      <ol class="fluxo">
+        <li><span class="etapa">Extração</span><b>PDF → blocos</b><span>Palavras na ordem do arquivo, linhas que não atravessam colunas, parágrafos.</span></li>
+        <li><span class="etapa">Referência</span><b>Rótulo silver</b><span>Ordem do fluxo do PDF, só nos veículos em que ela é confiável.</span></li>
+        <li><span class="etapa">Protocolo</span><b>Divisão por veículo</b><span>Treino em 7 veículos (152 págs.), teste em CE, MA e RJ ({{N_TESTE}} págs.).</span></li>
+        <li><span class="etapa">Métodos</span><b>9 competidores</b><span>Heurísticas, BiLSTM, LayoutLM como learning-to-rank, LLM local.</span></li>
+        <li><span class="etapa">Métricas</span><b>τ, ARD, latência</b><span>τ de Kendall como principal; o BLEU não discrimina nesta granularidade.</span></li>
+      </ol>
+    </section>
+
+    <section class="secao" aria-labelledby="s3">
+      <span class="marco" aria-hidden="true">3</span>
+      <h2 id="s3">Resultados preliminares</h2>
+      <p>O eixo central do TCC é o trade-off de Recuperação de Informação entre eficácia e eficiência. No gráfico, quanto mais alto, melhor a ordem; quanto mais à esquerda, menor o custo por página.</p>
+      <figure>
+        <div class="grafico" id="grafico">
+          <svg id="dispersao" viewBox="0 0 820 440" role="img" aria-labelledby="titulo-grafico">
+            <title id="titulo-grafico">τ de Kendall médio contra latência por página, para cada método</title>
+          </svg>
+          <div class="dica" id="dica" hidden></div>
+        </div>
+        <figcaption><b>Eficácia × eficiência.</b> {{N_TESTE}} páginas de teste; a LLM, mais lenta, foi avaliada num subconjunto de {{N_SUB}} páginas pequenas (ponto vazado). Barras verticais: IC 95% por bootstrap. Passe o cursor sobre um ponto para ver os números.</figcaption>
+      </figure>
+
+      <div class="tabela" role="region" aria-label="Tabela de resultados" tabindex="0">
+        <table id="tabela-resultados">
+          <thead><tr>
+            <th scope="col">Método</th><th scope="col">τ de Kendall<br>(IC 95%)</th><th scope="col">τ nas 10%<br>piores páginas</th>
+            <th scope="col">ARD<br>normalizado</th><th scope="col">Páginas<br>perfeitas</th><th scope="col">Latência<br>por página</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="nota-tabela">{{N_TESTE}} páginas de teste de três veículos nunca vistos no treino. τ: 1 = ordem perfeita, 0 = sem relação. ARD: deslocamento médio, 0 = perfeito.</p>
+
+      <div class="leituras">
+        <p><b>A heurística é o competidor a bater.</b> A XY-cut chega a τ = <span class="dado">{{TAU_XYCUT}}</span>, com o melhor desempenho nas piores páginas, em frações de milissegundo. O espaço para modelos aprendidos está nas páginas em que ela falha — e ela perde força à medida que o número de colunas cresce.</p>
+        <p><b>Layout é indispensável.</b> Sem as coordenadas, o LayoutLM cai de τ = <span class="dado">{{TAU_LAYOUTLM}}</span> para <span class="dado">{{TAU_SEM_LAYOUT}}</span>, e o BiLSTM só com texto fica em <span class="dado">{{TAU_LSTM_TEXTO}}</span>. Com os blocos embaralhados, o texto sozinho não recupera a ordem: a informação que resolve a tarefa está na geometria.</p>
+        <p><b>Com pouco dado, geometria explícita vence.</b> O BiLSTM só com geometria (<span class="dado">{{TAU_LSTM_GEO}}</span>) supera o LayoutLM, cuja validação estabiliza em τ ≈ 0,63 mesmo com 40 épocas. O gargalo são as 152 páginas de treino, não o tempo de treino.</p>
+        <p><b>A LLM zero-shot ecoa a entrada.</b> O <span class="dado">llava:7b</span> ficou em τ = <span class="dado">{{TAU_LLM}}</span>, próximo do acaso. A ordem que ele devolve tem τ mediano de <span class="dado">0,905</span> com a ordem em que os blocos <em>chegaram</em>, contra <span class="dado">0,121</span> com a correta: em 11 de 15 páginas, copiou a entrada em vez de ler as coordenadas. Uma em cada cinco respostas nem era uma permutação válida — e cada página levou <span class="dado">{{LAT_LLM}}</span> s.</p>
+      </div>
+    </section>
+
+    <section class="secao" aria-labelledby="s4">
+      <span class="marco" aria-hidden="true">4</span>
+      <h2 id="s4">Duas correções no caminho</h2>
+      <div class="correcao">
+        <span class="rotulo">Número retirado</span>
+        <p>O diagnóstico inicial falava em “86% de desordem”. A medida — fração de blocos fora da posição exata — sofre de efeito cascata: um bloco deslocado no início empurra todos os seguintes. Foi substituída pelo τ de Kendall, que conta pares fora de ordem.</p>
+      </div>
+      <div class="correcao">
+        <span class="rotulo">Ordem “crua” que não era crua</span>
+        <p>A extração padrão do <span class="dado">pdfplumber</span> já devolve as palavras pré-ordenadas geometricamente. A ordem real do arquivo exige <span class="dado">use_text_flow=True</span> — e foi medindo essa ordem real que apareceu o achado da seção 1.</p>
+      </div>
+    </section>
+
+    <section class="secao" aria-labelledby="s5">
+      <span class="marco" aria-hidden="true">5</span>
+      <h2 id="s5">Para decidir com o orientador</h2>
+      <ol class="perguntas">
+        <li><strong>Rótulo silver.</strong> Treinar com a ordem do fluxo do PDF nos veículos confiáveis, deixando a avaliação final para um padrão-ouro anotado à mão, é aceitável?</li>
+        <li><strong>Goiás como teste fora do domínio.</strong> O acervo não tem Goiás. Treinar nas 23 UFs e testar em 20 páginas goianas anotadas mede generalização para um layout nunca visto.</li>
+        <li><strong>APIs comerciais como terceiro competidor.</strong> Há saídas do Azure e do Google em Japeri. Existem créditos para rodar o padrão-ouro nas duas? Isso completaria o eixo de custo.</li>
+        <li><strong>Granularidade.</strong> Blocos, alinhados à saída de detectores de layout, ou palavras, como no LayoutReader?</li>
+        <li><strong>Infraestrutura.</strong> Há GPU com mais memória no laboratório? LayoutXLM e LLMs maiores não cabem em 6 GB.</li>
+      </ol>
+    </section>
+
+    <section class="secao" aria-labelledby="s6">
+      <span class="marco" aria-hidden="true">6</span>
+      <h2 id="s6">Próximos passos</h2>
+      <p><strong>Padrão-ouro:</strong> 20 páginas de Goiás estratificadas por número de colunas, com ordem anotada à mão. <strong>Mais dados de treino</strong> e extração mais rápida. <strong>LLM de texto</strong> (<span class="dado">qwen2.5:7b</span>) e versão com exemplos no prompt. <strong>Auditoria visual</strong> do rótulo silver, começando por SP, onde a heurística e o fluxo do PDF estão anticorrelacionados.</p>
+    </section>
+  </main>
+
+  <footer>
+    <span>Código, dados de experimento e documentação: <a href="https://github.com/Pedroalano27/tcc-ri-reading-order">github.com/Pedroalano27/tcc-ri-reading-order</a></span>
+    <span>Detalhes em <span class="dado">docs/RESULTADOS_PRELIMINARES.md</span>, <span class="dado">docs/METODOLOGIA.md</span> e <span class="dado">docs/DIARIO_DE_BORDO.md</span>. Orientador: Prof. Dr. Thierson Couto Rosa.</span>
+  </footer>
+</div>
+
+<script>
+  const DADOS = {{DADOS_JSON}};
+  const NOMES = {
+    aleatoria: "Ordem do detector", naive: "Ingênua", xycut: "XY-cut",
+    lstm_texto: "BiLSTM só texto", lstm_geo: "BiLSTM só geometria", lstm_geo_texto: "BiLSTM texto + geo",
+    layoutlm_sem_layout: "LayoutLM sem layout", layoutlm: "LayoutLM", llm_llava_7b: "LLM llava:7b"
+  };
+  // deslocamento do rótulo de cada ponto, para não colidirem
+  const ROTULO = {
+    aleatoria: [10, -8, "start"], naive: [10, 16, "start"], xycut: [10, -10, "start"],
+    lstm_texto: [-10, -10, "end"], lstm_geo: [-10, -10, "end"], lstm_geo_texto: [-10, 16, "end"],
+    layoutlm_sem_layout: [10, 16, "start"], layoutlm: [12, 4, "start"], llm_llava_7b: [-10, -12, "end"]
+  };
+  const virgula = (x, d = 3) => x.toFixed(d).replace(".", ",").replace("-", "−");
+  const ms = (x) => x < 1 ? virgula(x, 3) + " ms" : x < 1000 ? virgula(x, 1) + " ms" : virgula(x / 1000, 1) + " s";
+
+  function pontos() {
+    const lista = Object.entries(DADOS.todas).map(([m, r]) => ({ m, r, sub: false }));
+    if (DADOS.sub && DADOS.sub.llm_llava_7b) lista.push({ m: "llm_llava_7b", r: DADOS.sub.llm_llava_7b, sub: true });
+    return lista;
+  }
+
+  function tabela() {
+    const corpo = document.querySelector("#tabela-resultados tbody");
+    const linhas = Object.entries(DADOS.todas).sort((a, b) => b[1].tau - a[1].tau);
+    const melhor = linhas[0][0];
+    corpo.innerHTML = linhas.map(([m, r]) => `
+      <tr class="${m === "layoutlm" ? "destaque" : ""}">
+        <td>${NOMES[m] || m}</td>
+        <td>${m === melhor ? "<strong>" + virgula(r.tau) + "</strong>" : virgula(r.tau)}
+            <span class="ic">${virgula(r.tau_ic95[0], 2)} a ${virgula(r.tau_ic95[1], 2)}</span></td>
+        <td>${virgula(r.tau_p10)}</td>
+        <td>${virgula(r.ard_norm)}</td>
+        <td>${virgula(100 * r.exato, 1)}%</td>
+        <td>${ms(r.tempo_ms)}</td>
+      </tr>`).join("");
+  }
+
+  function grafico() {
+    const svg = document.getElementById("dispersao");
+    const ns = "http://www.w3.org/2000/svg";
+    const W = 820, H = 440, M = { e: 58, d: 24, t: 16, b: 58 };
+    const xmin = -3, xmax = 4, ymin = -0.2, ymax = 1.0;
+    const X = (v) => M.e + (Math.log10(Math.max(v, 1e-3)) - xmin) / (xmax - xmin) * (W - M.e - M.d);
+    const Y = (v) => M.t + (ymax - v) / (ymax - ymin) * (H - M.t - M.b);
+    const el = (tag, at, pai = svg) => { const n = document.createElementNS(ns, tag); for (const k in at) n.setAttribute(k, at[k]); pai.appendChild(n); return n; };
+
+    for (let t = -0.2; t <= 1.001; t += 0.2) {
+      const y = Y(t);
+      el("line", { x1: M.e, x2: W - M.d, y1: y, y2: y, stroke: "var(--fio)", "stroke-width": Math.abs(t) < 1e-9 ? 1.5 : 1 });
+      el("text", { x: M.e - 10, y: y + 4, "text-anchor": "end", "font-size": 12, fill: "var(--tinta-2)" }).textContent = virgula(t, 1);
+    }
+    const rotX = { "-3": "0,001", "-2": "0,01", "-1": "0,1", "0": "1", "1": "10", "2": "100", "3": "1.000", "4": "10.000" };
+    for (let e = xmin; e <= xmax; e++) {
+      const x = X(10 ** e);
+      el("line", { x1: x, x2: x, y1: M.t, y2: H - M.b, stroke: "var(--fio)", "stroke-width": 1, "stroke-dasharray": "2 4" });
+      el("text", { x, y: H - M.b + 20, "text-anchor": "middle", "font-size": 12, fill: "var(--tinta-2)" }).textContent = rotX[e];
+    }
+    el("text", { x: (M.e + W - M.d) / 2, y: H - 12, "text-anchor": "middle", "font-size": 12.5, fill: "var(--tinta-2)" })
+      .textContent = "latência por página (ms, escala logarítmica) — menor é melhor";
+    el("text", { x: 14, y: M.t + (H - M.t - M.b) / 2, "text-anchor": "middle", "font-size": 12.5, fill: "var(--tinta-2)",
+      transform: `rotate(-90 14 ${M.t + (H - M.t - M.b) / 2})` }).textContent = "τ de Kendall médio — maior é melhor";
+
+    const dica = document.getElementById("dica");
+    const caixa = document.getElementById("grafico");
+    for (const { m, r, sub } of pontos()) {
+      const x = X(r.tempo_ms), y = Y(r.tau), foco = m === "layoutlm";
+      const cor = foco ? "var(--acento)" : "var(--ponto)";
+      el("line", { x1: x, x2: x, y1: Y(r.tau_ic95[0]), y2: Y(r.tau_ic95[1]), stroke: cor, "stroke-width": 2, "stroke-linecap": "round", opacity: 0.55 });
+      el("circle", { cx: x, cy: y, r: foco ? 8 : 6, fill: sub ? "var(--papel)" : cor, stroke: sub ? cor : "var(--papel)", "stroke-width": sub ? 2.5 : 2 });
+      const [dx, dy, ancora] = ROTULO[m] || [10, 4, "start"];
+      const t = el("text", { x: x + dx, y: y + dy, "text-anchor": ancora, "font-size": foco ? 13.5 : 12.5,
+        "font-weight": foco ? 600 : 400, fill: foco ? "var(--acento-tinta)" : "var(--tinta)" });
+      t.textContent = NOMES[m] + (sub ? ` (${DADOS.n_sub} págs.)` : "");
+      const alvo = el("circle", { cx: x, cy: y, r: 16, fill: "transparent", tabindex: 0, "aria-label": NOMES[m] });
+      const mostrar = () => {
+        dica.innerHTML = `<b>${NOMES[m]}</b><br>τ ${virgula(r.tau)} (IC ${virgula(r.tau_ic95[0], 2)} a ${virgula(r.tau_ic95[1], 2)})` +
+          `<br>10% piores: ${virgula(r.tau_p10)}<br>latência: ${ms(r.tempo_ms)}<br>${r.n} páginas`;
+        dica.hidden = false;
+        const kx = caixa.clientWidth / W, ky = caixa.clientHeight / H;
+        const esq = Math.min(x * kx + 14, caixa.clientWidth - 250);
+        dica.style.left = Math.max(8, esq) + "px";
+        dica.style.top = Math.max(8, y * ky - 20) + "px";
+      };
+      alvo.addEventListener("mouseenter", mostrar);
+      alvo.addEventListener("focus", mostrar);
+      alvo.addEventListener("mouseleave", () => { dica.hidden = true; });
+      alvo.addEventListener("blur", () => { dica.hidden = true; });
+    }
+  }
+
+  tabela();
+  grafico();
+</script>
