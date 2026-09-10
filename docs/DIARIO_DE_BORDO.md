@@ -158,7 +158,28 @@ PDF ──► extrator.py ──► blocos + 3 ordens ──► caracterizar.py 
 - **Teste de fumaça do LayoutLM na GPU:** pico de **3,09 GB de VRAM** com micro-lote
   de 4 páginas e sequência de 418 tokens; inferência em **22–38 ms por página**.
 
-Os números dos experimentos estão em [RESULTADOS_PRELIMINARES.md](RESULTADOS_PRELIMINARES.md).
+### 3.4 Bateria de experimentos
+
+- **Caracterização (777 páginas, 30 veículos).** O fluxo do PDF só se comporta como
+  ordem de leitura em **11 veículos** (τ mediano ≥ 0,7 contra a XY-cut); com o limiar
+  de 0,9, apenas 4. Até veículos de coluna única, como Manaus e Tocantins, têm o fluxo
+  embaralhado. Consequência: o conjunto com referência confiável ficou pequeno —
+  treino com 7 veículos (152 páginas), validação com RN (15), teste com CE, MA e RJ (95).
+- **Orquestrador** (`src/rodar_experimentos.py`): a bateria completa rodou em 7,1 min,
+  com a GPU em série e os BiLSTM em paralelo na CPU.
+- **Rodada 1:** o LayoutLM treinou só 56 s (8 épocas × 19 passos) e ficou
+  **subtreinado** — a validação ainda subia a cada época (τ 0,567 → 0,606). Teste: τ 0,660.
+- **Rodada 2** (`src/rodar_treino_longo.py`): 40 épocas para o LayoutLM **e** para a
+  ablação — na rodada 1 a ablação tinha só 4 épocas, uma comparação injusta. A
+  validação do LayoutLM estabilizou em τ ≈ 0,62–0,63 a partir da época 10: **o limite
+  é o volume de dados, não o tempo de treino**. Teste: τ 0,671. Sem layout, o modelo
+  ficou no nível do acaso durante todo o treino (τ de validação ≈ −0,03) e chegou a
+  τ 0,122 no teste — pistas textuais como "cabeçalho primeiro, assinatura no fim".
+- **LLM:** 15 páginas (as de até 25 blocos), 80% de permutações válidas, 8,4 s por
+  página. Modo de falha: **ecoa a ordem de entrada** (τ mediano de 0,905 com a entrada
+  contra 0,121 com a referência).
+
+Os números completos estão em [RESULTADOS_PRELIMINARES.md](RESULTADOS_PRELIMINARES.md).
 
 ---
 
@@ -176,6 +197,11 @@ Os números dos experimentos estão em [RESULTADOS_PRELIMINARES.md](RESULTADOS_P
 | "86% de desordem" | Métrica posicional com efeito cascata | τ de Kendall e ARD |
 | "Ordem crua" pré-ordenada | Padrão do `pdfplumber` | `use_text_flow=True` |
 | Extração lenta em páginas densas | Custo do `pdfplumber` | Amostra menor nos veículos pesados; PyMuPDF como otimização futura |
+| Log da LLM "sumiu" | O nome do arquivo tinha `:` (de `llava:7b`); no Windows isso cria um *fluxo alternativo* do NTFS em vez de um arquivo | Nomes de log saneados; conteúdo resgatado do fluxo |
+| LLM lenta, com latência inflada | `llava:7b` com contexto de 8.192 tokens não coube nos 6 GB: 34% das camadas rodaram na CPU | Registrado como ressalva; testar contexto menor e modelo de texto |
+| Figura 2 mostrava uma página em que a ordem ingênua acertava | Critério de seleção restrito ao conjunto de teste | Seleção entre todos os veículos confiáveis, priorizando a maior discordância |
+| LayoutLM subtreinado na rodada 1 | 152 páginas × 8 épocas = 152 passos | Rodada 2 com 40 épocas, e ablação com o mesmo orçamento |
+| Validador de paleta da skill de visualização não rodou | Node.js não instalado | Usada a paleta de referência já validada, sem alterações |
 
 ## Decisões e justificativas
 

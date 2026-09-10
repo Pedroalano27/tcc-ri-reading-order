@@ -28,15 +28,16 @@ from src.eval.metrics import avaliar  # noqa: E402
 
 NOMES = {
     "aleatoria": "Ordem do detector (sem ordenar)",
-    "naive": "Ingenua (topo-base, esq-dir)",
-    "xycut": "XY-cut (heuristica de colunas)",
-    "lstm_texto": "BiLSTM - so texto",
-    "lstm_geo": "BiLSTM - so geometria",
-    "lstm_geo_texto": "BiLSTM - texto + geometria",
-    "layoutlm_sem_layout": "LayoutLM sem layout (ablacao)",
-    "layoutlm": "LayoutLM - texto + layout 2D",
+    "naive": "Ingênua (topo→base, esq.→dir.)",
+    "xycut": "XY-cut (heurística de colunas)",
+    "lstm_texto": "BiLSTM: só texto",
+    "lstm_geo": "BiLSTM: só geometria",
+    "lstm_geo_texto": "BiLSTM: texto + geometria",
+    "layoutlm_sem_layout": "LayoutLM sem layout (ablação)",
+    "layoutlm": "LayoutLM: texto + layout 2D",
     "llm_llava_7b": "LLM llava:7b (zero-shot)",
 }
+sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 
 def percentil(v, q):

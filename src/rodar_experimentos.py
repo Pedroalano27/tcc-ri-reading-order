@@ -48,6 +48,7 @@ _trava = threading.Lock()
 
 def rodar(cmd):
     nome = "_".join(os.path.basename(c).replace(".py", "") for c in cmd if not c.startswith("--"))[:60]
+    nome = nome.replace(":", "_")   # ':' no Windows cria um fluxo alternativo NTFS em vez de um arquivo
     log = os.path.join(DIR_LOGS, f"{nome}.log")
     t0 = time.time()
     with open(log, "w", encoding="utf-8") as f:

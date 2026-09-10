@@ -1,0 +1,3 @@
+Loading weights:   0%|          | 0/203 [00:00<?, ?it/s]Loading weights: 100%|██████████| 203/203 [00:00<00:00, 11806.26it/s]
+[OK] layoutlm: 95 paginas de teste | tau 0.6710 | ARD norm 0.1227 | 18.0 ms/pagina
+     predicoes em C:\Users\pedro\dev\tcc-ri-reading-order\resultados\pred_layoutlm.jsonl
