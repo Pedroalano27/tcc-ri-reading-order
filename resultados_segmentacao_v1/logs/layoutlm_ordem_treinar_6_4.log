@@ -1,0 +1,15 @@
+[*] treino: 152 paginas (7 UFs) | validacao: 15 paginas | referencia: stream
+Loading weights:   0%|          | 0/203 [00:00<?, ?it/s]Loading weights: 100%|██████████| 203/203 [00:00<00:00, 2500.62it/s]
+  ep 1 passo 10/76 loss 0.2686 (4s)
+[val] epoca 1: tau 0.1301 | ARD norm 0.2932
+      novo melhor modelo salvo (tau 0.1301)
+  ep 2 passo 20/76 loss 0.0929 (8s)
+  ep 2 passo 30/76 loss 0.0909 (11s)
+[val] epoca 2: tau 0.0510 | ARD norm 0.3139
+  ep 3 passo 40/76 loss 0.0891 (14s)
+  ep 3 passo 50/76 loss 0.0885 (18s)
+[val] epoca 3: tau 0.0168 | ARD norm 0.3286
+  ep 4 passo 60/76 loss 0.0879 (21s)
+  ep 4 passo 70/76 loss 0.0875 (24s)
+[val] epoca 4: tau 0.1252 | ARD norm 0.2924
+[OK] treino concluido em 26s | melhor val tau 0.1301

@@ -1,7 +1,7 @@
 # Roadmap e Próximos Passos
 
 O que falta para o TCC, em ordem de prioridade, e como cada documento do repositório
-alimenta o texto final. Atualizado em 2026-09-10, à noite.
+alimenta o texto final. Atualizado em 2026-09-12.
 
 ---
 
@@ -38,7 +38,10 @@ alimenta o texto final. Atualizado em 2026-09-10, à noite.
 |---|---|---|
 | Ferramenta de anotação e lote `golden_v1` (30 páginas) | `venv\Scripts\python.exe src\anotacao\servidor.py` | [GUIA_ANOTACAO.md](GUIA_ANOTACAO.md) |
 | Avaliação contra a anotação humana | `venv\Scripts\python.exe src\eval\avaliar_golden.py --lote golden_v1` | idem |
-| Pacote e notebook do Kaggle | `venv\Scripts\python.exe src\kaggle\montar_pacote.py` | [KAGGLE.md](KAGGLE.md) |
+| Re-extração e medida de qualidade da segmentação | `venv\Scripts\python.exe src\data
+eextrair.py --entrada data\processedlocos --so-medir` | [METODOLOGIA.md](METODOLOGIA.md), seção 3.3.1 |
+| LayoutLM com predição de sucessor | `venv\Scripts\python.exe src\models\layoutlm_sucessor.py treinar` | [METODOLOGIA.md](METODOLOGIA.md), seção 5.4 |
+| Pacote e **dois** notebooks do Kaggle (treino e LLMs) | `venv\Scripts\python.exe src\kaggle\montar_pacote.py` | [KAGGLE.md](KAGGLE.md) |
 | Piloto de RI em Japeri | `venv\Scripts\python.exe src\ri\piloto_japeri.py` | [RESULTADOS_PRELIMINARES.md](RESULTADOS_PRELIMINARES.md), seção 6 |
 | Curva de aprendizado | `venv\Scripts\python.exe src\rodar_curva_aprendizado.py` | idem, seção 7 |
 
@@ -53,28 +56,51 @@ alimenta o texto final. Atualizado em 2026-09-10, à noite.
 - [ ] Rodar `avaliar_golden.py`: o rótulo silver se sustenta? Quem vence nos veículos incertos?
 - [ ] Baixar 10 a 20 edições de Goiás e preparar o lote `goias`
 
-### 2. LLMs de texto no Kaggle
-- [x] Pacote, notebook e importador
-- [ ] Rodar Qwen 2.5 de 7B, 14B e 32B, zero-shot e few-shot, no teste e no Golden
+### 2. Rodar tudo no Kaggle
+- [x] Pacote, dois notebooks (treino e LLMs) e importador
+- [ ] `kaggle_treino_ordem.ipynb`: curva das duas formulações, ablações, varredura do limiar
+- [ ] `kaggle_llm_ordem.ipynb`: Qwen 2.5 de 7B, 14B e 32B, zero-shot e few-shot, no teste e no Golden
 - [ ] Tabela de eficiência na mesma máquina (`resultados/latencia_kaggle_t4.json`)
 
 ### 3. Decidir pela curva de aprendizado
-- [ ] Ler `resultados/curva_aprendizado/curva.json` e a figura 7
+- [x] Curva do LayoutLM pontual: sobe sem estacionar (τ 0,694 → 0,786 de 152 a 3.235 páginas)
+- [ ] Rodar a curva da formulação de sucessor no Kaggle e comparar as duas nos dois painéis da figura 7
 - [ ] Se o τ continua subindo: escalar os dados (PyMuPDF para extrair dezenas de milhares de páginas)
-- [ ] Se estaciona abaixo da XY-cut: o gargalo é a formulação (item 4)
 
 ### 4. Mudar a formulação do LayoutLM
-O LayoutLM tem τ 0,671, mas só 13% de sucessores corretos: acerta a posição aproximada e
-troca vizinhos. Prever **o sucessor de cada bloco** ataca isso diretamente:
-- [ ] Cabeça par a par (o bloco j vem logo depois do bloco i?) sobre o LayoutLM, com decodificação gulosa
-- [ ] Ou um decodificador com ponteiro, como o LayoutReader
-- [ ] Comparar τ e sucessor correto com a versão pontual
+- [x] Cabeça par a par sobre o LayoutLM, com viés geométrico relativo e perda de entropia
+      cruzada por sucessor (`src/models/layoutlm_sucessor.py`)
+- [x] Decodificação em cadeias: trechos locais de alta confiança ordenados pela cabeça de
+      posição — resolve o τ baixo da decodificação em caminho puro
+- [x] Comparar τ e sucessor correto com a versão pontual, mesmo orçamento de treino
+- [ ] Ablações no Kaggle: sem viés geométrico, sem perda de posição, sem layout 2D
+- [ ] Varredura do limiar da cadeia (0 a 0,9)
+- [ ] Um decodificador com ponteiro, como o LayoutReader, como próximo passo
 
-### 5. Avaliação extrínseca de RI (o elo com a área)
+### 5. Análise de sensibilidade à granularidade
+A segmentação em blocos é uma escolha nossa, e o TCC precisa mostrar que as conclusões não
+dependem dela. Há duas segmentações das **mesmas páginas** (`blocos` e `blocos_v1`) e um
+detector comercial disponível.
+- [x] Corrigir o corte de linha (texto embaralhado dentro do bloco); medir antes/depois
+- [ ] Rodar o pipeline inteiro nas duas segmentações (`TCC_DIR_BLOCOS`) e comparar o ranking
+- [ ] Testar a hipótese: a super-segmentação inflava o sucessor da XY-cut?
+- [ ] Converter os blocos das APIs comerciais para o formato do protocolo (Azure em 12
+      páginas do Estado do RJ e de Japeri; Google em 2) e rodar a comparação sobre eles
+- [ ] Investigar o resíduo: ~15% de caixas ainda se sobrepõem, concentradas em páginas de
+      tabela densa
+
+### 6. Avaliação extrínseca de RI (o elo com a área)
 - [x] Piloto em Japeri: a busca de páginas satura; o texto entregue depende da ordem
 - [ ] Coleção maior (vários veículos) e consultas em linguagem natural
 - [ ] Busca densa (embeddings multilíngues) além do BM25
 - [ ] RAG completo: perguntas sobre os atos, respondidas por uma LLM com os trechos de cada ordenação (Kaggle)
+
+---
+
+### 7. Refazer todos os números sobre a segmentação corrigida
+- [ ] `baselines.py`, `caracterizar.py`, BiLSTM, LayoutLM (as duas formulações), `comparar.py`, figuras
+- [ ] Piloto de RI e curva de aprendizado (a curva vai para o Kaggle)
+- [ ] Refazer o pacote do Kaggle e a página de apresentação
 
 ---
 

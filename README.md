@@ -137,6 +137,8 @@ python src/eval/caracterizar.py
 python src/eval/baselines.py
 python src/models/layoutlm_ordem.py treinar
 python src/models/layoutlm_ordem.py avaliar
+python src/models/layoutlm_sucessor.py treinar
+python src/models/layoutlm_sucessor.py avaliar
 python src/models/lstm_ordem.py --variante geo_texto
 python src/eval/llm_ordem.py --modelo llava:7b --paginas 20 --max-blocos 25
 python src/eval/comparar.py
@@ -151,7 +153,7 @@ python src/ri/piloto_japeri.py                      # efeito da ordem na busca (
 python src/rodar_curva_aprendizado.py               # LayoutLM e BiLSTM com mais páginas de treino
 python src/anotacao/servidor.py                     # ferramenta de anotação do Golden Dataset
 python src/eval/avaliar_golden.py --lote golden_v1  # métodos contra a anotação humana
-python src/kaggle/montar_pacote.py                  # LLMs de 7B a 32B no Kaggle (docs/KAGGLE.md)
+python src/kaggle/montar_pacote.py                  # treino e LLMs nas T4 do Kaggle (docs/KAGGLE.md)
 ```
 
 ---
@@ -161,6 +163,8 @@ python src/kaggle/montar_pacote.py                  # LLMs de 7B a 32B no Kaggle
 | Documento | Conteúdo |
 |---|---|
 | [docs/ENTENDA_O_PROJETO.md](docs/ENTENDA_O_PROJETO.md) | **Comece por aqui**: guia explicativo do projeto inteiro, com exemplos e glossário |
+| [docs/HANDOFF.md](docs/HANDOFF.md) | Estado atual do projeto, onde está cada informação e próximos passos |
+| [AGENTS.md](AGENTS.md) · [COMUNICACAO_AGENTES.md](COMUNICACAO_AGENTES.md) | Regras para os agentes de IA que trabalham no repositório e quadro compartilhado entre eles |
 | [docs/RESULTADOS_PRELIMINARES.md](docs/RESULTADOS_PRELIMINARES.md) | Números e figuras dos experimentos |
 | [docs/METODOLOGIA.md](docs/METODOLOGIA.md) | Desenho experimental completo |
 | [docs/DIARIO_DE_BORDO.md](docs/DIARIO_DE_BORDO.md) | Tudo o que foi feito, com decisões e problemas |
@@ -179,14 +183,16 @@ python src/kaggle/montar_pacote.py                  # LLMs de 7B a 32B no Kaggle
 - [x] Protocolo experimental com divisão por veículo (`src/eval/protocolo.py`)
 - [x] Baselines: ordem do detector, ingênua, XY-cut (`src/eval/baselines.py`)
 - [x] BiLSTM em três variantes (`src/models/lstm_ordem.py`)
-- [x] LayoutLM como learning-to-rank, com ablação sem layout (`src/models/layoutlm_ordem.py`)
+- [x] LayoutLM como learning-to-rank pontual, com ablação sem layout (`src/models/layoutlm_ordem.py`)
+- [x] LayoutLM prevendo o **sucessor** de cada bloco, com viés geométrico par a par e
+      decodificação em cadeias (`src/models/layoutlm_sucessor.py`)
 - [x] LLM zero-shot e few-shot via Ollama (`src/eval/llm_ordem.py`)
 - [x] Ferramenta de anotação e lote `golden_v1` com 30 páginas (`src/anotacao/`)
-- [x] Pacote e notebook para rodar LLMs de 7B a 32B no Kaggle (`src/kaggle/`)
+- [x] Pacote e dois notebooks do Kaggle: treino na T4 e LLMs de 7B a 32B (`src/kaggle/`)
 - [x] Piloto de avaliação extrínseca de RI em Japeri (`src/ri/piloto_japeri.py`)
 - [x] Curva de aprendizado com até 3.235 páginas de treino (`src/rodar_curva_aprendizado.py`)
 - [ ] Anotação do Golden Dataset (`golden_v1` e Goiás)
-- [ ] LLMs de texto no Kaggle e APIs comerciais (Azure, Google)
-- [ ] LayoutLM prevendo o sucessor de cada bloco; LayoutXLM e LayoutReader
+- [ ] Rodar os dois notebooks do Kaggle: curva das duas formulações, ablações e as LLMs
+- [ ] APIs comerciais (Azure, Google); LayoutXLM e LayoutReader
 
 Os módulos `src/data/parser.py`, `src/models/lstm.py` e `src/eval/llm_client.py` são do escopo anterior (extração de entidades) e foram substituídos pelos listados acima.

@@ -47,6 +47,10 @@ RAW = os.path.join(RAIZ_PROJETO, "data", "raw")
 SAIDA = os.path.join(RAIZ_PROJETO, "data", "processed", "blocos")
 
 RE_CID = re.compile(r"\(cid:\d+\)")
+# Palavra cortada no fim da linha: hifen COLADO na palavra e continuacao em minuscula.
+RE_TRANSLINEACAO = re.compile(r"(\w{2,})-\s+([a-zà-ÿ])")
+# Espaco antes de pontuacao, criado ao emendar uma entrada em negrito ("SAUDE , no uso").
+RE_ESPACO_PONT = re.compile(r"\s+([,.;:!?)])")
 
 # UFs sabidamente inutilizaveis (ver docs/ACERVO.md): 86% do texto ilegivel.
 UFS_EXCLUIDAS = {"official_diary_pi"}
@@ -86,61 +90,218 @@ def palavras_da_pagina(page):
     return saida
 
 
-def construir_linhas(ws):
-    """Agrupa palavras em linhas SEM atravessar calhas entre colunas."""
-    if not ws:
-        return []
-    larg_char = statistics.median((w["x1"] - w["x0"]) / max(1, len(w["t"])) for w in ws)
-    gap_max = max(2.5, 1.8 * larg_char)
-    linhas = []
+def _faixas_de_base(ws, janela=60):
+    """Palavras na mesma linha de base, agrupadas SO pela sobreposicao vertical.
+
+    Nenhum teste horizontal aqui: uma faixa pode atravessar a pagina inteira e conter
+    palavras das duas colunas. Quem separa colunas e _calhas(), logo abaixo. A faixa e
+    ancorada na extensao vertical da PRIMEIRA palavra: sem a ancora a caixa cresce a
+    cada palavra e acaba engolindo a linha de cima ou a de baixo.
+    """
+    faixas = []
     for w in sorted(ws, key=lambda w: (w["top"], w["x0"])):
         hw = w["bottom"] - w["top"]
         alvo = None
-        for L in reversed(linhas[-30:]):
-            ov = min(L["bottom"], w["bottom"]) - max(L["top"], w["top"])
-            h = min(L["bottom"] - L["top"], hw)
-            if h <= 0 or ov / h < 0.5:
-                continue
-            gap_dir = w["x0"] - L["x1"]
-            gap_esq = L["x0"] - w["x1"]
-            if -1.0 <= gap_dir <= gap_max or -1.0 <= gap_esq <= gap_max:
-                alvo = L
+        for F in reversed(faixas[-janela:]):
+            ov = min(F["a_bot"], w["bottom"]) - max(F["a_top"], w["top"])
+            if ov > 0 and ov / min(F["a_bot"] - F["a_top"], hw) >= 0.5:
+                alvo = F
                 break
         if alvo is None:
-            linhas.append({"x0": w["x0"], "x1": w["x1"], "top": w["top"],
-                           "bottom": w["bottom"], "ws": [w]})
+            faixas.append({"a_top": w["top"], "a_bot": w["bottom"],
+                           "top": w["top"], "bottom": w["bottom"], "ws": [w]})
         else:
             alvo["ws"].append(w)
-            alvo["x0"] = min(alvo["x0"], w["x0"])
-            alvo["x1"] = max(alvo["x1"], w["x1"])
             alvo["top"] = min(alvo["top"], w["top"])
             alvo["bottom"] = max(alvo["bottom"], w["bottom"])
-    return linhas
+    return faixas
 
 
-def construir_blocos(linhas):
-    """Agrupa linhas verticalmente adjacentes, na mesma coluna e com fonte parecida."""
+def _calhas(faixas, W, min_larg=6.0, tol=0.03, fracao=0.25):
+    """Calhas verticais da pagina: faixas de x com pouquissima tinta em TODAS as linhas.
+
+    E o unico criterio confiavel para cortar uma linha ao meio. Um limiar de distancia
+    nao serve: em texto justificado o espaco entre palavras estica e chega a ficar tao
+    largo quanto uma calha estreita, e a linha e picotada no meio do paragrafo. O que
+    distingue os dois casos e a consistencia VERTICAL -- a calha e branca linha apos
+    linha, o espaco esticado so naquela.
+
+    O corte e RELATIVO, nao absoluto: numa pagina com muitos titulos de largura total
+    a calha e cruzada por varias linhas (medido num boletim legislativo: 13 de 142) e
+    um limite fixo baixo demais a perde -- mas a queda continua enorme, de ~65 linhas
+    nas colunas para 13 na calha. Compara-se entao com a ocupacao TIPICA da pagina.
+    """
+    n_bins = int(W) + 2
+    cont = [0] * n_bins
+    for F in faixas:
+        marcados = set()
+        for w in F["ws"]:
+            for b in range(max(0, int(w["x0"])), min(n_bins - 1, int(w["x1"]) + 1)):
+                marcados.add(b)
+        for b in marcados:
+            cont[b] += 1
+    ocupados = [c for c in cont if c > 0]
+    tipica = statistics.median(ocupados) if ocupados else 0
+    limite = max(max(1, int(tol * len(faixas))), fracao * tipica)
+    calhas, ini = [], None
+    for b in range(n_bins):
+        if cont[b] <= limite:
+            ini = b if ini is None else ini
+        elif ini is not None:
+            if b - ini >= min_larg:
+                calhas.append((float(ini), float(b)))
+            ini = None
+    if ini is not None and n_bins - ini >= min_larg:
+        calhas.append((float(ini), float(n_bins)))
+    return calhas
+
+
+def construir_linhas(ws, devolver_calhas=False):
+    """Agrupa palavras em linhas, cortando so onde ha calha ou um vao muito grande.
+
+    Dois criterios de corte, nesta ordem de confianca:
+      1. passa uma CALHA entre as duas palavras (branca em quase todas as linhas);
+      2. o vao e grande em termos absolutos. Medido no acervo, 95% das folgas DENTRO
+         de um paragrafo cabem em 1,5 largura de caractere; o corte em 8 fica muito
+         acima do espaco justificado mais esticado e ainda separa os elementos de um
+         cabecalho (data à esquerda, titulo ao centro, numero à direita), que a calha
+         nao pega porque ficam dentro da mesma regiao branca da pagina.
+    """
+    if not ws:
+        return ([], []) if devolver_calhas else []
+    W = max(w["x1"] for w in ws) + 2
+    larg_char = statistics.median((w["x1"] - w["x0"]) / max(1, len(w["t"])) for w in ws)
+    vao_max = max(20.0, 8 * larg_char)
+    faixas = _faixas_de_base(ws)
+    calhas = _calhas(faixas, W)
+    grupos = []
+    for F in faixas:
+        palavras = sorted(F["ws"], key=lambda w: w["x0"])
+        atual = [palavras[0]]
+        for ant, w in zip(palavras, palavras[1:]):
+            if (w["x0"] - ant["x1"] > vao_max
+                    or any(ant["x1"] <= c0 and c1 <= w["x0"] for c0, c1 in calhas)):
+                grupos.append(atual)
+                atual = []
+            atual.append(w)
+        grupos.append(atual)
+    linhas = [{"x0": min(w["x0"] for w in g), "x1": max(w["x1"] for w in g),
+               "top": min(w["top"] for w in g), "bottom": max(w["bottom"] for w in g), "ws": g}
+              for g in grupos if g]
+    return (linhas, calhas) if devolver_calhas else linhas
+
+
+def segmentar(ws):
+    """Palavras -> linhas -> blocos. As calhas da pagina valem para as duas etapas."""
+    linhas, calhas = construir_linhas(ws, devolver_calhas=True)
+    return construir_blocos(linhas, calhas)
+
+
+def _regioes(calhas, W):
+    """Regioes de conteudo da pagina: o complemento das calhas."""
+    reg, x = [], 0.0
+    for c0, c1 in sorted(calhas):
+        if c0 > x:
+            reg.append((x, c0))
+        x = max(x, c1)
+    if x < W:
+        reg.append((x, W))
+    return reg
+
+
+def _coluna(L, regioes):
+    """Indice da regiao que CONTEM a linha; -1 se ela atravessa mais de uma (titulo, cabecalho)."""
+    dentro = [k for k, (a, b) in enumerate(regioes) if L["x0"] >= a - 1 and L["x1"] <= b + 1]
+    return dentro[0] if len(dentro) == 1 else -1
+
+
+def _caixas_cruzam(a, b):
+    """Duas caixas se cruzam em pelo menos 25% da area da menor (regra de reextrair.qualidade)."""
+    aa = max(1e-6, (a["x1"] - a["x0"]) * (a["bottom"] - a["top"]))
+    ab = max(1e-6, (b["x1"] - b["x0"]) * (b["bottom"] - b["top"]))
+    iw = min(a["x1"], b["x1"]) - max(a["x0"], b["x0"])
+    ih = min(a["bottom"], b["bottom"]) - max(a["top"], b["top"])
+    return iw > 1 and ih > 1 and (iw * ih) / min(aa, ab) >= 0.25
+
+
+def construir_blocos(linhas, calhas=None):
+    """Agrupa linhas em blocos -- paragrafos, itens de ato e titulos -- dentro de cada coluna.
+
+    Uma linha entra no bloco logo acima dela quando, ao mesmo tempo:
+      1. esta na mesma COLUNA (regiao entre calhas). Sem isso, um titulo de largura total
+         cresce e engole linhas de outra coluna;
+      2. esta verticalmente colada (folga ate 0,8 altura de linha) e tem fonte parecida;
+      3. se sobrepoe horizontalmente a pelo menos metade da largura da menor das duas;
+      4. as duas sao do mesmo TIPO: linha curta e centralizada (titulo, "LOTE 139/2025",
+         assinatura) ou linha de texto corrido. Sem isso, um titulo centralizado entra no
+         paragrafo de baixo e dezenas de atos viram um bloco so;
+      5. a caixa resultante nao cruza a de outro bloco ja formado. Caixas que se cruzam
+         sao a assinatura de texto embaralhado dentro do bloco.
+
+    Como se chegou nesta regra (tarefa T03, 2026-09-12), na amostra fixa de 44 paginas de
+    src/data/avaliar_segmentacao.py:
+
+      regra                                   blocos/pag  sobrepostos  paginas rejeitadas
+      margem esquerda compativel (versao C)       61,4        4,9%          0
+      so as regras 1 a 3 (versao B)               41,7       10,5%          1
+      regras 1 a 5 (esta)                         52,8        5,7%          1 (SE, 224 blocos)
+
+    A versao C picota primeira linha recuada e item de lista com continuacao na margem (no
+    MA, de 36 para 85 blocos); a B funde texto corrido (o CE virou 2 blocos). O criterio de
+    granularidade veio de quem anota o Golden: olhando as tres versoes das paginas-problema,
+    o Pedro escolheu a de 36 blocos no MA e a de 66 no RJ; esta regra da 36 e 78. Parte da
+    sobreposicao que sobra e real, como carimbo de assinatura digital impresso sobre o texto.
+    """
     if not linhas:
         return []
     lh = statistics.median(L["bottom"] - L["top"] for L in linhas) or 1.0
+    lc = statistics.median((w["x1"] - w["x0"]) / max(1, len(w["t"]))
+                           for L in linhas for w in L["ws"]) or 4.0
+    W = max(L["x1"] for L in linhas) + 2
+    regioes = _regioes(calhas or [], W)
+    col_de = {id(L): _coluna(L, regioes) for L in linhas}
+    bordas_esq, bordas_dir = {}, {}
+    for L in linhas:
+        bordas_esq.setdefault(col_de[id(L)], []).append(L["x0"])
+        bordas_dir.setdefault(col_de[id(L)], []).append(L["x1"])
+    esq = {c: sorted(v)[int(0.1 * (len(v) - 1))] for c, v in bordas_esq.items()}
+    dir_ = {c: sorted(v)[int(0.9 * (len(v) - 1))] for c, v in bordas_dir.items()}
+
+    def centrada(L):
+        """Linha curta e centralizada na sua coluna: titulo, cabecalho de ato, assinatura."""
+        c = col_de[id(L)]
+        largura = max(1.0, dir_[c] - esq[c])
+        meio = (esq[c] + dir_[c]) / 2
+        return ((L["x1"] - L["x0"]) < 0.7 * largura
+                and abs((L["x0"] + L["x1"]) / 2 - meio) < 0.1 * largura
+                and L["x0"] > esq[c] + 3 * lc)
+
     blocos = []
     for L in sorted(linhas, key=lambda L: (L["top"], L["x0"])):
-        hL = L["bottom"] - L["top"]
+        hL, col, cent = L["bottom"] - L["top"], col_de[id(L)], centrada(L)
         alvo = None
         for B in reversed(blocos[-40:]):
+            if B["col"] != col:
+                continue
             gap = L["top"] - B["bottom"]
             if gap < -0.5 * lh or gap > 0.8 * lh:
+                continue
+            if abs(hL - B["lh"]) > 0.4 * B["lh"]:      # mudanca de fonte = novo bloco
                 continue
             ovx = min(B["x1"], L["x1"]) - max(B["x0"], L["x0"])
             if ovx < 0.5 * min(B["x1"] - B["x0"], L["x1"] - L["x0"]):
                 continue
-            if abs(hL - B["lh"]) > 0.4 * B["lh"]:      # mudanca de fonte = novo bloco
+            if cent != B["centrada"]:
+                continue
+            nova = {"x0": min(B["x0"], L["x0"]), "x1": max(B["x1"], L["x1"]),
+                    "top": B["top"], "bottom": max(B["bottom"], L["bottom"])}
+            if any(O is not B and _caixas_cruzam(nova, O) for O in blocos):
                 continue
             alvo = B
             break
         if alvo is None:
-            blocos.append({"x0": L["x0"], "x1": L["x1"], "top": L["top"],
-                           "bottom": L["bottom"], "lh": hL, "linhas": [L]})
+            blocos.append({"x0": L["x0"], "x1": L["x1"], "top": L["top"], "bottom": L["bottom"],
+                           "lh": hL, "col": col, "centrada": cent, "linhas": [L]})
         else:
             alvo["linhas"].append(L)
             alvo["x0"] = min(alvo["x0"], L["x0"])
@@ -150,7 +311,10 @@ def construir_blocos(linhas):
         partes = []
         for L in sorted(B["linhas"], key=lambda L: L["top"]):
             partes.append(" ".join(w["t"] for w in sorted(L["ws"], key=lambda w: w["x0"])))
-        B["texto"] = " ".join(partes)
+        # "Prontua- rios" -> "Prontuarios": translineacao com hifen colado na palavra. Nao pega
+        # tracos soltos ("IGUATU/CE - PERIODO"), que tem espaco antes do traco. Em seguida, o
+        # espaco que sobra antes da pontuacao ao emendar uma entrada em negrito ("SAUDE , no uso").
+        B["texto"] = RE_ESPACO_PONT.sub(r"\1", RE_TRANSLINEACAO.sub(r"\1\2", " ".join(partes)))
         B["s"] = min(w["s"] for L in B["linhas"] for w in L["ws"])
     return blocos
 
@@ -247,7 +411,7 @@ def processar_pagina(page, uf, arquivo, n_pag):
     prop_cid = sum(1 for w in ws if RE_CID.search(w["t"])) / len(ws)
     if prop_cid > MAX_PROP_CID:
         return None, "cid"
-    blocos = construir_blocos(construir_linhas(ws))
+    blocos = segmentar(ws)
     if not (MIN_BLOCOS <= len(blocos) <= MAX_BLOCOS):
         return None, "n_blocos"
 

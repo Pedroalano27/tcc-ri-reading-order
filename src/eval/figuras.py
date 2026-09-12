@@ -33,6 +33,7 @@ SUPERFICIE, TEXTO, TEXTO2, GRADE = "#fcfcfb", "#0b0b0b", "#52514e", "#e4e3df"
 NEUTRO = "#8f8e89"
 COR = {                        # ordem fixa dos slots categóricos da paleta de referência
     "layoutlm": "#2a78d6",
+    "layoutlm_sucessor": "#7d1442",
     "xycut": "#eb6834",
     "naive": "#1baf7a",
     "lstm_geo_texto": "#eda100",
@@ -45,7 +46,8 @@ COR = {                        # ordem fixa dos slots categóricos da paleta de 
 ROTULO = {
     "aleatoria": "Ordem do detector", "naive": "Ingênua", "xycut": "XY-cut",
     "lstm_texto": "BiLSTM (texto)", "lstm_geo": "BiLSTM (geometria)", "lstm_geo_texto": "BiLSTM (texto+geo)",
-    "layoutlm_sem_layout": "LayoutLM sem layout", "layoutlm": "LayoutLM", "llm_llava_7b": "LLM llava:7b",
+    "layoutlm_sem_layout": "LayoutLM sem layout", "layoutlm": "LayoutLM pontual",
+    "layoutlm_sucessor": "LayoutLM sucessor", "llm_llava_7b": "LLM llava:7b",
 }
 MUNICIPIOS = {
     "MG_congonhas": "Congonhas (MG)", "RJ_barra_do_pirai": "Barra do Piraí (RJ)",

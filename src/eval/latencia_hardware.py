@@ -4,7 +4,8 @@ Latencia por pagina de cada metodo NO HARDWARE ATUAL, com o mesmo roteiro de med
 Eficiencia so e comparavel na mesma maquina. Este script mede, nas paginas de teste:
   naive, xycut     em CPU, so a partir das caixas (como em baselines.py)
   BiLSTM geo       em CPU (como em lstm_ordem.py)
-  LayoutLM         na GPU, batch 1, tokenizacao incluida (como em layoutlm_ordem.py)
+  LayoutLM         na GPU, batch 1, tokenizacao incluida, nas DUAS formulacoes: a pontual
+                   e a de sucessor (esta ultima inclui o custo da decodificacao em cadeias)
 O tempo dos modelos nao depende dos pesos treinados: sem checkpoint, usa-se a mesma
 arquitetura recem-inicializada -- a conta e identica. Cada pagina e medida em varias
 passadas e fica a mediana, para reduzir o ruido.
@@ -80,15 +81,21 @@ def medir_lstm(paginas, passadas):
     return [statistics.median(ts) for ts in zip(*varreduras)]
 
 
-def medir_layoutlm(paginas, passadas):
+def medir_layoutlm(paginas, passadas, sucessor=False):
     import torch
     if not torch.cuda.is_available():
         return None, None
     from transformers import AutoTokenizer
-    from src.models.layoutlm_ordem import LayoutLMOrdem, Codificador, prever, MODELO_BASE, DIR_MODELOS
+    from src.models.layoutlm_ordem import Codificador, MODELO_BASE, DIR_MODELOS
     cod = Codificador(AutoTokenizer.from_pretrained(MODELO_BASE))
-    modelo = LayoutLMOrdem(MODELO_BASE).to("cuda")
-    ckpt = os.path.join(DIR_MODELOS, "layoutlm.pt")
+    if sucessor:
+        from src.models.layoutlm_sucessor import LayoutLMSucessor, prever
+        modelo = LayoutLMSucessor().to("cuda")
+        ckpt = os.path.join(DIR_MODELOS, "layoutlm_sucessor.pt")
+    else:
+        from src.models.layoutlm_ordem import LayoutLMOrdem, prever
+        modelo = LayoutLMOrdem(MODELO_BASE).to("cuda")
+        ckpt = os.path.join(DIR_MODELOS, "layoutlm.pt")
     com_pesos = os.path.exists(ckpt)
     if com_pesos:
         modelo.load_state_dict(torch.load(ckpt, map_location="cuda"))
@@ -120,13 +127,15 @@ def main():
 
     import torch
     info["torch"] = torch.__version__
-    tempos, com_pesos = medir_layoutlm(teste, a.passadas)
-    if tempos:
+    for nome, suc in (("layoutlm", False), ("layoutlm_sucessor", True)):
+        tempos, com_pesos = medir_layoutlm(teste, a.passadas, sucessor=suc)
+        if not tempos:
+            print("[!] sem GPU CUDA: LayoutLM nao medido")
+            break
         info["gpu"] = torch.cuda.get_device_name(0)
-        info["metodos"]["layoutlm"] = {**resumo(tempos), "com_pesos_treinados": com_pesos}
-        print(f"[OK] LayoutLM {info['metodos']['layoutlm']['media_ms']:.2f} ms ({info['gpu']})", flush=True)
-    else:
-        print("[!] sem GPU CUDA: LayoutLM nao medido")
+        info["metodos"][nome] = {**resumo(tempos), "com_pesos_treinados": com_pesos}
+        print(f"[OK] {nome} {info['metodos'][nome]['media_ms']:.2f} ms ({info['gpu']})", flush=True)
+        torch.cuda.empty_cache()
 
     caminho = os.path.join(DIR_RESULTADOS, f"latencia_{a.maquina}.json")
     with open(caminho, "w", encoding="utf-8") as f:

@@ -53,9 +53,9 @@ PARADAS = set("""a o e as os de da do das dos em no na nos nas um uma uns umas p
 ao aos pela pelo pelas pelos ou nao sua seu suas seus este esta esse essa isto art lei""".split())
 NOMES = {"aleatoria": "Ordem do detector (sem ordenar)", "fluxo_pdf": "Fluxo do PDF (extração comum)",
          "naive": "Ingênua (topo→base, esq.→dir.)", "xycut": "XY-cut (heurística de colunas)",
-         "layoutlm": "LayoutLM: texto + layout 2D"}
+         "layoutlm": "LayoutLM pontual", "layoutlm_sucessor": "LayoutLM sucessor"}
 CURTOS = {"aleatoria": "Ordem do detector", "fluxo_pdf": "Fluxo do PDF", "naive": "Ingênua",
-          "xycut": "XY-cut", "layoutlm": "LayoutLM"}
+          "xycut": "XY-cut", "layoutlm": "LayoutLM pontual", "layoutlm_sucessor": "LayoutLM sucessor"}
 
 
 def tokens(texto):
@@ -114,6 +114,32 @@ def preservada(frase, texto_tok, posicoes=None):
     return False
 
 
+def ordens_neurais(paginas, ordens, nome_metodo, ckpt, sucessor):
+    """Roda um checkpoint do LayoutLM nas paginas de Japeri e guarda a ordem predita."""
+    import torch
+    from src.models.layoutlm_ordem import Codificador, MODELO_BASE, DIR_MODELOS
+    caminho = os.path.join(DIR_MODELOS, f"{ckpt}.pt")
+    if not (torch.cuda.is_available() and os.path.exists(caminho)):
+        print(f"[!] {nome_metodo} ignorado (sem GPU ou sem o checkpoint {ckpt}.pt)")
+        return
+    from transformers import AutoTokenizer
+    if sucessor:
+        from src.models.layoutlm_sucessor import LayoutLMSucessor, prever
+        modelo = LayoutLMSucessor().to("cuda")
+    else:
+        from src.models.layoutlm_ordem import LayoutLMOrdem, prever
+        modelo = LayoutLMOrdem(MODELO_BASE).to("cuda")
+    cod = Codificador(AutoTokenizer.from_pretrained(MODELO_BASE))
+    modelo.load_state_dict(torch.load(caminho, map_location="cuda"))
+    cod.pretokenizar(paginas)
+    ordens[nome_metodo] = {p["page_id"]: pr for p, (pr, _) in zip(paginas, prever(modelo, cod, paginas, "cuda"))}
+    for p in paginas:
+        for c in p["bounding_boxes"]:
+            c.pop("_tok", None)
+    del modelo
+    torch.cuda.empty_cache()
+
+
 def ordens_por_metodo(paginas, usar_layoutlm):
     ordens = {m: {} for m in ("aleatoria", "fluxo_pdf", "naive", "xycut")}
     for p in paginas:
@@ -123,20 +149,8 @@ def ordens_por_metodo(paginas, usar_layoutlm):
         ordens["naive"][p["page_id"]] = p["ordens"]["naive"]
         ordens["xycut"][p["page_id"]] = p["ordens"]["xycut"]
     if usar_layoutlm:
-        import torch
-        from src.models.layoutlm_ordem import LayoutLMOrdem, Codificador, prever, MODELO_BASE, DIR_MODELOS
-        ckpt = os.path.join(DIR_MODELOS, "layoutlm.pt")
-        if torch.cuda.is_available() and os.path.exists(ckpt):
-            from transformers import AutoTokenizer
-            cod = Codificador(AutoTokenizer.from_pretrained(MODELO_BASE))
-            modelo = LayoutLMOrdem(MODELO_BASE).to("cuda")
-            modelo.load_state_dict(torch.load(ckpt, map_location="cuda"))
-            cod.pretokenizar(paginas)
-            ordens["layoutlm"] = {p["page_id"]: pr for p, (pr, _) in zip(paginas, prever(modelo, cod, paginas, "cuda"))}
-            del modelo
-            torch.cuda.empty_cache()
-        else:
-            print("[!] LayoutLM ignorado (sem GPU ou sem checkpoint)")
+        ordens_neurais(paginas, ordens, "layoutlm", "layoutlm", sucessor=False)
+        ordens_neurais(paginas, ordens, "layoutlm_sucessor", "layoutlm_sucessor", sucessor=True)
     return ordens
 
 
@@ -234,7 +248,8 @@ def main():
     print(f"[*] {len(consultas)} consultas com pagina relevante: {dict(por_tipo)}")
 
     ordens = ordens_por_metodo(paginas, not a.sem_layoutlm)
-    metodos = [m for m in ("aleatoria", "fluxo_pdf", "naive", "xycut", "layoutlm") if m in ordens]
+    metodos = [m for m in ("aleatoria", "fluxo_pdf", "naive", "xycut", "layoutlm", "layoutlm_sucessor")
+               if m in ordens]
     ids_pag = [p["page_id"] for p in paginas]
 
     # controle: pagina inteira como documento (o saco de palavras nao depende da ordem)

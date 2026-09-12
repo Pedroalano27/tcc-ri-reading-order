@@ -42,7 +42,8 @@ NOMES = {
     "aleatoria": "Ordem do detector (sem ordenar)",
     "naive": "Ingênua (topo→base, esq.→dir.)",
     "xycut": "XY-cut (heurística de colunas)",
-    "layoutlm": "LayoutLM: texto + layout 2D",
+    "layoutlm": "LayoutLM pontual: um escore por bloco",
+    "layoutlm_sucessor": "LayoutLM sucessor: prevê o próximo bloco",
 }
 
 
@@ -70,16 +71,24 @@ def resumir(regs):
             "exato": statistics.mean(r["acerto_exato"] for r in regs)}
 
 
-def prever_layoutlm(paginas, nome):
+def prever_layoutlm(paginas, nome, sucessor=False):
+    """Roda um checkpoint do LayoutLM nas paginas anotadas. sucessor=True usa a
+    formulacao de predicao de sucessor (src/models/layoutlm_sucessor.py)."""
     import torch
-    from src.models.layoutlm_ordem import LayoutLMOrdem, Codificador, prever, MODELO_BASE, DIR_MODELOS
+    from src.models.layoutlm_ordem import Codificador, MODELO_BASE, DIR_MODELOS
     ckpt = os.path.join(DIR_MODELOS, f"{nome}.pt")
     if not torch.cuda.is_available() or not os.path.exists(ckpt):
         print(f"[!] {nome}: {'sem GPU CUDA' if os.path.exists(ckpt) else 'checkpoint nao encontrado'}; ignorado")
         return None
     from transformers import AutoTokenizer
     cod = Codificador(AutoTokenizer.from_pretrained(MODELO_BASE))
-    modelo = LayoutLMOrdem(MODELO_BASE, usar_layout="sem_layout" not in nome).to("cuda")
+    if sucessor:
+        from src.models.layoutlm_sucessor import LayoutLMSucessor, prever
+        modelo = LayoutLMSucessor(usar_layout="sem_layout" not in nome,
+                                  usar_vies_geo="sem_vies_geo" not in nome).to("cuda")
+    else:
+        from src.models.layoutlm_ordem import LayoutLMOrdem, prever
+        modelo = LayoutLMOrdem(MODELO_BASE, usar_layout="sem_layout" not in nome).to("cuda")
     modelo.load_state_dict(torch.load(ckpt, map_location="cuda"))
     cod.pretokenizar(paginas)
     preds = prever(modelo, cod, paginas, "cuda")
@@ -103,7 +112,10 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--lote", required=True)
     ap.add_argument("--anotador", help="anotador de referencia (padrao: quem concluiu mais paginas)")
-    ap.add_argument("--layoutlm", nargs="*", default=["layoutlm"], help="checkpoints em models/layoutlm_ordem/")
+    ap.add_argument("--layoutlm", nargs="*", default=["layoutlm"],
+                    help="checkpoints PONTUAIS em models/layoutlm_ordem/")
+    ap.add_argument("--sucessor", nargs="*", default=["layoutlm_sucessor"],
+                    help="checkpoints da formulacao de SUCESSOR em models/layoutlm_ordem/")
     a = ap.parse_args()
 
     dir_lote = os.path.join(DIR_GOLDEN, a.lote)
@@ -128,6 +140,10 @@ def main():
              "xycut": {p["page_id"]: p["ordens"]["xycut"] for p in paginas}}
     for nome in a.layoutlm:
         r = prever_layoutlm(paginas, nome)
+        if r:
+            preds[nome] = r
+    for nome in a.sucessor:
+        r = prever_layoutlm(paginas, nome, sucessor=True)
         if r:
             preds[nome] = r
     dir_pred = os.path.join(DIR_RESULTADOS, "golden", a.lote)

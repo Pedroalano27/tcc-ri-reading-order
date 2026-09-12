@@ -55,17 +55,77 @@ Duas coletas adicionais, em pastas separadas para não alterar as partições do
 1. **Palavras** com `pdfplumber`, na ordem do fluxo de conteúdo
    (`use_text_flow=True`), após remover caracteres duplicados (negrito simulado) e
    descartar texto rotacionado e fora da área visível.
-2. **Linhas**: palavras com sobreposição vertical ≥ 50% e distância horizontal ≤
-   1,8 × a largura mediana de caractere. O limite impede que uma linha atravesse a
-   calha entre colunas.
-3. **Blocos**: linhas verticalmente adjacentes (distância ≤ 0,8 × altura mediana de
-   linha), com sobreposição horizontal ≥ 50% e altura de fonte semelhante (±40%).
-   Mudança de fonte inicia bloco novo (títulos separados do corpo).
-4. **Filtros**: descartadas páginas com menos de 3 ou mais de 200 blocos, ou com
+2. **Faixas de linha de base**: palavras com sobreposição vertical ≥ 50%, agrupadas
+   **sem nenhum teste horizontal**. Uma faixa pode atravessar a página inteira e
+   conter palavras de todas as colunas. A faixa é ancorada na extensão vertical da
+   primeira palavra, para que a caixa não cresça palavra a palavra até engolir a
+   linha vizinha.
+3. **Calhas verticais**: faixas de $x$ com pouquíssima tinta em **todas** as linhas.
+   É o único critério confiável para cortar uma linha ao meio (justificativa na
+   seção 3.3.1). O corte é **relativo**: a calha é detectada onde a ocupação cai
+   abaixo de 25% da ocupação típica da página, não abaixo de um limite fixo.
+4. **Linhas**: cada faixa é cortada onde passa uma calha, ou onde o vão entre duas
+   palavras passa de 8 larguras de caractere (o suficiente para separar os elementos
+   de um cabeçalho, que ficam dentro de uma mesma região branca).
+5. **Blocos**: linhas verticalmente adjacentes (distância ≤ 0,8 × altura mediana de
+   linha), com sobreposição horizontal ≥ 50%, altura de fonte semelhante (±40%) e
+   **na mesma coluna** — isto é, contidas na mesma região delimitada pelas calhas.
+   Linhas que atravessam colunas (títulos de seção) formam blocos próprios.
+6. **Texto**: as linhas do bloco são concatenadas de cima para baixo, refazendo as
+   palavras cortadas por translineação ("Prontuá- rios" → "Prontuários").
+7. **Filtros**: descartadas páginas com menos de 3 ou mais de 200 blocos, ou com
    mais de 5% de palavras ilegíveis.
 
 Os identificadores dos blocos são atribuídos por permutação aleatória semeada, para
 que nenhum identificador carregue informação de ordem.
+
+#### 3.3.1 Qualidade da segmentação e por que ela é medida
+
+A segmentação é **anterior** à ordenação: se dois pedaços da mesma linha caem em
+blocos diferentes, o texto sai embaralhado *dentro* do bloco e nenhum método de
+ordenação consegue desfazer isso. É um teto sobre todas as métricas de todos os
+métodos, e por isso a qualidade da segmentação é medida e reportada.
+
+**Métrica: caixas sobrepostas.** Numa segmentação correta duas caixas não se cruzam
+em área. A proporção de blocos que se sobrepõem a algum outro (≥ 25% da área do
+menor) é a assinatura direta de uma linha cortada ao meio. Medida por
+`src/data/reextrair.py`.
+
+**A armadilha do limiar de distância.** A primeira versão cortava a linha onde o vão
+entre palavras passasse de 1,8 largura de caractere. Isso quebra em dois lugares:
+
+- **entrada em negrito.** Em "**Art. 1º** Fica instituído…", a entrada e o corpo do
+  parágrafo têm topos separados por centésimos de ponto; o corpo monta a linha
+  primeiro e a entrada é rejeitada por uma folga que só existe enquanto ela está
+  incompleta. As metades caem em blocos diferentes e a da esquerda se funde com a
+  linha de baixo;
+- **texto justificado.** O espaço entre palavras estica e fica tão largo quanto uma
+  calha estreita. Medido no acervo, 95% das folgas dentro de um parágrafo cabem em
+  1,5 largura de caractere, mas a cauda ultrapassa qualquer limiar que ainda separe
+  colunas.
+
+O que distingue os dois casos não é a largura do vão e sim a **consistência
+vertical**: a calha é branca linha após linha, o espaço esticado só naquela. Daí o
+critério da etapa 3. O limite relativo (25% da ocupação típica) e não absoluto vem de
+outra medição: num boletim legislativo de três colunas, a calha era cruzada por 13 de
+142 linhas — títulos de largura total — mas a ocupação caía de ~65 para 13, uma queda
+de cinco vezes que um limite fixo baixo não enxerga.
+
+**O que NÃO é defeito.** A fragmentação (mediana de 5 palavras por bloco, cerca de
+15% dos blocos com uma palavra) é o que um detector de layout produz neste tipo de
+documento: o Google Document AI, rodado pelo orientador sobre 2 páginas do Diário
+Oficial do Estado do RJ, produz mediana 5, 22% de blocos de uma palavra e 37% com até
+três. A amostra é pequena e a comparação é ampliada com o Azure (seção 10.1). O cabeçalho de um
+diário é feito de dezenas de regiões pequenas ("DIÁRIO", "OFICIAL", "PARTE I", o nome
+do governador), e um detector as emite separadas. Marcações de página idem. Isso é a
+**entrada** que a tarefa recebe, não um erro a corrigir.
+
+**Duas versões, de propósito.** A coleta anterior à correção fica em
+`data/processed/blocos_v1/` e a corrigida em `data/processed/blocos/`, cobrindo
+exatamente as mesmas páginas (`src/data/reextrair.py` re-extrai a lista de páginas do
+próprio arquivo, em vez de re-amostrar). Isso permite a análise de sensibilidade à
+granularidade da seção 10: apontar `TCC_DIR_BLOCOS` para uma ou outra roda o pipeline
+inteiro sobre a outra segmentação, sem tocar em mais nada.
 
 ### 3.4 Três ordens candidatas por página
 | Ordem | Definição |
@@ -145,7 +205,7 @@ Três variantes isolam as fontes de informação:
 - **geometria**: 8 características da caixa normalizada — sem texto;
 - **texto + geometria**.
 
-### 5.3 LayoutLM (`src/models/layoutlm_ordem.py`)
+### 5.3 LayoutLM pontual (`src/models/layoutlm_ordem.py`)
 - **Modelo base:** `microsoft/layoutlm-base-uncased` (Xu et al., 2020), 113 M de
   parâmetros, com *embeddings* de posição 2D.
 - **Entrada:** cada bloco contribui com seus primeiros $K$ tokens WordPiece
@@ -160,7 +220,53 @@ Três variantes isolam as fontes de informação:
   pelo melhor τ na validação.
 - **Ablação sem layout:** mesmas condições com todas as caixas zeradas.
 
-### 5.4 LLMs generativas (`src/eval/llm_ordem.py`)
+### 5.4 LayoutLM com predição de sucessor (`src/models/layoutlm_sucessor.py`)
+
+A formulação pontual da seção 5.3 nunca olha para o par (bloco, próximo bloco): a perda
+é calculada bloco a bloco e a ordem sai de uma ordenação dos escores. Medido no teste,
+isso rende τ razoável com continuidade local péssima (seção 4.8 dos resultados). Esta
+formulação ataca exatamente esse ponto.
+
+- **Tarefa:** para cada bloco, prever **qual bloco vem imediatamente depois**. A página
+  vira um caminho hamiltoniano num grafo completo de $n+1$ vértices — os $n$ blocos mais
+  um vértice virtual que serve de INÍCIO (como origem) e de FIM (como destino).
+- **Codificador:** o mesmo da seção 5.3, com a mesma entrada embaralhada e os mesmos $K$
+  tokens por bloco. O estado do `[CLS]` representa o vértice INÍCIO; um vetor aprendido
+  representa o FIM.
+- **Escore de aresta:** $S_{ij} = \langle W_q h_i,\, W_k h_j \rangle / \sqrt{d} + g(\phi_{ij})$,
+  com $d = 128$. O termo $g$ é um MLP (10 → 64 → 1) sobre 10 *features* **relativas** do par
+  $(i,j)$, todas normalizadas pelas dimensões da página: deslocamento das bordas e dos
+  centros, folga vertical $y_0^j - y_1^i$, sobreposição horizontal, diferença de largura,
+  alinhamento à esquerda (mesma coluna) e abertura de coluna à direita. A relação "j vem
+  logo depois de i" é fortemente geométrica: ou $j$ está logo abaixo de $i$, ou $i$
+  terminou a coluna e $j$ abre a próxima.
+- **Máscaras:** aresta de um bloco para si mesmo, arestas de/para posições de preenchimento
+  e a aresta INÍCIO→FIM recebem $-\infty$.
+- **Perda:** entropia cruzada por linha (softmax sobre os candidatos a sucessor de cada
+  bloco, mais a linha do INÍCIO) $+\ \lambda$ vezes a perda MSE de posição da seção 5.3,
+  com $\lambda = 0{,}5$. A auxiliar segura a ordem **global** enquanto a principal cuida da
+  continuidade **local**. Demais hiperparâmetros idênticos aos da seção 5.3.
+- **Decodificação em cadeias (padrão).** Decodificar o caminho inteiro pela matriz de
+  sucessores dá continuidade local excelente e ordem global ruim: um salto errado no meio
+  do caminho arruína o τ. Em vez disso:
+  1. as arestas entram em ordem decrescente de probabilidade, enquanto
+     $P(j \mid i) \geq \theta$, respeitando "um sucessor e um antecessor por bloco" e sem
+     fechar ciclo (união-busca) — o resultado é um conjunto de **cadeias** de blocos que o
+     modelo tem certeza de que se seguem;
+  2. as cadeias são ordenadas pela **média da posição predita pela cabeça pontual**;
+  3. concatenam-se as cadeias nessa ordem.
+
+  Com $\theta = 0$ nenhuma cadeia sobra e a decodificação vira o casamento guloso puro.
+  O limiar $\theta$ é varrido no notebook de treino do Kaggle.
+- **Decodificação em feixe (comparação).** Busca em feixe de largura 4 sobre a matriz de
+  log-probabilidades, com a restrição de permutação e o custo da aresta final para o FIM.
+  É a decodificação "pura", sem a cabeça de posição; reportada como ablação do decodificador.
+- **Ablações:** sem o viés geométrico ($g \equiv 0$), sem a perda auxiliar ($\lambda = 0$),
+  sem o layout 2D (caixas zeradas) e a troca de decodificador.
+- **Seleção do modelo:** melhor τ de validação **medido com a mesma decodificação usada no
+  teste** — selecionar pelo τ do feixe escolhe outra época e degrada o resultado final.
+
+### 5.5 LLMs generativas (`src/eval/llm_ordem.py`)
 - **Modelos:** `llava:7b`, local, na primeira rodada; Qwen 2.5 de 7B, 14B e 32B via
   Ollama numa GPU T4 do Kaggle ([KAGGLE.md](KAGGLE.md)), com o mesmo código e o mesmo
   prompt.
@@ -257,8 +363,33 @@ página é medida em três passadas e fica a mediana.
 | Concordância com a XY-cut define os veículos confiáveis | Favorece layouts em que a heurística funciona | Critério por veículo, não por página; grupo `incerto` do Golden avalia os veículos excluídos |
 | Anotador ancorado numa ordem automática | Golden enviesado a favor de um método | Ferramenta sem ordem sugerida; identificadores embaralhados; concordância entre anotadores |
 | Tokenizador do LayoutLM em inglês sem acentos | Texto em português fragmentado em muitos sub-tokens | Testar LayoutXLM (multilíngue) |
-| Granularidade de bloco depende da heurística de segmentação | Blocos grandes demais tornam a tarefa mais fácil | Relatar número médio de blocos; marcação de erro de segmentação na anotação |
+| Granularidade de bloco depende da heurística de segmentação | Blocos grandes demais tornam a tarefa mais fácil; blocos picotados inflam artificialmente a continuidade das heurísticas geométricas | **Análise de sensibilidade** (abaixo); qualidade da segmentação medida e reportada (seção 3.3.1); marcação de erro de segmentação na anotação |
+| Segmentação residualmente imperfeita em páginas de tabela densa | Texto embaralhado dentro do bloco, teto para todos os métodos | Medida: 15% dos blocos ainda se sobrepõem, concentrados em ~13% das páginas; essas páginas são identificáveis e podem ser analisadas à parte |
 | Amostra reduzida nos veículos densos | Menos páginas desses layouts no treino | Coleta extra para a curva; extração mais rápida com PyMuPDF |
 | `llava:7b` é multimodal, não especializada em texto | Subestima a capacidade das LLMs | Qwen 2.5 de 7B a 32B no Kaggle, zero-shot e few-shot |
 | Hardware diferente entre métodos | Latências incomparáveis | Todos os métodos medidos também na T4 do Kaggle (seção 9) |
 | Origem dos atos de Japeri incerta (manual ou Azure) | A referência do piloto de RI pode ser silver | Confirmar com o orientador; a relevância só usa sobreposição de palavras |
+
+### 10.1 Análise de sensibilidade à granularidade
+
+Os blocos não são um dado da natureza: são a saída de uma heurística de segmentação
+que faz o papel do detector de layout de um pipeline real. Se o ranking dos métodos
+depender dessa escolha, nenhuma conclusão do trabalho é sólida. O experimento:
+
+1. **Duas segmentações, as mesmas páginas.** `blocos_v1` (antes da correção da seção
+   3.3.1, 29% de caixas sobrepostas) e `blocos` (depois, 15%). O pipeline inteiro roda
+   nas duas com `TCC_DIR_BLOCOS`, e a tabela de comparação é refeita.
+2. **Blocos de detectores comerciais.** O acervo traz saídas do Azure Document
+   Intelligence (`prebuilt-layout`) para 12 páginas — 2 do Diário Oficial do Estado do RJ
+   e 2 de cada uma de 5 edições de Japeri — e do Google Document AI para 2 dessas páginas
+   do Estado do RJ (`data/raw/official_diary_rj_japeri/json_atos_japeri/` e
+   `.../diarios_avaliados_apis_pagas/`). Os blocos de um sistema de produção respondem à
+   pergunta "seus blocos são representativos?"; com 12 páginas, a resposta é ilustrativa,
+   não estatística. O Azure também devolve a ordem de leitura e o papel de cada parágrafo
+   (título, cabeçalho, rodapé, número de página).
+
+**Hipótese específica a testar:** a super-segmentação favorece as heurísticas
+geométricas na métrica de sucessor correto. Se um parágrafo vira três caixas
+empilhadas, "o próximo bloco" é trivialmente o de baixo, e a XY-cut acerta de graça.
+Se a vantagem dela encolher na segmentação corrigida, parte dos 64% de sucessor era
+artefato da segmentação — e isso é um resultado, não um detalhe de implementação.

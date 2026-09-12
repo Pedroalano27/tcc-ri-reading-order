@@ -30,3 +30,6 @@ dist/
 
 # Configuracao local do Claude Code (servidor de pre-visualizacao)
 .claude/launch.json
+
+# Logs dos despachos de agentes por linha de comando (saidas completas, regeneraveis)
+orquestracao/logs/

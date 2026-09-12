@@ -102,19 +102,74 @@ O caminho é PDF → palavras → linhas → blocos:
      real em que o arquivo foi escrito é preciso pedir `use_text_flow=True`;
    - alguns diários imprimem o texto duas vezes para simular negrito, o que duplica
      palavras — daí o `dedupe_chars`.
-2. **Linhas.** Palavras que se sobrepõem verticalmente e estão próximas na horizontal
-   viram uma linha. O limite de distância é **1,8 vez a largura média de um caractere**.
-   Esse detalhe existe para a linha **não atravessar a calha** (o espaço em branco entre
-   duas colunas) e juntar texto de colunas diferentes.
-3. **Blocos.** Linhas logo abaixo umas das outras, com sobreposição horizontal e altura de
-   fonte parecida, viram um bloco. Mudança de tamanho de fonte começa bloco novo, o que
-   separa títulos do corpo.
-4. **Filtros.** Descartamos páginas com menos de 3 ou mais de 200 blocos, e páginas com
+2. **Faixas de linha de base.** Palavras que se sobrepõem verticalmente viram uma faixa,
+   **sem nenhum teste de distância horizontal**. Uma faixa pode atravessar a página e
+   conter palavras das duas colunas — a separação vem no passo seguinte.
+3. **Calhas.** A calha é o corredor em branco entre duas colunas. Achamos as calhas
+   contando, para cada posição horizontal da página, em quantas linhas existe tinta ali.
+   Dentro de uma coluna quase toda linha tem tinta; na calha, quase nenhuma. Cada faixa é
+   então cortada onde passa uma calha, e só ali.
+4. **Blocos.** Linhas logo abaixo umas das outras, na **mesma coluna**, com sobreposição
+   horizontal e altura de fonte parecida, viram um bloco. Mudança de tamanho de fonte
+   começa bloco novo, o que separa títulos do corpo. Palavras cortadas no fim da linha são
+   remontadas ("Prontuá- rios" volta a ser "Prontuários").
+5. **Filtros.** Descartamos páginas com menos de 3 ou mais de 200 blocos, e páginas com
    mais de 5% de caracteres ilegíveis (o `(cid:N)` que aparece quando a fonte não informa
    o mapeamento para caracteres).
 
 Cada bloco recebe um **identificador embaralhado** (`b0`, `b17`, …, sorteados com semente
 fixa). Isso é de propósito: nenhum método pode adivinhar a ordem pelo nome do bloco.
+
+#### Por que o passo 3 é assim, e não "corte onde o espaço for grande"
+
+Essa foi a primeira versão, e ela está errada de um jeito que não aparece nos números
+agregados — só quando você olha o texto. Dois motivos:
+
+- **Entrada em negrito.** Um ato começa com "**Art. 1º** Fica instituído a Comissão…".
+  A entrada e o corpo do parágrafo estão na mesma linha, mas com topos separados por
+  centésimos de ponto. O corpo monta a linha primeiro; quando o "Art. 1º" chega, a
+  distância medida é grande (porque falta o "1º" ainda) e ele é rejeitado. As duas
+  metades caem em blocos diferentes, e a da esquerda gruda na linha de baixo. Resultado:
+  `Art. 1º rios, no âmbito do Hospital…` — o texto sai **embaralhado dentro do bloco**.
+- **Texto justificado.** Para alinhar as duas margens, a tipografia estica os espaços
+  entre as palavras. Um espaço esticado pode ficar tão largo quanto uma calha estreita,
+  e o parágrafo inteiro é picotado.
+
+O que separa os dois casos não é a **largura** do vão, e sim a **consistência vertical**:
+a calha é branca linha após linha; o espaço esticado só naquela linha. Daí a contagem do
+passo 3.
+
+Esse tipo de erro é grave porque é **anterior à ordenação**: se as palavras já estão
+misturadas dentro do bloco, nenhum método de ordenação consegue desfazer. É um teto em
+cima de todo mundo — XY-cut, LayoutLM e LLM igualmente.
+
+#### O que NÃO é defeito: blocos curtos
+
+Metade dos blocos tem 5 palavras ou menos, e cerca de 15% têm uma palavra só. Isso
+incomoda à primeira vista, mas é o que um detector de layout de verdade produz neste tipo
+de documento. Comparando com o **Google Document AI** (sistema comercial, rodado pelo
+orientador sobre 2 páginas do Diário Oficial do Estado do RJ — amostra pequena, que a tarefa
+T10 amplia com as 12 páginas analisadas pelo Azure):
+
+| | nosso extrator | Google Document AI |
+|---|---:|---:|
+| mediana de palavras por bloco | 5 | 5 |
+| blocos com 1 palavra | ~15% | 22% |
+| blocos com até 3 palavras | ~40% | 37% |
+
+O cabeçalho de um diário **é** feito de dezenas de regiões pequenas ("DIÁRIO",
+"OFICIAL", "PARTE I", o nome do governador), e qualquer detector as emite separadas.
+Marcações de página também. Isso é a **entrada** que a tarefa recebe — a premissa do
+trabalho é justamente que o detector entrega caixas sem ordem, e não cabe a nós escolhê-las.
+
+#### Como sabemos que melhorou: caixas sobrepostas
+
+Numa segmentação correta, duas caixas não se cruzam. Quando se cruzam, quase sempre é
+porque uma linha foi cortada ao meio e as metades foram parar em blocos diferentes. A
+proporção de blocos sobrepostos é, então, uma medida direta da qualidade — e é medida
+por `src/data/reextrair.py`, antes e depois. No lote do Golden Dataset: **21% → 15%**, com
+o texto dos parágrafos remontado corretamente. O que sobra está concentrado em poucas
+páginas de tabela densa.
 
 ### 3.3 As três ordens que o extrator já calcula
 
@@ -131,6 +186,7 @@ Para cada página guardamos três ordens candidatas, que aparecem o tempo todo:
 | Pasta | O que tem | Para quê |
 |---|---|---|
 | `data/processed/blocos/` | 777 páginas de 30 veículos | Caracterização e experimento principal (treino, validação, teste) |
+| `data/processed/blocos_v1/` | as mesmas 777 páginas, com a segmentação antiga | Análise de sensibilidade: o ranking dos métodos sobrevive a outra segmentação? |
 | `data/processed/blocos_extra/` | 3.117 páginas dos 7 veículos de treino | Curva de aprendizado (efeito de mais dados) |
 | `data/processed/blocos_ri_japeri/` | 269 páginas: todas as páginas das 27 edições de Japeri | Piloto de recuperação de informação |
 | `data/golden/golden_v1/` | 30 páginas para anotar à mão | Avaliação definitiva |
@@ -281,7 +337,64 @@ despenca, é porque a geometria é o que resolve a tarefa — e é exatamente o 
 | fp16 | Fazer as contas com números de 16 bits: metade da memória e mais velocidade. |
 | Validação | Conjunto separado, usado para escolher o melhor momento de parar. Nunca é o teste. |
 
-### 5.6 LLM generativa via Ollama
+### 5.6 LayoutLM com predição de sucessor (a formulação nova)
+
+Este é o modelo que nasceu do problema da seção 8.5: a formulação pontual acerta a ordem
+mais ou menos e **pica o texto**. A pergunta que ele responde é outra:
+
+> Em vez de dar uma nota a cada bloco, e se o modelo dissesse, para cada bloco,
+> **qual bloco vem logo depois dele**?
+
+É a mesma ideia de tratar a página como um **caminho**: comece num vértice de INÍCIO, vá
+de bloco em bloco pelas setas que o modelo escolher, termine no FIM. Cada seta é uma
+aposta do tipo "depois deste parágrafo vem aquele".
+
+**O que muda por dentro:**
+
+- o codificador é o mesmo LayoutLM, com a mesma entrada embaralhada;
+- em vez de uma nota por bloco, o modelo calcula uma **matriz de escores**: para cada par
+  (i, j), o quanto ele acredita que j vem logo depois de i. Isso é feito com um produto
+  interno entre duas projeções do vetor de cada bloco — a mesma conta da atenção;
+- soma-se a esse escore um **viés geométrico**: uma redezinha que olha 10 medidas
+  relativas do par (j está quanto abaixo de i? sobrepõe horizontalmente? começa na mesma
+  margem esquerda? abre uma coluna à direita?). Faz sentido: "vem logo depois" é uma
+  relação quase sempre geométrica;
+- a perda é **entropia cruzada**: para cada bloco, o modelo escolhe entre os candidatos a
+  sucessor, e é penalizado quando erra o certo. Junto vai, com peso 0,5, a velha perda de
+  posição da seção 5.5, como apoio.
+
+**A parte que precisou de invenção: como transformar a matriz numa ordem.**
+
+O caminho óbvio é seguir as setas do começo ao fim (ou fazer uma busca em feixe entre os
+caminhos mais prováveis). Testamos, e o resultado é revelador: a continuidade local fica
+ótima e o **τ despenca**. Faz sentido — o modelo acerta "qual parágrafo vem depois deste"
+dentro de uma coluna, mas erra o salto de uma coluna para a outra, e **um** salto errado no
+meio do caminho embaralha tudo o que vem depois.
+
+A solução foi combinar as duas cabeças, no que o código chama de **decodificação em
+cadeias**:
+
+1. aceite só as setas de que o modelo tem certeza (probabilidade acima de um limiar),
+   sem deixar dois blocos apontarem para o mesmo, e sem fechar ciclo. Sobram **cadeias**:
+   trechos contíguos de texto que certamente se seguem;
+2. ordene as cadeias pela **posição média** que a cabeça pontual previu para os blocos
+   dela;
+3. cole as cadeias nessa ordem.
+
+Ou seja: **a cabeça de sucessor cuida do texto emendado, a cabeça de posição cuida de onde
+cada pedaço entra na página.** Cada uma faz o que sabe fazer.
+
+**Termos novos desta seção:**
+
+| Termo | Significado |
+|---|---|
+| Caminho hamiltoniano | Um caminho que passa por todos os vértices exatamente uma vez. É o que uma ordem de leitura é, vista como grafo. |
+| Entropia cruzada | A perda usada quando o modelo escolhe entre opções (aqui, qual bloco é o sucessor). Pune com força a confiança na opção errada. |
+| Busca em feixe (*beam search*) | Em vez de sempre pegar a opção mais provável, carregar as 4 melhores hipóteses de caminho e escolher a melhor no fim. |
+| União-busca | Estrutura de dados que responde "estes dois blocos já estão na mesma cadeia?" — é o que impede o algoritmo de fechar um ciclo. |
+| Limiar | O corte de probabilidade acima do qual a seta é aceita. Com limiar 0 tudo vira uma cadeia só; com limiar alto sobram muitas cadeias curtas e a cabeça de posição decide mais. |
+
+### 5.7 LLM generativa via Ollama
 
 Uma **LLM** (modelo de linguagem grande) prevê a próxima palavra e, com isso, responde,
 resume, ordena. **Ollama** é o programa que roda uma LLM na sua própria máquina.

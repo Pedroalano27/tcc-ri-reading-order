@@ -1,0 +1,106 @@
+{
+  "MA_negrito": {
+    "v1": {
+      "n_blocos": 54,
+      "pct_sobrepostos": 48.1,
+      "n_acima_250_palavras": 0,
+      "n_uma_palavra": 9,
+      "maior_bloco_palavras": 54,
+      "ausente": false
+    },
+    "B": {
+      "n_blocos": 36,
+      "pct_sobrepostos": 5.6,
+      "n_acima_250_palavras": 0,
+      "n_uma_palavra": 3,
+      "maior_bloco_palavras": 84,
+      "ausente": false
+    },
+    "C": {
+      "n_blocos": 85,
+      "pct_sobrepostos": 0.0,
+      "n_acima_250_palavras": 0,
+      "n_uma_palavra": 3,
+      "maior_bloco_palavras": 36,
+      "ausente": false
+    }
+  },
+  "SE_justificado": {
+    "v1": {
+      "n_blocos": 45,
+      "pct_sobrepostos": 42.2,
+      "n_acima_250_palavras": 0,
+      "n_uma_palavra": 4,
+      "maior_bloco_palavras": 161,
+      "ausente": false
+    },
+    "B": {
+      "n_blocos": 30,
+      "pct_sobrepostos": 6.7,
+      "n_acima_250_palavras": 0,
+      "n_uma_palavra": 3,
+      "maior_bloco_palavras": 182,
+      "ausente": false
+    },
+    "C": {
+      "n_blocos": 48,
+      "pct_sobrepostos": 4.2,
+      "n_acima_250_palavras": 0,
+      "n_uma_palavra": 8,
+      "maior_bloco_palavras": 175,
+      "ausente": false
+    }
+  },
+  "RJ_tres_colunas": {
+    "v1": {
+      "n_blocos": 66,
+      "pct_sobrepostos": 19.7,
+      "n_acima_250_palavras": 2,
+      "n_uma_palavra": 14,
+      "maior_bloco_palavras": 270,
+      "ausente": false
+    },
+    "B": {
+      "n_blocos": 53,
+      "pct_sobrepostos": 15.1,
+      "n_acima_250_palavras": 1,
+      "n_uma_palavra": 3,
+      "maior_bloco_palavras": 273,
+      "ausente": false
+    },
+    "C": {
+      "n_blocos": 159,
+      "pct_sobrepostos": 2.5,
+      "n_acima_250_palavras": 0,
+      "n_uma_palavra": 5,
+      "maior_bloco_palavras": 71,
+      "ausente": false
+    }
+  },
+  "CE_texto_corrido": {
+    "v1": {
+      "n_blocos": 9,
+      "pct_sobrepostos": 0.0,
+      "n_acima_250_palavras": 2,
+      "n_uma_palavra": 1,
+      "maior_bloco_palavras": 364,
+      "ausente": false
+    },
+    "B": {
+      "n_blocos": null,
+      "pct_sobrepostos": null,
+      "n_acima_250_palavras": null,
+      "n_uma_palavra": null,
+      "maior_bloco_palavras": null,
+      "ausente": true
+    },
+    "C": {
+      "n_blocos": 15,
+      "pct_sobrepostos": 0.0,
+      "n_acima_250_palavras": 3,
+      "n_uma_palavra": 0,
+      "maior_bloco_palavras": 357,
+      "ausente": false
+    }
+  }
+}

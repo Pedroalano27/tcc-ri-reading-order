@@ -37,7 +37,10 @@ NOMES = {
     "lstm_geo": "BiLSTM: só geometria",
     "lstm_geo_texto": "BiLSTM: texto + geometria",
     "layoutlm_sem_layout": "LayoutLM sem layout (ablação)",
-    "layoutlm": "LayoutLM: texto + layout 2D",
+    "layoutlm": "LayoutLM pontual: um escore por bloco",
+    "layoutlm_sucessor": "LayoutLM sucessor: prevê o próximo bloco",
+    "layoutlm_sucessor_feixe": "LayoutLM sucessor (decodificação em feixe)",
+    "layoutlm_sucessor_n3235": "LayoutLM sucessor (3.235 páginas de treino)",
     "llm_llava_7b": "LLM llava:7b (zero-shot)",
 }
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")

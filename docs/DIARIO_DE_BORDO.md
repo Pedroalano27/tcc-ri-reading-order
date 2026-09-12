@@ -221,6 +221,87 @@ mais fácil" e o máximo de informação para decidir o rumo do TCC.
 
 ---
 
+## Sessão 4 — 2026-09-12: formulação de sucessor, Kaggle e conserto da segmentação
+
+### 4.1 O LayoutLM passa a prever o sucessor (`src/models/layoutlm_sucessor.py`)
+
+A formulação pontual acertava a posição aproximada e picotava o texto (13,4% de sucessor
+correto). A nova formulação prevê, para cada bloco, **qual bloco vem logo depois**: a
+página vira um caminho hamiltoniano num grafo de n+1 vértices, o escore de aresta é um
+produto interno entre projeções dos vetores dos blocos somado a um viés geométrico par a
+par (10 features relativas), e a perda é entropia cruzada por linha mais a perda de
+posição antiga como auxiliar.
+
+Um achado no caminho: decodificar o caminho inteiro pela matriz de sucessores dá
+continuidade local ótima e **τ péssimo** (0,44 contra 0,72) — o modelo acerta o próximo
+parágrafo dentro da coluna e erra o salto entre colunas, e um salto errado no meio
+arruína tudo o que vem depois. A solução foi a **decodificação em cadeias**: aceitar só as
+arestas de alta confiança, formando trechos contíguos, e ordenar os trechos pela posição
+média prevista pela cabeça pontual. Cada cabeça faz o que sabe fazer.
+
+Resultados no teste, mesmo orçamento de treino da versão pontual (medidos sobre a
+segmentação antiga, a ser refeitos — ver 4.3):
+
+| Modelo | Treino | τ | Sucessor correto |
+|---|---:|---:|---:|
+| LayoutLM pontual | 152 | 0,671 | 13,4% |
+| LayoutLM sucessor | 152 | 0,720 | 38,2% |
+| LayoutLM pontual | 3.235 | 0,786 | 20,8% |
+| LayoutLM sucessor | 3.235 | 0,785 | **51,8%** |
+| XY-cut (heurística) | — | 0,837 | 64,2% |
+
+Com 3.235 páginas o τ empata com a versão pontual e a continuidade **dobra e meia**.
+Detalhe de protocolo que custou uma rodada: o melhor checkpoint precisa ser escolhido
+pelo τ de validação **medido com a mesma decodificação usada no teste**; selecionar pelo
+τ do feixe escolhe outra época e derruba o resultado.
+
+### 4.2 Kaggle: dois notebooks (`src/kaggle/montar_pacote.py`)
+
+O pacote passou a levar todas as páginas extraídas (14 MB) e gera dois notebooks: um de
+**treino** (curva das duas formulações, ablações, varredura do limiar, latência na T4,
+avaliação contra o Golden) e o de **LLMs**. Ver [KAGGLE.md](KAGGLE.md).
+
+### 4.3 A segmentação estava errada, e o erro era anterior à ordenação
+
+Ao começar a anotar, o Pedro reparou em caixas ruins. A investigação separou dois
+problemas que pareciam um só:
+
+- **Não é defeito:** a fragmentação (mediana de 5 palavras por bloco). O Google Document
+  AI, rodado pelo orientador sobre Japeri, produz a mesma distribuição (mediana 5, 22% de
+  blocos de uma palavra). O cabeçalho de um diário é feito de muitas regiões pequenas.
+- **É defeito, e grave:** 28,6% dos blocos se sobrepunham a outro, em 78% das páginas.
+  Sobreposição de caixas é a assinatura de uma **linha cortada ao meio** cujas metades
+  caíram em blocos diferentes, embaralhando o texto *dentro* do bloco — um teto sobre
+  todos os métodos, que nenhuma ordenação desfaz.
+
+Duas causas, as duas no critério de "onde cortar uma linha", que era um limiar de
+distância (1,8 largura de caractere):
+
+1. **entrada em negrito** ("**Art. 1º** Fica instituído…"): o corpo do parágrafo monta a
+   linha primeiro e a entrada é rejeitada por uma folga que só existe enquanto ela está
+   incompleta;
+2. **texto justificado**: o espaço esticado entre palavras fica tão largo quanto uma
+   calha estreita.
+
+O conserto trocou o critério: a linha só é cortada onde passa uma **calha**, definida pela
+consistência vertical (branca linha após linha), com limite **relativo** — num boletim
+legislativo de três colunas a calha era cruzada por 13 de 142 linhas, mas a ocupação caía
+de ~65 para 13. O agrupamento de linhas em blocos passou a ser restrito à coluna, e as
+palavras cortadas por translineação são remontadas.
+
+`src/data/reextrair.py` re-extrai **exatamente as mesmas páginas** de uma coleta (a lista
+vem do próprio arquivo, em vez de re-amostrar), o que mantém o antes/depois comparável e
+deixa as duas versões lado a lado para a análise de sensibilidade à granularidade
+(`TCC_DIR_BLOCOS` aponta o pipeline inteiro para uma ou outra).
+
+No lote do Golden: blocos sobrepostos 21,2% → 14,7%, blocos por página 34,8 → 31,3, e os
+parágrafos remontados corretamente. O que resta está concentrado em poucas páginas de
+tabela densa (88 dos 109 pares em 4 das 30 páginas).
+
+**Consequência:** todos os números medidos antes desta correção precisam ser refeitos.
+
+---
+
 ## Problemas encontrados e soluções
 
 | Problema | Causa | Solução |
@@ -244,6 +325,13 @@ mais fácil" e o máximo de informação para decidir o rumo do TCC.
 | O comando que encerrava a coleta encerrou a si mesmo | O filtro por linha de comando casava com o próprio texto do comando no PowerShell | Filtrar os processos pelo nome `python.exe` antes de aplicar o padrão |
 | "Teto" de frases preservadas abaixo de um método (51,8% × 53,4%) | A estimativa só considerava frases com no máximo uma emenda entre blocos | Estimativa descartada; relata-se a diferença para o piso e a fração preservada por algum método |
 | A curva de aprendizado quebraria ao medir o primeiro modelo | `acerto_sucessor` criado em `metrics.py`, mas fora de `avaliar()` | Execução interrompida, função incluída em `avaliar()`, curva reiniciada |
+| Modelo de sucessor com continuidade ótima e τ péssimo (0,44) | Decodificar o caminho inteiro pela matriz de sucessores: um salto errado entre colunas arruína tudo o que vem depois | Decodificação em cadeias: trechos locais de alta confiança ordenados pela cabeça de posição (τ 0,72) |
+| Primeira rodada do modelo de sucessor escolheu a época errada | O melhor checkpoint era selecionado pelo τ da decodificação em feixe, e o teste usa a híbrida | Validar com a mesma decodificação do teste; rodada refeita |
+| Texto embaralhado **dentro** do bloco (`Art. 1º rios, no âmbito…`) | Corte de linha por limiar de distância: a entrada em negrito é rejeitada por uma folga que só existe enquanto ela está incompleta, e o guloso de passada única nunca revisa | Corte só onde passa uma calha, detectada por consistência vertical |
+| Parágrafo justificado picotado em 7 blocos | O espaço esticado da justificação fica tão largo quanto uma calha estreita | Mesmo conserto: a calha é branca linha após linha, o espaço esticado só naquela |
+| Calhas não detectadas num boletim de 3 colunas | Limite absoluto de tolerância (4 de 142 linhas): a calha era cruzada por 13 títulos de largura total | Limite relativo — calha onde a ocupação cai abaixo de 25% da típica da página (de ~65 para 13) |
+| Bloco largo engolindo linhas de outra coluna | O teste de sobreposição horizontal usava a largura do **menor**, então um bloco de página inteira aceitava qualquer linha estreita embaixo dele | Agrupamento de linhas em blocos restrito à coluna delimitada pelas calhas |
+| Re-extrair com `extrator.py` tornaria o antes/depois incomparável | Ele re-amostra as páginas a cada execução | `src/data/reextrair.py`: a lista de páginas vem do próprio arquivo de entrada |
 
 ## Decisões e justificativas
 
@@ -264,3 +352,8 @@ mais fácil" e o máximo de informação para decidir o rumo do TCC.
 | **Sucessor correto** como métrica adicional | Só τ e ARD | Mede a continuidade do texto, que é o que chega a um leitor ou a um RAG; revelou o problema da formulação pontual |
 | Relevância do piloto de RI **por sobreposição de palavras** | Julgamentos de relevância manuais | Independe da ordem, então é a mesma para todos os métodos, e escala para centenas de consultas |
 | Curva com subconjuntos **aninhados** | Amostras independentes por tamanho | O menor subconjunto é exatamente o treino original e cada ponto contém o anterior: menos variância entre pontos |
+| LayoutLM prevendo **sucessor**, decodificado em cadeias | Seq2seq com ponteiro (LayoutReader); só a formulação pontual | Ataca diretamente a continuidade local, que é o que chega a um RAG, sem abrir mão do τ; o decodificador híbrido usa cada cabeça no que ela é boa |
+| Viés geométrico **par a par** no escore de aresta | Só o produto interno dos vetores do LayoutLM | "Vem logo depois" é uma relação quase sempre geométrica: ou j está abaixo de i, ou i terminou a coluna e j abre a próxima. Fica como ablação |
+| Corte de linha por **calha**, não por distância | Limiar de distância (versão anterior); limiar adaptado ao espaço da linha | Nenhum limiar de largura separa espaço justificado de calha estreita; a consistência vertical separa. Medido: 95% das folgas dentro de parágrafo cabem em 1,5 largura de caractere, mas a cauda ultrapassa qualquer limiar útil |
+| Manter as **duas segmentações** lado a lado | Substituir a antiga e seguir | A granularidade vira variável controlada: se o ranking dos métodos mudar entre as duas, isso é resultado, não detalhe de implementação |
+| Fragmentação **mantida** (blocos de 1 palavra) | Fundir blocos curtos vizinhos | É o que um detector real produz — o Google Document AI dá a mesma distribuição nos mesmos diários. Mexer nisso afastaria a entrada da premissa do trabalho |

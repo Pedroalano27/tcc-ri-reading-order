@@ -1,0 +1,26 @@
+{
+  "entrada": "data\\golden\\golden_v1\\tarefas.jsonl",
+  "antes": {
+    "paginas": 30,
+    "blocos": 939,
+    "blocos_por_pagina": 31.3,
+    "blocos_sobrepostos": 138,
+    "prop_blocos_sobrepostos": 0.147,
+    "paginas_com_sobreposicao": 14,
+    "prop_paginas_com_sobreposicao": 0.4667,
+    "blocos_de_1_palavra": 137,
+    "prop_blocos_de_1_palavra": 0.1459
+  },
+  "depois": {
+    "paginas": 30,
+    "blocos": 1248,
+    "blocos_por_pagina": 41.6,
+    "blocos_sobrepostos": 85,
+    "prop_blocos_sobrepostos": 0.0681,
+    "paginas_com_sobreposicao": 12,
+    "prop_paginas_com_sobreposicao": 0.4,
+    "blocos_de_1_palavra": 177,
+    "prop_blocos_de_1_palavra": 0.1418
+  },
+  "data": "2026-09-12 18:30:08"
+}

@@ -1,0 +1,3 @@
+[OK] aleatoria  95 paginas | 0.001 ms/pagina -> C:\Users\pedro\dev\tcc-ri-reading-order\resultados\pred_aleatoria.jsonl
+[OK] naive      95 paginas | 0.015 ms/pagina -> C:\Users\pedro\dev\tcc-ri-reading-order\resultados\pred_naive.jsonl
+[OK] xycut      95 paginas | 0.141 ms/pagina -> C:\Users\pedro\dev\tcc-ri-reading-order\resultados\pred_xycut.jsonl

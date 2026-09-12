@@ -1,0 +1,10 @@
+[*] treino: 3235 paginas | validacao: 15 | teste: 95
+  [geo] epoca 1: loss 0.0554 | val tau 0.6427 (103s)
+  [geo] epoca 2: loss 0.0254 | val tau 0.6411 (207s)
+  [geo] epoca 3: loss 0.0546 | val tau 0.6623 (311s)
+  [geo] epoca 4: loss 0.0518 | val tau 0.6597 (422s)
+  [geo] epoca 5: loss 0.0095 | val tau 0.6820 (494s)
+  [geo] epoca 6: loss 0.0255 | val tau 0.6800 (546s)
+  [geo] epoca 7: loss 0.0230 | val tau 0.6860 (610s)
+  [geo] epoca 8: loss 0.0200 | val tau 0.6917 (668s)
+[OK] curva_lstm_geo_n3235: val tau 0.6917 | teste tau 0.7024 | 9.62 ms/pagina

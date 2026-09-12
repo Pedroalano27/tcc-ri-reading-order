@@ -70,6 +70,17 @@ Blocos **laranja tracejados** ainda não têm número; **azuis** já têm; o **a
 último numerado. Passar o mouse mostra, na barra de cima, o número que o bloco vai
 receber e o começo do texto dele.
 
+### Como ir rápido
+
+O **laço é o atalho que mais economiza tempo**: um arrasto sobre uma coluna numera todos
+os blocos dela de cima para baixo, e a ferramenta avisa quantos entraram ("4 blocos
+numerados de cima para baixo. Confira; Z desfaz."). Numa página de duas colunas bem
+comportada, dá para fechar tudo com três ou quatro arrastos — cabeçalho, coluna esquerda,
+coluna direita, rodapé — e só depois ajustar no clique o que ficou fora de ordem.
+
+Anote em sessões curtas. Dez páginas por vez, três dias seguidos, custa menos do que
+tentar fechar as 30 de uma vez, e a ferramenta reabre exatamente onde você parou.
+
 ---
 
 ## Regras de leitura

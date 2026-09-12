@@ -1,0 +1,355 @@
+{
+  "por_uf": {
+    "official_diary_MG_congonhas": {
+      "paginas": 35,
+      "blocos_medio": 27.4,
+      "prop_multicoluna": 0.286,
+      "tau_naive_stream_med": 0.362,
+      "tau_xycut_stream_med": 0.333,
+      "tau_naive_xycut_med": 1.0,
+      "ardn_naive_xycut_med": 0.0,
+      "prop_naive_errada": 0.171
+    },
+    "official_diary_RJ_barra_do_pirai": {
+      "paginas": 56,
+      "blocos_medio": 22.4,
+      "prop_multicoluna": 0.732,
+      "tau_naive_stream_med": 0.209,
+      "tau_xycut_stream_med": 0.333,
+      "tau_naive_xycut_med": 0.667,
+      "ardn_naive_xycut_med": 0.136,
+      "prop_naive_errada": 0.893
+    },
+    "official_diary_RJ_duque_de_caxias": {
+      "paginas": 45,
+      "blocos_medio": 95.0,
+      "prop_multicoluna": 0.156,
+      "tau_naive_stream_med": 0.486,
+      "tau_xycut_stream_med": 0.536,
+      "tau_naive_xycut_med": 1.0,
+      "ardn_naive_xycut_med": 0.0,
+      "prop_naive_errada": 0.311
+    },
+    "official_diary_RJ_seropedica": {
+      "paginas": 45,
+      "blocos_medio": 32.6,
+      "prop_multicoluna": 0.733,
+      "tau_naive_stream_med": 0.333,
+      "tau_xycut_stream_med": 0.489,
+      "tau_naive_xycut_med": 0.566,
+      "ardn_naive_xycut_med": 0.209,
+      "prop_naive_errada": 0.756
+    },
+    "official_diary_RJ_volta_redonda": {
+      "paginas": 35,
+      "blocos_medio": 42.7,
+      "prop_multicoluna": 0.914,
+      "tau_naive_stream_med": 0.515,
+      "tau_xycut_stream_med": 0.943,
+      "tau_naive_xycut_med": 0.478,
+      "ardn_naive_xycut_med": 0.246,
+      "prop_naive_errada": 0.914
+    },
+    "official_diary_ac": {
+      "paginas": 45,
+      "blocos_medio": 33.4,
+      "prop_multicoluna": 0.511,
+      "tau_naive_stream_med": 0.925,
+      "tau_xycut_stream_med": 0.613,
+      "tau_naive_xycut_med": 0.948,
+      "ardn_naive_xycut_med": 0.025,
+      "prop_naive_errada": 0.578
+    },
+    "official_diary_al": {
+      "paginas": 25,
+      "blocos_medio": 42.2,
+      "prop_multicoluna": 0.24,
+      "tau_naive_stream_med": 0.622,
+      "tau_xycut_stream_med": 0.621,
+      "tau_naive_xycut_med": 1.0,
+      "ardn_naive_xycut_med": 0.0,
+      "prop_naive_errada": 0.24
+    },
+    "official_diary_am_manaus": {
+      "paginas": 47,
+      "blocos_medio": 50.7,
+      "prop_multicoluna": 0.043,
+      "tau_naive_stream_med": 0.333,
+      "tau_xycut_stream_med": 0.333,
+      "tau_naive_xycut_med": 1.0,
+      "ardn_naive_xycut_med": 0.0,
+      "prop_naive_errada": 0.085
+    },
+    "official_diary_ap": {
+      "paginas": 50,
+      "blocos_medio": 48.0,
+      "prop_multicoluna": 0.2,
+      "tau_naive_stream_med": 0.608,
+      "tau_xycut_stream_med": 0.527,
+      "tau_naive_xycut_med": 1.0,
+      "ardn_naive_xycut_med": 0.0,
+      "prop_naive_errada": 0.4
+    },
+    "official_diary_ba_salvador": {
+      "paginas": 41,
+      "blocos_medio": 73.5,
+      "prop_multicoluna": 0.756,
+      "tau_naive_stream_med": 0.605,
+      "tau_xycut_stream_med": 0.889,
+      "tau_naive_xycut_med": 0.555,
+      "ardn_naive_xycut_med": 0.208,
+      "prop_naive_errada": 0.78
+    },
+    "official_diary_ce": {
+      "paginas": 42,
+      "blocos_medio": 32.1,
+      "prop_multicoluna": 0.381,
+      "tau_naive_stream_med": 0.966,
+      "tau_xycut_stream_med": 0.986,
+      "tau_naive_xycut_med": 0.931,
+      "ardn_naive_xycut_med": 0.031,
+      "prop_naive_errada": 1.0
+    },
+    "official_diary_ma": {
+      "paginas": 40,
+      "blocos_medio": 54.5,
+      "prop_multicoluna": 0.775,
+      "tau_naive_stream_med": 0.648,
+      "tau_xycut_stream_med": 0.902,
+      "tau_naive_xycut_med": 0.549,
+      "ardn_naive_xycut_med": 0.213,
+      "prop_naive_errada": 0.9
+    },
+    "official_diary_mg": {
+      "paginas": 13,
+      "blocos_medio": 72.5,
+      "prop_multicoluna": 0.692,
+      "tau_naive_stream_med": 0.496,
+      "tau_xycut_stream_med": 0.683,
+      "tau_naive_xycut_med": 0.663,
+      "ardn_naive_xycut_med": 0.161,
+      "prop_naive_errada": 0.769
+    },
+    "official_diary_ms": {
+      "paginas": 40,
+      "blocos_medio": 49.3,
+      "prop_multicoluna": 0.775,
+      "tau_naive_stream_med": 0.833,
+      "tau_xycut_stream_med": 0.531,
+      "tau_naive_xycut_med": 0.659,
+      "ardn_naive_xycut_med": 0.151,
+      "prop_naive_errada": 0.95
+    },
+    "official_diary_pa": {
+      "paginas": 17,
+      "blocos_medio": 62.2,
+      "prop_multicoluna": 0.941,
+      "tau_naive_stream_med": 0.55,
+      "tau_xycut_stream_med": 0.815,
+      "tau_naive_xycut_med": 0.433,
+      "ardn_naive_xycut_med": 0.264,
+      "prop_naive_errada": 0.941
+    },
+    "official_diary_pb": {
+      "paginas": 8,
+      "blocos_medio": 27.4,
+      "prop_multicoluna": 0.0,
+      "tau_naive_stream_med": 0.438,
+      "tau_xycut_stream_med": 0.438,
+      "tau_naive_xycut_med": 1.0,
+      "ardn_naive_xycut_med": 0.0,
+      "prop_naive_errada": 0.0
+    },
+    "official_diary_pe": {
+      "paginas": 16,
+      "blocos_medio": 93.2,
+      "prop_multicoluna": 0.125,
+      "tau_naive_stream_med": 0.725,
+      "tau_xycut_stream_med": 0.729,
+      "tau_naive_xycut_med": 1.0,
+      "ardn_naive_xycut_med": 0.0,
+      "prop_naive_errada": 0.188
+    },
+    "official_diary_pi_v2": {
+      "paginas": 12,
+      "blocos_medio": 22.3,
+      "prop_multicoluna": 0.75,
+      "tau_naive_stream_med": 0.668,
+      "tau_xycut_stream_med": 0.655,
+      "tau_naive_xycut_med": 0.988,
+      "ardn_naive_xycut_med": 0.006,
+      "prop_naive_errada": 0.667
+    },
+    "official_diary_pr": {
+      "paginas": 16,
+      "blocos_medio": 64.9,
+      "prop_multicoluna": 0.375,
+      "tau_naive_stream_med": 0.712,
+      "tau_xycut_stream_med": 0.912,
+      "tau_naive_xycut_med": 0.672,
+      "ardn_naive_xycut_med": 0.138,
+      "prop_naive_errada": 1.0
+    },
+    "official_diary_pr_curitiba": {
+      "paginas": 12,
+      "blocos_medio": 86.4,
+      "prop_multicoluna": 0.0,
+      "tau_naive_stream_med": 0.548,
+      "tau_xycut_stream_med": 0.571,
+      "tau_naive_xycut_med": 1.0,
+      "ardn_naive_xycut_med": 0.0,
+      "prop_naive_errada": 0.167
+    },
+    "official_diary_rj": {
+      "paginas": 13,
+      "blocos_medio": 86.2,
+      "prop_multicoluna": 0.692,
+      "tau_naive_stream_med": 0.439,
+      "tau_xycut_stream_med": 0.87,
+      "tau_naive_xycut_med": 0.387,
+      "ardn_naive_xycut_med": 0.24,
+      "prop_naive_errada": 0.769
+    },
+    "official_diary_rj_japeri": {
+      "paginas": 16,
+      "blocos_medio": 29.6,
+      "prop_multicoluna": 0.25,
+      "tau_naive_stream_med": 0.429,
+      "tau_xycut_stream_med": 0.526,
+      "tau_naive_xycut_med": 1.0,
+      "ardn_naive_xycut_med": 0.0,
+      "prop_naive_errada": 0.25
+    },
+    "official_diary_rn": {
+      "paginas": 15,
+      "blocos_medio": 47.6,
+      "prop_multicoluna": 0.467,
+      "tau_naive_stream_med": 0.584,
+      "tau_xycut_stream_med": 0.709,
+      "tau_naive_xycut_med": 1.0,
+      "ardn_naive_xycut_med": 0.0,
+      "prop_naive_errada": 0.467
+    },
+    "official_diary_ro": {
+      "paginas": 16,
+      "blocos_medio": 25.8,
+      "prop_multicoluna": 0.938,
+      "tau_naive_stream_med": 0.548,
+      "tau_xycut_stream_med": 0.446,
+      "tau_naive_xycut_med": 0.942,
+      "ardn_naive_xycut_med": 0.026,
+      "prop_naive_errada": 0.625
+    },
+    "official_diary_rr": {
+      "paginas": 12,
+      "blocos_medio": 19.8,
+      "prop_multicoluna": 0.417,
+      "tau_naive_stream_med": 0.711,
+      "tau_xycut_stream_med": 0.703,
+      "tau_naive_xycut_med": 0.937,
+      "ardn_naive_xycut_med": 0.028,
+      "prop_naive_errada": 1.0
+    },
+    "official_diary_rs_porto_alegre": {
+      "paginas": 10,
+      "blocos_medio": 16.1,
+      "prop_multicoluna": 0.2,
+      "tau_naive_stream_med": 0.612,
+      "tau_xycut_stream_med": 0.612,
+      "tau_naive_xycut_med": 1.0,
+      "ardn_naive_xycut_med": 0.0,
+      "prop_naive_errada": 0.2
+    },
+    "official_diary_sc": {
+      "paginas": 15,
+      "blocos_medio": 51.5,
+      "prop_multicoluna": 0.867,
+      "tau_naive_stream_med": 0.494,
+      "tau_xycut_stream_med": 0.822,
+      "tau_naive_xycut_med": 0.476,
+      "ardn_naive_xycut_med": 0.217,
+      "prop_naive_errada": 0.8
+    },
+    "official_diary_se": {
+      "paginas": 16,
+      "blocos_medio": 71.9,
+      "prop_multicoluna": 0.438,
+      "tau_naive_stream_med": 0.514,
+      "tau_xycut_stream_med": 0.565,
+      "tau_naive_xycut_med": 0.901,
+      "ardn_naive_xycut_med": 0.044,
+      "prop_naive_errada": 0.5
+    },
+    "official_diary_sp": {
+      "paginas": 12,
+      "blocos_medio": 33.3,
+      "prop_multicoluna": 0.917,
+      "tau_naive_stream_med": 0.618,
+      "tau_xycut_stream_med": -0.117,
+      "tau_naive_xycut_med": 0.384,
+      "ardn_naive_xycut_med": 0.246,
+      "prop_naive_errada": 0.917
+    },
+    "official_diary_to": {
+      "paginas": 12,
+      "blocos_medio": 55.1,
+      "prop_multicoluna": 0.0,
+      "tau_naive_stream_med": 0.578,
+      "tau_xycut_stream_med": 0.578,
+      "tau_naive_xycut_med": 1.0,
+      "ardn_naive_xycut_med": 0.0,
+      "prop_naive_errada": 0.0
+    }
+  },
+  "splits": {
+    "referencia": "stream",
+    "criterio_referencia": "Ordem do fluxo de conteudo do PDF, restrita aos veiculos em que ela concorda com a heuristica XY-cut (tau de Kendall mediano >= 0.7). Nesses veiculos o software de publicacao grava o texto na ordem de leitura. A confiabilidade e avaliada por VEICULO, nao por pagina, para nao selecionar apenas as paginas em que a heuristica acerta -- o que favoreceria a propria heuristica.",
+    "limiar_tau": 0.7,
+    "treino": [
+      "official_diary_RJ_volta_redonda",
+      "official_diary_ba_salvador",
+      "official_diary_pa",
+      "official_diary_pe",
+      "official_diary_pr",
+      "official_diary_rr",
+      "official_diary_sc"
+    ],
+    "validacao": [
+      "official_diary_rn"
+    ],
+    "teste": [
+      "official_diary_ce",
+      "official_diary_ma",
+      "official_diary_rj"
+    ],
+    "ufs_nao_confiaveis": [
+      "official_diary_MG_congonhas",
+      "official_diary_RJ_barra_do_pirai",
+      "official_diary_RJ_duque_de_caxias",
+      "official_diary_RJ_seropedica",
+      "official_diary_ac",
+      "official_diary_al",
+      "official_diary_am_manaus",
+      "official_diary_ap",
+      "official_diary_mg",
+      "official_diary_ms",
+      "official_diary_pb",
+      "official_diary_pi_v2",
+      "official_diary_pr_curitiba",
+      "official_diary_rj_japeri",
+      "official_diary_ro",
+      "official_diary_rs_porto_alegre",
+      "official_diary_se",
+      "official_diary_sp",
+      "official_diary_to"
+    ]
+  },
+  "n_paginas": 777,
+  "global": {
+    "tau_naive_stream_med": 0.5555555555555556,
+    "tau_xycut_stream_med": 0.6181914331041778,
+    "tau_naive_xycut_med": 0.9230769230769229,
+    "prop_multicoluna": 0.49935649935649934,
+    "prop_naive_errada": 0.6061776061776062
+  }
+}
