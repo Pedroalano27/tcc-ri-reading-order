@@ -30,9 +30,11 @@ Comparamos duas famílias de abordagens:
 2. **Modelos de Linguagem de Larga Escala (LLMs), via Ollama.**
    Excelente capacidade de representação contextual e raciocínio *zero-shot*, mas com custo computacional de atenção quadrático $O(N^2)$ e latência substancialmente maior.
 
-A **LSTM** convencional entra como *baseline* de rede recorrente: por operar sobre a sequência textual sem representação nativa da geometria 2D, serve para dimensionar o ganho que a consciência de layout efetivamente traz.
+A **LSTM** convencional entra como *baseline* de rede recorrente, e as **heurísticas geométricas** (ingênua e XY-cut) como *baselines* sem aprendizado: servem para dimensionar o ganho que a consciência de layout e o aprendizado efetivamente trazem.
 
 A hipótese sob teste é que **um modelo leve e especializado em layout alcança eficácia competitiva com LLMs generativas a uma fração do custo computacional** — o que, se confirmado, tem implicação prática direta no processamento de grandes volumes de diários.
+
+Como o trabalho é da área de Recuperação de Informação, a ordem de leitura também é avaliada **pelo efeito na recuperação**: um piloto em Japeri (RJ) mede se a ordenação muda o que a busca encontra e o texto que chega a um RAG ([resultados, seção 6](docs/RESULTADOS_PRELIMINARES.md)).
 
 ---
 
@@ -40,21 +42,20 @@ A hipótese sob teste é que **um modelo leve e especializado em layout alcança
 
 | Métrica | O que mede |
 |---|---|
-| **BLEU de página** | Sobreposição de n-gramas entre o texto reconstruído na ordem predita e o texto na ordem do padrão-ouro. Captura se os blocos ficaram *localmente* bem encadeados. |
+| **τ de Kendall** (principal) | Concordância entre a ordem predita e a de referência: fração de pares de blocos na ordem certa, de −1 (invertida) a 1 (idêntica). |
+| **Sucessor correto** | Fração dos blocos seguidos pelo bloco certo. Mede a continuidade local do texto — o que chega a um leitor, a um trecho de busca ou a um RAG. |
 | **ARD** (*Average Relative Distance*) | Distância média entre a posição predita e a posição correta de cada caixa. Captura o erro de ordenação *global*, penalizando blocos deslocados para longe. |
+| **BLEU de página** | Sobreposição de n-gramas entre o texto reconstruído na ordem predita e o texto na ordem de referência. Em granularidade de bloco é pouco discriminativo (uma página invertida ainda marca 82,7). |
 | **Tempo de inferência** | Latência por página, medida nas mesmas condições de hardware para todas as abordagens. |
-
-As duas primeiras são as métricas consagradas na literatura de *reading order detection*; a terceira é o eixo de eficiência do trade-off investigado.
 
 ---
 
 ## 📊 Estratégia de Dados
 
-O projeto trabalha com três conjuntos, em ordem crescente de fidelidade ao caso real:
-
-1. **Pré-dataset sintético** (`data/predataset/`) — páginas simuladas geradas por [`get_predataset.py`](get_predataset.py), com layout multicolunas e ordem de leitura conhecida por construção. Serve para validar a pipeline ponta a ponta antes de tocar em dados reais.
-2. **DocLayNet** — dataset público de análise de layout de documentos (leis, editais, relatórios) com anotação humana, disponível no Hugging Face. Base de treino e validação em escala.
-3. **Golden Dataset** — padrão-ouro de **20 páginas de Diários Oficiais do Estado de Goiás**, com a ordem de leitura anotada manualmente. É o conjunto que mede o desempenho no domínio-alvo real.
+1. **Acervo de Diários Oficiais** (`data/raw/`, não versionado) — 4.644 PDFs de 23 UFs e 8 municípios cedidos pelo orientador, cerca de 310 mil páginas ([docs/ACERVO.md](docs/ACERVO.md)). Os blocos com coordenadas são extraídos da camada de texto dos PDFs, e a ordem do fluxo do PDF serve de rótulo *silver* nos veículos em que ela é confiável.
+2. **Golden Dataset** (`data/golden/`) — ordem de leitura anotada à mão numa ferramenta própria (`src/anotacao/`). O lote `golden_v1` tem 30 páginas de veículos de teste e de veículos em que o fluxo do PDF não é confiável; um lote de **Goiás**, fora do acervo, mede generalização fora do domínio ([docs/GUIA_ANOTACAO.md](docs/GUIA_ANOTACAO.md)).
+3. **Pré-dataset sintético** (`data/predataset/`) — páginas simuladas geradas por [`get_predataset.py`](get_predataset.py), com layout multicolunas e ordem de leitura conhecida por construção, para validar a pipeline ponta a ponta.
+4. **DocLayNet** — dataset público de análise de layout. Anota categorias de layout, não ordem de leitura; o papel dele no trabalho está em discussão.
 
 ---
 
@@ -63,14 +64,20 @@ O projeto trabalha com três conjuntos, em ordem crescente de fidelidade ao caso
 ```text
 ├── data/
 │   ├── raw/                # PDFs brutos dos Diários Oficiais (não versionado)
+│   ├── processed/          # Blocos extraídos e divisão treino/validação/teste (regenerável)
+│   ├── golden/             # Lotes de anotação manual: tarefas e anotações (versionado)
 │   └── predataset/         # Pré-dataset sintético de ordem de leitura (JSON)
 ├── models/                 # Pesos e checkpoints treinados (não versionado)
-├── notebooks/              # Análise exploratória e geração de gráficos
+├── notebooks/              # Notebook do Kaggle (gerado por src/kaggle/montar_pacote.py)
+├── resultados/             # Predições, comparações e logs dos experimentos
 ├── src/
-│   ├── data/               # Coleta, parsing e extração de bounding boxes dos PDFs
-│   ├── models/             # Arquiteturas: LayoutLM e baseline LSTM
-│   └── eval/               # Cliente LLM (Ollama) e cálculo das métricas (BLEU, ARD, tempo)
-├── docs/                   # Fichamento bibliográfico e notas de direcionamento
+│   ├── data/               # Extração dos ZIPs e dos blocos com bounding boxes dos PDFs
+│   ├── models/             # LayoutLM e BiLSTM
+│   ├── eval/               # Protocolo, baselines, LLM, métricas, comparação, figuras, avaliação humana
+│   ├── anotacao/           # Ferramenta de anotação do Golden Dataset
+│   ├── kaggle/             # Pacote e importação das LLMs rodadas no Kaggle
+│   └── ri/                 # Avaliação extrínseca: efeito da ordem na recuperação
+├── docs/                   # Metodologia, resultados, diário de bordo, guias e figuras
 ├── get_predataset.py       # Gerador do pré-dataset sintético
 ├── requirements.txt        # Dependências do projeto
 └── README.md               # Este arquivo
@@ -131,9 +138,20 @@ python src/eval/baselines.py
 python src/models/layoutlm_ordem.py treinar
 python src/models/layoutlm_ordem.py avaliar
 python src/models/lstm_ordem.py --variante geo_texto
-python src/eval/llm_ordem.py --modelo llava:7b --paginas 20
+python src/eval/llm_ordem.py --modelo llava:7b --paginas 20 --max-blocos 25
 python src/eval/comparar.py
 python src/eval/figuras.py
+```
+
+Experimentos e ferramentas da segunda etapa. O piloto e a curva exigem as coletas
+extras descritas em [docs/METODOLOGIA.md](docs/METODOLOGIA.md), seção 3.2:
+
+```bash
+python src/ri/piloto_japeri.py                      # efeito da ordem na busca (Japeri)
+python src/rodar_curva_aprendizado.py               # LayoutLM e BiLSTM com mais páginas de treino
+python src/anotacao/servidor.py                     # ferramenta de anotação do Golden Dataset
+python src/eval/avaliar_golden.py --lote golden_v1  # métodos contra a anotação humana
+python src/kaggle/montar_pacote.py                  # LLMs de 7B a 32B no Kaggle (docs/KAGGLE.md)
 ```
 
 ---
@@ -142,11 +160,14 @@ python src/eval/figuras.py
 
 | Documento | Conteúdo |
 |---|---|
+| [docs/ENTENDA_O_PROJETO.md](docs/ENTENDA_O_PROJETO.md) | **Comece por aqui**: guia explicativo do projeto inteiro, com exemplos e glossário |
 | [docs/RESULTADOS_PRELIMINARES.md](docs/RESULTADOS_PRELIMINARES.md) | Números e figuras dos experimentos |
 | [docs/METODOLOGIA.md](docs/METODOLOGIA.md) | Desenho experimental completo |
 | [docs/DIARIO_DE_BORDO.md](docs/DIARIO_DE_BORDO.md) | Tudo o que foi feito, com decisões e problemas |
-| [docs/ACERVO.md](docs/ACERVO.md) | Diagnóstico dos 4.644 diários do acervo |
 | [docs/ROADMAP.md](docs/ROADMAP.md) | Próximos passos e perguntas para o orientador |
+| [docs/GUIA_ANOTACAO.md](docs/GUIA_ANOTACAO.md) | Como anotar o Golden Dataset, com as regras de leitura |
+| [docs/KAGGLE.md](docs/KAGGLE.md) | Como rodar as LLMs maiores na GPU gratuita do Kaggle |
+| [docs/ACERVO.md](docs/ACERVO.md) | Diagnóstico dos 4.644 diários do acervo |
 | [docs/LITERATURA.md](docs/LITERATURA.md) | Fichamento bibliográfico |
 
 ---
@@ -154,14 +175,18 @@ python src/eval/figuras.py
 ## 🚧 Estado Atual
 
 - [x] Extração de blocos com bounding boxes a partir dos PDFs digitais (`src/data/extrator.py`)
-- [x] Métricas: τ de Kendall, ARD, BLEU de página (`src/eval/metrics.py`)
+- [x] Métricas: τ de Kendall, sucessor correto, ARD, BLEU de página (`src/eval/metrics.py`)
 - [x] Protocolo experimental com divisão por veículo (`src/eval/protocolo.py`)
 - [x] Baselines: ordem do detector, ingênua, XY-cut (`src/eval/baselines.py`)
 - [x] BiLSTM em três variantes (`src/models/lstm_ordem.py`)
 - [x] LayoutLM como learning-to-rank, com ablação sem layout (`src/models/layoutlm_ordem.py`)
-- [x] LLM zero-shot via Ollama (`src/eval/llm_ordem.py`)
-- [ ] Golden Dataset manual (20 páginas de Goiás)
-- [ ] LLM de texto (qwen2.5) e APIs comerciais (Azure, Google)
-- [ ] LayoutXLM multilíngue e LayoutReader
+- [x] LLM zero-shot e few-shot via Ollama (`src/eval/llm_ordem.py`)
+- [x] Ferramenta de anotação e lote `golden_v1` com 30 páginas (`src/anotacao/`)
+- [x] Pacote e notebook para rodar LLMs de 7B a 32B no Kaggle (`src/kaggle/`)
+- [x] Piloto de avaliação extrínseca de RI em Japeri (`src/ri/piloto_japeri.py`)
+- [x] Curva de aprendizado com até 3.235 páginas de treino (`src/rodar_curva_aprendizado.py`)
+- [ ] Anotação do Golden Dataset (`golden_v1` e Goiás)
+- [ ] LLMs de texto no Kaggle e APIs comerciais (Azure, Google)
+- [ ] LayoutLM prevendo o sucessor de cada bloco; LayoutXLM e LayoutReader
 
 Os módulos `src/data/parser.py`, `src/models/lstm.py` e `src/eval/llm_client.py` são do escopo anterior (extração de entidades) e foram substituídos pelos listados acima.

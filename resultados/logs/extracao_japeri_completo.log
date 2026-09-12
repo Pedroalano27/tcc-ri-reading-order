@@ -1,0 +1,6 @@
+[*] 1 UFs, 27 PDFs, ate 9999 paginas cada, 3 processos -> C:\Users\pedro\dev\tcc-ri-reading-order\data\processed\blocos_ri_japeri
+  25/27 PDFs | 237 paginas uteis | 111s
+  27/27 PDFs | 269 paginas uteis | 143s
+
+[OK] 269 paginas em 143s -> C:\Users\pedro\dev\tcc-ri-reading-order\data\processed\blocos_ri_japeri
+Motivos (paginas): {'ok': 269, 'n_blocos': 2}

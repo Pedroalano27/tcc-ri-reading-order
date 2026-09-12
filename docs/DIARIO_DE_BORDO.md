@@ -181,6 +181,44 @@ PDF ──► extrator.py ──► blocos + 3 ordens ──► caracterizar.py 
 
 Os números completos estão em [RESULTADOS_PRELIMINARES.md](RESULTADOS_PRELIMINARES.md).
 
+### 3.5 Ferramentas para a próxima etapa e primeiro teste de RI (noite de 2026-09-10)
+
+Pedido: preparar o uso do Kaggle para LLMs maiores, um ambiente de rotulação "do jeito
+mais fácil" e o máximo de informação para decidir o rumo do TCC.
+
+- **Ferramenta de anotação** (`src/anotacao/`): servidor local só com a biblioteca padrão
+  (`servidor.py`, porta 8770) e a página de anotação (`ferramenta.html`). Clique numera o
+  bloco; arrastar um retângulo numera uma coluna de cima para baixo; clicar num bloco
+  numerado corta a sequência; Z desfaz; o texto aparece na ordem escolhida para conferir
+  se as frases emendam; cada mudança é salva como rascunho em cerca de 1 s; o tempo ativo
+  é medido por página. Testada no navegador (clique, laço, salvamento automático); a
+  anotação de teste foi apagada.
+- **Lote `golden_v1`** (`preparar_lote.py`): 30 páginas e 1.044 blocos — 10 dos veículos de
+  teste (valida o rótulo silver) e 20 dos veículos não confiáveis (onde não se sabe quem
+  acerta). Protocolo em [GUIA_ANOTACAO.md](GUIA_ANOTACAO.md).
+- **Avaliador contra humano** (`src/eval/avaliar_golden.py`): todos os métodos contra a
+  anotação, por grupo, com concordância entre anotadores e custo da anotação. Testado de
+  ponta a ponta com um lote temporário, apagado depois.
+- **Kaggle** (`src/kaggle/`): pacote de 2,2 MB (código, blocos, tarefas do Golden,
+  predições locais), notebook gerado por código e importador dos resultados.
+  `llm_ordem.py` ganhou few-shot, partição do Golden, retomada após queda, janela de
+  contexto automática e registro de cada execução — testado localmente com o llava:7b.
+  `latencia_hardware.py` mede todos os métodos na mesma máquina. Guia em
+  [KAGGLE.md](KAGGLE.md).
+- **Métrica "sucessor correto"**: o LayoutLM tem τ 0,671, mas só 13,4% de sucessores
+  corretos (XY-cut: 64,2%). A formulação pontual acerta a posição aproximada e troca
+  vizinhos, o que picota o texto.
+- **Piloto de RI em Japeri** (`src/ri/piloto_japeri.py`): 269 páginas e 915 consultas
+  geradas dos atos. Achar a página certa não depende da ordem (MRR ≈ 0,99 para todos);
+  o texto que chega ao leitor depende (frases preservadas: 45,4% sem ordenar, 53,4% com o
+  fluxo do PDF, 49,7% com a XY-cut, 45,7% com o LayoutLM).
+- **Curva de aprendizado** (`src/rodar_curva_aprendizado.py`): 3.117 páginas extras dos 7
+  veículos de treino (`blocos_extra`), subconjuntos aninhados de 152 a 3.235 páginas,
+  LayoutLM e BiLSTM de geometria. Resultado: o τ do LayoutLM sobe de 0,694 para 0,786 e o
+  pior caso (0,527) passa o da XY-cut (0,496), mas o sucessor correto só vai de 16% para
+  21%; a BiLSTM não se mexe (0,721 para 0,702). Mais dados corrigem a ordem global, não a
+  continuidade.
+
 ---
 
 ## Problemas encontrados e soluções
@@ -202,6 +240,10 @@ Os números completos estão em [RESULTADOS_PRELIMINARES.md](RESULTADOS_PRELIMIN
 | Figura 2 mostrava uma página em que a ordem ingênua acertava | Critério de seleção restrito ao conjunto de teste | Seleção entre todos os veículos confiáveis, priorizando a maior discordância |
 | LayoutLM subtreinado na rodada 1 | 152 páginas × 8 épocas = 152 passos | Rodada 2 com 40 épocas, e ablação com o mesmo orçamento |
 | Validador de paleta da skill de visualização não rodou | Node.js não instalado | Usada a paleta de referência já validada, sem alterações |
+| Coleta extra travou em Pernambuco (~50 s por PDF) | PDFs de PE muito densos para o `pdfplumber` | Interrompida em 525 de 1.089 PDFs (2.288 páginas); PR, RR e SC coletados à parte com amostra menor (70 PDFs × 5 páginas) |
+| O comando que encerrava a coleta encerrou a si mesmo | O filtro por linha de comando casava com o próprio texto do comando no PowerShell | Filtrar os processos pelo nome `python.exe` antes de aplicar o padrão |
+| "Teto" de frases preservadas abaixo de um método (51,8% × 53,4%) | A estimativa só considerava frases com no máximo uma emenda entre blocos | Estimativa descartada; relata-se a diferença para o piso e a fração preservada por algum método |
+| A curva de aprendizado quebraria ao medir o primeiro modelo | `acerto_sucessor` criado em `metrics.py`, mas fora de `avaliar()` | Execução interrompida, função incluída em `avaliar()`, curva reiniciada |
 
 ## Decisões e justificativas
 
@@ -215,3 +257,10 @@ Os números completos estão em [RESULTADOS_PRELIMINARES.md](RESULTADOS_PRELIMIN
 | `microsoft/layoutlm-base-uncased` | LayoutXLM (multilíngue), LayoutLMv3 | A v1 não exige imagem nem `detectron2` (difícil de instalar no Windows). Limitação: tokenizador em inglês |
 | `llava:7b` como LLM | `qwen2.5:7b`, `llama3.1:8b` | Já estava instalado; o download de ~5 GB de outro modelo ficou a critério do autor |
 | **τ de Kendall como métrica principal** | BLEU | BLEU é insensível em granularidade de bloco (página invertida = 82,7) |
+| Anotação **cega**, sem ordem sugerida | Pré-numerar com a XY-cut e só corrigir | A pré-numeração ancoraria o anotador na heurística e recriaria o viés que o Golden existe para eliminar; o laço por coluna compensa a velocidade |
+| Golden com grupos `silver` e `incerto` (e Goiás depois) | Só páginas de Goiás, como no plano original | Cada grupo responde uma pergunta: validar a referência automática, decidir onde ela não existe e medir generalização fora do domínio |
+| Kaggle com **Ollama** | vLLM; APIs pagas | Mesmo código e mesmo prompt da execução local, e gratuito; APIs pagas ficam como teto de desempenho |
+| Latência do LayoutLM e da BiLSTM medida **sem os pesos treinados** no Kaggle | Levar o checkpoint de 450 MB | O tempo de inferência não depende dos valores dos pesos; o pacote fica com 2,2 MB |
+| **Sucessor correto** como métrica adicional | Só τ e ARD | Mede a continuidade do texto, que é o que chega a um leitor ou a um RAG; revelou o problema da formulação pontual |
+| Relevância do piloto de RI **por sobreposição de palavras** | Julgamentos de relevância manuais | Independe da ordem, então é a mesma para todos os métodos, e escala para centenas de consultas |
+| Curva com subconjuntos **aninhados** | Amostras independentes por tamanho | O menor subconjunto é exatamente o treino original e cada ponto contém o anterior: menos variância entre pontos |

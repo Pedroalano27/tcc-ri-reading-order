@@ -117,7 +117,9 @@
   .dica b { font-family: var(--f-disp); font-size: 13px; font-weight: 600; }
 
   .tabela { overflow-x: auto; background: var(--papel); border: 1px solid var(--fio); border-radius: 3px; margin: 18px 0; }
+  .tabela.estreita { max-width: 560px; }
   table { border-collapse: collapse; width: 100%; font-size: .92rem; min-width: 640px; }
+  .tabela.estreita table { min-width: 420px; }
   th, td { padding: 9px 12px; text-align: right; border-bottom: 1px solid var(--fio); font-variant-numeric: tabular-nums; }
   th { font-family: var(--f-disp); font-weight: 600; font-size: .85rem; color: var(--tinta-2); vertical-align: bottom; line-height: 1.25; }
   td { font-family: var(--f-dados); font-size: .86rem; }
@@ -158,11 +160,11 @@
 
   <header class="abertura">
     <h1>Ordem de leitura em Diários Oficiais</h1>
-    <p class="linha-fina">O que o acervo de 4.644 diários mostrou, o que dizem os primeiros experimentos com LayoutLM, heurísticas e LLM, e o que precisa ser decidido com o orientador.</p>
+    <p class="linha-fina">O que o acervo de 4.644 diários mostrou, o que dizem os experimentos com LayoutLM, heurísticas e LLM, onde a ordem pesa para a recuperação de informação, e o que precisa ser decidido com o orientador.</p>
     <ul class="numeros">
-      <li><strong>4.644</strong><span>PDFs no acervo, 23 UFs e 8 municípios (~310 mil páginas)</span></li>
       <li><strong>11 de 30</strong><span>veículos em que a ordem interna do PDF segue a leitura</span></li>
       <li><strong>τ {{TAU_XYCUT}}</strong><span>XY-cut, a heurística de colunas, melhor método até aqui</span></li>
+      <li><strong>{{SUC_LAYOUTLM}}%</strong><span>dos blocos do LayoutLM vêm seguidos do bloco certo (XY-cut: {{SUC_XYCUT}}%)</span></li>
       <li><strong>~{{RAZAO_LLM}}×</strong><span>mais lenta que o LayoutLM: a LLM zero-shot, com τ {{TAU_LLM}}</span></li>
     </ul>
   </header>
@@ -192,7 +194,7 @@
         <li><span class="etapa">Referência</span><b>Rótulo silver</b><span>Ordem do fluxo do PDF, só nos veículos em que ela é confiável.</span></li>
         <li><span class="etapa">Protocolo</span><b>Divisão por veículo</b><span>Treino em 7 veículos (152 págs.), teste em CE, MA e RJ ({{N_TESTE}} págs.).</span></li>
         <li><span class="etapa">Métodos</span><b>9 competidores</b><span>Heurísticas, BiLSTM, LayoutLM como learning-to-rank, LLM local.</span></li>
-        <li><span class="etapa">Métricas</span><b>τ, ARD, latência</b><span>τ de Kendall como principal; o BLEU não discrimina nesta granularidade.</span></li>
+        <li><span class="etapa">Métricas</span><b>τ, sucessor, latência</b><span>τ de Kendall como principal; sucessor correto mede a continuidade do texto; o BLEU não discrimina nesta granularidade.</span></li>
       </ol>
     </section>
 
@@ -214,24 +216,53 @@
         <table id="tabela-resultados">
           <thead><tr>
             <th scope="col">Método</th><th scope="col">τ de Kendall<br>(IC 95%)</th><th scope="col">τ nas 10%<br>piores páginas</th>
-            <th scope="col">ARD<br>normalizado</th><th scope="col">Páginas<br>perfeitas</th><th scope="col">Latência<br>por página</th>
+            <th scope="col">Sucessor<br>correto</th><th scope="col">ARD<br>normalizado</th><th scope="col">Páginas<br>perfeitas</th><th scope="col">Latência<br>por página</th>
           </tr></thead>
           <tbody></tbody>
         </table>
       </div>
-      <p class="nota-tabela">{{N_TESTE}} páginas de teste de três veículos nunca vistos no treino. τ: 1 = ordem perfeita, 0 = sem relação. ARD: deslocamento médio, 0 = perfeito.</p>
+      <p class="nota-tabela">{{N_TESTE}} páginas de teste de três veículos nunca vistos no treino. τ: 1 = ordem perfeita, 0 = sem relação. Sucessor correto: blocos seguidos do bloco certo. ARD: deslocamento médio, 0 = perfeito.</p>
 
       <div class="leituras">
         <p><b>A heurística é o competidor a bater.</b> A XY-cut chega a τ = <span class="dado">{{TAU_XYCUT}}</span>, com o melhor desempenho nas piores páginas, em frações de milissegundo. O espaço para modelos aprendidos está nas páginas em que ela falha — e ela perde força à medida que o número de colunas cresce.</p>
         <p><b>Layout é indispensável.</b> Sem as coordenadas, o LayoutLM cai de τ = <span class="dado">{{TAU_LAYOUTLM}}</span> para <span class="dado">{{TAU_SEM_LAYOUT}}</span>, e o BiLSTM só com texto fica em <span class="dado">{{TAU_LSTM_TEXTO}}</span>. Com os blocos embaralhados, o texto sozinho não recupera a ordem: a informação que resolve a tarefa está na geometria.</p>
-        <p><b>Com pouco dado, geometria explícita vence.</b> O BiLSTM só com geometria (<span class="dado">{{TAU_LSTM_GEO}}</span>) supera o LayoutLM, cuja validação estabiliza em τ ≈ 0,63 mesmo com 40 épocas. O gargalo são as 152 páginas de treino, não o tempo de treino.</p>
+        <p><b>Com pouco dado, geometria explícita vence.</b> O BiLSTM só com geometria (<span class="dado">{{TAU_LSTM_GEO}}</span>) supera o LayoutLM, cuja validação estabiliza em τ ≈ 0,63 mesmo com 40 épocas. A seção 4 testa se o gargalo é mesmo o volume de dados.</p>
         <p><b>A LLM zero-shot ecoa a entrada.</b> O <span class="dado">llava:7b</span> ficou em τ = <span class="dado">{{TAU_LLM}}</span>, próximo do acaso. A ordem que ele devolve tem τ mediano de <span class="dado">0,905</span> com a ordem em que os blocos <em>chegaram</em>, contra <span class="dado">0,121</span> com a correta: em 11 de 15 páginas, copiou a entrada em vez de ler as coordenadas. Uma em cada cinco respostas nem era uma permutação válida — e cada página levou <span class="dado">{{LAT_LLM}}</span> s.</p>
       </div>
     </section>
 
     <section class="secao" aria-labelledby="s4">
       <span class="marco" aria-hidden="true">4</span>
-      <h2 id="s4">Duas correções no caminho</h2>
+      <h2 id="s4">Segunda rodada: onde a ordem pesa</h2>
+      <p>A primeira rodada deixou três perguntas: o τ mede o que importa para quem usa o texto? A ordem muda o resultado de uma busca? E mais páginas de treino tiram o LayoutLM do lugar?</p>
+
+      <h3>O τ esconde o texto picotado</h3>
+      <p>O τ mede a ordem global. Para um leitor, um trecho de busca ou um RAG, importa se <strong>o bloco certo vem logo em seguida</strong>: trocar dois vizinhos custa um único par no τ, mas desfaz até três emendas do texto. Na nova métrica, o LayoutLM emenda o bloco certo em só <span class="dado">{{SUC_LAYOUTLM}}%</span> das vezes, contra <span class="dado">{{SUC_XYCUT}}%</span> da XY-cut: acerta a posição aproximada de cada bloco e troca vizinhos o tempo todo. É um limite da formulação — uma nota por bloco — e aponta para modelos que preveem o sucessor de cada bloco.</p>
+      <div class="tabela estreita" role="region" aria-label="τ de Kendall e sucessor correto por método" tabindex="0">
+        <table id="tabela-sucessor">
+          <thead><tr><th scope="col">Método</th><th scope="col">τ de Kendall</th><th scope="col">Sucessor<br>correto</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <h3>A ordem pesa no texto entregue, não em achar a página</h3>
+      <p>Piloto de avaliação extrínseca em Japeri (RJ): {{RI_PAGINAS}} páginas e {{RI_CONSULTAS}} consultas geradas a partir dos atos, cujo texto está em ordem correta. Achar a página certa satura — MRR@10 entre <span class="dado">{{RI_MRR_MIN}}</span> e <span class="dado">{{RI_MRR_MAX}}</span> para todos os métodos, porque a busca por palavras quase não depende da ordem. O que muda é o texto: sem ordenar, <span class="dado">{{RI_FID_PISO}}%</span> das frases dos atos chegam intactas; com o fluxo do PDF, <span class="dado">{{RI_FID_FLUXO}}%</span>; com a XY-cut, <span class="dado">{{RI_FID_XYCUT}}%</span>; com o LayoutLM, <span class="dado">{{RI_FID_LAYOUTLM}}%</span>, praticamente o piso. E, nesse veículo “não confiável”, o fluxo do PDF preservou mais texto que a heurística: discordar da XY-cut não prova que o fluxo esteja errado.</p>
+      <figure>
+        <div class="prancha"><img src="{{IMG_FIG8}}" alt="Barras horizontais com a porcentagem de frases dos atos de Japeri preservadas por cada ordenação: o fluxo do PDF na frente, o LayoutLM no nível da ordem sem ordenar."></div>
+        <figcaption><b>Frases de 12 palavras dos atos que chegam intactas ao texto extraído</b>, por ordenação. É essa diferença que chega a um RAG, a um trecho de busca ou a uma citação.</figcaption>
+      </figure>
+
+      <h3>Mais páginas de treino ajudam o LayoutLM?</h3>
+      <p>{{CURVA_TEXTO}}</p>
+      <figure>
+        <div class="prancha"><img src="{{IMG_FIG7}}" alt="Curva de aprendizado: τ no teste do LayoutLM e da BiLSTM de geometria com 152 a {{CURVA_N_MAX}} páginas de treino, com as linhas das heurísticas XY-cut e ingênua como referência."></div>
+        <figcaption><b>Curva de aprendizado.</b> τ no teste ({{N_TESTE}} páginas) com 152 a {{CURVA_N_MAX}} páginas de treino dos mesmos 7 veículos; faixas: IC 95%. Linhas horizontais: heurísticas, que não treinam.</figcaption>
+      </figure>
+    </section>
+
+    <section class="secao" aria-labelledby="s5">
+      <span class="marco" aria-hidden="true">5</span>
+      <h2 id="s5">Duas correções no caminho</h2>
       <div class="correcao">
         <span class="rotulo">Número retirado</span>
         <p>O diagnóstico inicial falava em “86% de desordem”. A medida — fração de blocos fora da posição exata — sofre de efeito cascata: um bloco deslocado no início empurra todos os seguintes. Foi substituída pelo τ de Kendall, que conta pares fora de ordem.</p>
@@ -242,28 +273,30 @@
       </div>
     </section>
 
-    <section class="secao" aria-labelledby="s5">
-      <span class="marco" aria-hidden="true">5</span>
-      <h2 id="s5">Para decidir com o orientador</h2>
+    <section class="secao" aria-labelledby="s6">
+      <span class="marco" aria-hidden="true">6</span>
+      <h2 id="s6">Para decidir com o orientador</h2>
       <ol class="perguntas">
+        <li><strong>Foco em RI.</strong> Além da avaliação da ordenação (τ, sucessor correto), o trabalho deve ter uma avaliação extrínseca — o efeito na busca e num RAG? O piloto em Japeri já mostra onde a ordem pesa.</li>
+        <li><strong>Atos de Japeri.</strong> Os 421 atos com texto em ordem correta foram anotados à mão ou são saída do Azure? Isso define se servem de referência gold ou silver.</li>
         <li><strong>Rótulo silver.</strong> Treinar com a ordem do fluxo do PDF nos veículos confiáveis, deixando a avaliação final para um padrão-ouro anotado à mão, é aceitável?</li>
-        <li><strong>Goiás como teste fora do domínio.</strong> O acervo não tem Goiás. Treinar nas 23 UFs e testar em 20 páginas goianas anotadas mede generalização para um layout nunca visto.</li>
+        <li><strong>Goiás como teste fora do domínio.</strong> O acervo não tem Goiás. Testar em páginas goianas anotadas mede generalização para um layout nunca visto.</li>
+        <li><strong>Infraestrutura.</strong> Rodar LLMs abertas de 7B a 32B na GPU gratuita do Kaggle é aceitável? Há GPU no laboratório como alternativa?</li>
         <li><strong>APIs comerciais como terceiro competidor.</strong> Há saídas do Azure e do Google em Japeri. Existem créditos para rodar o padrão-ouro nas duas? Isso completaria o eixo de custo.</li>
-        <li><strong>Granularidade.</strong> Blocos, alinhados à saída de detectores de layout, ou palavras, como no LayoutReader?</li>
-        <li><strong>Infraestrutura.</strong> Há GPU com mais memória no laboratório? LayoutXLM e LLMs maiores não cabem em 6 GB.</li>
       </ol>
     </section>
 
-    <section class="secao" aria-labelledby="s6">
-      <span class="marco" aria-hidden="true">6</span>
-      <h2 id="s6">Próximos passos</h2>
-      <p><strong>Padrão-ouro:</strong> 20 páginas de Goiás estratificadas por número de colunas, com ordem anotada à mão. <strong>Mais dados de treino</strong> e extração mais rápida. <strong>LLM de texto</strong> (<span class="dado">qwen2.5:7b</span>) e versão com exemplos no prompt. <strong>Auditoria visual</strong> do rótulo silver, começando por SP, onde a heurística e o fluxo do PDF estão anticorrelacionados.</p>
+    <section class="secao" aria-labelledby="s7">
+      <span class="marco" aria-hidden="true">7</span>
+      <h2 id="s7">Próximos passos</h2>
+      <p><strong>Já pronto:</strong> ferramenta de anotação com o lote <span class="dado">golden_v1</span> — 30 páginas, 10 de veículos de teste para validar o rótulo automático e 20 de veículos em que ele não existe —, avaliador contra a anotação humana e pacote para rodar LLMs de texto de 7B a 32B no Kaggle, com e sem exemplos no prompt.</p>
+      <p><strong>Em seguida:</strong> anotar o <span class="dado">golden_v1</span> e páginas de Goiás; rodar as LLMs no Kaggle; mudar a formulação do LayoutLM para prever o sucessor de cada bloco; ampliar a avaliação de RI para vários veículos, busca densa e um RAG completo.</p>
     </section>
   </main>
 
   <footer>
     <span>Código, dados de experimento e documentação: <a href="https://github.com/Pedroalano27/tcc-ri-reading-order">github.com/Pedroalano27/tcc-ri-reading-order</a></span>
-    <span>Detalhes em <span class="dado">docs/RESULTADOS_PRELIMINARES.md</span>, <span class="dado">docs/METODOLOGIA.md</span> e <span class="dado">docs/DIARIO_DE_BORDO.md</span>. Orientador: Prof. Dr. Thierson Couto Rosa.</span>
+    <span>Detalhes em <span class="dado">docs/RESULTADOS_PRELIMINARES.md</span>, <span class="dado">docs/METODOLOGIA.md</span>, <span class="dado">docs/GUIA_ANOTACAO.md</span> e <span class="dado">docs/KAGGLE.md</span>. Orientador: Prof. Dr. Thierson Couto Rosa.</span>
   </footer>
 </div>
 
@@ -281,6 +314,7 @@
     layoutlm_sem_layout: [10, 16, "start"], layoutlm: [12, 4, "start"], llm_llava_7b: [-10, -12, "end"]
   };
   const virgula = (x, d = 3) => x.toFixed(d).replace(".", ",").replace("-", "−");
+  const pct = (x) => x == null ? "—" : virgula(100 * x, 1) + "%";
   const ms = (x) => x < 1 ? virgula(x, 3) + " ms" : x < 1000 ? virgula(x, 1) + " ms" : virgula(x / 1000, 1) + " s";
 
   function pontos() {
@@ -299,10 +333,19 @@
         <td>${m === melhor ? "<strong>" + virgula(r.tau) + "</strong>" : virgula(r.tau)}
             <span class="ic">${virgula(r.tau_ic95[0], 2)} a ${virgula(r.tau_ic95[1], 2)}</span></td>
         <td>${virgula(r.tau_p10)}</td>
+        <td>${pct(r.sucessor)}</td>
         <td>${virgula(r.ard_norm)}</td>
         <td>${virgula(100 * r.exato, 1)}%</td>
         <td>${ms(r.tempo_ms)}</td>
       </tr>`).join("");
+  }
+
+  function tabelaSucessor() {
+    const corpo = document.querySelector("#tabela-sucessor tbody");
+    corpo.innerHTML = ["xycut", "naive", "lstm_geo", "layoutlm", "aleatoria"]
+      .filter((m) => DADOS.todas[m])
+      .map((m) => `<tr class="${m === "layoutlm" ? "destaque" : ""}"><td>${NOMES[m]}</td>` +
+                  `<td>${virgula(DADOS.todas[m].tau)}</td><td>${pct(DADOS.todas[m].sucessor)}</td></tr>`).join("");
   }
 
   function grafico() {
@@ -344,7 +387,8 @@
       const alvo = el("circle", { cx: x, cy: y, r: 16, fill: "transparent", tabindex: 0, "aria-label": NOMES[m] });
       const mostrar = () => {
         dica.innerHTML = `<b>${NOMES[m]}</b><br>τ ${virgula(r.tau)} (IC ${virgula(r.tau_ic95[0], 2)} a ${virgula(r.tau_ic95[1], 2)})` +
-          `<br>10% piores: ${virgula(r.tau_p10)}<br>latência: ${ms(r.tempo_ms)}<br>${r.n} páginas`;
+          `<br>10% piores: ${virgula(r.tau_p10)}` + (r.sucessor != null ? `<br>sucessor correto: ${pct(r.sucessor)}` : "") +
+          `<br>latência: ${ms(r.tempo_ms)}<br>${r.n} páginas`;
         dica.hidden = false;
         const kx = caixa.clientWidth / W, ky = caixa.clientHeight / H;
         const esq = Math.min(x * kx + 14, caixa.clientWidth - 250);
@@ -359,5 +403,6 @@
   }
 
   tabela();
+  tabelaSucessor();
   grafico();
 </script>

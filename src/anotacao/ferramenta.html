@@ -1,0 +1,760 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anotação de ordem de leitura</title>
+<style>
+  :root {
+    --fundo: #e7ebf0;
+    --painel: #ffffff;
+    --painel-2: #f3f5f8;
+    --tinta: #16202b;
+    --tinta-2: #4b5765;
+    --tinta-3: #6f7b8a;
+    --linha: #d0d7df;
+    --acento: #1f6fd1;
+    --acento-tinta: #ffffff;
+    --acento-suave: #e2edfb;
+    --ok: #12805a;
+    --ok-suave: #e1f3ec;
+    --aviso: #8f5a00;
+    --aviso-suave: #fbf0da;
+    --erro: #b3302a;
+    --erro-suave: #fbe7e5;
+    --sombra: 0 1px 2px rgba(16, 28, 44, .08), 0 8px 24px rgba(16, 28, 44, .08);
+    --mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --fundo: #0f141a;
+      --painel: #171e27;
+      --painel-2: #1e2731;
+      --tinta: #e4e9ef;
+      --tinta-2: #a7b1bd;
+      --tinta-3: #8591a0;
+      --linha: #2b3642;
+      --acento: #5a9cf0;
+      --acento-tinta: #0a1320;
+      --acento-suave: #1b2d44;
+      --ok: #3cc08b;
+      --ok-suave: #16322a;
+      --aviso: #e2a53d;
+      --aviso-suave: #3a2d14;
+      --erro: #ff7a6d;
+      --erro-suave: #3b1e1b;
+      --sombra: 0 1px 2px rgba(0, 0, 0, .45), 0 8px 24px rgba(0, 0, 0, .35);
+      color-scheme: dark;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    display: grid; grid-template-rows: auto 1fr; overflow: hidden;
+    font: 14px/1.45 system-ui, "Segoe UI", Roboto, sans-serif;
+    background: var(--fundo); color: var(--tinta);
+  }
+  button, select, input, textarea { font: inherit; color: inherit; }
+  button {
+    border: 1px solid var(--linha); background: var(--painel); border-radius: 6px;
+    padding: 5px 10px; cursor: pointer; white-space: nowrap;
+  }
+  button:hover:not(:disabled) { border-color: var(--acento); }
+  button:disabled { opacity: .45; cursor: default; }
+  button.primario { background: var(--acento); border-color: var(--acento); color: var(--acento-tinta); font-weight: 600; }
+  :focus-visible { outline: 2px solid var(--acento); outline-offset: 2px; }
+  kbd {
+    font: 11px var(--mono); padding: 1px 5px; border: 1px solid var(--linha); border-bottom-width: 2px;
+    border-radius: 4px; background: var(--painel-2); color: var(--tinta-2);
+  }
+  button.primario kbd { background: transparent; color: inherit; border-color: rgba(255, 255, 255, .55); }
+
+  .topo { display: flex; align-items: center; gap: 18px; padding: 8px 14px; background: var(--painel); border-bottom: 1px solid var(--linha); flex-wrap: wrap; }
+  .marca { display: flex; flex-direction: column; line-height: 1.15; margin-right: 4px; }
+  .marca strong { font-size: 15px; }
+  .marca span { font-size: 12px; color: var(--tinta-3); }
+  .campo { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--tinta-2); }
+  .campo select, .campo input { border: 1px solid var(--linha); border-radius: 6px; padding: 4px 8px; background: var(--painel); min-width: 150px; }
+  .campo input.falta { border-color: var(--erro); background: var(--erro-suave); }
+  .resumo { margin-left: auto; font-size: 13px; color: var(--tinta-2); font-variant-numeric: tabular-nums; }
+  .resumo b { color: var(--tinta); }
+
+  main { display: grid; grid-template-columns: 210px minmax(0, 1fr) 350px; min-height: 0; }
+  .lista { background: var(--painel); border-right: 1px solid var(--linha); display: flex; flex-direction: column; min-height: 0; }
+  .rotulo-sec { padding: 10px 12px 6px; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--tinta-3); font-weight: 600; }
+  #lista-paginas { overflow: auto; padding: 0 6px 10px; display: flex; flex-direction: column; gap: 2px; }
+  .item {
+    display: grid; grid-template-columns: 30px 1fr 18px; align-items: center; gap: 6px; text-align: left;
+    border: 0; border-radius: 6px; padding: 5px 8px; background: transparent; font-size: 12.5px;
+  }
+  .item:hover { background: var(--painel-2); }
+  .item.atual { background: var(--acento-suave); }
+  .item .n { font: 11px var(--mono); color: var(--tinta-3); }
+  .item .nome { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .st { font-size: 12px; font-weight: 700; text-align: center; }
+  .st.concluida { color: var(--ok); }
+  .st.rascunho { color: var(--aviso); }
+  .st.pulada, .st.nova { color: var(--tinta-3); }
+
+  .palco { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
+  .barra { display: flex; align-items: center; gap: 6px; padding: 7px 12px; background: var(--painel-2); border-bottom: 1px solid var(--linha); flex-wrap: wrap; }
+  .barra .sep { width: 1px; height: 20px; background: var(--linha); margin: 0 4px; }
+  .barra .info { margin-left: auto; font-size: 12px; color: var(--tinta-2); max-width: 52ch; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .chk { display: flex; align-items: center; gap: 6px; font-size: 13px; cursor: pointer; }
+  .faixa-erro { background: var(--erro-suave); color: var(--erro); padding: 8px 14px; font-size: 13px; border-bottom: 1px solid var(--linha); }
+  .rolagem { flex: 1; overflow: auto; padding: 18px; }
+  #pagina { display: block; margin: 0 auto; background: #fff; box-shadow: var(--sombra); user-select: none; touch-action: none; cursor: crosshair; }
+  .vazio { max-width: 62ch; margin: 12vh auto; color: var(--tinta-2); }
+  .vazio code {
+    display: block; margin-top: 10px; padding: 10px 12px; background: var(--painel); border: 1px solid var(--linha);
+    border-radius: 6px; font: 12px var(--mono); color: var(--tinta); white-space: pre-wrap; overflow-x: auto;
+  }
+
+  /* camadas sobre a pagina: cores fixas, pensadas para o papel branco nos dois temas */
+  #pagina .caixa { fill: rgba(224, 98, 31, .06); stroke: #d9591b; stroke-width: 1.3; stroke-dasharray: 4 3; vector-effect: non-scaling-stroke; }
+  #pagina .caixa.num { fill: rgba(31, 111, 209, .12); stroke: #1f6fd1; stroke-dasharray: none; }
+  #pagina .caixa.ultimo { fill: rgba(31, 111, 209, .26); stroke-width: 2.4; }
+  #pagina .caixa.foco { fill: rgba(242, 183, 5, .30); stroke: #b98a00; stroke-dasharray: none; stroke-width: 2; }
+  #pagina .caixa.piscar { animation: piscar .45s ease-in-out 4 alternate; }
+  @keyframes piscar { to { fill: rgba(242, 183, 5, .65); } }
+  #pagina .trilha line { stroke: #1a5cb0; stroke-opacity: .55; stroke-width: 1.4; vector-effect: non-scaling-stroke; }
+  #pagina .selo rect { fill: #174f99; }
+  #pagina .selo.ultimo rect { fill: #0b3a78; }
+  #pagina .selo text { fill: #fff; font-family: ui-monospace, Consolas, monospace; font-weight: 700; text-anchor: middle; dominant-baseline: central; }
+  #pagina .laco { fill: rgba(31, 111, 209, .08); stroke: #1a5cb0; stroke-dasharray: 5 4; stroke-width: 1.3; vector-effect: non-scaling-stroke; }
+  @media (prefers-reduced-motion: reduce) { #pagina .caixa.piscar { animation: none; fill: rgba(242, 183, 5, .45); } }
+
+  .painel { background: var(--painel); border-left: 1px solid var(--linha); display: flex; flex-direction: column; min-height: 0; overflow: auto; }
+  .secao { padding: 12px 14px; border-bottom: 1px solid var(--linha); display: flex; flex-direction: column; gap: 8px; }
+  .secao h2 { margin: 0; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--tinta-3); font-weight: 600; }
+  .pag-titulo { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-weight: 600; }
+  .pag-meta { font-size: 12px; color: var(--tinta-2); overflow-wrap: anywhere; }
+  .chip { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--painel-2); color: var(--tinta-2); white-space: nowrap; }
+  .chip.concluida { background: var(--ok-suave); color: var(--ok); }
+  .chip.rascunho { background: var(--aviso-suave); color: var(--aviso); }
+  .progresso { display: flex; align-items: baseline; gap: 6px; font-variant-numeric: tabular-nums; }
+  .progresso .relogio { margin-left: auto; font: 12px var(--mono); color: var(--tinta-3); }
+  .trilho { height: 6px; border-radius: 3px; background: var(--painel-2); overflow: hidden; }
+  .trilho > div { height: 100%; width: 0; background: var(--acento); transition: width .15s; }
+  .linha-botoes { display: flex; gap: 6px; flex-wrap: wrap; }
+  .leitura { margin: 0; padding: 0; list-style: none; max-height: 34vh; overflow: auto; display: flex; flex-direction: column; gap: 3px; font-size: 12.5px; }
+  .leitura li { display: grid; grid-template-columns: 30px 1fr; gap: 6px; padding: 4px 6px; border-radius: 5px; cursor: pointer; }
+  .leitura li:hover { background: var(--painel-2); }
+  .leitura li.ultimo { background: var(--acento-suave); }
+  .leitura .k { font: 11px var(--mono); color: var(--acento); font-weight: 700; padding-top: 1px; }
+  .dica { margin: 0; font-size: 12.5px; color: var(--tinta-3); }
+  textarea { width: 100%; resize: vertical; border: 1px solid var(--linha); border-radius: 6px; padding: 6px 8px; background: var(--painel); }
+  .acoes { display: flex; flex-direction: column; gap: 8px; }
+  .acoes .primario { padding: 9px 12px; }
+  .acoes select { border: 1px solid var(--linha); border-radius: 6px; padding: 6px 8px; background: var(--painel); }
+  .salvo { font-size: 12px; color: var(--tinta-3); min-height: 1.4em; }
+  .salvo.erro { color: var(--erro); }
+  details.ajuda summary { cursor: pointer; font-weight: 600; }
+  details.ajuda ul { margin: 8px 0 0; padding-left: 18px; font-size: 12.5px; color: var(--tinta-2); display: flex; flex-direction: column; gap: 5px; }
+  .aviso {
+    position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%); background: var(--tinta); color: var(--painel);
+    padding: 8px 14px; border-radius: 8px; font-size: 13px; box-shadow: var(--sombra); opacity: 0; pointer-events: none;
+    transition: opacity .2s; max-width: 70ch;
+  }
+  .aviso.visivel { opacity: 1; }
+  @media (max-width: 1100px) { main { grid-template-columns: minmax(0, 1fr) 320px; } .lista { display: none; } }
+</style>
+</head>
+<body>
+<header class="topo">
+  <div class="marca"><strong>Ordem de leitura</strong><span>anotação do Golden Dataset</span></div>
+  <label class="campo">Lote <select id="sel-lote"></select></label>
+  <label class="campo">Anotador <input id="in-anotador" placeholder="seu nome" maxlength="40" autocomplete="off"></label>
+  <div class="resumo" id="resumo"></div>
+</header>
+<main>
+  <aside class="lista" aria-label="Páginas do lote">
+    <div class="rotulo-sec">Páginas</div>
+    <nav id="lista-paginas"></nav>
+  </aside>
+
+  <section class="palco">
+    <div class="barra">
+      <button id="bt-anterior" title="Página anterior (←)">← Anterior</button>
+      <button id="bt-proxima" title="Próxima página (→)">Próxima →</button>
+      <span class="sep"></span>
+      <button id="bt-inteira" title="Mostrar a página inteira">Página inteira</button>
+      <button id="bt-largura" title="Ajustar à largura">Largura</button>
+      <button id="bt-menos" title="Diminuir (−)" aria-label="Diminuir">−</button>
+      <button id="bt-mais" title="Aumentar (+)" aria-label="Aumentar">+</button>
+      <span class="sep"></span>
+      <label class="chk"><input type="checkbox" id="chk-trilha" checked> Trilha <kbd>T</kbd></label>
+      <span class="info" id="info-hover"></span>
+    </div>
+    <div class="faixa-erro" id="faixa-erro" hidden></div>
+    <div class="rolagem" id="rolagem">
+      <svg id="pagina" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Página do diário com os blocos de texto"></svg>
+      <div class="vazio" id="vazio" hidden>
+        <p><strong>Nenhum lote de anotação ainda.</strong> Crie um no terminal, na pasta do projeto, e recarregue esta página:</p>
+        <code>venv\Scripts\python.exe src\anotacao\preparar_lote.py --lote golden_v1 --grupo silver:10 --grupo incerto:20</code>
+      </div>
+    </div>
+  </section>
+
+  <aside class="painel">
+    <section class="secao">
+      <div class="pag-titulo"><span id="pag-nome">—</span><span class="chip" id="pag-status">Nova</span></div>
+      <div class="pag-meta" id="pag-meta"></div>
+    </section>
+    <section class="secao">
+      <div class="progresso"><strong id="cont">0 de 0</strong> blocos numerados <span class="relogio" id="relogio" title="Tempo ativo nesta página"></span></div>
+      <div class="trilho"><div id="trilho-cheio"></div></div>
+      <div class="linha-botoes">
+        <button id="bt-desfazer">Desfazer <kbd>Z</kbd></button>
+        <button id="bt-limpar">Apagar sequência</button>
+      </div>
+    </section>
+    <section class="secao">
+      <h2>Texto na ordem escolhida</h2>
+      <ol class="leitura" id="leitura"></ol>
+      <p class="dica" id="leitura-vazia">Clique no bloco que se lê primeiro. O texto aparece aqui na ordem escolhida, para conferir se as frases emendam.</p>
+    </section>
+    <section class="secao" id="marcacoes">
+      <h2>Marcações</h2>
+      <label class="chk"><input type="checkbox" value="tabela"> Tem tabela</label>
+      <label class="chk"><input type="checkbox" value="ambigua"> Ordem ambígua (mais de uma leitura plausível)</label>
+      <label class="chk"><input type="checkbox" value="segmentacao"> Bloco mistura colunas ou trechos distantes</label>
+      <label class="chk"><input type="checkbox" value="figura"> Figura, carimbo ou anúncio com texto</label>
+      <textarea id="nota" rows="2" placeholder="Observação (opcional)"></textarea>
+    </section>
+    <section class="secao acoes">
+      <button id="bt-concluir" class="primario">Concluir página <kbd>Enter</kbd></button>
+      <select id="sel-pulo" aria-label="Pular esta página">
+        <option value="">Pular esta página…</option>
+        <option>Texto ilegível ou quebrado</option>
+        <option>Blocos mal segmentados demais</option>
+        <option>Página sem texto corrido (só tabela ou imagem)</option>
+        <option>Outro motivo (explique na observação)</option>
+      </select>
+      <div class="salvo" id="salvo"></div>
+    </section>
+    <details class="secao ajuda" id="ajuda">
+      <summary>Como anotar</summary>
+      <ul>
+        <li>Clique nos blocos na ordem em que uma pessoa leria a página impressa.</li>
+        <li>Arraste um retângulo sobre <b>uma</b> coluna para numerar de uma vez os blocos dentro dela, de cima para baixo.</li>
+        <li>Clique num bloco já numerado para cortar a sequência a partir dele. <kbd>Z</kbd> desfaz.</li>
+        <li>Cabeçalho do diário primeiro; rodapé e número da página por último.</li>
+        <li>Colunas: a da esquerda inteira, depois a próxima. Um título que atravessa as colunas separa seções: leia o que está acima dele, coluna por coluna, depois o título, depois o que vem abaixo.</li>
+        <li>Tabela: linha por linha. Marque “Tem tabela”.</li>
+        <li>Na dúvida, escolha a leitura mais natural e marque “Ordem ambígua”.</li>
+        <li>Tudo é salvo sozinho. Atalhos: <kbd>Enter</kbd> conclui · <kbd>←</kbd> <kbd>→</kbd> navegam · <kbd>+</kbd> <kbd>−</kbd> zoom · <kbd>T</kbd> trilha.</li>
+      </ul>
+    </details>
+  </aside>
+</main>
+<div class="aviso" id="aviso" role="status" aria-live="polite"></div>
+
+<script>
+"use strict";
+const $ = (s) => document.querySelector(s);
+const svg = $("#pagina");
+const NS = "http://www.w3.org/2000/svg";
+const ROTULO = { nova: "Nova", rascunho: "Rascunho salvo", concluida: "Concluída", pulada: "Pulada" };
+const SIMBOLO = { nova: "○", rascunho: "…", concluida: "✓", pulada: "–" };
+
+function lerLocal(k) { try { return localStorage.getItem("anot:" + k); } catch (e) { return null; } }
+function gravarLocal(k, v) { try { localStorage.setItem("anot:" + k, v); } catch (e) { /* sem armazenamento local */ } }
+
+const est = {
+  lotes: [], lote: null, tarefas: [], anotacoes: [], i: -1,
+  anotador: (lerLocal("anotador") || "").trim(),
+  ordem: [], pilha: [], flags: new Set(), nota: "", motivo: "", status: "nova",
+  tempoBase: 0, tempoSessao: 0, blocos: [], porId: new Map(), W: 0, H: 0,
+  zoom: Number(lerLocal("zoom")) || 0, modo: lerLocal("modo") || "largura",
+  trilha: lerLocal("trilha") !== "0", foco: null, sujo: false,
+};
+
+// ---------------------------------------------------------------- servidor
+async function api(url, opcoes) {
+  let r;
+  try { r = await fetch(url, opcoes); }
+  catch (e) { throw new Error("O servidor não respondeu. Rode de novo no terminal: venv\\Scripts\\python.exe src\\anotacao\\servidor.py"); }
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(j.erro || "erro " + r.status);
+  return j;
+}
+
+function anotacaoDe(pid) { return est.anotacoes.find((a) => a.page_id === pid && a.anotador === est.anotador); }
+function statusDe(pid) { const a = anotacaoDe(pid); return a ? a.status : "nova"; }
+
+async function iniciar() {
+  $("#in-anotador").value = est.anotador;
+  $("#in-anotador").classList.toggle("falta", !est.anotador);
+  $("#chk-trilha").checked = est.trilha;
+  if (!lerLocal("ajuda-vista")) { $("#ajuda").open = true; gravarLocal("ajuda-vista", "1"); }
+  try { est.lotes = await api("/api/lotes"); }
+  catch (e) { return mostrarErro(e.message); }
+  if (!est.lotes.length) { svg.style.display = "none"; $("#vazio").hidden = false; return; }
+  const sel = $("#sel-lote");
+  sel.innerHTML = "";
+  for (const l of est.lotes) {
+    const o = document.createElement("option");
+    o.value = l.nome;
+    o.textContent = `${l.nome} (${l.paginas} páginas)`;
+    sel.appendChild(o);
+  }
+  const preferido = lerLocal("lote");
+  sel.value = est.lotes.some((l) => l.nome === preferido) ? preferido : est.lotes[0].nome;
+  await abrirLote(sel.value);
+}
+
+async function abrirLote(nome) {
+  await salvarPendente();
+  let d;
+  try { d = await api("/api/lote?nome=" + encodeURIComponent(nome)); }
+  catch (e) { return mostrarErro(e.message); }
+  est.lote = nome; est.tarefas = d.tarefas; est.anotacoes = d.anotacoes;
+  gravarLocal("lote", nome);
+  $("#lista-paginas").innerHTML = "";
+  const k = est.tarefas.findIndex((t) => !["concluida", "pulada"].includes(statusDe(t.page_id)));
+  await abrirPagina(k >= 0 ? k : 0, true);
+}
+
+async function abrirPagina(i, jaSalvo) {
+  if (i < 0 || i >= est.tarefas.length) return;
+  if (!jaSalvo) await salvarPendente();
+  est.i = i;
+  const t = est.tarefas[i];
+  const a = anotacaoDe(t.page_id);
+  est.ordem = a ? [...a.ordem] : [];
+  est.flags = new Set(a ? a.flags : []);
+  est.nota = a ? a.nota || "" : "";
+  est.motivo = a ? a.motivo_pulo || "" : "";
+  est.status = a ? a.status : "nova";
+  est.tempoBase = a ? a.tempo_s || 0 : 0;
+  est.tempoSessao = 0; est.pilha = []; est.sujo = false; est.foco = null;
+  montarPagina(t);
+  preencherPainel(t);
+  atualizar();
+  $("#rolagem").scrollTo(0, 0);
+  const item = $("#lista-paginas").children[i];
+  if (item) item.scrollIntoView({ block: "nearest" });
+}
+
+async function salvar(status) {
+  if (!est.lote || est.i < 0 || !est.anotador) return false;
+  const t = est.tarefas[est.i];
+  const corpo = {
+    page_id: t.page_id, anotador: est.anotador, status, ordem: est.ordem, flags: [...est.flags],
+    nota: est.nota, motivo_pulo: est.motivo, tempo_s: est.tempoBase + est.tempoSessao,
+  };
+  try {
+    const r = await api("/api/anotacao?lote=" + encodeURIComponent(est.lote), {
+      method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(corpo),
+    });
+    const a = r.anotacao;
+    est.anotacoes = est.anotacoes.filter((x) => !(x.page_id === a.page_id && x.anotador === a.anotador));
+    est.anotacoes.push(a);
+    if (est.tarefas[est.i] && est.tarefas[est.i].page_id === a.page_id) { est.status = a.status; est.sujo = false; }
+    mensagemSalvo("Salvo às " + a.salvo_em.slice(11));
+    $("#faixa-erro").hidden = true;
+    renderStatus(); renderLista(); renderResumo();
+    return true;
+  } catch (e) {
+    mensagemSalvo(e.message, true);
+    return false;
+  }
+}
+
+let timerSalvar = null;
+function agendarSalvar(status) { clearTimeout(timerSalvar); timerSalvar = setTimeout(() => salvar(status), 1200); }
+async function salvarPendente() {
+  clearTimeout(timerSalvar);
+  if (est.sujo) await salvar(est.status === "nova" ? "rascunho" : est.status);
+}
+
+// ---------------------------------------------------------------- pagina
+function el(tag, attrs) {
+  const e = document.createElementNS(NS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  return e;
+}
+
+function montarPagina(t) {
+  $("#vazio").hidden = true;
+  svg.style.display = "block";
+  est.W = t.dimensions.width; est.H = t.dimensions.height;
+  est.blocos = t.bounding_boxes.map((c) => {
+    const [x0, y0, x1r, y1r] = c.bbox;
+    const x1 = Math.max(x1r, x0 + 1), y1 = Math.max(y1r, y0 + 1);
+    return { id: c.id, texto: c.text, x0, y0, x1, y1, cx: (x0 + x1) / 2, cy: (y0 + y1) / 2, area: (x1 - x0) * (y1 - y0) };
+  });
+  est.porId = new Map(est.blocos.map((b) => [b.id, b]));
+  svg.setAttribute("viewBox", `0 0 ${est.W} ${est.H}`);
+  svg.innerHTML = "";
+  const fs = est.W / 62;
+  const defs = el("defs", {});
+  const seta = el("marker", { id: "seta", viewBox: "0 0 10 10", refX: 9, refY: 5, markerWidth: fs * 0.75,
+                               markerHeight: fs * 0.75, markerUnits: "userSpaceOnUse", orient: "auto" });
+  seta.appendChild(el("path", { d: "M0,1 L10,5 L0,9 z", fill: "#1a5cb0", "fill-opacity": ".75" }));
+  defs.appendChild(seta);
+  svg.appendChild(defs);
+  svg.appendChild(el("image", { href: `/img/${encodeURIComponent(est.lote)}/${encodeURIComponent(t.imagem)}`,
+                                x: 0, y: 0, width: est.W, height: est.H, preserveAspectRatio: "none" }));
+  const g = el("g", {});
+  for (const b of est.blocos) {
+    b.rect = el("rect", { class: "caixa", x: b.x0, y: b.y0, width: b.x1 - b.x0, height: b.y1 - b.y0 });
+    g.appendChild(b.rect);
+  }
+  svg.appendChild(g);
+  est.gTrilha = el("g", { class: "trilha" });
+  est.gSelos = el("g", {});
+  est.laco = el("rect", { class: "laco", x: 0, y: 0, width: 0, height: 0, visibility: "hidden" });
+  svg.append(est.gTrilha, est.gSelos, est.laco);
+  aplicarZoom();
+}
+
+function aplicarZoom() {
+  if (!est.W) return;
+  const area = $("#rolagem");
+  const largura = area.clientWidth - 36, altura = area.clientHeight - 36;
+  const base = est.modo === "inteira" ? Math.min(largura, altura * est.W / est.H) : Math.min(largura, 1150);
+  const w = Math.max(240, base * Math.pow(1.2, est.zoom));
+  svg.style.width = w + "px";
+  svg.style.height = (w * est.H / est.W) + "px";
+}
+function mudarZoom(passo, modo) {
+  if (modo) { est.modo = modo; est.zoom = 0; gravarLocal("modo", modo); }
+  else est.zoom = Math.max(-6, Math.min(8, est.zoom + passo));
+  gravarLocal("zoom", String(est.zoom));
+  aplicarZoom();
+}
+
+function nomeVeiculo(uf) {
+  const partes = uf.replace(/^official_diary_/i, "").split("_");
+  const resto = partes.slice(1).map((p) => p.charAt(0).toUpperCase() + p.slice(1)).join(" ");
+  return partes[0].toUpperCase() + (resto ? " · " + resto : "");
+}
+function resumir(t, n) { const p = t.split(/\s+/); return p.slice(0, n).join(" ") + (p.length > n ? " …" : ""); }
+function fmtTempo(s) { s = Math.round(s); const m = Math.floor(s / 60); return m ? `${m}min ${String(s % 60).padStart(2, "0")}s` : `${s}s`; }
+
+function preencherPainel(t) {
+  $("#pag-nome").textContent = `${nomeVeiculo(t.uf)} · página ${t.pagina + 1}`;
+  $("#pag-meta").textContent = `${t.bounding_boxes.length} blocos · ${t.arquivo}`;
+  for (const c of document.querySelectorAll("#marcacoes input[type=checkbox]")) c.checked = est.flags.has(c.value);
+  $("#nota").value = est.nota;
+  $("#sel-pulo").value = "";
+  $("#relogio").textContent = fmtTempo(est.tempoBase);
+  mensagemSalvo("");
+}
+
+function atualizar() {
+  const n = est.blocos.length, k = est.ordem.length;
+  const pos = new Map(est.ordem.map((id, j) => [id, j]));
+  for (const b of est.blocos) {
+    const j = pos.get(b.id);
+    b.rect.classList.toggle("num", j !== undefined);
+    b.rect.classList.toggle("ultimo", j !== undefined && j === k - 1);
+    b.rect.classList.toggle("foco", est.foco === b.id);
+  }
+  const fs = est.W / 62;
+  est.gSelos.innerHTML = "";
+  est.ordem.forEach((id, j) => {
+    const b = est.porId.get(id), txt = String(j + 1);
+    const w = fs * (0.8 + 0.62 * txt.length), h = fs * 1.3, x = b.x0 - w * 0.35, y = b.y0 - h * 0.45;
+    const g = el("g", { class: "selo" + (j === k - 1 ? " ultimo" : "") });
+    g.appendChild(el("rect", { x, y, width: w, height: h, rx: h * 0.3 }));
+    const tx = el("text", { x: x + w / 2, y: y + h / 2, "font-size": fs });
+    tx.textContent = txt;
+    g.appendChild(tx);
+    est.gSelos.appendChild(g);
+  });
+  est.gTrilha.innerHTML = "";
+  est.gTrilha.style.display = est.trilha ? "" : "none";
+  for (let j = 1; j < k; j++) {
+    const a = est.porId.get(est.ordem[j - 1]), b = est.porId.get(est.ordem[j]);
+    est.gTrilha.appendChild(el("line", { x1: a.cx, y1: a.cy, x2: b.cx, y2: b.cy, "marker-end": "url(#seta)" }));
+  }
+  $("#cont").textContent = `${k} de ${n}`;
+  $("#trilho-cheio").style.width = (n ? 100 * k / n : 0) + "%";
+  $("#bt-desfazer").disabled = !k && !est.pilha.length;
+  $("#bt-limpar").disabled = !k;
+  $("#bt-anterior").disabled = est.i <= 0;
+  $("#bt-proxima").disabled = est.i >= est.tarefas.length - 1;
+  renderLeitura(); renderStatus(); renderLista(); renderResumo();
+}
+
+function renderLeitura() {
+  const ol = $("#leitura");
+  ol.innerHTML = "";
+  est.ordem.forEach((id, j) => {
+    const li = document.createElement("li");
+    if (j === est.ordem.length - 1) li.className = "ultimo";
+    const k = document.createElement("span"); k.className = "k"; k.textContent = j + 1;
+    const s = document.createElement("span"); s.textContent = resumir(est.porId.get(id).texto, 26);
+    li.append(k, s);
+    li.addEventListener("click", () => piscar([id], true));
+    ol.appendChild(li);
+  });
+  $("#leitura-vazia").hidden = est.ordem.length > 0;
+  if (ol.lastElementChild) ol.lastElementChild.scrollIntoView({ block: "nearest" });
+}
+function renderStatus() { const c = $("#pag-status"); c.className = "chip " + est.status; c.textContent = ROTULO[est.status] || est.status; }
+function renderLista() {
+  const nav = $("#lista-paginas");
+  if (nav.childElementCount !== est.tarefas.length) {
+    nav.innerHTML = "";
+    est.tarefas.forEach((t, i) => {
+      const b = document.createElement("button");
+      b.type = "button"; b.className = "item";
+      const n = document.createElement("span"); n.className = "n"; n.textContent = String(t.n || i + 1).padStart(3, "0");
+      const nome = document.createElement("span"); nome.className = "nome"; nome.textContent = `${nomeVeiculo(t.uf)} p.${t.pagina + 1}`;
+      const st = document.createElement("span"); st.className = "st";
+      b.append(n, nome, st);
+      b.addEventListener("click", () => abrirPagina(i));
+      nav.appendChild(b);
+    });
+  }
+  [...nav.children].forEach((b, i) => {
+    const s = i === est.i ? est.status : statusDe(est.tarefas[i].page_id);
+    b.classList.toggle("atual", i === est.i);
+    const st = b.querySelector(".st");
+    st.className = "st " + s; st.textContent = SIMBOLO[s]; st.title = ROTULO[s];
+  });
+}
+function renderResumo() {
+  const minhas = est.anotacoes.filter((a) => a.anotador === est.anotador);
+  const conc = minhas.filter((a) => a.status === "concluida"), pul = minhas.filter((a) => a.status === "pulada");
+  const media = conc.length ? conc.reduce((s, a) => s + (a.tempo_s || 0), 0) / conc.length : 0;
+  $("#resumo").innerHTML = `<b>${conc.length}</b> de ${est.tarefas.length} concluídas`
+    + (pul.length ? ` · ${pul.length} pulada${pul.length > 1 ? "s" : ""}` : "")
+    + (conc.length ? ` · média de ${fmtTempo(media)} por página` : "");
+}
+
+// ---------------------------------------------------------------- edicao
+function exigirNome() {
+  if (!est.anotador) {
+    const v = $("#in-anotador").value.trim().slice(0, 40);
+    if (v) { est.anotador = v; gravarLocal("anotador", v); $("#in-anotador").classList.remove("falta"); return true; }
+    $("#in-anotador").classList.add("falta");
+    $("#in-anotador").focus();
+    avisar("Escreva seu nome no campo Anotador antes de começar.");
+    return false;
+  }
+  return true;
+}
+function empilhar() { est.pilha.push([...est.ordem]); if (est.pilha.length > 300) est.pilha.shift(); }
+function mudouOrdem() { est.sujo = true; est.status = "rascunho"; atualizar(); agendarSalvar("rascunho"); }
+function mudouMarcacao() {
+  est.sujo = true;
+  if (est.status === "nova") est.status = "rascunho";
+  renderStatus();
+  agendarSalvar(est.status);
+}
+function clicar(b) {
+  if (!exigirNome()) return;
+  const j = est.ordem.indexOf(b.id);
+  empilhar();
+  if (j < 0) est.ordem.push(b.id);
+  else {
+    est.ordem = est.ordem.slice(0, j);
+    avisar(`Sequência cortada: saíram os blocos a partir do nº ${j + 1}. Z desfaz.`);
+  }
+  mudouOrdem();
+}
+function lacar(a, b) {
+  if (!exigirNome()) return;
+  const x0 = Math.min(a.x, b.x), x1 = Math.max(a.x, b.x), y0 = Math.min(a.y, b.y), y1 = Math.max(a.y, b.y);
+  const usados = new Set(est.ordem);
+  const dentro = est.blocos
+    .filter((q) => !usados.has(q.id) && q.cx >= x0 && q.cx <= x1 && q.cy >= y0 && q.cy <= y1)
+    .sort((p, q) => (Math.abs(p.y0 - q.y0) > 3 ? p.y0 - q.y0 : p.x0 - q.x0));
+  if (!dentro.length) { avisar("Nenhum bloco sem número dentro do retângulo."); return; }
+  empilhar();
+  est.ordem.push(...dentro.map((q) => q.id));
+  avisar(`${dentro.length} blocos numerados de cima para baixo. Confira; Z desfaz.`);
+  mudouOrdem();
+}
+function desfazer() {
+  if (est.pilha.length) est.ordem = est.pilha.pop();
+  else if (est.ordem.length) est.ordem.pop();
+  else return;
+  mudouOrdem();
+}
+function apagar() {
+  if (!est.ordem.length) return;
+  empilhar();
+  est.ordem = [];
+  avisar("Sequência apagada. Z desfaz.");
+  mudouOrdem();
+}
+async function concluir() {
+  if (est.i < 0 || !exigirNome()) return;
+  const faltam = est.blocos.filter((b) => !est.ordem.includes(b.id));
+  if (faltam.length) {
+    avisar(`Faltam ${faltam.length} bloco${faltam.length > 1 ? "s" : ""} sem número (piscando na página).`);
+    piscar(faltam.map((b) => b.id), faltam.length === 1);
+    return;
+  }
+  clearTimeout(timerSalvar);
+  if (await salvar("concluida")) { avisar("Página concluída."); proximaPendente(); }
+}
+async function pular(motivo) {
+  if (est.i < 0 || !exigirNome()) { $("#sel-pulo").value = ""; return; }
+  est.motivo = motivo;
+  clearTimeout(timerSalvar);
+  if (await salvar("pulada")) { avisar("Página pulada."); proximaPendente(); }
+}
+function proximaPendente() {
+  const n = est.tarefas.length;
+  for (let d = 1; d <= n; d++) {
+    const k = (est.i + d) % n;
+    if (!["concluida", "pulada"].includes(statusDe(est.tarefas[k].page_id))) return abrirPagina(k, true);
+  }
+  avisar("Todas as páginas deste lote estão prontas.");
+  atualizar();
+}
+function piscar(ids, rolar) {
+  for (const id of ids) {
+    const r = est.porId.get(id).rect;
+    r.classList.remove("piscar"); void r.getBBox(); r.classList.add("piscar");
+    setTimeout(() => r.classList.remove("piscar"), 1900);
+  }
+  if (rolar && ids.length) est.porId.get(ids[0]).rect.scrollIntoView({ block: "center", inline: "center", behavior: "smooth" });
+}
+
+// ---------------------------------------------------------------- ponteiro
+let ini = null, arrastando = false;
+function pontoSVG(e) {
+  const p = svg.createSVGPoint();
+  p.x = e.clientX; p.y = e.clientY;
+  return p.matrixTransform(svg.getScreenCTM().inverse());
+}
+function blocoEm(p) {
+  const tol = est.W / 400;
+  let melhor = null;
+  for (const b of est.blocos) {
+    if (p.x >= b.x0 - tol && p.x <= b.x1 + tol && p.y >= b.y0 - tol && p.y <= b.y1 + tol && (!melhor || b.area < melhor.area)) melhor = b;
+  }
+  return melhor;
+}
+function mostrarFoco(b) {
+  for (const x of est.blocos) x.rect.classList.toggle("foco", x.id === est.foco);
+  const info = $("#info-hover");
+  if (!b) { info.textContent = ""; return; }
+  const j = est.ordem.indexOf(b.id);
+  info.textContent = (j >= 0 ? `nº ${j + 1} · clique para cortar aqui · ` : `será o nº ${est.ordem.length + 1} · `) + resumir(b.texto, 12);
+}
+svg.addEventListener("pointerdown", (e) => {
+  if (e.button !== 0 || !est.blocos.length) return;
+  svg.setPointerCapture(e.pointerId);
+  ini = { x: e.clientX, y: e.clientY, p: pontoSVG(e) };
+  arrastando = false;
+});
+svg.addEventListener("pointermove", (e) => {
+  if (!est.blocos.length) return;
+  const p = pontoSVG(e);
+  if (ini) {
+    if (!arrastando && Math.hypot(e.clientX - ini.x, e.clientY - ini.y) > 6) arrastando = true;
+    if (arrastando) {
+      est.laco.setAttribute("x", Math.min(ini.p.x, p.x)); est.laco.setAttribute("y", Math.min(ini.p.y, p.y));
+      est.laco.setAttribute("width", Math.abs(p.x - ini.p.x)); est.laco.setAttribute("height", Math.abs(p.y - ini.p.y));
+      est.laco.setAttribute("visibility", "visible");
+    }
+    return;
+  }
+  const b = blocoEm(p), id = b ? b.id : null;
+  if (id !== est.foco) { est.foco = id; mostrarFoco(b); }
+});
+svg.addEventListener("pointerup", (e) => {
+  if (!ini) return;
+  const p = pontoSVG(e);
+  if (arrastando) { est.laco.setAttribute("visibility", "hidden"); lacar(ini.p, p); }
+  else { const b = blocoEm(p); if (b) clicar(b); }
+  ini = null; arrastando = false;
+  const b = blocoEm(p);
+  est.foco = b ? b.id : null;
+  mostrarFoco(b);
+});
+svg.addEventListener("pointercancel", () => { ini = null; arrastando = false; est.laco.setAttribute("visibility", "hidden"); });
+svg.addEventListener("pointerleave", () => { if (!ini && est.foco) { est.foco = null; mostrarFoco(null); } });
+
+// ---------------------------------------------------------------- controles
+$("#sel-lote").addEventListener("change", (e) => abrirLote(e.target.value));
+$("#in-anotador").addEventListener("change", async (e) => {
+  const novo = e.target.value.trim().slice(0, 40);
+  if (novo === est.anotador) return;
+  await salvarPendente();
+  est.anotador = novo;
+  gravarLocal("anotador", novo);
+  e.target.classList.toggle("falta", !novo);
+  if (est.i >= 0) abrirPagina(est.i, true);
+});
+$("#bt-anterior").addEventListener("click", () => abrirPagina(est.i - 1));
+$("#bt-proxima").addEventListener("click", () => abrirPagina(est.i + 1));
+$("#bt-inteira").addEventListener("click", () => mudarZoom(0, "inteira"));
+$("#bt-largura").addEventListener("click", () => mudarZoom(0, "largura"));
+$("#bt-mais").addEventListener("click", () => mudarZoom(1));
+$("#bt-menos").addEventListener("click", () => mudarZoom(-1));
+$("#chk-trilha").addEventListener("change", (e) => { est.trilha = e.target.checked; gravarLocal("trilha", est.trilha ? "1" : "0"); atualizar(); });
+$("#bt-desfazer").addEventListener("click", desfazer);
+$("#bt-limpar").addEventListener("click", apagar);
+$("#bt-concluir").addEventListener("click", concluir);
+$("#sel-pulo").addEventListener("change", (e) => { if (e.target.value) pular(e.target.value); });
+for (const c of document.querySelectorAll("#marcacoes input[type=checkbox]")) {
+  c.addEventListener("change", () => { c.checked ? est.flags.add(c.value) : est.flags.delete(c.value); mudouMarcacao(); });
+}
+$("#nota").addEventListener("input", (e) => { est.nota = e.target.value; mudouMarcacao(); });
+window.addEventListener("resize", aplicarZoom);
+window.addEventListener("beforeunload", () => {
+  if (est.sujo && est.anotador && est.i >= 0) {       // ultima chance de gravar o rascunho
+    const t = est.tarefas[est.i];
+    navigator.sendBeacon?.("/api/anotacao?lote=" + encodeURIComponent(est.lote), new Blob([JSON.stringify({
+      page_id: t.page_id, anotador: est.anotador, status: est.status === "nova" ? "rascunho" : est.status,
+      ordem: est.ordem, flags: [...est.flags], nota: est.nota, motivo_pulo: est.motivo,
+      tempo_s: est.tempoBase + est.tempoSessao })], { type: "application/json" }));
+  }
+});
+
+document.addEventListener("keydown", (e) => {
+  const alvo = e.target;
+  if (alvo.matches("input, textarea, select")) { if (e.key === "Escape") alvo.blur(); return; }
+  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "z") { e.preventDefault(); desfazer(); return; }
+  if (e.ctrlKey || e.metaKey || e.altKey) return;
+  if ((e.key === "Enter" || e.key === " ") && alvo.matches("button, summary")) return;
+  switch (e.key) {
+    case "z": case "Z": case "Backspace": e.preventDefault(); desfazer(); break;
+    case "Enter": e.preventDefault(); concluir(); break;
+    case "ArrowRight": case "PageDown": e.preventDefault(); abrirPagina(est.i + 1); break;
+    case "ArrowLeft": case "PageUp": e.preventDefault(); abrirPagina(est.i - 1); break;
+    case "+": case "=": mudarZoom(1); break;
+    case "-": case "_": mudarZoom(-1); break;
+    case "t": case "T":
+      est.trilha = !est.trilha; $("#chk-trilha").checked = est.trilha;
+      gravarLocal("trilha", est.trilha ? "1" : "0"); atualizar(); break;
+  }
+});
+
+let ultimaAtividade = Date.now();
+for (const ev of ["pointermove", "pointerdown", "keydown", "wheel"]) {
+  document.addEventListener(ev, () => { ultimaAtividade = Date.now(); }, { passive: true });
+}
+setInterval(() => {      // tempo ATIVO: para apos 60 s sem mexer, e nao conta revisao de pagina pronta
+  if (est.i < 0 || document.visibilityState !== "visible" || Date.now() - ultimaAtividade > 60000) return;
+  if ((est.status === "concluida" || est.status === "pulada") && !est.sujo) return;
+  est.tempoSessao += 1;
+  $("#relogio").textContent = fmtTempo(est.tempoBase + est.tempoSessao);
+}, 1000);
+
+// ---------------------------------------------------------------- mensagens
+let timerAviso = null;
+function avisar(msg) {
+  const a = $("#aviso");
+  a.textContent = msg; a.classList.add("visivel");
+  clearTimeout(timerAviso);
+  timerAviso = setTimeout(() => a.classList.remove("visivel"), 3200);
+}
+function mensagemSalvo(msg, erro) { const s = $("#salvo"); s.textContent = msg; s.classList.toggle("erro", !!erro); if (erro) mostrarErro(msg); }
+function mostrarErro(msg) { const f = $("#faixa-erro"); f.textContent = msg; f.hidden = false; }
+
+iniciar();
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+[*] 3 UFs, 210 PDFs, ate 5 paginas cada, 7 processos -> C:\Users\pedro\dev\tcc-ri-reading-order\data\processed\blocos_extra
+  25/210 PDFs | 104 paginas uteis | 211s
+  50/210 PDFs | 200 paginas uteis | 404s
+  75/210 PDFs | 284 paginas uteis | 550s
+  100/210 PDFs | 354 paginas uteis | 569s
+  125/210 PDFs | 416 paginas uteis | 587s
+  150/210 PDFs | 499 paginas uteis | 682s
+  175/210 PDFs | 594 paginas uteis | 879s
+  200/210 PDFs | 696 paginas uteis | 1111s
+  210/210 PDFs | 740 paginas uteis | 1194s
+
+[OK] 740 paginas em 1194s -> C:\Users\pedro\dev\tcc-ri-reading-order\data\processed\blocos_extra
+Motivos (paginas): {'ok': 740, 'n_blocos': 50, 'cid': 8}

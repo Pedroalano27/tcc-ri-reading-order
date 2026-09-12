@@ -1,80 +1,101 @@
 # Roadmap e Próximos Passos
 
 O que falta para o TCC, em ordem de prioridade, e como cada documento do repositório
-alimenta o texto final.
+alimenta o texto final. Atualizado em 2026-09-10, à noite.
 
 ---
 
 ## 🗣️ Perguntas para levar ao orientador
 
-1. **Rótulo silver.** Usar a ordem do fluxo do PDF como supervisão, restrita aos
+1. **Foco em RI.** A ordem de leitura é o objeto; a área é Recuperação de Informação. Além
+   da avaliação da ordenação (τ, sucessor correto), o senhor espera uma **avaliação
+   extrínseca** — o efeito na busca e num RAG? O piloto em Japeri já indica onde a ordem
+   pesa: no texto entregue, e não em achar a página (resultados, seção 6).
+2. **Atos de Japeri.** Como os 421 atos de `json_atos_japeri` foram produzidos: por
+   anotação manual ou pela saída do Azure? Isso define se servem de referência gold ou silver.
+3. **Rótulo silver.** Usar a ordem do fluxo do PDF como supervisão, restrita aos
    veículos em que ela concorda com a heurística de colunas, é aceitável para o
    treino — deixando a avaliação definitiva para o Golden Dataset manual?
-2. **Goiás como teste out-of-domain.** O acervo não tem Goiás. Treinar nas 23 UFs e
+4. **Goiás como teste fora do domínio.** O acervo não tem Goiás. Treinar nas outras UFs e
    testar em Goiás mede generalização para um layout nunca visto. De acordo?
-3. **APIs comerciais como terceiro competidor.** As saídas do Azure e do Google em
+5. **Infraestrutura.** Rodar as LLMs abertas (Qwen 2.5 de 7B a 32B) na GPU gratuita do
+   Kaggle é aceitável? Os scripts do acervo mencionam um servidor `/nfs/`: há GPU no
+   laboratório como alternativa?
+6. **APIs comerciais como terceiro competidor.** As saídas do Azure e do Google em
    Japeri sugerem que já houve orçamento para isso. Há créditos para processar o
    Golden Dataset nas duas APIs? Isso completaria o eixo de custo financeiro.
-4. **Granularidade.** Blocos (alinhado a detectores tipo YOLO) ou palavras (como no
+7. **Granularidade.** Blocos (alinhado a detectores tipo YOLO) ou palavras (como no
    LayoutReader, onde o BLEU é mais informativo)?
-5. **Infraestrutura.** Os scripts do acervo mencionam um servidor `/nfs/`. Há GPU com
-   mais memória no laboratório? LayoutXLM e LayoutReader ficam apertados em 6 GB.
-6. **DocLayNet.** Ele anota categorias de layout, **não** ordem de leitura. O papel
+8. **DocLayNet.** Ele anota categorias de layout, **não** ordem de leitura. O papel
    dele no trabalho seria pré-treino/detecção de layout — confirmar se ainda faz
    sentido mantê-lo no plano.
 
 ---
 
+## ✅ Pronto para usar
+
+| O quê | Como | Guia |
+|---|---|---|
+| Ferramenta de anotação e lote `golden_v1` (30 páginas) | `venv\Scripts\python.exe src\anotacao\servidor.py` | [GUIA_ANOTACAO.md](GUIA_ANOTACAO.md) |
+| Avaliação contra a anotação humana | `venv\Scripts\python.exe src\eval\avaliar_golden.py --lote golden_v1` | idem |
+| Pacote e notebook do Kaggle | `venv\Scripts\python.exe src\kaggle\montar_pacote.py` | [KAGGLE.md](KAGGLE.md) |
+| Piloto de RI em Japeri | `venv\Scripts\python.exe src\ri\piloto_japeri.py` | [RESULTADOS_PRELIMINARES.md](RESULTADOS_PRELIMINARES.md), seção 6 |
+| Curva de aprendizado | `venv\Scripts\python.exe src\rodar_curva_aprendizado.py` | idem, seção 7 |
+
+---
+
 ## 🔴 Prioridade alta (próximas 2 semanas)
 
-### 1. Golden Dataset — a avaliação definitiva
-- [ ] Baixar diários de Goiás em [diariooficial.go.gov.br](https://www.diariooficial.go.gov.br)
-- [ ] Selecionar **20 páginas estratificadas por layout**: 1, 2 e 3 colunas; com e sem
-      cabeçalho de largura inteira; ao menos 3 com tabelas
-- [ ] Extrair os blocos com `src/data/extrator.py`
-- [ ] Anotar a ordem de leitura à mão. Sugestão: renderizar cada página com os blocos
-      numerados (como na figura 2) e corrigir a ordem num JSON
-- [ ] Anotação dupla em parte das páginas (idealmente com outra pessoa) para medir a
-      concordância entre anotadores — dá o **teto humano** da tarefa
+### 1. Anotar o Golden Dataset
+- [x] Ferramenta de anotação e lote `golden_v1` (10 páginas `silver` + 20 `incerto`)
+- [ ] Anotar as 30 páginas (estimativa: 1 a 2 horas)
+- [ ] Pedir a um colega que anote 8 a 10 das mesmas páginas (concordância entre anotadores)
+- [ ] Rodar `avaliar_golden.py`: o rótulo silver se sustenta? Quem vence nos veículos incertos?
+- [ ] Baixar 10 a 20 edições de Goiás e preparar o lote `goias`
 
-### 2. Auditar o rótulo silver
-- [ ] Inspecionar visualmente ~30 páginas dos veículos "confiáveis" e contar em quantas
-      o fluxo do PDF coincide com a leitura humana
-- [ ] Reportar essa taxa na metodologia — é o que legitima a supervisão silver
+### 2. LLMs de texto no Kaggle
+- [x] Pacote, notebook e importador
+- [ ] Rodar Qwen 2.5 de 7B, 14B e 32B, zero-shot e few-shot, no teste e no Golden
+- [ ] Tabela de eficiência na mesma máquina (`resultados/latencia_kaggle_t4.json`)
 
-### 3. LLM de texto, não multimodal
-- [ ] `ollama pull qwen2.5:7b` (≈ 4,7 GB) e repetir `src/eval/llm_ordem.py --modelo qwen2.5:7b`
-- [ ] Versão *few-shot* (2 páginas resolvidas no prompt)
-- [ ] Medir o efeito do tamanho da página: a confiabilidade de formato cai com o número de blocos?
+### 3. Decidir pela curva de aprendizado
+- [ ] Ler `resultados/curva_aprendizado/curva.json` e a figura 7
+- [ ] Se o τ continua subindo: escalar os dados (PyMuPDF para extrair dezenas de milhares de páginas)
+- [ ] Se estaciona abaixo da XY-cut: o gargalo é a formulação (item 4)
 
-### 4. APIs comerciais
-- [ ] Converter as saídas do Azure (`resultado_azure_lote_layout.jsonl`) e do Google
-      (`document (1).json`) para o formato do protocolo
-- [ ] Medir a concordância Azure × Google × fluxo do PDF na mesma página
-- [ ] Levantar o preço por página de cada API para o eixo de custo
+### 4. Mudar a formulação do LayoutLM
+O LayoutLM tem τ 0,671, mas só 13% de sucessores corretos: acerta a posição aproximada e
+troca vizinhos. Prever **o sucessor de cada bloco** ataca isso diretamente:
+- [ ] Cabeça par a par (o bloco j vem logo depois do bloco i?) sobre o LayoutLM, com decodificação gulosa
+- [ ] Ou um decodificador com ponteiro, como o LayoutReader
+- [ ] Comparar τ e sucessor correto com a versão pontual
+
+### 5. Avaliação extrínseca de RI (o elo com a área)
+- [x] Piloto em Japeri: a busca de páginas satura; o texto entregue depende da ordem
+- [ ] Coleção maior (vários veículos) e consultas em linguagem natural
+- [ ] Busca densa (embeddings multilíngues) além do BM25
+- [ ] RAG completo: perguntas sobre os atos, respondidas por uma LLM com os trechos de cada ordenação (Kaggle)
 
 ---
 
 ## 🟡 Prioridade média
 
+- [ ] **APIs comerciais**: converter as saídas do Azure (`resultado_azure_lote_layout.jsonl`) e
+      do Google (`document (1).json`) para o formato do protocolo; preço por página
 - [ ] **LayoutXLM** (multilíngue) no lugar do LayoutLM em inglês — o tokenizador atual
       remove acentos e fragmenta o português
 - [ ] **LayoutReader** (Wang et al., 2021) como baseline forte da literatura
-- [ ] **Granularidade de linha** — mais blocos por página, tarefa mais difícil
 - [ ] **Extração mais rápida** com PyMuPDF (tipicamente dezenas de vezes mais rápido que
-      o `pdfplumber`) para escalar de ~1.000 para dezenas de milhares de páginas
-- [ ] **Pré-treino de adaptação de domínio**: continuar o pré-treino do LayoutLM
-      (MLM com posição 2D) sobre o acervo, e medir o ganho
-- [ ] **Eficiência completa**: memória de pico, vazão em lote, custo estimado em
-      R$ por mil páginas (energia local × preço das APIs)
+      o `pdfplumber`; os PDFs de PE levaram ~50 s cada)
+- [ ] **Auditoria visual de SP**, onde a XY-cut e o fluxo do PDF estão anticorrelacionados
 - [ ] **Análise de erros**: categorizar as páginas em que cada método falha (tabelas,
       notas de rodapé, colunas desiguais)
+- [ ] **Várias sementes** por método, para intervalos entre execuções
 
 ## 🟢 Prioridade baixa / se sobrar tempo
 
-- [ ] Ordem de leitura em nível de palavra, comparável ao LayoutReader
-- [ ] Impacto a jusante: medir se a ordem correta melhora um sistema de RAG simples
-      sobre os diários (fecha o argumento da introdução)
+- [ ] Granularidade de linha ou de palavra, comparável ao LayoutReader
+- [ ] Pré-treino de adaptação de domínio do LayoutLM sobre o acervo
 - [ ] Interface de demonstração: enviar um PDF e ver a ordem de leitura desenhada
 
 ---
@@ -83,11 +104,11 @@ alimenta o texto final.
 
 | Capítulo | Fonte no repositório |
 |---|---|
-| 1. Introdução — problema, motivação (RAG e agentes) | `README.md` (seções Problema e Objetivo) |
+| 1. Introdução — problema, motivação (RAG e agentes) | `README.md`; resultados, seção 6, como evidência do efeito em RI |
 | 2. Fundamentação teórica | `docs/LITERATURA.md` |
-| 3. Dados — o acervo | `docs/ACERVO.md` |
+| 3. Dados — o acervo e o Golden Dataset | `docs/ACERVO.md`, `docs/GUIA_ANOTACAO.md` |
 | 4. Metodologia | `docs/METODOLOGIA.md` |
-| 5. Desenvolvimento — decisões e dificuldades | `docs/DIARIO_DE_BORDO.md` |
+| 5. Desenvolvimento — decisões e dificuldades | `docs/DIARIO_DE_BORDO.md`, `docs/KAGGLE.md` |
 | 6. Resultados e discussão | `docs/RESULTADOS_PRELIMINARES.md`, `docs/figuras/` |
 | 7. Conclusão e trabalhos futuros | este roadmap |
 
@@ -101,7 +122,20 @@ python src/eval/baselines.py
 python src/models/layoutlm_ordem.py treinar
 python src/models/layoutlm_ordem.py avaliar
 python src/models/lstm_ordem.py --variante geo_texto
-python src/eval/llm_ordem.py --modelo llava:7b --paginas 40
+python src/eval/llm_ordem.py --modelo llava:7b --paginas 20 --max-blocos 25
 python src/eval/comparar.py
 python src/eval/figuras.py
+
+# coletas extras (pastas separadas; nao alteram o protocolo)
+python src/data/extrator.py --ufs official_diary_rj_japeri --pdfs-por-uf 999 --paginas-por-pdf 9999 --incluir-capa --workers 3 --saida data/processed/blocos_ri_japeri
+python src/data/extrator.py --ufs official_diary_RJ_volta_redonda official_diary_ba_salvador official_diary_pa official_diary_pe --pdfs-por-uf 250 --paginas-por-pdf 6 --seed 7 --workers 6 --saida data/processed/blocos_extra
+python src/data/extrator.py --ufs official_diary_pr official_diary_rr official_diary_sc --pdfs-por-uf 70 --paginas-por-pdf 5 --seed 7 --workers 7 --saida data/processed/blocos_extra
+
+python src/ri/piloto_japeri.py
+python src/rodar_curva_aprendizado.py
+python src/anotacao/preparar_lote.py --lote golden_v1 --grupo silver:10 --grupo incerto:20
 ```
+
+A coleta de PE foi interrompida em 525 de 1.089 PDFs por lentidão (seção 3.5 do diário de
+bordo); para reproduzir exatamente, rode a segunda linha e interrompa no mesmo ponto, ou
+aceite uma amostra de PE um pouco diferente.

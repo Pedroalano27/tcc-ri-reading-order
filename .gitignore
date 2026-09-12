@@ -18,6 +18,15 @@ data/diagnostico_acervo.json
 # Dados processados e artefatos de experimento (regeneraveis)
 data/processed/
 resultados/*.jsonl
+resultados/**/*.jsonl
+# predicoes de LLM rodadas no Kaggle custam horas de GPU: ficam versionadas
+!resultados/kaggle/**/*.jsonl
+
+# Golden Dataset: tarefas e anotacoes sao versionadas; as imagens se regeneram dos PDFs
+data/golden/*/img/
+
+# Pacotes gerados para upload no Kaggle
+dist/
 
 # Configuracao local do Claude Code (servidor de pre-visualizacao)
 .claude/launch.json

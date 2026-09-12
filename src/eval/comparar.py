@@ -10,6 +10,9 @@ Alem da media, reporta o PIOR CASO (percentil 10 do tau): um metodo pode ser
 bom na media e falhar catastroficamente em algumas paginas -- a mesma
 preocupacao de Rodrigues et al. (SIGIR 2022) com modelos neurais de ranking.
 Testes de Wilcoxon pareados verificam se as diferencas sao significativas.
+
+LLMs novas (ex.: rodadas no Kaggle) entram sozinhas: o nome exibido vem dos
+campos "modelo" e "few_shot" gravados por llm_ordem.py em cada predicao.
 """
 from __future__ import annotations
 
@@ -40,6 +43,11 @@ NOMES = {
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 
+def nome_llm(d):
+    fs = d.get("few_shot") or 0
+    return f"LLM {d['modelo']} ({f'few-shot, {fs} exemplos' if fs else 'zero-shot'})"
+
+
 def percentil(v, q):
     s = sorted(v)
     return s[min(len(s) - 1, int(q * len(s)))]
@@ -58,6 +66,7 @@ def resumir(regs):
         "n": len(regs),
         "tau": statistics.mean(t), "tau_ic95": ic95(t),
         "tau_mediana": statistics.median(t), "tau_p10": percentil(t, 0.10),
+        "sucessor": statistics.mean(r["acerto_sucessor"] for r in regs),
         "ard": statistics.mean(r["ard"] for r in regs),
         "ard_norm": statistics.mean(r["ard_norm"] for r in regs),
         "bleu": statistics.mean(r["bleu"] for r in regs),
@@ -74,14 +83,15 @@ def tabela(titulo, resumos, nota=""):
     linhas = [f"### {titulo}", ""]
     if nota:
         linhas += [nota, ""]
-    linhas += ["| Metodo | n | tau Kendall (IC 95%) | tau pior caso (p10) | ARD | ARD norm. | BLEU | Acerto exato | Latencia (ms/pag.) |",
-               "|---|---:|---:|---:|---:|---:|---:|---:|---:|"]
+    linhas += ["| Metodo | n | tau Kendall (IC 95%) | tau pior caso (p10) | Sucessor correto | ARD | ARD norm. | "
+               "BLEU | Acerto exato | Latencia (ms/pag.) |",
+               "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|"]
     for m, r in resumos.items():
         a, b = r["tau_ic95"]
         tempo = f"{r['tempo_ms']:.3f}" if r["tempo_ms"] < 1 else f"{r['tempo_ms']:,.1f}"
         linhas.append(f"| {NOMES.get(m, m)} | {r['n']} | **{r['tau']:.3f}** ({a:.3f}-{b:.3f}) | "
-                      f"{r['tau_p10']:.3f} | {r['ard']:.2f} | {r['ard_norm']:.3f} | {r['bleu']:.1f} | "
-                      f"{r['exato']:.1%} | {tempo} |")
+                      f"{r['tau_p10']:.3f} | {r['sucessor']:.1%} | {r['ard']:.2f} | {r['ard_norm']:.3f} | "
+                      f"{r['bleu']:.1f} | {r['exato']:.1%} | {tempo} |")
     return "\n".join(linhas) + "\n"
 
 
@@ -96,6 +106,8 @@ def main():
         with open(arq, encoding="utf-8") as f:
             for linha in f:
                 d = json.loads(linha)
+                if metodo not in NOMES and d.get("modelo"):
+                    NOMES[metodo] = nome_llm(d)
                 p = teste.get(d["page_id"])
                 if p is None:
                     continue
@@ -153,12 +165,16 @@ def main():
         for m in parciais:
             testes.append(teste_pareado(ref_modelo, m, ids_sub))
     if "xycut" in por_metodo:
+        for m in completos:
+            if m.startswith("llm_"):
+                testes.append(teste_pareado("xycut", m))
         for m in parciais:
             testes.append(teste_pareado("xycut", m, ids_sub))
 
     saida = {"referencia": ref, "paginas_teste": len(teste), "ufs_teste": splits["teste"],
              "todas_as_paginas": res_todas, "subconjunto_llm": res_subconj,
-             "n_subconjunto_llm": len(ids_sub), "por_colunas": por_colunas, "testes_wilcoxon": testes}
+             "n_subconjunto_llm": len(ids_sub), "por_colunas": por_colunas, "testes_wilcoxon": testes,
+             "nomes": {m: NOMES.get(m, m) for m in ordem}}
     with open(os.path.join(DIR_RESULTADOS, "comparacao.json"), "w", encoding="utf-8") as f:
         json.dump(saida, f, ensure_ascii=False, indent=2)
     with open(os.path.join(DIR_RESULTADOS, "metricas_por_pagina.jsonl"), "w", encoding="utf-8") as f:
@@ -173,14 +189,14 @@ def main():
           "tau p10 = percentil 10, o desempenho nas 10% piores paginas.", ""]
     md.append(tabela("Todas as paginas de teste", res_todas))
     if res_subconj:
-        nota = (f"Subconjunto de {len(ids_sub)} paginas com ate 30 blocos em que a LLM foi avaliada. "
-                "Todos os metodos nas MESMAS paginas.")
+        nota = (f"Subconjunto de {len(ids_sub)} paginas comum aos metodos avaliados em parte do teste "
+                "(a LLM llava:7b rodou so em paginas pequenas). Todos os metodos nas MESMAS paginas.")
         md.append(tabela("Subconjunto avaliado pela LLM", res_subconj, nota))
-        for m in parciais:
-            if "prop_permutacao_valida" in res_subconj.get(m, {}):
-                md.append(f"Permutacoes validas devolvidas por {NOMES.get(m, m)}: "
-                          f"**{res_subconj[m]['prop_permutacao_valida']:.0%}** "
-                          f"(as invalidas foram reparadas antes de medir).\n")
+    for m in ordem:
+        r = res_todas.get(m) or res_subconj.get(m) or {}
+        if "prop_permutacao_valida" in r:
+            md.append(f"Permutacoes validas devolvidas por {NOMES.get(m, m)}: "
+                      f"**{r['prop_permutacao_valida']:.0%}** (as invalidas foram reparadas antes de medir).\n")
     md += ["### Tau medio por numero de colunas da pagina", "",
            "| Metodo | " + " | ".join(sorted({g for v in por_colunas.values() for g in v})) + " |",
            "|---|" + "---:|" * len({g for v in por_colunas.values() for g in v})]

@@ -1,0 +1,4 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/203 [00:00<?, ?it/s]Loading weights:  43%|████▎     | 87/203 [00:00<00:00, 861.74it/s]Loading weights: 100%|██████████| 203/203 [00:00<00:00, 1505.04it/s]
+[OK] curva_layoutlm_n3235: 95 paginas de teste | tau 0.7859 | ARD norm 0.0843 | 44.1 ms/pagina
+     predicoes em C:\Users\pedro\dev\tcc-ri-reading-order\resultados\curva_aprendizado\pred_curva_layoutlm_n3235.jsonl

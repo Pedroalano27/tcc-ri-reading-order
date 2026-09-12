@@ -26,6 +26,13 @@ Metricas implementadas:
                      e pouco discriminativo. Reportar, mas ler junto com tau e ARD.
 
     acerto_exato     1.0 se a ordem predita e identica a referencia, senao 0.0.
+
+    acerto_sucessor  Fracao dos pares consecutivos da predicao que tambem sao consecutivos
+                     na referencia (o bloco certo logo em seguida). Mede a CONTINUIDADE LOCAL
+                     do texto, que e o que importa para busca por trechos e RAG: um metodo
+                     pode acertar a ordem global (tau alto) e ainda assim picotar o texto,
+                     trocando vizinhos o tempo todo -- cada troca custa um par discordante
+                     no tau, mas ate tres sucessores.
 """
 from __future__ import annotations
 
@@ -36,6 +43,15 @@ from scipy.stats import kendalltau as _scipy_kendalltau
 
 def _posicoes(ordem: Sequence[str]) -> Dict[str, int]:
     return {bid: i for i, bid in enumerate(ordem)}
+
+
+def acerto_sucessor(pred: Sequence[str], gt: Sequence[str]) -> float:
+    """Fracao dos pares consecutivos da predicao que sao consecutivos na referencia."""
+    if len(gt) < 2:
+        return 1.0
+    prox = {a: b for a, b in zip(gt, gt[1:])}
+    pares = list(zip(pred, pred[1:]))
+    return sum(1 for a, b in pares if prox.get(a) == b) / max(1, len(pares))
 
 
 def kendall_tau(pred: Sequence[str], gt: Sequence[str]) -> float:
@@ -90,6 +106,7 @@ def avaliar(pred: Sequence[str], gt: Sequence[str], textos: Dict[str, str] | Non
         "ard": ard(pred, gt),
         "ard_norm": ard_normalizado(pred, gt),
         "acerto_exato": acerto_exato(pred, gt),
+        "acerto_sucessor": acerto_sucessor(pred, gt),
     }
     if textos is not None:
         r["bleu"] = bleu_pagina(pred, gt, textos)

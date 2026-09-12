@@ -20,6 +20,11 @@ isola quanto da eficacia vem da consciencia de layout.
 Uso:
     python src/models/layoutlm_ordem.py treinar  [--sem-layout] [--epocas 8] [--max-minutos 16]
     python src/models/layoutlm_ordem.py avaliar  [--sem-layout]
+
+Curva de aprendizado (treino ampliado com paginas extras dos mesmos veiculos):
+    python src/models/layoutlm_ordem.py treinar --nome curva_n1000 --n-treino 1000 \
+        --blocos-extra data/processed/blocos_extra --dir-saida resultados/curva_aprendizado
+    python src/models/layoutlm_ordem.py avaliar --nome curva_n1000 --dir-saida resultados/curva_aprendizado
 """
 from __future__ import annotations
 
@@ -36,8 +41,8 @@ import torch
 import torch.nn as nn
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-from src.eval.protocolo import (carregar_splits, carregar_particao, ordem_entrada,  # noqa: E402
-                                salvar_predicoes, DIR_RESULTADOS, RAIZ_PROJETO)
+from src.eval.protocolo import (carregar_splits, carregar_particao, montar_treino,  # noqa: E402
+                                ordem_entrada, salvar_predicoes, DIR_RESULTADOS, RAIZ_PROJETO)
 from src.eval.metrics import kendall_tau, ard_normalizado  # noqa: E402
 
 MODELO_BASE = "microsoft/layoutlm-base-uncased"
@@ -174,13 +179,21 @@ def metricas_medias(paginas, preds, ref_key):
     return {"tau": sum(taus) / len(taus), "ard_norm": sum(ards) / len(ards)}
 
 
+def nome_modelo(args):
+    return args.nome or ("layoutlm_sem_layout" if args.sem_layout else "layoutlm")
+
+
 def treinar(args):
     torch.manual_seed(args.seed)
     random.seed(args.seed)
     device = "cuda"
     splits = carregar_splits()
     ref = splits["referencia"]
-    treino, valid = carregar_particao("treino"), carregar_particao("validacao")
+    if args.n_treino or args.blocos_extra:
+        treino = montar_treino(args.n_treino, args.blocos_extra, args.seed)
+    else:
+        treino = carregar_particao("treino")
+    valid = carregar_particao("validacao")
     print(f"[*] treino: {len(treino)} paginas ({len(splits['treino'])} UFs) | "
           f"validacao: {len(valid)} paginas | referencia: {ref}", flush=True)
 
@@ -202,10 +215,11 @@ def treinar(args):
         opt, lambda s: (s + 1) / aquec if s < aquec else max(0.02, (total - s) / max(1, total - aquec)))
     scaler = torch.amp.GradScaler("cuda")
 
-    nome = "layoutlm_sem_layout" if args.sem_layout else "layoutlm"
+    nome = nome_modelo(args)
+    dir_saida = args.dir_saida or DIR_RESULTADOS
     os.makedirs(DIR_MODELOS, exist_ok=True)
-    os.makedirs(DIR_RESULTADOS, exist_ok=True)
-    arq_log = open(os.path.join(DIR_RESULTADOS, f"treino_{nome}.csv"), "w", newline="", encoding="utf-8")
+    os.makedirs(dir_saida, exist_ok=True)
+    arq_log = open(os.path.join(dir_saida, f"treino_{nome}.csv"), "w", newline="", encoding="utf-8")
     log = csv.writer(arq_log)
     log.writerow(["epoca", "passo", "segundos", "loss", "val_tau", "val_ard_norm"])
 
@@ -277,7 +291,7 @@ def avaliar(args):
     from transformers import AutoTokenizer
     tok = AutoTokenizer.from_pretrained(MODELO_BASE)
     cod = Codificador(tok)
-    nome = "layoutlm_sem_layout" if args.sem_layout else "layoutlm"
+    nome = nome_modelo(args)
     modelo = LayoutLMOrdem(MODELO_BASE, usar_layout=not args.sem_layout).to(device)
     modelo.load_state_dict(torch.load(os.path.join(DIR_MODELOS, f"{nome}.pt"), map_location=device))
     prever(modelo, cod, teste[:4], device, medir_tempo=True)      # aquecimento da GPU
@@ -287,7 +301,7 @@ def avaliar(args):
     preds = prever(modelo, cod, teste, device, medir_tempo=True)
     linhas = [{"page_id": p["page_id"], "ordem_pred": pr, "tempo_ms": round(t, 3)}
               for p, (pr, t) in zip(teste, preds)]
-    caminho = salvar_predicoes(nome, linhas)
+    caminho = salvar_predicoes(nome, linhas, args.dir_saida)
     m = metricas_medias(teste, preds, ref)
     print(f"[OK] {nome}: {len(teste)} paginas de teste | tau {m['tau']:.4f} | "
           f"ARD norm {m['ard_norm']:.4f} | {sum(l['tempo_ms'] for l in linhas) / len(linhas):.1f} ms/pagina")
@@ -305,5 +319,9 @@ if __name__ == "__main__":
     ap.add_argument("--lr", type=float, default=4e-5)
     ap.add_argument("--lr-cabeca", type=float, default=1e-3)
     ap.add_argument("--seed", type=int, default=42)
+    ap.add_argument("--nome", help="nome do modelo e das predicoes (padrao: layoutlm ou layoutlm_sem_layout)")
+    ap.add_argument("--n-treino", type=int, help="usa so as N primeiras paginas do treino ampliado")
+    ap.add_argument("--blocos-extra", help="pasta com paginas extras dos veiculos de treino")
+    ap.add_argument("--dir-saida", help="pasta do log de treino e das predicoes (padrao: resultados/)")
     a = ap.parse_args()
     treinar(a) if a.modo == "treinar" else avaliar(a)

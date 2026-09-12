@@ -286,14 +286,15 @@ def processar_pagina(page, uf, arquivo, n_pag):
 def processar_pdf(tarefa):
     """Worker: processa as paginas amostradas de um PDF."""
     import pdfplumber
-    uf, caminho, paginas_por_pdf, semente = tarefa
+    uf, caminho, paginas_por_pdf, semente, incluir_capa = tarefa
     arquivo = os.path.relpath(caminho, os.path.join(RAW, uf)).replace("\\", "/")
     registros, motivos = [], {}
     t0 = time.time()
     try:
         with pdfplumber.open(caminho) as pdf:
             n = len(pdf.pages)
-            candidatas = list(range(1, n)) if n > 1 else [0]   # pula a capa
+            # pula a capa, exceto quando a coleta precisa do diario inteiro (ex.: experimento de RI)
+            candidatas = list(range(n)) if (incluir_capa or n == 1) else list(range(1, n))
             rng = random.Random(semente)
             escolhidas = sorted(rng.sample(candidatas, min(paginas_por_pdf, len(candidatas))))
             for p in escolhidas:
@@ -316,10 +317,16 @@ def main():
     ap.add_argument("--workers", type=int, default=6)
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--ufs", nargs="*", help="restringe a estas UFs (padrao: todas)")
+    ap.add_argument("--saida", default=SAIDA,
+                    help="pasta dos .jsonl (padrao: data/processed/blocos). Coletas extras devem "
+                         "usar outra pasta, para nao sobrescrever as paginas do protocolo")
+    ap.add_argument("--incluir-capa", action="store_true",
+                    help="processa tambem a primeira pagina de cada PDF (diario inteiro)")
     args = ap.parse_args()
 
     random.seed(args.seed)
-    os.makedirs(SAIDA, exist_ok=True)
+    saida = os.path.abspath(args.saida)
+    os.makedirs(saida, exist_ok=True)
     ufs = sorted(d for d in os.listdir(RAW)
                  if os.path.isdir(os.path.join(RAW, d)) and d.startswith("official_diary")
                  and d not in UFS_EXCLUIDAS)
@@ -332,12 +339,12 @@ def main():
                 if not any(x in p for x in PADROES_EXCLUIDOS)]
         pdfs.sort()
         for k, p in enumerate(random.sample(pdfs, min(args.pdfs_por_uf, len(pdfs)))):
-            tarefas.append((uf, p, args.paginas_por_pdf, f"{args.seed}-{uf}-{k}"))
+            tarefas.append((uf, p, args.paginas_por_pdf, f"{args.seed}-{uf}-{k}", args.incluir_capa))
 
     print(f"[*] {len(ufs)} UFs, {len(tarefas)} PDFs, ate {args.paginas_por_pdf} paginas cada, "
-          f"{args.workers} processos", flush=True)
+          f"{args.workers} processos -> {saida}", flush=True)
     for uf in ufs:   # limpa execucoes anteriores
-        alvo = os.path.join(SAIDA, f"{uf}.jsonl")
+        alvo = os.path.join(saida, f"{uf}.jsonl")
         if os.path.exists(alvo):
             os.remove(alvo)
 
@@ -349,7 +356,7 @@ def main():
             for k, v in motivos.items():
                 motivos_tot[k] = motivos_tot.get(k, 0) + v
             if registros:
-                with open(os.path.join(SAIDA, f"{uf}.jsonl"), "a", encoding="utf-8") as f:
+                with open(os.path.join(saida, f"{uf}.jsonl"), "a", encoding="utf-8") as f:
                     for r in registros:
                         f.write(json.dumps(r, ensure_ascii=False) + "\n")
                 por_uf[uf] = por_uf.get(uf, 0) + len(registros)
@@ -357,9 +364,9 @@ def main():
                 print(f"  {feitos}/{len(tarefas)} PDFs | {sum(por_uf.values())} paginas uteis "
                       f"| {time.time()-t0:.0f}s", flush=True)
 
-    print(f"\n[OK] {sum(por_uf.values())} paginas em {time.time()-t0:.0f}s -> {SAIDA}")
+    print(f"\n[OK] {sum(por_uf.values())} paginas em {time.time()-t0:.0f}s -> {saida}")
     print(f"Motivos (paginas): {motivos_tot}")
-    with open(os.path.join(SAIDA, "_resumo_extracao.json"), "w", encoding="utf-8") as f:
+    with open(os.path.join(saida, "_resumo_extracao.json"), "w", encoding="utf-8") as f:
         json.dump({"args": vars(args), "paginas_por_uf": por_uf, "motivos": motivos_tot,
                    "segundos": round(time.time() - t0, 1)}, f, ensure_ascii=False, indent=2)
 

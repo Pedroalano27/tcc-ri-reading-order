@@ -14,6 +14,10 @@ Roda em CPU para deixar a GPU livre para o LayoutLM.
 
 Uso:
     python src/models/lstm_ordem.py --variante geo_texto
+
+Curva de aprendizado (treino ampliado com paginas extras dos mesmos veiculos):
+    python src/models/lstm_ordem.py --variante geo --nome curva_lstm_geo_n1000 --n-treino 1000 \
+        --blocos-extra data/processed/blocos_extra --dir-saida resultados/curva_aprendizado
 """
 from __future__ import annotations
 
@@ -28,7 +32,8 @@ import torch
 import torch.nn as nn
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-from src.eval.protocolo import carregar_splits, carregar_particao, ordem_entrada, salvar_predicoes  # noqa: E402
+from src.eval.protocolo import (carregar_splits, carregar_particao, montar_treino,  # noqa: E402
+                                ordem_entrada, salvar_predicoes)
 from src.eval.metrics import kendall_tau  # noqa: E402
 
 N_BUCKETS = 1 << 18
@@ -116,14 +121,23 @@ def main():
     ap.add_argument("--max-minutos", type=float, default=5)
     ap.add_argument("--batch", type=int, default=16)
     ap.add_argument("--threads", type=int, default=6)
+    ap.add_argument("--n-treino", type=int, help="usa so as N primeiras paginas do treino ampliado")
+    ap.add_argument("--blocos-extra", help="pasta com paginas extras dos veiculos de treino")
+    ap.add_argument("--nome", help="nome das predicoes (padrao: lstm_<variante>)")
+    ap.add_argument("--dir-saida", help="pasta das predicoes (padrao: resultados/)")
     a = ap.parse_args()
 
     torch.manual_seed(42)
     torch.set_num_threads(a.threads)
     splits = carregar_splits()
     ref = splits["referencia"]
-    treino, valid, teste = (carregar_particao(x) for x in ("treino", "validacao", "teste"))
+    if a.n_treino or a.blocos_extra:
+        treino = montar_treino(a.n_treino, a.blocos_extra)
+    else:
+        treino = carregar_particao("treino")
+    valid, teste = carregar_particao("validacao"), carregar_particao("teste")
     preparar(treino + valid + teste)
+    print(f"[*] treino: {len(treino)} paginas | validacao: {len(valid)} | teste: {len(teste)}", flush=True)
 
     modelo = LSTMOrdem(a.variante)
     opt = torch.optim.Adam(modelo.parameters(), lr=2e-3)
@@ -161,9 +175,10 @@ def main():
     preds = prever(modelo, teste, medir_tempo=True)
     linhas = [{"page_id": p["page_id"], "ordem_pred": pr, "tempo_ms": round(t, 3)}
               for p, (pr, t) in zip(teste, preds)]
-    salvar_predicoes(f"lstm_{a.variante}", linhas)
+    nome = a.nome or f"lstm_{a.variante}"
+    salvar_predicoes(nome, linhas, a.dir_saida)
     tau = sum(kendall_tau(pr, p["ordens"][ref]) for p, (pr, _) in zip(teste, preds)) / len(teste)
-    print(f"[OK] lstm_{a.variante}: val tau {melhor:.4f} | teste tau {tau:.4f} | "
+    print(f"[OK] {nome}: val tau {melhor:.4f} | teste tau {tau:.4f} | "
           f"{sum(l['tempo_ms'] for l in linhas) / len(linhas):.2f} ms/pagina")
 
 

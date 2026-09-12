@@ -1,0 +1,18 @@
+caso                                          tau    ARD   ARDn    BLEU  exato
+identica                                     1.00   0.00   0.00   100.0      1
+invertida                                   -1.00   2.40   0.48    82.7      0
+um bloco deslocado do fim para o inicio      0.20   1.60   0.32    95.9      0
+troca de vizinhos                            0.80   0.40   0.08    91.6      0
+[*] paginas de treino disponiveis: 3235 | tamanhos: [152, 400, 1000, 2000, 3235]
+  [lstm_geo]   152 paginas: tau 0.721 (IC 0.684-0.756) em 182 s
+  [layoutlm]   152 paginas: tau 0.694 (IC 0.658-0.727) | val 0.640 | 40 epocas em 287 s
+  [lstm_geo]   400 paginas: tau 0.678 (IC 0.637-0.716) em 442 s
+  [layoutlm]   400 paginas: tau 0.721 (IC 0.686-0.752) | val 0.641 | 15 epocas em 305 s
+  [layoutlm]  1000 paginas: tau 0.730 (IC 0.696-0.759) | val 0.676 | 6 epocas em 279 s
+  [lstm_geo]  1000 paginas: tau 0.697 (IC 0.660-0.730) em 400 s
+  [layoutlm]  2000 paginas: tau 0.761 (IC 0.728-0.791) | val 0.679 | 4 epocas em 362 s
+  [lstm_geo]  2000 paginas: tau 0.691 (IC 0.653-0.726) em 525 s
+  [layoutlm]  3235 paginas: tau 0.786 (IC 0.752-0.816) | val 0.712 | 4 epocas em 601 s
+  [lstm_geo]  3235 paginas: tau 0.702 (IC 0.663-0.739) em 678 s
+  [OK] C:\Users\pedro\dev\tcc-ri-reading-order\docs\figuras\fig7_curva_aprendizado.png
+[OK] curva em C:\Users\pedro\dev\tcc-ri-reading-order\resultados\curva_aprendizado\curva.json
