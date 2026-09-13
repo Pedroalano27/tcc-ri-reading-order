@@ -107,6 +107,30 @@ rejeitada fora dos veículos de teste. O Golden foi regenerado com ela (1.248 bl
 anotando; a aprovação final vem dessa anotação. **Os dados em `data/processed/` continuam na
 versão B** até a re-extração (T05). Registro completo no quadro, entrada DECISÃO de 18:31.
 
+**Atualização de 2026-09-12 22:55: segmentação v3 (T18 a T21).** Depois de anotar o Golden v1, o
+Pedro apontou seis defeitos; as causas estão no quadro (ACHADO de 20:11) e a v3 corrige cinco:
+- *faixas de linha de base com reatribuição pelo centro* — o "nº" que caía na linha da coluna ao
+  lado e partia parágrafos (MA);
+- *calhas locais* (`_cortes_locais`) — as caixas que pulavam de coluna onde um trecho da página
+  tem outro desenho de colunas (RJ, Barra do Piraí, SP);
+- *tabela = um bloco* (`"tipo": "tabela"`), com a região dada pelo detector de layout **Docling
+  Heron** em [`src/data/layout.py`](../src/data/layout.py) — RT-DETRv2 treinado no DocLayNet,
+  revisão fixada, só do cache local do Hugging Face. **É o único componente visual do pipeline**:
+  o texto continua vindo da camada digital do PDF;
+- *descarte de bloco sem letra nem dígito* (separadores "*** ***");
+- *junção de letras espaçadas* ("R E S O L V E").
+O sexto, texto dentro de imagem, fica fora: exigiria OCR (limitação declarada).
+
+Bancada de 44 páginas (`resultados/avaliacao_segmentacao_v3.json`, código final): 33,0
+blocos/página, 2,7% sobrepostos, 7,2% de blocos de uma palavra e nenhuma página rejeitada (final:
+48,8 / 5,9% / 21,5% / 1). Maior bloco: 1.769 palavras, uma tabela. O código passou por três revisões do Codex (despachos das 22:05, 22:27 e
+22:52, logs em `orquestracao/logs/`). A ordem anotada no Golden v1 foi levada para a v3 por
+[`src/anotacao/projetar_ordem.py`](../src/anotacao/projetar_ordem.py): 20 páginas saem limpas e 5
+com conflito, que voltam para anotação no lote `golden_v2` junto com as 4 puladas e 20 páginas
+novas. **T05 em andamento desde 22:58**: `data/processed/blocos`, `blocos_ri_japeri` e
+`blocos_extra` estão sendo regravados na v3 a partir das coleções `*_v1`; as versões B foram
+renomeadas para `blocos_b` e `blocos_ri_japeri_b`.
+
 A bancada T02 foi implementada em `src/data/avaliar_segmentacao.py`. Na amostra fixa de
 44 páginas (40 sorteadas de forma balanceada por veículo + as 4 páginas-problema), a v1
 teve 50,9 blocos/página, 26,2% de blocos sobrepostos e 31,4% de blocos de uma palavra; a
@@ -120,13 +144,18 @@ fragmentação excessiva. Evidência completa: `resultados/avaliacao_segmentacao
 |---|---:|---|---|
 | `data/raw/` | 4.644 PDFs | — | Acervo do orientador; nunca modificar |
 | `data/processed/blocos_v1/` | 777 | v1 | Coleta do experimento principal (30 veículos) |
-| `data/processed/blocos/` | 762 | B | 15 páginas perdidas pelo filtro de 3 a 200 blocos |
+| `data/processed/blocos/` | 777 esperadas | v3 | **Em re-extração (T05)**, a partir de `blocos_v1` |
+| `data/processed/blocos_b/` | 762 | B | Versão B preservada (antes `data/processed/blocos/`); 15 páginas perdidas pelo filtro de 3 a 200 blocos |
 | `data/processed/blocos_extra_v1/` | 3.117 | v1 | Páginas extras dos 7 veículos de treino (curva de aprendizado) |
-| `data/processed/blocos_extra/` | **não existe** | — | A re-extração foi interrompida. **Qualquer treino ampliado roda hoje com zero páginas extras sem dar erro** (tarefa T01) |
+| `data/processed/blocos_extra/` | 3.117 esperadas | v3 | **Em re-extração (T05)**, a partir de `blocos_extra_v1`. Enquanto não terminar, o treino ampliado para com erro (T01) |
 | `data/processed/blocos_ri_japeri_v1/` | 269 | v1 | Todas as páginas das 27 edições de Japeri (piloto de RI) |
-| `data/processed/blocos_ri_japeri/` | 263 | B | |
+| `data/processed/blocos_ri_japeri/` | 269 esperadas | v3 | **Em re-extração (T05)**, a partir de `blocos_ri_japeri_v1` |
+| `data/processed/blocos_ri_japeri_b/` | 263 | B | Versão B preservada |
 | `data/processed/splits.json` | — | calculado sobre v1 | Divisão por veículo (seção 3). Precisa ser recalculada na segmentação final e comparada |
-| `data/golden/golden_v1/tarefas.jsonl` | 30 (1.248 blocos) | final | Lote de anotação, regenerado com a segmentação final. **Pedro anotando: não regenerar** |
+| `data/golden/golden_v1/tarefas.jsonl` | 30 (1.248 blocos) | final | **Anotado** pelo Pedro: 26 concluídas, 4 puladas (tabela). Nunca regenerar. `derivados/palavras_por_bloco.jsonl` congela as palavras de cada bloco; `derivados/projecao_v3.jsonl` leva a ordem para a v3 (20 limpas, 5 conflitos) |
+| `data/golden/golden_v2/tarefas.jsonl` | 29 (814 blocos) | v3 | 9 páginas do v1 a refazer (5 conflitos, 4 puladas) + 20 novas (silver 12, incerto 8). **Anotado** pelo Pedro: 27 concluídas, 2 puladas (SP). Nunca regenerar |
+| `data/golden/_avaliacao/golden_v3/` | 47 (1.238 blocos) | v3 | **Conjunto de avaliação do Golden**, derivado (`src/anotacao/montar_referencia.py`): 20 páginas do v1 projetadas + 27 do v2; `referencia.jsonl` no lugar de `anotacoes.jsonl`. Grupos: silver 21, incerto 26 |
+| `data/processed/layout/` | 4.112 | — | Cache do detector de layout (regiões por página, em pontos). Regenerável com `src/data/layout.py` |
 | `data/golden/golden_v1/_segmentacao_v1/` | 30 (1.044 blocos) | v1 | Arquivo: lote original e uma página anotada pelo Pedro sobre ele. Ver o `LEIAME.md` da pasta |
 
 A variável de ambiente `TCC_DIR_BLOCOS` troca a pasta de blocos lida por **todo** o
@@ -145,7 +174,17 @@ pipeline (`src/eval/protocolo.py`); `TCC_DIR_RESULTADOS` troca a pasta de saída
 Cada um tem um `*_config.json` ao lado com hiperparâmetros, tempo e melhor validação.
 Os checkpoints **não servem para a segmentação nova** sem re-treino: os blocos mudam.
 
-### 2.5 Resultados (`resultados/`, todos sobre v1)
+### 2.5 Resultados (`resultados/`)
+
+**Atualização de 2026-09-12 23:55.** Os resultados da segmentação v1 estão em
+`resultados_segmentacao_v1/` (cópia idêntica, conferida com `cmp`) e saíram de `resultados/`,
+que passa a guardar a v3. Já na v3: baselines no teste de 89 páginas (XY-cut τ 0,891; ingênua
+0,790; aleatória −0,020) e `resultados/golden/_avaliacao/golden_v3/avaliacao.md`. Os métodos
+aprendidos (BiLSTM, as duas formulações do LayoutLM, curva, ablações) e as LLMs novas vêm do Kaggle
+(T12). A divisão treino/validação/teste foi mantida (DECISÃO de 23:55 no quadro, confirmada pelo
+Pedro). O texto abaixo descreve a v1.
+
+#### Resultados da v1 (`resultados_segmentacao_v1/`)
 
 - `pred_<metodo>.jsonl`: uma linha por página, `{"page_id", "ordem_pred", "tempo_ms"}`.
   Os identificadores de bloco são os da segmentação v1. **Avaliá-los contra

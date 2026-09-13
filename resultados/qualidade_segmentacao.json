@@ -1,26 +1,26 @@
 {
-  "entrada": "data\\golden\\golden_v1\\tarefas.jsonl",
+  "entrada": "data\\processed\\blocos_ri_japeri_v1",
   "antes": {
-    "paginas": 30,
-    "blocos": 939,
-    "blocos_por_pagina": 31.3,
-    "blocos_sobrepostos": 138,
-    "prop_blocos_sobrepostos": 0.147,
-    "paginas_com_sobreposicao": 14,
-    "prop_paginas_com_sobreposicao": 0.4667,
-    "blocos_de_1_palavra": 137,
-    "prop_blocos_de_1_palavra": 0.1459
+    "paginas": 269,
+    "blocos": 10550,
+    "blocos_por_pagina": 39.2,
+    "blocos_sobrepostos": 2655,
+    "prop_blocos_sobrepostos": 0.2517,
+    "paginas_com_sobreposicao": 135,
+    "prop_paginas_com_sobreposicao": 0.5019,
+    "blocos_de_1_palavra": 3068,
+    "prop_blocos_de_1_palavra": 0.2908
   },
   "depois": {
-    "paginas": 30,
-    "blocos": 1248,
-    "blocos_por_pagina": 41.6,
-    "blocos_sobrepostos": 85,
-    "prop_blocos_sobrepostos": 0.0681,
-    "paginas_com_sobreposicao": 12,
-    "prop_paginas_com_sobreposicao": 0.4,
-    "blocos_de_1_palavra": 177,
-    "prop_blocos_de_1_palavra": 0.1418
+    "paginas": 260,
+    "blocos": 5301,
+    "blocos_por_pagina": 20.4,
+    "blocos_sobrepostos": 110,
+    "prop_blocos_sobrepostos": 0.0208,
+    "paginas_com_sobreposicao": 36,
+    "prop_paginas_com_sobreposicao": 0.1385,
+    "blocos_de_1_palavra": 497,
+    "prop_blocos_de_1_palavra": 0.0938
   },
-  "data": "2026-09-12 18:30:08"
+  "data": "2026-09-12 23:23:23"
 }

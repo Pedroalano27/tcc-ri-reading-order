@@ -9,8 +9,14 @@ São **dois notebooks**, cada um com seu próprio limite de 12 horas:
 
 | Notebook | O que faz | Tempo estimado |
 |---|---|---|
-| `kaggle_treino_ordem.ipynb` | Curva de aprendizado das duas formulações do LayoutLM, ablações da formulação de sucessor, varredura do limiar de decodificação, latência de todos os métodos na T4, avaliação contra a anotação humana | 2 a 4 h |
-| `kaggle_llm_ordem.ipynb` | Qwen 2.5 de 7B, 14B e 32B, zero-shot e com 2 exemplos, no teste e nas páginas anotadas | 4 a 6 h |
+| `kaggle_treino_ordem.ipynb` | Métodos não aprendidos e BiLSTM na segmentação v3; curva de aprendizado das duas formulações do LayoutLM; ablações da formulação de sucessor; varredura do limiar de decodificação; latência de todos os métodos na T4; avaliação no `golden_v3` | 2 a 4 h |
+| `kaggle_llm_ordem.ipynb` | Qwen 3.8 27B, Gemma 4 31B e Qwen 3.6 35B, zero-shot e com 2 exemplos, no teste (89 páginas) e no `golden_v3` (47 páginas) | 8 a 11 h (para sozinho antes das 12 h) |
+
+**Desde 13/09/2026 tudo roda sobre a segmentação v3** (tabela = um bloco, calhas locais;
+`docs/METODOLOGIA.md` 3.3.2). Os resultados da v1 ficam em `resultados_segmentacao_v1/`, para a
+comparação da evolução. O Golden avaliado é o `golden_v3`
+(`data/golden/_avaliacao/golden_v3/`, montado por `src/anotacao/montar_referencia.py`): 20 páginas
+do `golden_v1` com a ordem projetada para a v3 e 27 anotadas direto no `golden_v2`.
 
 Rode o de treino **primeiro**: ele produz os checkpoints e as predições que deixam a tabela
 final do outro completa.
@@ -73,8 +79,12 @@ notebooks continuam apontando para ele.
    venv\Scripts\python.exe src\kaggle\importar_resultados.py caminho\para\resultados_kaggle.zip
    ```
 
-   Isso copia as predições para `resultados/`, guarda uma cópia versionada em
-   `resultados/kaggle/<data>/` e atualiza `resultados/comparacao.md`.
+   Isso copia tudo o que o notebook gravou em `resultados/` para o mesmo caminho no projeto,
+   guarda uma cópia versionada em `resultados/kaggle/<data>/` e atualiza
+   `resultados/comparacao.md`. Importe o zip do treino **antes** do das LLMs. Depois dos dois,
+   rode `venv\Scripts\python.exe src\evalvaliar_golden.py --lote _avaliacao/golden_v3 --layoutlm --sucessor`
+   para a tabela do Golden com todos os métodos (as predições do LayoutLM no Golden vêm gravadas
+   do Kaggle; o checkpoint não é necessário).
 3. O notebook de treino também deixa o checkpoint do melhor modelo (`curva_layoutlm_sucessor_n*.pt`,
    cerca de 450 MB) solto na aba *Output*. Baixe só se quiser rodar esse modelo localmente;
    coloque-o em `models\layoutlm_ordem\`.
@@ -92,16 +102,17 @@ notebooks continuam apontando para ele.
 | `MICRO_BATCH` | Páginas por passagem na GPU. Na T4 (16 GB) cabe 12; o batch **efetivo** continua 8 por acumulação, então a otimização não muda — só a velocidade |
 | `ABLACOES` | Treina as variantes sem viés geométrico, sem perda de posição e sem layout 2D |
 | `LIMIARES` | Varredura do limiar da decodificação em cadeias. Custa segundos: só troca a decodificação de um modelo já treinado |
-| `LOTE_GOLDEN` | Lote de anotação a avaliar, se já houver `anotacoes.jsonl` |
+| `LOTE_GOLDEN` | Conjunto de avaliação do Golden (`_avaliacao/golden_v3`), com `referencia.jsonl` |
 
 **`kaggle_llm_ordem.ipynb`**
 
 | Variável | Para que serve |
 |---|---|
-| `MODELOS` | Modelos do Ollama, na ordem em que rodam. O 32B ocupa as duas T4 |
+| `MODELOS` | Modelos do Ollama, na ordem em que rodam, cada um dividido entre as duas T4. Todos rodam com o raciocínio desligado (`--sem-pensar`) |
 | `FEW_SHOT` | `0` = zero-shot; `2` = dois exemplos resolvidos (de páginas de treino) no prompt |
-| `PARTICOES` | `teste` = 95 páginas do protocolo; `golden:<lote>` = páginas com anotação humana |
+| `PARTICOES` | `teste` = 89 páginas do protocolo na v3; `golden:_avaliacao/golden_v3` = 47 páginas com anotação humana |
 | `MAX_BLOCOS` | Limite de blocos por página. 200 inclui todas |
+| `LIMITE_HORAS` | Depois disso não começa rodada nova: a sessão cai em 12 h e o que não terminou se perderia. O zip é refeito ao fim de cada modelo; rode de novo só com os modelos que faltaram |
 
 ---
 
@@ -133,8 +144,8 @@ notebooks continuam apontando para ele.
 |---|---|
 | "Pacote nao encontrado" | Faltou *Add Input* com o dataset `tcc-ordem-leitura` |
 | Não aparece a opção de GPU ou de internet | Verifique o telefone da conta |
-| Download do 32B demora | É normal: são cerca de 20 GB |
+| Download de um modelo demora | É normal: 18 a 23 GB cada |
 | A sessão caiu no meio | Rode de novo: `--retomar` continua as LLMs de onde pararam, e a curva pula os tamanhos que já estão em `curva.json` |
-| "Lote golden_v1 ainda sem anotacoes.jsonl" | Anote no projeto, refaça o pacote e suba uma nova versão do dataset |
+| "sem referencia.jsonl" | Rode `src/anotacao/montar_referencia.py`, refaça o pacote e suba uma nova versão do dataset |
 | Acabou a cota semanal | Veja em *Settings* quanto resta; a cota renova toda semana |
 | Sem memória (OOM) na T4 | Baixe `MICRO_BATCH` para 8 ou 4 |

@@ -127,6 +127,45 @@ próprio arquivo, em vez de re-amostrar). Isso permite a análise de sensibilida
 granularidade da seção 10: apontar `TCC_DIR_BLOCOS` para uma ou outra roda o pipeline
 inteiro sobre a outra segmentação, sem tocar em mais nada.
 
+#### 3.3.2 Versão 3: o que a anotação humana mostrou
+
+A primeira anotação do Golden (seção 3.6) funcionou também como auditoria do segmentador. Nas
+30 páginas, o anotador marcou tabela em 12, figura em 8 e bloco que mistura colunas em 3, e as 4
+páginas que pulou eram todas de tabela. As notas dele levaram a seis causas, cinco corrigidas:
+
+| Defeito anotado | Causa | Correção |
+|---|---|---|
+| Parágrafo partido em vários blocos, com um bloco de uma palavra | Uma palavra alguns décimos de ponto mais alta ("nº") caía na faixa de linha de base da coluna vizinha, deslocada meia linha | Segunda passada que leva cada palavra à faixa de centro mais próximo |
+| Caixa que "pula" de uma coluna para outra | A calha era procurada na página inteira; num trecho com outro desenho de colunas (expediente, tabela larga embaixo de duas colunas) ela não aparecia | **Calha local**: um vão maior que 1,5 largura de letra vira corte quando uma faixa branca passa por ele e por pelo menos mais três linhas com texto dos dois lados |
+| Tabela picada em células, título grudado na primeira linha | O extrator não sabia o que é tabela | **Tabela = um bloco**, com a região dada por um detector de layout |
+| Blocos só com "*** *** ***", "-" ou "...." | Separadores gráficos | Bloco sem letra nem dígito é descartado |
+| Palavras com letras separadas ("R E S O L V E") | Espaçamento entre letras maior que a tolerância do pdfplumber | Junção de sequências de pelo menos quatro pedaços, 75% deles de uma letra só |
+| Texto dentro de imagem (logotipos, títulos em figura) | Não existe camada de texto: são pixels | **Não corrigido.** Exigiria OCR e fica como limitação (seção 10); nessas páginas as APIs comerciais, que fazem OCR, veem texto que o pipeline não vê |
+
+**Por que um detector para as tabelas, e não regras.** As tabelas dos diários vêm de todo jeito:
+com grade completa, só com linhas horizontais ou sem linha nenhuma. O `find_tables()` do
+pdfplumber só encontra as de grade. O detector **Docling Heron** (Livathinos et al., 2025,
+arXiv:2509.11720; RT-DETRv2 treinado no DocLayNet e em outras bases; Apache-2.0) encontrou tabela
+nas 12 páginas marcadas pelo anotador. Ele roda sobre a imagem da página (110 dpi), com revisão
+fixada e só a partir de cópia local (`src/data/layout.py`), e é o **único componente visual** do
+pipeline: o texto e as caixas das palavras continuam vindo da camada digital do PDF, e só a
+região da tabela vem da imagem. Usa-se apenas a classe `table`, com score ≥ 0,5; detecções
+repetidas da mesma tabela são suprimidas.
+
+**Por que a tabela inteira vira um bloco.** Ao levar a ordem anotada para os blocos novos (seção
+3.6), em nenhuma página o anotador intercalou pedaços de uma tabela com outro texto: para quem lê,
+a tabela é uma unidade. A tarefa passa a ser posicionar a tabela no fluxo da página; a ordem das
+células fica fora do escopo e o texto do bloco sai linha a linha. O modelo de linguagem só vê as
+primeiras palavras de cada bloco (seção 5), então uma tabela longa não consome a janela de tokens.
+
+**Validação.** O código passou por três revisões independentes (agente Codex) antes de virar base
+de experimento. A mais importante encontrou um erro de coordenadas em páginas cuja imagem não
+começa na origem (MediaBox deslocada, caso do SP), que deslocava as tabelas. Na bancada de 44
+páginas, a v3 reduz os blocos sobrepostos e os blocos de uma palavra e não rejeita nenhuma página
+(números em `resultados/avaliacao_segmentacao_v3.json`). O custo das regras novas é desprezível
+diante da leitura do PDF: 0,49 s contra 0,32 s nas 30 páginas do Golden. A detecção de layout
+leva cerca de 0,1 s por página na GPU, somada a renderização.
+
 ### 3.4 Três ordens candidatas por página
 | Ordem | Definição |
 |---|---|
@@ -167,6 +206,26 @@ As páginas são sorteadas com semente fixa, em rodízio entre veículos e alter
 páginas de 1, 2 e 3+ colunas, com 6 a 80 blocos. Um lote de Goiás, fora do acervo, mede
 generalização fora do domínio. Parte das páginas deve ser anotada por uma segunda
 pessoa, para medir a concordância entre anotadores (o teto realista da tarefa).
+
+**A anotação sobrevive a uma mudança de segmentação.** A ordem anotada é uma ordem de blocos, e
+os blocos dependem do extrator. Para não perder o trabalho humano quando o extrator muda, cada
+lote guarda as palavras de cada bloco (`derivados/palavras_por_bloco.jsonl`). Cada palavra herda a
+posição do seu bloco na leitura humana, o que dá a sequência humana de palavras da página, e cada
+bloco novo recebe as palavras antigas que contém (`src/anotacao/projetar_ordem.py`). A página é
+**limpa** quando as palavras de todo bloco novo formam um trecho contíguo dessa sequência, toda
+palavra nova tem correspondente e só separadores somem. Nesse caso, a ordem dos blocos novos pelo
+início do trecho é exatamente a leitura do anotador. Nos outros casos há conflito: por exemplo, um
+bloco antigo que atravessava colunas foi dividido e os pedaços se intercalam na leitura. Só o
+anotador resolve, e a página volta para anotação. A garantia vale para a ordem dos blocos; a ordem
+das palavras dentro de um bloco pode mudar quando a segmentação nova corrige uma linha.
+
+Ao passar do `golden_v1` para a segmentação v3 (seção 3.3.2), 20 das 26 páginas concluídas saíram
+limpas, 5 tiveram conflito e 1 deixou de passar no filtro (tabela e cabeçalho, 2 blocos). O
+`golden_v2` reúne as 5 com conflito, as 4 puladas e 20 páginas novas (12 `silver`, 8 `incerto`),
+sorteadas pelo mesmo procedimento e já segmentadas na v3: 29 páginas, 814 blocos. O filtro de 6 a
+80 blocos passou a valer sobre a segmentação atual, e não sobre a armazenada. Pelo critério antigo,
+ficariam de fora justamente as páginas de tabela, que a versão anterior picotava em mais de 80
+blocos.
 
 ## 4. Protocolo (`src/eval/protocolo.py`)
 
@@ -364,7 +423,10 @@ página é medida em três passadas e fica a mediana.
 | Anotador ancorado numa ordem automática | Golden enviesado a favor de um método | Ferramenta sem ordem sugerida; identificadores embaralhados; concordância entre anotadores |
 | Tokenizador do LayoutLM em inglês sem acentos | Texto em português fragmentado em muitos sub-tokens | Testar LayoutXLM (multilíngue) |
 | Granularidade de bloco depende da heurística de segmentação | Blocos grandes demais tornam a tarefa mais fácil; blocos picotados inflam artificialmente a continuidade das heurísticas geométricas | **Análise de sensibilidade** (abaixo); qualidade da segmentação medida e reportada (seção 3.3.1); marcação de erro de segmentação na anotação |
-| Segmentação residualmente imperfeita em páginas de tabela densa | Texto embaralhado dentro do bloco, teto para todos os métodos | Medida: 15% dos blocos ainda se sobrepõem, concentrados em ~13% das páginas; essas páginas são identificáveis e podem ser analisadas à parte |
+| Segmentação residualmente imperfeita em páginas de tabela densa | Texto embaralhado dentro do bloco, teto para todos os métodos | Medida: 15% dos blocos ainda se sobrepõem, concentrados em ~13% das páginas; essas páginas são identificáveis e podem ser analisadas à parte. Na v3 (seção 3.3.2), tabela detectada vira um bloco só |
+| Detector de tabelas treinado fora do domínio (DocLayNet) | Tabela não detectada volta a ser picada; falso positivo (quadro de assinaturas) junta blocos que se leem separados | Conferido nas 12 páginas de tabela do Golden v1; limiar fixo (0,5) escolhido antes da avaliação; o Golden v2 é anotado sobre a v3, e os erros do detector aparecem nas marcações do anotador |
+| Texto dentro de imagem não é extraído | Logotipos e títulos em figura ficam fora da ordem; as APIs comerciais, que fazem OCR, veem mais texto nessas páginas | Limitação declarada; páginas com figura marcadas na anotação (8 de 30 no Golden v1) |
+| A anotação é refeita só onde a projeção acusa conflito | As 20 páginas limpas do Golden v1 entram com a leitura feita sobre outra segmentação | A projeção só aceita página em que a ordem dos blocos novos é exatamente a do anotador (seção 3.6); as demais voltam para anotação |
 | Amostra reduzida nos veículos densos | Menos páginas desses layouts no treino | Coleta extra para a curva; extração mais rápida com PyMuPDF |
 | `llava:7b` é multimodal, não especializada em texto | Subestima a capacidade das LLMs | Qwen 2.5 de 7B a 32B no Kaggle, zero-shot e few-shot |
 | Hardware diferente entre métodos | Latências incomparáveis | Todos os métodos medidos também na T4 do Kaggle (seção 9) |

@@ -1,0 +1,26 @@
+{
+  "entrada": "data\\processed\\blocos_v1",
+  "antes": {
+    "paginas": 777,
+    "blocos": 37468,
+    "blocos_por_pagina": 48.2,
+    "blocos_sobrepostos": 9368,
+    "prop_blocos_sobrepostos": 0.25,
+    "paginas_com_sobreposicao": 475,
+    "prop_paginas_com_sobreposicao": 0.6113,
+    "blocos_de_1_palavra": 12087,
+    "prop_blocos_de_1_palavra": 0.3226
+  },
+  "depois": {
+    "paginas": 754,
+    "blocos": 23088,
+    "blocos_por_pagina": 30.6,
+    "blocos_sobrepostos": 999,
+    "prop_blocos_sobrepostos": 0.0433,
+    "paginas_com_sobreposicao": 171,
+    "prop_paginas_com_sobreposicao": 0.2268,
+    "blocos_de_1_palavra": 2098,
+    "prop_blocos_de_1_palavra": 0.0909
+  },
+  "data": "2026-09-12 23:21:31"
+}

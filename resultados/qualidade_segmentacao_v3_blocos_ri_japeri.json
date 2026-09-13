@@ -1,0 +1,26 @@
+{
+  "entrada": "data\\processed\\blocos_ri_japeri_v1",
+  "antes": {
+    "paginas": 269,
+    "blocos": 10550,
+    "blocos_por_pagina": 39.2,
+    "blocos_sobrepostos": 2655,
+    "prop_blocos_sobrepostos": 0.2517,
+    "paginas_com_sobreposicao": 135,
+    "prop_paginas_com_sobreposicao": 0.5019,
+    "blocos_de_1_palavra": 3068,
+    "prop_blocos_de_1_palavra": 0.2908
+  },
+  "depois": {
+    "paginas": 260,
+    "blocos": 5301,
+    "blocos_por_pagina": 20.4,
+    "blocos_sobrepostos": 110,
+    "prop_blocos_sobrepostos": 0.0208,
+    "paginas_com_sobreposicao": 36,
+    "prop_paginas_com_sobreposicao": 0.1385,
+    "blocos_de_1_palavra": 497,
+    "prop_blocos_de_1_palavra": 0.0938
+  },
+  "data": "2026-09-12 23:23:23"
+}

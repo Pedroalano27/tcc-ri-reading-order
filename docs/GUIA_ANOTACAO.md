@@ -94,7 +94,12 @@ tentar fechar as 30 de uma vez, e a ferramenta reabre exatamente onde você paro
    dele (coluna por coluna), depois o título, depois as colunas abaixo dele.
 5. **Ato que continua na coluna seguinte:** siga a continuação do texto. Use o painel
    de texto para confirmar que a frase emenda.
-6. **Tabela:** linha por linha, da esquerda para a direita. Marque **Tem tabela**.
+6. **Tabela:** desde o `golden_v2`, a ferramenta mostra a tabela inteira como **uma caixa só**,
+   com contorno verde tracejado (o extrator acha a tabela com um detector de layout; ver
+   `src/data/layout.py`). Numere-a no ponto em que a tabela é lida, em geral logo depois do
+   título dela; a ordem das células não entra na anotação. Se a tabela vier picada em várias
+   caixas (o detector não a reconheceu), leia linha por linha, da esquerda para a direita.
+   Nos dois casos, marque **Tem tabela**.
 7. **Assinaturas, cargos e datas no fim de um ato** pertencem ao ato: vêm logo depois
    do texto dele, antes do próximo ato.
 8. **Marginália** (texto na margem, selo, número de artigo solto): onde ela é lida

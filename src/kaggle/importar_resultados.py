@@ -3,9 +3,8 @@ Traz para o projeto os resultados gerados no Kaggle.
 
     python src/kaggle/importar_resultados.py caminho/para/resultados_kaggle.zip
 
-  - predicoes de LLM no teste         -> resultados/            (onde comparar.py as encontra)
-  - predicoes nas paginas do Golden   -> resultados/golden/<lote>/
-  - latencia medida na T4             -> resultados/
+  - tudo o que o notebook gravou em resultados/ (predicoes de todos os metodos no teste, curva de
+    aprendizado, predicoes e avaliacao no Golden, latencia na T4) -> mesmo caminho no projeto
   - registro das execucoes            -> acrescentado a resultados/execucoes_llm.jsonl
   - copia intacta de tudo             -> resultados/kaggle/<data-hora>/  (versionada no git:
                                          essas predicoes custam horas de GPU)
@@ -46,8 +45,9 @@ def main():
             if base == "execucoes_llm.jsonl":
                 execucoes += [l for l in dados.decode("utf-8").splitlines() if l.strip()]
                 continue
-            if not (base.startswith("pred_llm_") or base.startswith("latencia_")):
-                continue
+            # Desde a segmentacao v3 todos os metodos aprendidos rodam no Kaggle (BiLSTM, as duas
+            # formulacoes do LayoutLM, curva, ablacoes, avaliacao no Golden): entra tudo o que esta
+            # sob resultados/, no mesmo caminho. So o registro de execucoes e acrescentado, acima.
             destino = os.path.join(RAIZ, *partes)       # mantem resultados/ ou resultados/golden/<lote>/
             os.makedirs(os.path.dirname(destino), exist_ok=True)
             with open(destino, "wb") as f:

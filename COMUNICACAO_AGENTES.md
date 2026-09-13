@@ -75,7 +75,7 @@ Quem está mexendo em quê **agora**. Adicione ao começar, remova ao terminar.
 
 | Agente | Reservado (arquivos, pastas, GPU, CPU) | Desde | Previsão de término |
 |---|---|---|---|
-| — | nada reservado | — | — |
+| Claude | T05: `data/processed/blocos/`, `blocos_extra/`, `blocos_ri_japeri/` (sendo gravados) e CPU (4 processos, re-extração longa) | 2026-09-12 22:58 | madrugada de 13/09 |
 
 ---
 
@@ -89,19 +89,25 @@ Status: `aberta` · `em andamento (agente)` · `bloqueada (motivo)` · `em revis
 | T02 | Bancada de avaliação do segmentador | Codex | — | feita |
 | T03 | Fechar a versão do segmentador | Claude propõe, Codex implementa, Pedro aprova | T02, T10 | feita pelo Claude; aprovação do Pedro em curso (anotando); REVISÃO do Codex pendente |
 | T04 | Preservar os artefatos da segmentação v1 | Antigravity | — | feita |
-| T05 | Re-extrair as três coleções com a versão final | Antigravity | T03, T04 | bloqueada (segmentação v3 em discussão; ver Registro 20:11) |
+| T05 | Re-extrair as três coleções com a versão final | Antigravity | T03, T04 | em andamento (Claude, desde 22:58; v3 a partir dos `*_v1`) |
 | T06 | Regenerar o lote `golden_v1` | Antigravity | T03 | feita (Claude) |
-| T07 | Recalcular `splits.json` e comparar | Antigravity roda, Claude analisa | T05 | aberta |
+| T07 | Recalcular `splits.json` e comparar | Antigravity roda, Claude analisa | T05 | feita: confiabilidade recalculada na v3; divisão mantida (DECISÃO confirmada pelo Pedro em 12/09, 23:55) |
 | T08 | Anotar o `golden_v1` | Pedro | T06 | feita (26 concluídas; 4 puladas por tabela) |
-| T09 | Refazer todos os números locais | Antigravity roda, Claude confere | T05, T07 | aberta |
+| T09 | Refazer todos os números locais | Antigravity roda, Claude confere | T05, T07 | em andamento (baselines na v3 feitos; os métodos aprendidos vão para o Kaggle) |
 | T10 | Conversor das APIs comerciais (Azure e Google) → formato do protocolo | Codex | — | feita (revisada) |
 | T11 | Análise de sensibilidade à segmentação | Claude | T09, T10 | aberta |
-| T12 | Kaggle: pacote, execução e importação | Antigravity prepara, Pedro executa | T09 | aberta |
+| T12 | Kaggle: pacote, execução e importação | Antigravity prepara, Pedro executa | T09 | em andamento (notebooks atualizados; pacote sai quando a T05 terminar) |
 | T13 | Atualizar resultados e apresentação | Claude | T11, T12 | aberta |
 | T14 | Extrator mais rápido com PyMuPDF (opcional) | Codex | T03 | aberta |
 | T15 | Levar as perguntas ao orientador | Pedro | — | aberta |
 | T16 | Folhas de inspeção visual das páginas-problema | Antigravity | — | feita (revisada) |
 | T17 | Ajustes da revisão da T01: `n_treino ≤ 0` e extras parciais | Codex | — | feita (verificada pelo Claude) |
+| T18 | Segmentação v3 no extrator: faixas com reatribuição, calhas locais, tabela = 1 bloco (detector), descarte de separadores, letras espaçadas | Claude implementa, Codex revisa | — | feita (3 revisões do Codex; confirmada às 22:57) |
+| T19 | Módulo de layout `src/data/layout.py`: Docling Heron offline, revisão fixada, cache por veículo | Claude | — | feita (cache das 3 coleções e dos lotes pronto; revisado junto com a T18) |
+| T20 | Projeção da ordem do Golden v1 na v3 (`src/anotacao/projetar_ordem.py`): página limpa vira referência projetada, página com conflito vai para o lote novo | Claude | T18 | feita (20 limpas, 5 conflitos, 4 sem anotação, 1 rejeitada) |
+| T21 | Lote `golden_v2`: páginas do v1 a refazer (conflito e puladas) + 20 novas (silver:12, incerto:8), já na v3 | Claude | T18, T19, T20 | feita (29 páginas, 814 blocos) |
+| T22 | Anotar o `golden_v2` | Pedro | T21 | feita (27 concluídas, 2 puladas: SP) |
+| T23 | `avaliar_golden.py` lendo v1 projetado + v2 | Claude ou Codex | T20, T21 | feita (`golden_v3`: 47 páginas; `src/anotacao/montar_referencia.py`) |
 
 ### Detalhe e critério de pronto
 
@@ -232,6 +238,116 @@ com as da seção 2.2 do handoff.
 ## Registro
 
 <!-- NOVAS ENTRADAS AQUI: insira a entrada nova logo abaixo desta linha, acima das anteriores -->
+
+### 2026-09-12 23:55 — Claude — DECISÃO — Manter a divisão treino/validação/teste na segmentação v3 (aguarda confirmação do Pedro)
+**Tarefa:** T07
+**O que fiz / o que achei:** Recalculei a concordância mediana entre fluxo do PDF e XY-cut por veículo
+sobre `data/processed/blocos` (v3). Os três veículos de teste continuam confiáveis e mais altos:
+CE 0,986 → 1,000; MA 0,902 → 0,939; RJ 0,870 → 0,851. Cinco veículos cruzam o limiar de 0,7:
+- saem do grupo confiável: PE (treino) 0,729 → 0,642 e RR (treino) 0,703 → 0,644;
+- entram: AC 0,613 → 0,751, MG 0,683 → 0,728, MS 0,531 → 0,800.
+Rodar `caracterizar.py` de novo reembaralharia os veículos confiáveis com a semente 42 e trocaria o
+teste, e aí não daria para comparar com a v1 nem aproveitar o grupo `silver` do Golden.
+**Proposta:** manter `splits.json` como está e reportar essa tabela como análise de sensibilidade.
+O Golden confirma a referência onde ela importa: no grupo `silver` do `golden_v3`, o fluxo concorda
+com o humano com τ 0,925 (p10 0,814; 21 páginas).
+**Evidência:** teste com 89 páginas na v3, contra 95 na v1: 6 páginas saíram pelo filtro de 3 blocos
+(CE 4, MA 2), páginas quase só de tabela.
+**Próximo passo / para quem:** **confirmada pelo Pedro** ("pode manter"): `splits.json` fica como está na v3.
+
+### 2026-09-12 23:55 — Claude — FEITO — `golden_v3`, avaliação no Golden, notebooks do Kaggle e LLMs novas
+**Tarefa:** T22, T23, T09, T12
+**O que fiz / o que achei:**
+- `golden_v2` anotado pelo Pedro: 27 concluídas, 2 puladas (SP, fonte miúda), 23 min.
+- `src/anotacao/montar_referencia.py` monta `data/golden/_avaliacao/golden_v3/`: `tarefas.jsonl` e
+  `referencia.jsonl` (derivado; confere o sha do extrator). São 47 páginas e 1.238 blocos: 21
+  `silver` e 26 `incerto`; 20 projetadas do v1 e 27 do v2.
+- `avaliar_golden.py` lê `referencia.jsonl`, separa por origem e grava as predições do LayoutLM no
+  Golden, para a avaliação sair completa sem o checkpoint.
+- `resultados/`: os artefatos da v1, idênticos (`cmp`) aos de `resultados_segmentacao_v1/`, foram
+  retirados. Baselines refeitos na v3, com 89 páginas de teste: XY-cut τ 0,891; ingênua 0,790;
+  aleatória −0,020.
+- `montar_pacote.py`:
+  - notebook de treino com baselines e BiLSTM na v3, avaliação das duas formulações no maior
+    treino e `golden_v3`;
+  - notebook de LLM com Qwen 3.8 27B, Gemma 4 31B e Qwen 3.6 35B (tags conferidas na biblioteca do
+    Ollama), `LIMITE_HORAS` e zip ao fim de cada modelo;
+  - pacote leva `_avaliacao/*`.
+- `importar_resultados.py` importa tudo sob `resultados/`.
+**Evidência:** `resultados/golden/_avaliacao/golden_v3/avaliacao.md`, com τ no Golden: XY-cut 0,851,
+ingênua 0,781, fluxo 0,714 (silver 0,925; incerto 0,544). As células de código dos dois notebooks
+compilam.
+
+### 2026-09-12 23:55 — Claude — ACHADO — Defeitos restantes da v3, das notas do `golden_v2` (para uma v3.1, sem mexer agora)
+**Tarefa:** nenhuma (backlog)
+**O que fiz / o que achei:**
+1. AL `DOEAL-2021-10-06-COMPLETO_87_152.pdf#p0`: a coluna esquerda inteira está desenhada como
+   curvas (2.236 curvas, nenhum caractere). É a mesma classe do texto em imagem: só OCR resolve.
+2. SE `DOE-SE_2022-03-18_4475.pdf#p15`: blocos `<@textFrameStart>`, marcação do InDesign na camada
+   de texto. Filtrar palavras `<@...>`.
+3. Duque de Caxias: o detector juntou duas tabelas de baixo numa só.
+4. RJ Legislativo p3: ainda sobra um bloco sobreposto (posição 28).
+5. CE `do20250505p03.pdf#p66` e MA suplemento: em listas de nomes, o agrupamento das linhas é
+   inconsistente (o Pedro alerta para o efeito em RAG).
+6. SP (duas páginas puladas): fonte miúda e lista longa continuam ruins.
+7. Japeri (piloto de RI): 9 de 269 páginas saíram pelo filtro de 3 blocos na v3. Para RI, o filtro
+   deveria aceitar página com 1 ou 2 blocos (tabela inteira), senão o texto some do índice.
+**Próximo passo / para quem:** decidir depois do Kaggle; nenhum muda os experimentos em curso.
+
+### 2026-09-12 23:00 — Claude — FEITO — T18 confirmada pelo Codex; T05 iniciada
+**Tarefa:** T18, T05
+**O que fiz / o que achei:** A confirmação do Codex (despacho das 22:52, só leitura) deu os cinco
+itens como resolvidos: página girada com CropBox diferente vira falha; calhas nas duas ordens;
+empate entre texto exato e substring; cauda UTF-8 cortada; par de letras com caixa mista. Ele achou
+ainda um defeito menor, de rastreabilidade: falha de renderização já gravada no cache passava em
+silêncio. Corrigido: `garantir_cache` avisa, e a bancada grava `layout.paginas_sem_layout`. Página
+do AC que o PDFium não abre (`executive_official_diary_2024-03-03.pdf#p0`) registrada como falha;
+ela sai sem tabelas, com `stats.layout = false`.
+**Evidência:**
+- Bancada final (`resultados/avaliacao_segmentacao_v3.json`): 44 páginas, 33,0 blocos/pág, 2,7%
+  sobrepostos, 7,2% de 1 palavra, 0 rejeitadas, maior bloco 1.769 palavras (tabela).
+- Determinismo: `processar_paginas` com 1 e com 3 processos dá registros idênticos, e iguais ao
+  `golden_v2` gravado (8 páginas conferidas).
+- Nenhuma das 4.112 páginas do cache é girada nem tem CropBox diferente da MediaBox.
+- T05: B preservada em `data/processed/blocos_b/` e `blocos_ri_japeri_b/`. Sequência:
+  `reextrair.py --entrada data/processed/<col>_v1 --saida data/processed/<col> --workers 4` para
+  `blocos`, `blocos_ri_japeri` e `blocos_extra`; cópia da qualidade em
+  `resultados/qualidade_segmentacao_v3_<col>.json`. Primeira coleção: 767 tabelas em 346 de 777 páginas.
+**Próximo passo / para quem:** quando a T05 terminar: conferir as páginas perdidas pelo filtro e
+então T07 (splits) → T09 → T23 → T12 (Kaggle). Pedro: anotar o `golden_v2` (T22).
+
+### 2026-09-12 22:55 — Claude — FEITO — Segmentação v3, detector de tabelas, projeção do Golden v1 e lote `golden_v2`
+**Tarefa:** T18, T19, T20, T21 (plano do Pedro: commit, extrator novo, refazer o que precisa, mais páginas, depois Kaggle)
+**O que fiz / o que achei:**
+- Commit `3074213` no branch novo `golden-v1-e-segmentacao` (sem push), autorizado pelo Pedro.
+- `src/data/extrator.py` (v3): `_juntar_letras_espacadas`, `_reatribuir_faixas`, `_cortes_locais`,
+  `segmentar(ws, tabelas)` com `_bloco_tabela` e descarte de bloco sem letra nem dígito,
+  `processar_pagina(..., tabelas, palavras)`, `processar_paginas`. Bloco de tabela sai com
+  `"tipo": "tabela"`; `stats` ganha `n_tabelas` e `layout`.
+- `src/data/layout.py` (novo): Docling Heron, revisão `8f39ad3c`, só do cache local; cache em
+  `data/processed/layout/` com `bbox_imagem` e `escala`; falha de renderização registrada.
+- `src/anotacao/projetar_ordem.py` (novo); `preparar_lote.py` segmenta na hora e aceita
+  `--refazer-de`; `reextrair.py` e `avaliar_segmentacao.py` usam o cache de layout.
+- Ferramenta de anotação: caixa de tabela com contorno verde; regra 6 do `GUIA_ANOTACAO.md`.
+- **Revisões do Codex** (despachos 22:05 e 22:27, só leitura) acharam 6 + 4 defeitos, todos com
+  reprodução; todos corrigidos. O mais grave: página cuja imagem não começa em (0, 0) (SP, MediaBox
+  com y = 50) tinha as tabelas deslocadas; o cache antigo foi apagado e refeito. Página girada
+  com CropBox diferente vira falha registrada (0 de 4.112 páginas medidas). Confirmação final
+  despachada às 22:52.
+**Evidência:**
+- Custo: a segmentação nova leva 0,49 s nas 30 páginas do Golden, contra 0,32 s da anterior; o tempo
+  da bancada é do pdfplumber (o Codex mediu `dedupe_chars` como gargalo).
+- Projeção (`data/golden/golden_v1/derivados/projecao_v3.jsonl`): 20 limpas, 5 conflitos (RJ ×3,
+  Duque de Caxias, Barra do Piraí), 4 sem anotação, 1 rejeitada (CE p11: tabela + cabeçalho = 2 blocos).
+- `data/golden/golden_v2/`: 29 páginas (9 a refazer, silver 12, incerto 8), 814 blocos, 12 com
+  tabela; `derivados/palavras_por_bloco.jsonl` gravado. Nenhuma anotação ainda.
+- Cache de layout: 4.022 páginas das três coleções `*_v1` em 478 s na GPU, 5.521 tabelas; uma página
+  do AC não abre no PDFium (`executive_official_diary_2024-03-03.pdf#p0`).
+- Bancada v3 anterior às revisões (44 páginas): 33,3 blocos/pág, 2,5% sobrepostos, 6,8% de 1 palavra,
+  0 rejeitadas (antes 48,8 / 5,9% / 21,5% / 1); sem layout: 47,8 / 4,0% / 22,8% / 1. Números finais
+  em `resultados/avaliacao_segmentacao_v3.json` quando a rodada atual terminar.
+**Próximo passo / para quem:** Pedro anota o `golden_v2` (T22). Com a confirmação do Codex, T05
+(re-extração, Antigravity) → T07 → T09 → T23 → T12 (Kaggle).
 
 ### 2026-09-12 20:11 — Claude — ACHADO — Notas do Golden: causas dos erros de segmentação e protótipo
 **Tarefa:** T08 (fechada pelo Pedro) e segmentação (proposta, aguarda decisão do Pedro)

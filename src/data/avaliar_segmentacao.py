@@ -140,7 +140,7 @@ def processar_pdf_ao_vivo(tarefa):
     """Worker de um PDF; fica no topo do modulo para funcionar no spawn do Windows."""
     import pdfplumber
 
-    uf, arquivo, pedidos = tarefa
+    uf, arquivo, pedidos, tabelas = tarefa          # tabelas: page_id -> caixas, ou None (sem layout)
     saida, tempos, erros = {}, [], {}
     caminho = os.path.join(RAW, uf, *arquivo.split("/"))
     try:
@@ -148,7 +148,8 @@ def processar_pdf_ao_vivo(tarefa):
             for modelo in pedidos:
                 t0 = time.perf_counter()
                 try:
-                    blocos = segmentar(palavras_da_pagina(pdf.pages[modelo["pagina"]]))
+                    blocos = segmentar(palavras_da_pagina(pdf.pages[modelo["pagina"]]),
+                                       None if tabelas is None else tabelas.get(modelo["page_id"], []))
                     tempos.append((time.perf_counter() - t0) * 1000)
                     if MIN_BLOCOS <= len(blocos) <= MAX_BLOCOS:
                         saida[modelo["page_id"]] = pagina_de_blocos(modelo, blocos)
@@ -162,12 +163,14 @@ def processar_pdf_ao_vivo(tarefa):
     return saida, tempos, erros
 
 
-def processar_ao_vivo(modelos, workers):
+def processar_ao_vivo(modelos, workers, tabelas=None):
     saida, tempos, erros = {}, [], {}
     por_pdf = defaultdict(list)
     for modelo in modelos:
         por_pdf[(modelo["uf"], modelo["arquivo"])].append(modelo)
-    tarefas = [(uf, arquivo, pedidos) for (uf, arquivo), pedidos in sorted(por_pdf.items())]
+    tarefas = [(uf, arquivo, pedidos, None if tabelas is None else {m["page_id"]: tabelas.get(m["page_id"], [])
+                                                                  for m in pedidos})
+               for (uf, arquivo), pedidos in sorted(por_pdf.items())]
     with Pool(min(workers, len(tarefas))) as pool:
         for n, (regs, ts, errs) in enumerate(pool.imap_unordered(processar_pdf_ao_vivo, tarefas), 1):
             saida.update(regs)
@@ -194,6 +197,8 @@ def main():
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--workers", type=int, default=min(8, max(1, (os.cpu_count() or 4) - 2)))
     ap.add_argument("--saida", default=SAIDA)
+    ap.add_argument("--sem-layout", action="store_true",
+                    help="segmenta sem as regioes de tabela do detector (src/data/layout.py)")
     args = ap.parse_args()
 
     v1, versao_b = ler_colecao(DIR_V1), ler_colecao(DIR_B)
@@ -219,7 +224,20 @@ def main():
 
     print(f"[*] amostra: {len(ids)} paginas ({len(sorteadas)} sorteadas + "
           f"{len(ids) - len(sorteadas)} problemas adicionais), seed={args.seed}", flush=True)
-    atual, tempos, erros = processar_ao_vivo(modelos_lista, args.workers)
+    tabelas, t_layout = None, None
+    if not args.sem_layout:
+        from src.data import layout
+        t0 = time.time()
+        cache = layout.garantir_cache(modelos_lista, workers=min(3, args.workers))
+        tabelas = {p["page_id"]: layout.tabelas(cache[p["page_id"]]) for p in modelos_lista}
+        t_layout = round(time.time() - t0, 1)
+        print(f"[*] layout: {sum(len(v) for v in tabelas.values() if v)} tabelas em "
+              f"{sum(1 for v in tabelas.values() if v)} paginas ({t_layout}s)", flush=True)
+        sem_layout = sorted(p for p, v in tabelas.items() if v is None)
+        if sem_layout:
+            print(f"[!] {len(sem_layout)} paginas da amostra sem layout (falha de renderizacao), segmentadas sem "
+                  f"tabelas: {sem_layout}", flush=True)
+    atual, tempos, erros = processar_ao_vivo(modelos_lista, args.workers, tabelas)
     resumos = {
         "v1_armazenada": resumir(v1, ids),
         "b_armazenada": resumir(versao_b, ids),
@@ -240,6 +258,9 @@ def main():
         "n_amostra_sorteada": len(sorteadas),
         "page_ids": ids,
         "veiculos_na_amostra": sorted({p["uf"] for p in modelos_lista}),
+        "layout": None if tabelas is None else {"segundos_deteccao": t_layout,
+                                                "tabelas": sum(len(v) for v in tabelas.values() if v),
+                                                "paginas_sem_layout": sorted(p for p, v in tabelas.items() if v is None)},
         "fontes": resumos,
         "paginas_problema": detalhe_problemas,
     }

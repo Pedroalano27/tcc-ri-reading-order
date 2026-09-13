@@ -7,7 +7,8 @@ Gera em dist/kaggle/:
                               predicoes locais dos outros metodos. Suba como Dataset privado.
   kaggle_treino_ordem.ipynb   TREINO: as duas formulacoes do LayoutLM, a curva de aprendizado,
                               as ablacoes e a varredura do limiar de decodificacao.
-  kaggle_llm_ordem.ipynb      LLMs de 7B a 32B via Ollama, no teste e nas paginas anotadas.
+  kaggle_llm_ordem.ipynb      LLMs abertas recentes (Qwen 3.8 27B, Gemma 4 31B, Qwen 3.6 35B) via
+                              Ollama, no teste e no golden_v3.
 
 Os dois notebooks tambem sao copiados para notebooks/. Cada um roda sozinho por ate 12 h
 com "Save & Run All (Commit)"; rode o de treino primeiro, porque o de LLM aproveita os
@@ -35,7 +36,7 @@ from src.eval.protocolo import arquivos_paginas_ausentes
 DIST = os.path.join(RAIZ, "dist", "kaggle")
 NOME_ZIP = "tcc_ordem_leitura.zip"
 
-REQUISITOS = "ollama>=0.4\nsacrebleu>=2.3\n"   # torch, transformers e scipy ja vem na imagem do Kaggle
+REQUISITOS = "ollama>=0.5\nsacrebleu>=2.3\n"   # torch, transformers e scipy ja vem na imagem do Kaggle
 
 LEIAME = """Pacote do TCC (ordem de leitura em Diarios Oficiais) para o Kaggle.
 Adicione este dataset aos notebooks (Add Input) e rode primeiro kaggle_treino_ordem.ipynb,
@@ -72,29 +73,37 @@ def rodar(cmd, mostrar=True, ultimas_n=3):
     print(f"  [{time.time() - t0:.0f} s, codigo {codigo}]", flush=True)
     return codigo
 
+def zipar():
+    \"\"\"Empacota resultados/ em /kaggle/working/resultados_kaggle.zip. Chamado ao fim e depois de cada
+    etapa longa: se a sessao estourar as 12 h, o que ja terminou nao se perde.\"\"\"
+    import zipfile
+    destino = "/kaggle/working/resultados_kaggle.zip"
+    with zipfile.ZipFile(destino, "w", zipfile.ZIP_DEFLATED) as z:
+        for arq in glob.glob("resultados/**/*", recursive=True):
+            if os.path.isfile(arq) and not arq.endswith(".pt"):
+                z.write(arq)
+        for arq in glob.glob("models/layoutlm_ordem/*_config.json"):
+            z.write(arq)
+        for arq in glob.glob("docs/figuras/*.png"):
+            z.write(arq)
+        for arq in glob.glob("/kaggle/working/*.log"):
+            z.write(arq, "logs/" + os.path.basename(arq))
+    print("Pronto:", destino, f"({os.path.getsize(destino) / 2**20:.1f} MB). Baixe na aba Output.")
+
+INICIO_SESSAO = time.time()
 print("Projeto em", PROJ)
 !nvidia-smi --query-gpu=name,memory.total --format=csv"""
 
-ZIPAR = """import zipfile
-destino = "/kaggle/working/resultados_kaggle.zip"
-with zipfile.ZipFile(destino, "w", zipfile.ZIP_DEFLATED) as z:
-    for arq in glob.glob("resultados/**/*", recursive=True):
-        if os.path.isfile(arq) and not arq.endswith(".pt"):
-            z.write(arq)
-    for arq in glob.glob("models/layoutlm_ordem/*_config.json"):
-        z.write(arq)
-    for arq in glob.glob("docs/figuras/*.png"):
-        z.write(arq)
-    for arq in glob.glob("/kaggle/working/*.log"):
-        z.write(arq, "logs/" + os.path.basename(arq))
-print("Pronto:", destino, f"({os.path.getsize(destino) / 2**20:.1f} MB). Baixe na aba Output.")"""
+ZIPAR = """zipar()"""
 
 TREINO = [
     ("markdown", """# Treino na GPU do Kaggle: a formulação de sucessor e a curva de aprendizado
 
 Roda o que é pesado demais para a RTX 4050 de 6 GB, com o **mesmo protocolo** do projeto
-(mesmas páginas, mesma referência, blocos embaralhados pela mesma permutação):
+(mesmas páginas, mesma referência, blocos embaralhados pela mesma permutação), sobre a
+**segmentação v3** (tabela = um bloco, calhas locais; `docs/METODOLOGIA.md` 3.3.2):
 
+0. **métodos não aprendidos e BiLSTM** refeitos na segmentação v3 (minutos);
 1. **curva de aprendizado** das duas formulações do LayoutLM — a pontual (um escore por bloco)
    e a de **sucessor** (prevê qual bloco vem depois), em 5 tamanhos de treino;
 2. **ablações** da formulação de sucessor: sem o viés geométrico, sem a perda auxiliar de
@@ -102,7 +111,11 @@ Roda o que é pesado demais para a RTX 4050 de 6 GB, com o **mesmo protocolo** d
 3. **varredura do limiar de decodificação**, que regula quanto o modelo confia nas cadeias
    locais antes de recorrer à ordem global;
 4. **latência de todos os métodos no mesmo hardware**, para a comparação de eficiência ser justa;
-5. **avaliação contra a anotação humana**, se o lote do Golden Dataset já estiver anotado.
+5. **avaliação contra a anotação humana** no `golden_v3`: 47 páginas (20 do `golden_v1` com a
+   ordem projetada para a v3 e 27 anotadas direto no `golden_v2`).
+
+Os resultados da segmentação v1 ficam no projeto, em `resultados_segmentacao_v1/`, para a
+comparação da evolução.
 
 **Antes de rodar**
 1. *Settings* → *Accelerator*: **GPU T4 x2** · *Internet*: **On** (o LayoutLM base vem do Hugging Face).
@@ -117,7 +130,7 @@ MODELOS = ["layoutlm_sucessor", "layoutlm"]   # a formulacao nova primeiro, caso
 MICRO_BATCH = 12         # a T4 tem 16 GB; o batch EFETIVO continua 8 (acumulacao), so muda a velocidade
 ABLACOES = True          # sem vies geometrico / sem perda de posicao / sem layout 2D
 LIMIARES = [0.0, 0.3, 0.5, 0.7, 0.9]     # varredura do limiar da cadeia (so avaliacao, custa segundos)
-LOTE_GOLDEN = "golden_v1"
+LOTE_GOLDEN = "_avaliacao/golden_v3"     # conjunto de avaliacao montado por src/anotacao/montar_referencia.py
 GUARDAR_CHECKPOINT = True                # salva o melhor modelo em /kaggle/working para baixar (~450 MB)"""),
 
     ("code", PREPARO),
@@ -125,17 +138,31 @@ GUARDAR_CHECKPOINT = True                # salva o melhor modelo em /kaggle/work
     ("code", """# Latencia de ingenua, XY-cut, BiLSTM e LayoutLM NESTA maquina, com o mesmo roteiro de medicao
 rodar([sys.executable, "src/eval/latencia_hardware.py", "--maquina", "kaggle_t4"])"""),
 
+    ("code", """# Metodos nao aprendidos e as tres variantes da BiLSTM na segmentacao v3 (minutos)
+rodar([sys.executable, "src/eval/baselines.py"], mostrar=False)
+for variante in ["geo", "texto", "geo_texto"]:
+    rodar([sys.executable, "src/models/lstm_ordem.py", "--variante", variante], mostrar=False)
+zipar()"""),
+
     ("code", """# Curva de aprendizado das duas formulacoes. E a parte longa: ~1 h por modelo na T4.
 rodar([sys.executable, "src/rodar_curva_aprendizado.py", "--modelos", *MODELOS, "--tamanhos", *TAMANHOS,
        "--sem-lstm", "--micro-batch", MICRO_BATCH])
-print(open("resultados/curva_aprendizado/curva.json").read()[:400])"""),
+print(open("resultados/curva_aprendizado/curva.json").read()[:400])
+zipar()"""),
 
     ("code", """# O maior treino que a curva de fato usou, e o checkpoint que ele deixou
 N_MAIOR = json.load(open("resultados/curva_aprendizado/curva.json"))["tamanhos"][-1]
 CKPT = f"curva_layoutlm_sucessor_n{N_MAIOR}"
 if not os.path.exists(f"models/layoutlm_ordem/{CKPT}.pt"):
     CKPT = "layoutlm_sucessor"      # a curva nao chegou ao fim; cai para o treino padrao
-print("maior treino:", N_MAIOR, "paginas | checkpoint:", CKPT)"""),
+CKPT_PONTUAL = f"curva_layoutlm_n{N_MAIOR}"
+print("maior treino:", N_MAIOR, "paginas | checkpoints:", CKPT, CKPT_PONTUAL)
+# as duas formulacoes no maior treino entram na tabela principal (resultados/pred_*.jsonl)
+if os.path.exists(f"models/layoutlm_ordem/{CKPT_PONTUAL}.pt"):
+    rodar([sys.executable, "src/models/layoutlm_ordem.py", "avaliar", "--nome", CKPT_PONTUAL], mostrar=False)
+if os.path.exists(f"models/layoutlm_ordem/{CKPT}.pt"):
+    rodar([sys.executable, "src/models/layoutlm_sucessor.py", "avaliar", "--nome", CKPT,
+           "--metodo", "layoutlm_sucessor"], mostrar=False)"""),
 
     ("code", """# Ablacoes da formulacao de sucessor, no maior treino: o que cada peca do modelo contribui
 VARIANTES = [(["--sem-vies-geo"], "ablacao_suc_sem_vies_geo", "sem o MLP de geometria relativa"),
@@ -159,12 +186,12 @@ for lim in LIMIARES:
 rodar([sys.executable, "src/models/layoutlm_sucessor.py", "avaliar", "--nome", CKPT,
        "--decodificacao", "feixe", "--metodo", "layoutlm_sucessor_feixe"], mostrar=False)"""),
 
-    ("code", """# Contra a anotacao humana, se o lote ja estiver anotado
-if os.path.exists(f"data/golden/{LOTE_GOLDEN}/anotacoes.jsonl"):
+    ("code", """# Contra a anotacao humana (golden_v3)
+if os.path.exists(f"data/golden/{LOTE_GOLDEN}/referencia.jsonl"):
     rodar([sys.executable, "src/eval/avaliar_golden.py", "--lote", LOTE_GOLDEN,
-           "--layoutlm", "layoutlm", "--sucessor", CKPT])
+           "--layoutlm", CKPT_PONTUAL, "--sucessor", CKPT])
 else:
-    print(f"Lote {LOTE_GOLDEN} ainda sem anotacoes.jsonl -- anote no projeto e refaca o pacote.")"""),
+    print(f"{LOTE_GOLDEN} sem referencia.jsonl -- rode src/anotacao/montar_referencia.py e refaca o pacote.")"""),
 
     ("code", """# Tabela final com tudo o que existe: baselines, as duas formulacoes, ablacoes e limiares
 rodar([sys.executable, "src/eval/comparar.py"])
@@ -181,9 +208,15 @@ if GUARDAR_CHECKPOINT:
 LLM = [
     ("markdown", """# LLMs na GPU do Kaggle: ordem de leitura em Diários Oficiais
 
-Roda as LLMs do TCC nas **mesmas páginas e com o mesmo protocolo** dos outros métodos
-(blocos embaralhados, mesma referência, mesmas métricas), no teste e nas páginas anotadas
-à mão, e registra a latência por página na mesma máquina.
+Roda LLMs abertas recentes nas **mesmas páginas e com o mesmo protocolo** dos outros métodos
+(blocos embaralhados, mesma referência, mesmas métricas), na **segmentação v3**, no teste (89
+páginas) e no `golden_v3` (47 páginas anotadas à mão), e registra a latência por página.
+
+Modelos (biblioteca do Ollama, setembro de 2026), todos com o raciocínio desligado, para a
+comparação ser com a mesma saída direta: **Qwen 3.8 27B** (18 GB), **Gemma 4 31B** (20 GB) e
+**Qwen 3.6 35B** (23 GB, mistura de especialistas, a mais rápida). Cada um é dividido entre as
+duas T4. Se as 12 horas não bastarem, a execução não começa o que não cabe (`LIMITE_HORAS`) e o
+que já terminou fica no zip; rode de novo só com os modelos que faltaram.
 
 Rode **depois** de `kaggle_treino_ordem.ipynb`: a tabela final fica completa se as predições
 daquele notebook já estiverem no projeto.
@@ -198,9 +231,10 @@ daquele notebook já estiverem no projeto.
    `venv\\Scripts\\python.exe src\\kaggle\\importar_resultados.py resultados_kaggle.zip`."""),
 
     ("code", """# ===== CONFIGURACAO =====
-MODELOS = ["qwen2.5:7b", "qwen2.5:14b", "qwen2.5:32b"]  # rodam nesta ordem; o 32b ocupa as duas T4
+MODELOS = ["qwen3.8:27b", "gemma4:31b", "qwen3.6:35b"]  # rodam nesta ordem, divididos entre as duas T4
 FEW_SHOT = [0, 2]        # 0 = zero-shot; 2 = dois exemplos resolvidos (paginas de TREINO) no prompt
-PARTICOES = ["teste", "golden:golden_v1"]  # teste = 95 paginas do protocolo; golden = anotacao humana
+PARTICOES = ["teste", "golden:_avaliacao/golden_v3"]  # teste = 89 paginas do protocolo; golden_v3 = 47 anotadas
+LIMITE_HORAS = 10.5      # nao comeca uma rodada nova depois disso (a sessao do Kaggle cai em 12 h)
 MAX_BLOCOS = 200         # 200 = todas as paginas
 APAGAR_MODELO_APOS_USO = True   # libera o disco antes de baixar o proximo modelo
 # Modelos com raciocinio (qwen3, deepseek-r1) rodam com o raciocinio desligado (--sem-pensar)."""),
@@ -227,25 +261,33 @@ else:
     ("code", """# Latencia de ingenua, XY-cut, BiLSTM e LayoutLM NESTA maquina, com o mesmo roteiro de medicao
 rodar([sys.executable, "src/eval/latencia_hardware.py", "--maquina", "kaggle_t4"])"""),
 
-    ("code", """RACIOCINIO = ("qwen3", "deepseek-r1", "magistral")
+    ("code", """RACIOCINIO = ("qwen3", "deepseek-r1", "magistral", "gemma4", "gpt-oss")   # qwen3 cobre qwen3.6 e qwen3.8
+horas = lambda: (time.time() - INICIO_SESSAO) / 3600
 for modelo in MODELOS:
+    if horas() > LIMITE_HORAS:
+        print(f"[!] {horas():.1f} h de sessao: {modelo} fica para a proxima execucao")
+        continue
     if rodar(["ollama", "pull", modelo], mostrar=False) != 0:
         print(f"[!] falha ao baixar {modelo}; pulando")
         continue
     for fs in FEW_SHOT:
         for particao in PARTICOES:
+            if horas() > LIMITE_HORAS:
+                print(f"[!] {horas():.1f} h de sessao: {modelo} few-shot {fs} em {particao} fica de fora")
+                continue
             cmd = [sys.executable, "src/eval/llm_ordem.py", "--modelo", modelo, "--few-shot", str(fs),
                    "--particao", particao, "--max-blocos", str(MAX_BLOCOS), "--retomar"]
             if modelo.startswith(RACIOCINIO):
                 cmd.append("--sem-pensar")
             rodar(cmd)
     if APAGAR_MODELO_APOS_USO:
-        rodar(["ollama", "rm", modelo], mostrar=False)"""),
+        rodar(["ollama", "rm", modelo], mostrar=False)
+    zipar()"""),
 
     ("code", """# Tabela completa: metodos locais (LayoutLM, XY-cut...) + as LLMs que acabaram de rodar, nas mesmas paginas
 rodar([sys.executable, "src/eval/comparar.py"])
-if os.path.exists(f"data/golden/golden_v1/anotacoes.jsonl"):
-    rodar([sys.executable, "src/eval/avaliar_golden.py", "--lote", "golden_v1"])"""),
+if os.path.exists("data/golden/_avaliacao/golden_v3/referencia.jsonl"):
+    rodar([sys.executable, "src/eval/avaliar_golden.py", "--lote", "_avaliacao/golden_v3", "--layoutlm", "--sucessor"])"""),
 
     ("code", ZIPAR),
 ]
@@ -321,6 +363,9 @@ def main():
         arquivos += arquivos_colecao
     arquivos += glob.glob(os.path.join(RAIZ, "data", "golden", "*", "tarefas.jsonl"))
     arquivos += glob.glob(os.path.join(RAIZ, "data", "golden", "*", "anotacoes.jsonl"))
+    # conjuntos de avaliacao do Golden (montar_referencia.py): e o que os notebooks avaliam
+    arquivos += glob.glob(os.path.join(RAIZ, "data", "golden", "_avaliacao", "*", "tarefas.jsonl"))
+    arquivos += glob.glob(os.path.join(RAIZ, "data", "golden", "_avaliacao", "*", "referencia.jsonl"))
     arquivos += glob.glob(os.path.join(RAIZ, "resultados", "pred_*.jsonl"))
     arquivos += glob.glob(os.path.join(RAIZ, "resultados", "comparacao.json"))
     if a.com_modelo:

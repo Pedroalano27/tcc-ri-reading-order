@@ -113,6 +113,7 @@
 
   /* camadas sobre a pagina: cores fixas, pensadas para o papel branco nos dois temas */
   #pagina .caixa { fill: rgba(224, 98, 31, .06); stroke: #d9591b; stroke-width: 1.3; stroke-dasharray: 4 3; vector-effect: non-scaling-stroke; }
+  #pagina .caixa.tabela { fill: rgba(28, 138, 82, .07); stroke: #1c8a52; stroke-width: 2; stroke-dasharray: 7 3; }
   #pagina .caixa.num { fill: rgba(31, 111, 209, .12); stroke: #1f6fd1; stroke-dasharray: none; }
   #pagina .caixa.ultimo { fill: rgba(31, 111, 209, .26); stroke-width: 2.4; }
   #pagina .caixa.foco { fill: rgba(242, 183, 5, .30); stroke: #b98a00; stroke-dasharray: none; stroke-width: 2; }
@@ -242,7 +243,7 @@
         <li>Clique num bloco já numerado para cortar a sequência a partir dele. <kbd>Z</kbd> desfaz.</li>
         <li>Cabeçalho do diário primeiro; rodapé e número da página por último.</li>
         <li>Colunas: a da esquerda inteira, depois a próxima. Um título que atravessa as colunas separa seções: leia o que está acima dele, coluna por coluna, depois o título, depois o que vem abaixo.</li>
-        <li>Tabela: linha por linha. Marque “Tem tabela”.</li>
+        <li>Tabela: vem como uma caixa só, de contorno verde. Numere-a onde a tabela é lida. Se vier picada, linha por linha. Marque “Tem tabela”.</li>
         <li>Na dúvida, escolha a leitura mais natural e marque “Ordem ambígua”.</li>
         <li>Tudo é salvo sozinho. Atalhos: <kbd>Enter</kbd> conclui · <kbd>←</kbd> <kbd>→</kbd> navegam · <kbd>+</kbd> <kbd>−</kbd> zoom · <kbd>T</kbd> trilha.</li>
       </ul>
@@ -384,7 +385,7 @@ function montarPagina(t) {
   est.blocos = t.bounding_boxes.map((c) => {
     const [x0, y0, x1r, y1r] = c.bbox;
     const x1 = Math.max(x1r, x0 + 1), y1 = Math.max(y1r, y0 + 1);
-    return { id: c.id, texto: c.text, x0, y0, x1, y1, cx: (x0 + x1) / 2, cy: (y0 + y1) / 2, area: (x1 - x0) * (y1 - y0) };
+    return { id: c.id, texto: c.text, tabela: c.tipo === "tabela", x0, y0, x1, y1, cx: (x0 + x1) / 2, cy: (y0 + y1) / 2, area: (x1 - x0) * (y1 - y0) };
   });
   est.porId = new Map(est.blocos.map((b) => [b.id, b]));
   svg.setAttribute("viewBox", `0 0 ${est.W} ${est.H}`);
@@ -400,7 +401,7 @@ function montarPagina(t) {
                                 x: 0, y: 0, width: est.W, height: est.H, preserveAspectRatio: "none" }));
   const g = el("g", {});
   for (const b of est.blocos) {
-    b.rect = el("rect", { class: "caixa", x: b.x0, y: b.y0, width: b.x1 - b.x0, height: b.y1 - b.y0 });
+    b.rect = el("rect", { class: b.tabela ? "caixa tabela" : "caixa", x: b.x0, y: b.y0, width: b.x1 - b.x0, height: b.y1 - b.y0 });
     g.appendChild(b.rect);
   }
   svg.appendChild(g);
@@ -640,7 +641,7 @@ function mostrarFoco(b) {
   const info = $("#info-hover");
   if (!b) { info.textContent = ""; return; }
   const j = est.ordem.indexOf(b.id);
-  info.textContent = (j >= 0 ? `nº ${j + 1} · clique para cortar aqui · ` : `será o nº ${est.ordem.length + 1} · `) + resumir(b.texto, 12);
+  info.textContent = (j >= 0 ? `nº ${j + 1} · clique para cortar aqui · ` : `será o nº ${est.ordem.length + 1} · `) + (b.tabela ? "tabela inteira · " : "") + resumir(b.texto, 12);
 }
 svg.addEventListener("pointerdown", (e) => {
   if (e.button !== 0 || !est.blocos.length) return;

@@ -2,7 +2,10 @@
 Avalia os metodos contra a anotacao HUMANA (Golden Dataset).
 
 Le data/golden/<lote>/tarefas.jsonl e anotacoes.jsonl (so paginas concluidas) e mede,
-contra a ordem humana:
+contra a ordem humana. --lote tambem aceita um conjunto de avaliacao montado por
+src/anotacao/montar_referencia.py (ex.: _avaliacao/golden_v3), que traz referencia.jsonl no
+lugar de anotacoes.jsonl e junta paginas anotadas direto na segmentacao atual com paginas de
+lotes anteriores projetadas para ela:
   fluxo do PDF   a referencia automatica (silver) usada em todos os resultados ate aqui.
                  No grupo 'silver', o tau dela contra o humano diz se os resultados
                  preliminares se sustentam.
@@ -18,6 +21,7 @@ Grava resultados/golden/<lote>/avaliacao.md e .json.
 
 Uso:
     python src/eval/avaliar_golden.py --lote golden_v1
+    python src/eval/avaliar_golden.py --lote _avaliacao/golden_v3 --layoutlm --sucessor
     python src/eval/avaliar_golden.py --lote golden_v1 --anotador Pedro --layoutlm layoutlm curva_n2400
 """
 from __future__ import annotations
@@ -120,8 +124,12 @@ def main():
 
     dir_lote = os.path.join(DIR_GOLDEN, a.lote)
     tarefas = {t["page_id"]: t for t in ler_jsonl(os.path.join(dir_lote, "tarefas.jsonl"))}
-    anot = [x for x in ler_jsonl(os.path.join(dir_lote, "anotacoes.jsonl")) if x["status"] == "concluida"]
-    puladas = [x for x in ler_jsonl(os.path.join(dir_lote, "anotacoes.jsonl")) if x["status"] == "pulada"]
+    # conjunto de avaliacao (montar_referencia.py) traz referencia.jsonl; lote comum, anotacoes.jsonl
+    arq_ref = os.path.join(dir_lote, "referencia.jsonl")
+    if not os.path.exists(arq_ref):
+        arq_ref = os.path.join(dir_lote, "anotacoes.jsonl")
+    anot = [x for x in ler_jsonl(arq_ref) if x["status"] == "concluida"]
+    puladas = [x for x in ler_jsonl(arq_ref) if x["status"] == "pulada"]
     if not tarefas:
         sys.exit(f"[ERRO] lote '{a.lote}' nao encontrado em {DIR_GOLDEN}")
     if not anot:
@@ -138,17 +146,21 @@ def main():
              "aleatoria": {p["page_id"]: [p["bounding_boxes"][i]["id"] for i in ordem_entrada(p)] for p in paginas},
              "naive": {p["page_id"]: p["ordens"]["naive"] for p in paginas},
              "xycut": {p["page_id"]: p["ordens"]["xycut"] for p in paginas}}
-    for nome in a.layoutlm:
-        r = prever_layoutlm(paginas, nome)
-        if r:
-            preds[nome] = r
-    for nome in a.sucessor:
-        r = prever_layoutlm(paginas, nome, sucessor=True)
-        if r:
-            preds[nome] = r
     dir_pred = os.path.join(DIR_RESULTADOS, "golden", a.lote)
+    os.makedirs(dir_pred, exist_ok=True)
+    for nome, suc in [(n, False) for n in a.layoutlm] + [(n, True) for n in a.sucessor]:
+        r = prever_layoutlm(paginas, nome, sucessor=suc)
+        if r:
+            preds[nome] = r
+            # grava as predicoes: uma avaliacao posterior (ex.: no projeto, depois de importar do
+            # Kaggle) reaproveita sem precisar do checkpoint de 450 MB
+            with open(os.path.join(dir_pred, f"pred_{nome}.jsonl"), "w", encoding="utf-8") as f:
+                for pid, ordem in r.items():
+                    f.write(json.dumps({"page_id": pid, "ordem_pred": ordem}, ensure_ascii=False) + "\n")
     for arq in sorted(glob.glob(os.path.join(dir_pred, "pred_*.jsonl"))):
         metodo = os.path.basename(arq)[5:-6]
+        if metodo in preds:          # acabou de ser calculado com o checkpoint
+            continue
         linhas = ler_jsonl(arq)
         if linhas and linhas[0].get("modelo"):
             fs = linhas[0].get("few_shot") or 0
@@ -162,13 +174,17 @@ def main():
         for m, d in preds.items():
             if p["page_id"] in d:
                 r = avaliar(d[p["page_id"]], ref, textos)
-                r.update(page_id=p["page_id"], grupo=p["grupo"], uf=p["uf"])
+                r.update(page_id=p["page_id"], grupo=p["grupo"], uf=p["uf"],
+                         origem=humano[p["page_id"]].get("origem", a.lote))
                 regs[m].append(r)
     regs = {m: v for m, v in regs.items() if v}
     grupos = sorted({p["grupo"] for p in paginas})
     geral = {m: resumir(v) for m, v in regs.items()}
     por_grupo = {g: {m: resumir([r for r in v if r["grupo"] == g]) for m, v in regs.items()
                      if any(r["grupo"] == g for r in v)} for g in grupos}
+    origens = sorted({humano[p["page_id"]].get("origem", a.lote) for p in paginas})
+    por_origem = {o: {m: resumir([r for r in v if r["origem"] == o]) for m, v in regs.items()
+                      if any(r["origem"] == o for r in v)} for o in origens} if len(origens) > 1 else {}
 
     testes = []
     try:
@@ -210,6 +226,8 @@ def main():
           "## Todas as páginas anotadas", ""] + tabela(geral)
     for g in grupos:
         md += ["", f"## Grupo `{g}`", ""] + tabela(por_grupo[g])
+    for o in por_origem:
+        md += ["", f"## Referência vinda de `{o}`", ""] + tabela(por_origem[o])
     if "fluxo_pdf" in geral:
         md += ["", "## A referência automática se sustenta?", ""]
         for g in grupos:
@@ -233,6 +251,7 @@ def main():
     os.makedirs(dir_pred, exist_ok=True)
     with open(os.path.join(dir_pred, "avaliacao.json"), "w", encoding="utf-8") as f:
         json.dump({"lote": a.lote, "anotador_referencia": principal, "geral": geral, "por_grupo": por_grupo,
+                   "por_origem": por_origem,
                    "wilcoxon_vs_xycut": testes, "concordancia": concordancia, "custo": custo,
                    "nomes": {m: NOMES.get(m, m) for m in geral}}, f, ensure_ascii=False, indent=2)
     with open(os.path.join(dir_pred, "avaliacao.md"), "w", encoding="utf-8") as f:
