@@ -302,6 +302,65 @@ tabela densa (88 dos 109 pares em 4 das 30 páginas).
 
 ---
 
+## Sessões 5 a 9 — 13/09 a 01/11/2026: panorama (resumo retroativo)
+
+Este diário ficou parado em 12/09; o detalhe desse período está nos relatórios citados. Resumo
+para a escrita do TCC:
+
+- **Golden v1–v4 e segmentação (setembro):** anotação humana de ordem em 30 + 29 + 45 páginas
+  (`docs/RELATORIO_V4.md`); três versões do segmentador; detector de tabelas (`ls3`, YOLO,
+  mAP50 0,826).
+- **Diamond (setembro/outubro):** ferramenta e lotes de anotação de segmentação
+  (`docs/GUIA_DIAMOND.md`).
+- **Representação sem caixas finas (04/10):** linhas de texto + átomos de tabela/imagem. Os
+  erros dentro das caixas caem de 213 para 29 quebras; a regra de colunas por projeção local
+  com política de margens chega a τ 0,986 e 6,05 quebras por página no golden_v4
+  (`docs/RELATORIO_NOITE_0410.md`, `resultados/erros_ponta_a_ponta.md`).
+- **Noites de 06 a 08/10:** bancada única de ordenadores (`resultados/ordenadores_sem_caixas.md`);
+  LayoutLM sucessor com 3.140 páginas (perde da regra); texto piora; extrator v2 sem efeito;
+  margens por repetição e corretor de transições não generalizam; **híbrido por densidade**
+  (LayoutReader ≤ 67 unidades) e **reordenação restrita** melhoram nas três bancadas
+  (`docs/RELATORIO_NOITE_0410.md` §8, `resultados/hibrido_regra_layoutreader.md`).
+- **Acessilia (projeto paralelo, papel de tester):** XY-cut do TCC portado para a `docstruct`
+  (PR A11yDevs/acessilia#121, mesclado em 09/10); no Dr.DocBench só a versão seletiva
+  (multicoluna) ajudou (+1,65 Reading_Order). Ver `docs/CONTEXTO_E_RECURSOS.md` §2.
+- **Data Policy (CEIA):** anotação de ordem no Label Studio e pré-anotador (sucessor 0,815;
+  0,918 com revisão do Opus). Dados não usados no TCC sem autorização.
+- **DGX Spark (27–30/10):** acesso configurado; LM causal (Qwen3-8B) pontuando 87 mil pares
+  candidatos (arXiv 2607.01018); job 1053 cancelado perto do fim.
+
+## Sessão 10 — 2026-11-02: retomada e preparação da fase intensiva
+
+**Pedido do Pedro:** retomar e acelerar o TCC, com foco em ordem de leitura; preparar toda a
+estrutura (contexto, recursos, frentes, estratégia, dependências, registro, plano de execução
+autônoma) **sem iniciar experimentos pesados**; documentar tudo para a escrita.
+
+O que foi feito:
+1. **Contexto recuperado** das transcrições locais do Claude Code (Acessilia, anotação da Data
+   Policy, sessão inicial) → `docs/CONTEXTO_E_RECURSOS.md`. Conversas do claude.ai e do ChatGPT
+   não são acessíveis por ferramenta; adotada a ponte por arquivo (`experimentos/consultas/`).
+2. **ChatGPT consultado como orientador** (duas perguntas, raciocínio alto). Decisões: priorizar
+   oráculos (P0), grafo de arestas com decodificação global e seletor por página (P1), correção
+   residual; adiar GNN/transformers; teste cego confirmatório único com bootstrap por PDF;
+   anotação simplificada como quatro hipóteses separadas (custo, qualidade, ordem, completude).
+3. **Achado:** o lote de 60 páginas que seria o teste cego está contaminado (todos os 57 PDFs já
+   aparecem em outros conjuntos; 23 páginas estão nos dados exportados). O teste cego será
+   montado com PDFs nunca tocados (E001).
+4. **Correção de registro:** o híbrido por densidade estava sendo lembrado como "sem ganho";
+   relido o relatório, é o **melhor resultado medido** (IC95 por veículo abaixo de zero nas três
+   bancadas) e passou a ser o baseline a superar.
+5. **Estrutura de pesquisa:** `experimentos/` (hipóteses, cartões, registro jsonl + tabela,
+   versões dos dados D1, histórico do que não funcionou, consultas), `src/exp/registro.py`,
+   filas de execução contínua em `orquestracao/fase_nov/` (Codex, Antigravity, comandos, Spark).
+6. **Plano:** `docs/PLANO_PESQUISA.md` (13 experimentos priorizados, protocolo congelado,
+   cronograma de 6 semanas, papéis das ferramentas, riscos). **Dependências do Pedro:**
+   `docs/DEPENDENCIAS.md`.
+7. **Respostas do Pedro (02/11):** autorizou commit e push; confirmou que a Data Policy
+   permitiu usar as anotações de ordem na pesquisa (E012 liberado; dados e predições página a
+   página continuam fora do repositório, que é público, e fora de Gemini/Antigravity/Codex);
+   liga a VPN quando a fase intensiva começar. Antes do commit, os caches regeneráveis (~3 GB)
+   foram acrescentados ao `.gitignore`.
+
 ## Problemas encontrados e soluções
 
 | Problema | Causa | Solução |
@@ -357,3 +416,9 @@ tabela densa (88 dos 109 pares em 4 das 30 páginas).
 | Corte de linha por **calha**, não por distância | Limiar de distância (versão anterior); limiar adaptado ao espaço da linha | Nenhum limiar de largura separa espaço justificado de calha estreita; a consistência vertical separa. Medido: 95% das folgas dentro de parágrafo cabem em 1,5 largura de caractere, mas a cauda ultrapassa qualquer limiar útil |
 | Manter as **duas segmentações** lado a lado | Substituir a antiga e seguir | A granularidade vira variável controlada: se o ranking dos métodos mudar entre as duas, isso é resultado, não detalhe de implementação |
 | Fragmentação **mantida** (blocos de 1 palavra) | Fundir blocos curtos vizinhos | É o que um detector real produz — o Google Document AI dá a mesma distribuição nos mesmos diários. Mexer nisso afastaria a entrada da premissa do trabalho |
+| Representação em **linhas + átomos de tabela/imagem** (04/10) | Caixas de parágrafo | Os erros internos às caixas (213 quebras) caem para 29; a ordem passa a depender só de relações entre linhas |
+| **Híbrido por densidade como baseline** da fase de novembro (02/11) | Regra de colunas como único baseline | É o único resultado com IC95 por veículo abaixo de zero nas três bancadas |
+| **Teste cego novo, de PDFs nunca tocados** (02/11) | Reaproveitar o lote de 60 páginas | O lote estava contaminado (PDFs em outros conjuntos); sem teste cego não há conclusão confirmatória |
+| **Uma única avaliação confirmatória**, bootstrap por PDF (02/11) | Testes de significância a cada rodada | Desenvolvimento é exploratório; repetir testes no mesmo conjunto infla falsos positivos (recomendação do ChatGPT, consulta 01) |
+| **Oráculos antes de treinar** (02/11) | Treinar direto um grafo/GNN | Três variantes já "ganharam" só no ajuste; o teto de cada família diz onde vale investir |
+| **Dados da Data Policy no TCC, sem publicar** (02/11) | Não usar; ou publicar junto | Uso autorizado pelo projeto parceiro; o repositório é público, então só entram números agregados |

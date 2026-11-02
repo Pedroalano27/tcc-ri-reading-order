@@ -1,5 +1,9 @@
 # Handoff do projeto — estado em 2026-09-12
 
+> **Retomada do Claude:** leia [HANDOFF_CODEX_0410.md](HANDOFF_CODEX_0410.md), com o trabalho desta sessão, resultados e pendências.
+
+> **Adendo de 04/10/2026 — Codex:** há duas versões experimentais sem caixas de parágrafo em `resultados/datasets_sem_caixas/`, exportadas por `src/data/dataset_sem_caixas_finas.py`. Leia `LEIAME.md`, `manifesto.json` e `RELATORIO.md` nessa pasta antes de usar. Não substituem os datasets oficiais; avaliação com LayoutReader pré-treinado, sem novo treino. Comparador visual das 45 tarefas, com v3/v4/linhas/colunas: `resultados/comparador_golden_v4/index.html` (gerador `src/data/comparador_golden_v4.py`). Variante adicional de margens/quadros em `resultados/estruturas_golden_v4/`, disponível no mesmo comparador; ainda sem reavaliação de ordenação. O corpo histórico abaixo continua datado de setembro.
+
 Documento de passagem de bastão para qualquer agente de IA (Codex, Antigravity, uma nova
 sessão do Claude) ou pessoa que entre no projeto agora. Escrito pelo Claude ao fim da
 sessão 4.

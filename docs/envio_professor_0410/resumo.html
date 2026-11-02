@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<title>Ordem de leitura sem caixas finas — resultados de 02 a 04/10/2026</title>
+<style>
+@page { size: A4; margin: 14mm 15mm; }
+body { font: 10.6pt/1.42 "Segoe UI", Arial, sans-serif; color: #111827; max-width: 180mm; margin: 0 auto; }
+h1 { font-size: 17pt; margin: 0 0 2pt; }
+h2 { font-size: 12.5pt; margin: 14pt 0 4pt; border-bottom: 1px solid #d1d5db; padding-bottom: 2pt; break-after: avoid; }
+p { margin: 4pt 0; } ul, ol { margin: 4pt 0; padding-left: 16pt; } li { margin: 2pt 0; }
+.sub { color: #4b5563; font-size: 9.5pt; margin-bottom: 8pt; }
+.caixa { background: #f3f4f6; border-left: 3px solid #16a34a; padding: 6pt 9pt; margin: 8pt 0; }
+table { border-collapse: collapse; width: 100%; margin: 6pt 0; font-size: 9.6pt; break-inside: avoid; }
+th, td { border-bottom: 1px solid #e5e7eb; padding: 3pt 5pt; text-align: right; }
+th:first-child, td:first-child { text-align: left; }
+th { border-bottom: 1.5px solid #6b7280; font-weight: 600; }
+tr.dest td { font-weight: 700; background: #f0fdf4; }
+figure { margin: 8pt 0; break-inside: avoid; text-align: center; } figure img { width: 100%; border: 1px solid #e5e7eb; }
+figure.pag img { width: 80%; } figcaption { text-align: left; }
+figcaption { font-size: 9pt; color: #374151; margin-top: 2pt; }
+.leg span { display: inline-block; width: 9pt; height: 9pt; margin: 0 3pt 0 8pt; vertical-align: -1pt; }
+.fontes { font-size: 8.4pt; color: #4b5563; }
+code { font-size: 8.6pt; }
+</style></head><body>
+<h1>Ordem de leitura sem caixas finas de texto</h1>
+<div class="sub">Resultados de 02 a 04/10/2026 · Pedro Alano · TCC INF-UFG · para o Prof. Thierson Couto Rosa</div>
+
+<div class="caixa"><b>Resumo.</b> Deixar de dividir o texto em caixas de parágrafo (só tabela e imagem viram bloco; o
+texto é organizado em colunas) reduziu as quebras de leitura de 16,1 para
+7,3 por página nas 71 páginas com ordem anotada. A maior parte desse ganho
+(71%) também aparece mantendo as caixas e apenas tratando cabeçalho e rodapé à parte
+(9,9 por página); entre essas duas alternativas a diferença ainda não é
+estatisticamente clara, mas a proposta quase elimina os erros que nascem dentro das caixas
+(213 → 29).</div>
+
+<h2>1. A representação</h2>
+<p>Hoje o extrator divide a página em caixas finas (parágrafos, títulos, assinaturas) e o ordenador decide a sequência
+das caixas. Na proposta, apenas tabelas e imagens são detectadas como blocos; o resto do texto fica inteiro e é
+organizado em faixas de coluna pelas calhas verticais da página. Cabeçalho, rodapé e quadros institucionais são
+separados antes de formar as colunas. Nas 45 páginas do Golden v4 isso troca 1.173 caixas
+(26 por página) por 372 unidades (8 por página):
+106 faixas de texto, 131 tabelas e imagens, 134 trechos de
+cabeçalho ou rodapé e 1 quadro institucional.</p>
+<figure class="pag"><img src="fig_caixas_rj.png">
+<figcaption>Diário Oficial do RJ, Poder Legislativo, 06/02/2024. Nesta página o pipeline com caixas finas entrega
+96 quebras de leitura (96 com a política de margens) e a proposta, 51.
+<span class="leg"><span style="background:#0284c7"></span>texto<span style="background:#d97706"></span>tabela<span
+style="background:#be185d"></span>imagem<span style="background:#16a34a"></span>cabeçalho e rodapé<span
+style="background:#7c3aed"></span>quadro institucional</span></figcaption></figure>
+
+<h2>2. Erros que chegam ao texto final</h2>
+<p>Comparação entre pipelines totalmente automáticos (nenhum recebe caixa, classe ou ordem humana), em
+71 páginas de 27 veículos com ordem de leitura anotada (59.949 palavras).
+<b>Quebra de leitura</b>: ponto da saída em que a palavra seguinte não é a palavra seguinte na leitura humana.</p>
+<table><tr><th>Pipeline</th><th>Quebras por página</th><th>τ de palavras</th><th>Sucessor de linhas</th>
+<th>Trechos de 12 palavras intactos</th><th>Quebras dentro de uma unidade</th></tr>
+<tr><td>Ordem ingênua (cima para baixo, esquerda para direita)</td><td>85,5</td><td>0,759</td><td>50,8%</td><td>56,2%</td><td>—</td></tr>
+<tr><td>Caixas finas + XY-cut (pipeline atual)</td><td>16,1</td><td>0,830</td><td>85,7%</td><td>87,5%</td><td>213</td></tr>
+<tr><td>Caixas finas + XY-cut + política de margens</td><td>9,9</td><td>0,947</td><td>91,2%</td><td>92,3%</td><td>213</td></tr>
+<tr class="dest"><td>Sem caixas finas (proposta)</td><td>7,3</td><td>0,976</td><td>92,1%</td><td>94,1%</td><td>29</td></tr>
+</table>
+<figure><img src="fig_erros.png"><figcaption>Médias por página com intervalo de 95% (bootstrap por veículo).</figcaption></figure>
+<ul>
+<li><b>Contra o pipeline atual:</b> −8,9 quebras por página [IC 95% −13,1; −4,9],
+55% a menos (Wilcoxon por veículo com correção de Holm, p = 0,010). Melhora em
+38 páginas, empata em 13 e piora em 20.</li>
+<li><b>Contra o atual com margens:</b> −2,6 quebras por página [IC 95% −5,8; 0,2],
+27% a menos na média, mas o intervalo inclui zero (p por veículo = 0,91). A proposta
+melhora em 14 páginas, empata em 29 e piora em 28: o ganho médio vem de
+poucas páginas densas em que as caixas finas erram muito (as cinco maiores somam 230 quebras a menos, para um saldo
+total de 186).</li>
+<li><b>Erros que nenhuma reordenação conserta</b> (já estão dentro de uma caixa ou unidade):
+213 no pipeline atual contra 29 na proposta.</li>
+<li><b>De onde vêm as quebras do pipeline atual:</b> das 1.146 quebras, 226
+(20%) são associadas às caixas (197 em caixas que fundem dois trechos,
+13 em caixas partidas e 16 de ordem dentro da caixa); 442
+(39%) somem só com a política de margens, isto é, eram cabeçalho ou rodapé fora do lugar; as
+outras 478 (42%) são ordem entre caixas no corpo da página. A regra é conservadora (uma
+caixa mal cortada pode gerar um erro contado como de ordem), mas a hipótese de que a maioria das quebras nasce nas
+caixas não se confirmou nesta medição. O que as caixas trazem são os erros sem conserto posterior, do item acima.</li>
+</ul>
+<p>Separando as páginas: nas 44 usadas no desenvolvimento do método, 16,3
+→ 8,9 → 6,0 quebras por
+página (atual → com margens → proposta); nas 27 páginas adicionais, 15,9
+→ 11,4 → 9,2.</p>
+
+<h2>3. Ordenador neural pronto sobre as novas unidades</h2>
+<p>O LayoutReader pré-treinado, sem retreino, recebeu as unidades embaralhadas das 44 páginas anotadas do
+Golden v4: τ de palavras 0,898 com linhas e 0,850 com faixas de coluna. Nas mesmas
+páginas a ordenação geométrica por colunas da seção 2 chega a 0,986. O modelo pronto
+não ajuda; para testar um ordenador aprendido é preciso treiná-lo nessa representação. A exportação já existe para
+614 páginas (349 com evidência de mais de uma coluna),
+mas só 44 têm ordem humana.</p>
+<figure class="pag"><img src="fig_caixas_pe.png" style="width:64%">
+<figcaption>Diário Oficial de PE, 02/02/2023: página com quatro colunas, anúncio e imagens isoladas como blocos.</figcaption></figure>
+
+<h2>4. Extrator treinado no dataset anotado (Label Studio, Data Policy)</h2>
+<p>Detector de layout treinado nas 1.590 páginas de treino (divisão por fonte; 317 páginas de teste de fontes não
+vistas): mAP50 de 0,826 com 3 classes (texto, tabela, imagem) e 0,483 com as 16 classes do
+guia. F1 de localização (IoU ≥ 0,5) nas 317 páginas de teste: extrator atual 0,573; detector de 3 classes
+0,780 (0,799 com limiar ajustado); extrator novo, que parte do detector e ajusta as caixas às palavras
+do PDF, 0,763. Ressalva: nas 11 páginas que anotei do zero com a minha convenção de caixas, o extrator atual
+ainda vence (0,851 contra 0,765), porque as duas convenções de anotação diferem.</p>
+
+<h2>5. Limitações</h2>
+<ul>
+<li>44 das 71 páginas foram usadas para desenvolver o método; nas 27 adicionais o ganho é menor.</li>
+<li>A referência de palavras deriva da ordem humana das regiões, com ordem geométrica dentro de cada região; não é
+uma anotação palavra a palavra.</li>
+<li>A separação de colunas ainda produz faixas estreitas indevidas em algumas páginas (exemplo: MG, página 18 do
+comparador) e cabeçalhos fragmentados; o quadro institucional só é reconhecido quando tem moldura vetorial no PDF.</li>
+<li>A variante com margens e quadros da figura ainda não teve a ordenação medida; os números da seção 2 usam a versão
+anterior do mesmo método de colunas.</li>
+</ul>
+
+<h2>6. Pontos para decidir</h2>
+<ol>
+<li>Método principal do TCC: a proposta sem caixas finas, ou caixas finas com política de margens (mais simples e,
+por enquanto, estatisticamente equivalente)?</li>
+<li>Vale anotar a ordem em mais páginas nessa representação para treinar um ordenador (LayoutLM ou LayoutReader)?</li>
+<li>Convenção de caixas do extrator: a do guia do Data Policy (16 classes) ou a que usei no Golden?</li>
+</ol>
+
+<p><b>Anexo:</b> <code>comparador_golden_v4.html</code>, comparador interativo das 45 páginas em seis
+representações (abre direto no navegador, sem instalar nada).</p>
+<p class="fontes"><b>Arquivos de origem dos números:</b> <code>resultados/erros_ponta_a_ponta.json</code> (seção 2);
+<code>resultados/estruturas_golden_v4/colunas.jsonl</code> e <code>data/diamond/*/tarefas.jsonl</code> (seção 1);
+<code>resultados/datasets_sem_caixas/</code> (seção 3); <code>resultados/deteccao/ls3_map_teste.json</code>,
+<code>ls16_map_teste.json</code>, <code>comparacao_detector_ls.txt</code> e <code>resultados/extrator_v4.md</code>
+(seção 4). Gerado por <code>docs/envio_professor_0410/montar.py</code>.</p>
+</body></html>

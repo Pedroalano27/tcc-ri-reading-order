@@ -82,7 +82,7 @@ notebooks continuam apontando para ele.
    Isso copia tudo o que o notebook gravou em `resultados/` para o mesmo caminho no projeto,
    guarda uma cópia versionada em `resultados/kaggle/<data>/` e atualiza
    `resultados/comparacao.md`. Importe o zip do treino **antes** do das LLMs. Depois dos dois,
-   rode `venv\Scripts\python.exe src\evalvaliar_golden.py --lote _avaliacao/golden_v3 --layoutlm --sucessor`
+   rode `venv\Scripts\python.exe src\eval\avaliar_golden.py --lote _avaliacao/golden_v3 --layoutlm --sucessor`
    para a tabela do Golden com todos os métodos (as predições do LayoutLM no Golden vêm gravadas
    do Kaggle; o checkpoint não é necessário).
 3. O notebook de treino também deixa o checkpoint do melhor modelo (`curva_layoutlm_sucessor_n*.pt`,
