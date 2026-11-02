@@ -44,7 +44,8 @@ import argparse
 from multiprocessing import Pool
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-from src.data.extrator import processar_pagina, RAW, RAIZ_PROJETO  # noqa: E402
+from src.data import extrator  # noqa: E402
+from src.data.extrator import RAW, RAIZ_PROJETO  # noqa: E402
 
 
 def ler_jsonl(caminho):
@@ -90,7 +91,10 @@ def qualidade(registros):
 def reprocessar_pdf(tarefa):
     """Worker: reabre um PDF e refaz so as paginas pedidas, na ordem original."""
     import pdfplumber
-    uf, arquivo, pedidos, tabelas = tarefa       # pedidos: [(n_pag, registro_antigo)]; tabelas: page_id -> caixas | None
+    uf, arquivo, pedidos, tabelas, min_blocos = tarefa   # pedidos: [(n_pag, registro_antigo)]; tabelas: page_id -> caixas | None
+    # O filtro de blocos do extrator e uma constante do modulo; muda-se so neste processo, para nao
+    # alterar src/data/extrator.py (o sha dele amarra os lotes do Golden a segmentacao).
+    extrator.MIN_BLOCOS = min_blocos
     caminho = os.path.join(RAW, uf, *arquivo.split("/"))
     saida, perdidas = [], []
     try:
@@ -98,7 +102,7 @@ def reprocessar_pdf(tarefa):
             for n_pag, antigo in pedidos:
                 try:
                     tab = None if tabelas is None else tabelas.get(antigo["page_id"], [])
-                    novo, motivo = processar_pagina(pdf.pages[n_pag], uf, arquivo, n_pag, tabelas=tab)
+                    novo, motivo = extrator.processar_pagina(pdf.pages[n_pag], uf, arquivo, n_pag, tabelas=tab)
                 except Exception:
                     novo, motivo = None, "erro_pagina"
                 if novo is None:
@@ -111,7 +115,7 @@ def reprocessar_pdf(tarefa):
     return uf, saida, perdidas
 
 
-def agrupar(registros, tabelas=None):
+def agrupar(registros, tabelas=None, min_blocos=3):
     por_pdf = {}
     for r in registros:
         por_pdf.setdefault((r["uf"], r["arquivo"]), []).append((r["pagina"], r))
@@ -119,7 +123,7 @@ def agrupar(registros, tabelas=None):
     for (uf, arq), ps in por_pdf.items():
         ps = sorted(ps, key=lambda x: x[0])
         tabs = None if tabelas is None else {r["page_id"]: tabelas[r["page_id"]] for _, r in ps}
-        tarefas.append((uf, arq, ps, tabs))
+        tarefas.append((uf, arq, ps, tabs, min_blocos))
     return tarefas
 
 
@@ -132,6 +136,8 @@ def main():
     ap.add_argument("--workers", type=int, default=max(1, (os.cpu_count() or 4) - 2))
     ap.add_argument("--layout", help="pasta do cache de layout (padrao: data/processed/layout)")
     ap.add_argument("--sem-layout", action="store_true", help="segmenta sem as tabelas do detector")
+    ap.add_argument("--min-blocos", type=int, default=3,
+                    help="filtro minimo de blocos por pagina (3 para ordenar; 1 para a colecao de RI)")
     a = ap.parse_args()
 
     entrada = os.path.abspath(a.entrada)
@@ -171,7 +177,7 @@ def main():
         if sem_imagem:
             print(f"[!] {len(sem_imagem)} paginas nao renderizaram no detector e saem sem tabelas "
                   f"(stats.layout = false): {sem_imagem[:5]}", flush=True)
-    tarefas = agrupar(antes_total, tabelas)
+    tarefas = agrupar(antes_total, tabelas, a.min_blocos)
     print(f"[*] {len(antes_total)} paginas em {len(tarefas)} PDFs, {len(por_arquivo)} arquivos, "
           f"{a.workers} processos", flush=True)
     t0 = time.time()

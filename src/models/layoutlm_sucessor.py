@@ -154,12 +154,19 @@ def montar_lote(cod, paginas, ordens, ref_key, device, com_geo=True):
 
 
 class LayoutLMSucessor(nn.Module):
-    def __init__(self, base=MODELO_BASE, usar_layout=True, usar_vies_geo=True, d_par=128):
+    def __init__(self, base=MODELO_BASE, usar_layout=True, usar_vies_geo=True, d_par=128, usar_texto=True):
         super().__init__()
-        from transformers import LayoutLMModel
+        from transformers import LayoutLMModel, AutoTokenizer
         self.enc = LayoutLMModel.from_pretrained(base)
         d = self.enc.config.hidden_size
         self.usar_layout = usar_layout
+        self.usar_texto = usar_texto
+        if not usar_texto:
+            # ablacao: todo token de palavra vira [UNK]; ficam [CLS], [SEP], [PAD], as caixas e o
+            # numero de tokens de cada bloco (o comprimento do texto continua visivel)
+            tok = AutoTokenizer.from_pretrained(base)
+            self.ids_mantidos = (tok.cls_token_id, tok.sep_token_id, tok.pad_token_id)
+            self.id_unk = tok.unk_token_id
         self.usar_vies_geo = usar_vies_geo
         self.d_par = d_par
         self.proj_q = nn.Linear(d, d_par)
@@ -173,6 +180,11 @@ class LayoutLMSucessor(nn.Module):
     def representar(self, input_ids, bbox, attention_mask, bloco_de, n_blocos):
         if not self.usar_layout:
             bbox = torch.zeros_like(bbox)
+        if not self.usar_texto:
+            manter = torch.zeros_like(input_ids, dtype=torch.bool)
+            for i in self.ids_mantidos:
+                manter |= input_ids == i
+            input_ids = torch.where(manter, input_ids, torch.full_like(input_ids, self.id_unk))
         h = self.enc(input_ids=input_ids, bbox=bbox, attention_mask=attention_mask).last_hidden_state.float()
         B, T, D = h.shape
         val = (bloco_de >= 0).unsqueeze(-1).float()
@@ -286,7 +298,11 @@ def decodificar_cadeias(lp, pos, n, limiar=0.5):
 
 @torch.no_grad()
 def prever(modelo, cod, paginas, device, batch=4, medir_tempo=False, largura=4, com_geo=True,
-           modo="feixe", limiar=0.5):
+           modo="cadeias", limiar=0.5):
+    # Padrao = o mesmo da linha de comando (cadeias, limiar 0,5). Ate 13/09/2026 era "feixe": quem
+    # chamava prever() sem dizer o modo (avaliar_golden.py, piloto_japeri.py) avaliava o sucessor com
+    # busca em feixe, enquanto o teste usava cadeias -- no Golden v3 isso deu tau 0,699 em vez do metodo
+    # principal.
     modelo.eval()
     saidas = []
     passo = 1 if medir_tempo else batch
@@ -352,8 +368,9 @@ def treinar(args):
     cod = Codificador(AutoTokenizer.from_pretrained(MODELO_BASE))
     cod.pretokenizar(treino + valid)
 
-    modelo = LayoutLMSucessor(usar_layout=not args.sem_layout, usar_vies_geo=com_geo).to(device)
-    cabeca = [p for n, p in modelo.named_parameters() if not n.startswith("enc.")]
+    modelo = LayoutLMSucessor(usar_layout=not args.sem_layout, usar_vies_geo=com_geo,
+                              usar_texto=not args.sem_texto).to(device)
+    cabeca =[p for n, p in modelo.named_parameters() if not n.startswith("enc.")]
     opt = torch.optim.AdamW([{"params": modelo.enc.parameters(), "lr": args.lr},
                              {"params": cabeca, "lr": args.lr_cabeca}], weight_decay=0.01)
     micro = args.micro_batch
@@ -450,7 +467,8 @@ def avaliar(args):
     cod = Codificador(AutoTokenizer.from_pretrained(MODELO_BASE))
     nome = nome_modelo(args)
     com_geo = not args.sem_vies_geo
-    modelo = LayoutLMSucessor(usar_layout=not args.sem_layout, usar_vies_geo=com_geo).to(device)
+    modelo = LayoutLMSucessor(usar_layout=not args.sem_layout, usar_vies_geo=com_geo,
+                              usar_texto=not args.sem_texto).to(device)
     modelo.load_state_dict(torch.load(os.path.join(DIR_MODELOS, f"{nome}.pt"), map_location=device))
     decod = dict(largura=args.feixe, com_geo=com_geo, modo=args.decodificacao, limiar=args.limiar_cadeia)
     prever(modelo, cod, teste[:4], device, medir_tempo=True, **decod)
@@ -472,6 +490,7 @@ if __name__ == "__main__":
     ap.add_argument("modo", choices=["treinar", "avaliar"])
     ap.add_argument("--sem-layout", action="store_true", help="ablacao: zera as bounding boxes")
     ap.add_argument("--sem-vies-geo", action="store_true", help="ablacao: remove o MLP de geometria relativa")
+    ap.add_argument("--sem-texto", action="store_true", help="ablacao: troca todo token de palavra por [UNK]")
     ap.add_argument("--peso-posicao", type=float, default=0.5, help="peso da perda auxiliar de posicao")
     ap.add_argument("--feixe", type=int, default=4, help="largura da busca em feixe (1 = guloso)")
     ap.add_argument("--decodificacao", choices=["feixe", "cadeias"], default="cadeias",

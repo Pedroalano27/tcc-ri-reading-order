@@ -209,8 +209,10 @@ LLM = [
     ("markdown", """# LLMs na GPU do Kaggle: ordem de leitura em Diários Oficiais
 
 Roda LLMs abertas recentes nas **mesmas páginas e com o mesmo protocolo** dos outros métodos
-(blocos embaralhados, mesma referência, mesmas métricas), na **segmentação v3**, no teste (89
-páginas) e no `golden_v3` (47 páginas anotadas à mão), e registra a latência por página.
+(blocos embaralhados, mesma referência, mesmas métricas) e registra a latência por página. Rodada
+de 13/09/2026: o `golden_v4` — 45 páginas cuja ordem foi anotada sobre as **regiões corrigidas à mão
+no Diamond** (44 concluídas). O teste e o `golden_v3` já rodaram na rodada anterior (resultados no
+projeto); para refazê-los, acrescente `"teste"` e `"golden:_avaliacao/golden_v3"` em `PARTICOES`.
 
 Modelos (biblioteca do Ollama, setembro de 2026), todos com o raciocínio desligado, para a
 comparação ser com a mesma saída direta: **Qwen 3.8 27B** (18 GB), **Gemma 4 31B** (20 GB) e
@@ -231,9 +233,9 @@ daquele notebook já estiverem no projeto.
    `venv\\Scripts\\python.exe src\\kaggle\\importar_resultados.py resultados_kaggle.zip`."""),
 
     ("code", """# ===== CONFIGURACAO =====
-MODELOS = ["qwen3.8:27b", "gemma4:31b", "qwen3.6:35b"]  # rodam nesta ordem, divididos entre as duas T4
+MODELOS = ["qwen3.8:27b", "gemma4:31b"]  # os dois melhores da rodada anterior; o qwen3.6:35b teve "CUDA error" no Ollama
 FEW_SHOT = [0, 2]        # 0 = zero-shot; 2 = dois exemplos resolvidos (paginas de TREINO) no prompt
-PARTICOES = ["teste", "golden:_avaliacao/golden_v3"]  # teste = 89 paginas do protocolo; golden_v3 = 47 anotadas
+PARTICOES = ["golden:golden_v4"]  # 45 paginas anotadas sobre as regioes do Diamond (a rodada anterior fez teste e golden_v3)
 LIMITE_HORAS = 10.5      # nao comeca uma rodada nova depois disso (a sessao do Kaggle cai em 12 h)
 MAX_BLOCOS = 200         # 200 = todas as paginas
 APAGAR_MODELO_APOS_USO = True   # libera o disco antes de baixar o proximo modelo
@@ -287,7 +289,9 @@ for modelo in MODELOS:
     ("code", """# Tabela completa: metodos locais (LayoutLM, XY-cut...) + as LLMs que acabaram de rodar, nas mesmas paginas
 rodar([sys.executable, "src/eval/comparar.py"])
 if os.path.exists("data/golden/_avaliacao/golden_v3/referencia.jsonl"):
-    rodar([sys.executable, "src/eval/avaliar_golden.py", "--lote", "_avaliacao/golden_v3", "--layoutlm", "--sucessor"])"""),
+    rodar([sys.executable, "src/eval/avaliar_golden.py", "--lote", "_avaliacao/golden_v3", "--layoutlm", "--sucessor"])
+if os.path.exists("data/golden/golden_v4/anotacoes.jsonl"):
+    rodar([sys.executable, "src/eval/avaliar_golden.py", "--lote", "golden_v4"])"""),
 
     ("code", ZIPAR),
 ]

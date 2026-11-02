@@ -89,7 +89,8 @@ def prever_layoutlm(paginas, nome, sucessor=False):
     if sucessor:
         from src.models.layoutlm_sucessor import LayoutLMSucessor, prever
         modelo = LayoutLMSucessor(usar_layout="sem_layout" not in nome,
-                                  usar_vies_geo="sem_vies_geo" not in nome).to("cuda")
+                                  usar_vies_geo="sem_vies_geo" not in nome,
+                                  usar_texto="sem_texto" not in nome).to("cuda")
     else:
         from src.models.layoutlm_ordem import LayoutLMOrdem, prever
         modelo = LayoutLMOrdem(MODELO_BASE, usar_layout="sem_layout" not in nome).to("cuda")
