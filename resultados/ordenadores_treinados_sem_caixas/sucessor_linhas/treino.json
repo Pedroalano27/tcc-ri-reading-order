@@ -1,0 +1,100 @@
+{
+  "config": {
+    "modo": "treinar",
+    "modelo": "sucessor",
+    "variante": "geo",
+    "representacao": "linhas",
+    "device": "cuda",
+    "nome": "sucessor_linhas",
+    "dir_saida": "resultados\\ordenadores_treinados_sem_caixas\\sucessor_linhas",
+    "blocos": null,
+    "blocos_extra": null,
+    "n_treino": null,
+    "max_minutos": 75.0,
+    "max_passos": 0,
+    "epocas": 8,
+    "batch": 8,
+    "micro_batch": 1,
+    "lr": 4e-05,
+    "lr_cabeca": 0.001,
+    "peso_posicao": 0.5,
+    "limiar_cadeia": 0.5,
+    "seed": 42
+  },
+  "fingerprint": "84569dab3bff8b95465d907f4a31f5419f3fa2d0892c82e9601283d2268bde4c",
+  "paginas_treino": 873,
+  "paginas_congeladas": 873,
+  "paginas_validacao": 15,
+  "tokens_por_unidade": 1,
+  "treinaveis": 113023490,
+  "parametros": 113023490,
+  "memoria_apos_modelo": {
+    "ram_livre_mb": 3241.19921875,
+    "commit_livre_mb": 13739.89453125
+  },
+  "epocas_completas": 8,
+  "cursor": 0,
+  "passos": 880,
+  "segundos": 739.405999999999,
+  "melhor_val_tau_unidades": 0.8694522254670117,
+  "historico": [
+    {
+      "epoca": 1,
+      "cursor": 873,
+      "passos": 110,
+      "val_tau_unidades": 0.7993230924392446,
+      "ultima_loss": 2.8184685707092285
+    },
+    {
+      "epoca": 2,
+      "cursor": 873,
+      "passos": 220,
+      "val_tau_unidades": 0.8317076153965487,
+      "ultima_loss": 2.0300965309143066
+    },
+    {
+      "epoca": 3,
+      "cursor": 873,
+      "passos": 330,
+      "val_tau_unidades": 0.8638592257416827,
+      "ultima_loss": 1.6854223012924194
+    },
+    {
+      "epoca": 4,
+      "cursor": 873,
+      "passos": 440,
+      "val_tau_unidades": 0.8438249258355143,
+      "ultima_loss": 2.0200798511505127
+    },
+    {
+      "epoca": 5,
+      "cursor": 873,
+      "passos": 550,
+      "val_tau_unidades": 0.8694522254670117,
+      "ultima_loss": 2.133471965789795
+    },
+    {
+      "epoca": 6,
+      "cursor": 873,
+      "passos": 660,
+      "val_tau_unidades": 0.8628769407261101,
+      "ultima_loss": 1.7137930393218994
+    },
+    {
+      "epoca": 7,
+      "cursor": 873,
+      "passos": 770,
+      "val_tau_unidades": 0.868001261266398,
+      "ultima_loss": 2.18249773979187
+    },
+    {
+      "epoca": 8,
+      "cursor": 873,
+      "passos": 880,
+      "val_tau_unidades": 0.864199912670976,
+      "ultima_loss": 1.0277432203292847
+    }
+  ],
+  "paginas_visitadas": 873,
+  "concluido": true
+}

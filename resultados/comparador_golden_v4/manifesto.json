@@ -1,0 +1,18 @@
+{
+  "paginas": 45,
+  "variantes": [
+    "v3",
+    "v4",
+    "linhas",
+    "colunas",
+    "linhas_estruturas",
+    "colunas_estruturas"
+  ],
+  "exemplos": [
+    "official_diary_mg/executive_official_diary_2021-07-06.pdf#p28",
+    "official_diary_pe/2023-02-02_1-Poder Executivo.pdf#p6",
+    "official_diary_rj/Parte II (Poder Legislativo)_2024-02-06.pdf#p1"
+  ],
+  "imagens_ausentes": 0,
+  "aviso": "Golden v4 contem 45 tarefas; avaliacao humana anterior usa 44 concluidas. v4 mostra caixas existentes, nao nova anotacao."
+}

@@ -1,0 +1,9 @@
+{
+  "paginas": 45,
+  "estruturas": {
+    "rodape": 42,
+    "cabecalho": 92,
+    "quadro_externo": 1
+  },
+  "integridade_palavras": "45 paginas verificadas no gerador"
+}

@@ -1,132 +1,133 @@
+[*] treino montado: 152 paginas (152 base + 0 extras; 3037 extras disponiveis)
 [*] treino: 152 paginas (7 UFs) | validacao: 15 paginas | referencia: stream
 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-Loading weights:   0%|          | 0/203 [00:00<?, ?it/s]Loading weights: 100%|██████████| 203/203 [00:00<00:00, 4556.78it/s]
-  ep 1 passo 10/760 loss 0.3380 (4s)
-[val] epoca 1: tau 0.2749 | ARD norm 0.2505
-      novo melhor modelo salvo (tau 0.2749)
-  ep 2 passo 20/760 loss 0.0841 (8s)
-  ep 2 passo 30/760 loss 0.0776 (12s)
-[val] epoca 2: tau 0.5201 | ARD norm 0.1711
-      novo melhor modelo salvo (tau 0.5201)
-  ep 3 passo 40/760 loss 0.0387 (16s)
-  ep 3 passo 50/760 loss 0.0465 (20s)
-[val] epoca 3: tau 0.5644 | ARD norm 0.1639
-      novo melhor modelo salvo (tau 0.5644)
-  ep 4 passo 60/760 loss 0.0357 (24s)
-  ep 4 passo 70/760 loss 0.0318 (27s)
-[val] epoca 4: tau 0.5899 | ARD norm 0.1559
-      novo melhor modelo salvo (tau 0.5899)
-  ep 5 passo 80/760 loss 0.0256 (32s)
-  ep 5 passo 90/760 loss 0.0235 (35s)
-[val] epoca 5: tau 0.5988 | ARD norm 0.1514
-      novo melhor modelo salvo (tau 0.5988)
-  ep 6 passo 100/760 loss 0.0165 (40s)
-  ep 6 passo 110/760 loss 0.0194 (43s)
-[val] epoca 6: tau 0.6216 | ARD norm 0.1462
-      novo melhor modelo salvo (tau 0.6216)
-  ep 7 passo 120/760 loss 0.0155 (48s)
-  ep 7 passo 130/760 loss 0.0155 (51s)
-[val] epoca 7: tau 0.6161 | ARD norm 0.1485
-  ep 8 passo 140/760 loss 0.0154 (54s)
-  ep 8 passo 150/760 loss 0.0128 (58s)
-[val] epoca 8: tau 0.6219 | ARD norm 0.1456
-      novo melhor modelo salvo (tau 0.6219)
-  ep 9 passo 160/760 loss 0.0126 (62s)
-  ep 9 passo 170/760 loss 0.0128 (65s)
-[val] epoca 9: tau 0.6211 | ARD norm 0.1456
-  ep 10 passo 180/760 loss 0.0096 (69s)
-  ep 10 passo 190/760 loss 0.0120 (72s)
-[val] epoca 10: tau 0.6218 | ARD norm 0.1461
-  ep 11 passo 200/760 loss 0.0100 (76s)
-[val] epoca 11: tau 0.6195 | ARD norm 0.1448
-  ep 12 passo 210/760 loss 0.0066 (79s)
-  ep 12 passo 220/760 loss 0.0091 (82s)
-[val] epoca 12: tau 0.6189 | ARD norm 0.1434
-  ep 13 passo 230/760 loss 0.0096 (85s)
-  ep 13 passo 240/760 loss 0.0077 (89s)
-[val] epoca 13: tau 0.6111 | ARD norm 0.1471
-  ep 14 passo 250/760 loss 0.0051 (92s)
-  ep 14 passo 260/760 loss 0.0066 (95s)
-[val] epoca 14: tau 0.6299 | ARD norm 0.1419
-      novo melhor modelo salvo (tau 0.6299)
-  ep 15 passo 270/760 loss 0.0055 (101s)
-  ep 15 passo 280/760 loss 0.0069 (104s)
-[val] epoca 15: tau 0.6164 | ARD norm 0.1456
-  ep 16 passo 290/760 loss 0.0057 (107s)
-  ep 16 passo 300/760 loss 0.0064 (111s)
-[val] epoca 16: tau 0.6267 | ARD norm 0.1436
-  ep 17 passo 310/760 loss 0.0055 (114s)
-  ep 17 passo 320/760 loss 0.0051 (118s)
-[val] epoca 17: tau 0.6337 | ARD norm 0.1415
-      novo melhor modelo salvo (tau 0.6337)
-  ep 18 passo 330/760 loss 0.0051 (123s)
-  ep 18 passo 340/760 loss 0.0049 (126s)
-[val] epoca 18: tau 0.6357 | ARD norm 0.1412
-      novo melhor modelo salvo (tau 0.6357)
-  ep 19 passo 350/760 loss 0.0058 (131s)
-  ep 19 passo 360/760 loss 0.0036 (134s)
-[val] epoca 19: tau 0.6306 | ARD norm 0.1421
-  ep 20 passo 370/760 loss 0.0043 (138s)
-  ep 20 passo 380/760 loss 0.0038 (141s)
-[val] epoca 20: tau 0.6338 | ARD norm 0.1411
-  ep 21 passo 390/760 loss 0.0041 (145s)
-[val] epoca 21: tau 0.6252 | ARD norm 0.1433
-  ep 22 passo 400/760 loss 0.0029 (148s)
-  ep 22 passo 410/760 loss 0.0046 (151s)
-[val] epoca 22: tau 0.6283 | ARD norm 0.1435
-  ep 23 passo 420/760 loss 0.0029 (155s)
-  ep 23 passo 430/760 loss 0.0037 (158s)
-[val] epoca 23: tau 0.6331 | ARD norm 0.1430
-  ep 24 passo 440/760 loss 0.0035 (162s)
-  ep 24 passo 450/760 loss 0.0036 (165s)
-[val] epoca 24: tau 0.6186 | ARD norm 0.1450
-  ep 25 passo 460/760 loss 0.0028 (169s)
-  ep 25 passo 470/760 loss 0.0037 (172s)
-[val] epoca 25: tau 0.6192 | ARD norm 0.1451
-  ep 26 passo 480/760 loss 0.0027 (175s)
-  ep 26 passo 490/760 loss 0.0034 (178s)
-[val] epoca 26: tau 0.6225 | ARD norm 0.1418
-  ep 27 passo 500/760 loss 0.0025 (181s)
-  ep 27 passo 510/760 loss 0.0034 (184s)
-[val] epoca 27: tau 0.6268 | ARD norm 0.1431
-  ep 28 passo 520/760 loss 0.0035 (188s)
-  ep 28 passo 530/760 loss 0.0025 (191s)
-[val] epoca 28: tau 0.6311 | ARD norm 0.1410
-  ep 29 passo 540/760 loss 0.0024 (195s)
-  ep 29 passo 550/760 loss 0.0029 (198s)
-[val] epoca 29: tau 0.6257 | ARD norm 0.1442
-  ep 30 passo 560/760 loss 0.0030 (202s)
-  ep 30 passo 570/760 loss 0.0026 (205s)
-[val] epoca 30: tau 0.6316 | ARD norm 0.1423
-  ep 31 passo 580/760 loss 0.0027 (209s)
-[val] epoca 31: tau 0.6285 | ARD norm 0.1431
-  ep 32 passo 590/760 loss 0.0040 (212s)
-  ep 32 passo 600/760 loss 0.0022 (216s)
-[val] epoca 32: tau 0.6353 | ARD norm 0.1402
-  ep 33 passo 610/760 loss 0.0023 (219s)
-  ep 33 passo 620/760 loss 0.0028 (223s)
-[val] epoca 33: tau 0.6266 | ARD norm 0.1420
-  ep 34 passo 630/760 loss 0.0018 (226s)
-  ep 34 passo 640/760 loss 0.0025 (230s)
-[val] epoca 34: tau 0.6270 | ARD norm 0.1438
-  ep 35 passo 650/760 loss 0.0024 (233s)
-  ep 35 passo 660/760 loss 0.0024 (237s)
-[val] epoca 35: tau 0.6342 | ARD norm 0.1405
-  ep 36 passo 670/760 loss 0.0021 (240s)
-  ep 36 passo 680/760 loss 0.0025 (244s)
-[val] epoca 36: tau 0.6369 | ARD norm 0.1393
-      novo melhor modelo salvo (tau 0.6369)
-  ep 37 passo 690/760 loss 0.0022 (249s)
-  ep 37 passo 700/760 loss 0.0024 (252s)
-[val] epoca 37: tau 0.6404 | ARD norm 0.1382
-      novo melhor modelo salvo (tau 0.6404)
-  ep 38 passo 710/760 loss 0.0020 (257s)
-  ep 38 passo 720/760 loss 0.0023 (260s)
-[val] epoca 38: tau 0.6397 | ARD norm 0.1387
-  ep 39 passo 730/760 loss 0.0020 (264s)
-  ep 39 passo 740/760 loss 0.0026 (267s)
-[val] epoca 39: tau 0.6361 | ARD norm 0.1392
-  ep 40 passo 750/760 loss 0.0020 (271s)
-  ep 40 passo 760/760 loss 0.0027 (274s)
-[val] epoca 40: tau 0.6334 | ARD norm 0.1404
-[OK] treino concluido em 275s | melhor val tau 0.6404
+Loading weights:   0%|          | 0/203 [00:00<?, ?it/s]Loading weights: 100%|██████████| 203/203 [00:00<00:00, 10918.04it/s]
+  ep 1 passo 10/760 loss 0.3349 (3s)
+[val] epoca 1: tau 0.3099 | ARD norm 0.2317
+      novo melhor modelo salvo (tau 0.3099)
+  ep 2 passo 20/760 loss 0.0868 (7s)
+  ep 2 passo 30/760 loss 0.0710 (10s)
+[val] epoca 2: tau 0.5777 | ARD norm 0.1578
+      novo melhor modelo salvo (tau 0.5777)
+  ep 3 passo 40/760 loss 0.0315 (14s)
+  ep 3 passo 50/760 loss 0.0327 (17s)
+[val] epoca 3: tau 0.6174 | ARD norm 0.1425
+      novo melhor modelo salvo (tau 0.6174)
+  ep 4 passo 60/760 loss 0.0301 (21s)
+  ep 4 passo 70/760 loss 0.0261 (25s)
+[val] epoca 4: tau 0.6389 | ARD norm 0.1323
+      novo melhor modelo salvo (tau 0.6389)
+  ep 5 passo 80/760 loss 0.0212 (28s)
+  ep 5 passo 90/760 loss 0.0204 (32s)
+[val] epoca 5: tau 0.6293 | ARD norm 0.1347
+  ep 6 passo 100/760 loss 0.0147 (35s)
+  ep 6 passo 110/760 loss 0.0154 (38s)
+[val] epoca 6: tau 0.6533 | ARD norm 0.1284
+      novo melhor modelo salvo (tau 0.6533)
+  ep 7 passo 120/760 loss 0.0144 (44s)
+  ep 7 passo 130/760 loss 0.0136 (47s)
+[val] epoca 7: tau 0.6560 | ARD norm 0.1251
+      novo melhor modelo salvo (tau 0.6560)
+  ep 8 passo 140/760 loss 0.0147 (51s)
+  ep 8 passo 150/760 loss 0.0110 (54s)
+[val] epoca 8: tau 0.6486 | ARD norm 0.1272
+  ep 9 passo 160/760 loss 0.0112 (58s)
+  ep 9 passo 170/760 loss 0.0100 (61s)
+[val] epoca 9: tau 0.6384 | ARD norm 0.1292
+  ep 10 passo 180/760 loss 0.0089 (64s)
+  ep 10 passo 190/760 loss 0.0097 (67s)
+[val] epoca 10: tau 0.6469 | ARD norm 0.1288
+  ep 11 passo 200/760 loss 0.0080 (71s)
+[val] epoca 11: tau 0.6478 | ARD norm 0.1301
+  ep 12 passo 210/760 loss 0.0042 (74s)
+  ep 12 passo 220/760 loss 0.0075 (77s)
+[val] epoca 12: tau 0.6408 | ARD norm 0.1317
+  ep 13 passo 230/760 loss 0.0062 (80s)
+  ep 13 passo 240/760 loss 0.0063 (83s)
+[val] epoca 13: tau 0.6499 | ARD norm 0.1283
+  ep 14 passo 250/760 loss 0.0041 (87s)
+  ep 14 passo 260/760 loss 0.0055 (90s)
+[val] epoca 14: tau 0.6502 | ARD norm 0.1285
+  ep 15 passo 270/760 loss 0.0041 (94s)
+  ep 15 passo 280/760 loss 0.0054 (97s)
+[val] epoca 15: tau 0.6507 | ARD norm 0.1297
+  ep 16 passo 290/760 loss 0.0051 (100s)
+  ep 16 passo 300/760 loss 0.0052 (103s)
+[val] epoca 16: tau 0.6548 | ARD norm 0.1272
+  ep 17 passo 310/760 loss 0.0051 (106s)
+  ep 17 passo 320/760 loss 0.0046 (110s)
+[val] epoca 17: tau 0.6546 | ARD norm 0.1278
+  ep 18 passo 330/760 loss 0.0040 (113s)
+  ep 18 passo 340/760 loss 0.0043 (116s)
+[val] epoca 18: tau 0.6609 | ARD norm 0.1245
+      novo melhor modelo salvo (tau 0.6609)
+  ep 19 passo 350/760 loss 0.0043 (120s)
+  ep 19 passo 360/760 loss 0.0031 (123s)
+[val] epoca 19: tau 0.6553 | ARD norm 0.1265
+  ep 20 passo 370/760 loss 0.0039 (127s)
+  ep 20 passo 380/760 loss 0.0031 (130s)
+[val] epoca 20: tau 0.6583 | ARD norm 0.1277
+  ep 21 passo 390/760 loss 0.0033 (133s)
+[val] epoca 21: tau 0.6554 | ARD norm 0.1265
+  ep 22 passo 400/760 loss 0.0026 (137s)
+  ep 22 passo 410/760 loss 0.0036 (140s)
+[val] epoca 22: tau 0.6591 | ARD norm 0.1260
+  ep 23 passo 420/760 loss 0.0028 (143s)
+  ep 23 passo 430/760 loss 0.0029 (146s)
+[val] epoca 23: tau 0.6610 | ARD norm 0.1248
+      novo melhor modelo salvo (tau 0.6610)
+  ep 24 passo 440/760 loss 0.0030 (150s)
+  ep 24 passo 450/760 loss 0.0033 (154s)
+[val] epoca 24: tau 0.6600 | ARD norm 0.1237
+  ep 25 passo 460/760 loss 0.0027 (157s)
+  ep 25 passo 470/760 loss 0.0028 (160s)
+[val] epoca 25: tau 0.6650 | ARD norm 0.1243
+      novo melhor modelo salvo (tau 0.6650)
+  ep 26 passo 480/760 loss 0.0024 (164s)
+  ep 26 passo 490/760 loss 0.0032 (167s)
+[val] epoca 26: tau 0.6574 | ARD norm 0.1252
+  ep 27 passo 500/760 loss 0.0024 (170s)
+  ep 27 passo 510/760 loss 0.0031 (174s)
+[val] epoca 27: tau 0.6640 | ARD norm 0.1245
+  ep 28 passo 520/760 loss 0.0029 (177s)
+  ep 28 passo 530/760 loss 0.0024 (180s)
+[val] epoca 28: tau 0.6606 | ARD norm 0.1250
+  ep 29 passo 540/760 loss 0.0024 (184s)
+  ep 29 passo 550/760 loss 0.0025 (187s)
+[val] epoca 29: tau 0.6686 | ARD norm 0.1239
+      novo melhor modelo salvo (tau 0.6686)
+  ep 30 passo 560/760 loss 0.0025 (191s)
+  ep 30 passo 570/760 loss 0.0021 (194s)
+[val] epoca 30: tau 0.6633 | ARD norm 0.1238
+  ep 31 passo 580/760 loss 0.0024 (197s)
+[val] epoca 31: tau 0.6604 | ARD norm 0.1243
+  ep 32 passo 590/760 loss 0.0033 (201s)
+  ep 32 passo 600/760 loss 0.0020 (204s)
+[val] epoca 32: tau 0.6709 | ARD norm 0.1221
+      novo melhor modelo salvo (tau 0.6709)
+  ep 33 passo 610/760 loss 0.0019 (208s)
+  ep 33 passo 620/760 loss 0.0025 (211s)
+[val] epoca 33: tau 0.6690 | ARD norm 0.1233
+  ep 34 passo 630/760 loss 0.0015 (215s)
+  ep 34 passo 640/760 loss 0.0024 (218s)
+[val] epoca 34: tau 0.6664 | ARD norm 0.1241
+  ep 35 passo 650/760 loss 0.0021 (221s)
+  ep 35 passo 660/760 loss 0.0023 (224s)
+[val] epoca 35: tau 0.6725 | ARD norm 0.1220
+      novo melhor modelo salvo (tau 0.6725)
+  ep 36 passo 670/760 loss 0.0019 (228s)
+  ep 36 passo 680/760 loss 0.0022 (231s)
+[val] epoca 36: tau 0.6692 | ARD norm 0.1230
+  ep 37 passo 690/760 loss 0.0021 (235s)
+  ep 37 passo 700/760 loss 0.0023 (238s)
+[val] epoca 37: tau 0.6711 | ARD norm 0.1227
+  ep 38 passo 710/760 loss 0.0018 (241s)
+  ep 38 passo 720/760 loss 0.0020 (244s)
+[val] epoca 38: tau 0.6705 | ARD norm 0.1230
+  ep 39 passo 730/760 loss 0.0017 (248s)
+  ep 39 passo 740/760 loss 0.0023 (251s)
+[val] epoca 39: tau 0.6682 | ARD norm 0.1232
+  ep 40 passo 750/760 loss 0.0018 (255s)
+  ep 40 passo 760/760 loss 0.0022 (258s)
+[val] epoca 40: tau 0.6694 | ARD norm 0.1229
+[OK] treino concluido em 258s | melhor val tau 0.6725

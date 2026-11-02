@@ -1,0 +1,4 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/203 [00:00<?, ?it/s]Loading weights: 100%|██████████| 203/203 [00:00<00:00, 5482.15it/s]
+[OK] curva_layoutlm_sucessor_n2000 [cadeias]: 89 paginas | tau 0.8519 | sucessor 0.6100 | ARD norm 0.0611 | 39.8 ms/pagina
+     predicoes em C:\Users\pedro\dev\tcc-ri-reading-order\resultados\curva_aprendizado\pred_curva_layoutlm_sucessor_n2000.jsonl

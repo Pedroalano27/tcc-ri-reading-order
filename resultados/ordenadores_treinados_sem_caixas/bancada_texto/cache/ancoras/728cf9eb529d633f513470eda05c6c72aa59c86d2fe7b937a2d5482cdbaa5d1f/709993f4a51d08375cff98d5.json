@@ -1,0 +1,90 @@
+{
+  "page_id": "official_diary_rj_japeri/JAPERI-5606-09-DE-MAIO-2024.pdf#p3",
+  "uf": "official_diary_rj_japeri",
+  "P2": {
+    "tau": 0.9937254901960787,
+    "quebras": 2,
+    "quebras_mil": 39.21568627450981,
+    "fid12": 0.8888888888888888,
+    "sucessor_linhas": 0.8571428571428571
+  },
+  "P1m": {
+    "tau": 0.9764705882352943,
+    "quebras": 5,
+    "quebras_mil": 98.03921568627452,
+    "fid12": 0.37777777777777777,
+    "sucessor_linhas": 0.6428571428571429
+  },
+  "regra_colunas_exportada": {
+    "tau": 0.9937254901960787,
+    "quebras": 2,
+    "quebras_mil": 39.21568627450981,
+    "fid12": 0.8888888888888888,
+    "sucessor_linhas": 0.8571428571428571,
+    "piso_interno": 0
+  },
+  "regra_colunas_ks_cru": {
+    "tau": 0.9937254901960787,
+    "quebras": 2,
+    "quebras_mil": 39.21568627450981,
+    "fid12": 0.8888888888888888,
+    "sucessor_linhas": 0.8571428571428571,
+    "piso_interno": 0
+  },
+  "expansao_canonica_diagnostico": {
+    "tau": 0.9937254901960787,
+    "quebras": 2,
+    "quebras_mil": 39.21568627450981,
+    "fid12": 0.8888888888888888,
+    "sucessor_linhas": 0.8571428571428571
+  },
+  "diagnostico": {
+    "ks_diferem_da_expansao_canonica": false,
+    "canonizada_identica_P2": true,
+    "unidades_internas_diferentes": 0,
+    "detalhes": []
+  },
+  "ordem_regra_colunas_exportada": [
+    "b2",
+    "b14",
+    "b6",
+    "b0",
+    "b9",
+    "b11",
+    "b13",
+    "b1",
+    "b7",
+    "b3",
+    "b8",
+    "b10",
+    "b4",
+    "b5",
+    "b12"
+  ],
+  "diag_regra": {
+    "unidades": 15,
+    "entrada": [
+      "b1",
+      "b2",
+      "b13",
+      "b0",
+      "b6",
+      "b9",
+      "b5",
+      "b12",
+      "b8",
+      "b14",
+      "b4",
+      "b3",
+      "b11",
+      "b7",
+      "b10"
+    ],
+    "max_colunas": 1,
+    "pontes": 0,
+    "topo": 3,
+    "rodape": 0,
+    "marcas": 0,
+    "tempo_ms": 0.16770000001997687
+  }
+}

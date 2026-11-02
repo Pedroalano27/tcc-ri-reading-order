@@ -1,0 +1,25 @@
+{
+  "config": {
+    "modelo": "Qwen/Qwen3-0.6B",
+    "revisao": "main",
+    "nsp": null,
+    "dtype": "float16",
+    "lote": 4,
+    "max_tokens": 512,
+    "threads": 4,
+    "dispositivo": "cuda",
+    "versao": "causal-continuacao-v1",
+    "script_sha256": "43bc8c331aa596aff8df21b3b804f846d9c04b8a2096fba1c7185c607f50b68a"
+  },
+  "revisao_resolvida": "c1899de289a04d12100db370d81485cdf75e47ca",
+  "avisos": [],
+  "nsp_ativo": false,
+  "segundos_carga": 54.447800299999926,
+  "memoria_carga": {
+    "rss_mb": 2338.58203125,
+    "pico_rss_mb": 3689.40625
+  },
+  "torch": "2.9.1+cu128",
+  "parametros": 596049920,
+  "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU"
+}

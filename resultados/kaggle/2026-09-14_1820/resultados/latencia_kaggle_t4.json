@@ -1,0 +1,44 @@
+{
+  "maquina": "kaggle_t4",
+  "cpu": "Intel(R) Xeon(R) CPU @ 2.00GHz",
+  "nucleos": 4,
+  "python": "3.12.13",
+  "sistema": "Linux-6.12.90+-x86_64-with-glibc2.35",
+  "data": "2026-09-14 01:31:49",
+  "metodos": {
+    "naive": {
+      "media_ms": 0.0172652022456532,
+      "mediana_ms": 0.012732000072901428,
+      "p90_ms": 0.03259699997215648,
+      "paginas": 89
+    },
+    "xycut": {
+      "media_ms": 0.10631180898624816,
+      "mediana_ms": 0.07248199995046889,
+      "p90_ms": 0.22403000002668705,
+      "paginas": 89
+    },
+    "lstm_geo": {
+      "media_ms": 11.320536876411005,
+      "mediana_ms": 8.812154999986888,
+      "p90_ms": 21.467103999952997,
+      "paginas": 89
+    },
+    "layoutlm": {
+      "media_ms": 18.53698123594451,
+      "mediana_ms": 18.106330000023263,
+      "p90_ms": 21.488718999989942,
+      "paginas": 89,
+      "com_pesos_treinados": false
+    },
+    "layoutlm_sucessor": {
+      "media_ms": 22.507544853937453,
+      "mediana_ms": 21.983746000046267,
+      "p90_ms": 27.535217000036027,
+      "paginas": 89,
+      "com_pesos_treinados": false
+    }
+  },
+  "torch": "2.10.0+cu128",
+  "gpu": "Tesla T4"
+}

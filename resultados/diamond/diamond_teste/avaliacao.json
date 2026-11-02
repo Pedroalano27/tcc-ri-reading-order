@@ -1,0 +1,325 @@
+{
+  "lote": "diamond_teste",
+  "paginas": 11,
+  "sistemas": {
+    "v3": {
+      "paginas": 11,
+      "regioes_gabarito": 328,
+      "regioes_sistema": 303,
+      "f1_j50": 0.666,
+      "f1_j90": 0.567,
+      "f1_exata": 0.564,
+      "f1_j50_classe": 0.317,
+      "classe_certa_palavras": 0.724,
+      "revocacao_por_classe": {
+        "titulo": {
+          "n": 58,
+          "revocacao": 0.0
+        },
+        "texto": {
+          "n": 172,
+          "revocacao": 0.488
+        },
+        "lista": {
+          "n": 9,
+          "revocacao": 0.0
+        },
+        "tabela": {
+          "n": 20,
+          "revocacao": 0.8
+        },
+        "assinatura": {
+          "n": 15,
+          "revocacao": 0.0
+        },
+        "cabecalho": {
+          "n": 23,
+          "revocacao": 0.0
+        },
+        "rodape": {
+          "n": 9,
+          "revocacao": 0.0
+        },
+        "figura": {
+          "n": 5,
+          "revocacao": 0.0
+        },
+        "outro": {
+          "n": 17,
+          "revocacao": 0.0
+        }
+      }
+    },
+    "proposta": {
+      "paginas": 11,
+      "regioes_gabarito": 328,
+      "regioes_sistema": 0,
+      "f1_j50": 0.0,
+      "f1_j90": 0.0,
+      "f1_exata": 0.0,
+      "f1_j50_classe": 0.0,
+      "classe_certa_palavras": 0.0,
+      "revocacao_por_classe": {
+        "titulo": {
+          "n": 58,
+          "revocacao": 0.0
+        },
+        "texto": {
+          "n": 172,
+          "revocacao": 0.0
+        },
+        "lista": {
+          "n": 9,
+          "revocacao": 0.0
+        },
+        "tabela": {
+          "n": 20,
+          "revocacao": 0.0
+        },
+        "assinatura": {
+          "n": 15,
+          "revocacao": 0.0
+        },
+        "cabecalho": {
+          "n": 23,
+          "revocacao": 0.0
+        },
+        "rodape": {
+          "n": 9,
+          "revocacao": 0.0
+        },
+        "figura": {
+          "n": 5,
+          "revocacao": 0.0
+        },
+        "outro": {
+          "n": 17,
+          "revocacao": 0.0
+        }
+      }
+    },
+    "regioes_v2": {
+      "paginas": 11,
+      "regioes_gabarito": 328,
+      "regioes_sistema": 369,
+      "f1_j50": 0.844,
+      "f1_j90": 0.735,
+      "f1_exata": 0.723,
+      "f1_j50_classe": 0.666,
+      "classe_certa_palavras": 0.767,
+      "revocacao_por_classe": {
+        "titulo": {
+          "n": 58,
+          "revocacao": 0.69
+        },
+        "texto": {
+          "n": 172,
+          "revocacao": 0.82
+        },
+        "lista": {
+          "n": 9,
+          "revocacao": 0.111
+        },
+        "tabela": {
+          "n": 20,
+          "revocacao": 0.8
+        },
+        "assinatura": {
+          "n": 15,
+          "revocacao": 0.467
+        },
+        "cabecalho": {
+          "n": 23,
+          "revocacao": 0.783
+        },
+        "rodape": {
+          "n": 9,
+          "revocacao": 1.0
+        },
+        "figura": {
+          "n": 5,
+          "revocacao": 0.0
+        },
+        "outro": {
+          "n": 17,
+          "revocacao": 0.0
+        }
+      }
+    },
+    "regioes": {
+      "paginas": 11,
+      "regioes_gabarito": 328,
+      "regioes_sistema": 370,
+      "f1_j50": 0.851,
+      "f1_j90": 0.754,
+      "f1_exata": 0.745,
+      "f1_j50_classe": 0.696,
+      "classe_certa_palavras": 0.769,
+      "revocacao_por_classe": {
+        "titulo": {
+          "n": 58,
+          "revocacao": 0.69
+        },
+        "texto": {
+          "n": 172,
+          "revocacao": 0.82
+        },
+        "lista": {
+          "n": 9,
+          "revocacao": 0.111
+        },
+        "tabela": {
+          "n": 20,
+          "revocacao": 0.8
+        },
+        "assinatura": {
+          "n": 15,
+          "revocacao": 0.467
+        },
+        "cabecalho": {
+          "n": 23,
+          "revocacao": 0.783
+        },
+        "rodape": {
+          "n": 9,
+          "revocacao": 1.0
+        },
+        "figura": {
+          "n": 5,
+          "revocacao": 0.0
+        },
+        "outro": {
+          "n": 17,
+          "revocacao": 0.647
+        }
+      }
+    },
+    "regioes_sem_fundir": {
+      "paginas": 11,
+      "regioes_gabarito": 328,
+      "regioes_sistema": 383,
+      "f1_j50": 0.838,
+      "f1_j90": 0.737,
+      "f1_exata": 0.731,
+      "f1_j50_classe": 0.686,
+      "classe_certa_palavras": 0.769,
+      "revocacao_por_classe": {
+        "titulo": {
+          "n": 58,
+          "revocacao": 0.69
+        },
+        "texto": {
+          "n": 172,
+          "revocacao": 0.826
+        },
+        "lista": {
+          "n": 9,
+          "revocacao": 0.111
+        },
+        "tabela": {
+          "n": 20,
+          "revocacao": 0.8
+        },
+        "assinatura": {
+          "n": 15,
+          "revocacao": 0.467
+        },
+        "cabecalho": {
+          "n": 23,
+          "revocacao": 0.783
+        },
+        "rodape": {
+          "n": 9,
+          "revocacao": 1.0
+        },
+        "figura": {
+          "n": 5,
+          "revocacao": 0.0
+        },
+        "outro": {
+          "n": 17,
+          "revocacao": 0.647
+        }
+      }
+    }
+  },
+  "por_pagina": {
+    "official_diary_to/2023-07-24_4946_22_50.pdf#p0": {
+      "v3": 0.387,
+      "proposta": 0.0,
+      "regioes_v2": 0.545,
+      "regioes": 0.545,
+      "regioes_sem_fundir": 0.545
+    },
+    "official_diary_pr_curitiba/31-Supl2_2023-02-14.pdf#p76": {
+      "v3": 0.545,
+      "proposta": 0.0,
+      "regioes_v2": 0.889,
+      "regioes": 0.889,
+      "regioes_sem_fundir": 0.889
+    },
+    "official_diary_se/DOE-SE_2022-03-18_4475.pdf#p10": {
+      "v3": 0.524,
+      "proposta": 0.0,
+      "regioes_v2": 0.874,
+      "regioes": 0.895,
+      "regioes_sem_fundir": 0.878
+    },
+    "official_diary_RJ_duque_de_caxias/executive_official_diary_2022-08-05_Boletim_7175.pdf#p13": {
+      "v3": 0.675,
+      "proposta": 0.0,
+      "regioes_v2": 0.845,
+      "regioes": 0.845,
+      "regioes_sem_fundir": 0.8
+    },
+    "official_diary_MG_congonhas/executive_official_diary_2014-04-09_998.pdf#p1": {
+      "v3": 0.929,
+      "proposta": 0.0,
+      "regioes_v2": 0.875,
+      "regioes": 0.875,
+      "regioes_sem_fundir": 0.875
+    },
+    "official_diary_rr/2023-11-14_DiarioRR.pdf#p23": {
+      "v3": 0.703,
+      "proposta": 0.0,
+      "regioes_v2": 0.863,
+      "regioes": 0.863,
+      "regioes_sem_fundir": 0.863
+    },
+    "official_diary_ro/executive_official_diary_2021-11-11.pdf#p344": {
+      "v3": 0.25,
+      "proposta": 0.0,
+      "regioes_v2": 0.962,
+      "regioes": 0.962,
+      "regioes_sem_fundir": 0.943
+    },
+    "official_diary_ms/executive_official_diary_48977_2025-03-27.pdf#p359": {
+      "v3": 0.9,
+      "proposta": 0.0,
+      "regioes_v2": 0.704,
+      "regioes": 0.704,
+      "regioes_sem_fundir": 0.704
+    },
+    "official_diary_rs_porto_alegre/5393_ce_20241023_executivo.pdf#p4": {
+      "v3": 1.0,
+      "proposta": 0.0,
+      "regioes_v2": 1.0,
+      "regioes": 1.0,
+      "regioes_sem_fundir": 1.0
+    },
+    "official_diary_pe/2021-08-12_1-Poder Executivo.pdf#p4": {
+      "v3": 0.963,
+      "proposta": 0.0,
+      "regioes_v2": 0.895,
+      "regioes": 0.895,
+      "regioes_sem_fundir": 0.895
+    },
+    "official_diary_pi_v2/executive_official_diary_2025_04_30_81_2025.pdf#p174": {
+      "v3": 0.839,
+      "proposta": 0.0,
+      "regioes_v2": 0.788,
+      "regioes": 0.788,
+      "regioes_sem_fundir": 0.765
+    }
+  }
+}

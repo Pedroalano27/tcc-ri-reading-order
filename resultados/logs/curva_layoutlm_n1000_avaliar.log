@@ -1,4 +1,4 @@
 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-Loading weights:   0%|          | 0/203 [00:00<?, ?it/s]Loading weights: 100%|██████████| 203/203 [00:00<00:00, 2702.15it/s]
-[OK] curva_layoutlm_n1000: 95 paginas de teste | tau 0.7296 | ARD norm 0.1035 | 41.7 ms/pagina
+Loading weights:   0%|          | 0/203 [00:00<?, ?it/s]Loading weights: 100%|██████████| 203/203 [00:00<00:00, 17478.42it/s]
+[OK] curva_layoutlm_n1000: 89 paginas de teste | tau 0.7570 | ARD norm 0.0931 | 12.1 ms/pagina
      predicoes em C:\Users\pedro\dev\tcc-ri-reading-order\resultados\curva_aprendizado\pred_curva_layoutlm_n1000.jsonl

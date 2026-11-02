@@ -1,0 +1,519 @@
+{
+  "golden_v4_n": 44,
+  "melhores_por_familia": {
+    "Heurística geométrica": {
+      "antes": "fluxo_pdf_regioes_ouro",
+      "depois": "regra_colunas",
+      "medias_antes": {
+        "tau": 0.838909811656731,
+        "quebras": 3.4545454545454546,
+        "fid12": 0.9307106339080413,
+        "sucessor_linhas": 0.9286136106357
+      },
+      "medias_depois": {
+        "tau": 0.9859481733498361,
+        "quebras": 6.045454545454546,
+        "fid12": 0.948128658431846,
+        "sucessor_linhas": 0.9272403501010137
+      }
+    },
+    "LayoutLM sucessor": {
+      "antes": "sucessor_seed2",
+      "depois": "sucessor_linhas_40ep",
+      "medias_antes": {
+        "tau": 0.9674612172656485,
+        "quebras": 10,
+        "fid12": 0.907119628642817,
+        "sucessor_linhas": 0.8714793903168202
+      },
+      "medias_depois": {
+        "tau": 0.9276487339450893,
+        "quebras": 11,
+        "fid12": 0.9319091187174668,
+        "sucessor_linhas": 0.9040452384017471
+      }
+    },
+    "LayoutLM pontual": {
+      "antes": "pontual_seed2",
+      "depois": "pontual_linhas",
+      "medias_antes": {
+        "tau": 0.9494298348560186,
+        "quebras": 23.113636363636363,
+        "fid12": 0.809296428987626,
+        "sucessor_linhas": 0.7660200775855529
+      },
+      "medias_depois": {
+        "tau": 0.9023104777350388,
+        "quebras": 72.56818181818181,
+        "fid12": 0.4334958566970003,
+        "sucessor_linhas": 0.3393458758835505
+      }
+    },
+    "BiLSTM": {
+      "antes": null,
+      "depois": "lstm_geo_linhas",
+      "medias_antes": null,
+      "medias_depois": {
+        "tau": 0.8722901577642668,
+        "quebras": 75.47727272727273,
+        "fid12": 0.4031847209086412,
+        "sucessor_linhas": 0.30369074161480325
+      }
+    },
+    "LayoutReader": {
+      "antes": null,
+      "depois": "layoutreader_pronto",
+      "medias_antes": null,
+      "medias_depois": {
+        "tau": 0.9130707332871878,
+        "quebras": 18.386363636363637,
+        "fid12": 0.9351967173358208,
+        "sucessor_linhas": 0.927182405157255
+      }
+    },
+    "Modelo de linguagem (LLM/VLM)": {
+      "antes": "vlm_gemini_3_1_flash_lite_sem_classes",
+      "depois": null,
+      "medias_antes": {
+        "tau": 0.9627920934975899,
+        "quebras": 3.977272727272727,
+        "fid12": 0.9865603564291979,
+        "sucessor_linhas": 0.9832148082070498
+      },
+      "medias_depois": null
+    }
+  },
+  "antes": {
+    "ablacao_suc_sem_layout": {
+      "metodo": "ablacao_suc_sem_layout",
+      "familia": "Outros",
+      "n": 44,
+      "medias": {
+        "tau": 0.4122462443523546,
+        "quebras": 24.318181818181817,
+        "fid12": 0.7622537763518025,
+        "sucessor_linhas": 0.7337470858047727
+      },
+      "paginas_invalidas": []
+    },
+    "ablacao_suc_sem_posicao": {
+      "metodo": "ablacao_suc_sem_posicao",
+      "familia": "Outros",
+      "n": 44,
+      "medias": {
+        "tau": 0.44708823165147216,
+        "quebras": 10.545454545454545,
+        "fid12": 0.8912236192887955,
+        "sucessor_linhas": 0.8603028026490032
+      },
+      "paginas_invalidas": []
+    },
+    "ablacao_suc_sem_texto": {
+      "metodo": "ablacao_suc_sem_texto",
+      "familia": "Outros",
+      "n": 44,
+      "medias": {
+        "tau": 0.9518853903131679,
+        "quebras": 8.363636363636363,
+        "fid12": 0.9069009927659114,
+        "sucessor_linhas": 0.8871623616466087
+      },
+      "paginas_invalidas": []
+    },
+    "ablacao_suc_sem_vies_geo": {
+      "metodo": "ablacao_suc_sem_vies_geo",
+      "familia": "Outros",
+      "n": 44,
+      "medias": {
+        "tau": 0.9691629271044204,
+        "quebras": 9.454545454545455,
+        "fid12": 0.9159865342940059,
+        "sucessor_linhas": 0.8915659031187902
+      },
+      "paginas_invalidas": []
+    },
+    "layoutlm": {
+      "metodo": "layoutlm",
+      "familia": "LayoutLM pontual",
+      "n": 44,
+      "medias": {
+        "tau": 0.9389000489872038,
+        "quebras": 24.045454545454547,
+        "fid12": 0.7966014425676782,
+        "sucessor_linhas": 0.7519202981979108
+      },
+      "paginas_invalidas": []
+    },
+    "layoutlm_sem_layout": {
+      "metodo": "layoutlm_sem_layout",
+      "familia": "LayoutLM pontual",
+      "n": 44,
+      "medias": {
+        "tau": 0.24167809249094307,
+        "quebras": 30.5,
+        "fid12": 0.713620853606702,
+        "sucessor_linhas": 0.6629716645165595
+      },
+      "paginas_invalidas": []
+    },
+    "layoutlm_sucessor": {
+      "metodo": "layoutlm_sucessor",
+      "familia": "LayoutLM sucessor",
+      "n": 44,
+      "medias": {
+        "tau": 0.9649640702406402,
+        "quebras": 10.181818181818182,
+        "fid12": 0.8955599479014182,
+        "sucessor_linhas": 0.8691147401299244
+      },
+      "paginas_invalidas": []
+    },
+    "llm_gemma4_31b": {
+      "metodo": "llm_gemma4_31b",
+      "familia": "Modelo de linguagem (LLM/VLM)",
+      "n": 44,
+      "medias": {
+        "tau": 0.8366736966711237,
+        "quebras": 9.75,
+        "fid12": 0.9408889510169856,
+        "sucessor_linhas": 0.9217958657367512
+      },
+      "paginas_invalidas": []
+    },
+    "llm_gemma4_31b_fs2": {
+      "metodo": "llm_gemma4_31b_fs2",
+      "familia": "Modelo de linguagem (LLM/VLM)",
+      "n": 44,
+      "medias": {
+        "tau": 0.8513907300529061,
+        "quebras": 11.590909090909092,
+        "fid12": 0.9354647683873495,
+        "sucessor_linhas": 0.915808213477764
+      },
+      "paginas_invalidas": []
+    },
+    "llm_qwen3_8_27b": {
+      "metodo": "llm_qwen3_8_27b",
+      "familia": "Modelo de linguagem (LLM/VLM)",
+      "n": 44,
+      "medias": {
+        "tau": 0.8741299000870907,
+        "quebras": 8.75,
+        "fid12": 0.9299708043046141,
+        "sucessor_linhas": 0.9192328779043369
+      },
+      "paginas_invalidas": []
+    },
+    "llm_qwen3_8_27b_fs2": {
+      "metodo": "llm_qwen3_8_27b_fs2",
+      "familia": "Modelo de linguagem (LLM/VLM)",
+      "n": 44,
+      "medias": {
+        "tau": 0.9206778161074239,
+        "quebras": 10.136363636363637,
+        "fid12": 0.9236510281461844,
+        "sucessor_linhas": 0.9110076248008365
+      },
+      "paginas_invalidas": []
+    },
+    "pontual_seed1": {
+      "metodo": "pontual_seed1",
+      "familia": "LayoutLM pontual",
+      "n": 44,
+      "medias": {
+        "tau": 0.9392112099566209,
+        "quebras": 23.75,
+        "fid12": 0.8044138762222035,
+        "sucessor_linhas": 0.7586649176686141
+      },
+      "paginas_invalidas": []
+    },
+    "pontual_seed2": {
+      "metodo": "pontual_seed2",
+      "familia": "LayoutLM pontual",
+      "n": 44,
+      "medias": {
+        "tau": 0.9494298348560186,
+        "quebras": 23.113636363636363,
+        "fid12": 0.809296428987626,
+        "sucessor_linhas": 0.7660200775855529
+      },
+      "paginas_invalidas": []
+    },
+    "sucessor_seed1": {
+      "metodo": "sucessor_seed1",
+      "familia": "LayoutLM sucessor",
+      "n": 44,
+      "medias": {
+        "tau": 0.9464556495667532,
+        "quebras": 15.522727272727273,
+        "fid12": 0.8429216562695355,
+        "sucessor_linhas": 0.8187962895287758
+      },
+      "paginas_invalidas": []
+    },
+    "sucessor_seed2": {
+      "metodo": "sucessor_seed2",
+      "familia": "LayoutLM sucessor",
+      "n": 44,
+      "medias": {
+        "tau": 0.9674612172656485,
+        "quebras": 10,
+        "fid12": 0.907119628642817,
+        "sucessor_linhas": 0.8714793903168202
+      },
+      "paginas_invalidas": []
+    },
+    "vlm_gemini_3_1_flash_lite": {
+      "metodo": "vlm_gemini_3_1_flash_lite",
+      "familia": "Modelo de linguagem (LLM/VLM)",
+      "n": 44,
+      "medias": {
+        "tau": 0.9671759037801083,
+        "quebras": 4,
+        "fid12": 0.9860886837458499,
+        "sucessor_linhas": 0.9816402501504705
+      },
+      "paginas_invalidas": []
+    },
+    "vlm_gemini_3_1_flash_lite_sem_classes": {
+      "metodo": "vlm_gemini_3_1_flash_lite_sem_classes",
+      "familia": "Modelo de linguagem (LLM/VLM)",
+      "n": 44,
+      "medias": {
+        "tau": 0.9627920934975899,
+        "quebras": 3.977272727272727,
+        "fid12": 0.9865603564291979,
+        "sucessor_linhas": 0.9832148082070498
+      },
+      "paginas_invalidas": []
+    },
+    "vlm_gemini_3_1_flash_lite_sem_imagem": {
+      "metodo": "vlm_gemini_3_1_flash_lite_sem_imagem",
+      "familia": "Modelo de linguagem (LLM/VLM)",
+      "n": 44,
+      "medias": {
+        "tau": 0.9212284641324908,
+        "quebras": 8.727272727272727,
+        "fid12": 0.9363578284011783,
+        "sucessor_linhas": 0.9154014232175641
+      },
+      "paginas_invalidas": []
+    },
+    "vlm_gemini_3_1_flash_lite_sem_marcas": {
+      "metodo": "vlm_gemini_3_1_flash_lite_sem_marcas",
+      "familia": "Modelo de linguagem (LLM/VLM)",
+      "n": 44,
+      "medias": {
+        "tau": 0.9479584307498391,
+        "quebras": 5.886363636363637,
+        "fid12": 0.9765327987827237,
+        "sucessor_linhas": 0.9636381611909598
+      },
+      "paginas_invalidas": []
+    },
+    "xycut_regioes_ouro": {
+      "metodo": "xycut_regioes_ouro",
+      "familia": "Heurística geométrica",
+      "n": 44,
+      "medias": {
+        "tau": 0.8526427252778584,
+        "quebras": 13.227272727272727,
+        "fid12": 0.9033241731499384,
+        "sucessor_linhas": 0.8864583272457502
+      },
+      "paginas_invalidas": []
+    },
+    "ingenuo_regioes_ouro": {
+      "metodo": "ingenuo_regioes_ouro",
+      "familia": "Outros",
+      "n": 44,
+      "medias": {
+        "tau": 0.7555634989763779,
+        "quebras": 17.977272727272727,
+        "fid12": 0.8817956321938092,
+        "sucessor_linhas": 0.8607831893332286
+      },
+      "paginas_invalidas": []
+    },
+    "fluxo_pdf_regioes_ouro": {
+      "metodo": "fluxo_pdf_regioes_ouro",
+      "familia": "Heurística geométrica",
+      "n": 44,
+      "medias": {
+        "tau": 0.838909811656731,
+        "quebras": 3.4545454545454546,
+        "fid12": 0.9307106339080413,
+        "sucessor_linhas": 0.9286136106357
+      },
+      "paginas_invalidas": []
+    }
+  },
+  "depois": {
+    "layoutreader_pronto": {
+      "ordenador": "layoutreader_pronto",
+      "familia": "LayoutReader",
+      "n": 44,
+      "medias": {
+        "tau": 0.9130707332871878,
+        "quebras": 18.386363636363637,
+        "fid12": 0.9351967173358208,
+        "sucessor_linhas": 0.927182405157255
+      }
+    },
+    "teto": {
+      "ordenador": "teto",
+      "familia": "Outros",
+      "n": 44,
+      "medias": {
+        "tau": 0.9999927516146342,
+        "quebras": 0.8863636363636364,
+        "fid12": 0.9971066200298436,
+        "sucessor_linhas": 0.9946676269768076
+      }
+    },
+    "ingenuo": {
+      "ordenador": "ingenuo",
+      "familia": "Outros",
+      "n": 44,
+      "medias": {
+        "tau": 0.7322767827403027,
+        "quebras": 58.90909090909091,
+        "fid12": 0.6881589134360547,
+        "sucessor_linhas": 0.6344634798470904
+      }
+    },
+    "xycut": {
+      "ordenador": "xycut",
+      "familia": "Heurística geométrica",
+      "n": 44,
+      "medias": {
+        "tau": 0.8056871871848047,
+        "quebras": 45.56818181818182,
+        "fid12": 0.7618421161815738,
+        "sucessor_linhas": 0.7228630852212828
+      }
+    },
+    "xycut_margens": {
+      "ordenador": "xycut_margens",
+      "familia": "Heurística geométrica",
+      "n": 44,
+      "medias": {
+        "tau": 0.9625044524203805,
+        "quebras": 23.068181818181817,
+        "fid12": 0.9056962885320584,
+        "sucessor_linhas": 0.8803957164262669
+      }
+    },
+    "regra_colunas": {
+      "ordenador": "regra_colunas",
+      "familia": "Heurística geométrica",
+      "n": 44,
+      "medias": {
+        "tau": 0.9859481733498361,
+        "quebras": 6.045454545454546,
+        "fid12": 0.948128658431846,
+        "sucessor_linhas": 0.9272403501010137
+      }
+    },
+    "lstm_geo_linhas": {
+      "ordenador": "lstm_geo_linhas",
+      "familia": "BiLSTM",
+      "n": 44,
+      "medias": {
+        "tau": 0.8722901577642668,
+        "quebras": 75.47727272727273,
+        "fid12": 0.4031847209086412,
+        "sucessor_linhas": 0.30369074161480325
+      }
+    },
+    "lstm_geo_texto_linhas": {
+      "ordenador": "lstm_geo_texto_linhas",
+      "familia": "BiLSTM",
+      "n": 44,
+      "medias": {
+        "tau": 0.8502273892057447,
+        "quebras": 78.13636363636364,
+        "fid12": 0.38240911977091796,
+        "sucessor_linhas": 0.28586504839294496
+      }
+    },
+    "sucessor_linhas": {
+      "ordenador": "sucessor_linhas",
+      "familia": "LayoutLM sucessor",
+      "n": 44,
+      "medias": {
+        "tau": 0.9022710943304982,
+        "quebras": 57.59090909090909,
+        "fid12": 0.6139682286875386,
+        "sucessor_linhas": 0.5433653224797397
+      }
+    },
+    "pontual_linhas": {
+      "ordenador": "pontual_linhas",
+      "familia": "LayoutLM pontual",
+      "n": 44,
+      "medias": {
+        "tau": 0.9023104777350388,
+        "quebras": 72.56818181818181,
+        "fid12": 0.4334958566970003,
+        "sucessor_linhas": 0.3393458758835505
+      }
+    },
+    "layoutreader_ajustado_linhas": {
+      "ordenador": "layoutreader_ajustado_linhas",
+      "familia": "LayoutReader",
+      "n": 44,
+      "medias": {
+        "tau": 0.9054095846534487,
+        "quebras": 21.90909090909091,
+        "fid12": 0.9039398004026299,
+        "sucessor_linhas": 0.8907652481278036
+      }
+    },
+    "sucessor_linhas_40ep": {
+      "ordenador": "sucessor_linhas_40ep",
+      "familia": "LayoutLM sucessor",
+      "n": 44,
+      "medias": {
+        "tau": 0.9276487339450893,
+        "quebras": 11,
+        "fid12": 0.9319091187174668,
+        "sucessor_linhas": 0.9040452384017471
+      }
+    },
+    "sucessor_linhas_s43": {
+      "ordenador": "sucessor_linhas_s43",
+      "familia": "LayoutLM sucessor",
+      "n": 44,
+      "medias": {
+        "tau": 0.8872528575804567,
+        "quebras": 62.75,
+        "fid12": 0.5580292545394699,
+        "sucessor_linhas": 0.4805780691672528
+      }
+    },
+    "sucessor_linhas_100ep": {
+      "ordenador": "sucessor_linhas_100ep",
+      "familia": "LayoutLM sucessor",
+      "n": 44,
+      "medias": {
+        "tau": 0.9292684385498139,
+        "quebras": 12.568181818181818,
+        "fid12": 0.9213793352926105,
+        "sucessor_linhas": 0.8964715255284426
+      }
+    },
+    "xycut_pp_parceiro": {
+      "ordenador": "xycut_pp_parceiro",
+      "familia": "Heurística geométrica",
+      "n": 44,
+      "medias": {
+        "tau": 0.7627818639710812,
+        "quebras": 48.20454545454545,
+        "fid12": 0.7501682897234876,
+        "sucessor_linhas": 0.7207315428650503
+      }
+    }
+  }
+}

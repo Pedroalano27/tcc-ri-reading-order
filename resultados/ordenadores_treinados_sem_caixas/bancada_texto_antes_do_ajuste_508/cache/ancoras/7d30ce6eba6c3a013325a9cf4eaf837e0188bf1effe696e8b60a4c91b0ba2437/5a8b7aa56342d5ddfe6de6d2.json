@@ -1,0 +1,84 @@
+{
+  "page_id": "official_diary_am_manaus/2023-03-13_caderno_2.pdf#p22",
+  "uf": "official_diary_am_manaus",
+  "P2": {
+    "tau": 1.0,
+    "quebras": 0,
+    "quebras_mil": 0.0,
+    "fid12": 1.0,
+    "sucessor_linhas": 1.0
+  },
+  "P1m": {
+    "tau": 1.0,
+    "quebras": 0,
+    "quebras_mil": 0.0,
+    "fid12": 1.0,
+    "sucessor_linhas": 1.0
+  },
+  "regra_colunas_exportada": {
+    "tau": 1.0,
+    "quebras": 0,
+    "quebras_mil": 0.0,
+    "fid12": 1.0,
+    "sucessor_linhas": 1.0,
+    "piso_interno": 0
+  },
+  "regra_colunas_ks_cru": {
+    "tau": 1.0,
+    "quebras": 0,
+    "quebras_mil": 0.0,
+    "fid12": 1.0,
+    "sucessor_linhas": 1.0,
+    "piso_interno": 0
+  },
+  "expansao_canonica_diagnostico": {
+    "tau": 1.0,
+    "quebras": 0,
+    "quebras_mil": 0.0,
+    "fid12": 1.0,
+    "sucessor_linhas": 1.0
+  },
+  "diagnostico": {
+    "ks_diferem_da_expansao_canonica": false,
+    "canonizada_identica_P2": true,
+    "unidades_internas_diferentes": 0,
+    "detalhes": []
+  },
+  "ordem_regra_colunas_exportada": [
+    "b3",
+    "b1",
+    "b8",
+    "b7",
+    "b10",
+    "b9",
+    "b4",
+    "b2",
+    "b6",
+    "b5",
+    "b0",
+    "b11"
+  ],
+  "diag_regra": {
+    "unidades": 12,
+    "entrada": [
+      "b2",
+      "b5",
+      "b1",
+      "b8",
+      "b6",
+      "b9",
+      "b7",
+      "b10",
+      "b0",
+      "b11",
+      "b3",
+      "b4"
+    ],
+    "max_colunas": 1,
+    "pontes": 0,
+    "topo": 1,
+    "rodape": 1,
+    "marcas": 0,
+    "tempo_ms": 0.5243999999038351
+  }
+}

@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galeria Visual: Ouro vs Extrator vs Detectores (Diamond Teste)</title>
+  <style>
+
+    :root {
+      --bg: #0f172a;
+      --card-bg: #ffffff;
+      --card-border: #e2e8f0;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --color-texto: #2563eb;
+      --color-tabela: #7c3aed;
+      --color-imagem: #64748b;
+      --color-outro: #ea580c;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: #f8fafc;
+      color: var(--text-main);
+      line-height: 1.5;
+      padding: 0;
+    }
+    header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #ffffff;
+      padding: 2.5rem 2rem 2rem;
+      border-bottom: 3px solid #3b82f6;
+    }
+    .header-content {
+      max-width: 1500px;
+      margin: 0 auto;
+    }
+    header h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+    header p.subtitulo {
+      font-size: 1.05rem;
+      color: #cbd5e1;
+      margin-bottom: 1.25rem;
+    }
+    .meta-box {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      margin-bottom: 1.5rem;
+    }
+    .meta-box strong { color: #f1f5f9; }
+    .meta-box ul { margin-left: 1.5rem; margin-top: 0.35rem; }
+    .meta-box li { margin-bottom: 0.2rem; }
+
+    /* Barra de Legenda */
+    .legenda-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 0.75rem 1.25rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+    }
+    .legenda-title {
+      font-weight: 600;
+      color: #f8fafc;
+      margin-right: 0.5rem;
+    }
+    .legenda-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.9rem;
+      color: #e2e8f0;
+    }
+    .color-pill {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      border: 2px solid;
+    }
+
+    /* Menu de Navegacao Rapida */
+    .nav-bar {
+      max-width: 1500px;
+      margin: 1.5rem auto 0;
+      padding: 0 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .nav-btn {
+      display: inline-block;
+      padding: 0.4rem 0.8rem;
+      background-color: #ffffff;
+      color: #334155;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      transition: all 0.15s ease;
+    }
+    .nav-btn:hover {
+      background-color: #2563eb;
+      color: #ffffff;
+      border-color: #2563eb;
+    }
+
+    /* Container Principal */
+    main {
+      max-width: 1500px;
+      margin: 1.5rem auto 3rem;
+      padding: 0 1.5rem;
+    }
+
+    /* Secao Consolidada */
+    .resumo-card {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .resumo-card h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: #0f172a;
+    }
+
+    /* Cartao por Pagina */
+    .pagina-section {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      overflow: hidden;
+    }
+    .pagina-header {
+      background-color: #f1f5f9;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .pagina-header-tit {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .pagina-header-sub {
+      font-size: 0.85rem;
+      color: #64748b;
+      margin-top: 0.15rem;
+    }
+    .pagina-header-badge {
+      display: inline-block;
+      padding: 0.25rem 0.65rem;
+      background: #e2e8f0;
+      color: #334155;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .pagina-body {
+      padding: 1.25rem 1.5rem;
+    }
+
+    /* Tabela de Contagens */
+    .tabela-wrapper {
+      margin-bottom: 1.25rem;
+      overflow-x: auto;
+    }
+    table.tabela-contagens {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+    table.tabela-contagens th,
+    table.tabela-contagens td {
+      padding: 0.6rem 0.85rem;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    table.tabela-contagens th {
+      background-color: #f8fafc;
+      font-weight: 600;
+      color: #475569;
+    }
+    table.tabela-contagens tr:hover td {
+      background-color: #f8fafc;
+    }
+    table.tabela-contagens td.num,
+    table.tabela-contagens th.num {
+      text-align: right;
+    }
+    table.tabela-contagens td.total,
+    table.tabela-contagens th.total {
+      text-align: right;
+      font-weight: 700;
+    }
+    .dot-badge {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 5px;
+    }
+
+    /* Imagem Comparativa */
+    .img-box {
+      text-align: center;
+      background: #090d16;
+      padding: 0.75rem;
+      border-radius: 8px;
+    }
+    .img-box a {
+      display: block;
+      text-decoration: none;
+    }
+    .img-box img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+      display: block;
+      margin: 0 auto;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      transition: opacity 0.15s ease;
+    }
+    .img-box a:hover img {
+      opacity: 0.95;
+    }
+    .img-dica {
+      margin-top: 0.65rem;
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #64748b;
+      font-size: 0.85rem;
+      border-top: 1px solid #e2e8f0;
+      background: #ffffff;
+    }
+    
+  </style>
+</head>
+<body>
+<header>
+  <div class="header-content">
+    <h1>Galeria Visual: Ouro Humano vs Extrator vs Detectores de Layout</h1>
+    <p class="subtitulo">Comparação detalhada nas 11 páginas do teste sem viés (<code>data/diamond/diamond_teste</code>) para inspeção qualitativa.</p>
+    <div class="meta-box">
+      <strong>Metodologia e Contexto Experimental:</strong>
+      <ul>
+        <li><strong>Teste sem viés de ancoragem:</strong> as 11 páginas do <code>diamond_teste</code> foram anotadas do zero pelo autor (sem pré-anotação na tela), garantindo gabarito independente.</li>
+        <li><strong>Limitações declaradas:</strong> tamanho de amostra pequeno (n = 11 páginas); o extrator depende da camada digital de texto do PDF (pdfplumber) combinada com Docling Heron, enquanto os detectores LS-16 e LS-3 operam sobre a renderização visual da imagem.</li>
+        <li><strong>Regra das 3 classes colapsadas:</strong> Texto (azul), Tabela (roxo), Imagem/Gráfico/Rubrica (cinza) e Outro/Duvidoso (laranja). Contorno de 2 px sem preenchimento.</li>
+      </ul>
+    </div>
+    <div class="legenda-bar">
+      <span class="legenda-title">Legenda de Cores:</span>
+      <div class="legenda-item"><span class="color-pill" style="border-color:#2563eb; background:rgba(37,99,235,0.2);"></span> <strong>Texto</strong> (parágrafo, título, lista, cabeçalho, rodapé, assinatura)</div>
+      <div class="legenda-item"><span class="color-pill" style="border-color:#7c3aed; background:rgba(124,58,237,0.2);"></span> <strong>Tabela</strong> (estrutura tabular)</div>
+      <div class="legenda-item"><span class="color-pill" style="border-color:#64748b; background:rgba(100,116,139,0.2);"></span> <strong>Imagem</strong> (figura, gráfico, rubrica manuscrita)</div>
+      <div class="legenda-item"><span class="color-pill" style="border-color:#ea580c; background:rgba(234,88,12,0.2);"></span> <strong>Outro</strong> (classe não mapeada ou duvidosa)</div>
+    </div>
+  </div>
+</header>
+<nav class="nav-bar">
+  <a class="nav-btn" href="#pag01">Pág 01 (TO)</a>
+  <a class="nav-btn" href="#pag02">Pág 02 (PR_CURITIBA)</a>
+  <a class="nav-btn" href="#pag03">Pág 03 (SE)</a>
+  <a class="nav-btn" href="#pag04">Pág 04 (RJ_DUQUE_DE_CAXIAS)</a>
+  <a class="nav-btn" href="#pag05">Pág 05 (MG_CONGONHAS)</a>
+  <a class="nav-btn" href="#pag06">Pág 06 (RR)</a>
+  <a class="nav-btn" href="#pag07">Pág 07 (RO)</a>
+  <a class="nav-btn" href="#pag08">Pág 08 (MS)</a>
+  <a class="nav-btn" href="#pag09">Pág 09 (RS_PORTO_ALEGRE)</a>
+  <a class="nav-btn" href="#pag10">Pág 10 (PE)</a>
+  <a class="nav-btn" href="#pag11">Pág 11 (PI_V2)</a>
+</nav>
+<main>
+  <section class="resumo-card">
+    <h2>Consolidado Geral (Total de Caixas nas 11 Páginas)</h2>
+    <div class="tabela-wrapper">
+      <table class="tabela-contagens">
+        <thead>
+          <tr>
+            <th>Sistema</th>
+            <th class="num"><span class="dot-badge" style="background:#2563eb;"></span>Texto</th>
+            <th class="num"><span class="dot-badge" style="background:#7c3aed;"></span>Tabela</th>
+            <th class="num"><span class="dot-badge" style="background:#64748b;"></span>Imagem</th>
+            <th class="num"><span class="dot-badge" style="background:#ea580c;"></span>Outro</th>
+            <th class="total">Total de Caixas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Ouro Humano (Gabarito)</strong></td>
+            <td class="num">290</td>
+            <td class="num">20</td>
+            <td class="num">18</td>
+            <td class="num">17</td>
+            <td class="total">345</td>
+          </tr>
+          <tr>
+            <td><strong>Extrator de Regras (regioes.py)</strong></td>
+            <td class="num">336</td>
+            <td class="num">20</td>
+            <td class="num">24</td>
+            <td class="num">14</td>
+            <td class="total">394</td>
+          </tr>
+          <tr>
+            <td><strong>Detector LS-16 (16 classes guia)</strong></td>
+            <td class="num">367</td>
+            <td class="num">25</td>
+            <td class="num">28</td>
+            <td class="num">1</td>
+            <td class="total">421</td>
+          </tr>
+          <tr>
+            <td><strong>Detector LS-3 (3 classes plano grosso)</strong></td>
+            <td class="num">372</td>
+            <td class="num">22</td>
+            <td class="num">27</td>
+            <td class="num">0</td>
+            <td class="total">421</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <section class="pagina-section" id="pag01">
+    <div class="pagina-header">
+      <div>
+        <div class="pagina-header-tit">Página 01 — Tocantins (TO)</div>
+        <div class="pagina-header-sub">PDF: <code>2023-07-24_4946_22_50.pdf</code> (pág. 0) &bull; ID: <code>official_diary_to/2023-07-24_4946_22_50.pdf#p0</code></div>
+      </div>
+      <span class="pagina-header-badge">595.3 × 841.9 pt &bull; 1241 × 1754 px</span>
+    </div>
+    <div class="pagina-body">
+      <div class="tabela-wrapper">
+        <table class="tabela-contagens">
+          <thead>
+            <tr>
+              <th>Sistema</th>
+              <th class="num"><span class="dot-badge" style="background:#2563eb;"></span>Texto</th>
+              <th class="num"><span class="dot-badge" style="background:#7c3aed;"></span>Tabela</th>
+              <th class="num"><span class="dot-badge" style="background:#64748b;"></span>Imagem</th>
+              <th class="num"><span class="dot-badge" style="background:#ea580c;"></span>Outro</th>
+              <th class="total">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Ouro Humano (Gabarito)</td>
+              <td class="num">13</td>
+              <td class="num">1</td>
+              <td class="num">0</td>
+              <td class="num">0</td>
+              <td class="total">14</td>
+            </tr>
+            <tr>
+              <td>Extrator de Regras (regioes.py)</td>
+              <td class="num">29</td>
+              <td class="num">1</td>
+              <td class="num">0</td>
+              <td class="num">0</td>
+              <td class="total">30</td>
+            </tr>
+            <tr>
+              <td>Detector LS-16 (16 classes guia)</td>
+              <td class="num">48</td>
+              <td class="num">1</td>
+              <td class="num">0</td>
+              <td class="num">0</td>
+              <td class="total">49</td>
+            </tr>
+            <tr>
+              <td>Detector LS-3 (3 classes plano grosso)</td>
+              <td class="num">47</td>
+              <td class="num">1</td>
+              <td class="num">0</td>
+              <td class="num">0</td>
+              <td class="total">48</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="img-box">
+        <a href="pag01.jpg" target="_blank" title="Clique para abrir a imagem em tamanho real (2800 px de largura)">
+          <img src="pag01.jpg" alt="Painel comparativo da página 01" loading="lazy">
+        </a>
+        <p class="img-dica">🔍 Clique na imagem para abrir em resolução máxima (4 painéis lado a lado, ~2800 px).</p>
+      </div>
+    </div>
+  </section>
+  <section class="pagina-section" id="pag02">
+    <div class="pagina-header">
+      <div>
+        <div class="pagina-header-tit">Página 02 — Curitiba (PR)</div>
+        <div class="pagina-header-sub">PDF: <code>31-Supl2_2023-02-14.pdf</code> (pág. 76) &bull; ID: <code>official_diary_pr_curitiba/31-Supl2_2023-02-14.pdf#p76</code></div>
+      </div>
+      <span class="pagina-header-badge">595.0 × 842.0 pt &bull; 1240 × 1755 px</span>
+    </div>
+    <div class="pagina-body">
+      <div class="tabela-wrapper">
+        <table class="tabela-contagens">
+          <thead>
+            <tr>
+              <th>Sistema</th>
+              <th class="num"><span class="dot-badge" style="background:#2563eb;"></span>Texto</th>
+              <th class="num"><span class="dot-badge" style="background:#7c3aed;"></span>Tabela</th>
+              <th class="num"><span class="dot-badge" style="background:#64748b;"></span>Imagem</th>
+              <th class="num"><span class="dot-badge" style="background:#ea580c;"></span>Outro</th>
+              <th class="total">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Ouro Humano (Gabarito)</td>
+              <td class="num">3</td>
+              <td class="num">1</td>
+              <td class="num">2</td>
+              <td class="num">0</td>
+              <td class="total">6</td>
+            </tr>
+            <tr>
+              <td>Extrator de Regras (regioes.py)</td>
+              <td class="num">4</td>
+              <td class="num">1</td>
+              <td class="num">2</td>
+              <td class="num">0</td>
+              <td class="total">7</td>
+            </tr>
+            <tr>
+              <td>Detector LS-16 (16 classes guia)</td>
+              <td class="num">5</td>
+              <td class="num">1</td>
+              <td class="num">2</td>
+              <td class="num">0</td>
+              <td class="total">8</td>
+            </tr>
+            <tr>
+              <td>Detector LS-3 (3 classes plano grosso)</td>
+              <td class="num">4</td>
+              <td class="num">1</td>
+              <td class="num">2</td>
+              <td class="num">0</td>
+              <td class="total">7</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="img-box">
+        <a href="pag02.jpg" target="_blank" title="Clique para abrir a imagem em tamanho real (2800 px de largura)">
+          <img src="pag02.jpg" alt="Painel comparativo da página 02" loading="lazy">
+        </a>
+        <p class="img-dica">🔍 Clique na imagem para abrir em resolução máxima (4 painéis lado a lado, ~2800 px).</p>
+      </div>
+    </div>
+  </section>
+  <section class="pagina-section" id="pag03">
+    <div class="pagina-header">
+      <div>
+        <div class="pagina-header-tit">Página 03 — Sergipe (SE)</div>
+        <div class="pagina-header-sub">PDF: <code>DOE-SE_2022-03-18_4475.pdf</code> (pág. 10) &bull; ID: <code>official_diary_se/DOE-SE_2022-03-18_4475.pdf#p10</code></div>
+      </div>
+      <span class="pagina-header-badge">929.8 × 1275.6 pt &bull; 1938 × 2658 px</span>
+    </div>
+    <div class="pagina-body">
+      <div class="tabela-wrapper">
+        <table class="tabela-contagens">
+          <thead>
+            <tr>
+              <th>Sistema</th>
+              <th class="num"><span class="dot-badge" style="background:#2563eb;"></span>Texto</th>
+              <th class="num"><span class="dot-badge" style="background:#7c3aed;"></span>Tabela</th>
+              <th class="num"><span class="dot-badge" style="background:#64748b;"></span>Imagem</th>
+              <th class="num"><span class="dot-badge" style="background:#ea580c;"></span>Outro</th>
+              <th class="total">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Ouro Humano (Gabarito)</td>
+              <td class="num">106</td>
+              <td class="num">0</td>
+              <td class="num">3</td>
+              <td class="num">11</td>
+              <td class="total">120</td>
+            </tr>
+            <tr>
+              <td>Extrator de Regras (regioes.py)</td>
+              <td class="num">109</td>
+              <td class="num">0</td>
+              <td class="num">2</td>
+              <td class="num">13</td>
+              <td class="total">124</td>
+            </tr>
+            <tr>
+              <td>Detector LS-16 (16 classes guia)</td>
+              <td class="num">91</td>
+              <td class="num">0</td>
+              <td class="num">2</td>
+              <td class="num">0</td>
+              <td class="total">93</td>
+            </tr>
+            <tr>
+              <td>Detector LS-3 (3 classes plano grosso)</td>
+              <td class="num">100</td>
+              <td class="num">0</td>
+              <td class="num">4</td>
+              <td class="num">0</td>
+              <td class="total">104</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="img-box">
+        <a href="pag03.jpg" target="_blank" title="Clique para abrir a imagem em tamanho real (2800 px de largura)">
+          <img src="pag03.jpg" alt="Painel comparativo da página 03" loading="lazy">
+        </a>
+        <p class="img-dica">🔍 Clique na imagem para abrir em resolução máxima (4 painéis lado a lado, ~2800 px).</p>
+      </div>
+    </div>
+  </section>
+  <section class="pagina-section" id="pag04">
+    <div class="pagina-header">
+      <div>
+        <div class="pagina-header-tit">Página 04 — Duque de Caxias (RJ)</div>
+        <div class="pagina-header-sub">PDF: <code>executive_official_diary_2022-08-05_Boletim_7175.pdf</code> (pág. 13) &bull; ID: <code>official_diary_RJ_duque_de_caxias/executive_official_diary_2022-08-05_Boletim_7175.pdf#p13</code></div>
+      </div>
+      <span class="pagina-header-badge">595.3 × 841.9 pt &bull; 1241 × 1754 px</span>
+    </div>
+    <div class="pagina-body">
+      <div class="tabela-wrapper">
+        <table class="tabela-contagens">
+          <thead>
+            <tr>
+              <th>Sistema</th>
+              <th class="num"><span class="dot-badge" style="background:#2563eb;"></span>Texto</th>
+              <th class="num"><span class="dot-badge" style="background:#7c3aed;"></span>Tabela</th>
+              <th class="num"><span class="dot-badge" style="background:#64748b;"></span>Imagem</th>
+              <th class="num"><span class="dot-badge" style="background:#ea580c;"></span>Outro</th>
+              <th class="total">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Ouro Humano (Gabarito)</td>
+              <td class="num">25</td>
+              <td class="num">4</td>
+              <td class="num">3</td>
+              <td class="num">6</td>
+              <td class="total">38</td>
+            </tr>
+            <tr>
+              <td>Extrator de Regras (regioes.py)</td>
+              <td class="num">31</td>
+              <td class="num">4</td>
+              <td class="num">9</td>
+              <td class="num">0</td>
+              <td class="total">44</td>
+            </tr>
+            <tr>
+              <td>Detector LS-16 (16 classes guia)</td>
+              <td class="num">34</td>
+              <td class="num">4</td>
+              <td class="num">12</td>
+              <td class="num">1</td>
+              <td class="total">51</td>
+            </tr>
+            <tr>
+              <td>Detector LS-3 (3 classes plano grosso)</td>
+              <td class="num">29</td>
+              <td class="num">4</td>
+              <td class="num">10</td>
+              <td class="num">0</td>
+              <td class="total">43</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="img-box">
+        <a href="pag04.jpg" target="_blank" title="Clique para abrir a imagem em tamanho real (2800 px de largura)">
+          <img src="pag04.jpg" alt="Painel comparativo da página 04" loading="lazy">
+        </a>
+        <p class="img-dica">🔍 Clique na imagem para abrir em resolução máxima (4 painéis lado a lado, ~2800 px).</p>
+      </div>
+    </div>
+  </section>
+  <section class="pagina-section" id="pag05">
+    <div class="pagina-header">
+      <div>
+        <div class="pagina-header-tit">Página 05 — Congonhas (MG)</div>
+        <div class="pagina-header-sub">PDF: <code>executive_official_diary_2014-04-09_998.pdf</code> (pág. 1) &bull; ID: <code>official_diary_MG_congonhas/executive_official_diary_2014-04-09_998.pdf#p1</code></div>
+      </div>
+      <span class="pagina-header-badge">595.3 × 841.9 pt &bull; 1241 × 1754 px</span>
+    </div>
+    <div class="pagina-body">
+      <div class="tabela-wrapper">
+        <table class="tabela-contagens">
+          <thead>
+            <tr>
+              <th>Sistema</th>
+              <th class="num"><span class="dot-badge" style="background:#2563eb;"></span>Texto</th>
+              <th class="num"><span class="dot-badge" style="background:#7c3aed;"></span>Tabela</th>
+              <th class="num"><span class="dot-badge" style="background:#64748b;"></span>Imagem</th>
+              <th class="num"><span class="dot-badge" style="background:#ea580c;"></span>Outro</th>
+              <th class="total">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Ouro Humano (Gabarito)</td>
+              <td class="num">14</td>
+              <td class="num">1</td>
+              <td class="num">1</td>
+              <td class="num">0</td>
+              <td class="total">16</td>
+            </tr>
+            <tr>
+              <td>Extrator de Regras (regioes.py)</td>
+              <td class="num">16</td>
+              <td class="num">1</td>
+              <td class="num">1</td>
+              <td class="num">0</td>
+              <td class="total">18</td>
+            </tr>
+            <tr>
+              <td>Detector LS-16 (16 classes guia)</td>
+              <td class="num">13</td>
+              <td class="num">1</td>
+              <td class="num">3</td>
+              <td class="num">0</td>
+              <td class="total">17</td>
+            </tr>
+            <tr>
+              <td>Detector LS-3 (3 classes plano grosso)</td>
+              <td class="num">13</td>
+              <td class="num">1</td>
+              <td class="num">2</td>
+              <td class="num">0</td>
+              <td class="total">16</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="img-box">
+        <a href="pag05.jpg" target="_blank" title="Clique para abrir a imagem em tamanho real (2800 px de largura)">
+          <img src="pag05.jpg" alt="Painel comparativo da página 05" loading="lazy">
+        </a>
+        <p class="img-dica">🔍 Clique na imagem para abrir em resolução máxima (4 painéis lado a lado, ~2800 px).</p>
+      </div>
+    </div>
+  </section>
+  <section class="pagina-section" id="pag06">
+    <div class="pagina-header">
+      <div>
+        <div class="pagina-header-tit">Página 06 — Roraima (RR)</div>
+        <div class="pagina-header-sub">PDF: <code>2023-11-14_DiarioRR.pdf</code> (pág. 23) &bull; ID: <code>official_diary_rr/2023-11-14_DiarioRR.pdf#p23</code></div>
+      </div>
+      <span class="pagina-header-badge">595.3 × 841.9 pt &bull; 1241 × 1754 px</span>
+    </div>
+    <div class="pagina-body">
+      <div class="tabela-wrapper">
+        <table class="tabela-contagens">
+          <thead>
+            <tr>
+              <th>Sistema</th>
+              <th class="num"><span class="dot-badge" style="background:#2563eb;"></span>Texto</th>
+              <th class="num"><span class="dot-badge" style="background:#7c3aed;"></span>Tabela</th>
+              <th class="num"><span class="dot-badge" style="background:#64748b;"></span>Imagem</th>
+              <th class="num"><span class="dot-badge" style="background:#ea580c;"></span>Outro</th>
+              <th class="total">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Ouro Humano (Gabarito)</td>
+              <td class="num">20</td>
+              <td class="num">2</td>
+              <td class="num">6</td>
+              <td class="num">0</td>
+              <td class="total">28</td>
+            </tr>
+            <tr>
+              <td>Extrator de Regras (regioes.py)</td>
+              <td class="num">26</td>
+              <td class="num">2</td>
+              <td class="num">5</td>
+              <td class="num">0</td>
+              <td class="total">33</td>
+            </tr>
+            <tr>
+              <td>Detector LS-16 (16 classes guia)</td>
+              <td class="num">32</td>
+              <td class="num">2</td>
+              <td class="num">5</td>
+              <td class="num">0</td>
+              <td class="total">39</td>
+            </tr>
+            <tr>
+              <td>Detector LS-3 (3 classes plano grosso)</td>
+              <td class="num">30</td>
+              <td class="num">2</td>
+              <td class="num">5</td>
+              <td class="num">0</td>
+              <td class="total">37</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="img-box">
+        <a href="pag06.jpg" target="_blank" title="Clique para abrir a imagem em tamanho real (2800 px de largura)">
+          <img src="pag06.jpg" alt="Painel comparativo da página 06" loading="lazy">
+        </a>
+        <p class="img-dica">🔍 Clique na imagem para abrir em resolução máxima (4 painéis lado a lado, ~2800 px).</p>
+      </div>
+    </div>
+  </section>
+  <section class="pagina-section" id="pag07">
+    <div class="pagina-header">
+      <div>
+        <div class="pagina-header-tit">Página 07 — Rondônia (RO)</div>
+        <div class="pagina-header-sub">PDF: <code>executive_official_diary_2021-11-11.pdf</code> (pág. 344) &bull; ID: <code>official_diary_ro/executive_official_diary_2021-11-11.pdf#p344</code></div>
+      </div>
+      <span class="pagina-header-badge">595.0 × 842.0 pt &bull; 1240 × 1755 px</span>
+    </div>
+    <div class="pagina-body">
+      <div class="tabela-wrapper">
+        <table class="tabela-contagens">
+          <thead>
+            <tr>
+              <th>Sistema</th>
+              <th class="num"><span class="dot-badge" style="background:#2563eb;"></span>Texto</th>
+              <th class="num"><span class="dot-badge" style="background:#7c3aed;"></span>Tabela</th>
+              <th class="num"><span class="dot-badge" style="background:#64748b;"></span>Imagem</th>
+              <th class="num"><span class="dot-badge" style="background:#ea580c;"></span>Outro</th>
+              <th class="total">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Ouro Humano (Gabarito)</td>
+              <td class="num">25</td>
+              <td class="num">0</td>
+              <td class="num">0</td>
+              <td class="num">0</td>
+              <td class="total">25</td>
+            </tr>
+            <tr>
+              <td>Extrator de Regras (regioes.py)</td>
+              <td class="num">27</td>
+              <td class="num">0</td>
+              <td class="num">1</td>
+              <td class="num">0</td>
+              <td class="total">28</td>
+            </tr>
+            <tr>
+              <td>Detector LS-16 (16 classes guia)</td>
+              <td class="num">29</td>
+              <td class="num">0</td>
+              <td class="num">0</td>
+              <td class="num">0</td>
+              <td class="total">29</td>
+            </tr>
+            <tr>
+              <td>Detector LS-3 (3 classes plano grosso)</td>
+              <td class="num">30</td>
+              <td class="num">0</td>
+              <td class="num">0</td>
+              <td class="num">0</td>
+              <td class="total">30</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="img-box">
+        <a href="pag07.jpg" target="_blank" title="Clique para abrir a imagem em tamanho real (2800 px de largura)">
+          <img src="pag07.jpg" alt="Painel comparativo da página 07" loading="lazy">
+        </a>
+        <p class="img-dica">🔍 Clique na imagem para abrir em resolução máxima (4 painéis lado a lado, ~2800 px).</p>
+      </div>
+    </div>
+  </section>
+  <section class="pagina-section" id="pag08">
+    <div class="pagina-header">
+      <div>
+        <div class="pagina-header-tit">Página 08 — Mato Grosso do Sul (MS)</div>
+        <div class="pagina-header-sub">PDF: <code>executive_official_diary_48977_2025-03-27.pdf</code> (pág. 359) &bull; ID: <code>official_diary_ms/executive_official_diary_48977_2025-03-27.pdf#p359</code></div>
+      </div>
+      <span class="pagina-header-badge">595.3 × 841.9 pt &bull; 1241 × 1754 px</span>
+    </div>
+    <div class="pagina-body">
+      <div class="tabela-wrapper">
+        <table class="tabela-contagens">
+          <thead>
+            <tr>
+              <th>Sistema</th>
+              <th class="num"><span class="dot-badge" style="background:#2563eb;"></span>Texto</th>
+              <th class="num"><span class="dot-badge" style="background:#7c3aed;"></span>Tabela</th>
+              <th class="num"><span class="dot-badge" style="background:#64748b;"></span>Imagem</th>
+              <th class="num"><span class="dot-badge" style="background:#ea580c;"></span>Outro</th>
+              <th class="total">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Ouro Humano (Gabarito)</td>
+              <td class="num">20</td>
+              <td class="num">1</td>
+              <td class="num">2</td>
+              <td class="num">0</td>
+              <td class="total">23</td>
+            </tr>
+            <tr>
+              <td>Extrator de Regras (regioes.py)</td>
+              <td class="num">32</td>
+              <td class="num">1</td>
+              <td class="num">2</td>
+              <td class="num">0</td>
+              <td class="total">35</td>
+            </tr>
+            <tr>
+              <td>Detector LS-16 (16 classes guia)</td>
+              <td class="num">23</td>
+              <td class="num">1</td>
+              <td class="num">2</td>
+              <td class="num">0</td>
+              <td class="total">26</td>
+            </tr>
+            <tr>
+              <td>Detector LS-3 (3 classes plano grosso)</td>
+              <td class="num">20</td>
+              <td class="num">1</td>
+              <td class="num">2</td>
+              <td class="num">0</td>
+              <td class="total">23</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="img-box">
+        <a href="pag08.jpg" target="_blank" title="Clique para abrir a imagem em tamanho real (2800 px de largura)">
+          <img src="pag08.jpg" alt="Painel comparativo da página 08" loading="lazy">
+        </a>
+        <p class="img-dica">🔍 Clique na imagem para abrir em resolução máxima (4 painéis lado a lado, ~2800 px).</p>
+      </div>
+    </div>
+  </section>
+  <section class="pagina-section" id="pag09">
+    <div class="pagina-header">
+      <div>
+        <div class="pagina-header-tit">Página 09 — Porto Alegre (RS)</div>
+        <div class="pagina-header-sub">PDF: <code>5393_ce_20241023_executivo.pdf</code> (pág. 4) &bull; ID: <code>official_diary_rs_porto_alegre/5393_ce_20241023_executivo.pdf#p4</code></div>
+      </div>
+      <span class="pagina-header-badge">595.3 × 841.9 pt &bull; 1241 × 1754 px</span>
+    </div>
+    <div class="pagina-body">
+      <div class="tabela-wrapper">
+        <table class="tabela-contagens">
+          <thead>
+            <tr>
+              <th>Sistema</th>
+              <th class="num"><span class="dot-badge" style="background:#2563eb;"></span>Texto</th>
+              <th class="num"><span class="dot-badge" style="background:#7c3aed;"></span>Tabela</th>
+              <th class="num"><span class="dot-badge" style="background:#64748b;"></span>Imagem</th>
+              <th class="num"><span class="dot-badge" style="background:#ea580c;"></span>Outro</th>
+              <th class="total">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Ouro Humano (Gabarito)</td>
+              <td class="num">3</td>
+              <td class="num">1</td>
+              <td class="num">0</td>
+              <td class="num">0</td>
+              <td class="total">4</td>
+            </tr>
+            <tr>
+              <td>Extrator de Regras (regioes.py)</td>
+              <td class="num">3</td>
+              <td class="num">1</td>
+              <td class="num">0</td>
+              <td class="num">0</td>
+              <td class="total">4</td>
+            </tr>
+            <tr>
+              <td>Detector LS-16 (16 classes guia)</td>
+              <td class="num">3</td>
+              <td class="num">1</td>
+              <td class="num">0</td>
+              <td class="num">0</td>
+              <td class="total">4</td>
+            </tr>
+            <tr>
+              <td>Detector LS-3 (3 classes plano grosso)</td>
+              <td class="num">3</td>
+              <td class="num">1</td>
+              <td class="num">0</td>
+              <td class="num">0</td>
+              <td class="total">4</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="img-box">
+        <a href="pag09.jpg" target="_blank" title="Clique para abrir a imagem em tamanho real (2800 px de largura)">
+          <img src="pag09.jpg" alt="Painel comparativo da página 09" loading="lazy">
+        </a>
+        <p class="img-dica">🔍 Clique na imagem para abrir em resolução máxima (4 painéis lado a lado, ~2800 px).</p>
+      </div>
+    </div>
+  </section>
+  <section class="pagina-section" id="pag10">
+    <div class="pagina-header">
+      <div>
+        <div class="pagina-header-tit">Página 10 — Pernambuco (PE)</div>
+        <div class="pagina-header-sub">PDF: <code>2021-08-12_1-Poder Executivo.pdf</code> (pág. 4) &bull; ID: <code>official_diary_pe/2021-08-12_1-Poder Executivo.pdf#p4</code></div>
+      </div>
+      <span class="pagina-header-badge">793.7 × 1040.3 pt &bull; 1654 × 2168 px</span>
+    </div>
+    <div class="pagina-body">
+      <div class="tabela-wrapper">
+        <table class="tabela-contagens">
+          <thead>
+            <tr>
+              <th>Sistema</th>
+              <th class="num"><span class="dot-badge" style="background:#2563eb;"></span>Texto</th>
+              <th class="num"><span class="dot-badge" style="background:#7c3aed;"></span>Tabela</th>
+              <th class="num"><span class="dot-badge" style="background:#64748b;"></span>Imagem</th>
+              <th class="num"><span class="dot-badge" style="background:#ea580c;"></span>Outro</th>
+              <th class="total">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Ouro Humano (Gabarito)</td>
+              <td class="num">46</td>
+              <td class="num">9</td>
+              <td class="num">0</td>
+              <td class="num">0</td>
+              <td class="total">55</td>
+            </tr>
+            <tr>
+              <td>Extrator de Regras (regioes.py)</td>
+              <td class="num">41</td>
+              <td class="num">9</td>
+              <td class="num">0</td>
+              <td class="num">0</td>
+              <td class="total">50</td>
+            </tr>
+            <tr>
+              <td>Detector LS-16 (16 classes guia)</td>
+              <td class="num">69</td>
+              <td class="num">14</td>
+              <td class="num">0</td>
+              <td class="num">0</td>
+              <td class="total">83</td>
+            </tr>
+            <tr>
+              <td>Detector LS-3 (3 classes plano grosso)</td>
+              <td class="num">78</td>
+              <td class="num">11</td>
+              <td class="num">0</td>
+              <td class="num">0</td>
+              <td class="total">89</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="img-box">
+        <a href="pag10.jpg" target="_blank" title="Clique para abrir a imagem em tamanho real (2800 px de largura)">
+          <img src="pag10.jpg" alt="Painel comparativo da página 10" loading="lazy">
+        </a>
+        <p class="img-dica">🔍 Clique na imagem para abrir em resolução máxima (4 painéis lado a lado, ~2800 px).</p>
+      </div>
+    </div>
+  </section>
+  <section class="pagina-section" id="pag11">
+    <div class="pagina-header">
+      <div>
+        <div class="pagina-header-tit">Página 11 — Piauí (PI)</div>
+        <div class="pagina-header-sub">PDF: <code>executive_official_diary_2025_04_30_81_2025.pdf</code> (pág. 174) &bull; ID: <code>official_diary_pi_v2/executive_official_diary_2025_04_30_81_2025.pdf#p174</code></div>
+      </div>
+      <span class="pagina-header-badge">595.3 × 841.9 pt &bull; 1241 × 1754 px</span>
+    </div>
+    <div class="pagina-body">
+      <div class="tabela-wrapper">
+        <table class="tabela-contagens">
+          <thead>
+            <tr>
+              <th>Sistema</th>
+              <th class="num"><span class="dot-badge" style="background:#2563eb;"></span>Texto</th>
+              <th class="num"><span class="dot-badge" style="background:#7c3aed;"></span>Tabela</th>
+              <th class="num"><span class="dot-badge" style="background:#64748b;"></span>Imagem</th>
+              <th class="num"><span class="dot-badge" style="background:#ea580c;"></span>Outro</th>
+              <th class="total">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Ouro Humano (Gabarito)</td>
+              <td class="num">15</td>
+              <td class="num">0</td>
+              <td class="num">1</td>
+              <td class="num">0</td>
+              <td class="total">16</td>
+            </tr>
+            <tr>
+              <td>Extrator de Regras (regioes.py)</td>
+              <td class="num">18</td>
+              <td class="num">0</td>
+              <td class="num">2</td>
+              <td class="num">1</td>
+              <td class="total">21</td>
+            </tr>
+            <tr>
+              <td>Detector LS-16 (16 classes guia)</td>
+              <td class="num">20</td>
+              <td class="num">0</td>
+              <td class="num">2</td>
+              <td class="num">0</td>
+              <td class="total">22</td>
+            </tr>
+            <tr>
+              <td>Detector LS-3 (3 classes plano grosso)</td>
+              <td class="num">18</td>
+              <td class="num">0</td>
+              <td class="num">2</td>
+              <td class="num">0</td>
+              <td class="total">20</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="img-box">
+        <a href="pag11.jpg" target="_blank" title="Clique para abrir a imagem em tamanho real (2800 px de largura)">
+          <img src="pag11.jpg" alt="Painel comparativo da página 11" loading="lazy">
+        </a>
+        <p class="img-dica">🔍 Clique na imagem para abrir em resolução máxima (4 painéis lado a lado, ~2800 px).</p>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  <p>TCC Recuperação de Informação — Detecção de Ordem de Leitura e Layout em Diários Oficiais (INF-UFG)</p>
+  <p>Galeria gerada automaticamente por <code>orquestracao/analises/galeria_extrator_detector.py</code></p>
+</footer>
+</body>
+</html>

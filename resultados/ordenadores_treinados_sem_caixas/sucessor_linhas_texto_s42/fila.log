@@ -1,0 +1,6 @@
+08/10 01:47:17 aguardando s42 e encerramento da fila anterior (tambem tem s43)
+08/10 01:47:17 aguardando memoria GPU abaixo de 1100 MiB em tres leituras
+08/10 01:47:58 treino textual: inicio
+08/10 03:42:21 treino textual: fim
+08/10 03:42:21 inferencia CPU e avaliacao: inicio
+08/10 03:43:59 inferencia e avaliacao: fim

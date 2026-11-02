@@ -1,0 +1,989 @@
+{
+  "extrator v3 (atual)": {
+    "regioes_gabarito": 328,
+    "regioes_sistema": 383,
+    "f1_j50": 0.838,
+    "f1_j90": 0.737,
+    "f1_exata": 0.731,
+    "f1_j50_classe": 0.686,
+    "classe_certa_palavras": 0.769,
+    "revocacao_por_classe": {
+      "titulo": {
+        "n": 58,
+        "revocacao": 0.69
+      },
+      "texto": {
+        "n": 172,
+        "revocacao": 0.826
+      },
+      "lista": {
+        "n": 9,
+        "revocacao": 0.111
+      },
+      "tabela": {
+        "n": 20,
+        "revocacao": 0.8
+      },
+      "assinatura": {
+        "n": 15,
+        "revocacao": 0.467
+      },
+      "cabecalho": {
+        "n": 23,
+        "revocacao": 0.783
+      },
+      "rodape": {
+        "n": 9,
+        "revocacao": 1.0
+      },
+      "figura": {
+        "n": 5,
+        "revocacao": 0.0
+      },
+      "outro": {
+        "n": 17,
+        "revocacao": 0.647
+      }
+    }
+  },
+  "sem regras": {
+    "regioes_gabarito": 328,
+    "regioes_sistema": 384,
+    "f1_j50": 0.787,
+    "f1_j90": 0.654,
+    "f1_exata": 0.649,
+    "f1_j50_classe": 0.598,
+    "classe_certa_palavras": 0.766,
+    "revocacao_por_classe": {
+      "titulo": {
+        "n": 58,
+        "revocacao": 0.724
+      },
+      "texto": {
+        "n": 172,
+        "revocacao": 0.738
+      },
+      "lista": {
+        "n": 9,
+        "revocacao": 0.111
+      },
+      "tabela": {
+        "n": 20,
+        "revocacao": 0.8
+      },
+      "assinatura": {
+        "n": 15,
+        "revocacao": 0.0
+      },
+      "cabecalho": {
+        "n": 23,
+        "revocacao": 0.783
+      },
+      "rodape": {
+        "n": 9,
+        "revocacao": 1.0
+      },
+      "figura": {
+        "n": 5,
+        "revocacao": 0.0
+      },
+      "outro": {
+        "n": 17,
+        "revocacao": 0.0
+      }
+    }
+  },
+  "regras v2": {
+    "regioes_gabarito": 328,
+    "regioes_sistema": 381,
+    "f1_j50": 0.841,
+    "f1_j90": 0.745,
+    "f1_exata": 0.739,
+    "f1_j50_classe": 0.657,
+    "classe_certa_palavras": 0.767,
+    "revocacao_por_classe": {
+      "titulo": {
+        "n": 58,
+        "revocacao": 0.69
+      },
+      "texto": {
+        "n": 172,
+        "revocacao": 0.826
+      },
+      "lista": {
+        "n": 9,
+        "revocacao": 0.111
+      },
+      "tabela": {
+        "n": 20,
+        "revocacao": 0.8
+      },
+      "assinatura": {
+        "n": 15,
+        "revocacao": 0.467
+      },
+      "cabecalho": {
+        "n": 23,
+        "revocacao": 0.783
+      },
+      "rodape": {
+        "n": 9,
+        "revocacao": 1.0
+      },
+      "figura": {
+        "n": 5,
+        "revocacao": 0.0
+      },
+      "outro": {
+        "n": 17,
+        "revocacao": 0.0
+      }
+    }
+  },
+  "v3 sem outro_marcacao": {
+    "regioes_gabarito": 328,
+    "regioes_sistema": 381,
+    "f1_j50": 0.841,
+    "f1_j90": 0.745,
+    "f1_exata": 0.739,
+    "f1_j50_classe": 0.657,
+    "classe_certa_palavras": 0.767,
+    "revocacao_por_classe": {
+      "titulo": {
+        "n": 58,
+        "revocacao": 0.69
+      },
+      "texto": {
+        "n": 172,
+        "revocacao": 0.826
+      },
+      "lista": {
+        "n": 9,
+        "revocacao": 0.111
+      },
+      "tabela": {
+        "n": 20,
+        "revocacao": 0.8
+      },
+      "assinatura": {
+        "n": 15,
+        "revocacao": 0.467
+      },
+      "cabecalho": {
+        "n": 23,
+        "revocacao": 0.783
+      },
+      "rodape": {
+        "n": 9,
+        "revocacao": 1.0
+      },
+      "figura": {
+        "n": 5,
+        "revocacao": 0.0
+      },
+      "outro": {
+        "n": 17,
+        "revocacao": 0.0
+      }
+    }
+  },
+  "v3 sem dividir_campos": {
+    "regioes_gabarito": 328,
+    "regioes_sistema": 365,
+    "f1_j50": 0.814,
+    "f1_j90": 0.696,
+    "f1_exata": 0.69,
+    "f1_j50_classe": 0.664,
+    "classe_certa_palavras": 0.772,
+    "revocacao_por_classe": {
+      "titulo": {
+        "n": 58,
+        "revocacao": 0.707
+      },
+      "texto": {
+        "n": 172,
+        "revocacao": 0.738
+      },
+      "lista": {
+        "n": 9,
+        "revocacao": 0.111
+      },
+      "tabela": {
+        "n": 20,
+        "revocacao": 0.8
+      },
+      "assinatura": {
+        "n": 15,
+        "revocacao": 0.467
+      },
+      "cabecalho": {
+        "n": 23,
+        "revocacao": 0.783
+      },
+      "rodape": {
+        "n": 9,
+        "revocacao": 1.0
+      },
+      "figura": {
+        "n": 5,
+        "revocacao": 0.0
+      },
+      "outro": {
+        "n": 17,
+        "revocacao": 0.647
+      }
+    }
+  },
+  "v3 sem local_e_data": {
+    "regioes_gabarito": 328,
+    "regioes_sistema": 383,
+    "f1_j50": 0.838,
+    "f1_j90": 0.737,
+    "f1_exata": 0.731,
+    "f1_j50_classe": 0.686,
+    "classe_certa_palavras": 0.769,
+    "revocacao_por_classe": {
+      "titulo": {
+        "n": 58,
+        "revocacao": 0.69
+      },
+      "texto": {
+        "n": 172,
+        "revocacao": 0.826
+      },
+      "lista": {
+        "n": 9,
+        "revocacao": 0.111
+      },
+      "tabela": {
+        "n": 20,
+        "revocacao": 0.8
+      },
+      "assinatura": {
+        "n": 15,
+        "revocacao": 0.467
+      },
+      "cabecalho": {
+        "n": 23,
+        "revocacao": 0.783
+      },
+      "rodape": {
+        "n": 9,
+        "revocacao": 1.0
+      },
+      "figura": {
+        "n": 5,
+        "revocacao": 0.0
+      },
+      "outro": {
+        "n": 17,
+        "revocacao": 0.647
+      }
+    }
+  },
+  "v3 sem rotulo_com_valor": {
+    "regioes_gabarito": 328,
+    "regioes_sistema": 396,
+    "f1_j50": 0.82,
+    "f1_j90": 0.707,
+    "f1_exata": 0.702,
+    "f1_j50_classe": 0.671,
+    "classe_certa_palavras": 0.769,
+    "revocacao_por_classe": {
+      "titulo": {
+        "n": 58,
+        "revocacao": 0.69
+      },
+      "texto": {
+        "n": 172,
+        "revocacao": 0.82
+      },
+      "lista": {
+        "n": 9,
+        "revocacao": 0.111
+      },
+      "tabela": {
+        "n": 20,
+        "revocacao": 0.8
+      },
+      "assinatura": {
+        "n": 15,
+        "revocacao": 0.467
+      },
+      "cabecalho": {
+        "n": 23,
+        "revocacao": 0.783
+      },
+      "rodape": {
+        "n": 9,
+        "revocacao": 1.0
+      },
+      "figura": {
+        "n": 5,
+        "revocacao": 0.0
+      },
+      "outro": {
+        "n": 17,
+        "revocacao": 0.647
+      }
+    }
+  },
+  "v3 sem assinatura": {
+    "regioes_gabarito": 328,
+    "regioes_sistema": 391,
+    "f1_j50": 0.826,
+    "f1_j90": 0.718,
+    "f1_exata": 0.712,
+    "f1_j50_classe": 0.665,
+    "classe_certa_palavras": 0.765,
+    "revocacao_por_classe": {
+      "titulo": {
+        "n": 58,
+        "revocacao": 0.707
+      },
+      "texto": {
+        "n": 172,
+        "revocacao": 0.831
+      },
+      "lista": {
+        "n": 9,
+        "revocacao": 0.111
+      },
+      "tabela": {
+        "n": 20,
+        "revocacao": 0.8
+      },
+      "assinatura": {
+        "n": 15,
+        "revocacao": 0.0
+      },
+      "cabecalho": {
+        "n": 23,
+        "revocacao": 0.783
+      },
+      "rodape": {
+        "n": 9,
+        "revocacao": 1.0
+      },
+      "figura": {
+        "n": 5,
+        "revocacao": 0.0
+      },
+      "outro": {
+        "n": 17,
+        "revocacao": 0.647
+      }
+    }
+  },
+  "so outro_marcacao": {
+    "regioes_gabarito": 328,
+    "regioes_sistema": 386,
+    "f1_j50": 0.784,
+    "f1_j90": 0.647,
+    "f1_exata": 0.641,
+    "f1_j50_classe": 0.627,
+    "classe_certa_palavras": 0.768,
+    "revocacao_por_classe": {
+      "titulo": {
+        "n": 58,
+        "revocacao": 0.724
+      },
+      "texto": {
+        "n": 172,
+        "revocacao": 0.738
+      },
+      "lista": {
+        "n": 9,
+        "revocacao": 0.111
+      },
+      "tabela": {
+        "n": 20,
+        "revocacao": 0.8
+      },
+      "assinatura": {
+        "n": 15,
+        "revocacao": 0.0
+      },
+      "cabecalho": {
+        "n": 23,
+        "revocacao": 0.783
+      },
+      "rodape": {
+        "n": 9,
+        "revocacao": 1.0
+      },
+      "figura": {
+        "n": 5,
+        "revocacao": 0.0
+      },
+      "outro": {
+        "n": 17,
+        "revocacao": 0.647
+      }
+    }
+  },
+  "so dividir_campos": {
+    "regioes_gabarito": 328,
+    "regioes_sistema": 402,
+    "f1_j50": 0.811,
+    "f1_j90": 0.696,
+    "f1_exata": 0.69,
+    "f1_j50_classe": 0.622,
+    "classe_certa_palavras": 0.763,
+    "revocacao_por_classe": {
+      "titulo": {
+        "n": 58,
+        "revocacao": 0.707
+      },
+      "texto": {
+        "n": 172,
+        "revocacao": 0.826
+      },
+      "lista": {
+        "n": 9,
+        "revocacao": 0.111
+      },
+      "tabela": {
+        "n": 20,
+        "revocacao": 0.8
+      },
+      "assinatura": {
+        "n": 15,
+        "revocacao": 0.0
+      },
+      "cabecalho": {
+        "n": 23,
+        "revocacao": 0.783
+      },
+      "rodape": {
+        "n": 9,
+        "revocacao": 1.0
+      },
+      "figura": {
+        "n": 5,
+        "revocacao": 0.0
+      },
+      "outro": {
+        "n": 17,
+        "revocacao": 0.0
+      }
+    }
+  },
+  "so local_e_data": {
+    "regioes_gabarito": 328,
+    "regioes_sistema": 384,
+    "f1_j50": 0.787,
+    "f1_j90": 0.654,
+    "f1_exata": 0.649,
+    "f1_j50_classe": 0.598,
+    "classe_certa_palavras": 0.766,
+    "revocacao_por_classe": {
+      "titulo": {
+        "n": 58,
+        "revocacao": 0.724
+      },
+      "texto": {
+        "n": 172,
+        "revocacao": 0.738
+      },
+      "lista": {
+        "n": 9,
+        "revocacao": 0.111
+      },
+      "tabela": {
+        "n": 20,
+        "revocacao": 0.8
+      },
+      "assinatura": {
+        "n": 15,
+        "revocacao": 0.0
+      },
+      "cabecalho": {
+        "n": 23,
+        "revocacao": 0.783
+      },
+      "rodape": {
+        "n": 9,
+        "revocacao": 1.0
+      },
+      "figura": {
+        "n": 5,
+        "revocacao": 0.0
+      },
+      "outro": {
+        "n": 17,
+        "revocacao": 0.0
+      }
+    }
+  },
+  "so rotulo_com_valor": {
+    "regioes_gabarito": 328,
+    "regioes_sistema": 371,
+    "f1_j50": 0.804,
+    "f1_j90": 0.684,
+    "f1_exata": 0.678,
+    "f1_j50_classe": 0.612,
+    "classe_certa_palavras": 0.766,
+    "revocacao_por_classe": {
+      "titulo": {
+        "n": 58,
+        "revocacao": 0.724
+      },
+      "texto": {
+        "n": 172,
+        "revocacao": 0.744
+      },
+      "lista": {
+        "n": 9,
+        "revocacao": 0.111
+      },
+      "tabela": {
+        "n": 20,
+        "revocacao": 0.8
+      },
+      "assinatura": {
+        "n": 15,
+        "revocacao": 0.0
+      },
+      "cabecalho": {
+        "n": 23,
+        "revocacao": 0.783
+      },
+      "rodape": {
+        "n": 9,
+        "revocacao": 1.0
+      },
+      "figura": {
+        "n": 5,
+        "revocacao": 0.0
+      },
+      "outro": {
+        "n": 17,
+        "revocacao": 0.0
+      }
+    }
+  },
+  "so assinatura": {
+    "regioes_gabarito": 328,
+    "regioes_sistema": 376,
+    "f1_j50": 0.798,
+    "f1_j90": 0.673,
+    "f1_exata": 0.668,
+    "f1_j50_classe": 0.619,
+    "classe_certa_palavras": 0.77,
+    "revocacao_por_classe": {
+      "titulo": {
+        "n": 58,
+        "revocacao": 0.707
+      },
+      "texto": {
+        "n": 172,
+        "revocacao": 0.733
+      },
+      "lista": {
+        "n": 9,
+        "revocacao": 0.111
+      },
+      "tabela": {
+        "n": 20,
+        "revocacao": 0.8
+      },
+      "assinatura": {
+        "n": 15,
+        "revocacao": 0.467
+      },
+      "cabecalho": {
+        "n": 23,
+        "revocacao": 0.783
+      },
+      "rodape": {
+        "n": 9,
+        "revocacao": 1.0
+      },
+      "figura": {
+        "n": 5,
+        "revocacao": 0.0
+      },
+      "outro": {
+        "n": 17,
+        "revocacao": 0.0
+      }
+    }
+  },
+  "v3 score_min=0.35": {
+    "regioes_gabarito": 328,
+    "regioes_sistema": 383,
+    "f1_j50": 0.838,
+    "f1_j90": 0.737,
+    "f1_exata": 0.731,
+    "f1_j50_classe": 0.686,
+    "classe_certa_palavras": 0.769,
+    "revocacao_por_classe": {
+      "titulo": {
+        "n": 58,
+        "revocacao": 0.69
+      },
+      "texto": {
+        "n": 172,
+        "revocacao": 0.826
+      },
+      "lista": {
+        "n": 9,
+        "revocacao": 0.111
+      },
+      "tabela": {
+        "n": 20,
+        "revocacao": 0.8
+      },
+      "assinatura": {
+        "n": 15,
+        "revocacao": 0.467
+      },
+      "cabecalho": {
+        "n": 23,
+        "revocacao": 0.783
+      },
+      "rodape": {
+        "n": 9,
+        "revocacao": 1.0
+      },
+      "figura": {
+        "n": 5,
+        "revocacao": 0.0
+      },
+      "outro": {
+        "n": 17,
+        "revocacao": 0.647
+      }
+    }
+  },
+  "v3 score_min=0.55": {
+    "regioes_gabarito": 328,
+    "regioes_sistema": 379,
+    "f1_j50": 0.84,
+    "f1_j90": 0.738,
+    "f1_exata": 0.733,
+    "f1_j50_classe": 0.687,
+    "classe_certa_palavras": 0.77,
+    "revocacao_por_classe": {
+      "titulo": {
+        "n": 58,
+        "revocacao": 0.69
+      },
+      "texto": {
+        "n": 172,
+        "revocacao": 0.82
+      },
+      "lista": {
+        "n": 9,
+        "revocacao": 0.111
+      },
+      "tabela": {
+        "n": 20,
+        "revocacao": 0.8
+      },
+      "assinatura": {
+        "n": 15,
+        "revocacao": 0.467
+      },
+      "cabecalho": {
+        "n": 23,
+        "revocacao": 0.826
+      },
+      "rodape": {
+        "n": 9,
+        "revocacao": 0.889
+      },
+      "figura": {
+        "n": 5,
+        "revocacao": 0.0
+      },
+      "outro": {
+        "n": 17,
+        "revocacao": 0.647
+      }
+    }
+  },
+  "v3 score_min=0.65": {
+    "regioes_gabarito": 328,
+    "regioes_sistema": 397,
+    "f1_j50": 0.817,
+    "f1_j90": 0.717,
+    "f1_exata": 0.714,
+    "f1_j50_classe": 0.659,
+    "classe_certa_palavras": 0.727,
+    "revocacao_por_classe": {
+      "titulo": {
+        "n": 58,
+        "revocacao": 0.603
+      },
+      "texto": {
+        "n": 172,
+        "revocacao": 0.831
+      },
+      "lista": {
+        "n": 9,
+        "revocacao": 0.0
+      },
+      "tabela": {
+        "n": 20,
+        "revocacao": 0.8
+      },
+      "assinatura": {
+        "n": 15,
+        "revocacao": 0.533
+      },
+      "cabecalho": {
+        "n": 23,
+        "revocacao": 0.826
+      },
+      "rodape": {
+        "n": 9,
+        "revocacao": 0.778
+      },
+      "figura": {
+        "n": 5,
+        "revocacao": 0.0
+      },
+      "outro": {
+        "n": 17,
+        "revocacao": 0.647
+      }
+    }
+  },
+  "hibrido classe [todas]": {
+    "regioes_gabarito": 328,
+    "regioes_sistema": 383,
+    "f1_j50": 0.838,
+    "f1_j90": 0.737,
+    "f1_exata": 0.731,
+    "f1_j50_classe": 0.675,
+    "classe_certa_palavras": 0.648,
+    "revocacao_por_classe": {
+      "titulo": {
+        "n": 58,
+        "revocacao": 0.776
+      },
+      "texto": {
+        "n": 172,
+        "revocacao": 0.785
+      },
+      "lista": {
+        "n": 9,
+        "revocacao": 0.0
+      },
+      "tabela": {
+        "n": 20,
+        "revocacao": 0.65
+      },
+      "assinatura": {
+        "n": 15,
+        "revocacao": 0.667
+      },
+      "cabecalho": {
+        "n": 23,
+        "revocacao": 0.826
+      },
+      "rodape": {
+        "n": 9,
+        "revocacao": 0.778
+      },
+      "figura": {
+        "n": 5,
+        "revocacao": 0.0
+      },
+      "outro": {
+        "n": 17,
+        "revocacao": 0.647
+      }
+    }
+  },
+  "hibrido classe [assinatura_cabecalho]": {
+    "regioes_gabarito": 328,
+    "regioes_sistema": 383,
+    "f1_j50": 0.838,
+    "f1_j90": 0.737,
+    "f1_exata": 0.731,
+    "f1_j50_classe": 0.695,
+    "classe_certa_palavras": 0.771,
+    "revocacao_por_classe": {
+      "titulo": {
+        "n": 58,
+        "revocacao": 0.672
+      },
+      "texto": {
+        "n": 172,
+        "revocacao": 0.814
+      },
+      "lista": {
+        "n": 9,
+        "revocacao": 0.111
+      },
+      "tabela": {
+        "n": 20,
+        "revocacao": 0.8
+      },
+      "assinatura": {
+        "n": 15,
+        "revocacao": 0.733
+      },
+      "cabecalho": {
+        "n": 23,
+        "revocacao": 0.913
+      },
+      "rodape": {
+        "n": 9,
+        "revocacao": 0.889
+      },
+      "figura": {
+        "n": 5,
+        "revocacao": 0.0
+      },
+      "outro": {
+        "n": 17,
+        "revocacao": 0.647
+      }
+    }
+  },
+  "hibrido classe [lista,assinatura,cabecalho,figura]": {
+    "regioes_gabarito": 328,
+    "regioes_sistema": 383,
+    "f1_j50": 0.838,
+    "f1_j90": 0.737,
+    "f1_exata": 0.731,
+    "f1_j50_classe": 0.653,
+    "classe_certa_palavras": 0.661,
+    "revocacao_por_classe": {
+      "titulo": {
+        "n": 58,
+        "revocacao": 0.672
+      },
+      "texto": {
+        "n": 172,
+        "revocacao": 0.733
+      },
+      "lista": {
+        "n": 9,
+        "revocacao": 0.111
+      },
+      "tabela": {
+        "n": 20,
+        "revocacao": 0.8
+      },
+      "assinatura": {
+        "n": 15,
+        "revocacao": 0.733
+      },
+      "cabecalho": {
+        "n": 23,
+        "revocacao": 0.913
+      },
+      "rodape": {
+        "n": 9,
+        "revocacao": 0.778
+      },
+      "figura": {
+        "n": 5,
+        "revocacao": 0.0
+      },
+      "outro": {
+        "n": 17,
+        "revocacao": 0.647
+      }
+    }
+  },
+  "hibrido classe [tabela,figura,assinatura,cabecalho,rodape,lista]": {
+    "regioes_gabarito": 328,
+    "regioes_sistema": 383,
+    "f1_j50": 0.838,
+    "f1_j90": 0.737,
+    "f1_exata": 0.731,
+    "f1_j50_classe": 0.653,
+    "classe_certa_palavras": 0.661,
+    "revocacao_por_classe": {
+      "titulo": {
+        "n": 58,
+        "revocacao": 0.672
+      },
+      "texto": {
+        "n": 172,
+        "revocacao": 0.733
+      },
+      "lista": {
+        "n": 9,
+        "revocacao": 0.111
+      },
+      "tabela": {
+        "n": 20,
+        "revocacao": 0.8
+      },
+      "assinatura": {
+        "n": 15,
+        "revocacao": 0.733
+      },
+      "cabecalho": {
+        "n": 23,
+        "revocacao": 0.913
+      },
+      "rodape": {
+        "n": 9,
+        "revocacao": 0.778
+      },
+      "figura": {
+        "n": 5,
+        "revocacao": 0.0
+      },
+      "outro": {
+        "n": 17,
+        "revocacao": 0.647
+      }
+    }
+  },
+  "hibrido gapfill (caixas)": {
+    "regioes_gabarito": 328,
+    "regioes_sistema": 383,
+    "f1_j50": 0.838,
+    "f1_j90": 0.737,
+    "f1_exata": 0.731,
+    "f1_j50_classe": 0.686,
+    "classe_certa_palavras": 0.769,
+    "revocacao_por_classe": {
+      "titulo": {
+        "n": 58,
+        "revocacao": 0.69
+      },
+      "texto": {
+        "n": 172,
+        "revocacao": 0.826
+      },
+      "lista": {
+        "n": 9,
+        "revocacao": 0.111
+      },
+      "tabela": {
+        "n": 20,
+        "revocacao": 0.8
+      },
+      "assinatura": {
+        "n": 15,
+        "revocacao": 0.467
+      },
+      "cabecalho": {
+        "n": 23,
+        "revocacao": 0.783
+      },
+      "rodape": {
+        "n": 9,
+        "revocacao": 1.0
+      },
+      "figura": {
+        "n": 5,
+        "revocacao": 0.0
+      },
+      "outro": {
+        "n": 17,
+        "revocacao": 0.647
+      }
+    }
+  }
+}

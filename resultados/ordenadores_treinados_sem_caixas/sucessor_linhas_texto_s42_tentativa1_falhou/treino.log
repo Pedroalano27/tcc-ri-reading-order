@@ -1,0 +1,60 @@
+Loading weights:   0%|          | 0/203 [00:00<?, ?it/s]Loading weights: 100%|██████████| 203/203 [00:00<00:00, 28520.26it/s]
+[treino] sucessor_linhas_texto_s42: 3140/3140 paginas; cuda; micro=1; acum=8
+[transformers] Caching is incompatible with gradient checkpointing in LayoutLMLayer. Setting `use_cache=False`.
+  ep=1 pagina=80/3140 passo=10 loss=5.13911 s=10.5
+  ep=1 pagina=160/3140 passo=20 loss=5.13183 s=18.0
+  ep=1 pagina=240/3140 passo=30 loss=5.22696 s=25.6
+  ep=1 pagina=320/3140 passo=40 loss=5.23053 s=33.1
+  ep=1 pagina=400/3140 passo=50 loss=4.49952 s=40.3
+  ep=1 pagina=480/3140 passo=60 loss=4.90641 s=47.7
+  ep=1 pagina=560/3140 passo=70 loss=4.36596 s=55.2
+  ep=1 pagina=640/3140 passo=80 loss=4.43432 s=67.5
+  ep=1 pagina=720/3140 passo=90 loss=3.88933 s=75.2
+  ep=1 pagina=800/3140 passo=100 loss=2.55276 s=83.9
+  ep=1 pagina=880/3140 passo=110 loss=3.91838 s=92.0
+  ep=1 pagina=960/3140 passo=120 loss=4.04040 s=99.9
+  ep=1 pagina=1040/3140 passo=130 loss=4.02738 s=110.4
+  ep=1 pagina=1120/3140 passo=140 loss=3.82242 s=120.2
+  ep=1 pagina=1200/3140 passo=150 loss=3.59942 s=133.6
+  ep=1 pagina=1280/3140 passo=160 loss=3.64240 s=143.7
+  ep=1 pagina=1360/3140 passo=170 loss=3.44460 s=153.8
+Traceback (most recent call last):
+  File "C:\Users\pedro\dev\tcc-ri-reading-order\orquestracao\analises\treinar_sem_caixas_texto.py", line 415, in <module>
+    main()
+  File "C:\Users\pedro\dev\tcc-ri-reading-order\orquestracao\analises\treinar_sem_caixas_texto.py", line 411, in main
+    treinar(a)
+  File "C:\Users\pedro\dev\tcc-ri-reading-order\orquestracao\analises\treinar_sem_caixas_texto.py", line 395, in treinar
+    t.treinar(a)
+  File "C:\Users\pedro\dev\tcc-ri-reading-order\orquestracao\analises\treinar_sem_caixas.py", line 423, in treinar
+    loss = perda(model, cod, ps, a)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pedro\dev\tcc-ri-reading-order\orquestracao\analises\treinar_sem_caixas_texto.py", line 184, in perda
+    return _PERDA(model, cod, ps, a)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pedro\dev\tcc-ri-reading-order\orquestracao\analises\treinar_sem_caixas.py", line 273, in perda
+    tensors, N = module.montar_lote(cod, ps, ordens, ref, a.device)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pedro\dev\tcc-ri-reading-order\src\models\layoutlm_sucessor.py", line 116, in montar_lote
+    seqs = [cod.codificar(p, o) for p, o in zip(paginas, ordens)]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pedro\dev\tcc-ri-reading-order\src\models\layoutlm_sucessor.py", line 116, in <listcomp>
+    seqs = [cod.codificar(p, o) for p, o in zip(paginas, ordens)]
+            ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pedro\dev\tcc-ri-reading-order\orquestracao\analises\treinar_sem_caixas_texto.py", line 106, in codificar
+    raise ValueError(
+ValueError: official_diary_pe/2022-06-09_1-Poder Executivo.pdf#p11: 509 unidades nao cabem em 510 tokens incluindo CLS/SEP com um token por unidade. A compactacao original so trata excesso de 510; nenhuma unidade foi descartada.
+Traceback (most recent call last):
+  File "C:\Users\pedro\dev\tcc-ri-reading-order\orquestracao\analises\treinar_sem_caixas_texto.py", line 473, in <module>
+    main()
+  File "C:\Users\pedro\dev\tcc-ri-reading-order\orquestracao\analises\treinar_sem_caixas_texto.py", line 411, in main
+    treinar(a)
+  File "C:\Users\pedro\dev\tcc-ri-reading-order\orquestracao\analises\treinar_sem_caixas_texto.py", line 393, in treinar
+    conferir_ancoras()
+  File "C:\Users\pedro\dev\tcc-ri-reading-order\orquestracao\analises\treinar_sem_caixas_texto.py", line 237, in conferir_ancoras
+    R = b.iniciar()
+        ^^^^^^^^^^^
+  File "C:\Users\pedro\dev\tcc-ri-reading-order\orquestracao\analises\bancada_ordenadores.py", line 264, in iniciar
+    exigir(R.get("versao") == VERSAO and R.get("fontes") == H,
+  File "C:\Users\pedro\dev\tcc-ri-reading-order\orquestracao\analises\bancada_ordenadores.py", line 78, in exigir
+    raise ValueError(msg)
+ValueError: Fontes/codigo mudaram. Preserve a saida antiga e use uma nova execucao; nao mistura caches

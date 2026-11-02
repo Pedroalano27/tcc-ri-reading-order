@@ -1,0 +1,68 @@
+{
+  "page_id": "official_diary_ms/executive_official_diary_48733_2024-11-05.pdf#p233",
+  "uf": "official_diary_ms",
+  "P2": {
+    "tau": 1.0,
+    "quebras": 0,
+    "quebras_mil": 0.0,
+    "fid12": 1.0,
+    "sucessor_linhas": 1.0
+  },
+  "P1m": {
+    "tau": 0.9996821904412665,
+    "quebras": 2,
+    "quebras_mil": 4.938271604938271,
+    "fid12": 0.9817629179331308,
+    "sucessor_linhas": 0.9705882352941176
+  },
+  "regra_colunas_exportada": {
+    "tau": 1.0,
+    "quebras": 0,
+    "quebras_mil": 0.0,
+    "fid12": 1.0,
+    "sucessor_linhas": 1.0,
+    "piso_interno": 0
+  },
+  "regra_colunas_ks_cru": {
+    "tau": 1.0,
+    "quebras": 0,
+    "quebras_mil": 0.0,
+    "fid12": 1.0,
+    "sucessor_linhas": 1.0,
+    "piso_interno": 0
+  },
+  "expansao_canonica_diagnostico": {
+    "tau": 1.0,
+    "quebras": 0,
+    "quebras_mil": 0.0,
+    "fid12": 1.0,
+    "sucessor_linhas": 1.0
+  },
+  "diagnostico": {
+    "ks_diferem_da_expansao_canonica": false,
+    "canonizada_identica_P2": true,
+    "unidades_internas_diferentes": 0,
+    "detalhes": []
+  },
+  "ordem_regra_colunas_exportada": [
+    "b3",
+    "b0",
+    "b1",
+    "b2"
+  ],
+  "diag_regra": {
+    "unidades": 4,
+    "entrada": [
+      "b3",
+      "b2",
+      "b1",
+      "b0"
+    ],
+    "max_colunas": 1,
+    "pontes": 0,
+    "topo": 0,
+    "rodape": 3,
+    "marcas": 0,
+    "tempo_ms": 0.052200000936863944
+  }
+}

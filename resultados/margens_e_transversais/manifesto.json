@@ -1,0 +1,178 @@
+[
+ {
+  "bancada": "golden_v4",
+  "page_id": "official_diary_RJ_barra_do_pirai/executive_official_diary_2022-05-26_095.pdf#p2",
+  "imagem_origem": "data/golden/golden_v4/img/020.jpg",
+  "painel": "resultados/margens_e_transversais/golden_v4/8ac3354a856f83e1f3750dfc.png",
+  "perdas_margem": 5,
+  "dimensoes": [
+   2540,
+   1562
+  ]
+ },
+ {
+  "bancada": "golden_v4",
+  "page_id": "official_diary_RJ_barra_do_pirai/executive_official_diary_2023-11-24_214.pdf#p3",
+  "imagem_origem": "data/golden/golden_v4/img/036.jpg",
+  "painel": "resultados/margens_e_transversais/golden_v4/6c60bb94d1e4b8941818c72f.png",
+  "perdas_margem": 5,
+  "dimensoes": [
+   2540,
+   1562
+  ]
+ },
+ {
+  "bancada": "golden_v4",
+  "page_id": "official_diary_ac/executive_official_diary_2025-02-11.pdf#p114",
+  "imagem_origem": "data/golden/golden_v4/img/009.jpg",
+  "painel": "resultados/margens_e_transversais/golden_v4/fe2075081668f517c8b9cbb6.png",
+  "perdas_margem": 10,
+  "dimensoes": [
+   2522,
+   1869
+  ]
+ },
+ {
+  "bancada": "golden_v4",
+  "page_id": "official_diary_pb/Diario Oficial 10-09-2025 Portal.pdf#p41",
+  "imagem_origem": "data/golden/golden_v4/img/013.jpg",
+  "painel": "resultados/margens_e_transversais/golden_v4/b2a5cd50f2cc16be781a7506.png",
+  "perdas_margem": 13,
+  "dimensoes": [
+   2540,
+   1590
+  ]
+ },
+ {
+  "bancada": "golden_v4",
+  "page_id": "official_diary_rj/Parte II (Poder Legislativo)_2024-02-06.pdf#p1",
+  "imagem_origem": "data/golden/golden_v4/img/005.jpg",
+  "painel": "resultados/margens_e_transversais/golden_v4/f8c4ac1ef2e8bf534782db00.png",
+  "perdas_margem": 6,
+  "dimensoes": [
+   2360,
+   1915
+  ]
+ },
+ {
+  "bancada": "golden_v4",
+  "page_id": "official_diary_rj_japeri/JAPERI-5690-06-DE-SETEMBRO-2024.pdf#p13",
+  "imagem_origem": "data/golden/golden_v4/img/030.jpg",
+  "painel": "resultados/margens_e_transversais/golden_v4/873fcf463e5f56d69291c17d.png",
+  "perdas_margem": 9,
+  "dimensoes": [
+   2522,
+   1869
+  ]
+ },
+ {
+  "bancada": "golden_v4",
+  "page_id": "official_diary_se/DOE-SE_2023-03-10_5100.pdf#p14",
+  "imagem_origem": "data/golden/golden_v4/img/004.jpg",
+  "painel": "resultados/margens_e_transversais/golden_v4/0b5ffb1f57e29ac0e29e5583.png",
+  "perdas_margem": 13,
+  "dimensoes": [
+   2540,
+   1829
+  ]
+ },
+ {
+  "bancada": "golden_v4",
+  "page_id": "official_diary_se/DOE-SE_2026-01-16_7401.pdf#p31",
+  "imagem_origem": "data/golden/golden_v4/img/028.jpg",
+  "painel": "resultados/margens_e_transversais/golden_v4/49b4cc8933803d532df866f8.png",
+  "perdas_margem": 6,
+  "dimensoes": [
+   2540,
+   1830
+  ]
+ },
+ {
+  "bancada": "golden_v3_novo",
+  "page_id": "official_diary_RJ_barra_do_pirai/executive_official_diary_2022-08-02_139.pdf#p5",
+  "imagem_origem": "data/golden/golden_v2/img/007.jpg",
+  "painel": "resultados/margens_e_transversais/golden_v3_novo/e052f3155014fb29851dda94.png",
+  "perdas_margem": 3,
+  "dimensoes": [
+   2250,
+   1394
+  ]
+ },
+ {
+  "bancada": "golden_v3_novo",
+  "page_id": "official_diary_ac/executive_official_diary_2022-12-02.pdf#p419",
+  "imagem_origem": "data/golden/golden_v1/img/026.jpg",
+  "painel": "resultados/margens_e_transversais/golden_v3_novo/00e1f64ea5cffa09bf663320.png",
+  "perdas_margem": 3,
+  "dimensoes": [
+   2540,
+   999
+  ]
+ },
+ {
+  "bancada": "golden_v3_novo",
+  "page_id": "official_diary_ma/executive_official_diary_2021-11-12.pdf#p56",
+  "imagem_origem": "data/golden/golden_v1/img/008.jpg",
+  "painel": "resultados/margens_e_transversais/golden_v3_novo/843152277b3f5b24ba7e382c.png",
+  "perdas_margem": 2,
+  "dimensoes": [
+   1860,
+   1402
+  ]
+ },
+ {
+  "bancada": "golden_v3_novo",
+  "page_id": "official_diary_ma/executive_official_diary_2021-11-12.pdf#p60",
+  "imagem_origem": "data/golden/golden_v1/img/002.jpg",
+  "painel": "resultados/margens_e_transversais/golden_v3_novo/2bd8e2f03e0a2a8f37afe58d.png",
+  "perdas_margem": 2,
+  "dimensoes": [
+   1860,
+   1402
+  ]
+ },
+ {
+  "bancada": "golden_v3_novo",
+  "page_id": "official_diary_rj/Parte I (Poder Executivo)_2022-01-05.pdf#p18",
+  "imagem_origem": "data/golden/golden_v2/img/018.jpg",
+  "painel": "resultados/margens_e_transversais/golden_v3_novo/1c4ab1c4718354e7d16492ac.png",
+  "perdas_margem": 8,
+  "dimensoes": [
+   2358,
+   1915
+  ]
+ },
+ {
+  "bancada": "golden_v3_novo",
+  "page_id": "official_diary_rj/Parte I (Poder Executivo)_2024-02-02.pdf#p39",
+  "imagem_origem": "data/golden/golden_v2/img/020.jpg",
+  "painel": "resultados/margens_e_transversais/golden_v3_novo/b840b287f4c79d968e606647.png",
+  "perdas_margem": 4,
+  "dimensoes": [
+   2358,
+   1915
+  ]
+ },
+ {
+  "bancada": "golden_v3_novo",
+  "page_id": "official_diary_rj/Parte II (Poder Legislativo)_2024-02-06.pdf#p3",
+  "imagem_origem": "data/golden/golden_v2/img/002.jpg",
+  "painel": "resultados/margens_e_transversais/golden_v3_novo/d05a585bd095c5670cdedf4b.png",
+  "perdas_margem": 4,
+  "dimensoes": [
+   2358,
+   1915
+  ]
+ },
+ {
+  "bancada": "golden_v3_novo",
+  "page_id": "official_diary_se/DOE-SE_2022-03-18_4475.pdf#p15",
+  "imagem_origem": "data/golden/golden_v2/img/009.jpg",
+  "painel": "resultados/margens_e_transversais/golden_v3_novo/95bb2775e6f43d4c135694cf.png",
+  "perdas_margem": 7,
+  "dimensoes": [
+   2540,
+   1829
+  ]
+ }
+]

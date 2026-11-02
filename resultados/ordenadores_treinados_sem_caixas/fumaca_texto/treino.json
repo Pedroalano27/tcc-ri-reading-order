@@ -1,0 +1,144 @@
+{
+  "config": {
+    "modo": "treinar",
+    "modelo": "sucessor",
+    "variante": "geo",
+    "representacao": "linhas",
+    "device": "cpu",
+    "nome": "fumaca_texto",
+    "dir_saida": "C:\\Users\\pedro\\dev\\tcc-ri-reading-order\\resultados\\ordenadores_treinados_sem_caixas\\fumaca_texto",
+    "blocos": null,
+    "blocos_extra": null,
+    "n_treino": 8,
+    "max_minutos": 5.0,
+    "max_passos": 2,
+    "epocas": 1,
+    "batch": 8,
+    "micro_batch": 1,
+    "lr": 4e-05,
+    "lr_cabeca": 0.001,
+    "peso_posicao": 0.5,
+    "limiar_cadeia": 0.5,
+    "seed": 42,
+    "codificador_texto": {
+      "versao": "ComTexto-v1-prefixo-local-total510",
+      "snapshot": "C:\\Users\\pedro\\.cache\\huggingface\\hub\\models--microsoft--layoutlm-base-uncased\\snapshots\\30e3cdd39c11f09757b0fcf7598533d05052acef",
+      "arquivos_sha256": {
+        "vocab.txt": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+        "tokenizer.json": "ce64fce797c24f68df90b40a3f74f579b336a493db14bd583fd520ea0d8c9a98",
+        "tokenizer_config.json": "08b41811e08f0a108b77cf917abaad7d8fd1237090d997c58dbf0c075e516138",
+        "special_tokens_map.json": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+        "config.json": "1695f8096347352167c18ae138557af5b8ec61927850fe54fc0da25c5e51c89d"
+      },
+      "wrapper_sha256": "72cba1a26a92afb93ceed76285517706b6b02dc50ed692a6edf9851fe83092dd",
+      "pontual_sha256": "577f7200a08e9606e63429f252d134c1d6af5ed56a4d9ccbcab0d93afb231242",
+      "sucessor_sha256": "5901ace5657c2e4375a8a0de8a2fed50429ea9028c5d369f3c80f565c7526c34",
+      "max_total_com_especiais": 510,
+      "max_k": 6,
+      "formula_k": "max(1, min(6, 510 // n))",
+      "excesso": "reduz tokens excedentes; nao remove unidades"
+    }
+  },
+  "fingerprint": "093d00d83a245fd5dede92d0663ce68d397956621f2e1472b25001589a424fa1",
+  "paginas_treino": 8,
+  "paginas_congeladas": 3140,
+  "paginas_validacao": 15,
+  "tokens_por_unidade": {
+    "paginas_unicas_observadas_treino": 8,
+    "k_mediano": 3.0,
+    "fracao_paginas_k_abaixo_6": 0.75,
+    "mediana_por_pagina_tokens_reais_por_unidade": 3.0,
+    "paginas_com_ajuste_especiais": 0,
+    "por_page_id": {
+      "official_diary_pe/2022-11-25_1-Poder Executivo.pdf#p3": {
+        "n": 196,
+        "k": 2,
+        "tokens_texto": 383,
+        "mediana_tokens_reais": 2.0,
+        "unidades_sem_texto": 0,
+        "tokens_aparados_especiais": 0
+      },
+      "official_diary_rr/2022-04-28_DiarioRR.pdf#p65": {
+        "n": 77,
+        "k": 6,
+        "tokens_texto": 439,
+        "mediana_tokens_reais": 6,
+        "unidades_sem_texto": 2,
+        "tokens_aparados_especiais": 0
+      },
+      "official_diary_pe/2022-04-26_1-Poder Executivo.pdf#p36": {
+        "n": 102,
+        "k": 5,
+        "tokens_texto": 497,
+        "mediana_tokens_reais": 5.0,
+        "unidades_sem_texto": 2,
+        "tokens_aparados_especiais": 0
+      },
+      "official_diary_pe/2021-10-14_1-Poder Executivo.pdf#p4": {
+        "n": 194,
+        "k": 2,
+        "tokens_texto": 388,
+        "mediana_tokens_reais": 2.0,
+        "unidades_sem_texto": 0,
+        "tokens_aparados_especiais": 0
+      },
+      "official_diary_RJ_volta_redonda/executive_official_diary_2024-11-14_2133.pdf#p20": {
+        "n": 141,
+        "k": 3,
+        "tokens_texto": 383,
+        "mediana_tokens_reais": 3,
+        "unidades_sem_texto": 5,
+        "tokens_aparados_especiais": 0
+      },
+      "official_diary_pe/2025-07-12_1-Poder Executivo.pdf#p6": {
+        "n": 225,
+        "k": 2,
+        "tokens_texto": 446,
+        "mediana_tokens_reais": 2,
+        "unidades_sem_texto": 2,
+        "tokens_aparados_especiais": 0
+      },
+      "official_diary_pa/executive_official_diary_2023-07-28.pdf#p1": {
+        "n": 137,
+        "k": 3,
+        "tokens_texto": 405,
+        "mediana_tokens_reais": 3,
+        "unidades_sem_texto": 2,
+        "tokens_aparados_especiais": 0
+      },
+      "official_diary_sc/2020-11-18_21397.pdf#p50": {
+        "n": 5,
+        "k": 6,
+        "tokens_texto": 27,
+        "mediana_tokens_reais": 6,
+        "unidades_sem_texto": 0,
+        "tokens_aparados_especiais": 0
+      }
+    }
+  },
+  "treinaveis": 113023490,
+  "parametros": 113023490,
+  "memoria_apos_modelo": {
+    "ram_livre_mb": 4060.6484375,
+    "commit_livre_mb": 12362.140625
+  },
+  "epocas_completas": 1,
+  "cursor": 0,
+  "passos": 1,
+  "segundos": 41.9369999999999,
+  "melhor_val_tau_unidades": 0.07800940269892101,
+  "historico": [
+    {
+      "epoca": 1,
+      "cursor": 8,
+      "passos": 1,
+      "val_tau_unidades": 0.07800940269892101,
+      "ultima_loss": 1.8382619619369507
+    }
+  ],
+  "paginas_visitadas": 8,
+  "concluido": true,
+  "codificador": "ComTexto-v1-prefixo-local-total510",
+  "threads_max": 4,
+  "num_workers": 0
+}

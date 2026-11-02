@@ -1,0 +1,3075 @@
+{
+  "golden_v4": [
+    {
+      "page_id": "official_diary_MG_congonhas/executive_official_diary_2020-12-10_2591.pdf#p1",
+      "uf": "official_diary_MG_congonhas",
+      "unidades": 61,
+      "palavras": 747,
+      "colunas": 1,
+      "tabelas": 1,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 56,
+        "pares_contraditorios": 0,
+        "pares_palavras": 11564,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_MG_congonhas/executive_official_diary_2022-09-02_3022.pdf#p20",
+      "uf": "official_diary_MG_congonhas",
+      "unidades": 17,
+      "palavras": 82,
+      "colunas": 1,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 14,
+        "pares_contraditorios": 0,
+        "pares_palavras": 187,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_RJ_barra_do_pirai/executive_official_diary_2022-05-26_095.pdf#p2",
+      "uf": "official_diary_RJ_barra_do_pirai",
+      "unidades": 17,
+      "palavras": 62,
+      "colunas": 1,
+      "tabelas": 0,
+      "imagens": 5,
+      "ruido": {
+        "pares_vizinhos": 8,
+        "pares_contraditorios": 0,
+        "pares_palavras": 109,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_RJ_barra_do_pirai/executive_official_diary_2023-11-24_214.pdf#p3",
+      "uf": "official_diary_RJ_barra_do_pirai",
+      "unidades": 36,
+      "palavras": 468,
+      "colunas": 1,
+      "tabelas": 0,
+      "imagens": 2,
+      "ruido": {
+        "pares_vizinhos": 32,
+        "pares_contraditorios": 0,
+        "pares_palavras": 7919,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_RJ_barra_do_pirai/executive_official_diary_2026-01-16_010.pdf#p2",
+      "uf": "official_diary_RJ_barra_do_pirai",
+      "unidades": 14,
+      "palavras": 60,
+      "colunas": 1,
+      "tabelas": 0,
+      "imagens": 3,
+      "ruido": {
+        "pares_vizinhos": 8,
+        "pares_contraditorios": 0,
+        "pares_palavras": 120,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_RJ_duque_de_caxias/executive_official_diary_2022-09-28_Boletim_7197.pdf#p44",
+      "uf": "official_diary_RJ_duque_de_caxias",
+      "unidades": 23,
+      "palavras": 358,
+      "colunas": 1,
+      "tabelas": 4,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 13,
+        "pares_contraditorios": 0,
+        "pares_palavras": 277,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_RJ_duque_de_caxias/executive_official_diary_2025-05-02_Boletim_7582_vol2.pdf#p0",
+      "uf": "official_diary_RJ_duque_de_caxias",
+      "unidades": 126,
+      "palavras": 594,
+      "colunas": 2,
+      "tabelas": 0,
+      "imagens": 2,
+      "ruido": {
+        "pares_vizinhos": 121,
+        "pares_contraditorios": 0,
+        "pares_palavras": 2717,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_RJ_seropedica/executive_official_diary_2022-05-09_986.pdf#p2",
+      "uf": "official_diary_RJ_seropedica",
+      "unidades": 87,
+      "palavras": 778,
+      "colunas": 2,
+      "tabelas": 0,
+      "imagens": 0,
+      "ruido": {
+        "pares_vizinhos": 86,
+        "pares_contraditorios": 0,
+        "pares_palavras": 7147,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_RJ_seropedica/executive_official_diary_2022-05-09_986.pdf#p3",
+      "uf": "official_diary_RJ_seropedica",
+      "unidades": 40,
+      "palavras": 245,
+      "colunas": 1,
+      "tabelas": 0,
+      "imagens": 6,
+      "ruido": {
+        "pares_vizinhos": 28,
+        "pares_contraditorios": 1,
+        "pares_palavras": 1506,
+        "pares_palavras_invertidos": 3,
+        "fronteiras_nao_contiguas": 2,
+        "exemplos": [
+          {
+            "a": "b9",
+            "b": "b34",
+            "intervalo_a": [
+              15,
+              17
+            ],
+            "intervalo_b": [
+              14,
+              19
+            ],
+            "pares_invertidos": 3
+          }
+        ]
+      }
+    },
+    {
+      "page_id": "official_diary_RJ_volta_redonda/executive_official_diary_2023-09-22_1987-extra.pdf#p16",
+      "uf": "official_diary_RJ_volta_redonda",
+      "unidades": 113,
+      "palavras": 1016,
+      "colunas": 2,
+      "tabelas": 0,
+      "imagens": 3,
+      "ruido": {
+        "pares_vizinhos": 107,
+        "pares_contraditorios": 0,
+        "pares_palavras": 10374,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ac/executive_official_diary_2022-08-03.pdf#p109",
+      "uf": "official_diary_ac",
+      "unidades": 5,
+      "palavras": 978,
+      "colunas": 1,
+      "tabelas": 1,
+      "imagens": 0,
+      "ruido": {
+        "pares_vizinhos": 2,
+        "pares_contraditorios": 0,
+        "pares_palavras": 20,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ac/executive_official_diary_2025-02-11.pdf#p114",
+      "uf": "official_diary_ac",
+      "unidades": 143,
+      "palavras": 1196,
+      "colunas": 2,
+      "tabelas": 0,
+      "imagens": 0,
+      "ruido": {
+        "pares_vizinhos": 142,
+        "pares_contraditorios": 0,
+        "pares_palavras": 11351,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_al/DOEAL-2021-10-06-COMPLETO_87_152.pdf#p0",
+      "uf": "official_diary_al",
+      "unidades": 75,
+      "palavras": 507,
+      "colunas": 1,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 68,
+        "pares_contraditorios": 0,
+        "pares_palavras": 3501,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_al/DOEAL-2023-03-22-COMPLETO_54_172.pdf#p0",
+      "uf": "official_diary_al",
+      "unidades": 147,
+      "palavras": 1368,
+      "colunas": 2,
+      "tabelas": 0,
+      "imagens": 0,
+      "ruido": {
+        "pares_vizinhos": 146,
+        "pares_contraditorios": 0,
+        "pares_palavras": 13027,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_al/DOEAL-2026-01-16-SUPLEMENTO.pdf#p9",
+      "uf": "official_diary_al",
+      "unidades": 48,
+      "palavras": 741,
+      "colunas": 1,
+      "tabelas": 2,
+      "imagens": 0,
+      "ruido": {
+        "pares_vizinhos": 44,
+        "pares_contraditorios": 0,
+        "pares_palavras": 3405,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_am_manaus/2023-03-13_caderno_2.pdf#p22",
+      "uf": "official_diary_am_manaus",
+      "unidades": 12,
+      "palavras": 1567,
+      "colunas": 1,
+      "tabelas": 3,
+      "imagens": 0,
+      "ruido": {
+        "pares_vizinhos": 6,
+        "pares_contraditorios": 0,
+        "pares_palavras": 20,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ap/2024-02-20_DOEn8106_Edicao Ordinaria.pdf#p35",
+      "uf": "official_diary_ap",
+      "unidades": 120,
+      "palavras": 794,
+      "colunas": 2,
+      "tabelas": 1,
+      "imagens": 0,
+      "ruido": {
+        "pares_vizinhos": 117,
+        "pares_contraditorios": 0,
+        "pares_palavras": 5233,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 1,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ap/2024-05-07_DOEn8159_Edicao Ordinaria.pdf#p373",
+      "uf": "official_diary_ap",
+      "unidades": 6,
+      "palavras": 713,
+      "colunas": 1,
+      "tabelas": 1,
+      "imagens": 0,
+      "ruido": {
+        "pares_vizinhos": 3,
+        "pares_contraditorios": 0,
+        "pares_palavras": 16,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ba_salvador/dom-8379-27-09-2022.pdf#p5",
+      "uf": "official_diary_ba_salvador",
+      "unidades": 36,
+      "palavras": 1037,
+      "colunas": 1,
+      "tabelas": 6,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 24,
+        "pares_contraditorios": 0,
+        "pares_palavras": 1285,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20220530p02.pdf#p53",
+      "uf": "official_diary_ce",
+      "unidades": 67,
+      "palavras": 1086,
+      "colunas": 1,
+      "tabelas": 1,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 52,
+        "pares_contraditorios": 0,
+        "pares_palavras": 16429,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2023-03-06.pdf#p71",
+      "uf": "official_diary_ma",
+      "unidades": 103,
+      "palavras": 796,
+      "colunas": 2,
+      "tabelas": 1,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 98,
+        "pares_contraditorios": 0,
+        "pares_palavras": 5717,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_mg/executive_official_diary_2021-07-06.pdf#p28",
+      "uf": "official_diary_mg",
+      "unidades": 493,
+      "palavras": 4080,
+      "colunas": 4,
+      "tabelas": 0,
+      "imagens": 2,
+      "ruido": {
+        "pares_vizinhos": 489,
+        "pares_contraditorios": 0,
+        "pares_palavras": 35011,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ms/executive_official_diary_46741_2021-06-29.pdf#p48",
+      "uf": "official_diary_ms",
+      "unidades": 7,
+      "palavras": 385,
+      "colunas": 1,
+      "tabelas": 1,
+      "imagens": 2,
+      "ruido": {
+        "pares_vizinhos": 2,
+        "pares_contraditorios": 0,
+        "pares_palavras": 40,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ms/executive_official_diary_48733_2024-11-05.pdf#p233",
+      "uf": "official_diary_ms",
+      "unidades": 4,
+      "palavras": 405,
+      "colunas": 1,
+      "tabelas": 1,
+      "imagens": 2,
+      "ruido": {
+        "pares_vizinhos": 0,
+        "pares_contraditorios": 0,
+        "pares_palavras": 0,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_pb/Diario Oficial 10-01-2026 Portal.pdf#p26",
+      "uf": "official_diary_pb",
+      "unidades": 21,
+      "palavras": 840,
+      "colunas": 1,
+      "tabelas": 7,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 8,
+        "pares_contraditorios": 0,
+        "pares_palavras": 166,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_pb/Diario Oficial 10-09-2025 Portal.pdf#p41",
+      "uf": "official_diary_pb",
+      "unidades": 142,
+      "palavras": 1098,
+      "colunas": 2,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 139,
+        "pares_contraditorios": 0,
+        "pares_palavras": 10214,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_pe/2023-02-02_1-Poder Executivo.pdf#p6",
+      "uf": "official_diary_pe",
+      "unidades": 233,
+      "palavras": 1573,
+      "colunas": 4,
+      "tabelas": 0,
+      "imagens": 6,
+      "ruido": {
+        "pares_vizinhos": 223,
+        "pares_contraditorios": 0,
+        "pares_palavras": 11882,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_pi_v2/executive_official_diary_2024_01_12_9_2024_243_297.pdf#p0",
+      "uf": "official_diary_pi_v2",
+      "unidades": 33,
+      "palavras": 209,
+      "colunas": 1,
+      "tabelas": 0,
+      "imagens": 2,
+      "ruido": {
+        "pares_vizinhos": 28,
+        "pares_contraditorios": 0,
+        "pares_palavras": 1468,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_pi_v2/executive_official_diary_2025_11_07_216_2025.pdf#p2",
+      "uf": "official_diary_pi_v2",
+      "unidades": 42,
+      "palavras": 370,
+      "colunas": 1,
+      "tabelas": 0,
+      "imagens": 2,
+      "ruido": {
+        "pares_vizinhos": 37,
+        "pares_contraditorios": 0,
+        "pares_palavras": 3647,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_pr_curitiba/24-Supl1_2024-02-05.pdf#p4",
+      "uf": "official_diary_pr_curitiba",
+      "unidades": 18,
+      "palavras": 188,
+      "colunas": 1,
+      "tabelas": 0,
+      "imagens": 2,
+      "ruido": {
+        "pares_vizinhos": 13,
+        "pares_contraditorios": 0,
+        "pares_palavras": 2683,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_rj/Parte II (Poder Legislativo)_2024-02-06.pdf#p1",
+      "uf": "official_diary_rj",
+      "unidades": 340,
+      "palavras": 2518,
+      "colunas": 3,
+      "tabelas": 0,
+      "imagens": 2,
+      "ruido": {
+        "pares_vizinhos": 333,
+        "pares_contraditorios": 0,
+        "pares_palavras": 19430,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_rj_japeri/JAPERI-5606-09-DE-MAIO-2024.pdf#p3",
+      "uf": "official_diary_rj_japeri",
+      "unidades": 15,
+      "palavras": 51,
+      "colunas": 1,
+      "tabelas": 0,
+      "imagens": 0,
+      "ruido": {
+        "pares_vizinhos": 14,
+        "pares_contraditorios": 0,
+        "pares_palavras": 173,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_rj_japeri/JAPERI-5690-06-DE-SETEMBRO-2024.pdf#p13",
+      "uf": "official_diary_rj_japeri",
+      "unidades": 91,
+      "palavras": 619,
+      "colunas": 2,
+      "tabelas": 2,
+      "imagens": 2,
+      "ruido": {
+        "pares_vizinhos": 82,
+        "pares_contraditorios": 0,
+        "pares_palavras": 3577,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_rn/DOE-RN_2022-12-29_Ordinaria.pdf#p59",
+      "uf": "official_diary_rn",
+      "unidades": 82,
+      "palavras": 796,
+      "colunas": 2,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 79,
+        "pares_contraditorios": 0,
+        "pares_palavras": 8109,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ro/executive_official_diary_2023-07-26_304_320.pdf#p0",
+      "uf": "official_diary_ro",
+      "unidades": 54,
+      "palavras": 635,
+      "colunas": 1,
+      "tabelas": 0,
+      "imagens": 0,
+      "ruido": {
+        "pares_vizinhos": 53,
+        "pares_contraditorios": 0,
+        "pares_palavras": 8427,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ro/executive_official_diary_suplemento_2026-01-09.pdf#p16",
+      "uf": "official_diary_ro",
+      "unidades": 58,
+      "palavras": 630,
+      "colunas": 1,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 55,
+        "pares_contraditorios": 0,
+        "pares_palavras": 6058,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_rr/2021-09-23_DiarioRR.pdf#p10",
+      "uf": "official_diary_rr",
+      "unidades": 29,
+      "palavras": 494,
+      "colunas": 1,
+      "tabelas": 4,
+      "imagens": 3,
+      "ruido": {
+        "pares_vizinhos": 14,
+        "pares_contraditorios": 0,
+        "pares_palavras": 563,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_rs_porto_alegre/4689_cl_20230227_legislativo.pdf#p1",
+      "uf": "official_diary_rs_porto_alegre",
+      "unidades": 48,
+      "palavras": 375,
+      "colunas": 1,
+      "tabelas": 0,
+      "imagens": 0,
+      "ruido": {
+        "pares_vizinhos": 47,
+        "pares_contraditorios": 0,
+        "pares_palavras": 2701,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_rs_porto_alegre/4689_cl_20230227_legislativo.pdf#p2",
+      "uf": "official_diary_rs_porto_alegre",
+      "unidades": 15,
+      "palavras": 107,
+      "colunas": 1,
+      "tabelas": 0,
+      "imagens": 0,
+      "ruido": {
+        "pares_vizinhos": 14,
+        "pares_contraditorios": 0,
+        "pares_palavras": 707,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_sc/2023-11-27_22151.pdf#p28",
+      "uf": "official_diary_sc",
+      "unidades": 257,
+      "palavras": 2155,
+      "colunas": 3,
+      "tabelas": 0,
+      "imagens": 0,
+      "ruido": {
+        "pares_vizinhos": 256,
+        "pares_contraditorios": 0,
+        "pares_palavras": 17857,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_se/DOE-SE_2023-03-10_5100.pdf#p14",
+      "uf": "official_diary_se",
+      "unidades": 94,
+      "palavras": 583,
+      "colunas": 1,
+      "tabelas": 1,
+      "imagens": 2,
+      "ruido": {
+        "pares_vizinhos": 84,
+        "pares_contraditorios": 0,
+        "pares_palavras": 3596,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_se/DOE-SE_2026-01-16_7401.pdf#p31",
+      "uf": "official_diary_se",
+      "unidades": 119,
+      "palavras": 1062,
+      "colunas": 2,
+      "tabelas": 0,
+      "imagens": 5,
+      "ruido": {
+        "pares_vizinhos": 108,
+        "pares_contraditorios": 0,
+        "pares_palavras": 10081,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_to/2022-12-13_4783.pdf#p10",
+      "uf": "official_diary_to",
+      "unidades": 101,
+      "palavras": 944,
+      "colunas": 2,
+      "tabelas": 4,
+      "imagens": 0,
+      "ruido": {
+        "pares_vizinhos": 92,
+        "pares_contraditorios": 0,
+        "pares_palavras": 5791,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_to/2024-04-17_5147.pdf#p47",
+      "uf": "official_diary_to",
+      "unidades": 137,
+      "palavras": 861,
+      "colunas": 2,
+      "tabelas": 0,
+      "imagens": 0,
+      "ruido": {
+        "pares_vizinhos": 136,
+        "pares_contraditorios": 0,
+        "pares_palavras": 5890,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    }
+  ],
+  "golden_v3_novo": [
+    {
+      "page_id": "official_diary_RJ_barra_do_pirai/executive_official_diary_2022-08-02_139.pdf#p5",
+      "uf": "official_diary_RJ_barra_do_pirai",
+      "unidades": 70,
+      "palavras": 674,
+      "colunas": 2,
+      "tabelas": 1,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 65,
+        "pares_contraditorios": 0,
+        "pares_palavras": 4786,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ac/executive_official_diary_2022-12-02.pdf#p419",
+      "uf": "official_diary_ac",
+      "unidades": 12,
+      "palavras": 148,
+      "colunas": 1,
+      "tabelas": 1,
+      "imagens": 0,
+      "ruido": {
+        "pares_vizinhos": 10,
+        "pares_contraditorios": 0,
+        "pares_palavras": 309,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ac/executive_official_diary_2025-09-24.pdf#p41",
+      "uf": "official_diary_ac",
+      "unidades": 65,
+      "palavras": 971,
+      "colunas": 1,
+      "tabelas": 1,
+      "imagens": 0,
+      "ruido": {
+        "pares_vizinhos": 62,
+        "pares_contraditorios": 0,
+        "pares_palavras": 11465,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ap/2024-09-27_DOEn8257_Edicao Ordinaria.pdf#p41",
+      "uf": "official_diary_ap",
+      "unidades": 18,
+      "palavras": 208,
+      "colunas": 1,
+      "tabelas": 1,
+      "imagens": 0,
+      "ruido": {
+        "pares_vizinhos": 15,
+        "pares_contraditorios": 0,
+        "pares_palavras": 677,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20220512p03.pdf#p20",
+      "uf": "official_diary_ce",
+      "unidades": 54,
+      "palavras": 1112,
+      "colunas": 1,
+      "tabelas": 4,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 38,
+        "pares_contraditorios": 0,
+        "pares_palavras": 11452,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20220530p02.pdf#p81",
+      "uf": "official_diary_ce",
+      "unidades": 79,
+      "palavras": 762,
+      "colunas": 1,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 72,
+        "pares_contraditorios": 0,
+        "pares_palavras": 10062,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20240429p01.pdf#p6",
+      "uf": "official_diary_ce",
+      "unidades": 69,
+      "palavras": 1121,
+      "colunas": 1,
+      "tabelas": 1,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 65,
+        "pares_contraditorios": 0,
+        "pares_palavras": 12365,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20250505p03.pdf#p66",
+      "uf": "official_diary_ce",
+      "unidades": 4,
+      "palavras": 1327,
+      "colunas": 1,
+      "tabelas": 1,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 1,
+        "pares_contraditorios": 0,
+        "pares_palavras": 18,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20250522p02.pdf#p8",
+      "uf": "official_diary_ce",
+      "unidades": 57,
+      "palavras": 882,
+      "colunas": 1,
+      "tabelas": 3,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 49,
+        "pares_contraditorios": 0,
+        "pares_palavras": 10794,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20260107p04.pdf#p42",
+      "uf": "official_diary_ce",
+      "unidades": 12,
+      "palavras": 73,
+      "colunas": 1,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 9,
+        "pares_contraditorios": 0,
+        "pares_palavras": 237,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2021-11-12.pdf#p56",
+      "uf": "official_diary_ma",
+      "unidades": 108,
+      "palavras": 866,
+      "colunas": 2,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 105,
+        "pares_contraditorios": 0,
+        "pares_palavras": 7169,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2021-11-12.pdf#p60",
+      "uf": "official_diary_ma",
+      "unidades": 108,
+      "palavras": 812,
+      "colunas": 2,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 105,
+        "pares_contraditorios": 1,
+        "pares_palavras": 6200,
+        "pares_palavras_invertidos": 4,
+        "fronteiras_nao_contiguas": 2,
+        "exemplos": [
+          {
+            "a": "b33",
+            "b": "b58",
+            "intervalo_a": [
+              245,
+              254
+            ],
+            "intervalo_b": [
+              250,
+              250
+            ],
+            "pares_invertidos": 4
+          }
+        ]
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2021-11-19.pdf#p14",
+      "uf": "official_diary_ma",
+      "unidades": 83,
+      "palavras": 719,
+      "colunas": 2,
+      "tabelas": 3,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 74,
+        "pares_contraditorios": 0,
+        "pares_palavras": 4740,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2021-12-20.pdf#p51",
+      "uf": "official_diary_ma",
+      "unidades": 11,
+      "palavras": 464,
+      "colunas": 1,
+      "tabelas": 5,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 0,
+        "pares_contraditorios": 0,
+        "pares_palavras": 0,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2023-03-06.pdf#p24",
+      "uf": "official_diary_ma",
+      "unidades": 99,
+      "palavras": 728,
+      "colunas": 2,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 96,
+        "pares_contraditorios": 0,
+        "pares_palavras": 5738,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2023-12-04_30_84.pdf#p0",
+      "uf": "official_diary_ma",
+      "unidades": 118,
+      "palavras": 964,
+      "colunas": 2,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 115,
+        "pares_contraditorios": 0,
+        "pares_palavras": 8222,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_suplement_2025-02-21_202_378.pdf#p0",
+      "uf": "official_diary_ma",
+      "unidades": 162,
+      "palavras": 449,
+      "colunas": 2,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 159,
+        "pares_contraditorios": 0,
+        "pares_palavras": 1433,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_mg/executive_official_diary_2021-12-30.pdf#p16",
+      "uf": "official_diary_mg",
+      "unidades": 73,
+      "palavras": 1626,
+      "colunas": 1,
+      "tabelas": 12,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 47,
+        "pares_contraditorios": 0,
+        "pares_palavras": 4034,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_pi_v2/executive_official_diary_2024_05_29_104_2024_15_340.pdf#p0",
+      "uf": "official_diary_pi_v2",
+      "unidades": 36,
+      "palavras": 289,
+      "colunas": 1,
+      "tabelas": 0,
+      "imagens": 2,
+      "ruido": {
+        "pares_vizinhos": 25,
+        "pares_contraditorios": 0,
+        "pares_palavras": 2482,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_pi_v2/executive_official_diary_2025_11_07_216_2025.pdf#p223",
+      "uf": "official_diary_pi_v2",
+      "unidades": 57,
+      "palavras": 552,
+      "colunas": 1,
+      "tabelas": 0,
+      "imagens": 2,
+      "ruido": {
+        "pares_vizinhos": 52,
+        "pares_contraditorios": 0,
+        "pares_palavras": 5920,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_rj/Parte I (Poder Executivo)_2022-01-05.pdf#p18",
+      "uf": "official_diary_rj",
+      "unidades": 401,
+      "palavras": 3400,
+      "colunas": 3,
+      "tabelas": 0,
+      "imagens": 0,
+      "ruido": {
+        "pares_vizinhos": 400,
+        "pares_contraditorios": 0,
+        "pares_palavras": 29687,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_rj/Parte I (Poder Executivo)_2024-02-02.pdf#p39",
+      "uf": "official_diary_rj",
+      "unidades": 6,
+      "palavras": 1583,
+      "colunas": 1,
+      "tabelas": 1,
+      "imagens": 0,
+      "ruido": {
+        "pares_vizinhos": 4,
+        "pares_contraditorios": 0,
+        "pares_palavras": 135,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_rj/Parte II (Poder Legislativo)_2024-02-06.pdf#p3",
+      "uf": "official_diary_rj",
+      "unidades": 110,
+      "palavras": 658,
+      "colunas": 3,
+      "tabelas": 0,
+      "imagens": 0,
+      "ruido": {
+        "pares_vizinhos": 109,
+        "pares_contraditorios": 0,
+        "pares_palavras": 4258,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_rj/Parte IV (Municipalidades)_2021-08-30.pdf#p0",
+      "uf": "official_diary_rj",
+      "unidades": 201,
+      "palavras": 1021,
+      "colunas": 3,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 199,
+        "pares_contraditorios": 0,
+        "pares_palavras": 6023,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_rj/Parte IV (Municipalidades)_2025-11-10.pdf#p0",
+      "uf": "official_diary_rj",
+      "unidades": 161,
+      "palavras": 803,
+      "colunas": 3,
+      "tabelas": 0,
+      "imagens": 2,
+      "ruido": {
+        "pares_vizinhos": 158,
+        "pares_contraditorios": 0,
+        "pares_palavras": 4374,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ro/executive_official_diary_2024-06-12.pdf#p392",
+      "uf": "official_diary_ro",
+      "unidades": 55,
+      "palavras": 498,
+      "colunas": 1,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 52,
+        "pares_contraditorios": 0,
+        "pares_palavras": 4809,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_se/DOE-SE_2022-03-18_4475.pdf#p15",
+      "uf": "official_diary_se",
+      "unidades": 29,
+      "palavras": 1068,
+      "colunas": 1,
+      "tabelas": 4,
+      "imagens": 0,
+      "ruido": {
+        "pares_vizinhos": 20,
+        "pares_contraditorios": 0,
+        "pares_palavras": 2169,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    }
+  ],
+  "teste_silver": [
+    {
+      "page_id": "official_diary_ce/do20220512p03.pdf#p20",
+      "uf": "official_diary_ce",
+      "unidades": 54,
+      "palavras": 1127,
+      "colunas": 1,
+      "tabelas": 4,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 43,
+        "pares_contraditorios": 0,
+        "pares_palavras": 11920,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20220512p03.pdf#p3",
+      "uf": "official_diary_ce",
+      "unidades": 79,
+      "palavras": 1224,
+      "colunas": 1,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 76,
+        "pares_contraditorios": 0,
+        "pares_palavras": 22286,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20220512p03.pdf#p32",
+      "uf": "official_diary_ce",
+      "unidades": 85,
+      "palavras": 1551,
+      "colunas": 1,
+      "tabelas": 2,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 78,
+        "pares_contraditorios": 0,
+        "pares_palavras": 31010,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20220530p02.pdf#p53",
+      "uf": "official_diary_ce",
+      "unidades": 67,
+      "palavras": 1104,
+      "colunas": 1,
+      "tabelas": 1,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 62,
+        "pares_contraditorios": 0,
+        "pares_palavras": 16903,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20220530p02.pdf#p81",
+      "uf": "official_diary_ce",
+      "unidades": 79,
+      "palavras": 768,
+      "colunas": 1,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 76,
+        "pares_contraditorios": 0,
+        "pares_palavras": 10218,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20220530p02.pdf#p83",
+      "uf": "official_diary_ce",
+      "unidades": 56,
+      "palavras": 1035,
+      "colunas": 1,
+      "tabelas": 1,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 52,
+        "pares_contraditorios": 0,
+        "pares_palavras": 17121,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20220712p01.pdf#p32",
+      "uf": "official_diary_ce",
+      "unidades": 91,
+      "palavras": 1459,
+      "colunas": 1,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 88,
+        "pares_contraditorios": 0,
+        "pares_palavras": 28292,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20220712p01.pdf#p63",
+      "uf": "official_diary_ce",
+      "unidades": 86,
+      "palavras": 1320,
+      "colunas": 1,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 83,
+        "pares_contraditorios": 0,
+        "pares_palavras": 23677,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20220908p01.pdf#p3",
+      "uf": "official_diary_ce",
+      "unidades": 175,
+      "palavras": 897,
+      "colunas": 1,
+      "tabelas": 1,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 171,
+        "pares_contraditorios": 0,
+        "pares_palavras": 2991,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20220908p01.pdf#p4",
+      "uf": "official_diary_ce",
+      "unidades": 162,
+      "palavras": 863,
+      "colunas": 1,
+      "tabelas": 1,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 158,
+        "pares_contraditorios": 0,
+        "pares_palavras": 2096,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20220908p01.pdf#p46",
+      "uf": "official_diary_ce",
+      "unidades": 91,
+      "palavras": 1424,
+      "colunas": 1,
+      "tabelas": 1,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 86,
+        "pares_contraditorios": 0,
+        "pares_palavras": 27212,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20240429p01.pdf#p3",
+      "uf": "official_diary_ce",
+      "unidades": 84,
+      "palavras": 1343,
+      "colunas": 1,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 81,
+        "pares_contraditorios": 0,
+        "pares_palavras": 25000,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20240429p01.pdf#p51",
+      "uf": "official_diary_ce",
+      "unidades": 68,
+      "palavras": 891,
+      "colunas": 1,
+      "tabelas": 2,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 61,
+        "pares_contraditorios": 0,
+        "pares_palavras": 11821,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20240429p01.pdf#p52",
+      "uf": "official_diary_ce",
+      "unidades": 87,
+      "palavras": 1399,
+      "colunas": 1,
+      "tabelas": 1,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 82,
+        "pares_contraditorios": 0,
+        "pares_palavras": 25140,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20240429p01.pdf#p6",
+      "uf": "official_diary_ce",
+      "unidades": 69,
+      "palavras": 1121,
+      "colunas": 1,
+      "tabelas": 1,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 65,
+        "pares_contraditorios": 0,
+        "pares_palavras": 12739,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20250314p03.pdf#p22",
+      "uf": "official_diary_ce",
+      "unidades": 91,
+      "palavras": 1637,
+      "colunas": 1,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 88,
+        "pares_contraditorios": 0,
+        "pares_palavras": 31028,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20250314p03.pdf#p45",
+      "uf": "official_diary_ce",
+      "unidades": 93,
+      "palavras": 1740,
+      "colunas": 1,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 90,
+        "pares_contraditorios": 0,
+        "pares_palavras": 33153,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20250314p03.pdf#p59",
+      "uf": "official_diary_ce",
+      "unidades": 92,
+      "palavras": 1722,
+      "colunas": 1,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 89,
+        "pares_contraditorios": 0,
+        "pares_palavras": 32782,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20250314p03.pdf#p63",
+      "uf": "official_diary_ce",
+      "unidades": 94,
+      "palavras": 1712,
+      "colunas": 1,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 91,
+        "pares_contraditorios": 0,
+        "pares_palavras": 31934,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20250324p02.pdf#p49",
+      "uf": "official_diary_ce",
+      "unidades": 58,
+      "palavras": 1055,
+      "colunas": 1,
+      "tabelas": 4,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 47,
+        "pares_contraditorios": 0,
+        "pares_palavras": 11042,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20250324p02.pdf#p53",
+      "uf": "official_diary_ce",
+      "unidades": 59,
+      "palavras": 996,
+      "colunas": 1,
+      "tabelas": 5,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 47,
+        "pares_contraditorios": 0,
+        "pares_palavras": 10422,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20250505p03.pdf#p23",
+      "uf": "official_diary_ce",
+      "unidades": 6,
+      "palavras": 1293,
+      "colunas": 1,
+      "tabelas": 1,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 2,
+        "pares_contraditorios": 0,
+        "pares_palavras": 54,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 1,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20250505p03.pdf#p50",
+      "uf": "official_diary_ce",
+      "unidades": 5,
+      "palavras": 1321,
+      "colunas": 1,
+      "tabelas": 1,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 2,
+        "pares_contraditorios": 0,
+        "pares_palavras": 36,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 1,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20250505p03.pdf#p66",
+      "uf": "official_diary_ce",
+      "unidades": 4,
+      "palavras": 1327,
+      "colunas": 1,
+      "tabelas": 1,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 1,
+        "pares_contraditorios": 0,
+        "pares_palavras": 18,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20250505p03.pdf#p76",
+      "uf": "official_diary_ce",
+      "unidades": 93,
+      "palavras": 1340,
+      "colunas": 1,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 90,
+        "pares_contraditorios": 0,
+        "pares_palavras": 19240,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20250522p02.pdf#p39",
+      "uf": "official_diary_ce",
+      "unidades": 86,
+      "palavras": 1313,
+      "colunas": 1,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 83,
+        "pares_contraditorios": 0,
+        "pares_palavras": 23704,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20250522p02.pdf#p55",
+      "uf": "official_diary_ce",
+      "unidades": 40,
+      "palavras": 730,
+      "colunas": 1,
+      "tabelas": 1,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 35,
+        "pares_contraditorios": 0,
+        "pares_palavras": 13729,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20250522p02.pdf#p62",
+      "uf": "official_diary_ce",
+      "unidades": 77,
+      "palavras": 1121,
+      "colunas": 1,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 74,
+        "pares_contraditorios": 0,
+        "pares_palavras": 19760,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20250522p02.pdf#p8",
+      "uf": "official_diary_ce",
+      "unidades": 57,
+      "palavras": 882,
+      "colunas": 1,
+      "tabelas": 3,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 49,
+        "pares_contraditorios": 0,
+        "pares_palavras": 10845,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20260107p04.pdf#p42",
+      "uf": "official_diary_ce",
+      "unidades": 12,
+      "palavras": 73,
+      "colunas": 1,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 9,
+        "pares_contraditorios": 0,
+        "pares_palavras": 254,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20260112p02.pdf#p1",
+      "uf": "official_diary_ce",
+      "unidades": 86,
+      "palavras": 1106,
+      "colunas": 1,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 83,
+        "pares_contraditorios": 0,
+        "pares_palavras": 19633,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20260112p02.pdf#p13",
+      "uf": "official_diary_ce",
+      "unidades": 86,
+      "palavras": 1134,
+      "colunas": 1,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 83,
+        "pares_contraditorios": 0,
+        "pares_palavras": 17944,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20260112p02.pdf#p53",
+      "uf": "official_diary_ce",
+      "unidades": 61,
+      "palavras": 1076,
+      "colunas": 1,
+      "tabelas": 4,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 50,
+        "pares_contraditorios": 0,
+        "pares_palavras": 9855,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20260112p02.pdf#p65",
+      "uf": "official_diary_ce",
+      "unidades": 82,
+      "palavras": 1408,
+      "colunas": 1,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 79,
+        "pares_contraditorios": 0,
+        "pares_palavras": 24456,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20260113p03.pdf#p18",
+      "uf": "official_diary_ce",
+      "unidades": 59,
+      "palavras": 1116,
+      "colunas": 1,
+      "tabelas": 4,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 48,
+        "pares_contraditorios": 0,
+        "pares_palavras": 14541,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20260113p03.pdf#p28",
+      "uf": "official_diary_ce",
+      "unidades": 86,
+      "palavras": 1372,
+      "colunas": 1,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 83,
+        "pares_contraditorios": 0,
+        "pares_palavras": 25658,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20260113p03.pdf#p29",
+      "uf": "official_diary_ce",
+      "unidades": 87,
+      "palavras": 1263,
+      "colunas": 1,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 84,
+        "pares_contraditorios": 0,
+        "pares_palavras": 20756,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20260113p03.pdf#p32",
+      "uf": "official_diary_ce",
+      "unidades": 89,
+      "palavras": 829,
+      "colunas": 1,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 86,
+        "pares_contraditorios": 0,
+        "pares_palavras": 11045,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2021-09-20.pdf#p12",
+      "uf": "official_diary_ma",
+      "unidades": 93,
+      "palavras": 831,
+      "colunas": 2,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 90,
+        "pares_contraditorios": 1,
+        "pares_palavras": 7640,
+        "pares_palavras_invertidos": 3,
+        "fronteiras_nao_contiguas": 1,
+        "exemplos": [
+          {
+            "a": "b48",
+            "b": "b33",
+            "intervalo_a": [
+              1,
+              3
+            ],
+            "intervalo_b": [
+              0,
+              9
+            ],
+            "pares_invertidos": 3
+          }
+        ]
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2021-09-20.pdf#p26",
+      "uf": "official_diary_ma",
+      "unidades": 4,
+      "palavras": 239,
+      "colunas": 1,
+      "tabelas": 1,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 1,
+        "pares_contraditorios": 1,
+        "pares_palavras": 21,
+        "pares_palavras_invertidos": 3,
+        "fronteiras_nao_contiguas": 1,
+        "exemplos": [
+          {
+            "a": "b0",
+            "b": "b2",
+            "intervalo_a": [
+              1,
+              3
+            ],
+            "intervalo_b": [
+              0,
+              9
+            ],
+            "pares_invertidos": 3
+          }
+        ]
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2021-09-20.pdf#p39",
+      "uf": "official_diary_ma",
+      "unidades": 39,
+      "palavras": 552,
+      "colunas": 1,
+      "tabelas": 2,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 33,
+        "pares_contraditorios": 0,
+        "pares_palavras": 5627,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2021-09-20.pdf#p5",
+      "uf": "official_diary_ma",
+      "unidades": 146,
+      "palavras": 390,
+      "colunas": 1,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 143,
+        "pares_contraditorios": 0,
+        "pares_palavras": 1227,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2021-09-29.pdf#p22",
+      "uf": "official_diary_ma",
+      "unidades": 102,
+      "palavras": 840,
+      "colunas": 2,
+      "tabelas": 1,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 97,
+        "pares_contraditorios": 1,
+        "pares_palavras": 6624,
+        "pares_palavras_invertidos": 3,
+        "fronteiras_nao_contiguas": 1,
+        "exemplos": [
+          {
+            "a": "b84",
+            "b": "b51",
+            "intervalo_a": [
+              1,
+              3
+            ],
+            "intervalo_b": [
+              0,
+              11
+            ],
+            "pares_invertidos": 3
+          }
+        ]
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2021-09-29.pdf#p54",
+      "uf": "official_diary_ma",
+      "unidades": 4,
+      "palavras": 358,
+      "colunas": 1,
+      "tabelas": 1,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 0,
+        "pares_contraditorios": 0,
+        "pares_palavras": 0,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2021-09-29.pdf#p56",
+      "uf": "official_diary_ma",
+      "unidades": 91,
+      "palavras": 788,
+      "colunas": 2,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 88,
+        "pares_contraditorios": 1,
+        "pares_palavras": 7456,
+        "pares_palavras_invertidos": 3,
+        "fronteiras_nao_contiguas": 1,
+        "exemplos": [
+          {
+            "a": "b68",
+            "b": "b64",
+            "intervalo_a": [
+              1,
+              3
+            ],
+            "intervalo_b": [
+              0,
+              11
+            ],
+            "pares_invertidos": 3
+          }
+        ]
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2021-09-29.pdf#p90",
+      "uf": "official_diary_ma",
+      "unidades": 112,
+      "palavras": 795,
+      "colunas": 2,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 109,
+        "pares_contraditorios": 2,
+        "pares_palavras": 5919,
+        "pares_palavras_invertidos": 4,
+        "fronteiras_nao_contiguas": 3,
+        "exemplos": [
+          {
+            "a": "b35",
+            "b": "b64",
+            "intervalo_a": [
+              1,
+              3
+            ],
+            "intervalo_b": [
+              0,
+              11
+            ],
+            "pares_invertidos": 3
+          },
+          {
+            "a": "b4",
+            "b": "b38",
+            "intervalo_a": [
+              659,
+              662
+            ],
+            "intervalo_b": [
+              661,
+              661
+            ],
+            "pares_invertidos": 1
+          }
+        ]
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2021-10-21.pdf#p12",
+      "uf": "official_diary_ma",
+      "unidades": 108,
+      "palavras": 854,
+      "colunas": 2,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 105,
+        "pares_contraditorios": 1,
+        "pares_palavras": 6796,
+        "pares_palavras_invertidos": 3,
+        "fronteiras_nao_contiguas": 1,
+        "exemplos": [
+          {
+            "a": "b81",
+            "b": "b63",
+            "intervalo_a": [
+              1,
+              3
+            ],
+            "intervalo_b": [
+              0,
+              11
+            ],
+            "pares_invertidos": 3
+          }
+        ]
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2021-10-21.pdf#p28",
+      "uf": "official_diary_ma",
+      "unidades": 102,
+      "palavras": 821,
+      "colunas": 2,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 99,
+        "pares_contraditorios": 1,
+        "pares_palavras": 6688,
+        "pares_palavras_invertidos": 3,
+        "fronteiras_nao_contiguas": 1,
+        "exemplos": [
+          {
+            "a": "b19",
+            "b": "b77",
+            "intervalo_a": [
+              1,
+              3
+            ],
+            "intervalo_b": [
+              0,
+              11
+            ],
+            "pares_invertidos": 3
+          }
+        ]
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2021-10-21.pdf#p31",
+      "uf": "official_diary_ma",
+      "unidades": 99,
+      "palavras": 778,
+      "colunas": 2,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 96,
+        "pares_contraditorios": 0,
+        "pares_palavras": 5902,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2021-10-21.pdf#p32",
+      "uf": "official_diary_ma",
+      "unidades": 102,
+      "palavras": 763,
+      "colunas": 2,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 99,
+        "pares_contraditorios": 1,
+        "pares_palavras": 5566,
+        "pares_palavras_invertidos": 3,
+        "fronteiras_nao_contiguas": 1,
+        "exemplos": [
+          {
+            "a": "b21",
+            "b": "b49",
+            "intervalo_a": [
+              1,
+              3
+            ],
+            "intervalo_b": [
+              0,
+              11
+            ],
+            "pares_invertidos": 3
+          }
+        ]
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2021-11-12.pdf#p38",
+      "uf": "official_diary_ma",
+      "unidades": 127,
+      "palavras": 813,
+      "colunas": 2,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 124,
+        "pares_contraditorios": 1,
+        "pares_palavras": 5839,
+        "pares_palavras_invertidos": 3,
+        "fronteiras_nao_contiguas": 1,
+        "exemplos": [
+          {
+            "a": "b4",
+            "b": "b123",
+            "intervalo_a": [
+              1,
+              3
+            ],
+            "intervalo_b": [
+              0,
+              9
+            ],
+            "pares_invertidos": 3
+          }
+        ]
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2021-11-12.pdf#p40",
+      "uf": "official_diary_ma",
+      "unidades": 76,
+      "palavras": 783,
+      "colunas": 2,
+      "tabelas": 1,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 72,
+        "pares_contraditorios": 1,
+        "pares_palavras": 5291,
+        "pares_palavras_invertidos": 3,
+        "fronteiras_nao_contiguas": 1,
+        "exemplos": [
+          {
+            "a": "b51",
+            "b": "b43",
+            "intervalo_a": [
+              1,
+              3
+            ],
+            "intervalo_b": [
+              0,
+              9
+            ],
+            "pares_invertidos": 3
+          }
+        ]
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2021-11-12.pdf#p56",
+      "uf": "official_diary_ma",
+      "unidades": 108,
+      "palavras": 866,
+      "colunas": 2,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 105,
+        "pares_contraditorios": 1,
+        "pares_palavras": 7169,
+        "pares_palavras_invertidos": 3,
+        "fronteiras_nao_contiguas": 1,
+        "exemplos": [
+          {
+            "a": "b40",
+            "b": "b11",
+            "intervalo_a": [
+              1,
+              3
+            ],
+            "intervalo_b": [
+              0,
+              9
+            ],
+            "pares_invertidos": 3
+          }
+        ]
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2021-11-12.pdf#p60",
+      "uf": "official_diary_ma",
+      "unidades": 108,
+      "palavras": 812,
+      "colunas": 2,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 105,
+        "pares_contraditorios": 2,
+        "pares_palavras": 6200,
+        "pares_palavras_invertidos": 7,
+        "fronteiras_nao_contiguas": 3,
+        "exemplos": [
+          {
+            "a": "b29",
+            "b": "b82",
+            "intervalo_a": [
+              1,
+              3
+            ],
+            "intervalo_b": [
+              0,
+              9
+            ],
+            "pares_invertidos": 3
+          },
+          {
+            "a": "b33",
+            "b": "b58",
+            "intervalo_a": [
+              245,
+              254
+            ],
+            "intervalo_b": [
+              250,
+              250
+            ],
+            "pares_invertidos": 4
+          }
+        ]
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2021-11-19.pdf#p14",
+      "uf": "official_diary_ma",
+      "unidades": 83,
+      "palavras": 719,
+      "colunas": 2,
+      "tabelas": 3,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 74,
+        "pares_contraditorios": 1,
+        "pares_palavras": 4740,
+        "pares_palavras_invertidos": 3,
+        "fronteiras_nao_contiguas": 1,
+        "exemplos": [
+          {
+            "a": "b59",
+            "b": "b44",
+            "intervalo_a": [
+              1,
+              3
+            ],
+            "intervalo_b": [
+              0,
+              11
+            ],
+            "pares_invertidos": 3
+          }
+        ]
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2021-11-19.pdf#p40",
+      "uf": "official_diary_ma",
+      "unidades": 104,
+      "palavras": 848,
+      "colunas": 2,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 101,
+        "pares_contraditorios": 1,
+        "pares_palavras": 6786,
+        "pares_palavras_invertidos": 3,
+        "fronteiras_nao_contiguas": 1,
+        "exemplos": [
+          {
+            "a": "b19",
+            "b": "b33",
+            "intervalo_a": [
+              1,
+              3
+            ],
+            "intervalo_b": [
+              0,
+              11
+            ],
+            "pares_invertidos": 3
+          }
+        ]
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2021-11-19.pdf#p51",
+      "uf": "official_diary_ma",
+      "unidades": 107,
+      "palavras": 935,
+      "colunas": 2,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 104,
+        "pares_contraditorios": 0,
+        "pares_palavras": 8147,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2021-11-19.pdf#p55",
+      "uf": "official_diary_ma",
+      "unidades": 47,
+      "palavras": 315,
+      "colunas": 1,
+      "tabelas": 0,
+      "imagens": 0,
+      "ruido": {
+        "pares_vizinhos": 46,
+        "pares_contraditorios": 0,
+        "pares_palavras": 2501,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2021-12-20.pdf#p1",
+      "uf": "official_diary_ma",
+      "unidades": 80,
+      "palavras": 743,
+      "colunas": 2,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 77,
+        "pares_contraditorios": 0,
+        "pares_palavras": 7884,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2021-12-20.pdf#p49",
+      "uf": "official_diary_ma",
+      "unidades": 11,
+      "palavras": 280,
+      "colunas": 1,
+      "tabelas": 4,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 1,
+        "pares_contraditorios": 0,
+        "pares_palavras": 2,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2021-12-20.pdf#p51",
+      "uf": "official_diary_ma",
+      "unidades": 11,
+      "palavras": 464,
+      "colunas": 1,
+      "tabelas": 5,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 0,
+        "pares_contraditorios": 0,
+        "pares_palavras": 0,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2021-12-20.pdf#p73",
+      "uf": "official_diary_ma",
+      "unidades": 81,
+      "palavras": 604,
+      "colunas": 2,
+      "tabelas": 3,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 73,
+        "pares_contraditorios": 0,
+        "pares_palavras": 3153,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2023-03-06.pdf#p24",
+      "uf": "official_diary_ma",
+      "unidades": 99,
+      "palavras": 728,
+      "colunas": 2,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 96,
+        "pares_contraditorios": 1,
+        "pares_palavras": 5738,
+        "pares_palavras_invertidos": 3,
+        "fronteiras_nao_contiguas": 1,
+        "exemplos": [
+          {
+            "a": "b60",
+            "b": "b48",
+            "intervalo_a": [
+              1,
+              3
+            ],
+            "intervalo_b": [
+              0,
+              11
+            ],
+            "pares_invertidos": 3
+          }
+        ]
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2023-03-06.pdf#p34",
+      "uf": "official_diary_ma",
+      "unidades": 37,
+      "palavras": 256,
+      "colunas": 2,
+      "tabelas": 0,
+      "imagens": 2,
+      "ruido": {
+        "pares_vizinhos": 33,
+        "pares_contraditorios": 1,
+        "pares_palavras": 1972,
+        "pares_palavras_invertidos": 3,
+        "fronteiras_nao_contiguas": 1,
+        "exemplos": [
+          {
+            "a": "b27",
+            "b": "b14",
+            "intervalo_a": [
+              1,
+              3
+            ],
+            "intervalo_b": [
+              0,
+              11
+            ],
+            "pares_invertidos": 3
+          }
+        ]
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2023-03-06.pdf#p59",
+      "uf": "official_diary_ma",
+      "unidades": 97,
+      "palavras": 660,
+      "colunas": 2,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 94,
+        "pares_contraditorios": 0,
+        "pares_palavras": 4406,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2023-03-06.pdf#p71",
+      "uf": "official_diary_ma",
+      "unidades": 103,
+      "palavras": 796,
+      "colunas": 2,
+      "tabelas": 1,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 98,
+        "pares_contraditorios": 0,
+        "pares_palavras": 5717,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2023-08-02_59_64.pdf#p0",
+      "uf": "official_diary_ma",
+      "unidades": 107,
+      "palavras": 571,
+      "colunas": 2,
+      "tabelas": 1,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 102,
+        "pares_contraditorios": 2,
+        "pares_palavras": 1973,
+        "pares_palavras_invertidos": 7,
+        "fronteiras_nao_contiguas": 3,
+        "exemplos": [
+          {
+            "a": "b76",
+            "b": "b98",
+            "intervalo_a": [
+              1,
+              3
+            ],
+            "intervalo_b": [
+              0,
+              11
+            ],
+            "pares_invertidos": 3
+          },
+          {
+            "a": "b64",
+            "b": "b67",
+            "intervalo_a": [
+              515,
+              518
+            ],
+            "intervalo_b": [
+              514,
+              519
+            ],
+            "pares_invertidos": 4
+          }
+        ]
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2023-12-04_30_84.pdf#p0",
+      "uf": "official_diary_ma",
+      "unidades": 118,
+      "palavras": 964,
+      "colunas": 2,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 115,
+        "pares_contraditorios": 0,
+        "pares_palavras": 8222,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2024-01-18_22_36.pdf#p0",
+      "uf": "official_diary_ma",
+      "unidades": 109,
+      "palavras": 805,
+      "colunas": 2,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 106,
+        "pares_contraditorios": 0,
+        "pares_palavras": 5841,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2026-01-14.pdf#p42",
+      "uf": "official_diary_ma",
+      "unidades": 7,
+      "palavras": 474,
+      "colunas": 1,
+      "tabelas": 2,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 2,
+        "pares_contraditorios": 1,
+        "pares_palavras": 39,
+        "pares_palavras_invertidos": 3,
+        "fronteiras_nao_contiguas": 1,
+        "exemplos": [
+          {
+            "a": "b0",
+            "b": "b4",
+            "intervalo_a": [
+              1,
+              3
+            ],
+            "intervalo_b": [
+              0,
+              11
+            ],
+            "pares_invertidos": 3
+          }
+        ]
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2026-01-14.pdf#p46",
+      "uf": "official_diary_ma",
+      "unidades": 46,
+      "palavras": 546,
+      "colunas": 1,
+      "tabelas": 1,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 41,
+        "pares_contraditorios": 1,
+        "pares_palavras": 5732,
+        "pares_palavras_invertidos": 3,
+        "fronteiras_nao_contiguas": 1,
+        "exemplos": [
+          {
+            "a": "b12",
+            "b": "b36",
+            "intervalo_a": [
+              1,
+              3
+            ],
+            "intervalo_b": [
+              0,
+              11
+            ],
+            "pares_invertidos": 3
+          }
+        ]
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2026-01-15.pdf#p16",
+      "uf": "official_diary_ma",
+      "unidades": 35,
+      "palavras": 510,
+      "colunas": 1,
+      "tabelas": 2,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 30,
+        "pares_contraditorios": 1,
+        "pares_palavras": 1840,
+        "pares_palavras_invertidos": 3,
+        "fronteiras_nao_contiguas": 1,
+        "exemplos": [
+          {
+            "a": "b14",
+            "b": "b20",
+            "intervalo_a": [
+              1,
+              3
+            ],
+            "intervalo_b": [
+              0,
+              11
+            ],
+            "pares_invertidos": 3
+          }
+        ]
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2026-01-15.pdf#p4",
+      "uf": "official_diary_ma",
+      "unidades": 8,
+      "palavras": 370,
+      "colunas": 1,
+      "tabelas": 2,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 3,
+        "pares_contraditorios": 0,
+        "pares_palavras": 45,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2026-01-15.pdf#p45",
+      "uf": "official_diary_ma",
+      "unidades": 112,
+      "palavras": 847,
+      "colunas": 2,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 109,
+        "pares_contraditorios": 0,
+        "pares_palavras": 6667,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2026-01-15.pdf#p6",
+      "uf": "official_diary_ma",
+      "unidades": 9,
+      "palavras": 370,
+      "colunas": 1,
+      "tabelas": 2,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 4,
+        "pares_contraditorios": 0,
+        "pares_palavras": 83,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_suplement_2025-02-21_202_378.pdf#p0",
+      "uf": "official_diary_ma",
+      "unidades": 162,
+      "palavras": 449,
+      "colunas": 2,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 159,
+        "pares_contraditorios": 0,
+        "pares_palavras": 1081,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_rj/Parte I (Poder Executivo)_2022-01-05.pdf#p12",
+      "uf": "official_diary_rj",
+      "unidades": 352,
+      "palavras": 2364,
+      "colunas": 3,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 349,
+        "pares_contraditorios": 0,
+        "pares_palavras": 16509,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_rj/Parte I (Poder Executivo)_2022-01-05.pdf#p15",
+      "uf": "official_diary_rj",
+      "unidades": 147,
+      "palavras": 1958,
+      "colunas": 4,
+      "tabelas": 8,
+      "imagens": 0,
+      "ruido": {
+        "pares_vizinhos": 131,
+        "pares_contraditorios": 0,
+        "pares_palavras": 9437,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_rj/Parte I (Poder Executivo)_2022-01-05.pdf#p18",
+      "uf": "official_diary_rj",
+      "unidades": 401,
+      "palavras": 3400,
+      "colunas": 3,
+      "tabelas": 0,
+      "imagens": 0,
+      "ruido": {
+        "pares_vizinhos": 400,
+        "pares_contraditorios": 0,
+        "pares_palavras": 29742,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_rj/Parte I (Poder Executivo)_2024-02-02.pdf#p34",
+      "uf": "official_diary_rj",
+      "unidades": 6,
+      "palavras": 1480,
+      "colunas": 1,
+      "tabelas": 1,
+      "imagens": 0,
+      "ruido": {
+        "pares_vizinhos": 4,
+        "pares_contraditorios": 0,
+        "pares_palavras": 106,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_rj/Parte I (Poder Executivo)_2024-02-02.pdf#p39",
+      "uf": "official_diary_rj",
+      "unidades": 6,
+      "palavras": 1583,
+      "colunas": 1,
+      "tabelas": 1,
+      "imagens": 0,
+      "ruido": {
+        "pares_vizinhos": 4,
+        "pares_contraditorios": 0,
+        "pares_palavras": 106,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_rj/Parte I (Poder Executivo)_2024-02-02.pdf#p4",
+      "uf": "official_diary_rj",
+      "unidades": 334,
+      "palavras": 2517,
+      "colunas": 3,
+      "tabelas": 0,
+      "imagens": 0,
+      "ruido": {
+        "pares_vizinhos": 333,
+        "pares_contraditorios": 0,
+        "pares_palavras": 20889,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_rj/Parte I (Poder Executivo)_2026-01-14.pdf#p16",
+      "uf": "official_diary_rj",
+      "unidades": 374,
+      "palavras": 2664,
+      "colunas": 3,
+      "tabelas": 0,
+      "imagens": 0,
+      "ruido": {
+        "pares_vizinhos": 373,
+        "pares_contraditorios": 0,
+        "pares_palavras": 20917,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_rj/Parte I (Poder Executivo)_2026-01-14.pdf#p21",
+      "uf": "official_diary_rj",
+      "unidades": 339,
+      "palavras": 2265,
+      "colunas": 3,
+      "tabelas": 0,
+      "imagens": 0,
+      "ruido": {
+        "pares_vizinhos": 338,
+        "pares_contraditorios": 0,
+        "pares_palavras": 16388,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_rj/Parte II (Poder Legislativo)_2024-02-06.pdf#p1",
+      "uf": "official_diary_rj",
+      "unidades": 340,
+      "palavras": 2519,
+      "colunas": 3,
+      "tabelas": 0,
+      "imagens": 2,
+      "ruido": {
+        "pares_vizinhos": 335,
+        "pares_contraditorios": 0,
+        "pares_palavras": 19499,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_rj/Parte II (Poder Legislativo)_2024-02-06.pdf#p2",
+      "uf": "official_diary_rj",
+      "unidades": 341,
+      "palavras": 2449,
+      "colunas": 3,
+      "tabelas": 0,
+      "imagens": 0,
+      "ruido": {
+        "pares_vizinhos": 340,
+        "pares_contraditorios": 0,
+        "pares_palavras": 18355,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_rj/Parte II (Poder Legislativo)_2024-02-06.pdf#p3",
+      "uf": "official_diary_rj",
+      "unidades": 110,
+      "palavras": 658,
+      "colunas": 3,
+      "tabelas": 0,
+      "imagens": 0,
+      "ruido": {
+        "pares_vizinhos": 109,
+        "pares_contraditorios": 0,
+        "pares_palavras": 4177,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_rj/Parte IV (Municipalidades)_2021-08-30.pdf#p0",
+      "uf": "official_diary_rj",
+      "unidades": 201,
+      "palavras": 1021,
+      "colunas": 3,
+      "tabelas": 0,
+      "imagens": 1,
+      "ruido": {
+        "pares_vizinhos": 199,
+        "pares_contraditorios": 0,
+        "pares_palavras": 5845,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    },
+    {
+      "page_id": "official_diary_rj/Parte IV (Municipalidades)_2025-11-10.pdf#p0",
+      "uf": "official_diary_rj",
+      "unidades": 161,
+      "palavras": 804,
+      "colunas": 3,
+      "tabelas": 0,
+      "imagens": 2,
+      "ruido": {
+        "pares_vizinhos": 158,
+        "pares_contraditorios": 0,
+        "pares_palavras": 4374,
+        "pares_palavras_invertidos": 0,
+        "fronteiras_nao_contiguas": 0,
+        "exemplos": []
+      }
+    }
+  ]
+}

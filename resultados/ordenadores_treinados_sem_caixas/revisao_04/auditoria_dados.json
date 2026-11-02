@@ -1,0 +1,136 @@
+{
+  "splits": {
+    "treino": [
+      "official_diary_RJ_volta_redonda",
+      "official_diary_ba_salvador",
+      "official_diary_pa",
+      "official_diary_pe",
+      "official_diary_pr",
+      "official_diary_rr",
+      "official_diary_sc"
+    ],
+    "validacao": [
+      "official_diary_rn"
+    ],
+    "teste": [
+      "official_diary_ce",
+      "official_diary_ma",
+      "official_diary_rj"
+    ],
+    "referencia": "stream"
+  },
+  "particoes": {
+    "linhas": {
+      "treino": 873,
+      "validacao": 15,
+      "treino_humano": 0,
+      "treino_teste": 0,
+      "treino_validacao": 0,
+      "ids_sha256": "7b70ef13d153985ef5cefec2840969e7677758f6f3d71d7062510659cd24f24b"
+    },
+    "colunas": {
+      "treino": 873,
+      "validacao": 15,
+      "treino_humano": 0,
+      "treino_teste": 0,
+      "treino_validacao": 0,
+      "ids_sha256": "7b70ef13d153985ef5cefec2840969e7677758f6f3d71d7062510659cd24f24b"
+    },
+    "colunas_margens": {
+      "treino": 873,
+      "validacao": 15,
+      "treino_humano": 0,
+      "treino_teste": 0,
+      "treino_validacao": 0,
+      "ids_sha256": "7b70ef13d153985ef5cefec2840969e7677758f6f3d71d7062510659cd24f24b"
+    }
+  },
+  "mesmos_ids_todas_representacoes": true,
+  "ruido_treino_linhas": {
+    "pares_vizinhos": 120660,
+    "pares_contraditorios": 1064,
+    "pares_palavras": 10199911,
+    "pares_palavras_invertidos": 91791,
+    "fronteiras_nao_contiguas": 1504
+  },
+  "ruido_por_veiculo": {
+    "official_diary_RJ_volta_redonda": {
+      "pares_vizinhos": 14359,
+      "pares_contraditorios": 0,
+      "pares_palavras": 1025444,
+      "pares_palavras_invertidos": 0,
+      "fronteiras_nao_contiguas": 0
+    },
+    "official_diary_ba_salvador": {
+      "pares_vizinhos": 17309,
+      "pares_contraditorios": 12,
+      "pares_palavras": 1277157,
+      "pares_palavras_invertidos": 57,
+      "fronteiras_nao_contiguas": 42
+    },
+    "official_diary_pa": {
+      "pares_vizinhos": 28092,
+      "pares_contraditorios": 122,
+      "pares_palavras": 1599648,
+      "pares_palavras_invertidos": 8743,
+      "fronteiras_nao_contiguas": 177
+    },
+    "official_diary_pe": {
+      "pares_vizinhos": 36462,
+      "pares_contraditorios": 704,
+      "pares_palavras": 4421630,
+      "pares_palavras_invertidos": 72484,
+      "fronteiras_nao_contiguas": 843
+    },
+    "official_diary_pr": {
+      "pares_vizinhos": 7801,
+      "pares_contraditorios": 158,
+      "pares_palavras": 676462,
+      "pares_palavras_invertidos": 9182,
+      "fronteiras_nao_contiguas": 269
+    },
+    "official_diary_rr": {
+      "pares_vizinhos": 2766,
+      "pares_contraditorios": 47,
+      "pares_palavras": 400905,
+      "pares_palavras_invertidos": 1195,
+      "fronteiras_nao_contiguas": 97
+    },
+    "official_diary_sc": {
+      "pares_vizinhos": 13871,
+      "pares_contraditorios": 21,
+      "pares_palavras": 798665,
+      "pares_palavras_invertidos": 130,
+      "fronteiras_nao_contiguas": 76
+    }
+  },
+  "geometria_treino": {
+    "linhas": 123195,
+    "fora_pagina": 36,
+    "degeneradas_grade1000": 343,
+    "paginas_acima510": 1,
+    "max_unidades": 517,
+    "quantis": {
+      "largura_norm": [
+        0.06864774063497404,
+        0.2279850495548464,
+        0.45256312581699404
+      ],
+      "altura_norm": [
+        0.005767567047966933,
+        0.00806370325572019,
+        0.0092790117591163
+      ],
+      "razao_largura_altura": [
+        6.557000000000002,
+        28.045600000000004,
+        42.9947
+      ],
+      "altura_grade1000": [
+        6.0,
+        8.0,
+        9.0
+      ]
+    }
+  }
+}

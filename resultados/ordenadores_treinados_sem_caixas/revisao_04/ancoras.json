@@ -1,0 +1,13 @@
+{
+  "P2": {
+    "tau": 0.9859481733498361,
+    "quebras": 6.045454545454546
+  },
+  "P1m": {
+    "tau": 0.9524242545883959,
+    "quebras": 8.931818181818182
+  },
+  "n": 44,
+  "sequencias_identicas": 44,
+  "fonte": "resultados\\erros_ponta_a_ponta.json"
+}

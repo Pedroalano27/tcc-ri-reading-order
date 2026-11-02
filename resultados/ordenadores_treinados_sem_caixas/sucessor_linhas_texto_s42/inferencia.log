@@ -1,0 +1,21 @@
+Loading weights:   0%|          | 0/203 [00:00<?, ?it/s]Loading weights: 100%|██████████| 203/203 [00:00<00:00, 33433.22it/s]
+[inferir] sucessor_linhas_texto_s42 linhas golden_v4: 20
+[inferir] sucessor_linhas_texto_s42 linhas golden_v4: 40
+[pred] C:\Users\pedro\dev\tcc-ri-reading-order\resultados\ordenadores_treinados_sem_caixas\sucessor_linhas_texto_s42\pred_texto\sucessor_linhas_texto_s42__linhas__golden_v4.jsonl
+[inferir] sucessor_linhas_texto_s42 linhas golden_v3_novo: 20
+[pred] C:\Users\pedro\dev\tcc-ri-reading-order\resultados\ordenadores_treinados_sem_caixas\sucessor_linhas_texto_s42\pred_texto\sucessor_linhas_texto_s42__linhas__golden_v3_novo.jsonl
+[inferir] sucessor_linhas_texto_s42 linhas teste_silver: 20
+[inferir] sucessor_linhas_texto_s42 linhas teste_silver: 40
+[inferir] sucessor_linhas_texto_s42 linhas teste_silver: 60
+[inferir] sucessor_linhas_texto_s42 linhas teste_silver: 80
+[pred] C:\Users\pedro\dev\tcc-ri-reading-order\resultados\ordenadores_treinados_sem_caixas\sucessor_linhas_texto_s42\pred_texto\sucessor_linhas_texto_s42__linhas__teste_silver.jsonl
+Avaliar sucessor_linhas_texto_s42__linhas__golden_v4: 20/44
+Avaliar sucessor_linhas_texto_s42__linhas__golden_v4: 40/44
+sucessor_linhas_texto_s42__linhas__golden_v4: 44 paginas; completa=True
+Avaliar sucessor_linhas_texto_s42__linhas__golden_v3_novo: 20/27
+sucessor_linhas_texto_s42__linhas__golden_v3_novo: 27 paginas; completa=True
+Avaliar sucessor_linhas_texto_s42__linhas__teste_silver: 20/89
+Avaliar sucessor_linhas_texto_s42__linhas__teste_silver: 40/89
+Avaliar sucessor_linhas_texto_s42__linhas__teste_silver: 60/89
+Avaliar sucessor_linhas_texto_s42__linhas__teste_silver: 80/89
+sucessor_linhas_texto_s42__linhas__teste_silver: 89 paginas; completa=True

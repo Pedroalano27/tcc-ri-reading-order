@@ -1,0 +1,21 @@
+{
+  "paginas_unicas": 614,
+  "por_split": {
+    "sem_split": 402,
+    "treino": 196,
+    "validacao": 13,
+    "teste": 3
+  },
+  "bancada_humana": 44,
+  "fontes_sha256": {
+    "data\\diamond\\diamond_massa1\\tarefas.jsonl": "19bad08120b6b7b97902476078b552100c369bbdd0fd774d0beb1bc1a637b32f",
+    "data\\diamond\\diamond_piloto\\tarefas.jsonl": "de4f8827bc0a66375b1aeda28186de77f88cce7a65695323512625e9e3800916",
+    "data\\diamond\\diamond_teste\\tarefas.jsonl": "1dd9c38e3ca44160d8e97fca5893a220584796f54acb7eba6860ca8769eddf8a",
+    "data\\diamond\\diamond_treino\\tarefas.jsonl": "a5e1ea69b1924a815fecfd6629d94a6e82690176fe97348ce36c8b241436aed1",
+    "data\\diamond\\massa1_gemini\\tarefas.jsonl": "6a84409fc2bbf6f07aabc20f6339448bcfe7156ae2b250e0f1b7ee0a6f2af6ae",
+    "data\\diamond\\rose_piloto\\tarefas.jsonl": "b9d697044cd55f72fe8e470655275556200913bd87b25e580cdd4b6608be6366",
+    "data\\diamond\\rose_piloto_v2\\tarefas.jsonl": "1a5f0d7f8b7f2e63a3ad6e0289d082cb13988fea9c922d343973e5f432005030",
+    "data\\diamond\\rose_treino\\tarefas.jsonl": "928c24e283a137100ee892b990df16857299c9ac3ba60975378c933c6d994951"
+  },
+  "aviso": "Split herdado por fonte; treino exportado nao significa rotulos humanos disponiveis. Sem OCR. Coordenadas de linhas continuam necessarias; sem caixas de paragrafo. Colunas sao faixas geometricas, nao numero uniforme em toda pagina."
+}

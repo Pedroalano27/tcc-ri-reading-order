@@ -1,0 +1,124 @@
+{
+  "page_id": "official_diary_ap/2024-05-07_DOEn8159_Edicao Ordinaria.pdf#p373",
+  "uf": "official_diary_ap",
+  "P2": {
+    "tau": 0.9999999999999999,
+    "quebras": 0,
+    "quebras_mil": 0.0,
+    "fid12": 1.0,
+    "sucessor_linhas": 1.0
+  },
+  "P1m": {
+    "tau": 0.9999999999999999,
+    "quebras": 0,
+    "quebras_mil": 0.0,
+    "fid12": 1.0,
+    "sucessor_linhas": 1.0
+  },
+  "regra_colunas_exportada": {
+    "tau": 0.9999999999999999,
+    "quebras": 0,
+    "quebras_mil": 0.0,
+    "fid12": 1.0,
+    "sucessor_linhas": 1.0,
+    "piso_interno": 0
+  },
+  "regra_colunas_ks_cru": {
+    "tau": 0.9999290858376537,
+    "quebras": 3,
+    "quebras_mil": 4.207573632538569,
+    "fid12": 0.984179301252472,
+    "sucessor_linhas": 0.9423076923076923,
+    "piso_interno": 3
+  },
+  "expansao_canonica_diagnostico": {
+    "tau": 0.9999999999999999,
+    "quebras": 0,
+    "quebras_mil": 0.0,
+    "fid12": 1.0,
+    "sucessor_linhas": 1.0
+  },
+  "diagnostico": {
+    "ks_diferem_da_expansao_canonica": true,
+    "canonizada_identica_P2": true,
+    "unidades_internas_diferentes": 1,
+    "detalhes": [
+      {
+        "id": "b3",
+        "tipo": "tabela",
+        "bbox": [
+          122.13329491609858,
+          80.02553810285619,
+          762.410794578909,
+          521.5090758834704
+        ],
+        "palavras": 699,
+        "linhas": 49,
+        "linhas_lado_a_lado": 47,
+        "piso_ks_cru": 3,
+        "piso_canonico": 0,
+        "primeiros_ks_crus": [
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "primeiros_ks_canonicos": [
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ]
+      }
+    ]
+  },
+  "ordem_regra_colunas_exportada": [
+    "b5",
+    "b0",
+    "b2",
+    "b4",
+    "b3",
+    "b1"
+  ],
+  "diag_regra": {
+    "unidades": 6,
+    "entrada": [
+      "b1",
+      "b4",
+      "b2",
+      "b5",
+      "b0",
+      "b3"
+    ],
+    "max_colunas": 1,
+    "pontes": 0,
+    "topo": 0,
+    "rodape": 1,
+    "marcas": 0,
+    "tempo_ms": 0.25839999989329954
+  }
+}

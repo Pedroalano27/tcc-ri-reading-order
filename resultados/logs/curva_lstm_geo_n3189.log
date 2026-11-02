@@ -1,0 +1,11 @@
+[*] treino montado: 3189 paginas (152 base + 3037 extras; 3037 extras disponiveis)
+[*] treino: 3189 paginas | validacao: 15 | teste: 89
+  [geo] epoca 1: loss 0.0420 | val tau 0.6906 (89s)
+  [geo] epoca 2: loss 0.0313 | val tau 0.7102 (180s)
+  [geo] epoca 3: loss 0.0260 | val tau 0.7185 (272s)
+  [geo] epoca 4: loss 0.0569 | val tau 0.7147 (364s)
+  [geo] epoca 5: loss 0.0065 | val tau 0.6964 (452s)
+  [geo] epoca 6: loss 0.0150 | val tau 0.7252 (509s)
+  [geo] epoca 7: loss 0.0213 | val tau 0.7107 (599s)
+  [geo] epoca 8: loss 0.0141 | val tau 0.7231 (689s)
+[OK] curva_lstm_geo_n3189: val tau 0.7252 | teste tau 0.7612 | 22.38 ms/pagina

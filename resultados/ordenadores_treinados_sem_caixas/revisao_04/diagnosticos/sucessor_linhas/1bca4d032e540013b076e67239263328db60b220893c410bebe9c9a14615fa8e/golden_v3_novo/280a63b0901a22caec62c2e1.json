@@ -1,0 +1,236 @@
+{
+  "page_id": "official_diary_ce/do20250505p03.pdf#p66",
+  "uf": "official_diary_ce",
+  "n": 4,
+  "transicoes_alvo_mediano": {
+    "mudança de zona/outros": {
+      "n": 1,
+      "top1": 0,
+      "prob_ge050": 0,
+      "prob_ge010": 0,
+      "gulosa": 0,
+      "feixe4": 1,
+      "cadeias050": 0,
+      "cadeias010": 0,
+      "cadeias000": 0,
+      "posicao": 1
+    },
+    "entrada tabela/imagem": {
+      "n": 1,
+      "top1": 0,
+      "prob_ge050": 0,
+      "prob_ge010": 0,
+      "gulosa": 1,
+      "feixe4": 0,
+      "cadeias050": 1,
+      "cadeias010": 0,
+      "cadeias000": 0,
+      "posicao": 1
+    },
+    "entre tabelas/imagens": {
+      "n": 1,
+      "top1": 0,
+      "prob_ge050": 0,
+      "prob_ge010": 0,
+      "gulosa": 0,
+      "feixe4": 0,
+      "cadeias050": 0,
+      "cadeias010": 0,
+      "cadeias000": 0,
+      "posicao": 1
+    }
+  },
+  "transicoes_ouro_palavras": {
+    "entrada tabela/imagem": {
+      "n": 1,
+      "top1": 0,
+      "cadeias050": 0
+    },
+    "mudança de zona/outros": {
+      "n": 1,
+      "top1": 0,
+      "cadeias050": 0
+    }
+  },
+  "features_sucessor": {
+    "mudança de zona/outros": {
+      "n": 1,
+      "medias": [
+        0.7677420377731323,
+        0.0007815659046173096,
+        -0.010977551341056824,
+        0.4166780412197113,
+        -2.0,
+        -0.7021280527114868,
+        -0.0014752373099327087,
+        0.010977551341056824,
+        0.0,
+        0.0
+      ],
+      "medianas": [
+        0.7677420377731323,
+        0.0007815659046173096,
+        -0.010977551341056824,
+        0.4166780412197113,
+        -2.0,
+        -0.7021280527114868,
+        -0.0014752373099327087,
+        0.010977551341056824,
+        0.0,
+        0.0
+      ]
+    },
+    "entrada tabela/imagem": {
+      "n": 1,
+      "medias": [
+        -0.8738960027694702,
+        0.42530718445777893,
+        0.4158048629760742,
+        -0.853330671787262,
+        -2.0,
+        0.041130758821964264,
+        0.49268969893455505,
+        0.4158048629760742,
+        0.0,
+        0.0
+      ],
+      "medianas": [
+        -0.8738960027694702,
+        0.42530718445777893,
+        0.4158048629760742,
+        -0.853330671787262,
+        -2.0,
+        0.041130758821964264,
+        0.49268969893455505,
+        0.4158048629760742,
+        0.0,
+        0.0
+      ]
+    },
+    "entre tabelas/imagens": {
+      "n": 1,
+      "medias": [
+        0.07848994433879852,
+        -0.4102601110935211,
+        -0.48714494705200195,
+        0.37379100918769836,
+        -0.2806607186794281,
+        0.5906021595001221,
+        0.4333754777908325,
+        0.48714494705200195,
+        0.0,
+        1.0
+      ],
+      "medianas": [
+        0.07848994433879852,
+        -0.4102601110935211,
+        -0.48714494705200195,
+        0.37379100918769836,
+        -0.2806607186794281,
+        0.5906021595001221,
+        0.4333754777908325,
+        0.48714494705200195,
+        0.0,
+        1.0
+      ]
+    }
+  },
+  "linhas_top1_prob_ge050": 3,
+  "linhas_top1_prob_ge010": 4,
+  "metricas_decoders": {
+    "gulosa": {
+      "tau": 0.9970266003334846,
+      "quebras": 2,
+      "quebras_mil": 1.5071590052750565,
+      "fid12": 0.9937532535137948,
+      "sucessor_linhas": 0.978021978021978,
+      "piso_interno": 0
+    },
+    "feixe4": {
+      "tau": 1.0,
+      "quebras": 0,
+      "quebras_mil": 0.0,
+      "fid12": 1.0,
+      "sucessor_linhas": 1.0,
+      "piso_interno": 0
+    },
+    "cadeias050": {
+      "tau": 0.9999590816559654,
+      "quebras": 2,
+      "quebras_mil": 1.5071590052750565,
+      "fid12": 0.9937532535137948,
+      "sucessor_linhas": 0.978021978021978,
+      "piso_interno": 0
+    },
+    "cadeias010": {
+      "tau": 0.9970266003334846,
+      "quebras": 2,
+      "quebras_mil": 1.5071590052750565,
+      "fid12": 0.9937532535137948,
+      "sucessor_linhas": 0.978021978021978,
+      "piso_interno": 0
+    },
+    "cadeias000": {
+      "tau": 0.9970266003334846,
+      "quebras": 2,
+      "quebras_mil": 1.5071590052750565,
+      "fid12": 0.9937532535137948,
+      "sucessor_linhas": 0.978021978021978,
+      "piso_interno": 0
+    },
+    "posicao": {
+      "tau": 1.0,
+      "quebras": 0,
+      "quebras_mil": 0.0,
+      "fid12": 1.0,
+      "sucessor_linhas": 1.0,
+      "piso_interno": 0
+    }
+  },
+  "ordens": {
+    "gulosa": [
+      "b0",
+      "b3",
+      "b2",
+      "b1"
+    ],
+    "feixe4": [
+      "b1",
+      "b0",
+      "b2",
+      "b3"
+    ],
+    "cadeias050": [
+      "b2",
+      "b1",
+      "b0",
+      "b3"
+    ],
+    "cadeias010": [
+      "b1",
+      "b0",
+      "b3",
+      "b2"
+    ],
+    "cadeias000": [
+      "b1",
+      "b0",
+      "b3",
+      "b2"
+    ],
+    "posicao": [
+      "b0",
+      "b2",
+      "b1",
+      "b3"
+    ]
+  },
+  "ruido": {
+    "pares_vizinhos": 1,
+    "pares_contraditorios": 0,
+    "pares_palavras": 18,
+    "pares_palavras_invertidos": 0,
+    "fronteiras_nao_contiguas": 0,
+    "exemplos": []
+  }
+}

@@ -1,0 +1,1759 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Classificador e Ordem de Leitura · TCC Diários Oficiais</title>
+<style>
+  :root {
+    --fundo: #0f172a;
+    --fundo-palco: #1e293b;
+    --painel: #1e293b;
+    --painel-sec: #334155;
+    --linha: #475569;
+    --tinta: #f8fafc;
+    --tinta-sec: #cbd5e1;
+    --tinta-fraca: #94a3b8;
+    --acento: #38bdf8;
+    --acento-hover: #0284c7;
+    --sucesso: #22c55e;
+    --aviso: #f59e0b;
+    --erro: #ef4444;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--sans);
+    background: var(--fundo);
+    color: var(--tinta);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* BARRA SUPERIOR */
+  header {
+    background: var(--painel);
+    border-bottom: 1px solid var(--linha);
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    z-index: 100;
+  }
+  .marca { display: flex; align-items: baseline; gap: 8px; }
+  .marca h1 { font-size: 15px; font-weight: 700; color: var(--acento); }
+  .marca span { font-size: 11px; color: var(--tinta-fraca); }
+
+  .botoes-topo { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  button, label.btn {
+    background: var(--painel-sec);
+    color: var(--tinta);
+    border: 1px solid var(--linha);
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.15s, border-color 0.15s;
+    user-select: none;
+  }
+  button:hover, label.btn:hover { background: var(--linha); border-color: var(--acento); }
+  button:disabled { opacity: 0.5; cursor: not-allowed; }
+  button.primario { background: var(--acento-hover); border-color: var(--acento); color: #fff; }
+  button.primario:hover { background: #0369a1; }
+  button.sucesso { background: #15803d; border-color: var(--sucesso); color: #fff; }
+  button.sucesso:hover { background: #166534; }
+  button.alerta { background: #b45309; border-color: var(--aviso); color: #fff; }
+  button.perigo { background: #b91c1c; border-color: var(--erro); color: #fff; }
+  input[type="file"] { display: none; }
+
+  /* SUB-BARRA DE NAVEGAÇÃO E STATUS */
+  .sub-barra {
+    background: #111827;
+    border-bottom: 1px solid var(--linha);
+    padding: 6px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    gap: 12px;
+  }
+  .nav-paginas { display: flex; align-items: center; gap: 8px; }
+  .seletor-pag {
+    background: var(--painel);
+    color: var(--tinta);
+    border: 1px solid var(--linha);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+  .info-pagina { display: flex; align-items: center; gap: 14px; color: var(--tinta-sec); }
+  .tag-status {
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .tag-status.concluida { background: #166534; color: #86efac; }
+  .tag-status.rascunho { background: #854d0e; color: #fde047; }
+  .tag-status.pulada { background: #374151; color: #d1d5db; }
+  .tag-status.nova { background: #1e3a8a; color: #93c5fd; }
+  .autosave-ind { font-size: 11px; color: var(--sucesso); display: flex; align-items: center; gap: 4px; }
+
+  /* ÁREA DE TRABALHO GRID */
+  main {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 240px 1fr 280px;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  /* BARRA LATERAL ESQUERDA (LISTA DE TAREFAS) */
+  .col-esquerda {
+    background: var(--painel);
+    border-right: 1px solid var(--linha);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .topo-lateral {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--linha);
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .lista-tarefas {
+    flex: 1;
+    overflow-y: auto;
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .item-tarefa {
+    padding: 8px 10px;
+    border-radius: 6px;
+    background: var(--fundo-palco);
+    border: 1px solid transparent;
+    cursor: pointer;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    transition: all 0.15s;
+  }
+  .item-tarefa:hover { border-color: var(--acento); background: var(--painel-sec); }
+  .item-tarefa.ativa { border-color: var(--acento); background: #0369a133; }
+  .item-tarefa-cabecalho { display: flex; justify-content: space-between; align-items: center; }
+  .item-tarefa-nome { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .item-tarefa-detalhes { font-size: 11px; color: var(--tinta-fraca); display: flex; justify-content: space-between; }
+
+  /* PALCO CENTRAL */
+  .palco {
+    background: #020617;
+    position: relative;
+    overflow: auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 24px;
+    user-select: none;
+  }
+  .container-documento {
+    position: relative;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 8px 10px -6px rgba(0, 0, 0, 0.6);
+    background: #ffffff;
+    cursor: default;
+  }
+  .container-documento.modo-ordem { cursor: pointer; }
+  .container-documento.modo-dividir { cursor: crosshair; }
+  .container-documento.modo-desenhar { cursor: crosshair; }
+  #imagem-pagina {
+    display: block;
+    max-width: none;
+    pointer-events: none;
+  }
+  #overlay-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: all;
+  }
+
+  /* BARRA LATERAL DIREITA (CONTROLES E ATALHOS) */
+  .col-direita {
+    background: var(--painel);
+    border-left: 1px solid var(--linha);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding: 12px;
+    gap: 16px;
+  }
+  .secao-painel { display: flex; flex-direction: column; gap: 8px; }
+  .titulo-secao {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+    color: var(--tinta-fraca);
+    border-bottom: 1px solid var(--linha);
+    padding-bottom: 4px;
+  }
+
+  /* PALETA DE CLASSES */
+  .grade-classes { display: grid; grid-template-columns: 1fr; gap: 4px; }
+  .btn-classe {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 8px;
+    border-radius: 4px;
+    background: var(--painel-sec);
+    border: 1px solid transparent;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .btn-classe:hover { border-color: var(--acento); }
+  .btn-classe.selecionada { border-color: #fff; box-shadow: 0 0 0 2px var(--acento); }
+  .classe-info { display: flex; align-items: center; gap: 8px; }
+  .ponto-cor { width: 10px; height: 10px; border-radius: 2px; }
+  kbd {
+    background: #0f172a;
+    border: 1px solid var(--linha);
+    border-radius: 3px;
+    padding: 1px 5px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--tinta-sec);
+  }
+
+  /* PAINEL DA CAIXA SELECIONADA */
+  .info-caixa-box {
+    background: var(--fundo-palco);
+    border: 1px solid var(--linha);
+    border-radius: 6px;
+    padding: 8px;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .linha-info { display: flex; justify-content: space-between; }
+  .botoes-caixa { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 4px; }
+
+  /* MODO DE LEITURA & AÇÕES */
+  .box-modo-ordem {
+    background: #1e1b4b;
+    border: 1px solid #6366f1;
+    border-radius: 6px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .box-modo-ordem.ativo { background: #312e81; border-color: #818cf8; }
+
+  /* ATALHOS RÁPIDOS */
+  .tabela-atalhos {
+    font-size: 11px;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  .tabela-atalhos td { padding: 3px 0; }
+  .tabela-atalhos td:first-child { width: 45%; }
+
+  /* MODAL */
+  .modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+  }
+  .modal-conteudo {
+    background: var(--painel);
+    border: 1px solid var(--linha);
+    border-radius: 8px;
+    padding: 20px;
+    width: 400px;
+    max-width: 90vw;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .modal-conteudo textarea {
+    background: var(--fundo);
+    color: var(--tinta);
+    border: 1px solid var(--linha);
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 13px;
+    resize: vertical;
+    min-height: 80px;
+  }
+
+  /* ELEMENTOS SVG */
+  .svg-caixa {
+    cursor: move;
+    transition: stroke-width 0.1s;
+  }
+  .svg-caixa:hover { stroke-width: 2.5px !important; }
+  .svg-caixa.selecionada { stroke: #38bdf8 !important; stroke-width: 3px !important; }
+  .svg-alca {
+    fill: #ffffff;
+    stroke: #0284c7;
+    stroke-width: 1.5px;
+    cursor: pointer;
+  }
+  .svg-label {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    pointer-events: none;
+    user-select: none;
+  }
+  .svg-ordem-num {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 800;
+    fill: #ffffff;
+    pointer-events: none;
+    user-select: none;
+  }
+  .svg-linha-ordem {
+    stroke: #38bdf8;
+    stroke-width: 2.5px;
+    stroke-dasharray: 5, 4;
+    fill: none;
+    pointer-events: none;
+  }
+  .svg-linha-guia-corte {
+    stroke: #ef4444;
+    stroke-width: 2px;
+    stroke-dasharray: 4, 3;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<!-- BARRA PRINCIPAL SUPERIOR -->
+<header>
+  <div class="marca">
+    <h1>Classificador & Ordem de Leitura</h1>
+    <span>TCC Ordem de Leitura em Diários Oficiais</span>
+  </div>
+
+  <div class="botoes-topo">
+    <label class="btn" title="Carregar tarefas.json (formato próprio ou export Label Studio)">
+      📂 Abrir Tarefas (JSON)
+      <input type="file" id="input-json" accept=".json,.jsonl">
+    </label>
+
+    <label class="btn" title="Carregar pasta local contendo as imagens PNG/JPG das páginas">
+      🖼️ Pasta de Imagens
+      <input type="file" id="input-pasta-imagens" webkitdirectory directory multiple>
+    </label>
+
+    <button id="btn-exportar-proprio" class="primario" title="Baixar JSON no formato simples do projeto">
+      💾 Exportar Próprio
+    </button>
+
+    <button id="btn-exportar-ls" class="sucesso" title="Baixar JSON com caixas e relações compatível com Label Studio">
+      🏷️ Exportar Label Studio
+    </button>
+
+    <button id="btn-desfazer" title="Desfazer última alteração (Ctrl+Z)">
+      ↩️ Desfazer <kbd>Ctrl+Z</kbd>
+    </button>
+
+    <button id="btn-pular" class="alerta" title="Pular página informando motivo">
+      ⏭️ Pular Página
+    </button>
+
+    <button id="btn-limpar-cache" class="perigo" title="Limpar cache local do navegador">
+      🗑️ Limpar Cache
+    </button>
+  </div>
+</header>
+
+<!-- SUB-BARRA DE NAVEGAÇÃO -->
+<div class="sub-barra">
+  <div class="nav-paginas">
+    <button id="btn-anterior" title="Página Anterior (Seta Esquerda)">← Anterior</button>
+    <select id="select-pagina" class="seletor-pag"></select>
+    <button id="btn-proxima" title="Próxima Página (Seta Direita)">Próxima →</button>
+  </div>
+
+  <div class="info-pagina">
+    <span id="contador-progresso">0 de 0 concluídas (0%)</span>
+    <span id="status-pagina" class="tag-status nova">Nova</span>
+    <span id="cronometro-pagina">⏱️ 00:00</span>
+    <span id="autosave-indicador" class="autosave-ind">✓ Salvo automaticamente</span>
+  </div>
+
+  <div class="zoom-controles">
+    <button id="btn-zoom-menos" title="Reduzir zoom">-</button>
+    <span id="zoom-nivel" style="padding: 0 6px; font-variant-numeric: tabular-nums;">100%</span>
+    <button id="btn-zoom-mais" title="Aumentar zoom">+</button>
+    <button id="btn-zoom-ajustar" title="Ajustar à largura">Ajustar</button>
+  </div>
+</div>
+
+<!-- CORPO PRINCIPAL -->
+<main>
+  <!-- LATERAL ESQUERDA: LISTA DE PÁGINAS -->
+  <aside class="col-esquerda">
+    <div class="topo-lateral">
+      <span>PÁGINAS DO LOTE</span>
+      <span id="total-paginas-badge" style="color: var(--tinta-fraca);">0 páginas</span>
+    </div>
+    <div id="lista-tarefas" class="lista-tarefas"></div>
+  </aside>
+
+  <!-- PALCO CENTRAL: VISUALIZAÇÃO E EDIÇÃO -->
+  <section id="palco" class="palco">
+    <div id="container-documento" class="container-documento">
+      <img id="imagem-pagina" alt="Imagem da página">
+      <svg id="overlay-svg">
+        <defs>
+          <marker id="seta-ordem" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8" />
+          </marker>
+        </defs>
+        <g id="camada-linhas-ordem"></g>
+        <g id="camada-caixas"></g>
+        <g id="camada-alcas"></g>
+        <g id="camada-guias"></g>
+      </svg>
+    </div>
+  </section>
+
+  <!-- LATERAL DIREITA: CLASSES, CAIXA SELECIONADA E ATALHOS -->
+  <aside class="col-direita">
+    <!-- PALETA DE CLASSES (1 a 9) -->
+    <div class="secao-painel">
+      <div class="titulo-secao">Classes de Região (1 a 9)</div>
+      <div id="grade-classes" class="grade-classes"></div>
+    </div>
+
+    <!-- MODO DE ORDEM DE LEITURA -->
+    <div class="secao-painel">
+      <div class="titulo-secao">Ordem de Leitura</div>
+      <div id="box-ordem" class="box-modo-ordem">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <strong id="label-modo-ordem" style="font-size: 12px;">Modo Ordem: DESATIVADO</strong>
+          <kbd>O</kbd>
+        </div>
+        <p style="font-size: 11px; color: var(--tinta-sec);">
+          Clique nas caixas na sequência exata de leitura humana para ligá-las em cadeia.
+        </p>
+        <div style="display: flex; gap: 6px; margin-top: 4px;">
+          <button id="btn-toggle-ordem" class="primario" style="flex: 1;">Ativar Modo Ordem (O)</button>
+          <button id="btn-limpar-ordem" title="Zerar a sequência da página atual">Zerar</button>
+        </div>
+        <div id="resumo-ordem" style="font-size: 11px; color: var(--acento); margin-top: 4px;">0 caixas na sequência</div>
+      </div>
+    </div>
+
+    <!-- PAINEL DA CAIXA SELECIONADA -->
+    <div class="secao-painel">
+      <div class="titulo-secao">Caixa Selecionada</div>
+      <div id="painel-caixa-vazio" style="font-size: 11px; color: var(--tinta-fraca); padding: 8px;">
+        Nenhuma caixa selecionada.<br>Clique numa caixa ou arraste no vazio para criar.
+      </div>
+      <div id="painel-caixa-ativo" class="info-caixa-box" style="display: none;">
+        <div class="linha-info">
+          <span>ID:</span>
+          <strong id="detalhe-caixa-id" style="font-family: var(--mono);">-</strong>
+        </div>
+        <div class="linha-info">
+          <span>Classe:</span>
+          <strong id="detalhe-caixa-classe">-</strong>
+        </div>
+        <div class="linha-info">
+          <span>Posição na Ordem:</span>
+          <strong id="detalhe-caixa-ordem" style="color: var(--acento);">-</strong>
+        </div>
+        <div class="linha-info">
+          <span>Dimensões:</span>
+          <span id="detalhe-caixa-dim" style="font-family: var(--mono); font-size: 10px;">-</span>
+        </div>
+
+        <div style="margin-top: 4px;">
+          <label style="font-size: 10px; color: var(--tinta-fraca); display: block; margin-bottom: 2px;">Texto / Transcrição:</label>
+          <textarea id="detalhe-caixa-texto" style="width: 100%; height: 50px; background: var(--fundo); color: var(--tinta); border: 1px solid var(--linha); border-radius: 4px; font-size: 11px; padding: 4px; resize: vertical;"></textarea>
+        </div>
+
+        <div class="botoes-caixa">
+          <button id="btn-apagar-caixa" class="perigo" title="Apagar (Del)">Apagar <kbd>Del</kbd></button>
+          <button id="btn-dividir-caixa" class="alerta" title="Dividir caixa na horizontal (S)">Dividir <kbd>S</kbd></button>
+          <button id="btn-juntar-caixas" title="Juntar caixas selecionadas (M)">Juntar <kbd>M</kbd></button>
+          <button id="btn-deselecionar">Limpar Foco</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- GUIA DE ATALHOS -->
+    <div class="secao-painel">
+      <div class="titulo-secao">Atalhos de Teclado</div>
+      <table class="tabela-atalhos">
+        <tr><td><kbd>1</kbd> a <kbd>9</kbd></td><td>Mudar classe da caixa</td></tr>
+        <tr><td><kbd>O</kbd></td><td>Modo ordem de leitura</td></tr>
+        <tr><td><kbd>S</kbd></td><td>Dividir caixa (Split)</td></tr>
+        <tr><td><kbd>M</kbd></td><td>Juntar caixas (Merge)</td></tr>
+        <tr><td><kbd>Del</kbd> / <kbd>⌫</kbd></td><td>Apagar caixa selecionada</td></tr>
+        <tr><td><kbd>Ctrl+Z</kbd></td><td>Desfazer última ação</td></tr>
+        <tr><td><kbd>←</kbd> / <kbd>→</kbd></td><td>Página anterior / próxima</td></tr>
+        <tr><td><kbd>Shift</kbd>+clique</td><td>Múltipla seleção</td></tr>
+        <tr><td><kbd>Esc</kbd></td><td>Cancelar seleção/modo</td></tr>
+        <tr><td>Arraste no vazio</td><td>Desenhar nova caixa</td></tr>
+        <tr><td>Arraste na alça</td><td>Redimensionar caixa</td></tr>
+      </table>
+    </div>
+  </aside>
+</main>
+
+<!-- MODAL PARA PULAR PÁGINA -->
+<div id="modal-pular" class="modal-overlay" style="display: none;">
+  <div class="modal-conteudo">
+    <h3 style="font-size: 14px; font-weight: 700;">Pular Página</h3>
+    <p style="font-size: 12px; color: var(--tinta-sec);">Informe o motivo para desconsiderar ou pular esta página:</p>
+    <textarea id="texto-motivo-pulo" placeholder="Ex.: Página em branco, texto completamente ilegível, imagem distorcida..."></textarea>
+    <div style="display: flex; justify-content: flex-end; gap: 8px;">
+      <button id="btn-cancelar-pulo">Cancelar</button>
+      <button id="btn-confirmar-pulo" class="alerta">Confirmar e Pular</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/**
+ * CLASSIFICADOR & ORDENADOR DE LEITURA PARA DIÁRIOS OFICIAIS
+ * Configuração e Funções Principais
+ */
+
+// 1. CONFIGURAÇÃO DE CLASSES PADRÃO (Editável no topo)
+const CLASSES_CONFIG = [
+  { id: "texto",     nome: "Texto",     tecla: "1", cor: "#3b82f6", corBorda: "#1d4ed8" },
+  { id: "tabela",    nome: "Tabela",    tecla: "2", cor: "#10b981", corBorda: "#047857" },
+  { id: "imagem",    nome: "Imagem",    tecla: "3", cor: "#f59e0b", corBorda: "#d97706" },
+  { id: "cabecalho", nome: "Cabeçalho", tecla: "4", cor: "#8b5cf6", corBorda: "#6d28d9" },
+  { id: "rodape",    nome: "Rodapé",    tecla: "5", cor: "#6b7280", corBorda: "#4b5563" },
+  { id: "quadro",    nome: "Quadro",    tecla: "6", cor: "#ef4444", corBorda: "#b91c1c" },
+  { id: "outro",     nome: "Outro",     tecla: "7", cor: "#06b6d4", corBorda: "#0e7490" }
+];
+
+// CHAVE DO AUTOSAVE NO LOCALSTORAGE
+const CHAVE_STORAGE = "tcc_classificador_estado_v1";
+
+// ESTADO GLOBAL DA APLICAÇÃO
+const app = {
+  tarefas: [],            // Lista de páginas / tarefas
+  indiceAtual: 0,         // Índice da página em exibição
+  classeAtiva: "texto",   // Classe padrão para novas caixas
+  selecionadas: new Set(),// IDs das caixas selecionadas
+  modoOrdem: false,       // Estado do modo sequencial de leitura
+  modoDividir: false,     // Estado do modo de corte de caixa
+  orientacaoDivisao: "H", // 'H' para horizontal, 'V' para vertical
+  zoom: 1.0,              // Nível de zoom da visualização
+  tempoInicioPagina: Date.now(),
+  historico: [],          // Pilha de undo (snapshots da página atual)
+  imagensLocais: new Map(), // Cache de arquivos de imagem locais (nomeArquivo -> ObjectURL)
+  arrastando: null        // Estado da operação de arrasto (desenho, mover ou alça)
+};
+
+// -----------------------------------------------------------------------------
+// INICIALIZAÇÃO
+// -----------------------------------------------------------------------------
+document.addEventListener("DOMContentLoaded", () => {
+  renderizarPaletaClasses();
+  configurarEventosUI();
+  configurarAtalhosTeclado();
+  carregarDoLocalStorage();
+
+  // Iniciar timer do cronômetro da página
+  setInterval(atualizarCronometro, 1000);
+});
+
+function renderizarPaletaClasses() {
+  const container = document.getElementById("grade-classes");
+  container.innerHTML = "";
+  CLASSES_CONFIG.forEach(c => {
+    const btn = document.createElement("div");
+    btn.className = `btn-classe ${c.id === app.classeAtiva ? "selecionada" : ""}`;
+    btn.id = `btn-classe-${c.id}`;
+    btn.innerHTML = `
+      <div class="classe-info">
+        <span class="ponto-cor" style="background: ${c.cor};"></span>
+        <span>${c.nome}</span>
+      </div>
+      <kbd>${c.tecla}</kbd>
+    `;
+    btn.onclick = () => selecionarClasseAtiva(c.id);
+    container.appendChild(btn);
+  });
+}
+
+function selecionarClasseAtiva(classeId) {
+  app.classeAtiva = classeId;
+  document.querySelectorAll(".btn-classe").forEach(el => el.classList.remove("selecionada"));
+  const btn = document.getElementById(`btn-classe-${classeId}`);
+  if (btn) btn.classList.add("selecionada");
+
+  // Se houver caixas selecionadas, atualiza a classe delas imediatamente
+  if (app.selecionadas.size > 0) {
+    salvarHistorico();
+    const pag = paginaAtual();
+    pag.caixas.forEach(cx => {
+      if (app.selecionadas.has(cx.id)) {
+        cx.classe = classeId;
+      }
+    });
+    atualizarDetalhesCaixa();
+    renderizarDocumento();
+    salvarAutosave();
+  }
+}
+
+// -----------------------------------------------------------------------------
+// IMPORTAÇÃO E EXPORTAÇÃO DE DADOS
+// -----------------------------------------------------------------------------
+function normalizarBbox(bbox) {
+  let [x0, y0, x1, y1] = bbox.map(Number);
+  return [Math.min(x0, x1), Math.min(y0, y1), Math.max(x0, x1), Math.max(y0, y1)];
+}
+
+function carregarDadosJSON(conteudoTexto) {
+  try {
+    let dados = JSON.parse(conteudoTexto);
+    let tarefasProcessadas = [];
+
+    // Detectar formato Label Studio (possui tasks com annotations ou lista com results)
+    const isLS = Array.isArray(dados) && dados.some(d => d.annotations || (d.data && d.data.image)) ||
+                 (dados && typeof dados === "object" && (dados.annotations || dados.result));
+
+    if (isLS) {
+      tarefasProcessadas = converterLabelStudioParaProprio(dados);
+      mostrarAviso(`Export do Label Studio identificado! ${tarefasProcessadas.length} página(s) convertida(s).`);
+    } else {
+      // Formato próprio
+      if (Array.isArray(dados)) {
+        tarefasProcessadas = dados;
+      } else if (dados.tasks) {
+        tarefasProcessadas = dados.tasks;
+      } else if (dados.paginas) {
+        tarefasProcessadas = dados.paginas;
+      } else {
+        tarefasProcessadas = [dados];
+      }
+      mostrarAviso(`${tarefasProcessadas.length} página(s) carregada(s) com sucesso.`);
+    }
+
+    if (tarefasProcessadas.length > 0) {
+      app.tarefas = tarefasProcessadas;
+      app.indiceAtual = 0;
+      app.selecionadas.clear();
+      app.historico = [];
+      atualizarListaTarefas();
+      carregarPaginaAtual();
+      salvarAutosave();
+    }
+  } catch (err) {
+    alert("Erro ao ler o arquivo JSON: " + err.message);
+  }
+}
+
+function converterLabelStudioParaProprio(dadosLS) {
+  let lista = Array.isArray(dadosLS) ? dadosLS : [dadosLS];
+  let res = [];
+
+  lista.forEach((item, idx) => {
+    let data = item.data || {};
+    let page_id = data.page_id || data.id || item.id || `ls_${idx + 1}`;
+    let imagem = data.image || data.ocr || `${page_id}.png`;
+    let annotations = item.annotations || [];
+    let ann = annotations[0] || item;
+    let results = ann.result || [];
+    let lead_time = ann.lead_time || 0;
+
+    let caixasMap = {};
+    let ligacoes = [];
+    let origW = 1000, origH = 1000;
+
+    results.forEach(r => {
+      let tipo = r.type;
+      if (tipo === "relation") {
+        let de = r.from_id;
+        let para = r.to_id;
+        let dir = r.direction || "right";
+        if (dir === "left") { [de, para] = [para, de]; }
+        if (de && para) ligacoes.push({ de, para });
+        return;
+      }
+
+      let rid = r.id;
+      if (!rid) return;
+      if (!caixasMap[rid]) {
+        caixasMap[rid] = { id: rid, classe: "texto", texto: "", pct: null, W: null, H: null };
+      }
+
+      let val = r.value || {};
+      if (r.original_width) origW = r.original_width;
+      if (r.original_height) origH = r.original_height;
+
+      if (tipo === "rectanglelabels" || tipo === "labels") {
+        let labs = val[tipo] || [];
+        if (labs.length > 0) caixasMap[rid].classe = labs[0];
+      } else if (tipo === "textarea") {
+        let txts = val.text || [];
+        caixasMap[rid].texto = txts.join("\n");
+      }
+
+      if (!caixasMap[rid].pct && val.x !== undefined && val.width !== undefined) {
+        caixasMap[rid].pct = [val.x, val.y, val.width, val.height];
+        caixasMap[rid].W = r.original_width || origW;
+        caixasMap[rid].H = r.original_height || origH;
+      }
+    });
+
+    let caixas = Object.values(caixasMap).map(c => {
+      let W = c.W || origW;
+      let H = c.H || origH;
+      let x0 = 0, y0 = 0, x1 = 100, y1 = 100;
+      if (c.pct) {
+        let [px, py, pw, ph] = c.pct;
+        x0 = (px / 100) * W;
+        y0 = (py / 100) * H;
+        x1 = ((px + pw) / 100) * W;
+        y1 = ((py + ph) / 100) * H;
+      }
+      return {
+        id: c.id,
+        bbox: [Math.round(x0 * 10) / 10, Math.round(y0 * 10) / 10, Math.round(x1 * 10) / 10, Math.round(y1 * 10) / 10],
+        classe: c.classe,
+        texto: c.texto || ""
+      };
+    });
+
+    // Reconstruir ordem a partir das relações
+    let ordem = [];
+    if (ligacoes.length > 0) {
+      let sucessores = {};
+      let entradas = {};
+      caixas.forEach(c => entradas[c.id] = 0);
+      ligacoes.forEach(l => {
+        sucessores[l.de] = l.para;
+        entradas[l.para] = (entradas[l.para] || 0) + 1;
+      });
+      let cabeca = caixas.find(c => entradas[c.id] === 0 && sucessores[c.id]);
+      if (cabeca) {
+        let atual = cabeca.id;
+        let visitados = new Set();
+        while (atual && !visitados.has(atual)) {
+          visitados.add(atual);
+          ordem.push(atual);
+          atual = sucessores[atual];
+        }
+      }
+    }
+
+    res.push({
+      page_id: String(page_id),
+      imagem: String(imagem),
+      largura: origW,
+      altura: origH,
+      caixas: caixas,
+      ordem: ordem,
+      flags: [],
+      nota: "",
+      tempo_s: lead_time
+    });
+  });
+
+  return res;
+}
+
+function exportarFormatoProprio() {
+  if (app.tarefas.length === 0) return alert("Nenhuma tarefa para exportar.");
+  const blob = new Blob([JSON.stringify(app.tarefas, null, 2)], { type: "application/json" });
+  baixarArquivo(blob, "tarefas_export_proprio.json");
+}
+
+function exportarFormatoLabelStudio() {
+  if (app.tarefas.length === 0) return alert("Nenhuma tarefa para exportar.");
+  let tarefasLS = app.tarefas.map((pag, idx) => {
+    let W = pag.largura || 1000;
+    let H = pag.altura || 1000;
+    let resultItems = [];
+
+    (pag.caixas || []).forEach(cx => {
+      let [x0, y0, x1, y1] = normalizarBbox(cx.bbox);
+      let pct_x = (x0 / W) * 100;
+      let pct_y = (y0 / H) * 100;
+      let pct_w = ((x1 - x0) / W) * 100;
+      let pct_h = ((y1 - y0) / H) * 100;
+
+      resultItems.push({
+        id: cx.id,
+        type: "rectanglelabels",
+        value: {
+          x: Math.round(pct_x * 10000) / 10000,
+          y: Math.round(pct_y * 10000) / 10000,
+          width: Math.round(pct_w * 10000) / 10000,
+          height: Math.round(pct_h * 10000) / 10000,
+          rotation: 0,
+          rectanglelabels: [cx.classe || "texto"]
+        },
+        original_width: W,
+        original_height: H,
+        from_name: "label",
+        to_name: "image"
+      });
+
+      if (cx.texto) {
+        resultItems.push({
+          id: cx.id,
+          type: "textarea",
+          value: { text: [cx.texto] },
+          from_name: "transcription",
+          to_name: "image"
+        });
+      }
+    });
+
+    // Relações em cadeia da ordem de leitura
+    let ordem = pag.ordem || [];
+    for (let i = 0; i < ordem.length - 1; i++) {
+      resultItems.push({
+        type: "relation",
+        from_id: ordem[i],
+        to_id: ordem[i + 1],
+        direction: "right",
+        labels: ["continue"]
+      });
+    }
+
+    return {
+      id: idx + 1,
+      data: {
+        image: pag.imagem || `${pag.page_id}.png`,
+        page_id: pag.page_id
+      },
+      annotations: [{
+        id: (idx + 1) * 1000 + 1,
+        lead_time: pag.tempo_s || 0,
+        result: resultItems,
+        was_cancelled: Boolean(pag.motivo_pulo)
+      }]
+    };
+  });
+
+  const blob = new Blob([JSON.stringify(tarefasLS, null, 2)], { type: "application/json" });
+  baixarArquivo(blob, "tarefas_export_labelstudio.json");
+}
+
+function baixarArquivo(blob, nome) {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = nome;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+// -----------------------------------------------------------------------------
+// HISTÓRICO DE ALTERAÇÕES (UNDO - Ctrl+Z)
+// -----------------------------------------------------------------------------
+function salvarHistorico() {
+  const pag = paginaAtual();
+  if (!pag) return;
+  const snapshot = {
+    caixas: JSON.parse(JSON.stringify(pag.caixas || [])),
+    ordem: [...(pag.ordem || [])]
+  };
+  app.historico.push(snapshot);
+  if (app.historico.length > 50) app.historico.shift();
+}
+
+function desfazer() {
+  if (app.historico.length === 0) return;
+  const ultimo = app.historico.pop();
+  const pag = paginaAtual();
+  if (!pag) return;
+  pag.caixas = ultimo.caixas;
+  pag.ordem = ultimo.ordem;
+  app.selecionadas.clear();
+  atualizarDetalhesCaixa();
+  renderizarDocumento();
+  salvarAutosave();
+  mostrarAviso("Ação desfeita.");
+}
+
+// -----------------------------------------------------------------------------
+// RENDERIZAÇÃO DA PÁGINA E OVERLAY
+// -----------------------------------------------------------------------------
+function paginaAtual() {
+  return app.tarefas[app.indiceAtual] || null;
+}
+
+function carregarPaginaAtual() {
+  const pag = paginaAtual();
+  if (!pag) return;
+
+  app.tempoInicioPagina = Date.now();
+  app.selecionadas.clear();
+  app.historico = [];
+  atualizarDetalhesCaixa();
+
+  // Dimensões da página
+  const W = pag.largura || 1240;
+  const H = pag.altura || 1754;
+
+  const container = document.getElementById("container-documento");
+  const imgEl = document.getElementById("imagem-pagina");
+  const svgEl = document.getElementById("overlay-svg");
+
+  container.style.width = `${W * app.zoom}px`;
+  container.style.height = `${H * app.zoom}px`;
+  svgEl.setAttribute("viewBox", `0 0 ${W} ${H}`);
+
+  // Carregar imagem de fundo se disponível
+  const nomeImg = (pag.imagem || "").split(/[\\/]/).pop();
+  if (app.imagensLocais.has(nomeImg)) {
+    imgEl.src = app.imagensLocais.get(nomeImg);
+    imgEl.style.display = "block";
+  } else {
+    // Placeholder gerado dinamicamente para visualização imediata
+    imgEl.style.display = "none";
+    container.style.background = "#ffffff radial-gradient(#e2e8f0 1px, transparent 1px)";
+    container.style.backgroundSize = "20px 20px";
+  }
+
+  atualizarCabecalhoPagina();
+  renderizarDocumento();
+}
+
+function renderizarDocumento() {
+  const pag = paginaAtual();
+  if (!pag) return;
+
+  const camadaLinhas = document.getElementById("camada-linhas-ordem");
+  const camadaCaixas = document.getElementById("camada-caixas");
+  const camadaAlcas = document.getElementById("camada-alcas");
+
+  camadaLinhas.innerHTML = "";
+  camadaCaixas.innerHTML = "";
+  camadaAlcas.innerHTML = "";
+
+  const ordem = pag.ordem || [];
+  const caixasMap = new Map((pag.caixas || []).map(c => [c.id, c]));
+
+  // 1. Renderizar Linhas e Setas da Ordem de Leitura
+  if (ordem.length >= 2) {
+    for (let i = 0; i < ordem.length - 1; i++) {
+      const c1 = caixasMap.get(ordem[i]);
+      const c2 = caixasMap.get(ordem[i + 1]);
+      if (c1 && c2) {
+        const [x0a, y0a, x1a, y1a] = normalizarBbox(c1.bbox);
+        const [x0b, y0b, x1b, y1b] = normalizarBbox(c2.bbox);
+        const c1X = (x0a + x1a) / 2;
+        const c1Y = (y0a + y1a) / 2;
+        const c2X = (x0b + x1b) / 2;
+        const c2Y = (y0b + y1b) / 2;
+
+        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        line.setAttribute("x1", c1X);
+        line.setAttribute("y1", c1Y);
+        line.setAttribute("x2", c2X);
+        line.setAttribute("y2", c2Y);
+        line.setAttribute("class", "svg-linha-ordem");
+        line.setAttribute("marker-end", "url(#seta-ordem)");
+        camadaLinhas.appendChild(line);
+      }
+    }
+  }
+
+  // 2. Renderizar Caixas Delimitadoras
+  (pag.caixas || []).forEach(cx => {
+    const [x0, y0, x1, y1] = normalizarBbox(cx.bbox);
+    const w = x1 - x0;
+    const h = y1 - y0;
+    const classeObj = CLASSES_CONFIG.find(c => c.id === cx.classe) || CLASSES_CONFIG[0];
+    const isSel = app.selecionadas.has(cx.id);
+    const idxOrdem = ordem.indexOf(cx.id);
+
+    const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+
+    // Retângulo da caixa
+    const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    rect.setAttribute("x", x0);
+    rect.setAttribute("y", y0);
+    rect.setAttribute("width", w);
+    rect.setAttribute("height", h);
+    rect.setAttribute("fill", classeObj.cor);
+    rect.setAttribute("fill-opacity", isSel ? "0.35" : "0.15");
+    rect.setAttribute("stroke", isSel ? "#38bdf8" : classeObj.corBorda);
+    rect.setAttribute("stroke-width", isSel ? "3" : "1.8");
+    rect.setAttribute("class", `svg-caixa ${isSel ? "selecionada" : ""}`);
+    rect.setAttribute("data-id", cx.id);
+
+    rect.onmousedown = (e) => iniciarArrastoCaixa(e, cx.id);
+    g.appendChild(rect);
+
+    // Etiqueta com classe
+    const textLabel = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    textLabel.setAttribute("x", x0 + 4);
+    textLabel.setAttribute("y", y0 + 14);
+    textLabel.setAttribute("class", "svg-label");
+    textLabel.setAttribute("fill", classeObj.corBorda);
+    textLabel.textContent = `${classeObj.nome}`;
+    g.appendChild(textLabel);
+
+    // Círculo com número de ordem se estiver ordenada
+    if (idxOrdem !== -1) {
+      const circ = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      circ.setAttribute("cx", x0 + w - 14);
+      circ.setAttribute("cy", y0 + 14);
+      circ.setAttribute("r", "10");
+      circ.setAttribute("fill", "#0284c7");
+      g.appendChild(circ);
+
+      const numTxt = document.createElementNS("http://www.w3.org/2000/svg", "text");
+      numTxt.setAttribute("x", x0 + w - 14);
+      numTxt.setAttribute("y", y0 + 18);
+      numTxt.setAttribute("text-anchor", "middle");
+      numTxt.setAttribute("class", "svg-ordem-num");
+      numTxt.textContent = `${idxOrdem + 1}`;
+      g.appendChild(numTxt);
+    }
+
+    camadaCaixas.appendChild(g);
+
+    // Se estiver selecionada individualmente, renderiza 8 alças de redimensionamento
+    if (isSel && app.selecionadas.size === 1) {
+      renderizarAlcas(cx, camadaAlcas);
+    }
+  });
+
+  // Atualizar contadores da lateral
+  document.getElementById("resumo-ordem").textContent = `${ordem.length} caixa(s) na sequência de leitura`;
+}
+
+function renderizarAlcas(cx, camada) {
+  const [x0, y0, x1, y1] = normalizarBbox(cx.bbox);
+  const pontos = [
+    { dir: "nw", x: x0, y: y0, cur: "nwse-resize" },
+    { dir: "n",  x: (x0 + x1) / 2, y: y0, cur: "ns-resize" },
+    { dir: "ne", x: x1, y: y0, cur: "nesw-resize" },
+    { dir: "e",  x: x1, y: (y0 + y1) / 2, cur: "ew-resize" },
+    { dir: "se", x: x1, y: y1, cur: "nwse-resize" },
+    { dir: "s",  x: (x0 + x1) / 2, y: y1, cur: "ns-resize" },
+    { dir: "sw", x: x0, y: y1, cur: "nesw-resize" },
+    { dir: "w",  x: x0, y: (y0 + y1) / 2, cur: "ew-resize" }
+  ];
+
+  pontos.forEach(p => {
+    const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    rect.setAttribute("x", p.x - 4);
+    rect.setAttribute("y", p.y - 4);
+    rect.setAttribute("width", 8);
+    rect.setAttribute("height", 8);
+    rect.setAttribute("class", "svg-alca");
+    rect.style.cursor = p.cur;
+    rect.onmousedown = (e) => iniciarArrastoAlca(e, cx.id, p.dir);
+    camada.appendChild(rect);
+  });
+}
+
+// -----------------------------------------------------------------------------
+// EVENTOS DE MOUSE (SELEÇÃO, DESENHO, MOVER, ALÇAS, CORTE)
+// -----------------------------------------------------------------------------
+function pontoSVG(e) {
+  const svg = document.getElementById("overlay-svg");
+  const pt = svg.createSVGPoint();
+  pt.x = e.clientX;
+  pt.y = e.clientY;
+  return pt.matrixTransform(svg.getScreenCTM().inverse());
+}
+
+function iniciarArrastoCaixa(e, caixaId) {
+  e.stopPropagation();
+
+  // Modo Ordem: clique adiciona ou remove da sequência
+  if (app.modoOrdem) {
+    salvarHistorico();
+    const pag = paginaAtual();
+    const pos = pag.ordem.indexOf(caixaId);
+    if (pos === -1) {
+      pag.ordem.push(caixaId);
+    } else {
+      pag.ordem.splice(pos, 1);
+    }
+    renderizarDocumento();
+    salvarAutosave();
+    return;
+  }
+
+  // Modo Dividir: clique divide a caixa onde clicou
+  if (app.modoDividir) {
+    executarDivisaoCaixa(caixaId, pontoSVG(e));
+    return;
+  }
+
+  // Seleção normal
+  if (e.shiftKey) {
+    if (app.selecionadas.has(caixaId)) app.selecionadas.delete(caixaId);
+    else app.selecionadas.add(caixaId);
+  } else {
+    if (!app.selecionadas.has(caixaId)) {
+      app.selecionadas.clear();
+      app.selecionadas.add(caixaId);
+    }
+  }
+
+  atualizarDetalhesCaixa();
+  renderizarDocumento();
+
+  // Iniciar arraste para mover
+  const pt = pontoSVG(e);
+  const pag = paginaAtual();
+  const caixasIniciais = new Map();
+  pag.caixas.forEach(c => {
+    if (app.selecionadas.has(c.id)) {
+      caixasIniciais.set(c.id, [...c.bbox]);
+    }
+  });
+
+  app.arrastando = {
+    tipo: "mover",
+    inicioX: pt.x,
+    inicioY: pt.y,
+    caixasIniciais: caixasIniciais
+  };
+
+  salvarHistorico();
+}
+
+function iniciarArrastoAlca(e, caixaId, direcao) {
+  e.stopPropagation();
+  const pt = pontoSVG(e);
+  const pag = paginaAtual();
+  const cx = pag.caixas.find(c => c.id === caixaId);
+  if (!cx) return;
+
+  salvarHistorico();
+  app.arrastando = {
+    tipo: "alca",
+    caixaId: caixaId,
+    direcao: direcao,
+    inicioX: pt.x,
+    inicioY: pt.y,
+    bboxInicial: [...cx.bbox]
+  };
+}
+
+function configurarEventosUI() {
+  const svg = document.getElementById("overlay-svg");
+
+  svg.onmousedown = (e) => {
+    if (e.target !== svg) return;
+
+    if (!e.shiftKey) {
+      app.selecionadas.clear();
+      atualizarDetalhesCaixa();
+      renderizarDocumento();
+    }
+
+    if (app.modoOrdem || app.modoDividir) return;
+
+    // Iniciar desenho de nova caixa
+    const pt = pontoSVG(e);
+    salvarHistorico();
+    app.arrastando = {
+      tipo: "desenhar",
+      inicioX: pt.x,
+      inicioY: pt.y
+    };
+  };
+
+  window.onmousemove = (e) => {
+    if (!app.arrastando) return;
+    const pt = pontoSVG(e);
+    const pag = paginaAtual();
+    if (!pag) return;
+
+    if (app.arrastando.tipo === "mover") {
+      const dx = pt.x - app.arrastando.inicioX;
+      const dy = pt.y - app.arrastando.inicioY;
+      pag.caixas.forEach(c => {
+        if (app.arrastando.caixasIniciais.has(c.id)) {
+          const [x0, y0, x1, y1] = app.arrastando.caixasIniciais.get(c.id);
+          c.bbox = [Math.round(x0 + dx), Math.round(y0 + dy), Math.round(x1 + dx), Math.round(y1 + dy)];
+        }
+      });
+      renderizarDocumento();
+    } else if (app.arrastando.tipo === "alca") {
+      const cx = pag.caixas.find(c => c.id === app.arrastando.caixaId);
+      if (!cx) return;
+      let [x0, y0, x1, y1] = app.arrastando.bboxInicial;
+      const dir = app.arrastando.direcao;
+
+      if (dir.includes("w")) x0 = Math.min(pt.x, x1 - 10);
+      if (dir.includes("e")) x1 = Math.max(pt.x, x0 + 10);
+      if (dir.includes("n")) y0 = Math.min(pt.y, y1 - 10);
+      if (dir.includes("s")) y1 = Math.max(pt.y, y0 + 10);
+
+      cx.bbox = [Math.round(x0), Math.round(y0), Math.round(x1), Math.round(y1)];
+      renderizarDocumento();
+    } else if (app.arrastando.tipo === "desenhar") {
+      const x0 = Math.min(app.arrastando.inicioX, pt.x);
+      const y0 = Math.min(app.arrastando.inicioY, pt.y);
+      const x1 = Math.max(app.arrastando.inicioX, pt.x);
+      const y1 = Math.max(app.arrastando.inicioY, pt.y);
+
+      // Mostrar retângulo de preview
+      let preview = document.getElementById("preview-desenho");
+      if (!preview) {
+        preview = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        preview.id = "preview-desenho";
+        preview.setAttribute("fill", "rgba(56, 189, 248, 0.2)");
+        preview.setAttribute("stroke", "#38bdf8");
+        preview.setAttribute("stroke-width", "2");
+        preview.setAttribute("stroke-dasharray", "4, 3");
+        document.getElementById("camada-guias").appendChild(preview);
+      }
+      preview.setAttribute("x", x0);
+      preview.setAttribute("y", y0);
+      preview.setAttribute("width", x1 - x0);
+      preview.setAttribute("height", y1 - y0);
+    }
+  };
+
+  window.onmouseup = () => {
+    if (!app.arrastando) return;
+
+    if (app.arrastando.tipo === "desenhar") {
+      const preview = document.getElementById("preview-desenho");
+      if (preview) {
+        const x = parseFloat(preview.getAttribute("x"));
+        const y = parseFloat(preview.getAttribute("y"));
+        const w = parseFloat(preview.getAttribute("width"));
+        const h = parseFloat(preview.getAttribute("height"));
+        preview.remove();
+
+        if (w > 15 && h > 15) {
+          const novaCaixa = {
+            id: `cx_${Date.now().toString(36)}`,
+            bbox: [Math.round(x), Math.round(y), Math.round(x + w), Math.round(y + h)],
+            classe: app.classeAtiva,
+            texto: ""
+          };
+          const pag = paginaAtual();
+          pag.caixas.push(novaCaixa);
+          app.selecionadas.clear();
+          app.selecionadas.add(novaCaixa.id);
+          atualizarDetalhesCaixa();
+          renderizarDocumento();
+          salvarAutosave();
+        }
+      }
+    }
+
+    app.arrastando = null;
+    salvarAutosave();
+  };
+
+  // Botões de topo e navegação
+  document.getElementById("btn-anterior").onclick = () => mudarPagina(app.indiceAtual - 1);
+  document.getElementById("btn-proxima").onclick = () => mudarPagina(app.indiceAtual + 1);
+  document.getElementById("select-pagina").onchange = (e) => mudarPagina(parseInt(e.target.value));
+
+  document.getElementById("btn-exportar-proprio").onclick = exportarFormatoProprio;
+  document.getElementById("btn-exportar-ls").onclick = exportarFormatoLabelStudio;
+  document.getElementById("btn-desfazer").onclick = desfazer;
+
+  document.getElementById("input-json").onchange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (evt) => carregarDadosJSON(evt.target.result);
+      reader.readAsText(file);
+    }
+  };
+
+  document.getElementById("input-pasta-imagens").onchange = (e) => {
+    const files = Array.from(e.target.files);
+    files.forEach(f => {
+      app.imagensLocais.set(f.name, URL.createObjectURL(f));
+    });
+    mostrarAviso(`${files.length} imagem(ns) carregada(s) da pasta.`);
+    carregarPaginaAtual();
+  };
+
+  // Zoom
+  document.getElementById("btn-zoom-mais").onclick = () => ajustarZoom(app.zoom + 0.15);
+  document.getElementById("btn-zoom-menos").onclick = () => ajustarZoom(app.zoom - 0.15);
+  document.getElementById("btn-zoom-ajustar").onclick = () => ajustarZoom(1.0);
+
+  // Ações de Caixa
+  document.getElementById("btn-apagar-caixa").onclick = apagarCaixasSelecionadas;
+  document.getElementById("btn-juntar-caixas").onclick = juntarCaixasSelecionadas;
+  document.getElementById("btn-dividir-caixa").onclick = alternarModoDividir;
+  document.getElementById("btn-deselecionar").onclick = () => {
+    app.selecionadas.clear();
+    atualizarDetalhesCaixa();
+    renderizarDocumento();
+  };
+
+  // Modo Ordem
+  document.getElementById("btn-toggle-ordem").onclick = alternarModoOrdem;
+  document.getElementById("btn-limpar-ordem").onclick = () => {
+    salvarHistorico();
+    paginaAtual().ordem = [];
+    renderizarDocumento();
+    salvarAutosave();
+  };
+
+  // Pular Página Modal
+  document.getElementById("btn-pular").onclick = abrirModalPular;
+  document.getElementById("btn-cancelar-pulo").onclick = fecharModalPular;
+  document.getElementById("btn-confirmar-pulo").onclick = confirmarPulo;
+
+  document.getElementById("btn-limpar-cache").onclick = () => {
+    if (confirm("Deseja realmente limpar todo o progresso salvo no navegador?")) {
+      localStorage.removeItem(CHAVE_STORAGE);
+      location.reload();
+    }
+  };
+
+  // Textarea de transcrição
+  document.getElementById("detalhe-caixa-texto").oninput = (e) => {
+    if (app.selecionadas.size === 1) {
+      const cid = Array.from(app.selecionadas)[0];
+      const cx = paginaAtual().caixas.find(c => c.id === cid);
+      if (cx) {
+        cx.texto = e.target.value;
+        salvarAutosave();
+      }
+    }
+  };
+}
+
+function ajustarZoom(novoZoom) {
+  app.zoom = Math.max(0.3, Math.min(3.0, novoZoom));
+  document.getElementById("zoom-nivel").textContent = `${Math.round(app.zoom * 100)}%`;
+  carregarPaginaAtual();
+}
+
+// -----------------------------------------------------------------------------
+// OPERAÇÕES: JUNTAR (M), DIVIDIR (S), APAGAR (DEL)
+// -----------------------------------------------------------------------------
+function apagarCaixasSelecionadas() {
+  if (app.selecionadas.size === 0) return;
+  salvarHistorico();
+  const pag = paginaAtual();
+  pag.caixas = pag.caixas.filter(c => !app.selecionadas.has(c.id));
+  pag.ordem = pag.ordem.filter(id => !app.selecionadas.has(id));
+  app.selecionadas.clear();
+  atualizarDetalhesCaixa();
+  renderizarDocumento();
+  salvarAutosave();
+  mostrarAviso("Caixa(s) apagada(s).");
+}
+
+function juntarCaixasSelecionadas() {
+  if (app.selecionadas.size < 2) return alert("Selecione 2 ou mais caixas para juntar (Shift+clique).");
+  salvarHistorico();
+  const pag = paginaAtual();
+  const caixasAlvo = pag.caixas.filter(c => !app.selecionadas.has(c.id));
+  const caixasJuntar = pag.caixas.filter(c => app.selecionadas.has(c.id));
+
+  let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+  let textos = [];
+
+  caixasJuntar.forEach(c => {
+    const [x0, y0, x1, y1] = normalizarBbox(c.bbox);
+    minX = Math.min(minX, x0);
+    minY = Math.min(minY, y0);
+    maxX = Math.max(maxX, x1);
+    maxY = Math.max(maxY, y1);
+    if (c.texto) textos.push(c.texto);
+  });
+
+  const novaCaixa = {
+    id: `cx_${Date.now().toString(36)}`,
+    bbox: [minX, minY, maxX, maxY],
+    classe: caixasJuntar[0].classe,
+    texto: textos.join("\n")
+  };
+
+  // Substituir na ordem de leitura
+  let novaOrdem = [];
+  let inserido = false;
+  pag.ordem.forEach(id => {
+    if (app.selecionadas.has(id)) {
+      if (!inserido) {
+        novaOrdem.push(novaCaixa.id);
+        inserido = true;
+      }
+    } else {
+      novaOrdem.push(id);
+    }
+  });
+
+  pag.caixas = [...caixasAlvo, novaCaixa];
+  pag.ordem = novaOrdem;
+  app.selecionadas.clear();
+  app.selecionadas.add(novaCaixa.id);
+
+  atualizarDetalhesCaixa();
+  renderizarDocumento();
+  salvarAutosave();
+  mostrarAviso("Caixas unificadas com sucesso.");
+}
+
+function alternarModoDividir() {
+  if (app.selecionadas.size !== 1) return alert("Selecione exatamente UMA caixa para dividir.");
+  app.modoDividir = !app.modoDividir;
+  document.getElementById("btn-dividir-caixa").classList.toggle("primario", app.modoDividir);
+  mostrarAviso(app.modoDividir ? "Modo Dividir ativado: clique na caixa onde deseja cortar." : "Modo Dividir desativado.");
+}
+
+function executarDivisaoCaixa(caixaId, ptCorte) {
+  salvarHistorico();
+  const pag = paginaAtual();
+  const cx = pag.caixas.find(c => c.id === caixaId);
+  if (!cx) return;
+
+  const [x0, y0, x1, y1] = normalizarBbox(cx.bbox);
+  const corteY = Math.max(y0 + 5, Math.min(y1 - 5, ptCorte.y));
+
+  const caixa1 = {
+    id: `cx_${Date.now().toString(36)}_a`,
+    bbox: [x0, y0, x1, Math.round(corteY)],
+    classe: cx.classe,
+    texto: cx.texto
+  };
+  const caixa2 = {
+    id: `cx_${Date.now().toString(36)}_b`,
+    bbox: [x0, Math.round(corteY), x1, y1],
+    classe: cx.classe,
+    texto: ""
+  };
+
+  // Atualizar lista de caixas
+  pag.caixas = pag.caixas.filter(c => c.id !== caixaId).concat([caixa1, caixa2]);
+
+  // Atualizar ordem substituindo a original pelas duas metades
+  let pos = pag.ordem.indexOf(caixaId);
+  if (pos !== -1) {
+    pag.ordem.splice(pos, 1, caixa1.id, caixa2.id);
+  }
+
+  app.modoDividir = false;
+  document.getElementById("btn-dividir-caixa").classList.remove("primario");
+  app.selecionadas.clear();
+  app.selecionadas.add(caixa1.id);
+
+  atualizarDetalhesCaixa();
+  renderizarDocumento();
+  salvarAutosave();
+  mostrarAviso("Caixa dividida em duas.");
+}
+
+function alternarModoOrdem() {
+  app.modoOrdem = !app.modoOrdem;
+  const box = document.getElementById("box-ordem");
+  const label = document.getElementById("label-modo-ordem");
+  const btn = document.getElementById("btn-toggle-ordem");
+
+  box.classList.toggle("ativo", app.modoOrdem);
+  label.textContent = app.modoOrdem ? "Modo Ordem: ATIVADO" : "Modo Ordem: DESATIVADO";
+  btn.textContent = app.modoOrdem ? "Desativar Modo Ordem (O)" : "Ativar Modo Ordem (O)";
+  btn.className = app.modoOrdem ? "sucesso" : "primario";
+
+  mostrarAviso(app.modoOrdem ? "Modo Ordem ativado. Clique nas caixas em sequência." : "Modo Ordem desativado.");
+}
+
+// -----------------------------------------------------------------------------
+// ATALHOS DE TECLADO
+// -----------------------------------------------------------------------------
+function configurarAtalhosTeclado() {
+  window.addEventListener("keydown", (e) => {
+    // Se o usuário estiver digitando em campo de texto, não intercepta
+    if (["INPUT", "TEXTAREA"].includes(document.activeElement.tagName)) return;
+
+    // Teclas numéricas 1 a 9 para trocar de classe
+    const num = parseInt(e.key);
+    if (!isNaN(num) && num >= 1 && num <= CLASSES_CONFIG.length) {
+      selecionarClasseAtiva(CLASSES_CONFIG[num - 1].id);
+      return;
+    }
+
+    // O: Modo Ordem
+    if (e.key === "o" || e.key === "O") {
+      alternarModoOrdem();
+      return;
+    }
+
+    // M: Juntar (Merge)
+    if (e.key === "m" || e.key === "M") {
+      juntarCaixasSelecionadas();
+      return;
+    }
+
+    // S: Dividir (Split)
+    if (e.key === "s" || e.key === "S") {
+      alternarModoDividir();
+      return;
+    }
+
+    // Delete / Backspace: Apagar
+    if (e.key === "Delete" || e.key === "Backspace") {
+      apagarCaixasSelecionadas();
+      return;
+    }
+
+    // Ctrl+Z: Desfazer
+    if (e.ctrlKey && (e.key === "z" || e.key === "Z")) {
+      e.preventDefault();
+      desfazer();
+      return;
+    }
+
+    // Navegação entre páginas (Setas)
+    if (e.key === "ArrowLeft") {
+      mudarPagina(app.indiceAtual - 1);
+      return;
+    }
+    if (e.key === "ArrowRight") {
+      mudarPagina(app.indiceAtual + 1);
+      return;
+    }
+
+    // Esc: Cancelar seleção ou sair de modos especiais
+    if (e.key === "Escape") {
+      app.modoOrdem = false;
+      app.modoDividir = false;
+      app.selecionadas.clear();
+      document.getElementById("box-ordem").classList.remove("ativo");
+      document.getElementById("btn-dividir-caixa").classList.remove("primario");
+      atualizarDetalhesCaixa();
+      renderizarDocumento();
+      return;
+    }
+  });
+}
+
+// -----------------------------------------------------------------------------
+// PULAR PÁGINA (COM MOTIVO)
+// -----------------------------------------------------------------------------
+function abrirModalPular() {
+  document.getElementById("texto-motivo-pulo").value = "";
+  document.getElementById("modal-pular").style.display = "flex";
+}
+function fecharModalPular() {
+  document.getElementById("modal-pular").style.display = "none";
+}
+function confirmarPulo() {
+  const motivo = document.getElementById("texto-motivo-pulo").value.trim();
+  const pag = paginaAtual();
+  if (pag) {
+    pag.motivo_pulo = motivo || "Sem motivo informado";
+    pag.flags = Array.from(new Set([...(pag.flags || []), "pulada"]));
+    fecharModalPular();
+    salvarAutosave();
+    atualizarCabecalhoPagina();
+    atualizarListaTarefas();
+    mudarPagina(app.indiceAtual + 1);
+  }
+}
+
+// -----------------------------------------------------------------------------
+// SINCRONIZAÇÃO E UI GERAL
+// -----------------------------------------------------------------------------
+function mudarPagina(novoIndice) {
+  if (novoIndice < 0 || novoIndice >= app.tarefas.length) return;
+  // Acumular tempo gasto na página anterior
+  const pagAntiga = paginaAtual();
+  if (pagAntiga) {
+    const tempoGasto = (Date.now() - app.tempoInicioPagina) / 1000;
+    pagAntiga.tempo_s = (pagAntiga.tempo_s || 0) + tempoGasto;
+  }
+
+  app.indiceAtual = novoIndice;
+  carregarPaginaAtual();
+  atualizarListaTarefas();
+  salvarAutosave();
+}
+
+function atualizarCabecalhoPagina() {
+  const pag = paginaAtual();
+  if (!pag) return;
+
+  const sel = document.getElementById("select-pagina");
+  sel.value = app.indiceAtual;
+
+  // Status da página
+  const statusEl = document.getElementById("status-pagina");
+  statusEl.className = "tag-status";
+  if (pag.motivo_pulo) {
+    statusEl.classList.add("pulada");
+    statusEl.textContent = "Pulada";
+  } else if ((pag.ordem || []).length > 0 && pag.caixas.length > 0) {
+    statusEl.classList.add("concluida");
+    statusEl.textContent = "Concluída";
+  } else if (pag.caixas && pag.caixas.length > 0) {
+    statusEl.classList.add("rascunho");
+    statusEl.textContent = "Rascunho";
+  } else {
+    statusEl.classList.add("nova");
+    statusEl.textContent = "Nova";
+  }
+
+  // Progresso geral
+  const concluidas = app.tarefas.filter(t => (t.ordem || []).length > 0 || t.motivo_pulo).length;
+  const pct = Math.round((concluidas / app.tarefas.length) * 100) || 0;
+  document.getElementById("contador-progresso").textContent = `${concluidas} de ${app.tarefas.length} concluídas (${pct}%)`;
+}
+
+function atualizarCronometro() {
+  const pag = paginaAtual();
+  if (!pag) return;
+  const tempoAtual = (pag.tempo_s || 0) + ((Date.now() - app.tempoInicioPagina) / 1000);
+  const min = Math.floor(tempoAtual / 60).toString().padStart(2, "0");
+  const seg = Math.floor(tempoAtual % 60).toString().padStart(2, "0");
+  document.getElementById("cronometro-pagina").textContent = `⏱️ ${min}:${seg}`;
+}
+
+function atualizarListaTarefas() {
+  const container = document.getElementById("lista-tarefas");
+  const sel = document.getElementById("select-pagina");
+  container.innerHTML = "";
+  sel.innerHTML = "";
+
+  document.getElementById("total-paginas-badge").textContent = `${app.tarefas.length} páginas`;
+
+  app.tarefas.forEach((t, idx) => {
+    // Item no select
+    const opt = document.createElement("option");
+    opt.value = idx;
+    opt.textContent = `Pág ${idx + 1}: ${t.page_id}`;
+    sel.appendChild(opt);
+
+    // Item na barra lateral
+    const div = document.createElement("div");
+    div.className = `item-tarefa ${idx === app.indiceAtual ? "ativa" : ""}`;
+    const statusTxt = t.motivo_pulo ? "Pulada" : (t.ordem && t.ordem.length > 0 ? "Concluída" : "Nova");
+    div.innerHTML = `
+      <div class="item-tarefa-cabecalho">
+        <span class="item-tarefa-nome">${idx + 1}. ${t.page_id}</span>
+        <span style="font-size: 10px; color: ${t.motivo_pulo ? 'var(--aviso)' : 'var(--tinta-fraca)'};">${statusTxt}</span>
+      </div>
+      <div class="item-tarefa-detalhes">
+        <span>${t.caixas ? t.caixas.length : 0} caixas</span>
+        <span>${t.ordem ? t.ordem.length : 0} ordenadas</span>
+      </div>
+    `;
+    div.onclick = () => mudarPagina(idx);
+    container.appendChild(div);
+  });
+}
+
+function atualizarDetalhesCaixa() {
+  const painelVazio = document.getElementById("painel-caixa-vazio");
+  const painelAtivo = document.getElementById("painel-caixa-ativo");
+
+  if (app.selecionadas.size === 1) {
+    painelVazio.style.display = "none";
+    painelAtivo.style.display = "flex";
+
+    const cid = Array.from(app.selecionadas)[0];
+    const pag = paginaAtual();
+    const cx = pag.caixas.find(c => c.id === cid);
+    if (!cx) return;
+
+    document.getElementById("detalhe-caixa-id").textContent = cx.id;
+    const classeObj = CLASSES_CONFIG.find(c => c.id === cx.classe) || { nome: cx.classe };
+    document.getElementById("detalhe-caixa-classe").textContent = classeObj.nome;
+
+    const idxOrdem = (pag.ordem || []).indexOf(cx.id);
+    document.getElementById("detalhe-caixa-ordem").textContent = idxOrdem === -1 ? "Não numerada" : `#${idxOrdem + 1}`;
+
+    const [x0, y0, x1, y1] = normalizarBbox(cx.bbox);
+    document.getElementById("detalhe-caixa-dim").textContent = `${Math.round(x1 - x0)}×${Math.round(y1 - y0)} px (${x0},${y0})`;
+    document.getElementById("detalhe-caixa-texto").value = cx.texto || "";
+  } else {
+    painelVazio.style.display = "block";
+    painelAtivo.style.display = "none";
+    if (app.selecionadas.size > 1) {
+      painelVazio.textContent = `${app.selecionadas.size} caixas selecionadas (Pressione M para juntar).`;
+    } else {
+      painelVazio.innerHTML = "Nenhuma caixa selecionada.<br>Clique numa caixa ou arraste no vazio para criar.";
+    }
+  }
+}
+
+function salvarAutosave() {
+  try {
+    const estado = {
+      tarefas: app.tarefas,
+      indiceAtual: app.indiceAtual,
+      salvoEm: new Date().toISOString()
+    };
+    localStorage.setItem(CHAVE_STORAGE, JSON.stringify(estado));
+    const ind = document.getElementById("autosave-indicador");
+    ind.style.opacity = "1";
+    setTimeout(() => ind.style.opacity = "0.7", 800);
+  } catch (e) {
+    console.warn("Falha no autosave do localStorage:", e);
+  }
+}
+
+function carregarDoLocalStorage() {
+  const salvo = localStorage.getItem(CHAVE_STORAGE);
+  if (salvo) {
+    try {
+      const estado = JSON.parse(salvo);
+      if (estado.tarefas && estado.tarefas.length > 0) {
+        app.tarefas = estado.tarefas;
+        app.indiceAtual = estado.indiceAtual || 0;
+        atualizarListaTarefas();
+        carregarPaginaAtual();
+        mostrarAviso("Progresso restaurado automaticamente do cache local.");
+      }
+    } catch (e) {
+      console.warn("Erro ao restaurar do localStorage:", e);
+    }
+  }
+}
+
+function mostrarAviso(msg) {
+  console.log("[Classificador]", msg);
+}
+</script>
+</body>
+</html>

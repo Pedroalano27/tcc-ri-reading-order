@@ -1,0 +1,44 @@
+{
+  "official_diary_MG_congonhas/executive_official_diary_2020-12-10_2591.pdf#p1": {
+    "tempo_ms": 528.417200000149,
+    "unidades": 61,
+    "hierarquia": false,
+    "isolamento_ouro": true,
+    "metricas_fumaca": {
+      "tau": 0.05664480980221152,
+      "quebras": 58,
+      "quebras_mil": 77.64390896921017,
+      "fid12": 0.4344059405940594,
+      "sucessor_linhas": 0.05454545454545454,
+      "piso_interno": 0
+    }
+  },
+  "official_diary_RJ_barra_do_pirai/executive_official_diary_2022-08-02_139.pdf#p5": {
+    "tempo_ms": 773.0495000000701,
+    "unidades": 70,
+    "hierarquia": false,
+    "isolamento_ouro": true,
+    "metricas_fumaca": {
+      "tau": -0.17429817328847758,
+      "quebras": 68,
+      "quebras_mil": 100.89020771513353,
+      "fid12": 0.3360323886639676,
+      "sucessor_linhas": 0.14102564102564102,
+      "piso_interno": 0
+    }
+  },
+  "official_diary_ce/do20220512p03.pdf#p20": {
+    "tempo_ms": 654.7660999999607,
+    "unidades": 54,
+    "hierarquia": false,
+    "isolamento_ouro": true,
+    "metricas_fumaca": {
+      "tau": -0.03011657980050465,
+      "quebras": 72,
+      "quebras_mil": 63.88642413487134,
+      "fid12": 0.6731549067315491,
+      "sucessor_linhas": 0.7662337662337663,
+      "piso_interno": 20
+    }
+  }
+}

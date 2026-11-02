@@ -12,15 +12,15 @@
     "prop_blocos_de_1_palavra": 0.2908
   },
   "depois": {
-    "paginas": 260,
-    "blocos": 5301,
-    "blocos_por_pagina": 20.4,
+    "paginas": 269,
+    "blocos": 5319,
+    "blocos_por_pagina": 19.8,
     "blocos_sobrepostos": 110,
-    "prop_blocos_sobrepostos": 0.0208,
+    "prop_blocos_sobrepostos": 0.0207,
     "paginas_com_sobreposicao": 36,
-    "prop_paginas_com_sobreposicao": 0.1385,
+    "prop_paginas_com_sobreposicao": 0.1338,
     "blocos_de_1_palavra": 497,
-    "prop_blocos_de_1_palavra": 0.0938
+    "prop_blocos_de_1_palavra": 0.0934
   },
-  "data": "2026-09-12 23:23:23"
+  "data": "2026-09-13 01:31:44"
 }

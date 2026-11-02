@@ -1,0 +1,106 @@
+{
+  "page_id": "official_diary_RJ_duque_de_caxias/executive_official_diary_2022-09-28_Boletim_7197.pdf#p44",
+  "uf": "official_diary_RJ_duque_de_caxias",
+  "P2": {
+    "tau": 0.7806049794219365,
+    "quebras": 9,
+    "quebras_mil": 25.139664804469273,
+    "fid12": 0.9483333333333334,
+    "sucessor_linhas": 0.9395973154362416
+  },
+  "P1m": {
+    "tau": 0.8380983678387557,
+    "quebras": 74,
+    "quebras_mil": 206.70391061452514,
+    "fid12": 0.5366666666666666,
+    "sucessor_linhas": 0.5033557046979866
+  },
+  "regra_colunas_exportada": {
+    "tau": 0.7806049794219365,
+    "quebras": 9,
+    "quebras_mil": 25.139664804469273,
+    "fid12": 0.9483333333333334,
+    "sucessor_linhas": 0.9395973154362416,
+    "piso_interno": 0
+  },
+  "regra_colunas_ks_cru": {
+    "tau": 0.7806049794219365,
+    "quebras": 9,
+    "quebras_mil": 25.139664804469273,
+    "fid12": 0.9483333333333334,
+    "sucessor_linhas": 0.9395973154362416,
+    "piso_interno": 0
+  },
+  "expansao_canonica_diagnostico": {
+    "tau": 0.7806049794219365,
+    "quebras": 9,
+    "quebras_mil": 25.139664804469273,
+    "fid12": 0.9483333333333334,
+    "sucessor_linhas": 0.9395973154362416
+  },
+  "diagnostico": {
+    "ks_diferem_da_expansao_canonica": false,
+    "canonizada_identica_P2": true,
+    "unidades_internas_diferentes": 0,
+    "detalhes": []
+  },
+  "ordem_regra_colunas_exportada": [
+    "b2",
+    "b20",
+    "b18",
+    "b7",
+    "b1",
+    "b10",
+    "b6",
+    "b21",
+    "b0",
+    "b9",
+    "b13",
+    "b11",
+    "b5",
+    "b4",
+    "b19",
+    "b22",
+    "b16",
+    "b15",
+    "b3",
+    "b17",
+    "b14",
+    "b12",
+    "b8"
+  ],
+  "diag_regra": {
+    "unidades": 23,
+    "entrada": [
+      "b14",
+      "b5",
+      "b8",
+      "b18",
+      "b1",
+      "b7",
+      "b0",
+      "b3",
+      "b21",
+      "b9",
+      "b2",
+      "b6",
+      "b17",
+      "b15",
+      "b4",
+      "b20",
+      "b19",
+      "b11",
+      "b16",
+      "b13",
+      "b22",
+      "b10",
+      "b12"
+    ],
+    "max_colunas": 2,
+    "pontes": 1,
+    "topo": 7,
+    "rodape": 0,
+    "marcas": 0,
+    "tempo_ms": 0.4243000003043562
+  }
+}

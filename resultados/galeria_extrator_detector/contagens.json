@@ -1,0 +1,485 @@
+{
+  "totais": {
+    "ouro": {
+      "texto": 290,
+      "tabela": 20,
+      "imagem": 18,
+      "outro": 17,
+      "total": 345
+    },
+    "extrator": {
+      "texto": 336,
+      "tabela": 20,
+      "imagem": 24,
+      "outro": 14,
+      "total": 394
+    },
+    "ls16": {
+      "texto": 367,
+      "tabela": 25,
+      "imagem": 28,
+      "outro": 1,
+      "total": 421
+    },
+    "ls3": {
+      "texto": 372,
+      "tabela": 22,
+      "imagem": 27,
+      "outro": 0,
+      "total": 421
+    }
+  },
+  "paginas": [
+    {
+      "n": 1,
+      "page_id": "official_diary_to/2023-07-24_4946_22_50.pdf#p0",
+      "uf": "official_diary_to",
+      "veiculo": "Tocantins (TO)",
+      "arquivo": "2023-07-24_4946_22_50.pdf",
+      "pagina": 0,
+      "imagem": "001.jpg",
+      "dim_pt": "595.3 × 841.9",
+      "dim_px": "1241 × 1754",
+      "contagens": {
+        "ouro": {
+          "texto": 13,
+          "tabela": 1,
+          "imagem": 0,
+          "outro": 0,
+          "total": 14
+        },
+        "extrator": {
+          "texto": 29,
+          "tabela": 1,
+          "imagem": 0,
+          "outro": 0,
+          "total": 30
+        },
+        "ls16": {
+          "texto": 48,
+          "tabela": 1,
+          "imagem": 0,
+          "outro": 0,
+          "total": 49
+        },
+        "ls3": {
+          "texto": 47,
+          "tabela": 1,
+          "imagem": 0,
+          "outro": 0,
+          "total": 48
+        }
+      }
+    },
+    {
+      "n": 2,
+      "page_id": "official_diary_pr_curitiba/31-Supl2_2023-02-14.pdf#p76",
+      "uf": "official_diary_pr_curitiba",
+      "veiculo": "Curitiba (PR)",
+      "arquivo": "31-Supl2_2023-02-14.pdf",
+      "pagina": 76,
+      "imagem": "002.jpg",
+      "dim_pt": "595.0 × 842.0",
+      "dim_px": "1240 × 1755",
+      "contagens": {
+        "ouro": {
+          "texto": 3,
+          "tabela": 1,
+          "imagem": 2,
+          "outro": 0,
+          "total": 6
+        },
+        "extrator": {
+          "texto": 4,
+          "tabela": 1,
+          "imagem": 2,
+          "outro": 0,
+          "total": 7
+        },
+        "ls16": {
+          "texto": 5,
+          "tabela": 1,
+          "imagem": 2,
+          "outro": 0,
+          "total": 8
+        },
+        "ls3": {
+          "texto": 4,
+          "tabela": 1,
+          "imagem": 2,
+          "outro": 0,
+          "total": 7
+        }
+      }
+    },
+    {
+      "n": 3,
+      "page_id": "official_diary_se/DOE-SE_2022-03-18_4475.pdf#p10",
+      "uf": "official_diary_se",
+      "veiculo": "Sergipe (SE)",
+      "arquivo": "DOE-SE_2022-03-18_4475.pdf",
+      "pagina": 10,
+      "imagem": "003.jpg",
+      "dim_pt": "929.8 × 1275.6",
+      "dim_px": "1938 × 2658",
+      "contagens": {
+        "ouro": {
+          "texto": 106,
+          "tabela": 0,
+          "imagem": 3,
+          "outro": 11,
+          "total": 120
+        },
+        "extrator": {
+          "texto": 109,
+          "tabela": 0,
+          "imagem": 2,
+          "outro": 13,
+          "total": 124
+        },
+        "ls16": {
+          "texto": 91,
+          "tabela": 0,
+          "imagem": 2,
+          "outro": 0,
+          "total": 93
+        },
+        "ls3": {
+          "texto": 100,
+          "tabela": 0,
+          "imagem": 4,
+          "outro": 0,
+          "total": 104
+        }
+      }
+    },
+    {
+      "n": 4,
+      "page_id": "official_diary_RJ_duque_de_caxias/executive_official_diary_2022-08-05_Boletim_7175.pdf#p13",
+      "uf": "official_diary_RJ_duque_de_caxias",
+      "veiculo": "Duque de Caxias (RJ)",
+      "arquivo": "executive_official_diary_2022-08-05_Boletim_7175.pdf",
+      "pagina": 13,
+      "imagem": "004.jpg",
+      "dim_pt": "595.3 × 841.9",
+      "dim_px": "1241 × 1754",
+      "contagens": {
+        "ouro": {
+          "texto": 25,
+          "tabela": 4,
+          "imagem": 3,
+          "outro": 6,
+          "total": 38
+        },
+        "extrator": {
+          "texto": 31,
+          "tabela": 4,
+          "imagem": 9,
+          "outro": 0,
+          "total": 44
+        },
+        "ls16": {
+          "texto": 34,
+          "tabela": 4,
+          "imagem": 12,
+          "outro": 1,
+          "total": 51
+        },
+        "ls3": {
+          "texto": 29,
+          "tabela": 4,
+          "imagem": 10,
+          "outro": 0,
+          "total": 43
+        }
+      }
+    },
+    {
+      "n": 5,
+      "page_id": "official_diary_MG_congonhas/executive_official_diary_2014-04-09_998.pdf#p1",
+      "uf": "official_diary_MG_congonhas",
+      "veiculo": "Congonhas (MG)",
+      "arquivo": "executive_official_diary_2014-04-09_998.pdf",
+      "pagina": 1,
+      "imagem": "005.jpg",
+      "dim_pt": "595.3 × 841.9",
+      "dim_px": "1241 × 1754",
+      "contagens": {
+        "ouro": {
+          "texto": 14,
+          "tabela": 1,
+          "imagem": 1,
+          "outro": 0,
+          "total": 16
+        },
+        "extrator": {
+          "texto": 16,
+          "tabela": 1,
+          "imagem": 1,
+          "outro": 0,
+          "total": 18
+        },
+        "ls16": {
+          "texto": 13,
+          "tabela": 1,
+          "imagem": 3,
+          "outro": 0,
+          "total": 17
+        },
+        "ls3": {
+          "texto": 13,
+          "tabela": 1,
+          "imagem": 2,
+          "outro": 0,
+          "total": 16
+        }
+      }
+    },
+    {
+      "n": 6,
+      "page_id": "official_diary_rr/2023-11-14_DiarioRR.pdf#p23",
+      "uf": "official_diary_rr",
+      "veiculo": "Roraima (RR)",
+      "arquivo": "2023-11-14_DiarioRR.pdf",
+      "pagina": 23,
+      "imagem": "006.jpg",
+      "dim_pt": "595.3 × 841.9",
+      "dim_px": "1241 × 1754",
+      "contagens": {
+        "ouro": {
+          "texto": 20,
+          "tabela": 2,
+          "imagem": 6,
+          "outro": 0,
+          "total": 28
+        },
+        "extrator": {
+          "texto": 26,
+          "tabela": 2,
+          "imagem": 5,
+          "outro": 0,
+          "total": 33
+        },
+        "ls16": {
+          "texto": 32,
+          "tabela": 2,
+          "imagem": 5,
+          "outro": 0,
+          "total": 39
+        },
+        "ls3": {
+          "texto": 30,
+          "tabela": 2,
+          "imagem": 5,
+          "outro": 0,
+          "total": 37
+        }
+      }
+    },
+    {
+      "n": 7,
+      "page_id": "official_diary_ro/executive_official_diary_2021-11-11.pdf#p344",
+      "uf": "official_diary_ro",
+      "veiculo": "Rondônia (RO)",
+      "arquivo": "executive_official_diary_2021-11-11.pdf",
+      "pagina": 344,
+      "imagem": "007.jpg",
+      "dim_pt": "595.0 × 842.0",
+      "dim_px": "1240 × 1755",
+      "contagens": {
+        "ouro": {
+          "texto": 25,
+          "tabela": 0,
+          "imagem": 0,
+          "outro": 0,
+          "total": 25
+        },
+        "extrator": {
+          "texto": 27,
+          "tabela": 0,
+          "imagem": 1,
+          "outro": 0,
+          "total": 28
+        },
+        "ls16": {
+          "texto": 29,
+          "tabela": 0,
+          "imagem": 0,
+          "outro": 0,
+          "total": 29
+        },
+        "ls3": {
+          "texto": 30,
+          "tabela": 0,
+          "imagem": 0,
+          "outro": 0,
+          "total": 30
+        }
+      }
+    },
+    {
+      "n": 8,
+      "page_id": "official_diary_ms/executive_official_diary_48977_2025-03-27.pdf#p359",
+      "uf": "official_diary_ms",
+      "veiculo": "Mato Grosso do Sul (MS)",
+      "arquivo": "executive_official_diary_48977_2025-03-27.pdf",
+      "pagina": 359,
+      "imagem": "008.jpg",
+      "dim_pt": "595.3 × 841.9",
+      "dim_px": "1241 × 1754",
+      "contagens": {
+        "ouro": {
+          "texto": 20,
+          "tabela": 1,
+          "imagem": 2,
+          "outro": 0,
+          "total": 23
+        },
+        "extrator": {
+          "texto": 32,
+          "tabela": 1,
+          "imagem": 2,
+          "outro": 0,
+          "total": 35
+        },
+        "ls16": {
+          "texto": 23,
+          "tabela": 1,
+          "imagem": 2,
+          "outro": 0,
+          "total": 26
+        },
+        "ls3": {
+          "texto": 20,
+          "tabela": 1,
+          "imagem": 2,
+          "outro": 0,
+          "total": 23
+        }
+      }
+    },
+    {
+      "n": 9,
+      "page_id": "official_diary_rs_porto_alegre/5393_ce_20241023_executivo.pdf#p4",
+      "uf": "official_diary_rs_porto_alegre",
+      "veiculo": "Porto Alegre (RS)",
+      "arquivo": "5393_ce_20241023_executivo.pdf",
+      "pagina": 4,
+      "imagem": "009.jpg",
+      "dim_pt": "595.3 × 841.9",
+      "dim_px": "1241 × 1754",
+      "contagens": {
+        "ouro": {
+          "texto": 3,
+          "tabela": 1,
+          "imagem": 0,
+          "outro": 0,
+          "total": 4
+        },
+        "extrator": {
+          "texto": 3,
+          "tabela": 1,
+          "imagem": 0,
+          "outro": 0,
+          "total": 4
+        },
+        "ls16": {
+          "texto": 3,
+          "tabela": 1,
+          "imagem": 0,
+          "outro": 0,
+          "total": 4
+        },
+        "ls3": {
+          "texto": 3,
+          "tabela": 1,
+          "imagem": 0,
+          "outro": 0,
+          "total": 4
+        }
+      }
+    },
+    {
+      "n": 10,
+      "page_id": "official_diary_pe/2021-08-12_1-Poder Executivo.pdf#p4",
+      "uf": "official_diary_pe",
+      "veiculo": "Pernambuco (PE)",
+      "arquivo": "2021-08-12_1-Poder Executivo.pdf",
+      "pagina": 4,
+      "imagem": "010.jpg",
+      "dim_pt": "793.7 × 1040.3",
+      "dim_px": "1654 × 2168",
+      "contagens": {
+        "ouro": {
+          "texto": 46,
+          "tabela": 9,
+          "imagem": 0,
+          "outro": 0,
+          "total": 55
+        },
+        "extrator": {
+          "texto": 41,
+          "tabela": 9,
+          "imagem": 0,
+          "outro": 0,
+          "total": 50
+        },
+        "ls16": {
+          "texto": 69,
+          "tabela": 14,
+          "imagem": 0,
+          "outro": 0,
+          "total": 83
+        },
+        "ls3": {
+          "texto": 78,
+          "tabela": 11,
+          "imagem": 0,
+          "outro": 0,
+          "total": 89
+        }
+      }
+    },
+    {
+      "n": 11,
+      "page_id": "official_diary_pi_v2/executive_official_diary_2025_04_30_81_2025.pdf#p174",
+      "uf": "official_diary_pi_v2",
+      "veiculo": "Piauí (PI)",
+      "arquivo": "executive_official_diary_2025_04_30_81_2025.pdf",
+      "pagina": 174,
+      "imagem": "011.jpg",
+      "dim_pt": "595.3 × 841.9",
+      "dim_px": "1241 × 1754",
+      "contagens": {
+        "ouro": {
+          "texto": 15,
+          "tabela": 0,
+          "imagem": 1,
+          "outro": 0,
+          "total": 16
+        },
+        "extrator": {
+          "texto": 18,
+          "tabela": 0,
+          "imagem": 2,
+          "outro": 1,
+          "total": 21
+        },
+        "ls16": {
+          "texto": 20,
+          "tabela": 0,
+          "imagem": 2,
+          "outro": 0,
+          "total": 22
+        },
+        "ls3": {
+          "texto": 18,
+          "tabela": 0,
+          "imagem": 2,
+          "outro": 0,
+          "total": 20
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,324 @@
+{
+  "config": {
+    "modo": "treinar",
+    "modelo": "sucessor",
+    "variante": "geo",
+    "representacao": "linhas",
+    "device": "cuda",
+    "nome": "sucessor_linhas_40ep",
+    "dir_saida": "resultados\\ordenadores_treinados_sem_caixas\\sucessor_linhas_40ep",
+    "blocos": null,
+    "blocos_extra": null,
+    "n_treino": null,
+    "max_minutos": 70.0,
+    "max_passos": 0,
+    "epocas": 40,
+    "batch": 8,
+    "micro_batch": 1,
+    "lr": 4e-05,
+    "lr_cabeca": 0.001,
+    "peso_posicao": 0.5,
+    "limiar_cadeia": 0.5,
+    "seed": 42
+  },
+  "fingerprint": "a4e5a5e037f5083e4b7922196620ec8979aee069777b051efe2e35e90574d019",
+  "paginas_treino": 873,
+  "paginas_congeladas": 873,
+  "paginas_validacao": 15,
+  "tokens_por_unidade": 1,
+  "treinaveis": 113023490,
+  "parametros": 113023490,
+  "memoria_apos_modelo": {
+    "ram_livre_mb": 3354.33984375,
+    "commit_livre_mb": 13835.015625
+  },
+  "epocas_completas": 40,
+  "cursor": 0,
+  "passos": 4400,
+  "segundos": 3948.2029999999977,
+  "melhor_val_tau_unidades": 0.9346616462907889,
+  "historico": [
+    {
+      "epoca": 1,
+      "cursor": 873,
+      "passos": 110,
+      "val_tau_unidades": 0.7691229421967525,
+      "ultima_loss": 3.2797622680664062
+    },
+    {
+      "epoca": 2,
+      "cursor": 873,
+      "passos": 220,
+      "val_tau_unidades": 0.8086379916187183,
+      "ultima_loss": 2.325449228286743
+    },
+    {
+      "epoca": 3,
+      "cursor": 873,
+      "passos": 330,
+      "val_tau_unidades": 0.8135142283663989,
+      "ultima_loss": 1.8082401752471924
+    },
+    {
+      "epoca": 4,
+      "cursor": 873,
+      "passos": 440,
+      "val_tau_unidades": 0.8517465928473275,
+      "ultima_loss": 2.175586223602295
+    },
+    {
+      "epoca": 5,
+      "cursor": 873,
+      "passos": 550,
+      "val_tau_unidades": 0.8600759152608428,
+      "ultima_loss": 2.073209762573242
+    },
+    {
+      "epoca": 6,
+      "cursor": 873,
+      "passos": 660,
+      "val_tau_unidades": 0.8582329916589723,
+      "ultima_loss": 1.6128966808319092
+    },
+    {
+      "epoca": 7,
+      "cursor": 873,
+      "passos": 770,
+      "val_tau_unidades": 0.8474746411595739,
+      "ultima_loss": 2.015570640563965
+    },
+    {
+      "epoca": 8,
+      "cursor": 873,
+      "passos": 880,
+      "val_tau_unidades": 0.868510120193144,
+      "ultima_loss": 0.7658325433731079
+    },
+    {
+      "epoca": 9,
+      "cursor": 873,
+      "passos": 990,
+      "val_tau_unidades": 0.8597321914088467,
+      "ultima_loss": 1.6041829586029053
+    },
+    {
+      "epoca": 10,
+      "cursor": 873,
+      "passos": 1100,
+      "val_tau_unidades": 0.8543808190211504,
+      "ultima_loss": 0.9748731851577759
+    },
+    {
+      "epoca": 11,
+      "cursor": 873,
+      "passos": 1210,
+      "val_tau_unidades": 0.8506327489858859,
+      "ultima_loss": 0.6525782942771912
+    },
+    {
+      "epoca": 12,
+      "cursor": 873,
+      "passos": 1320,
+      "val_tau_unidades": 0.8328403967391325,
+      "ultima_loss": 1.6457140445709229
+    },
+    {
+      "epoca": 13,
+      "cursor": 873,
+      "passos": 1430,
+      "val_tau_unidades": 0.879663545826845,
+      "ultima_loss": 0.5529749989509583
+    },
+    {
+      "epoca": 14,
+      "cursor": 873,
+      "passos": 1540,
+      "val_tau_unidades": 0.8672798346693706,
+      "ultima_loss": 0.9138128161430359
+    },
+    {
+      "epoca": 15,
+      "cursor": 873,
+      "passos": 1650,
+      "val_tau_unidades": 0.8838428964805559,
+      "ultima_loss": 0.8402295112609863
+    },
+    {
+      "epoca": 16,
+      "cursor": 873,
+      "passos": 1760,
+      "val_tau_unidades": 0.9015284511893084,
+      "ultima_loss": 0.6417221426963806
+    },
+    {
+      "epoca": 17,
+      "cursor": 873,
+      "passos": 1870,
+      "val_tau_unidades": 0.8702716422477178,
+      "ultima_loss": 1.0003290176391602
+    },
+    {
+      "epoca": 18,
+      "cursor": 873,
+      "passos": 1980,
+      "val_tau_unidades": 0.869886976734944,
+      "ultima_loss": 0.3197023868560791
+    },
+    {
+      "epoca": 19,
+      "cursor": 873,
+      "passos": 2090,
+      "val_tau_unidades": 0.9001443881051832,
+      "ultima_loss": 0.3877117335796356
+    },
+    {
+      "epoca": 20,
+      "cursor": 873,
+      "passos": 2200,
+      "val_tau_unidades": 0.9081431760404839,
+      "ultima_loss": 0.9836928844451904
+    },
+    {
+      "epoca": 21,
+      "cursor": 873,
+      "passos": 2310,
+      "val_tau_unidades": 0.9192631077264228,
+      "ultima_loss": 0.8558222055435181
+    },
+    {
+      "epoca": 22,
+      "cursor": 873,
+      "passos": 2420,
+      "val_tau_unidades": 0.9102176807718001,
+      "ultima_loss": 0.1425597220659256
+    },
+    {
+      "epoca": 23,
+      "cursor": 873,
+      "passos": 2530,
+      "val_tau_unidades": 0.9278885508266492,
+      "ultima_loss": 0.09923786669969559
+    },
+    {
+      "epoca": 24,
+      "cursor": 873,
+      "passos": 2640,
+      "val_tau_unidades": 0.921033570458537,
+      "ultima_loss": 0.240946963429451
+    },
+    {
+      "epoca": 25,
+      "cursor": 873,
+      "passos": 2750,
+      "val_tau_unidades": 0.904865263872869,
+      "ultima_loss": 0.38693371415138245
+    },
+    {
+      "epoca": 26,
+      "cursor": 873,
+      "passos": 2860,
+      "val_tau_unidades": 0.9103242210764156,
+      "ultima_loss": 0.22512640058994293
+    },
+    {
+      "epoca": 27,
+      "cursor": 873,
+      "passos": 2970,
+      "val_tau_unidades": 0.9116016081252228,
+      "ultima_loss": 0.2168065309524536
+    },
+    {
+      "epoca": 28,
+      "cursor": 873,
+      "passos": 3080,
+      "val_tau_unidades": 0.9181713767546495,
+      "ultima_loss": 0.17842377722263336
+    },
+    {
+      "epoca": 29,
+      "cursor": 873,
+      "passos": 3190,
+      "val_tau_unidades": 0.9093594409964701,
+      "ultima_loss": 1.0811129808425903
+    },
+    {
+      "epoca": 30,
+      "cursor": 873,
+      "passos": 3300,
+      "val_tau_unidades": 0.9021501728238301,
+      "ultima_loss": 0.17506317794322968
+    },
+    {
+      "epoca": 31,
+      "cursor": 873,
+      "passos": 3410,
+      "val_tau_unidades": 0.9072447628907585,
+      "ultima_loss": 0.11863832175731659
+    },
+    {
+      "epoca": 32,
+      "cursor": 873,
+      "passos": 3520,
+      "val_tau_unidades": 0.9046313326741308,
+      "ultima_loss": 0.2536061406135559
+    },
+    {
+      "epoca": 33,
+      "cursor": 873,
+      "passos": 3630,
+      "val_tau_unidades": 0.9147295089820372,
+      "ultima_loss": 0.3342932164669037
+    },
+    {
+      "epoca": 34,
+      "cursor": 873,
+      "passos": 3740,
+      "val_tau_unidades": 0.9169405150049158,
+      "ultima_loss": 0.019419891759753227
+    },
+    {
+      "epoca": 35,
+      "cursor": 873,
+      "passos": 3850,
+      "val_tau_unidades": 0.9242495384212737,
+      "ultima_loss": 0.17730070650577545
+    },
+    {
+      "epoca": 36,
+      "cursor": 873,
+      "passos": 3960,
+      "val_tau_unidades": 0.9189474762482434,
+      "ultima_loss": 0.12319788336753845
+    },
+    {
+      "epoca": 37,
+      "cursor": 873,
+      "passos": 4070,
+      "val_tau_unidades": 0.9197432312855487,
+      "ultima_loss": 0.08197177946567535
+    },
+    {
+      "epoca": 38,
+      "cursor": 873,
+      "passos": 4180,
+      "val_tau_unidades": 0.9346616462907889,
+      "ultima_loss": 0.18131056427955627
+    },
+    {
+      "epoca": 39,
+      "cursor": 873,
+      "passos": 4290,
+      "val_tau_unidades": 0.915660720288891,
+      "ultima_loss": 0.2889021933078766
+    },
+    {
+      "epoca": 40,
+      "cursor": 873,
+      "passos": 4400,
+      "val_tau_unidades": 0.9139355701156309,
+      "ultima_loss": 0.5289762616157532
+    }
+  ],
+  "paginas_visitadas": 873,
+  "concluido": true
+}

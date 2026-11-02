@@ -1,0 +1,94 @@
+{
+  "page_id": "official_diary_RJ_barra_do_pirai/executive_official_diary_2022-05-26_095.pdf#p2",
+  "uf": "official_diary_RJ_barra_do_pirai",
+  "P2": {
+    "tau": 0.9566367001586463,
+    "quebras": 5,
+    "quebras_mil": 80.64516129032258,
+    "fid12": 0.631578947368421,
+    "sucessor_linhas": 0.5454545454545454
+  },
+  "P1m": {
+    "tau": 0.9460602855631941,
+    "quebras": 3,
+    "quebras_mil": 48.38709677419355,
+    "fid12": 0.7192982456140351,
+    "sucessor_linhas": 0.7272727272727273
+  },
+  "regra_colunas_exportada": {
+    "tau": 0.9566367001586463,
+    "quebras": 5,
+    "quebras_mil": 80.64516129032258,
+    "fid12": 0.631578947368421,
+    "sucessor_linhas": 0.5454545454545454,
+    "piso_interno": 0
+  },
+  "regra_colunas_ks_cru": {
+    "tau": 0.9566367001586463,
+    "quebras": 5,
+    "quebras_mil": 80.64516129032258,
+    "fid12": 0.631578947368421,
+    "sucessor_linhas": 0.5454545454545454,
+    "piso_interno": 0
+  },
+  "expansao_canonica_diagnostico": {
+    "tau": 0.9566367001586463,
+    "quebras": 5,
+    "quebras_mil": 80.64516129032258,
+    "fid12": 0.631578947368421,
+    "sucessor_linhas": 0.5454545454545454
+  },
+  "diagnostico": {
+    "ks_diferem_da_expansao_canonica": false,
+    "canonizada_identica_P2": true,
+    "unidades_internas_diferentes": 0,
+    "detalhes": []
+  },
+  "ordem_regra_colunas_exportada": [
+    "b14",
+    "b8",
+    "b9",
+    "b16",
+    "b4",
+    "b13",
+    "b0",
+    "b1",
+    "b10",
+    "b3",
+    "b7",
+    "b2",
+    "b15",
+    "b6",
+    "b5",
+    "b12",
+    "b11"
+  ],
+  "diag_regra": {
+    "unidades": 17,
+    "entrada": [
+      "b7",
+      "b11",
+      "b0",
+      "b8",
+      "b1",
+      "b2",
+      "b16",
+      "b14",
+      "b10",
+      "b3",
+      "b4",
+      "b6",
+      "b15",
+      "b5",
+      "b12",
+      "b13",
+      "b9"
+    ],
+    "max_colunas": 1,
+    "pontes": 0,
+    "topo": 1,
+    "rodape": 6,
+    "marcas": 0,
+    "tempo_ms": 0.1674000000093656
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "config": {
+    "modo": "treinar",
+    "modelo": "layoutreader",
+    "variante": "geo",
+    "representacao": "linhas",
+    "device": "cuda",
+    "nome": "layoutreader_ajustado_linhas",
+    "dir_saida": "resultados\\ordenadores_treinados_sem_caixas\\layoutreader_ajustado_linhas",
+    "blocos": null,
+    "blocos_extra": null,
+    "n_treino": null,
+    "max_minutos": 70.0,
+    "max_passos": 0,
+    "epocas": 4,
+    "batch": 8,
+    "micro_batch": 1,
+    "lr": 4e-05,
+    "lr_cabeca": 0.001,
+    "peso_posicao": 0.5,
+    "limiar_cadeia": 0.5,
+    "seed": 42
+  },
+  "fingerprint": "16c579337dead484f5ff461e479c24d420b0b635a1ac89b766623f03a735a61f",
+  "paginas_treino": 873,
+  "paginas_congeladas": 873,
+  "paginas_validacao": 15,
+  "tokens_por_unidade": 1,
+  "treinaveis": 51957246,
+  "parametros": 356583422,
+  "memoria_apos_modelo": {
+    "ram_livre_mb": 2768.91015625,
+    "commit_livre_mb": 12071.5625
+  },
+  "epocas_completas": 4,
+  "cursor": 0,
+  "passos": 440,
+  "segundos": 204.04699999999866,
+  "melhor_val_tau_unidades": 0.9010462080883851,
+  "historico": [
+    {
+      "epoca": 1,
+      "cursor": 873,
+      "passos": 110,
+      "val_tau_unidades": 0.9010462080883851,
+      "ultima_loss": 0.6895805597305298
+    },
+    {
+      "epoca": 2,
+      "cursor": 873,
+      "passos": 220,
+      "val_tau_unidades": 0.8949877950635116,
+      "ultima_loss": 0.6926394104957581
+    },
+    {
+      "epoca": 3,
+      "cursor": 873,
+      "passos": 330,
+      "val_tau_unidades": 0.8972677292785468,
+      "ultima_loss": 2.9754889011383057
+    },
+    {
+      "epoca": 4,
+      "cursor": 873,
+      "passos": 440,
+      "val_tau_unidades": 0.8975314398554375,
+      "ultima_loss": 5.394177436828613
+    }
+  ],
+  "paginas_visitadas": 873,
+  "concluido": true
+}

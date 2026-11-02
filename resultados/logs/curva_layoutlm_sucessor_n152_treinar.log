@@ -1,0 +1,130 @@
+[*] treino montado: 152 paginas (152 base + 0 extras; 3037 extras disponiveis)
+[*] treino: 152 paginas | validacao: 15 | referencia: stream | vies geo: True | peso posicao: 0.5
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/203 [00:00<?, ?it/s]Loading weights: 100%|██████████| 203/203 [00:00<00:00, 2304.47it/s]
+  ep 1 passo 10/760 ce 3.8014 mse 0.2252 (5s)
+[val] epoca 1: tau 0.3423 | sucessor 0.1376 | ARD norm 0.2216
+      novo melhor modelo salvo (tau 0.3423)
+  ep 2 passo 20/760 ce 4.1661 mse 0.0831 (9s)
+  ep 2 passo 30/760 ce 3.6054 mse 0.0677 (13s)
+[val] epoca 2: tau 0.4293 | sucessor 0.0936 | ARD norm 0.1990
+      novo melhor modelo salvo (tau 0.4293)
+  ep 3 passo 40/760 ce 3.0080 mse 0.0402 (17s)
+  ep 3 passo 50/760 ce 2.9875 mse 0.0478 (20s)
+[val] epoca 3: tau 0.6668 | sucessor 0.2611 | ARD norm 0.1263
+      novo melhor modelo salvo (tau 0.6668)
+  ep 4 passo 60/760 ce 2.5598 mse 0.0426 (25s)
+  ep 4 passo 70/760 ce 2.4263 mse 0.0338 (28s)
+[val] epoca 4: tau 0.6451 | sucessor 0.2305 | ARD norm 0.1318
+  ep 5 passo 80/760 ce 2.1296 mse 0.0329 (32s)
+  ep 5 passo 90/760 ce 1.9636 mse 0.0361 (36s)
+[val] epoca 5: tau 0.6840 | sucessor 0.3079 | ARD norm 0.1180
+      novo melhor modelo salvo (tau 0.6840)
+  ep 6 passo 100/760 ce 1.7538 mse 0.0252 (41s)
+  ep 6 passo 110/760 ce 1.5476 mse 0.0268 (45s)
+[val] epoca 6: tau 0.6489 | sucessor 0.2900 | ARD norm 0.1329
+  ep 7 passo 120/760 ce 1.6112 mse 0.0268 (50s)
+  ep 7 passo 130/760 ce 1.3175 mse 0.0225 (54s)
+[val] epoca 7: tau 0.6727 | sucessor 0.3235 | ARD norm 0.1213
+  ep 8 passo 140/760 ce 1.2564 mse 0.0274 (59s)
+  ep 8 passo 150/760 ce 1.1128 mse 0.0225 (63s)
+[val] epoca 8: tau 0.7274 | sucessor 0.4585 | ARD norm 0.1056
+      novo melhor modelo salvo (tau 0.7274)
+  ep 9 passo 160/760 ce 1.0974 mse 0.0236 (69s)
+  ep 9 passo 170/760 ce 1.0349 mse 0.0231 (73s)
+[val] epoca 9: tau 0.7065 | sucessor 0.4337 | ARD norm 0.1114
+  ep 10 passo 180/760 ce 1.0074 mse 0.0219 (78s)
+  ep 10 passo 190/760 ce 0.9095 mse 0.0249 (82s)
+[val] epoca 10: tau 0.6835 | sucessor 0.4236 | ARD norm 0.1204
+  ep 11 passo 200/760 ce 0.9067 mse 0.0201 (86s)
+[val] epoca 11: tau 0.6831 | sucessor 0.4351 | ARD norm 0.1199
+  ep 12 passo 210/760 ce 0.5724 mse 0.0093 (91s)
+  ep 12 passo 220/760 ce 0.8070 mse 0.0228 (95s)
+[val] epoca 12: tau 0.6902 | sucessor 0.4583 | ARD norm 0.1182
+  ep 13 passo 230/760 ce 0.6562 mse 0.0212 (100s)
+  ep 13 passo 240/760 ce 0.6702 mse 0.0188 (104s)
+[val] epoca 13: tau 0.7137 | sucessor 0.4409 | ARD norm 0.1109
+  ep 14 passo 250/760 ce 0.7421 mse 0.0162 (109s)
+  ep 14 passo 260/760 ce 0.6054 mse 0.0201 (112s)
+[val] epoca 14: tau 0.6595 | sucessor 0.4282 | ARD norm 0.1309
+  ep 15 passo 270/760 ce 0.6990 mse 0.0154 (117s)
+  ep 15 passo 280/760 ce 0.5840 mse 0.0201 (121s)
+[val] epoca 15: tau 0.7057 | sucessor 0.4947 | ARD norm 0.1169
+  ep 16 passo 290/760 ce 0.4684 mse 0.0227 (125s)
+  ep 16 passo 300/760 ce 0.6444 mse 0.0209 (130s)
+[val] epoca 16: tau 0.7293 | sucessor 0.4772 | ARD norm 0.1046
+      novo melhor modelo salvo (tau 0.7293)
+  ep 17 passo 310/760 ce 0.6876 mse 0.0197 (136s)
+  ep 17 passo 320/760 ce 0.4054 mse 0.0180 (140s)
+[val] epoca 17: tau 0.7360 | sucessor 0.4966 | ARD norm 0.1025
+      novo melhor modelo salvo (tau 0.7360)
+  ep 18 passo 330/760 ce 0.4430 mse 0.0167 (146s)
+  ep 18 passo 340/760 ce 0.4582 mse 0.0209 (151s)
+[val] epoca 18: tau 0.7371 | sucessor 0.4802 | ARD norm 0.1003
+      novo melhor modelo salvo (tau 0.7371)
+  ep 19 passo 350/760 ce 0.4236 mse 0.0213 (156s)
+  ep 19 passo 360/760 ce 0.4596 mse 0.0157 (161s)
+[val] epoca 19: tau 0.7060 | sucessor 0.4954 | ARD norm 0.1119
+  ep 20 passo 370/760 ce 0.4427 mse 0.0197 (165s)
+  ep 20 passo 380/760 ce 0.3861 mse 0.0180 (169s)
+[val] epoca 20: tau 0.7085 | sucessor 0.5030 | ARD norm 0.1111
+  ep 21 passo 390/760 ce 0.4167 mse 0.0160 (174s)
+[val] epoca 21: tau 0.7250 | sucessor 0.5300 | ARD norm 0.1052
+  ep 22 passo 400/760 ce 0.2361 mse 0.0097 (178s)
+  ep 22 passo 410/760 ce 0.3303 mse 0.0200 (183s)
+[val] epoca 22: tau 0.7346 | sucessor 0.5115 | ARD norm 0.1024
+  ep 23 passo 420/760 ce 0.3968 mse 0.0169 (187s)
+  ep 23 passo 430/760 ce 0.3444 mse 0.0176 (192s)
+[val] epoca 23: tau 0.7023 | sucessor 0.4628 | ARD norm 0.1173
+  ep 24 passo 440/760 ce 0.5134 mse 0.0216 (196s)
+  ep 24 passo 450/760 ce 0.3006 mse 0.0157 (201s)
+[val] epoca 24: tau 0.7198 | sucessor 0.5420 | ARD norm 0.1099
+  ep 25 passo 460/760 ce 0.1771 mse 0.0186 (205s)
+  ep 25 passo 470/760 ce 0.3284 mse 0.0166 (210s)
+[val] epoca 25: tau 0.7003 | sucessor 0.4455 | ARD norm 0.1178
+  ep 26 passo 480/760 ce 0.2923 mse 0.0185 (214s)
+  ep 26 passo 490/760 ce 0.2559 mse 0.0136 (218s)
+[val] epoca 26: tau 0.7189 | sucessor 0.5227 | ARD norm 0.1087
+  ep 27 passo 500/760 ce 0.2370 mse 0.0121 (223s)
+  ep 27 passo 510/760 ce 0.2954 mse 0.0207 (228s)
+[val] epoca 27: tau 0.7090 | sucessor 0.4604 | ARD norm 0.1146
+  ep 28 passo 520/760 ce 0.1972 mse 0.0162 (232s)
+  ep 28 passo 530/760 ce 0.3003 mse 0.0155 (236s)
+[val] epoca 28: tau 0.7371 | sucessor 0.5171 | ARD norm 0.1003
+  ep 29 passo 540/760 ce 0.2771 mse 0.0149 (241s)
+  ep 29 passo 550/760 ce 0.2499 mse 0.0197 (246s)
+[val] epoca 29: tau 0.7439 | sucessor 0.5194 | ARD norm 0.1009
+      novo melhor modelo salvo (tau 0.7439)
+  ep 30 passo 560/760 ce 0.2979 mse 0.0199 (252s)
+  ep 30 passo 570/760 ce 0.1828 mse 0.0144 (256s)
+[val] epoca 30: tau 0.7379 | sucessor 0.5235 | ARD norm 0.1020
+  ep 31 passo 580/760 ce 0.1771 mse 0.0183 (261s)
+[val] epoca 31: tau 0.7301 | sucessor 0.5373 | ARD norm 0.1071
+  ep 32 passo 590/760 ce 0.2531 mse 0.0449 (265s)
+  ep 32 passo 600/760 ce 0.1861 mse 0.0147 (270s)
+[val] epoca 32: tau 0.6910 | sucessor 0.4662 | ARD norm 0.1195
+  ep 33 passo 610/760 ce 0.1141 mse 0.0107 (274s)
+  ep 33 passo 620/760 ce 0.2153 mse 0.0190 (279s)
+[val] epoca 33: tau 0.7208 | sucessor 0.4921 | ARD norm 0.1084
+  ep 34 passo 630/760 ce 0.0950 mse 0.0094 (284s)
+  ep 34 passo 640/760 ce 0.1764 mse 0.0202 (288s)
+[val] epoca 34: tau 0.7350 | sucessor 0.5064 | ARD norm 0.1024
+  ep 35 passo 650/760 ce 0.1481 mse 0.0178 (293s)
+  ep 35 passo 660/760 ce 0.1965 mse 0.0147 (297s)
+[val] epoca 35: tau 0.7300 | sucessor 0.5128 | ARD norm 0.1055
+  ep 36 passo 670/760 ce 0.2340 mse 0.0155 (301s)
+  ep 36 passo 680/760 ce 0.1515 mse 0.0169 (306s)
+[val] epoca 36: tau 0.7190 | sucessor 0.4863 | ARD norm 0.1096
+  ep 37 passo 690/760 ce 0.1248 mse 0.0150 (311s)
+  ep 37 passo 700/760 ce 0.2264 mse 0.0153 (315s)
+[val] epoca 37: tau 0.7305 | sucessor 0.5209 | ARD norm 0.1051
+  ep 38 passo 710/760 ce 0.1423 mse 0.0122 (319s)
+  ep 38 passo 720/760 ce 0.1929 mse 0.0154 (324s)
+[val] epoca 38: tau 0.6939 | sucessor 0.4784 | ARD norm 0.1194
+  ep 39 passo 730/760 ce 0.1793 mse 0.0100 (328s)
+  ep 39 passo 740/760 ce 0.1477 mse 0.0193 (333s)
+[val] epoca 39: tau 0.6938 | sucessor 0.4855 | ARD norm 0.1194
+  ep 40 passo 750/760 ce 0.1585 mse 0.0155 (337s)
+  ep 40 passo 760/760 ce 0.1515 mse 0.0147 (342s)
+[val] epoca 40: tau 0.6913 | sucessor 0.4775 | ARD norm 0.1199
+[OK] treino em 342s | melhor val tau 0.7439

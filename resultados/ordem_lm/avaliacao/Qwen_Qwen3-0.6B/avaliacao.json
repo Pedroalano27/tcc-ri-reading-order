@@ -1,0 +1,4362 @@
+{
+  "modelo": {
+    "config": {
+      "modelo": "Qwen/Qwen3-0.6B",
+      "revisao": "main",
+      "nsp": null,
+      "dtype": "float16",
+      "lote": 4,
+      "max_tokens": 512,
+      "threads": 4,
+      "dispositivo": "cuda",
+      "versao": "causal-continuacao-v1",
+      "script_sha256": "43bc8c331aa596aff8df21b3b804f846d9c04b8a2096fba1c7185c607f50b68a"
+    },
+    "revisao_resolvida": "c1899de289a04d12100db370d81485cdf75e47ca",
+    "avisos": [],
+    "nsp_ativo": false,
+    "segundos_carga": 54.447800299999926,
+    "memoria_carga": {
+      "rss_mb": 2338.58203125,
+      "pico_rss_mb": 3689.40625
+    },
+    "torch": "2.9.1+cu128",
+    "parametros": 596049920,
+    "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU"
+  },
+  "diretorio_escores": "C:\\Users\\pedro\\dev\\tcc-ri-reading-order\\resultados\\ordem_lm\\escores\\Qwen_Qwen3-0.6B",
+  "cobertura": {
+    "golden_v4": {
+      "pontuadas": 3,
+      "esperadas": 44,
+      "completa": false
+    },
+    "validacao_silver": {
+      "pontuadas": 0,
+      "esperadas": 15,
+      "completa": false
+    },
+    "golden_v3_novo": {
+      "pontuadas": 0,
+      "esperadas": 27,
+      "completa": false
+    },
+    "teste_silver": {
+      "pontuadas": 0,
+      "esperadas": 89,
+      "completa": false
+    }
+  },
+  "ajuste_completo": false,
+  "completa": false,
+  "selecao": {
+    "seletiva": "seletiva_r0.5_t0.5",
+    "global": "global_r0.5_n0.0"
+  },
+  "grade": [
+    {
+      "nome": "seletiva_r0.5_t0.5",
+      "decoder": "seletiva",
+      "w_regra": 0.5,
+      "w_geo": 0.1,
+      "w_lm": 1.0,
+      "w_nsp": 0.0,
+      "limiar": 0.5
+    },
+    {
+      "nome": "seletiva_r0.5_t1.5",
+      "decoder": "seletiva",
+      "w_regra": 0.5,
+      "w_geo": 0.1,
+      "w_lm": 1.0,
+      "w_nsp": 0.0,
+      "limiar": 1.5
+    },
+    {
+      "nome": "seletiva_r1.0_t0.5",
+      "decoder": "seletiva",
+      "w_regra": 1.0,
+      "w_geo": 0.1,
+      "w_lm": 1.0,
+      "w_nsp": 0.0,
+      "limiar": 0.5
+    },
+    {
+      "nome": "seletiva_r1.0_t1.5",
+      "decoder": "seletiva",
+      "w_regra": 1.0,
+      "w_geo": 0.1,
+      "w_lm": 1.0,
+      "w_nsp": 0.0,
+      "limiar": 1.5
+    },
+    {
+      "nome": "seletiva_r2.0_t0.5",
+      "decoder": "seletiva",
+      "w_regra": 2.0,
+      "w_geo": 0.1,
+      "w_lm": 1.0,
+      "w_nsp": 0.0,
+      "limiar": 0.5
+    },
+    {
+      "nome": "seletiva_r2.0_t1.5",
+      "decoder": "seletiva",
+      "w_regra": 2.0,
+      "w_geo": 0.1,
+      "w_lm": 1.0,
+      "w_nsp": 0.0,
+      "limiar": 1.5
+    },
+    {
+      "nome": "global_r0.5_n0.0",
+      "decoder": "global",
+      "w_regra": 0.5,
+      "w_geo": 0.1,
+      "w_lm": 1.0,
+      "w_nsp": 0.0,
+      "limiar": 0.0
+    },
+    {
+      "nome": "global_r0.5_n0.2",
+      "decoder": "global",
+      "w_regra": 0.5,
+      "w_geo": 0.1,
+      "w_lm": 1.0,
+      "w_nsp": 0.2,
+      "limiar": 0.0
+    },
+    {
+      "nome": "global_r1.0_n0.0",
+      "decoder": "global",
+      "w_regra": 1.0,
+      "w_geo": 0.1,
+      "w_lm": 1.0,
+      "w_nsp": 0.0,
+      "limiar": 0.0
+    },
+    {
+      "nome": "global_r1.0_n0.2",
+      "decoder": "global",
+      "w_regra": 1.0,
+      "w_geo": 0.1,
+      "w_lm": 1.0,
+      "w_nsp": 0.2,
+      "limiar": 0.0
+    },
+    {
+      "nome": "global_r2.0_n0.0",
+      "decoder": "global",
+      "w_regra": 2.0,
+      "w_geo": 0.1,
+      "w_lm": 1.0,
+      "w_nsp": 0.0,
+      "limiar": 0.0
+    },
+    {
+      "nome": "global_r2.0_n0.2",
+      "decoder": "global",
+      "w_regra": 2.0,
+      "w_geo": 0.1,
+      "w_lm": 1.0,
+      "w_nsp": 0.2,
+      "limiar": 0.0
+    }
+  ],
+  "objetivos_ajuste": {},
+  "resultados": {
+    "golden_v4": {
+      "regra": {
+        "n": 3,
+        "veiculos": 2,
+        "metricas": {
+          "quebras": {
+            "media": 3.3333333333333335,
+            "ic": [
+              2.5,
+              5.0
+            ],
+            "n": 3
+          },
+          "tau": {
+            "media": 0.9852225588704578,
+            "ic": [
+              0.9566367001586463,
+              0.9995154882263637
+            ],
+            "n": 3
+          },
+          "sucessor_linhas": {
+            "media": 0.8242424242424242,
+            "ic": [
+              0.5454545454545454,
+              0.9636363636363636
+            ],
+            "n": 3
+          }
+        },
+        "contrastes": {
+          "quebras": {
+            "delta": {
+              "media": 0.0,
+              "ic": [
+                0.0,
+                0.0
+              ],
+              "n": 3
+            },
+            "wilcoxon_veiculo": {
+              "W": 0.0,
+              "p": 1.0
+            }
+          },
+          "tau": {
+            "delta": {
+              "media": 0.0,
+              "ic": [
+                0.0,
+                0.0
+              ],
+              "n": 3
+            },
+            "wilcoxon_veiculo": {
+              "W": 0.0,
+              "p": 1.0
+            }
+          },
+          "sucessor_linhas": {
+            "delta": {
+              "media": 0.0,
+              "ic": [
+                0.0,
+                0.0
+              ],
+              "n": 3
+            },
+            "wilcoxon_veiculo": {
+              "W": 0.0,
+              "p": 1.0
+            }
+          }
+        },
+        "reparos": 0,
+        "regressoes": 0,
+        "arestas_ouro": 81,
+        "arestas_certas": 72,
+        "acuracia_aresta_micro": 0.8888888888888888,
+        "diagnostico": {
+          "mesma_coluna": {
+            "ouro": 66,
+            "acertos": 64,
+            "reparos": 0,
+            "regressoes": 0
+          },
+          "proxima_coluna": {
+            "ouro": 0,
+            "acertos": 0,
+            "reparos": 0,
+            "regressoes": 0
+          },
+          "tabela_imagem": {
+            "ouro": 1,
+            "acertos": 1,
+            "reparos": 0,
+            "regressoes": 0
+          },
+          "transversal": {
+            "ouro": 0,
+            "acertos": 0,
+            "reparos": 0,
+            "regressoes": 0
+          },
+          "margem": {
+            "ouro": 10,
+            "acertos": 3,
+            "reparos": 0,
+            "regressoes": 0
+          },
+          "outro": {
+            "ouro": 4,
+            "acertos": 4,
+            "reparos": 0,
+            "regressoes": 0
+          }
+        }
+      },
+      "seletiva_r0.5_t0.5": {
+        "n": 3,
+        "veiculos": 2,
+        "metricas": {
+          "quebras": {
+            "media": 24.666666666666668,
+            "ic": [
+              9.0,
+              32.5
+            ],
+            "n": 3
+          },
+          "tau": {
+            "media": 0.8785895442404303,
+            "ic": [
+              0.796932839767319,
+              0.9194178964769861
+            ],
+            "n": 3
+          },
+          "sucessor_linhas": {
+            "media": 0.15151515151515152,
+            "ic": [
+              0.13636363636363635,
+              0.18181818181818182
+            ],
+            "n": 3
+          }
+        },
+        "contrastes": {
+          "quebras": {
+            "delta": {
+              "media": 21.333333333333332,
+              "ic": [
+                4.0,
+                30.0
+              ],
+              "n": 3
+            },
+            "wilcoxon_veiculo": {
+              "W": 0.0,
+              "p": 0.17971249487899976
+            }
+          },
+          "tau": {
+            "delta": {
+              "media": -0.10663301463002754,
+              "ic": [
+                -0.15970386039132733,
+                -0.08009759174937764
+              ],
+              "n": 3
+            },
+            "wilcoxon_veiculo": {
+              "W": 0.0,
+              "p": 0.17971249487899976
+            }
+          },
+          "sucessor_linhas": {
+            "delta": {
+              "media": -0.6727272727272727,
+              "ic": [
+                -0.8272727272727273,
+                -0.3636363636363636
+              ],
+              "n": 3
+            },
+            "wilcoxon_veiculo": {
+              "W": 0.0,
+              "p": 0.17971249487899976
+            }
+          }
+        },
+        "reparos": 0,
+        "regressoes": 63,
+        "arestas_ouro": 81,
+        "arestas_certas": 9,
+        "acuracia_aresta_micro": 0.1111111111111111,
+        "diagnostico": {
+          "mesma_coluna": {
+            "ouro": 66,
+            "acertos": 7,
+            "reparos": 0,
+            "regressoes": 57
+          },
+          "proxima_coluna": {
+            "ouro": 0,
+            "acertos": 0,
+            "reparos": 0,
+            "regressoes": 0
+          },
+          "tabela_imagem": {
+            "ouro": 1,
+            "acertos": 0,
+            "reparos": 0,
+            "regressoes": 1
+          },
+          "transversal": {
+            "ouro": 0,
+            "acertos": 0,
+            "reparos": 0,
+            "regressoes": 0
+          },
+          "margem": {
+            "ouro": 10,
+            "acertos": 0,
+            "reparos": 0,
+            "regressoes": 3
+          },
+          "outro": {
+            "ouro": 4,
+            "acertos": 2,
+            "reparos": 0,
+            "regressoes": 2
+          }
+        }
+      },
+      "global_r0.5_n0.0": {
+        "n": 3,
+        "veiculos": 2,
+        "metricas": {
+          "quebras": {
+            "media": 23.0,
+            "ic": [
+              6.0,
+              31.5
+            ],
+            "n": 3
+          },
+          "tau": {
+            "media": 0.4430394547453833,
+            "ic": [
+              0.31527309010326804,
+              0.698572184029614
+            ],
+            "n": 3
+          },
+          "sucessor_linhas": {
+            "media": 0.2727272727272727,
+            "ic": [
+              0.18181818181818182,
+              0.45454545454545453
+            ],
+            "n": 3
+          }
+        },
+        "contrastes": {
+          "quebras": {
+            "delta": {
+              "media": 19.666666666666668,
+              "ic": [
+                1.0,
+                29.0
+              ],
+              "n": 3
+            },
+            "wilcoxon_veiculo": {
+              "W": 0.0,
+              "p": 0.17971249487899976
+            }
+          },
+          "tau": {
+            "delta": {
+              "media": -0.5421831041250745,
+              "ic": [
+                -0.6842423981230957,
+                -0.25806451612903236
+              ],
+              "n": 3
+            },
+            "wilcoxon_veiculo": {
+              "W": 0.0,
+              "p": 0.17971249487899976
+            }
+          },
+          "sucessor_linhas": {
+            "delta": {
+              "media": -0.5515151515151515,
+              "ic": [
+                -0.7818181818181819,
+                -0.09090909090909088
+              ],
+              "n": 3
+            },
+            "wilcoxon_veiculo": {
+              "W": 0.0,
+              "p": 0.17971249487899976
+            }
+          }
+        },
+        "reparos": 1,
+        "regressoes": 56,
+        "arestas_ouro": 81,
+        "arestas_certas": 17,
+        "acuracia_aresta_micro": 0.20987654320987653,
+        "diagnostico": {
+          "mesma_coluna": {
+            "ouro": 66,
+            "acertos": 13,
+            "reparos": 0,
+            "regressoes": 51
+          },
+          "proxima_coluna": {
+            "ouro": 0,
+            "acertos": 0,
+            "reparos": 0,
+            "regressoes": 0
+          },
+          "tabela_imagem": {
+            "ouro": 1,
+            "acertos": 0,
+            "reparos": 0,
+            "regressoes": 1
+          },
+          "transversal": {
+            "ouro": 0,
+            "acertos": 0,
+            "reparos": 0,
+            "regressoes": 0
+          },
+          "margem": {
+            "ouro": 10,
+            "acertos": 2,
+            "reparos": 1,
+            "regressoes": 2
+          },
+          "outro": {
+            "ouro": 4,
+            "acertos": 2,
+            "reparos": 0,
+            "regressoes": 2
+          }
+        }
+      },
+      "oraculo": {
+        "n": 3,
+        "veiculos": 2,
+        "metricas": {
+          "quebras": {
+            "media": 1.6666666666666667,
+            "ic": [
+              1.5,
+              2.0
+            ],
+            "n": 3
+          },
+          "tau": {
+            "media": 0.977981390583845,
+            "ic": [
+              0.9492332099418299,
+              0.9923554809048525
+            ],
+            "n": 3
+          },
+          "sucessor_linhas": {
+            "media": 0.9212121212121213,
+            "ic": [
+              0.8181818181818182,
+              0.9727272727272727
+            ],
+            "n": 3
+          }
+        },
+        "contrastes": {
+          "quebras": {
+            "delta": {
+              "media": -1.6666666666666667,
+              "ic": [
+                -3.0,
+                -1.0
+              ],
+              "n": 3
+            },
+            "wilcoxon_veiculo": {
+              "W": 0.0,
+              "p": 0.17971249487899976
+            }
+          },
+          "tau": {
+            "delta": {
+              "media": -0.007241168286612994,
+              "ic": [
+                -0.007403490216816411,
+                -0.007160007321511286
+              ],
+              "n": 3
+            },
+            "wilcoxon_veiculo": {
+              "W": 0.0,
+              "p": 0.17971249487899976
+            }
+          },
+          "sucessor_linhas": {
+            "delta": {
+              "media": 0.096969696969697,
+              "ic": [
+                0.009090909090909094,
+                0.2727272727272728
+              ],
+              "n": 3
+            },
+            "wilcoxon_veiculo": {
+              "W": 0.0,
+              "p": 0.17971249487899976
+            }
+          }
+        },
+        "reparos": 4,
+        "regressoes": 0,
+        "arestas_ouro": 81,
+        "arestas_certas": 76,
+        "acuracia_aresta_micro": 0.9382716049382716,
+        "diagnostico": {
+          "mesma_coluna": {
+            "ouro": 66,
+            "acertos": 64,
+            "reparos": 0,
+            "regressoes": 0
+          },
+          "proxima_coluna": {
+            "ouro": 0,
+            "acertos": 0,
+            "reparos": 0,
+            "regressoes": 0
+          },
+          "tabela_imagem": {
+            "ouro": 1,
+            "acertos": 1,
+            "reparos": 0,
+            "regressoes": 0
+          },
+          "transversal": {
+            "ouro": 0,
+            "acertos": 0,
+            "reparos": 0,
+            "regressoes": 0
+          },
+          "margem": {
+            "ouro": 10,
+            "acertos": 7,
+            "reparos": 4,
+            "regressoes": 0
+          },
+          "outro": {
+            "ouro": 4,
+            "acertos": 4,
+            "reparos": 0,
+            "regressoes": 0
+          }
+        }
+      }
+    },
+    "validacao_silver": {
+      "regra": {},
+      "seletiva_r0.5_t0.5": {},
+      "global_r0.5_n0.0": {},
+      "oraculo": {}
+    },
+    "golden_v3_novo": {
+      "regra": {},
+      "seletiva_r0.5_t0.5": {},
+      "global_r0.5_n0.0": {},
+      "oraculo": {}
+    },
+    "teste_silver": {
+      "regra": {},
+      "seletiva_r0.5_t0.5": {},
+      "global_r0.5_n0.0": {},
+      "oraculo": {}
+    }
+  },
+  "paginas": {
+    "golden_v4": [
+      {
+        "page_id": "official_diary_MG_congonhas/executive_official_diary_2020-12-10_2591.pdf#p1",
+        "uf": "official_diary_MG_congonhas",
+        "metodos": {
+          "regra": {
+            "metricas": {
+              "tau": 0.9990309764527275,
+              "quebras": 5,
+              "quebras_mil": 6.693440428380187,
+              "fid12": 0.9517326732673267,
+              "sucessor_linhas": 0.9272727272727272,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 48,
+                "acertos": 46,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 1,
+                "acertos": 1,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 2,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "outro": {
+                "ouro": 4,
+                "acertos": 4,
+                "reparos": 0,
+                "regressoes": 0
+              }
+            },
+            "arestas_ouro": 55,
+            "arestas_certas": 51,
+            "reparos": 0,
+            "regressoes": 0
+          },
+          "seletiva_r0.5_t0.5": {
+            "metricas": {
+              "tau": 0.9008653021379529,
+              "quebras": 53,
+              "quebras_mil": 70.95046854082999,
+              "fid12": 0.44183168316831684,
+              "sucessor_linhas": 0.07272727272727272,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 48,
+                "acertos": 2,
+                "reparos": 0,
+                "regressoes": 44
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 1,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 1
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 2,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "outro": {
+                "ouro": 4,
+                "acertos": 2,
+                "reparos": 0,
+                "regressoes": 2
+              }
+            },
+            "arestas_ouro": 55,
+            "arestas_certas": 4,
+            "reparos": 0,
+            "regressoes": 47
+          },
+          "seletiva_r0.5_t1.5": {
+            "metricas": {
+              "tau": 0.9373292993241956,
+              "quebras": 46,
+              "quebras_mil": 61.57965194109772,
+              "fid12": 0.5037128712871287,
+              "sucessor_linhas": 0.2,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 48,
+                "acertos": 9,
+                "reparos": 0,
+                "regressoes": 37
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 1,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 1
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 2,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "outro": {
+                "ouro": 4,
+                "acertos": 2,
+                "reparos": 0,
+                "regressoes": 2
+              }
+            },
+            "arestas_ouro": 55,
+            "arestas_certas": 11,
+            "reparos": 0,
+            "regressoes": 40
+          },
+          "seletiva_r1.0_t0.5": {
+            "metricas": {
+              "tau": 0.9162476537068738,
+              "quebras": 53,
+              "quebras_mil": 70.95046854082999,
+              "fid12": 0.44183168316831684,
+              "sucessor_linhas": 0.07272727272727272,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 48,
+                "acertos": 2,
+                "reparos": 0,
+                "regressoes": 44
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 1,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 1
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 2,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "outro": {
+                "ouro": 4,
+                "acertos": 2,
+                "reparos": 0,
+                "regressoes": 2
+              }
+            },
+            "arestas_ouro": 55,
+            "arestas_certas": 4,
+            "reparos": 0,
+            "regressoes": 47
+          },
+          "seletiva_r1.0_t1.5": {
+            "metricas": {
+              "tau": 0.9595163495806279,
+              "quebras": 31,
+              "quebras_mil": 41.49933065595716,
+              "fid12": 0.6361386138613861,
+              "sucessor_linhas": 0.4727272727272727,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 48,
+                "acertos": 22,
+                "reparos": 0,
+                "regressoes": 24
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 1,
+                "acertos": 1,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 2,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "outro": {
+                "ouro": 4,
+                "acertos": 3,
+                "reparos": 0,
+                "regressoes": 1
+              }
+            },
+            "arestas_ouro": 55,
+            "arestas_certas": 26,
+            "reparos": 0,
+            "regressoes": 25
+          },
+          "seletiva_r2.0_t0.5": {
+            "metricas": {
+              "tau": 0.9595163495806279,
+              "quebras": 31,
+              "quebras_mil": 41.49933065595716,
+              "fid12": 0.6361386138613861,
+              "sucessor_linhas": 0.4727272727272727,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 48,
+                "acertos": 22,
+                "reparos": 0,
+                "regressoes": 24
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 1,
+                "acertos": 1,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 2,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "outro": {
+                "ouro": 4,
+                "acertos": 3,
+                "reparos": 0,
+                "regressoes": 1
+              }
+            },
+            "arestas_ouro": 55,
+            "arestas_certas": 26,
+            "reparos": 0,
+            "regressoes": 25
+          },
+          "seletiva_r2.0_t1.5": {
+            "metricas": {
+              "tau": 0.9765280962994065,
+              "quebras": 18,
+              "quebras_mil": 24.096385542168676,
+              "fid12": 0.7982673267326733,
+              "sucessor_linhas": 0.7272727272727273,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 48,
+                "acertos": 35,
+                "reparos": 0,
+                "regressoes": 11
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 1,
+                "acertos": 1,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 2,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "outro": {
+                "ouro": 4,
+                "acertos": 4,
+                "reparos": 0,
+                "regressoes": 0
+              }
+            },
+            "arestas_ouro": 55,
+            "arestas_certas": 40,
+            "reparos": 0,
+            "regressoes": 11
+          },
+          "global_r0.5_n0.0": {
+            "metricas": {
+              "tau": -0.021968122714270844,
+              "quebras": 51,
+              "quebras_mil": 68.27309236947791,
+              "fid12": 0.4938118811881188,
+              "sucessor_linhas": 0.16363636363636364,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 48,
+                "acertos": 7,
+                "reparos": 0,
+                "regressoes": 39
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 1,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 1
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 2,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "outro": {
+                "ouro": 4,
+                "acertos": 2,
+                "reparos": 0,
+                "regressoes": 2
+              }
+            },
+            "arestas_ouro": 55,
+            "arestas_certas": 9,
+            "reparos": 0,
+            "regressoes": 42
+          },
+          "global_r0.5_n0.2": {
+            "metricas": {
+              "tau": -0.021968122714270844,
+              "quebras": 51,
+              "quebras_mil": 68.27309236947791,
+              "fid12": 0.4938118811881188,
+              "sucessor_linhas": 0.16363636363636364,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 48,
+                "acertos": 7,
+                "reparos": 0,
+                "regressoes": 39
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 1,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 1
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 2,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "outro": {
+                "ouro": 4,
+                "acertos": 2,
+                "reparos": 0,
+                "regressoes": 2
+              }
+            },
+            "arestas_ouro": 55,
+            "arestas_certas": 9,
+            "reparos": 0,
+            "regressoes": 42
+          },
+          "global_r1.0_n0.0": {
+            "metricas": {
+              "tau": 0.4538009051397726,
+              "quebras": 52,
+              "quebras_mil": 69.61178045515395,
+              "fid12": 0.4752475247524752,
+              "sucessor_linhas": 0.16363636363636364,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 48,
+                "acertos": 7,
+                "reparos": 0,
+                "regressoes": 39
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 1,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 1
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 2,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "outro": {
+                "ouro": 4,
+                "acertos": 2,
+                "reparos": 0,
+                "regressoes": 2
+              }
+            },
+            "arestas_ouro": 55,
+            "arestas_certas": 9,
+            "reparos": 0,
+            "regressoes": 42
+          },
+          "global_r1.0_n0.2": {
+            "metricas": {
+              "tau": 0.4538009051397726,
+              "quebras": 52,
+              "quebras_mil": 69.61178045515395,
+              "fid12": 0.4752475247524752,
+              "sucessor_linhas": 0.16363636363636364,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 48,
+                "acertos": 7,
+                "reparos": 0,
+                "regressoes": 39
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 1,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 1
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 2,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "outro": {
+                "ouro": 4,
+                "acertos": 2,
+                "reparos": 0,
+                "regressoes": 2
+              }
+            },
+            "arestas_ouro": 55,
+            "arestas_certas": 9,
+            "reparos": 0,
+            "regressoes": 42
+          },
+          "global_r2.0_n0.0": {
+            "metricas": {
+              "tau": 0.7410840861210705,
+              "quebras": 23,
+              "quebras_mil": 30.78982597054886,
+              "fid12": 0.780940594059406,
+              "sucessor_linhas": 0.6545454545454545,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 48,
+                "acertos": 31,
+                "reparos": 0,
+                "regressoes": 15
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 1,
+                "acertos": 1,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 2,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "outro": {
+                "ouro": 4,
+                "acertos": 4,
+                "reparos": 0,
+                "regressoes": 0
+              }
+            },
+            "arestas_ouro": 55,
+            "arestas_certas": 36,
+            "reparos": 0,
+            "regressoes": 15
+          },
+          "global_r2.0_n0.2": {
+            "metricas": {
+              "tau": 0.7410840861210705,
+              "quebras": 23,
+              "quebras_mil": 30.78982597054886,
+              "fid12": 0.780940594059406,
+              "sucessor_linhas": 0.6545454545454545,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 48,
+                "acertos": 31,
+                "reparos": 0,
+                "regressoes": 15
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 1,
+                "acertos": 1,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 2,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "outro": {
+                "ouro": 4,
+                "acertos": 4,
+                "reparos": 0,
+                "regressoes": 0
+              }
+            },
+            "arestas_ouro": 55,
+            "arestas_certas": 36,
+            "reparos": 0,
+            "regressoes": 15
+          },
+          "oraculo": {
+            "metricas": {
+              "tau": 0.984710961809705,
+              "quebras": 3,
+              "quebras_mil": 4.016064257028113,
+              "fid12": 0.9789603960396039,
+              "sucessor_linhas": 0.9454545454545454,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 48,
+                "acertos": 46,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 1,
+                "acertos": 1,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 2,
+                "acertos": 1,
+                "reparos": 1,
+                "regressoes": 0
+              },
+              "outro": {
+                "ouro": 4,
+                "acertos": 4,
+                "reparos": 0,
+                "regressoes": 0
+              }
+            },
+            "arestas_ouro": 55,
+            "arestas_certas": 52,
+            "reparos": 1,
+            "regressoes": 0
+          }
+        },
+        "ordens": {
+          "regra": [
+            "b16",
+            "b19",
+            "b46",
+            "b3",
+            "b28",
+            "b14",
+            "b8",
+            "b40",
+            "b54",
+            "b34",
+            "b52",
+            "b27",
+            "b36",
+            "b47",
+            "b41",
+            "b23",
+            "b7",
+            "b42",
+            "b31",
+            "b1",
+            "b56",
+            "b6",
+            "b58",
+            "b30",
+            "b24",
+            "b60",
+            "b11",
+            "b17",
+            "b26",
+            "b49",
+            "b29",
+            "b44",
+            "b50",
+            "b4",
+            "b53",
+            "b39",
+            "b13",
+            "b37",
+            "b18",
+            "b33",
+            "b59",
+            "b9",
+            "b0",
+            "b20",
+            "b48",
+            "b45",
+            "b55",
+            "b35",
+            "b38",
+            "b32",
+            "b43",
+            "b12",
+            "b51",
+            "b21",
+            "b5",
+            "b22",
+            "b10",
+            "b57",
+            "b25",
+            "b2",
+            "b15"
+          ],
+          "seletiva_r0.5_t0.5": [
+            "b16",
+            "b46",
+            "b19",
+            "b14",
+            "b28",
+            "b3",
+            "b8",
+            "b54",
+            "b27",
+            "b52",
+            "b34",
+            "b40",
+            "b41",
+            "b47",
+            "b36",
+            "b7",
+            "b23",
+            "b42",
+            "b31",
+            "b24",
+            "b1",
+            "b56",
+            "b58",
+            "b30",
+            "b6",
+            "b49",
+            "b26",
+            "b17",
+            "b11",
+            "b60",
+            "b29",
+            "b50",
+            "b53",
+            "b4",
+            "b44",
+            "b13",
+            "b37",
+            "b39",
+            "b59",
+            "b9",
+            "b33",
+            "b18",
+            "b0",
+            "b45",
+            "b48",
+            "b20",
+            "b55",
+            "b38",
+            "b35",
+            "b12",
+            "b5",
+            "b51",
+            "b32",
+            "b22",
+            "b21",
+            "b57",
+            "b43",
+            "b25",
+            "b2",
+            "b15",
+            "b10"
+          ],
+          "seletiva_r0.5_t1.5": [
+            "b16",
+            "b46",
+            "b19",
+            "b3",
+            "b14",
+            "b28",
+            "b8",
+            "b54",
+            "b27",
+            "b52",
+            "b34",
+            "b40",
+            "b41",
+            "b47",
+            "b36",
+            "b7",
+            "b23",
+            "b42",
+            "b31",
+            "b24",
+            "b1",
+            "b56",
+            "b58",
+            "b30",
+            "b6",
+            "b60",
+            "b11",
+            "b49",
+            "b26",
+            "b17",
+            "b29",
+            "b50",
+            "b53",
+            "b4",
+            "b44",
+            "b39",
+            "b13",
+            "b37",
+            "b18",
+            "b33",
+            "b59",
+            "b9",
+            "b0",
+            "b20",
+            "b45",
+            "b48",
+            "b55",
+            "b38",
+            "b35",
+            "b12",
+            "b5",
+            "b51",
+            "b32",
+            "b22",
+            "b21",
+            "b57",
+            "b43",
+            "b25",
+            "b2",
+            "b15",
+            "b10"
+          ],
+          "seletiva_r1.0_t0.5": [
+            "b16",
+            "b46",
+            "b19",
+            "b14",
+            "b28",
+            "b3",
+            "b8",
+            "b54",
+            "b27",
+            "b52",
+            "b34",
+            "b40",
+            "b41",
+            "b47",
+            "b36",
+            "b7",
+            "b23",
+            "b42",
+            "b31",
+            "b24",
+            "b1",
+            "b56",
+            "b58",
+            "b30",
+            "b6",
+            "b60",
+            "b49",
+            "b26",
+            "b17",
+            "b11",
+            "b29",
+            "b50",
+            "b53",
+            "b4",
+            "b44",
+            "b13",
+            "b37",
+            "b39",
+            "b18",
+            "b59",
+            "b9",
+            "b33",
+            "b0",
+            "b45",
+            "b48",
+            "b20",
+            "b55",
+            "b38",
+            "b35",
+            "b12",
+            "b5",
+            "b51",
+            "b32",
+            "b22",
+            "b21",
+            "b57",
+            "b43",
+            "b25",
+            "b2",
+            "b15",
+            "b10"
+          ],
+          "seletiva_r1.0_t1.5": [
+            "b16",
+            "b46",
+            "b19",
+            "b3",
+            "b14",
+            "b28",
+            "b8",
+            "b40",
+            "b54",
+            "b34",
+            "b52",
+            "b27",
+            "b36",
+            "b41",
+            "b47",
+            "b7",
+            "b23",
+            "b42",
+            "b31",
+            "b24",
+            "b1",
+            "b56",
+            "b58",
+            "b30",
+            "b6",
+            "b60",
+            "b11",
+            "b49",
+            "b26",
+            "b17",
+            "b29",
+            "b44",
+            "b50",
+            "b53",
+            "b4",
+            "b39",
+            "b13",
+            "b37",
+            "b18",
+            "b33",
+            "b59",
+            "b9",
+            "b0",
+            "b20",
+            "b45",
+            "b48",
+            "b55",
+            "b35",
+            "b38",
+            "b32",
+            "b43",
+            "b12",
+            "b21",
+            "b5",
+            "b51",
+            "b22",
+            "b57",
+            "b25",
+            "b2",
+            "b15",
+            "b10"
+          ],
+          "seletiva_r2.0_t0.5": [
+            "b16",
+            "b46",
+            "b19",
+            "b3",
+            "b14",
+            "b28",
+            "b8",
+            "b40",
+            "b54",
+            "b34",
+            "b52",
+            "b27",
+            "b36",
+            "b41",
+            "b47",
+            "b7",
+            "b23",
+            "b42",
+            "b31",
+            "b24",
+            "b1",
+            "b56",
+            "b58",
+            "b30",
+            "b6",
+            "b60",
+            "b11",
+            "b49",
+            "b26",
+            "b17",
+            "b29",
+            "b44",
+            "b50",
+            "b53",
+            "b4",
+            "b39",
+            "b13",
+            "b37",
+            "b18",
+            "b33",
+            "b59",
+            "b9",
+            "b0",
+            "b20",
+            "b45",
+            "b48",
+            "b55",
+            "b35",
+            "b38",
+            "b32",
+            "b43",
+            "b12",
+            "b21",
+            "b5",
+            "b51",
+            "b22",
+            "b57",
+            "b25",
+            "b2",
+            "b15",
+            "b10"
+          ],
+          "seletiva_r2.0_t1.5": [
+            "b16",
+            "b19",
+            "b46",
+            "b3",
+            "b14",
+            "b28",
+            "b8",
+            "b40",
+            "b54",
+            "b34",
+            "b52",
+            "b27",
+            "b36",
+            "b47",
+            "b41",
+            "b7",
+            "b23",
+            "b42",
+            "b31",
+            "b24",
+            "b1",
+            "b56",
+            "b6",
+            "b58",
+            "b30",
+            "b60",
+            "b11",
+            "b17",
+            "b49",
+            "b26",
+            "b29",
+            "b44",
+            "b50",
+            "b4",
+            "b53",
+            "b39",
+            "b13",
+            "b37",
+            "b18",
+            "b33",
+            "b59",
+            "b9",
+            "b0",
+            "b20",
+            "b48",
+            "b45",
+            "b55",
+            "b35",
+            "b38",
+            "b32",
+            "b43",
+            "b12",
+            "b51",
+            "b21",
+            "b5",
+            "b22",
+            "b57",
+            "b25",
+            "b2",
+            "b15",
+            "b10"
+          ],
+          "global_r0.5_n0.0": [
+            "b16",
+            "b1",
+            "b56",
+            "b31",
+            "b42",
+            "b58",
+            "b29",
+            "b13",
+            "b37",
+            "b39",
+            "b53",
+            "b4",
+            "b50",
+            "b44",
+            "b49",
+            "b26",
+            "b17",
+            "b11",
+            "b60",
+            "b30",
+            "b6",
+            "b24",
+            "b7",
+            "b23",
+            "b41",
+            "b47",
+            "b36",
+            "b27",
+            "b52",
+            "b34",
+            "b54",
+            "b40",
+            "b14",
+            "b8",
+            "b28",
+            "b3",
+            "b46",
+            "b19",
+            "b55",
+            "b51",
+            "b32",
+            "b38",
+            "b35",
+            "b45",
+            "b48",
+            "b9",
+            "b33",
+            "b18",
+            "b59",
+            "b20",
+            "b0",
+            "b21",
+            "b5",
+            "b22",
+            "b10",
+            "b57",
+            "b43",
+            "b12",
+            "b2",
+            "b15",
+            "b25"
+          ],
+          "global_r0.5_n0.2": [
+            "b16",
+            "b1",
+            "b56",
+            "b31",
+            "b42",
+            "b58",
+            "b29",
+            "b13",
+            "b37",
+            "b39",
+            "b53",
+            "b4",
+            "b50",
+            "b44",
+            "b49",
+            "b26",
+            "b17",
+            "b11",
+            "b60",
+            "b30",
+            "b6",
+            "b24",
+            "b7",
+            "b23",
+            "b41",
+            "b47",
+            "b36",
+            "b27",
+            "b52",
+            "b34",
+            "b54",
+            "b40",
+            "b14",
+            "b8",
+            "b28",
+            "b3",
+            "b46",
+            "b19",
+            "b55",
+            "b51",
+            "b32",
+            "b38",
+            "b35",
+            "b45",
+            "b48",
+            "b9",
+            "b33",
+            "b18",
+            "b59",
+            "b20",
+            "b0",
+            "b21",
+            "b5",
+            "b22",
+            "b10",
+            "b57",
+            "b43",
+            "b12",
+            "b2",
+            "b15",
+            "b25"
+          ],
+          "global_r1.0_n0.0": [
+            "b16",
+            "b8",
+            "b42",
+            "b1",
+            "b31",
+            "b56",
+            "b6",
+            "b24",
+            "b7",
+            "b23",
+            "b41",
+            "b47",
+            "b36",
+            "b27",
+            "b52",
+            "b34",
+            "b54",
+            "b40",
+            "b14",
+            "b28",
+            "b3",
+            "b46",
+            "b19",
+            "b58",
+            "b18",
+            "b33",
+            "b59",
+            "b9",
+            "b30",
+            "b29",
+            "b13",
+            "b37",
+            "b39",
+            "b53",
+            "b4",
+            "b50",
+            "b44",
+            "b49",
+            "b26",
+            "b17",
+            "b11",
+            "b60",
+            "b55",
+            "b51",
+            "b32",
+            "b38",
+            "b35",
+            "b45",
+            "b20",
+            "b0",
+            "b2",
+            "b10",
+            "b57",
+            "b43",
+            "b12",
+            "b48",
+            "b15",
+            "b25",
+            "b22",
+            "b21",
+            "b5"
+          ],
+          "global_r1.0_n0.2": [
+            "b16",
+            "b8",
+            "b42",
+            "b1",
+            "b31",
+            "b56",
+            "b6",
+            "b24",
+            "b7",
+            "b23",
+            "b41",
+            "b47",
+            "b36",
+            "b27",
+            "b52",
+            "b34",
+            "b54",
+            "b40",
+            "b14",
+            "b28",
+            "b3",
+            "b46",
+            "b19",
+            "b58",
+            "b18",
+            "b33",
+            "b59",
+            "b9",
+            "b30",
+            "b29",
+            "b13",
+            "b37",
+            "b39",
+            "b53",
+            "b4",
+            "b50",
+            "b44",
+            "b49",
+            "b26",
+            "b17",
+            "b11",
+            "b60",
+            "b55",
+            "b51",
+            "b32",
+            "b38",
+            "b35",
+            "b45",
+            "b20",
+            "b0",
+            "b2",
+            "b10",
+            "b57",
+            "b43",
+            "b12",
+            "b48",
+            "b15",
+            "b25",
+            "b22",
+            "b21",
+            "b5"
+          ],
+          "global_r2.0_n0.0": [
+            "b16",
+            "b19",
+            "b46",
+            "b42",
+            "b1",
+            "b31",
+            "b56",
+            "b6",
+            "b7",
+            "b23",
+            "b41",
+            "b47",
+            "b36",
+            "b27",
+            "b52",
+            "b34",
+            "b54",
+            "b40",
+            "b14",
+            "b8",
+            "b28",
+            "b3",
+            "b58",
+            "b30",
+            "b24",
+            "b60",
+            "b11",
+            "b17",
+            "b26",
+            "b49",
+            "b29",
+            "b44",
+            "b50",
+            "b4",
+            "b53",
+            "b39",
+            "b13",
+            "b37",
+            "b18",
+            "b33",
+            "b59",
+            "b9",
+            "b0",
+            "b20",
+            "b48",
+            "b45",
+            "b55",
+            "b35",
+            "b38",
+            "b32",
+            "b43",
+            "b12",
+            "b51",
+            "b21",
+            "b5",
+            "b2",
+            "b15",
+            "b10",
+            "b57",
+            "b25",
+            "b22"
+          ],
+          "global_r2.0_n0.2": [
+            "b16",
+            "b19",
+            "b46",
+            "b42",
+            "b1",
+            "b31",
+            "b56",
+            "b6",
+            "b7",
+            "b23",
+            "b41",
+            "b47",
+            "b36",
+            "b27",
+            "b52",
+            "b34",
+            "b54",
+            "b40",
+            "b14",
+            "b8",
+            "b28",
+            "b3",
+            "b58",
+            "b30",
+            "b24",
+            "b60",
+            "b11",
+            "b17",
+            "b26",
+            "b49",
+            "b29",
+            "b44",
+            "b50",
+            "b4",
+            "b53",
+            "b39",
+            "b13",
+            "b37",
+            "b18",
+            "b33",
+            "b59",
+            "b9",
+            "b0",
+            "b20",
+            "b48",
+            "b45",
+            "b55",
+            "b35",
+            "b38",
+            "b32",
+            "b43",
+            "b12",
+            "b51",
+            "b21",
+            "b5",
+            "b2",
+            "b15",
+            "b10",
+            "b57",
+            "b25",
+            "b22"
+          ],
+          "oraculo": [
+            "b16",
+            "b19",
+            "b46",
+            "b3",
+            "b28",
+            "b14",
+            "b8",
+            "b40",
+            "b54",
+            "b34",
+            "b52",
+            "b27",
+            "b36",
+            "b47",
+            "b41",
+            "b23",
+            "b7",
+            "b6",
+            "b58",
+            "b30",
+            "b24",
+            "b60",
+            "b11",
+            "b17",
+            "b26",
+            "b49",
+            "b29",
+            "b44",
+            "b50",
+            "b4",
+            "b53",
+            "b39",
+            "b13",
+            "b37",
+            "b18",
+            "b33",
+            "b59",
+            "b9",
+            "b0",
+            "b20",
+            "b48",
+            "b45",
+            "b55",
+            "b35",
+            "b38",
+            "b32",
+            "b43",
+            "b12",
+            "b51",
+            "b21",
+            "b5",
+            "b22",
+            "b10",
+            "b57",
+            "b25",
+            "b15",
+            "b42",
+            "b31",
+            "b1",
+            "b56",
+            "b2"
+          ]
+        },
+        "tempos_ms": {
+          "regra": 0.0,
+          "seletiva_r0.5_t0.5": 0.5892000003768771,
+          "seletiva_r0.5_t1.5": 0.49770000032367534,
+          "seletiva_r1.0_t0.5": 0.5267000001367705,
+          "seletiva_r1.0_t1.5": 0.4347999997662555,
+          "seletiva_r2.0_t0.5": 0.42409999969095225,
+          "seletiva_r2.0_t1.5": 0.40780000017548446,
+          "global_r0.5_n0.0": 3.2636999999340333,
+          "global_r0.5_n0.2": 3.5877999998774612,
+          "global_r1.0_n0.0": 3.4101999999620602,
+          "global_r1.0_n0.2": 3.213399999822286,
+          "global_r2.0_n0.0": 3.323400000226684,
+          "global_r2.0_n0.2": 3.3057999999073218,
+          "oraculo": 6.745799999862356
+        },
+        "pares": 271,
+        "segundos_lm": 6.337713499999836,
+        "memoria_lm": {
+          "rss_mb": 2982.8203125,
+          "pico_rss_mb": 3689.40625,
+          "cuda_pico_alocado_mb": 1634.0087890625,
+          "cuda_pico_reservado_mb": 3188.0
+        }
+      },
+      {
+        "page_id": "official_diary_MG_congonhas/executive_official_diary_2022-09-02_3022.pdf#p20",
+        "uf": "official_diary_MG_congonhas",
+        "metodos": {
+          "regra": {
+            "metricas": {
+              "tau": 1.0,
+              "quebras": 0,
+              "quebras_mil": 0.0,
+              "fid12": 1.0,
+              "sucessor_linhas": 1.0,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 13,
+                "acertos": 13,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 2,
+                "acertos": 2,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "outro": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              }
+            },
+            "arestas_ouro": 15,
+            "arestas_certas": 15,
+            "reparos": 0,
+            "regressoes": 0
+          },
+          "seletiva_r0.5_t0.5": {
+            "metricas": {
+              "tau": 0.9379704908160194,
+              "quebras": 12,
+              "quebras_mil": 146.34146341463415,
+              "fid12": 0.22727272727272727,
+              "sucessor_linhas": 0.2,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 13,
+                "acertos": 3,
+                "reparos": 0,
+                "regressoes": 10
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 2,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 2
+              },
+              "outro": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              }
+            },
+            "arestas_ouro": 15,
+            "arestas_certas": 3,
+            "reparos": 0,
+            "regressoes": 12
+          },
+          "seletiva_r0.5_t1.5": {
+            "metricas": {
+              "tau": 0.9741041854862994,
+              "quebras": 8,
+              "quebras_mil": 97.5609756097561,
+              "fid12": 0.3939393939393939,
+              "sucessor_linhas": 0.4666666666666667,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 13,
+                "acertos": 7,
+                "reparos": 0,
+                "regressoes": 6
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 2,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 2
+              },
+              "outro": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              }
+            },
+            "arestas_ouro": 15,
+            "arestas_certas": 7,
+            "reparos": 0,
+            "regressoes": 8
+          },
+          "seletiva_r1.0_t0.5": {
+            "metricas": {
+              "tau": 0.9427883167720567,
+              "quebras": 10,
+              "quebras_mil": 121.95121951219512,
+              "fid12": 0.3181818181818182,
+              "sucessor_linhas": 0.3333333333333333,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 13,
+                "acertos": 5,
+                "reparos": 0,
+                "regressoes": 8
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 2,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 2
+              },
+              "outro": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              }
+            },
+            "arestas_ouro": 15,
+            "arestas_certas": 5,
+            "reparos": 0,
+            "regressoes": 10
+          },
+          "seletiva_r1.0_t1.5": {
+            "metricas": {
+              "tau": 0.9789220114423367,
+              "quebras": 5,
+              "quebras_mil": 60.97560975609756,
+              "fid12": 0.6515151515151515,
+              "sucessor_linhas": 0.6666666666666666,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 13,
+                "acertos": 10,
+                "reparos": 0,
+                "regressoes": 3
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 2,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 2
+              },
+              "outro": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              }
+            },
+            "arestas_ouro": 15,
+            "arestas_certas": 10,
+            "reparos": 0,
+            "regressoes": 5
+          },
+          "seletiva_r2.0_t0.5": {
+            "metricas": {
+              "tau": 0.9789220114423367,
+              "quebras": 5,
+              "quebras_mil": 60.97560975609756,
+              "fid12": 0.6515151515151515,
+              "sucessor_linhas": 0.6666666666666666,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 13,
+                "acertos": 10,
+                "reparos": 0,
+                "regressoes": 3
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 2,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 2
+              },
+              "outro": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              }
+            },
+            "arestas_ouro": 15,
+            "arestas_certas": 10,
+            "reparos": 0,
+            "regressoes": 5
+          },
+          "seletiva_r2.0_t1.5": {
+            "metricas": {
+              "tau": 0.9789220114423367,
+              "quebras": 5,
+              "quebras_mil": 60.97560975609756,
+              "fid12": 0.6515151515151515,
+              "sucessor_linhas": 0.6666666666666666,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 13,
+                "acertos": 10,
+                "reparos": 0,
+                "regressoes": 3
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 2,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 2
+              },
+              "outro": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              }
+            },
+            "arestas_ouro": 15,
+            "arestas_certas": 10,
+            "reparos": 0,
+            "regressoes": 5
+          },
+          "global_r0.5_n0.0": {
+            "metricas": {
+              "tau": 0.6525143029208069,
+              "quebras": 12,
+              "quebras_mil": 146.34146341463415,
+              "fid12": 0.24242424242424243,
+              "sucessor_linhas": 0.2,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 13,
+                "acertos": 3,
+                "reparos": 0,
+                "regressoes": 10
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 2,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 2
+              },
+              "outro": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              }
+            },
+            "arestas_ouro": 15,
+            "arestas_certas": 3,
+            "reparos": 0,
+            "regressoes": 12
+          },
+          "global_r0.5_n0.2": {
+            "metricas": {
+              "tau": 0.6525143029208069,
+              "quebras": 12,
+              "quebras_mil": 146.34146341463415,
+              "fid12": 0.24242424242424243,
+              "sucessor_linhas": 0.2,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 13,
+                "acertos": 3,
+                "reparos": 0,
+                "regressoes": 10
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 2,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 2
+              },
+              "outro": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              }
+            },
+            "arestas_ouro": 15,
+            "arestas_certas": 3,
+            "reparos": 0,
+            "regressoes": 12
+          },
+          "global_r1.0_n0.0": {
+            "metricas": {
+              "tau": 0.26708822643782,
+              "quebras": 12,
+              "quebras_mil": 146.34146341463415,
+              "fid12": 0.24242424242424243,
+              "sucessor_linhas": 0.2,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 13,
+                "acertos": 3,
+                "reparos": 0,
+                "regressoes": 10
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 2,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 2
+              },
+              "outro": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              }
+            },
+            "arestas_ouro": 15,
+            "arestas_certas": 3,
+            "reparos": 0,
+            "regressoes": 12
+          },
+          "global_r1.0_n0.2": {
+            "metricas": {
+              "tau": 0.26708822643782,
+              "quebras": 12,
+              "quebras_mil": 146.34146341463415,
+              "fid12": 0.24242424242424243,
+              "sucessor_linhas": 0.2,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 13,
+                "acertos": 3,
+                "reparos": 0,
+                "regressoes": 10
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 2,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 2
+              },
+              "outro": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              }
+            },
+            "arestas_ouro": 15,
+            "arestas_certas": 3,
+            "reparos": 0,
+            "regressoes": 12
+          },
+          "global_r2.0_n0.0": {
+            "metricas": {
+              "tau": 0.971093044263776,
+              "quebras": 4,
+              "quebras_mil": 48.78048780487805,
+              "fid12": 0.7878787878787878,
+              "sucessor_linhas": 0.7333333333333333,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 13,
+                "acertos": 11,
+                "reparos": 0,
+                "regressoes": 2
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 2,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 2
+              },
+              "outro": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              }
+            },
+            "arestas_ouro": 15,
+            "arestas_certas": 11,
+            "reparos": 0,
+            "regressoes": 4
+          },
+          "global_r2.0_n0.2": {
+            "metricas": {
+              "tau": 0.971093044263776,
+              "quebras": 4,
+              "quebras_mil": 48.78048780487805,
+              "fid12": 0.7878787878787878,
+              "sucessor_linhas": 0.7333333333333333,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 13,
+                "acertos": 11,
+                "reparos": 0,
+                "regressoes": 2
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 2,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 2
+              },
+              "outro": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              }
+            },
+            "arestas_ouro": 15,
+            "arestas_certas": 11,
+            "reparos": 0,
+            "regressoes": 4
+          },
+          "oraculo": {
+            "metricas": {
+              "tau": 1.0,
+              "quebras": 0,
+              "quebras_mil": 0.0,
+              "fid12": 1.0,
+              "sucessor_linhas": 1.0,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 13,
+                "acertos": 13,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 2,
+                "acertos": 2,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "outro": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              }
+            },
+            "arestas_ouro": 15,
+            "arestas_certas": 15,
+            "reparos": 0,
+            "regressoes": 0
+          }
+        },
+        "ordens": {
+          "regra": [
+            "b15",
+            "b3",
+            "b16",
+            "b8",
+            "b7",
+            "b10",
+            "b0",
+            "b13",
+            "b5",
+            "b12",
+            "b4",
+            "b9",
+            "b1",
+            "b6",
+            "b2",
+            "b11",
+            "b14"
+          ],
+          "seletiva_r0.5_t0.5": [
+            "b15",
+            "b3",
+            "b8",
+            "b16",
+            "b10",
+            "b7",
+            "b0",
+            "b13",
+            "b5",
+            "b4",
+            "b1",
+            "b9",
+            "b12",
+            "b6",
+            "b2",
+            "b14",
+            "b11"
+          ],
+          "seletiva_r0.5_t1.5": [
+            "b15",
+            "b3",
+            "b8",
+            "b16",
+            "b7",
+            "b10",
+            "b0",
+            "b13",
+            "b5",
+            "b12",
+            "b4",
+            "b1",
+            "b9",
+            "b6",
+            "b2",
+            "b14",
+            "b11"
+          ],
+          "seletiva_r1.0_t0.5": [
+            "b15",
+            "b3",
+            "b8",
+            "b16",
+            "b7",
+            "b10",
+            "b0",
+            "b13",
+            "b5",
+            "b4",
+            "b1",
+            "b9",
+            "b12",
+            "b6",
+            "b2",
+            "b14",
+            "b11"
+          ],
+          "seletiva_r1.0_t1.5": [
+            "b15",
+            "b3",
+            "b16",
+            "b8",
+            "b7",
+            "b10",
+            "b0",
+            "b13",
+            "b5",
+            "b12",
+            "b4",
+            "b1",
+            "b9",
+            "b6",
+            "b2",
+            "b14",
+            "b11"
+          ],
+          "seletiva_r2.0_t0.5": [
+            "b15",
+            "b3",
+            "b16",
+            "b8",
+            "b7",
+            "b10",
+            "b0",
+            "b13",
+            "b5",
+            "b12",
+            "b4",
+            "b1",
+            "b9",
+            "b6",
+            "b2",
+            "b14",
+            "b11"
+          ],
+          "seletiva_r2.0_t1.5": [
+            "b15",
+            "b3",
+            "b16",
+            "b8",
+            "b7",
+            "b10",
+            "b0",
+            "b13",
+            "b5",
+            "b12",
+            "b4",
+            "b1",
+            "b9",
+            "b6",
+            "b2",
+            "b14",
+            "b11"
+          ],
+          "global_r0.5_n0.0": [
+            "b15",
+            "b3",
+            "b16",
+            "b8",
+            "b2",
+            "b6",
+            "b4",
+            "b9",
+            "b12",
+            "b5",
+            "b13",
+            "b0",
+            "b10",
+            "b7",
+            "b14",
+            "b11",
+            "b1"
+          ],
+          "global_r0.5_n0.2": [
+            "b15",
+            "b3",
+            "b16",
+            "b8",
+            "b2",
+            "b6",
+            "b4",
+            "b9",
+            "b12",
+            "b5",
+            "b13",
+            "b0",
+            "b10",
+            "b7",
+            "b14",
+            "b11",
+            "b1"
+          ],
+          "global_r1.0_n0.0": [
+            "b15",
+            "b3",
+            "b16",
+            "b8",
+            "b2",
+            "b6",
+            "b14",
+            "b11",
+            "b1",
+            "b4",
+            "b9",
+            "b12",
+            "b5",
+            "b13",
+            "b0",
+            "b10",
+            "b7"
+          ],
+          "global_r1.0_n0.2": [
+            "b15",
+            "b3",
+            "b16",
+            "b8",
+            "b2",
+            "b6",
+            "b14",
+            "b11",
+            "b1",
+            "b4",
+            "b9",
+            "b12",
+            "b5",
+            "b13",
+            "b0",
+            "b10",
+            "b7"
+          ],
+          "global_r2.0_n0.0": [
+            "b15",
+            "b3",
+            "b16",
+            "b8",
+            "b7",
+            "b10",
+            "b0",
+            "b13",
+            "b5",
+            "b12",
+            "b4",
+            "b9",
+            "b1",
+            "b14",
+            "b11",
+            "b2",
+            "b6"
+          ],
+          "global_r2.0_n0.2": [
+            "b15",
+            "b3",
+            "b16",
+            "b8",
+            "b7",
+            "b10",
+            "b0",
+            "b13",
+            "b5",
+            "b12",
+            "b4",
+            "b9",
+            "b1",
+            "b14",
+            "b11",
+            "b2",
+            "b6"
+          ],
+          "oraculo": [
+            "b15",
+            "b3",
+            "b16",
+            "b8",
+            "b7",
+            "b10",
+            "b0",
+            "b13",
+            "b5",
+            "b12",
+            "b4",
+            "b9",
+            "b1",
+            "b6",
+            "b2",
+            "b11",
+            "b14"
+          ]
+        },
+        "tempos_ms": {
+          "regra": 0.0,
+          "seletiva_r0.5_t0.5": 0.19039999961023568,
+          "seletiva_r0.5_t1.5": 0.12310000010984368,
+          "seletiva_r1.0_t0.5": 0.11820000008810894,
+          "seletiva_r1.0_t1.5": 0.10740000016085105,
+          "seletiva_r2.0_t0.5": 0.10569999994913815,
+          "seletiva_r2.0_t1.5": 0.1059999999597494,
+          "global_r0.5_n0.0": 0.3061000002162473,
+          "global_r0.5_n0.2": 0.2949999998236308,
+          "global_r1.0_n0.0": 0.3181000001859502,
+          "global_r1.0_n0.2": 0.3455000000940345,
+          "global_r2.0_n0.0": 0.3164999998261919,
+          "global_r2.0_n0.2": 0.31480000006922637,
+          "oraculo": 0.5718000002161716
+        },
+        "pares": 71,
+        "segundos_lm": 0.8791730000000371,
+        "memoria_lm": {
+          "rss_mb": 2982.93359375,
+          "pico_rss_mb": 3689.40625,
+          "cuda_pico_alocado_mb": 1311.3203125,
+          "cuda_pico_reservado_mb": 3188.0
+        }
+      },
+      {
+        "page_id": "official_diary_RJ_barra_do_pirai/executive_official_diary_2022-05-26_095.pdf#p2",
+        "uf": "official_diary_RJ_barra_do_pirai",
+        "metodos": {
+          "regra": {
+            "metricas": {
+              "tau": 0.9566367001586463,
+              "quebras": 5,
+              "quebras_mil": 80.64516129032258,
+              "fid12": 0.631578947368421,
+              "sucessor_linhas": 0.5454545454545454,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 5,
+                "acertos": 5,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 6,
+                "acertos": 1,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "outro": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              }
+            },
+            "arestas_ouro": 11,
+            "arestas_certas": 6,
+            "reparos": 0,
+            "regressoes": 0
+          },
+          "seletiva_r0.5_t0.5": {
+            "metricas": {
+              "tau": 0.796932839767319,
+              "quebras": 9,
+              "quebras_mil": 145.16129032258064,
+              "fid12": 0.24561403508771928,
+              "sucessor_linhas": 0.18181818181818182,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 5,
+                "acertos": 2,
+                "reparos": 0,
+                "regressoes": 3
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 6,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 1
+              },
+              "outro": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              }
+            },
+            "arestas_ouro": 11,
+            "arestas_certas": 2,
+            "reparos": 0,
+            "regressoes": 4
+          },
+          "seletiva_r0.5_t1.5": {
+            "metricas": {
+              "tau": 0.9153886832363829,
+              "quebras": 7,
+              "quebras_mil": 112.90322580645162,
+              "fid12": 0.42105263157894735,
+              "sucessor_linhas": 0.36363636363636365,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 5,
+                "acertos": 4,
+                "reparos": 0,
+                "regressoes": 1
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 6,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 1
+              },
+              "outro": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              }
+            },
+            "arestas_ouro": 11,
+            "arestas_certas": 4,
+            "reparos": 0,
+            "regressoes": 2
+          },
+          "seletiva_r1.0_t0.5": {
+            "metricas": {
+              "tau": 0.9153886832363829,
+              "quebras": 7,
+              "quebras_mil": 112.90322580645162,
+              "fid12": 0.42105263157894735,
+              "sucessor_linhas": 0.36363636363636365,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 5,
+                "acertos": 4,
+                "reparos": 0,
+                "regressoes": 1
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 6,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 1
+              },
+              "outro": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              }
+            },
+            "arestas_ouro": 11,
+            "arestas_certas": 4,
+            "reparos": 0,
+            "regressoes": 2
+          },
+          "seletiva_r1.0_t1.5": {
+            "metricas": {
+              "tau": 0.9153886832363829,
+              "quebras": 7,
+              "quebras_mil": 112.90322580645162,
+              "fid12": 0.42105263157894735,
+              "sucessor_linhas": 0.36363636363636365,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 5,
+                "acertos": 4,
+                "reparos": 0,
+                "regressoes": 1
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 6,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 1
+              },
+              "outro": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              }
+            },
+            "arestas_ouro": 11,
+            "arestas_certas": 4,
+            "reparos": 0,
+            "regressoes": 2
+          },
+          "seletiva_r2.0_t0.5": {
+            "metricas": {
+              "tau": 0.9153886832363829,
+              "quebras": 7,
+              "quebras_mil": 112.90322580645162,
+              "fid12": 0.42105263157894735,
+              "sucessor_linhas": 0.36363636363636365,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 5,
+                "acertos": 4,
+                "reparos": 0,
+                "regressoes": 1
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 6,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 1
+              },
+              "outro": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              }
+            },
+            "arestas_ouro": 11,
+            "arestas_certas": 4,
+            "reparos": 0,
+            "regressoes": 2
+          },
+          "seletiva_r2.0_t1.5": {
+            "metricas": {
+              "tau": 0.9153886832363829,
+              "quebras": 7,
+              "quebras_mil": 112.90322580645162,
+              "fid12": 0.42105263157894735,
+              "sucessor_linhas": 0.36363636363636365,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 5,
+                "acertos": 4,
+                "reparos": 0,
+                "regressoes": 1
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 6,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 1
+              },
+              "outro": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              }
+            },
+            "arestas_ouro": 11,
+            "arestas_certas": 4,
+            "reparos": 0,
+            "regressoes": 2
+          },
+          "global_r0.5_n0.0": {
+            "metricas": {
+              "tau": 0.698572184029614,
+              "quebras": 6,
+              "quebras_mil": 96.7741935483871,
+              "fid12": 0.38596491228070173,
+              "sucessor_linhas": 0.45454545454545453,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 5,
+                "acertos": 3,
+                "reparos": 0,
+                "regressoes": 2
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 6,
+                "acertos": 2,
+                "reparos": 1,
+                "regressoes": 0
+              },
+              "outro": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              }
+            },
+            "arestas_ouro": 11,
+            "arestas_certas": 5,
+            "reparos": 1,
+            "regressoes": 2
+          },
+          "global_r0.5_n0.2": {
+            "metricas": {
+              "tau": 0.698572184029614,
+              "quebras": 6,
+              "quebras_mil": 96.7741935483871,
+              "fid12": 0.38596491228070173,
+              "sucessor_linhas": 0.45454545454545453,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 5,
+                "acertos": 3,
+                "reparos": 0,
+                "regressoes": 2
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 6,
+                "acertos": 2,
+                "reparos": 1,
+                "regressoes": 0
+              },
+              "outro": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              }
+            },
+            "arestas_ouro": 11,
+            "arestas_certas": 5,
+            "reparos": 1,
+            "regressoes": 2
+          },
+          "global_r1.0_n0.0": {
+            "metricas": {
+              "tau": 0.9439450026441037,
+              "quebras": 4,
+              "quebras_mil": 64.51612903225806,
+              "fid12": 0.7017543859649122,
+              "sucessor_linhas": 0.6363636363636364,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 5,
+                "acertos": 5,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 6,
+                "acertos": 2,
+                "reparos": 1,
+                "regressoes": 0
+              },
+              "outro": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              }
+            },
+            "arestas_ouro": 11,
+            "arestas_certas": 7,
+            "reparos": 1,
+            "regressoes": 0
+          },
+          "global_r1.0_n0.2": {
+            "metricas": {
+              "tau": 0.9439450026441037,
+              "quebras": 4,
+              "quebras_mil": 64.51612903225806,
+              "fid12": 0.7017543859649122,
+              "sucessor_linhas": 0.6363636363636364,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 5,
+                "acertos": 5,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 6,
+                "acertos": 2,
+                "reparos": 1,
+                "regressoes": 0
+              },
+              "outro": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              }
+            },
+            "arestas_ouro": 11,
+            "arestas_certas": 7,
+            "reparos": 1,
+            "regressoes": 0
+          },
+          "global_r2.0_n0.0": {
+            "metricas": {
+              "tau": 0.9746166049709151,
+              "quebras": 4,
+              "quebras_mil": 64.51612903225806,
+              "fid12": 0.631578947368421,
+              "sucessor_linhas": 0.6363636363636364,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 5,
+                "acertos": 5,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 6,
+                "acertos": 2,
+                "reparos": 1,
+                "regressoes": 0
+              },
+              "outro": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              }
+            },
+            "arestas_ouro": 11,
+            "arestas_certas": 7,
+            "reparos": 1,
+            "regressoes": 0
+          },
+          "global_r2.0_n0.2": {
+            "metricas": {
+              "tau": 0.9746166049709151,
+              "quebras": 4,
+              "quebras_mil": 64.51612903225806,
+              "fid12": 0.631578947368421,
+              "sucessor_linhas": 0.6363636363636364,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 5,
+                "acertos": 5,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 6,
+                "acertos": 2,
+                "reparos": 1,
+                "regressoes": 0
+              },
+              "outro": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              }
+            },
+            "arestas_ouro": 11,
+            "arestas_certas": 7,
+            "reparos": 1,
+            "regressoes": 0
+          },
+          "oraculo": {
+            "metricas": {
+              "tau": 0.9492332099418299,
+              "quebras": 2,
+              "quebras_mil": 32.25806451612903,
+              "fid12": 0.7192982456140351,
+              "sucessor_linhas": 0.8181818181818182,
+              "piso_interno": 0
+            },
+            "diagnostico": {
+              "mesma_coluna": {
+                "ouro": 5,
+                "acertos": 5,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "proxima_coluna": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "tabela_imagem": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "transversal": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              },
+              "margem": {
+                "ouro": 6,
+                "acertos": 4,
+                "reparos": 3,
+                "regressoes": 0
+              },
+              "outro": {
+                "ouro": 0,
+                "acertos": 0,
+                "reparos": 0,
+                "regressoes": 0
+              }
+            },
+            "arestas_ouro": 11,
+            "arestas_certas": 9,
+            "reparos": 3,
+            "regressoes": 0
+          }
+        },
+        "ordens": {
+          "regra": [
+            "b14",
+            "b8",
+            "b9",
+            "b16",
+            "b4",
+            "b13",
+            "b0",
+            "b1",
+            "b10",
+            "b3",
+            "b7",
+            "b2",
+            "b15",
+            "b6",
+            "b5",
+            "b12",
+            "b11"
+          ],
+          "seletiva_r0.5_t0.5": [
+            "b8",
+            "b4",
+            "b9",
+            "b14",
+            "b16",
+            "b13",
+            "b0",
+            "b1",
+            "b10",
+            "b15",
+            "b7",
+            "b6",
+            "b3",
+            "b5",
+            "b12",
+            "b11",
+            "b2"
+          ],
+          "seletiva_r0.5_t1.5": [
+            "b8",
+            "b9",
+            "b14",
+            "b16",
+            "b4",
+            "b13",
+            "b0",
+            "b1",
+            "b10",
+            "b15",
+            "b7",
+            "b6",
+            "b3",
+            "b5",
+            "b12",
+            "b11",
+            "b2"
+          ],
+          "seletiva_r1.0_t0.5": [
+            "b8",
+            "b9",
+            "b14",
+            "b16",
+            "b4",
+            "b13",
+            "b0",
+            "b1",
+            "b10",
+            "b15",
+            "b7",
+            "b6",
+            "b3",
+            "b5",
+            "b12",
+            "b11",
+            "b2"
+          ],
+          "seletiva_r1.0_t1.5": [
+            "b8",
+            "b9",
+            "b14",
+            "b16",
+            "b4",
+            "b13",
+            "b0",
+            "b1",
+            "b10",
+            "b15",
+            "b7",
+            "b6",
+            "b3",
+            "b5",
+            "b12",
+            "b11",
+            "b2"
+          ],
+          "seletiva_r2.0_t0.5": [
+            "b8",
+            "b9",
+            "b14",
+            "b16",
+            "b4",
+            "b13",
+            "b0",
+            "b1",
+            "b10",
+            "b15",
+            "b7",
+            "b6",
+            "b3",
+            "b5",
+            "b12",
+            "b11",
+            "b2"
+          ],
+          "seletiva_r2.0_t1.5": [
+            "b8",
+            "b9",
+            "b14",
+            "b16",
+            "b4",
+            "b13",
+            "b0",
+            "b1",
+            "b10",
+            "b3",
+            "b7",
+            "b15",
+            "b6",
+            "b5",
+            "b12",
+            "b11",
+            "b2"
+          ],
+          "global_r0.5_n0.0": [
+            "b9",
+            "b14",
+            "b8",
+            "b13",
+            "b0",
+            "b1",
+            "b10",
+            "b3",
+            "b12",
+            "b11",
+            "b5",
+            "b2",
+            "b15",
+            "b7",
+            "b6",
+            "b16",
+            "b4"
+          ],
+          "global_r0.5_n0.2": [
+            "b9",
+            "b14",
+            "b8",
+            "b13",
+            "b0",
+            "b1",
+            "b10",
+            "b3",
+            "b12",
+            "b11",
+            "b5",
+            "b2",
+            "b15",
+            "b7",
+            "b6",
+            "b16",
+            "b4"
+          ],
+          "global_r1.0_n0.0": [
+            "b9",
+            "b14",
+            "b8",
+            "b16",
+            "b4",
+            "b13",
+            "b0",
+            "b1",
+            "b10",
+            "b3",
+            "b12",
+            "b11",
+            "b5",
+            "b2",
+            "b15",
+            "b7",
+            "b6"
+          ],
+          "global_r1.0_n0.2": [
+            "b9",
+            "b14",
+            "b8",
+            "b16",
+            "b4",
+            "b13",
+            "b0",
+            "b1",
+            "b10",
+            "b3",
+            "b12",
+            "b11",
+            "b5",
+            "b2",
+            "b15",
+            "b7",
+            "b6"
+          ],
+          "global_r2.0_n0.0": [
+            "b9",
+            "b14",
+            "b8",
+            "b16",
+            "b4",
+            "b13",
+            "b0",
+            "b1",
+            "b10",
+            "b6",
+            "b3",
+            "b7",
+            "b2",
+            "b15",
+            "b12",
+            "b11",
+            "b5"
+          ],
+          "global_r2.0_n0.2": [
+            "b9",
+            "b14",
+            "b8",
+            "b16",
+            "b4",
+            "b13",
+            "b0",
+            "b1",
+            "b10",
+            "b6",
+            "b3",
+            "b7",
+            "b2",
+            "b15",
+            "b12",
+            "b11",
+            "b5"
+          ],
+          "oraculo": [
+            "b9",
+            "b14",
+            "b8",
+            "b16",
+            "b4",
+            "b13",
+            "b0",
+            "b1",
+            "b10",
+            "b3",
+            "b7",
+            "b2",
+            "b5",
+            "b11",
+            "b15",
+            "b12",
+            "b6"
+          ]
+        },
+        "tempos_ms": {
+          "regra": 0.0,
+          "seletiva_r0.5_t0.5": 0.12479999986680923,
+          "seletiva_r0.5_t1.5": 0.11760000006688642,
+          "seletiva_r1.0_t0.5": 0.11820000008810894,
+          "seletiva_r1.0_t1.5": 0.12180000021544402,
+          "seletiva_r2.0_t0.5": 0.11630000017248676,
+          "seletiva_r2.0_t1.5": 0.11270000004515168,
+          "global_r0.5_n0.0": 0.3461999999672116,
+          "global_r0.5_n0.2": 0.34120000009352225,
+          "global_r1.0_n0.0": 0.3354999998919084,
+          "global_r1.0_n0.2": 0.37219999967419426,
+          "global_r2.0_n0.0": 0.32449999980599387,
+          "global_r2.0_n0.2": 0.3376999998181418,
+          "oraculo": 0.618199999735225
+        },
+        "pares": 81,
+        "segundos_lm": 1.3684226000000308,
+        "memoria_lm": {
+          "rss_mb": 3010.640625,
+          "pico_rss_mb": 3689.40625,
+          "cuda_pico_alocado_mb": 1382.6630859375,
+          "cuda_pico_reservado_mb": 3188.0
+        }
+      }
+    ],
+    "validacao_silver": [],
+    "golden_v3_novo": [],
+    "teste_silver": []
+  },
+  "decodificador_sha256": "5d4e6a5f59f3eb20a2f66b36ed25bb43b01fe53e77a4b166adde0d26c4be8779",
+  "escores_sha256": {
+    "golden_v4.jsonl": "c99b810c8d3668520a1c4b533a9d2ac4537753f12632db21757a13cf4ec12f55"
+  }
+}

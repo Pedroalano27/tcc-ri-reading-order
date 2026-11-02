@@ -1,0 +1,869 @@
+{
+  "lote": "diamond_treino",
+  "paginas": 39,
+  "sistemas": {
+    "v3": {
+      "paginas": 39,
+      "regioes_gabarito": 1338,
+      "regioes_sistema": 1054,
+      "f1_j50": 0.69,
+      "f1_j90": 0.583,
+      "f1_exata": 0.568,
+      "f1_j50_classe": 0.337,
+      "classe_certa_palavras": 0.848,
+      "revocacao_por_classe": {
+        "titulo": {
+          "n": 216,
+          "revocacao": 0.0
+        },
+        "texto": {
+          "n": 759,
+          "revocacao": 0.481
+        },
+        "lista": {
+          "n": 20,
+          "revocacao": 0.0
+        },
+        "tabela": {
+          "n": 38,
+          "revocacao": 1.0
+        },
+        "assinatura": {
+          "n": 84,
+          "revocacao": 0.0
+        },
+        "cabecalho": {
+          "n": 90,
+          "revocacao": 0.0
+        },
+        "rodape": {
+          "n": 30,
+          "revocacao": 0.0
+        },
+        "figura": {
+          "n": 11,
+          "revocacao": 0.0
+        },
+        "outro": {
+          "n": 90,
+          "revocacao": 0.0
+        }
+      }
+    },
+    "proposta": {
+      "paginas": 39,
+      "regioes_gabarito": 1338,
+      "regioes_sistema": 1392,
+      "f1_j50": 0.925,
+      "f1_j90": 0.904,
+      "f1_exata": 0.899,
+      "f1_j50_classe": 0.826,
+      "classe_certa_palavras": 0.898,
+      "revocacao_por_classe": {
+        "titulo": {
+          "n": 216,
+          "revocacao": 0.903
+        },
+        "texto": {
+          "n": 759,
+          "revocacao": 0.916
+        },
+        "lista": {
+          "n": 20,
+          "revocacao": 0.2
+        },
+        "tabela": {
+          "n": 38,
+          "revocacao": 1.0
+        },
+        "assinatura": {
+          "n": 84,
+          "revocacao": 0.845
+        },
+        "cabecalho": {
+          "n": 90,
+          "revocacao": 0.9
+        },
+        "rodape": {
+          "n": 30,
+          "revocacao": 0.9
+        },
+        "figura": {
+          "n": 11,
+          "revocacao": 0.0
+        },
+        "outro": {
+          "n": 90,
+          "revocacao": 0.178
+        }
+      }
+    },
+    "regioes_v2": {
+      "paginas": 39,
+      "regioes_gabarito": 1338,
+      "regioes_sistema": 1390,
+      "f1_j50": 0.924,
+      "f1_j90": 0.902,
+      "f1_exata": 0.897,
+      "f1_j50_classe": 0.806,
+      "classe_certa_palavras": 0.893,
+      "revocacao_por_classe": {
+        "titulo": {
+          "n": 216,
+          "revocacao": 0.903
+        },
+        "texto": {
+          "n": 759,
+          "revocacao": 0.917
+        },
+        "lista": {
+          "n": 20,
+          "revocacao": 0.2
+        },
+        "tabela": {
+          "n": 38,
+          "revocacao": 1.0
+        },
+        "assinatura": {
+          "n": 84,
+          "revocacao": 0.762
+        },
+        "cabecalho": {
+          "n": 90,
+          "revocacao": 0.844
+        },
+        "rodape": {
+          "n": 30,
+          "revocacao": 0.9
+        },
+        "figura": {
+          "n": 11,
+          "revocacao": 0.0
+        },
+        "outro": {
+          "n": 90,
+          "revocacao": 0.0
+        }
+      }
+    },
+    "regioes": {
+      "paginas": 39,
+      "regioes_gabarito": 1338,
+      "regioes_sistema": 1392,
+      "f1_j50": 0.925,
+      "f1_j90": 0.904,
+      "f1_exata": 0.899,
+      "f1_j50_classe": 0.82,
+      "classe_certa_palavras": 0.894,
+      "revocacao_por_classe": {
+        "titulo": {
+          "n": 216,
+          "revocacao": 0.903
+        },
+        "texto": {
+          "n": 759,
+          "revocacao": 0.917
+        },
+        "lista": {
+          "n": 20,
+          "revocacao": 0.2
+        },
+        "tabela": {
+          "n": 38,
+          "revocacao": 1.0
+        },
+        "assinatura": {
+          "n": 84,
+          "revocacao": 0.762
+        },
+        "cabecalho": {
+          "n": 90,
+          "revocacao": 0.844
+        },
+        "rodape": {
+          "n": 30,
+          "revocacao": 0.9
+        },
+        "figura": {
+          "n": 11,
+          "revocacao": 0.0
+        },
+        "outro": {
+          "n": 90,
+          "revocacao": 0.211
+        }
+      }
+    },
+    "rose:rose_treino": {
+      "paginas": 39,
+      "regioes_gabarito": 1338,
+      "regioes_sistema": 1364,
+      "f1_j50": 0.923,
+      "f1_j90": 0.899,
+      "f1_exata": 0.893,
+      "f1_j50_classe": 0.79,
+      "classe_certa_palavras": 0.89,
+      "revocacao_por_classe": {
+        "titulo": {
+          "n": 216,
+          "revocacao": 0.912
+        },
+        "texto": {
+          "n": 759,
+          "revocacao": 0.809
+        },
+        "lista": {
+          "n": 20,
+          "revocacao": 0.2
+        },
+        "tabela": {
+          "n": 38,
+          "revocacao": 1.0
+        },
+        "assinatura": {
+          "n": 84,
+          "revocacao": 0.964
+        },
+        "cabecalho": {
+          "n": 90,
+          "revocacao": 0.922
+        },
+        "rodape": {
+          "n": 30,
+          "revocacao": 0.9
+        },
+        "figura": {
+          "n": 11,
+          "revocacao": 0.0
+        },
+        "outro": {
+          "n": 90,
+          "revocacao": 0.256
+        }
+      }
+    },
+    "pred:pred_yolo_diamond_treino": {
+      "paginas": 39,
+      "regioes_gabarito": 1338,
+      "regioes_sistema": 1378,
+      "f1_j50": 0.895,
+      "f1_j90": 0.823,
+      "f1_exata": 0.803,
+      "f1_j50_classe": 0.853,
+      "classe_certa_palavras": 0.928,
+      "revocacao_por_classe": {
+        "titulo": {
+          "n": 216,
+          "revocacao": 0.931
+        },
+        "texto": {
+          "n": 759,
+          "revocacao": 0.929
+        },
+        "lista": {
+          "n": 20,
+          "revocacao": 0.75
+        },
+        "tabela": {
+          "n": 38,
+          "revocacao": 0.974
+        },
+        "assinatura": {
+          "n": 84,
+          "revocacao": 0.976
+        },
+        "cabecalho": {
+          "n": 90,
+          "revocacao": 0.911
+        },
+        "rodape": {
+          "n": 30,
+          "revocacao": 0.7
+        },
+        "figura": {
+          "n": 11,
+          "revocacao": 0.727
+        },
+        "outro": {
+          "n": 90,
+          "revocacao": 0.089
+        }
+      }
+    },
+    "regioes_v3+rose:todas": {
+      "paginas": 39,
+      "regioes_gabarito": 1338,
+      "regioes_sistema": 1392,
+      "f1_j50": 0.925,
+      "f1_j90": 0.904,
+      "f1_exata": 0.899,
+      "f1_j50_classe": 0.801,
+      "classe_certa_palavras": 0.89,
+      "revocacao_por_classe": {
+        "titulo": {
+          "n": 216,
+          "revocacao": 0.912
+        },
+        "texto": {
+          "n": 759,
+          "revocacao": 0.835
+        },
+        "lista": {
+          "n": 20,
+          "revocacao": 0.2
+        },
+        "tabela": {
+          "n": 38,
+          "revocacao": 1.0
+        },
+        "assinatura": {
+          "n": 84,
+          "revocacao": 0.976
+        },
+        "cabecalho": {
+          "n": 90,
+          "revocacao": 0.944
+        },
+        "rodape": {
+          "n": 30,
+          "revocacao": 0.933
+        },
+        "figura": {
+          "n": 11,
+          "revocacao": 0.0
+        },
+        "outro": {
+          "n": 90,
+          "revocacao": 0.278
+        }
+      }
+    },
+    "regioes_v3+rose:assinatura_cabecalho": {
+      "paginas": 39,
+      "regioes_gabarito": 1338,
+      "regioes_sistema": 1392,
+      "f1_j50": 0.925,
+      "f1_j90": 0.904,
+      "f1_exata": 0.899,
+      "f1_j50_classe": 0.829,
+      "classe_certa_palavras": 0.9,
+      "revocacao_por_classe": {
+        "titulo": {
+          "n": 216,
+          "revocacao": 0.903
+        },
+        "texto": {
+          "n": 759,
+          "revocacao": 0.899
+        },
+        "lista": {
+          "n": 20,
+          "revocacao": 0.2
+        },
+        "tabela": {
+          "n": 38,
+          "revocacao": 1.0
+        },
+        "assinatura": {
+          "n": 84,
+          "revocacao": 0.976
+        },
+        "cabecalho": {
+          "n": 90,
+          "revocacao": 0.956
+        },
+        "rodape": {
+          "n": 30,
+          "revocacao": 0.867
+        },
+        "figura": {
+          "n": 11,
+          "revocacao": 0.0
+        },
+        "outro": {
+          "n": 90,
+          "revocacao": 0.211
+        }
+      }
+    },
+    "regioes_v3+rose:assinatura_cabecalho_titulo_rodape": {
+      "paginas": 39,
+      "regioes_gabarito": 1338,
+      "regioes_sistema": 1392,
+      "f1_j50": 0.925,
+      "f1_j90": 0.904,
+      "f1_exata": 0.899,
+      "f1_j50_classe": 0.816,
+      "classe_certa_palavras": 0.897,
+      "revocacao_por_classe": {
+        "titulo": {
+          "n": 216,
+          "revocacao": 0.912
+        },
+        "texto": {
+          "n": 759,
+          "revocacao": 0.871
+        },
+        "lista": {
+          "n": 20,
+          "revocacao": 0.2
+        },
+        "tabela": {
+          "n": 38,
+          "revocacao": 1.0
+        },
+        "assinatura": {
+          "n": 84,
+          "revocacao": 0.976
+        },
+        "cabecalho": {
+          "n": 90,
+          "revocacao": 0.944
+        },
+        "rodape": {
+          "n": 30,
+          "revocacao": 0.933
+        },
+        "figura": {
+          "n": 11,
+          "revocacao": 0.0
+        },
+        "outro": {
+          "n": 90,
+          "revocacao": 0.211
+        }
+      }
+    }
+  },
+  "por_pagina": {
+    "official_diary_al/DOEAL-2026-01-16-SUPLEMENTO.pdf#p9": {
+      "v3": 0.722,
+      "proposta": 1.0,
+      "regioes_v2": 1.0,
+      "regioes": 1.0,
+      "rose:rose_treino": 0.977,
+      "pred:pred_yolo_diamond_treino": 0.791,
+      "regioes_v3+rose:todas": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho_titulo_rodape": 1.0
+    },
+    "official_diary_ap/2024-02-20_DOEn8106_Edicao Ordinaria.pdf#p35": {
+      "v3": 0.646,
+      "proposta": 0.988,
+      "regioes_v2": 0.988,
+      "regioes": 0.988,
+      "rose:rose_treino": 0.988,
+      "pred:pred_yolo_diamond_treino": 0.988,
+      "regioes_v3+rose:todas": 0.988,
+      "regioes_v3+rose:assinatura_cabecalho": 0.988,
+      "regioes_v3+rose:assinatura_cabecalho_titulo_rodape": 0.988
+    },
+    "official_diary_ms/executive_official_diary_48733_2024-11-05.pdf#p233": {
+      "v3": 0.222,
+      "proposta": 0.75,
+      "regioes_v2": 0.75,
+      "regioes": 0.75,
+      "rose:rose_treino": 0.75,
+      "pred:pred_yolo_diamond_treino": 1.0,
+      "regioes_v3+rose:todas": 0.75,
+      "regioes_v3+rose:assinatura_cabecalho": 0.75,
+      "regioes_v3+rose:assinatura_cabecalho_titulo_rodape": 0.75
+    },
+    "official_diary_pi_v2/executive_official_diary_2024_01_12_9_2024_243_297.pdf#p0": {
+      "v3": 0.885,
+      "proposta": 1.0,
+      "regioes_v2": 1.0,
+      "regioes": 1.0,
+      "rose:rose_treino": 0.926,
+      "pred:pred_yolo_diamond_treino": 0.857,
+      "regioes_v3+rose:todas": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho_titulo_rodape": 1.0
+    },
+    "official_diary_RJ_duque_de_caxias/executive_official_diary_2025-05-02_Boletim_7582_vol2.pdf#p0": {
+      "v3": 0.324,
+      "proposta": 0.163,
+      "regioes_v2": 0.163,
+      "regioes": 0.163,
+      "rose:rose_treino": 0.164,
+      "pred:pred_yolo_diamond_treino": 0.973,
+      "regioes_v3+rose:todas": 0.163,
+      "regioes_v3+rose:assinatura_cabecalho": 0.163,
+      "regioes_v3+rose:assinatura_cabecalho_titulo_rodape": 0.163
+    },
+    "official_diary_am_manaus/2023-03-13_caderno_2.pdf#p22": {
+      "v3": 1.0,
+      "proposta": 1.0,
+      "regioes_v2": 1.0,
+      "regioes": 1.0,
+      "rose:rose_treino": 1.0,
+      "pred:pred_yolo_diamond_treino": 1.0,
+      "regioes_v3+rose:todas": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho_titulo_rodape": 1.0
+    },
+    "official_diary_ac/executive_official_diary_2022-08-03.pdf#p109": {
+      "v3": 1.0,
+      "proposta": 1.0,
+      "regioes_v2": 1.0,
+      "regioes": 1.0,
+      "rose:rose_treino": 1.0,
+      "pred:pred_yolo_diamond_treino": 1.0,
+      "regioes_v3+rose:todas": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho_titulo_rodape": 1.0
+    },
+    "official_diary_se/DOE-SE_2026-01-16_7401.pdf#p31": {
+      "v3": 0.879,
+      "proposta": 0.816,
+      "regioes_v2": 0.816,
+      "regioes": 0.816,
+      "rose:rose_treino": 0.991,
+      "pred:pred_yolo_diamond_treino": 0.963,
+      "regioes_v3+rose:todas": 0.816,
+      "regioes_v3+rose:assinatura_cabecalho": 0.816,
+      "regioes_v3+rose:assinatura_cabecalho_titulo_rodape": 0.816
+    },
+    "official_diary_pr/executive_official_diary_2021-11-26.pdf#p66": {
+      "v3": 0.956,
+      "proposta": 1.0,
+      "regioes_v2": 1.0,
+      "regioes": 1.0,
+      "rose:rose_treino": 1.0,
+      "pred:pred_yolo_diamond_treino": 0.579,
+      "regioes_v3+rose:todas": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho_titulo_rodape": 1.0
+    },
+    "official_diary_rj_japeri/JAPERI-5690-06-DE-SETEMBRO-2024.pdf#p13": {
+      "v3": 0.549,
+      "proposta": 0.909,
+      "regioes_v2": 0.909,
+      "regioes": 0.909,
+      "rose:rose_treino": 0.857,
+      "pred:pred_yolo_diamond_treino": 0.986,
+      "regioes_v3+rose:todas": 0.909,
+      "regioes_v3+rose:assinatura_cabecalho": 0.909,
+      "regioes_v3+rose:assinatura_cabecalho_titulo_rodape": 0.909
+    },
+    "official_diary_sp/Executivo - Caderno 1_2023-06-28_7_71.pdf#p0": {
+      "v3": 0.571,
+      "proposta": 0.696,
+      "regioes_v2": 0.696,
+      "regioes": 0.696,
+      "rose:rose_treino": 0.696,
+      "pred:pred_yolo_diamond_treino": 0.688,
+      "regioes_v3+rose:todas": 0.696,
+      "regioes_v3+rose:assinatura_cabecalho": 0.696,
+      "regioes_v3+rose:assinatura_cabecalho_titulo_rodape": 0.696
+    },
+    "official_diary_MG_congonhas/executive_official_diary_2022-09-02_3022.pdf#p20": {
+      "v3": 0.833,
+      "proposta": 1.0,
+      "regioes_v2": 1.0,
+      "regioes": 1.0,
+      "rose:rose_treino": 1.0,
+      "pred:pred_yolo_diamond_treino": 1.0,
+      "regioes_v3+rose:todas": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho_titulo_rodape": 1.0
+    },
+    "official_diary_ro/executive_official_diary_2023-07-26_304_320.pdf#p0": {
+      "v3": 0.6,
+      "proposta": 0.786,
+      "regioes_v2": 0.786,
+      "regioes": 0.786,
+      "rose:rose_treino": 0.851,
+      "pred:pred_yolo_diamond_treino": 0.982,
+      "regioes_v3+rose:todas": 0.786,
+      "regioes_v3+rose:assinatura_cabecalho": 0.786,
+      "regioes_v3+rose:assinatura_cabecalho_titulo_rodape": 0.786
+    },
+    "official_diary_rn/DOE-RN_2022-12-29_Ordinaria.pdf#p59": {
+      "v3": 0.209,
+      "proposta": 0.973,
+      "regioes_v2": 0.973,
+      "regioes": 0.973,
+      "rose:rose_treino": 0.972,
+      "pred:pred_yolo_diamond_treino": 0.911,
+      "regioes_v3+rose:todas": 0.973,
+      "regioes_v3+rose:assinatura_cabecalho": 0.973,
+      "regioes_v3+rose:assinatura_cabecalho_titulo_rodape": 0.973
+    },
+    "official_diary_pa/executive_official_diary_extra_2026-01-16.pdf#p9": {
+      "v3": 0.852,
+      "proposta": 1.0,
+      "regioes_v2": 1.0,
+      "regioes": 1.0,
+      "rose:rose_treino": 1.0,
+      "pred:pred_yolo_diamond_treino": 0.929,
+      "regioes_v3+rose:todas": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho_titulo_rodape": 1.0
+    },
+    "official_diary_to/2022-12-13_4783.pdf#p10": {
+      "v3": 0.759,
+      "proposta": 1.0,
+      "regioes_v2": 1.0,
+      "regioes": 1.0,
+      "rose:rose_treino": 1.0,
+      "pred:pred_yolo_diamond_treino": 0.977,
+      "regioes_v3+rose:todas": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho_titulo_rodape": 1.0
+    },
+    "official_diary_RJ_seropedica/executive_official_diary_2022-05-09_986.pdf#p3": {
+      "v3": 0.865,
+      "proposta": 1.0,
+      "regioes_v2": 1.0,
+      "regioes": 1.0,
+      "rose:rose_treino": 0.895,
+      "pred:pred_yolo_diamond_treino": 0.977,
+      "regioes_v3+rose:todas": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho_titulo_rodape": 1.0
+    },
+    "official_diary_RJ_barra_do_pirai/executive_official_diary_2023-11-24_214.pdf#p3": {
+      "v3": 0.966,
+      "proposta": 1.0,
+      "regioes_v2": 1.0,
+      "regioes": 1.0,
+      "rose:rose_treino": 1.0,
+      "pred:pred_yolo_diamond_treino": 0.968,
+      "regioes_v3+rose:todas": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho_titulo_rodape": 1.0
+    },
+    "official_diary_ba_salvador/dom-8379-27-09-2022.pdf#p5": {
+      "v3": 0.868,
+      "proposta": 0.98,
+      "regioes_v2": 0.98,
+      "regioes": 0.98,
+      "rose:rose_treino": 0.98,
+      "pred:pred_yolo_diamond_treino": 0.98,
+      "regioes_v3+rose:todas": 0.98,
+      "regioes_v3+rose:assinatura_cabecalho": 0.98,
+      "regioes_v3+rose:assinatura_cabecalho_titulo_rodape": 0.98
+    },
+    "official_diary_pr_curitiba/24-Supl1_2024-02-05.pdf#p4": {
+      "v3": 0.381,
+      "proposta": 1.0,
+      "regioes_v2": 1.0,
+      "regioes": 1.0,
+      "rose:rose_treino": 0.75,
+      "pred:pred_yolo_diamond_treino": 0.875,
+      "regioes_v3+rose:todas": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho_titulo_rodape": 1.0
+    },
+    "official_diary_rr/2021-09-23_DiarioRR.pdf#p10": {
+      "v3": 0.9,
+      "proposta": 0.978,
+      "regioes_v2": 0.978,
+      "regioes": 0.978,
+      "rose:rose_treino": 1.0,
+      "pred:pred_yolo_diamond_treino": 0.957,
+      "regioes_v3+rose:todas": 0.978,
+      "regioes_v3+rose:assinatura_cabecalho": 0.978,
+      "regioes_v3+rose:assinatura_cabecalho_titulo_rodape": 0.978
+    },
+    "official_diary_rs_porto_alegre/4689_cl_20230227_legislativo.pdf#p2": {
+      "v3": 0.632,
+      "proposta": 1.0,
+      "regioes_v2": 1.0,
+      "regioes": 1.0,
+      "rose:rose_treino": 0.957,
+      "pred:pred_yolo_diamond_treino": 0.8,
+      "regioes_v3+rose:todas": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho_titulo_rodape": 1.0
+    },
+    "official_diary_sc/2023-11-27_22151.pdf#p28": {
+      "v3": 0.235,
+      "proposta": 1.0,
+      "regioes_v2": 1.0,
+      "regioes": 1.0,
+      "rose:rose_treino": 1.0,
+      "pred:pred_yolo_diamond_treino": 0.942,
+      "regioes_v3+rose:todas": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho_titulo_rodape": 1.0
+    },
+    "official_diary_RJ_volta_redonda/executive_official_diary_2023-09-22_1987-extra.pdf#p16": {
+      "v3": 0.938,
+      "proposta": 1.0,
+      "regioes_v2": 1.0,
+      "regioes": 1.0,
+      "rose:rose_treino": 1.0,
+      "pred:pred_yolo_diamond_treino": 0.99,
+      "regioes_v3+rose:todas": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho_titulo_rodape": 1.0
+    },
+    "official_diary_pb/Diario Oficial 10-01-2026 Portal.pdf#p26": {
+      "v3": 0.909,
+      "proposta": 1.0,
+      "regioes_v2": 1.0,
+      "regioes": 1.0,
+      "rose:rose_treino": 1.0,
+      "pred:pred_yolo_diamond_treino": 0.857,
+      "regioes_v3+rose:todas": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho_titulo_rodape": 1.0
+    },
+    "official_diary_pe/2023-02-02_1-Poder Executivo.pdf#p6": {
+      "v3": 0.833,
+      "proposta": 1.0,
+      "regioes_v2": 1.0,
+      "regioes": 1.0,
+      "rose:rose_treino": 1.0,
+      "pred:pred_yolo_diamond_treino": 0.988,
+      "regioes_v3+rose:todas": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho_titulo_rodape": 1.0
+    },
+    "official_diary_al/DOEAL-2023-03-22-COMPLETO_54_172.pdf#p0": {
+      "v3": 0.361,
+      "proposta": 0.982,
+      "regioes_v2": 0.982,
+      "regioes": 0.982,
+      "rose:rose_treino": 1.0,
+      "pred:pred_yolo_diamond_treino": 0.955,
+      "regioes_v3+rose:todas": 0.982,
+      "regioes_v3+rose:assinatura_cabecalho": 0.982,
+      "regioes_v3+rose:assinatura_cabecalho_titulo_rodape": 0.982
+    },
+    "official_diary_ap/2021-09-15_DOEn7504_Edicao Ordinaria.pdf#p45": {
+      "v3": 1.0,
+      "proposta": 1.0,
+      "regioes_v2": 1.0,
+      "regioes": 1.0,
+      "rose:rose_treino": 1.0,
+      "pred:pred_yolo_diamond_treino": 1.0,
+      "regioes_v3+rose:todas": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho_titulo_rodape": 1.0
+    },
+    "official_diary_ms/executive_official_diary_47515_2022-10-21.pdf#p282": {
+      "v3": 0.909,
+      "proposta": 0.98,
+      "regioes_v2": 0.98,
+      "regioes": 0.98,
+      "rose:rose_treino": 1.0,
+      "pred:pred_yolo_diamond_treino": 0.98,
+      "regioes_v3+rose:todas": 0.98,
+      "regioes_v3+rose:assinatura_cabecalho": 0.98,
+      "regioes_v3+rose:assinatura_cabecalho_titulo_rodape": 0.98
+    },
+    "official_diary_pi_v2/executive_official_diary_2025_11_18_223_2025.pdf#p118": {
+      "v3": 0.93,
+      "proposta": 0.976,
+      "regioes_v2": 0.976,
+      "regioes": 0.976,
+      "rose:rose_treino": 0.976,
+      "pred:pred_yolo_diamond_treino": 0.977,
+      "regioes_v3+rose:todas": 0.976,
+      "regioes_v3+rose:assinatura_cabecalho": 0.976,
+      "regioes_v3+rose:assinatura_cabecalho_titulo_rodape": 0.976
+    },
+    "official_diary_RJ_duque_de_caxias/executive_official_diary_2023-05-08_Boletim_7286.pdf#p16": {
+      "v3": 0.819,
+      "proposta": 0.9,
+      "regioes_v2": 0.9,
+      "regioes": 0.9,
+      "rose:rose_treino": 0.9,
+      "pred:pred_yolo_diamond_treino": 0.842,
+      "regioes_v3+rose:todas": 0.9,
+      "regioes_v3+rose:assinatura_cabecalho": 0.9,
+      "regioes_v3+rose:assinatura_cabecalho_titulo_rodape": 0.9
+    },
+    "official_diary_am_manaus/2023-08-18_caderno_1.pdf#p20": {
+      "v3": 0.217,
+      "proposta": 1.0,
+      "regioes_v2": 1.0,
+      "regioes": 1.0,
+      "rose:rose_treino": 0.878,
+      "pred:pred_yolo_diamond_treino": 0.929,
+      "regioes_v3+rose:todas": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho_titulo_rodape": 1.0
+    },
+    "official_diary_ac/executive_official_diary_2023-08-03_59_132.pdf#p0": {
+      "v3": 0.7,
+      "proposta": 1.0,
+      "regioes_v2": 1.0,
+      "regioes": 1.0,
+      "rose:rose_treino": 0.981,
+      "pred:pred_yolo_diamond_treino": 0.926,
+      "regioes_v3+rose:todas": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho_titulo_rodape": 1.0
+    },
+    "official_diary_se/DOE-SE_2026-01-16_7401.pdf#p18": {
+      "v3": 0.713,
+      "proposta": 1.0,
+      "regioes_v2": 0.987,
+      "regioes": 1.0,
+      "rose:rose_treino": 0.987,
+      "pred:pred_yolo_diamond_treino": 0.701,
+      "regioes_v3+rose:todas": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho_titulo_rodape": 1.0
+    },
+    "official_diary_pr/executive_official_diary_2021-09-23.pdf#p177": {
+      "v3": 1.0,
+      "proposta": 1.0,
+      "regioes_v2": 1.0,
+      "regioes": 1.0,
+      "rose:rose_treino": 1.0,
+      "pred:pred_yolo_diamond_treino": 0.959,
+      "regioes_v3+rose:todas": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho_titulo_rodape": 1.0
+    },
+    "official_diary_rj_japeri/JAPERI-5606-09-DE-MAIO-2024.pdf#p2": {
+      "v3": 0.84,
+      "proposta": 1.0,
+      "regioes_v2": 1.0,
+      "regioes": 1.0,
+      "rose:rose_treino": 1.0,
+      "pred:pred_yolo_diamond_treino": 1.0,
+      "regioes_v3+rose:todas": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho": 1.0,
+      "regioes_v3+rose:assinatura_cabecalho_titulo_rodape": 1.0
+    },
+    "official_diary_MG_congonhas/executive_official_diary_2010-04-14_63.pdf#p2": {
+      "v3": 0.611,
+      "proposta": 0.769,
+      "regioes_v2": 0.769,
+      "regioes": 0.769,
+      "rose:rose_treino": 0.857,
+      "pred:pred_yolo_diamond_treino": 0.989,
+      "regioes_v3+rose:todas": 0.769,
+      "regioes_v3+rose:assinatura_cabecalho": 0.769,
+      "regioes_v3+rose:assinatura_cabecalho_titulo_rodape": 0.769
+    },
+    "official_diary_ro/executive_official_diary_2021-11-11.pdf#p155": {
+      "v3": 0.667,
+      "proposta": 0.857,
+      "regioes_v2": 0.857,
+      "regioes": 0.857,
+      "rose:rose_treino": 1.0,
+      "pred:pred_yolo_diamond_treino": 0.175,
+      "regioes_v3+rose:todas": 0.857,
+      "regioes_v3+rose:assinatura_cabecalho": 0.857,
+      "regioes_v3+rose:assinatura_cabecalho_titulo_rodape": 0.857
+    },
+    "official_diary_rn/DOE-RN_2022-12-29_Ordinaria.pdf#p3": {
+      "v3": 0.241,
+      "proposta": 0.877,
+      "regioes_v2": 0.877,
+      "regioes": 0.877,
+      "rose:rose_treino": 0.875,
+      "pred:pred_yolo_diamond_treino": 0.897,
+      "regioes_v3+rose:todas": 0.877,
+      "regioes_v3+rose:assinatura_cabecalho": 0.877,
+      "regioes_v3+rose:assinatura_cabecalho_titulo_rodape": 0.877
+    }
+  }
+}

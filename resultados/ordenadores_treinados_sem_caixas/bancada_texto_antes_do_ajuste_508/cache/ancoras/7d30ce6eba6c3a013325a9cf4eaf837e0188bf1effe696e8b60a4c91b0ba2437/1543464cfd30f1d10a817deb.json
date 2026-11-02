@@ -1,0 +1,102 @@
+{
+  "page_id": "official_diary_pb/Diario Oficial 10-01-2026 Portal.pdf#p26",
+  "uf": "official_diary_pb",
+  "P2": {
+    "tau": 0.9999318917078155,
+    "quebras": 2,
+    "quebras_mil": 2.380952380952381,
+    "fid12": 0.9890710382513661,
+    "sucessor_linhas": 0.987012987012987
+  },
+  "P1m": {
+    "tau": 0.9999318917078155,
+    "quebras": 2,
+    "quebras_mil": 2.380952380952381,
+    "fid12": 0.9890710382513661,
+    "sucessor_linhas": 0.987012987012987
+  },
+  "regra_colunas_exportada": {
+    "tau": 0.9999318917078155,
+    "quebras": 2,
+    "quebras_mil": 2.380952380952381,
+    "fid12": 0.9890710382513661,
+    "sucessor_linhas": 0.987012987012987,
+    "piso_interno": 0
+  },
+  "regra_colunas_ks_cru": {
+    "tau": 0.9999318917078155,
+    "quebras": 2,
+    "quebras_mil": 2.380952380952381,
+    "fid12": 0.9890710382513661,
+    "sucessor_linhas": 0.987012987012987,
+    "piso_interno": 0
+  },
+  "expansao_canonica_diagnostico": {
+    "tau": 0.9999318917078155,
+    "quebras": 2,
+    "quebras_mil": 2.380952380952381,
+    "fid12": 0.9890710382513661,
+    "sucessor_linhas": 0.987012987012987
+  },
+  "diagnostico": {
+    "ks_diferem_da_expansao_canonica": false,
+    "canonizada_identica_P2": true,
+    "unidades_internas_diferentes": 0,
+    "detalhes": []
+  },
+  "ordem_regra_colunas_exportada": [
+    "b14",
+    "b19",
+    "b12",
+    "b16",
+    "b13",
+    "b2",
+    "b6",
+    "b17",
+    "b5",
+    "b8",
+    "b15",
+    "b7",
+    "b4",
+    "b10",
+    "b3",
+    "b0",
+    "b18",
+    "b20",
+    "b1",
+    "b11",
+    "b9"
+  ],
+  "diag_regra": {
+    "unidades": 21,
+    "entrada": [
+      "b19",
+      "b14",
+      "b9",
+      "b6",
+      "b15",
+      "b4",
+      "b8",
+      "b2",
+      "b18",
+      "b12",
+      "b3",
+      "b16",
+      "b7",
+      "b11",
+      "b13",
+      "b0",
+      "b17",
+      "b10",
+      "b1",
+      "b5",
+      "b20"
+    ],
+    "max_colunas": 2,
+    "pontes": 0,
+    "topo": 4,
+    "rodape": 0,
+    "marcas": 0,
+    "tempo_ms": 1.006599999982427
+  }
+}

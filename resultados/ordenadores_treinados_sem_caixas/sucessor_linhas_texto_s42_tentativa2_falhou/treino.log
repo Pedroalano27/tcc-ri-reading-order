@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "C:\Users\pedro\dev\tcc-ri-reading-order\orquestracao\analises\treinar_sem_caixas_texto.py", line 473, in <module>
+    main()
+  File "C:\Users\pedro\dev\tcc-ri-reading-order\orquestracao\analises\treinar_sem_caixas_texto.py", line 411, in main
+    treinar(a)
+  File "C:\Users\pedro\dev\tcc-ri-reading-order\orquestracao\analises\treinar_sem_caixas_texto.py", line 393, in treinar
+    conferir_ancoras()
+  File "C:\Users\pedro\dev\tcc-ri-reading-order\orquestracao\analises\treinar_sem_caixas_texto.py", line 237, in conferir_ancoras
+    R = b.iniciar()
+        ^^^^^^^^^^^
+  File "C:\Users\pedro\dev\tcc-ri-reading-order\orquestracao\analises\bancada_ordenadores.py", line 264, in iniciar
+    exigir(R.get("versao") == VERSAO and R.get("fontes") == H,
+  File "C:\Users\pedro\dev\tcc-ri-reading-order\orquestracao\analises\bancada_ordenadores.py", line 78, in exigir
+    raise ValueError(msg)
+ValueError: Fontes/codigo mudaram. Preserve a saida antiga e use uma nova execucao; nao mistura caches

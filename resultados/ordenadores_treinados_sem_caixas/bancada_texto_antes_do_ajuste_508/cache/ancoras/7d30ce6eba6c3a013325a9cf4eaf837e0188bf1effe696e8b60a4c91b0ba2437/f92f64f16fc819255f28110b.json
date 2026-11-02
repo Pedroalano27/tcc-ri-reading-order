@@ -1,0 +1,122 @@
+{
+  "page_id": "official_diary_ac/executive_official_diary_2022-08-03.pdf#p109",
+  "uf": "official_diary_ac",
+  "P2": {
+    "tau": 0.9998869708824435,
+    "quebras": 2,
+    "quebras_mil": 2.044989775051125,
+    "fid12": 0.9866920152091255,
+    "sucessor_linhas": 0.9767441860465116
+  },
+  "P1m": {
+    "tau": 0.9998869708824435,
+    "quebras": 2,
+    "quebras_mil": 2.044989775051125,
+    "fid12": 0.9866920152091255,
+    "sucessor_linhas": 0.9767441860465116
+  },
+  "regra_colunas_exportada": {
+    "tau": 0.9998869708824435,
+    "quebras": 2,
+    "quebras_mil": 2.044989775051125,
+    "fid12": 0.9866920152091255,
+    "sucessor_linhas": 0.9767441860465116,
+    "piso_interno": 0
+  },
+  "regra_colunas_ks_cru": {
+    "tau": 0.9904008975349188,
+    "quebras": 62,
+    "quebras_mil": 63.394683026584865,
+    "fid12": 0.49049429657794674,
+    "sucessor_linhas": 0.5581395348837209,
+    "piso_interno": 59
+  },
+  "expansao_canonica_diagnostico": {
+    "tau": 0.9998869708824435,
+    "quebras": 2,
+    "quebras_mil": 2.044989775051125,
+    "fid12": 0.9866920152091255,
+    "sucessor_linhas": 0.9767441860465116
+  },
+  "diagnostico": {
+    "ks_diferem_da_expansao_canonica": true,
+    "canonizada_identica_P2": true,
+    "unidades_internas_diferentes": 1,
+    "detalhes": [
+      {
+        "id": "b4",
+        "tipo": "tabela",
+        "bbox": [
+          54.93813304732059,
+          45.08410233135506,
+          571.5114740782068,
+          809.2250340321452
+        ],
+        "palavras": 960,
+        "linhas": 83,
+        "linhas_lado_a_lado": 12,
+        "piso_ks_cru": 59,
+        "piso_canonico": 0,
+        "primeiros_ks_crus": [
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27
+        ],
+        "primeiros_ks_canonicos": [
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28
+        ]
+      }
+    ]
+  },
+  "ordem_regra_colunas_exportada": [
+    "b1",
+    "b2",
+    "b3",
+    "b4",
+    "b0"
+  ],
+  "diag_regra": {
+    "unidades": 5,
+    "entrada": [
+      "b3",
+      "b0",
+      "b4",
+      "b2",
+      "b1"
+    ],
+    "max_colunas": 1,
+    "pontes": 0,
+    "topo": 3,
+    "rodape": 1,
+    "marcas": 0,
+    "tempo_ms": 0.15799999982846202
+  }
+}

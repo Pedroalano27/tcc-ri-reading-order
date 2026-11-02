@@ -1,0 +1,192 @@
+{
+  "page_id": "official_diary_ms/executive_official_diary_48733_2024-11-05.pdf#p233",
+  "uf": "official_diary_ms",
+  "n": 4,
+  "transicoes_alvo_mediano": {
+    "entre tabelas/imagens": {
+      "n": 2,
+      "top1": 1,
+      "prob_ge050": 1,
+      "prob_ge010": 2,
+      "gulosa": 0,
+      "feixe4": 1,
+      "cadeias050": 2,
+      "cadeias010": 1,
+      "cadeias000": 1,
+      "posicao": 0
+    },
+    "margens/quadros": {
+      "n": 1,
+      "top1": 0,
+      "prob_ge050": 0,
+      "prob_ge010": 0,
+      "gulosa": 0,
+      "feixe4": 0,
+      "cadeias050": 1,
+      "cadeias010": 0,
+      "cadeias000": 0,
+      "posicao": 1
+    }
+  },
+  "transicoes_ouro_palavras": {
+    "margens/quadros": {
+      "n": 1,
+      "top1": 0,
+      "cadeias050": 0
+    }
+  },
+  "features_sucessor": {
+    "entre tabelas/imagens": {
+      "n": 2,
+      "medias": [
+        0.07388382591307163,
+        0.4644964039325714,
+        -0.014576584100723267,
+        -0.10134825110435486,
+        0.30504177510738373,
+        -0.3504641652107239,
+        0.02500849962234497,
+        0.025789529085159302,
+        0.5,
+        0.0
+      ],
+      "medianas": [
+        0.07388382591307163,
+        0.4644964039325714,
+        -0.014576584100723267,
+        -0.10134825110435486,
+        0.30504177510738373,
+        -0.3504641652107239,
+        0.02500849962234497,
+        0.025789529085159302,
+        0.5,
+        0.0
+      ]
+    },
+    "margens/quadros": {
+      "n": 1,
+      "medias": [
+        0.20424483716487885,
+        0.015472769737243652,
+        -0.019524872303009033,
+        0.3819156289100647,
+        -0.180511474609375,
+        0.3553416132926941,
+        -0.011685490608215332,
+        0.019524872303009033,
+        0.0,
+        0.0
+      ],
+      "medianas": [
+        0.20424483716487885,
+        0.015472769737243652,
+        -0.019524872303009033,
+        0.3819156289100647,
+        -0.180511474609375,
+        0.3553416132926941,
+        -0.011685490608215332,
+        0.019524872303009033,
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "linhas_top1_prob_ge050": 1,
+  "linhas_top1_prob_ge010": 3,
+  "metricas_decoders": {
+    "gulosa": {
+      "tau": 1.0,
+      "quebras": 0,
+      "quebras_mil": 0.0,
+      "fid12": 1.0,
+      "sucessor_linhas": 1.0,
+      "piso_interno": 0
+    },
+    "feixe4": {
+      "tau": 1.0,
+      "quebras": 0,
+      "quebras_mil": 0.0,
+      "fid12": 1.0,
+      "sucessor_linhas": 1.0,
+      "piso_interno": 0
+    },
+    "cadeias050": {
+      "tau": 1.0,
+      "quebras": 0,
+      "quebras_mil": 0.0,
+      "fid12": 1.0,
+      "sucessor_linhas": 1.0,
+      "piso_interno": 0
+    },
+    "cadeias010": {
+      "tau": 1.0,
+      "quebras": 0,
+      "quebras_mil": 0.0,
+      "fid12": 1.0,
+      "sucessor_linhas": 1.0,
+      "piso_interno": 0
+    },
+    "cadeias000": {
+      "tau": 1.0,
+      "quebras": 0,
+      "quebras_mil": 0.0,
+      "fid12": 1.0,
+      "sucessor_linhas": 1.0,
+      "piso_interno": 0
+    },
+    "posicao": {
+      "tau": 1.0,
+      "quebras": 0,
+      "quebras_mil": 0.0,
+      "fid12": 1.0,
+      "sucessor_linhas": 1.0,
+      "piso_interno": 0
+    }
+  },
+  "ordens": {
+    "gulosa": [
+      "b3",
+      "b1",
+      "b0",
+      "b2"
+    ],
+    "feixe4": [
+      "b0",
+      "b1",
+      "b3",
+      "b2"
+    ],
+    "cadeias050": [
+      "b3",
+      "b0",
+      "b1",
+      "b2"
+    ],
+    "cadeias010": [
+      "b0",
+      "b1",
+      "b3",
+      "b2"
+    ],
+    "cadeias000": [
+      "b0",
+      "b1",
+      "b3",
+      "b2"
+    ],
+    "posicao": [
+      "b0",
+      "b3",
+      "b1",
+      "b2"
+    ]
+  },
+  "ruido": {
+    "pares_vizinhos": 0,
+    "pares_contraditorios": 0,
+    "pares_palavras": 0,
+    "pares_palavras_invertidos": 0,
+    "fronteiras_nao_contiguas": 0,
+    "exemplos": []
+  }
+}

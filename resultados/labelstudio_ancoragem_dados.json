@@ -1,0 +1,273 @@
+{
+  "total_caixas_por_origin": {
+    "prediction-changed": 17257,
+    "prediction": 15410,
+    "manual": 5850
+  },
+  "caixas_por_seed_origin": {
+    "seed1": {
+      "prediction-changed": 4808,
+      "prediction": 3430,
+      "manual": 1142
+    },
+    "seed2": {
+      "prediction-changed": 6109,
+      "manual": 2512,
+      "prediction": 5788
+    },
+    "seed3": {
+      "prediction-changed": 5259,
+      "prediction": 5304,
+      "manual": 1794
+    },
+    "seed4": {
+      "prediction-changed": 1081,
+      "prediction": 888,
+      "manual": 402
+    }
+  },
+  "caixas_por_classe_origin": {
+    "header": {
+      "prediction-changed": 4237,
+      "manual": 1069
+    },
+    "title": {
+      "prediction": 1153,
+      "manual": 214,
+      "prediction-changed": 598
+    },
+    "table": {
+      "prediction-changed": 979,
+      "prediction": 1070,
+      "manual": 171
+    },
+    "paragraph": {
+      "prediction-changed": 2480,
+      "manual": 1364,
+      "prediction": 12513
+    },
+    "footer": {
+      "prediction-changed": 1929,
+      "manual": 241,
+      "prediction": 7
+    },
+    "caption": {
+      "prediction-changed": 362,
+      "prediction": 357,
+      "manual": 285
+    },
+    "figure": {
+      "manual": 1316,
+      "prediction-changed": 1567,
+      "prediction": 310
+    },
+    "signature": {
+      "prediction-changed": 1354,
+      "manual": 400
+    },
+    "act": {
+      "prediction-changed": 1063,
+      "manual": 106
+    },
+    "act section": {
+      "prediction-changed": 492,
+      "manual": 91
+    },
+    "id": {
+      "prediction-changed": 397,
+      "manual": 88
+    },
+    "sub section title": {
+      "prediction-changed": 630,
+      "manual": 134
+    },
+    "section title": {
+      "prediction-changed": 999,
+      "manual": 159
+    },
+    "heading": {
+      "manual": 200,
+      "prediction-changed": 125
+    },
+    "chart": {
+      "prediction-changed": 19,
+      "manual": 2
+    },
+    "unknown": {
+      "prediction-changed": 26,
+      "manual": 10
+    }
+  },
+  "caixas_por_anotador_origin": {
+    "5": {
+      "prediction-changed": 4738,
+      "prediction": 3740,
+      "manual": 1424
+    },
+    "6": {
+      "prediction-changed": 3874,
+      "prediction": 3967,
+      "manual": 777
+    },
+    "3": {
+      "prediction-changed": 3656,
+      "prediction": 2861,
+      "manual": 1131
+    },
+    "4": {
+      "prediction-changed": 3090,
+      "prediction": 3236,
+      "manual": 1021
+    },
+    "2": {
+      "prediction-changed": 5,
+      "manual": 1
+    },
+    "8": {
+      "prediction": 99
+    },
+    "9": {
+      "manual": 678,
+      "prediction-changed": 8,
+      "prediction": 7
+    },
+    "12": {
+      "prediction-changed": 693,
+      "prediction": 715,
+      "manual": 200
+    },
+    "11": {
+      "prediction-changed": 840,
+      "manual": 416,
+      "prediction": 515
+    },
+    "10": {
+      "prediction-changed": 353,
+      "prediction": 270,
+      "manual": 202
+    }
+  },
+  "resumo_paginas": {
+    "total_paginas": 2119,
+    "paginas_100_origin": 5,
+    "fracao_mexida_media": 0.6870625739134644,
+    "fracao_mexida_mediana": 0.6923076923076923
+  },
+  "casamento_geometria": {
+    "iou_mediano": 0.8242203845016857,
+    "iou_p10": 0.17491720575446146,
+    "frac_iou_menor_09": 0.5846774193548387,
+    "frac_iou_menor_05": 0.30357142857142855,
+    "caixas_criadas": 1002,
+    "caixas_apagadas": 1521
+  },
+  "top_trocas_classe": [
+    {
+      "maquina": "paragraph",
+      "humano": "header",
+      "ocorrencias": 1110
+    },
+    {
+      "maquina": "paragraph",
+      "humano": "footer",
+      "ocorrencias": 486
+    },
+    {
+      "maquina": "paragraph",
+      "humano": "figure",
+      "ocorrencias": 331
+    },
+    {
+      "maquina": "paragraph",
+      "humano": "signature",
+      "ocorrencias": 296
+    },
+    {
+      "maquina": "title",
+      "humano": "act",
+      "ocorrencias": 233
+    },
+    {
+      "maquina": "title",
+      "humano": "section title",
+      "ocorrencias": 209
+    },
+    {
+      "maquina": "title",
+      "humano": "sub section title",
+      "ocorrencias": 123
+    },
+    {
+      "maquina": "title",
+      "humano": "paragraph",
+      "ocorrencias": 104
+    },
+    {
+      "maquina": "paragraph",
+      "humano": "title",
+      "ocorrencias": 97
+    },
+    {
+      "maquina": "title",
+      "humano": "act section",
+      "ocorrencias": 93
+    },
+    {
+      "maquina": "paragraph",
+      "humano": "act",
+      "ocorrencias": 90
+    },
+    {
+      "maquina": "paragraph",
+      "humano": "id",
+      "ocorrencias": 78
+    },
+    {
+      "maquina": "caption",
+      "humano": "paragraph",
+      "ocorrencias": 64
+    },
+    {
+      "maquina": "title",
+      "humano": "header",
+      "ocorrencias": 58
+    },
+    {
+      "maquina": "paragraph",
+      "humano": "section title",
+      "ocorrencias": 48
+    },
+    {
+      "maquina": "paragraph",
+      "humano": "caption",
+      "ocorrencias": 46
+    },
+    {
+      "maquina": "title",
+      "humano": "signature",
+      "ocorrencias": 38
+    },
+    {
+      "maquina": "caption",
+      "humano": "header",
+      "ocorrencias": 32
+    },
+    {
+      "maquina": "figure",
+      "humano": "heading",
+      "ocorrencias": 30
+    },
+    {
+      "maquina": "paragraph",
+      "humano": "act section",
+      "ocorrencias": 29
+    }
+  ],
+  "correlacao_tempo": {
+    "n_pontos": 2119,
+    "spearman": -0.04325286516542746,
+    "p_spearman": 0.046503041241750996,
+    "pearson": -0.02016207485087208,
+    "p_pearson": 0.3535843182465563
+  }
+}

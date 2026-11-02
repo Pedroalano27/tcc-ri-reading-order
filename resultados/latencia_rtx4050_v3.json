@@ -1,0 +1,44 @@
+{
+  "maquina": "rtx4050_v3",
+  "cpu": "Intel64 Family 6 Model 151 Stepping 2, GenuineIntel",
+  "nucleos": 20,
+  "python": "3.11.9",
+  "sistema": "Windows-10-10.0.26200-SP0",
+  "data": "2026-09-13 02:45:05",
+  "metodos": {
+    "naive": {
+      "media_ms": 0.00811460688893338,
+      "mediana_ms": 0.005800000508315861,
+      "p90_ms": 0.015799996617715806,
+      "paginas": 89
+    },
+    "xycut": {
+      "media_ms": 0.061474157611086044,
+      "mediana_ms": 0.0444999968749471,
+      "p90_ms": 0.12190000416012481,
+      "paginas": 89
+    },
+    "lstm_geo": {
+      "media_ms": 4.244838202283247,
+      "mediana_ms": 3.2814000005600974,
+      "p90_ms": 7.394100000965409,
+      "paginas": 89
+    },
+    "layoutlm": {
+      "media_ms": 11.87573370775221,
+      "mediana_ms": 11.605400002736133,
+      "p90_ms": 13.22230000369018,
+      "paginas": 89,
+      "com_pesos_treinados": true
+    },
+    "layoutlm_sucessor": {
+      "media_ms": 16.652450561206237,
+      "mediana_ms": 15.424899997015018,
+      "p90_ms": 23.12059999530902,
+      "paginas": 89,
+      "com_pesos_treinados": true
+    }
+  },
+  "torch": "2.9.1+cu128",
+  "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU"
+}

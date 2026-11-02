@@ -1,0 +1,103 @@
+{
+  "paginas": 269,
+  "edicoes": 27,
+  "atos": 421,
+  "atos_com_edicao": 335,
+  "consultas": {
+    "frase": 281,
+    "titulo": 266,
+    "termos": 310
+  },
+  "controle_pagina_inteira_mrr": {
+    "frase": 0.9905100830367735,
+    "titulo": 0.9874686716791979,
+    "termos": 0.9951612903225806
+  },
+  "metodos": {
+    "aleatoria": {
+      "fidelidade": 0.8505338078291815,
+      "contexto_rag": 0.8291814946619217,
+      "trechos": 2389,
+      "mrr_trechos_frase": 0.9905100830367735,
+      "r1_trechos_frase": 0.9857651245551602,
+      "r5_trechos_frase": 0.99644128113879,
+      "mrr_trechos_titulo": 0.9915413533834586,
+      "r1_trechos_titulo": 0.9849624060150376,
+      "r5_trechos_titulo": 1.0,
+      "mrr_trechos_termos": 0.989516129032258,
+      "r1_trechos_termos": 0.9806451612903225,
+      "r5_trechos_termos": 1.0
+    },
+    "fluxo_pdf": {
+      "fidelidade": 0.9217081850533808,
+      "contexto_rag": 0.9181494661921709,
+      "trechos": 2389,
+      "mrr_trechos_frase": 1.0,
+      "r1_trechos_frase": 1.0,
+      "r5_trechos_frase": 1.0,
+      "mrr_trechos_titulo": 0.993734335839599,
+      "r1_trechos_titulo": 0.9887218045112782,
+      "r5_trechos_titulo": 1.0,
+      "mrr_trechos_termos": 0.9913978494623656,
+      "r1_trechos_termos": 0.9838709677419355,
+      "r5_trechos_termos": 1.0
+    },
+    "naive": {
+      "fidelidade": 0.8825622775800712,
+      "contexto_rag": 0.8718861209964412,
+      "trechos": 2389,
+      "mrr_trechos_frase": 1.0,
+      "r1_trechos_frase": 1.0,
+      "r5_trechos_frase": 1.0,
+      "mrr_trechos_titulo": 0.9962406015037594,
+      "r1_trechos_titulo": 0.9924812030075187,
+      "r5_trechos_titulo": 1.0,
+      "mrr_trechos_termos": 0.9922043010752688,
+      "r1_trechos_termos": 0.9870967741935484,
+      "r5_trechos_termos": 1.0
+    },
+    "xycut": {
+      "fidelidade": 0.8932384341637011,
+      "contexto_rag": 0.8790035587188612,
+      "trechos": 2389,
+      "mrr_trechos_frase": 1.0,
+      "r1_trechos_frase": 1.0,
+      "r5_trechos_frase": 1.0,
+      "mrr_trechos_titulo": 0.9962406015037594,
+      "r1_trechos_titulo": 0.9924812030075187,
+      "r5_trechos_titulo": 1.0,
+      "mrr_trechos_termos": 0.9922043010752688,
+      "r1_trechos_termos": 0.9870967741935484,
+      "r5_trechos_termos": 1.0
+    },
+    "layoutlm": {
+      "fidelidade": 0.8576512455516014,
+      "contexto_rag": 0.8505338078291815,
+      "trechos": 2389,
+      "mrr_trechos_frase": 1.0,
+      "r1_trechos_frase": 1.0,
+      "r5_trechos_frase": 1.0,
+      "mrr_trechos_titulo": 0.9880952380952381,
+      "r1_trechos_titulo": 0.9774436090225563,
+      "r5_trechos_titulo": 1.0,
+      "mrr_trechos_termos": 0.9935483870967742,
+      "r1_trechos_termos": 0.9870967741935484,
+      "r5_trechos_termos": 1.0
+    },
+    "layoutlm_sucessor": {
+      "fidelidade": 0.9039145907473309,
+      "contexto_rag": 0.896797153024911,
+      "trechos": 2389,
+      "mrr_trechos_frase": 1.0,
+      "r1_trechos_frase": 1.0,
+      "r5_trechos_frase": 1.0,
+      "mrr_trechos_titulo": 0.9918546365914787,
+      "r1_trechos_titulo": 0.9849624060150376,
+      "r5_trechos_titulo": 1.0,
+      "mrr_trechos_termos": 0.9930107526881721,
+      "r1_trechos_termos": 0.9870967741935484,
+      "r5_trechos_termos": 1.0
+    }
+  },
+  "preservada_por_algum_metodo": 0.9217081850533808
+}

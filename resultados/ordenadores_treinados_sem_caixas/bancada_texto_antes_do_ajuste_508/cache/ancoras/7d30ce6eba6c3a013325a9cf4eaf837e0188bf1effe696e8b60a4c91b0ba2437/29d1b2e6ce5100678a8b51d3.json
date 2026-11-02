@@ -1,0 +1,90 @@
+{
+  "page_id": "official_diary_rs_porto_alegre/4689_cl_20230227_legislativo.pdf#p2",
+  "uf": "official_diary_rs_porto_alegre",
+  "P2": {
+    "tau": 1.0,
+    "quebras": 0,
+    "quebras_mil": 0.0,
+    "fid12": 1.0,
+    "sucessor_linhas": 1.0
+  },
+  "P1m": {
+    "tau": 1.0,
+    "quebras": 0,
+    "quebras_mil": 0.0,
+    "fid12": 1.0,
+    "sucessor_linhas": 1.0
+  },
+  "regra_colunas_exportada": {
+    "tau": 1.0,
+    "quebras": 0,
+    "quebras_mil": 0.0,
+    "fid12": 1.0,
+    "sucessor_linhas": 1.0,
+    "piso_interno": 0
+  },
+  "regra_colunas_ks_cru": {
+    "tau": 1.0,
+    "quebras": 0,
+    "quebras_mil": 0.0,
+    "fid12": 1.0,
+    "sucessor_linhas": 1.0,
+    "piso_interno": 0
+  },
+  "expansao_canonica_diagnostico": {
+    "tau": 1.0,
+    "quebras": 0,
+    "quebras_mil": 0.0,
+    "fid12": 1.0,
+    "sucessor_linhas": 1.0
+  },
+  "diagnostico": {
+    "ks_diferem_da_expansao_canonica": false,
+    "canonizada_identica_P2": true,
+    "unidades_internas_diferentes": 0,
+    "detalhes": []
+  },
+  "ordem_regra_colunas_exportada": [
+    "b10",
+    "b3",
+    "b13",
+    "b6",
+    "b11",
+    "b8",
+    "b14",
+    "b5",
+    "b1",
+    "b0",
+    "b12",
+    "b2",
+    "b4",
+    "b9",
+    "b7"
+  ],
+  "diag_regra": {
+    "unidades": 15,
+    "entrada": [
+      "b13",
+      "b2",
+      "b8",
+      "b10",
+      "b12",
+      "b11",
+      "b0",
+      "b14",
+      "b9",
+      "b1",
+      "b4",
+      "b6",
+      "b5",
+      "b7",
+      "b3"
+    ],
+    "max_colunas": 1,
+    "pontes": 0,
+    "topo": 2,
+    "rodape": 2,
+    "marcas": 0,
+    "tempo_ms": 0.37810000003446476
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "caso_duas_colunas_24_linhas": "ok",
+  "integridade": {
+    "linhas": {
+      "paginas": 614,
+      "multicolunas": 349,
+      "unidades": 59081
+    },
+    "colunas": {
+      "paginas": 614,
+      "multicolunas": 349,
+      "unidades": 5495
+    }
+  },
+  "limite": "calhas exigem suporte de pelo menos quatro linhas de cada lado"
+}

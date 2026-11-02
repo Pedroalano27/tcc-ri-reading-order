@@ -1,0 +1,210 @@
+{
+  "page_id": "official_diary_ms/executive_official_diary_46741_2021-06-29.pdf#p48",
+  "uf": "official_diary_ms",
+  "n": 7,
+  "transicoes_alvo_mediano": {
+    "margens/quadros": {
+      "n": 4,
+      "top1": 3,
+      "prob_ge050": 2,
+      "prob_ge010": 4,
+      "gulosa": 3,
+      "feixe4": 4,
+      "cadeias050": 2,
+      "cadeias010": 3,
+      "cadeias000": 3,
+      "posicao": 1
+    },
+    "entre tabelas/imagens": {
+      "n": 2,
+      "top1": 1,
+      "prob_ge050": 1,
+      "prob_ge010": 2,
+      "gulosa": 0,
+      "feixe4": 2,
+      "cadeias050": 1,
+      "cadeias010": 1,
+      "cadeias000": 1,
+      "posicao": 1
+    }
+  },
+  "transicoes_ouro_palavras": {
+    "margens/quadros": {
+      "n": 4,
+      "top1": 4,
+      "cadeias050": 3
+    }
+  },
+  "features_sucessor": {
+    "margens/quadros": {
+      "n": 4,
+      "medias": [
+        0.04854093864560127,
+        0.015438399277627468,
+        -0.0026513608172535896,
+        0.15806787461042404,
+        -0.4552791938185692,
+        0.21905386447906494,
+        0.21978248748928308,
+        0.019849197007715702,
+        0.0,
+        0.25
+      ],
+      "medianas": [
+        0.25635362416505814,
+        0.007573723793029785,
+        -0.012335194274783134,
+        0.3188644200563431,
+        -0.41055838763713837,
+        0.15009787678718567,
+        -4.157237708568573e-05,
+        0.016353746876120567,
+        0.0,
+        0.0
+      ]
+    },
+    "entre tabelas/imagens": {
+      "n": 2,
+      "medias": [
+        0.0787118524312973,
+        0.4456702768802643,
+        -0.0007864236831665039,
+        -0.09735947847366333,
+        0.9758570492267609,
+        -0.35214266926050186,
+        0.03475502133369446,
+        0.03482002019882202,
+        0.5,
+        0.0
+      ],
+      "medianas": [
+        0.0787118524312973,
+        0.4456702768802643,
+        -0.0007864236831665039,
+        -0.09735947847366333,
+        0.9758570492267609,
+        -0.35214266926050186,
+        0.03475502133369446,
+        0.03482002019882202,
+        0.5,
+        0.0
+      ]
+    }
+  },
+  "linhas_top1_prob_ge050": 5,
+  "linhas_top1_prob_ge010": 6,
+  "metricas_decoders": {
+    "gulosa": {
+      "tau": 0.9999999999999998,
+      "quebras": 0,
+      "quebras_mil": 0.0,
+      "fid12": 1.0,
+      "sucessor_linhas": 1.0,
+      "piso_interno": 0
+    },
+    "feixe4": {
+      "tau": 0.9999999999999998,
+      "quebras": 0,
+      "quebras_mil": 0.0,
+      "fid12": 1.0,
+      "sucessor_linhas": 1.0,
+      "piso_interno": 0
+    },
+    "cadeias050": {
+      "tau": 0.9999999999999998,
+      "quebras": 0,
+      "quebras_mil": 0.0,
+      "fid12": 1.0,
+      "sucessor_linhas": 1.0,
+      "piso_interno": 0
+    },
+    "cadeias010": {
+      "tau": 0.9999999999999998,
+      "quebras": 0,
+      "quebras_mil": 0.0,
+      "fid12": 1.0,
+      "sucessor_linhas": 1.0,
+      "piso_interno": 0
+    },
+    "cadeias000": {
+      "tau": 0.9999999999999998,
+      "quebras": 0,
+      "quebras_mil": 0.0,
+      "fid12": 1.0,
+      "sucessor_linhas": 1.0,
+      "piso_interno": 0
+    },
+    "posicao": {
+      "tau": 0.9988636363636363,
+      "quebras": 2,
+      "quebras_mil": 5.194805194805195,
+      "fid12": 0.9692307692307692,
+      "sucessor_linhas": 0.9827586206896551,
+      "piso_interno": 0
+    }
+  },
+  "ordens": {
+    "gulosa": [
+      "b2",
+      "b4",
+      "b0",
+      "b5",
+      "b3",
+      "b6",
+      "b1"
+    ],
+    "feixe4": [
+      "b2",
+      "b4",
+      "b0",
+      "b5",
+      "b1",
+      "b6",
+      "b3"
+    ],
+    "cadeias050": [
+      "b2",
+      "b4",
+      "b0",
+      "b1",
+      "b6",
+      "b5",
+      "b3"
+    ],
+    "cadeias010": [
+      "b2",
+      "b4",
+      "b0",
+      "b5",
+      "b3",
+      "b1",
+      "b6"
+    ],
+    "cadeias000": [
+      "b2",
+      "b4",
+      "b0",
+      "b5",
+      "b3",
+      "b1",
+      "b6"
+    ],
+    "posicao": [
+      "b4",
+      "b0",
+      "b2",
+      "b1",
+      "b6",
+      "b5",
+      "b3"
+    ]
+  },
+  "ruido": {
+    "pares_vizinhos": 2,
+    "pares_contraditorios": 0,
+    "pares_palavras": 40,
+    "pares_palavras_invertidos": 0,
+    "fronteiras_nao_contiguas": 0,
+    "exemplos": []
+  }
+}

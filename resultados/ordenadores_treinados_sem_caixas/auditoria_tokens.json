@@ -1,0 +1,96 @@
+{
+  "linhas": {
+    "treino": {
+      "paginas": 873,
+      "mediana_unidades": 137,
+      "max_unidades": 517,
+      "tokens_por_unidade": 1,
+      "fora_limite_direto": 1,
+      "paginas_descartadas": 0,
+      "hierarquia": [
+        {
+          "page_id": "official_diary_pe/2023-04-29_1-Poder Executivo.pdf#p32",
+          "unidades": 517,
+          "faixas": 204
+        }
+      ]
+    },
+    "validacao": {
+      "paginas": 15,
+      "mediana_unidades": 178,
+      "max_unidades": 299,
+      "tokens_por_unidade": 1,
+      "fora_limite_direto": 0,
+      "paginas_descartadas": 0,
+      "hierarquia": []
+    },
+    "teste": {
+      "paginas": 89,
+      "mediana_unidades": 87,
+      "max_unidades": 401,
+      "tokens_por_unidade": 1,
+      "fora_limite_direto": 0,
+      "paginas_descartadas": 0,
+      "hierarquia": []
+    }
+  },
+  "colunas": {
+    "treino": {
+      "paginas": 873,
+      "mediana_unidades": 5,
+      "max_unidades": 214,
+      "tokens_por_unidade": 1,
+      "fora_limite_direto": 0,
+      "paginas_descartadas": 0,
+      "hierarquia": []
+    },
+    "validacao": {
+      "paginas": 15,
+      "mediana_unidades": 3,
+      "max_unidades": 11,
+      "tokens_por_unidade": 1,
+      "fora_limite_direto": 0,
+      "paginas_descartadas": 0,
+      "hierarquia": []
+    },
+    "teste": {
+      "paginas": 89,
+      "mediana_unidades": 3,
+      "max_unidades": 169,
+      "tokens_por_unidade": 1,
+      "fora_limite_direto": 0,
+      "paginas_descartadas": 0,
+      "hierarquia": []
+    }
+  },
+  "colunas_margens": {
+    "treino": {
+      "paginas": 873,
+      "mediana_unidades": 5,
+      "max_unidades": 213,
+      "tokens_por_unidade": 1,
+      "fora_limite_direto": 0,
+      "paginas_descartadas": 0,
+      "hierarquia": []
+    },
+    "validacao": {
+      "paginas": 15,
+      "mediana_unidades": 3,
+      "max_unidades": 7,
+      "tokens_por_unidade": 1,
+      "fora_limite_direto": 0,
+      "paginas_descartadas": 0,
+      "hierarquia": []
+    },
+    "teste": {
+      "paginas": 89,
+      "mediana_unidades": 3,
+      "max_unidades": 169,
+      "tokens_por_unidade": 1,
+      "fora_limite_direto": 0,
+      "paginas_descartadas": 0,
+      "hierarquia": []
+    }
+  },
+  "mesmos_ids_treino": true
+}

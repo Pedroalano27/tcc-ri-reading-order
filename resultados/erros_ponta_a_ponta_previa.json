@@ -1,0 +1,2464 @@
+{
+  "amostra": {
+    "paginas": 44,
+    "total_palavras": 36171
+  },
+  "agregados": {
+    "P1": {
+      "tau_media": 0.818538245638246,
+      "tau_ic": [
+        0.7373065189630748,
+        0.8906009858324193
+      ],
+      "total_quebras": 713,
+      "quebras_media_pag": 16.204545454545453,
+      "quebras_media_pag_ic": [
+        9.863068181818182,
+        22.977272727272727
+      ],
+      "quebras_macro_mil": 22.876264786726487,
+      "quebras_macro_mil_ic": [
+        13.824591538542522,
+        34.34027736512859
+      ],
+      "quebras_micro_mil": 19.71192391695004,
+      "fid6_media": 0.9149808407540317,
+      "fid6_ic": [
+        0.8842450170883057,
+        0.9431641864871924
+      ],
+      "fid12_media": 0.8480324393991464,
+      "fid12_ic": [
+        0.7974003677399562,
+        0.8965625982523314
+      ],
+      "fid24_media": 0.768281906858797,
+      "fid24_ic": [
+        0.6929276948375922,
+        0.8412628002081195
+      ]
+    },
+    "P1m": {
+      "tau_media": 0.9524242545883957,
+      "tau_ic": [
+        0.9124419538678101,
+        0.9852310766137661
+      ],
+      "total_quebras": 390,
+      "quebras_media_pag": 8.863636363636363,
+      "quebras_media_pag_ic": [
+        3.9761363636363636,
+        14.818181818181818
+      ],
+      "quebras_macro_mil": 15.067377466361217,
+      "quebras_macro_mil_ic": [
+        7.0351791982808205,
+        26.540046178967486
+      ],
+      "quebras_micro_mil": 10.782118271543501,
+      "fid6_media": 0.9512856880800565,
+      "fid6_ic": [
+        0.9236074754965943,
+        0.9742287860649114
+      ],
+      "fid12_media": 0.9171980729385062,
+      "fid12_ic": [
+        0.8722379779752574,
+        0.9550869192268802
+      ],
+      "fid24_media": 0.8790211361011052,
+      "fid24_ic": [
+        0.8154733539186233,
+        0.9344353078092464
+      ]
+    },
+    "P2": {
+      "tau_media": 0.9801210929412512,
+      "tau_ic": [
+        0.958721087267795,
+        0.9937677457989049
+      ],
+      "total_quebras": 448,
+      "quebras_media_pag": 10.181818181818182,
+      "quebras_media_pag_ic": [
+        4.817613636363636,
+        17.591477272727268
+      ],
+      "quebras_macro_mil": 21.99724622346791,
+      "quebras_macro_mil_ic": [
+        8.157612984769909,
+        40.9602901543569
+      ],
+      "quebras_micro_mil": 12.385612783721765,
+      "fid6_media": 0.9343637762057281,
+      "fid6_ic": [
+        0.880043891573452,
+        0.9723506648174381
+      ],
+      "fid12_media": 0.9179955830597585,
+      "fid12_ic": [
+        0.8617132322099528,
+        0.9587604036391758
+      ],
+      "fid24_media": 0.8988145895358065,
+      "fid24_ic": [
+        0.8403823955847192,
+        0.9439449650773427
+      ]
+    }
+  },
+  "origens_p1": {
+    "total": 713,
+    "contagens": {
+      "caixa_partida": 15,
+      "caixa_fundida": 68,
+      "ordem_dentro_caixa": 0,
+      "ordem_entre_caixas": 630
+    },
+    "frac_caixas": 0.11640953716690042,
+    "frac_ordem": 0.8835904628330996
+  },
+  "origens_p1m": {
+    "total": 390,
+    "contagens": {
+      "caixa_partida": 11,
+      "caixa_fundida": 68,
+      "ordem_dentro_caixa": 0,
+      "ordem_entre_caixas": 311
+    },
+    "frac_caixas": 0.20256410256410257,
+    "frac_ordem": 0.7974358974358975
+  },
+  "origens_p2": {
+    "total": 448,
+    "contagens": {
+      "bloco_atomico": 223,
+      "mesma_regiao_ouro": 42,
+      "entre_regioes_ouro": 183
+    }
+  },
+  "testes": {
+    "p2_vs_p1_quebras_mil": {
+      "delta": -0.8790185632585686,
+      "pvalue": 0.1639006005633047,
+      "statistic": 349.0,
+      "ganha": 19,
+      "empata": 10,
+      "perde": 15
+    },
+    "p2_vs_p1m_quebras_mil": {
+      "delta": 6.929868757106658,
+      "pvalue": 0.047604099760835294,
+      "statistic": 254.0,
+      "ganha": 7,
+      "empata": 17,
+      "perde": 20
+    },
+    "p2_vs_p1_fid12": {
+      "delta": 0.06996314366056818,
+      "pvalue": 0.019171109653868278,
+      "statistic": 277.0,
+      "ganha": 21,
+      "empata": 8,
+      "perde": 15
+    },
+    "p2_vs_p1m_fid12": {
+      "delta": 0.0007975101212727245,
+      "pvalue": 0.10076421311886781,
+      "statistic": 290.0,
+      "ganha": 8,
+      "empata": 16,
+      "perde": 20
+    }
+  },
+  "por_pagina": [
+    {
+      "page_id": "official_diary_MG_congonhas/executive_official_diary_2020-12-10_2591.pdf#p1",
+      "veiculo": "official_diary_MG_congonhas",
+      "n_palavras": 747,
+      "P1": {
+        "tau": 0.9998923307169696,
+        "quebras": 2,
+        "quebras_por_mil": 2.677376171352075,
+        "fidelidade": {
+          "6": 0.9919137466307277,
+          "12": 0.9836956521739131,
+          "24": 0.9779005524861878
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 2
+        }
+      },
+      "P1m": {
+        "tau": 0.9998923307169696,
+        "quebras": 2,
+        "quebras_por_mil": 2.677376171352075,
+        "fidelidade": {
+          "6": 0.9919137466307277,
+          "12": 0.9836956521739131,
+          "24": 0.9779005524861878
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 2
+        }
+      },
+      "P2": {
+        "tau": 0.9990309764527275,
+        "quebras": 5,
+        "quebras_por_mil": 6.693440428380187,
+        "fidelidade": {
+          "6": 0.9716981132075472,
+          "12": 0.9470108695652174,
+          "24": 0.9074585635359116
+        },
+        "origens": {
+          "bloco_atomico": 0,
+          "mesma_regiao_ouro": 3,
+          "entre_regioes_ouro": 2
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_MG_congonhas/executive_official_diary_2022-09-02_3022.pdf#p20",
+      "veiculo": "official_diary_MG_congonhas",
+      "n_palavras": 82,
+      "P1": {
+        "tau": 1.0,
+        "quebras": 0,
+        "quebras_por_mil": 0.0,
+        "fidelidade": {
+          "6": 1.0,
+          "12": 1.0,
+          "24": 1.0
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 0
+        }
+      },
+      "P1m": {
+        "tau": 1.0,
+        "quebras": 0,
+        "quebras_por_mil": 0.0,
+        "fidelidade": {
+          "6": 1.0,
+          "12": 1.0,
+          "24": 1.0
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 0
+        }
+      },
+      "P2": {
+        "tau": 1.0,
+        "quebras": 0,
+        "quebras_por_mil": 0.0,
+        "fidelidade": {
+          "6": 1.0,
+          "12": 1.0,
+          "24": 1.0
+        },
+        "origens": {
+          "bloco_atomico": 0,
+          "mesma_regiao_ouro": 0,
+          "entre_regioes_ouro": 0
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_RJ_barra_do_pirai/executive_official_diary_2022-05-26_095.pdf#p2",
+      "veiculo": "official_diary_RJ_barra_do_pirai",
+      "n_palavras": 62,
+      "P1": {
+        "tau": 0.9460602855631941,
+        "quebras": 3,
+        "quebras_por_mil": 48.387096774193544,
+        "fidelidade": {
+          "6": 0.8421052631578947,
+          "12": 0.7058823529411765,
+          "24": 0.5897435897435898
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 3
+        }
+      },
+      "P1m": {
+        "tau": 0.9460602855631941,
+        "quebras": 3,
+        "quebras_por_mil": 48.387096774193544,
+        "fidelidade": {
+          "6": 0.8421052631578947,
+          "12": 0.7058823529411765,
+          "24": 0.5897435897435898
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 3
+        }
+      },
+      "P2": {
+        "tau": 0.9566367001586463,
+        "quebras": 5,
+        "quebras_por_mil": 80.64516129032258,
+        "fidelidade": {
+          "6": 0.7368421052631579,
+          "12": 0.6862745098039216,
+          "24": 0.5897435897435898
+        },
+        "origens": {
+          "bloco_atomico": 0,
+          "mesma_regiao_ouro": 0,
+          "entre_regioes_ouro": 5
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_RJ_barra_do_pirai/executive_official_diary_2023-11-24_214.pdf#p3",
+      "veiculo": "official_diary_RJ_barra_do_pirai",
+      "n_palavras": 468,
+      "P1": {
+        "tau": 0.9998718863815222,
+        "quebras": 6,
+        "quebras_por_mil": 12.82051282051282,
+        "fidelidade": {
+          "6": 0.958963282937365,
+          "12": 0.9321663019693655,
+          "24": 0.9011235955056179
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 6
+        }
+      },
+      "P1m": {
+        "tau": 0.9989933929976755,
+        "quebras": 6,
+        "quebras_por_mil": 12.82051282051282,
+        "fidelidade": {
+          "6": 0.958963282937365,
+          "12": 0.9321663019693655,
+          "24": 0.9011235955056179
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 6
+        }
+      },
+      "P2": {
+        "tau": 0.9990666007796628,
+        "quebras": 7,
+        "quebras_por_mil": 14.957264957264957,
+        "fidelidade": {
+          "6": 0.9568034557235421,
+          "12": 0.9299781181619255,
+          "24": 0.9011235955056179
+        },
+        "origens": {
+          "bloco_atomico": 0,
+          "mesma_regiao_ouro": 0,
+          "entre_regioes_ouro": 7
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_RJ_barra_do_pirai/executive_official_diary_2026-01-16_010.pdf#p2",
+      "veiculo": "official_diary_RJ_barra_do_pirai",
+      "n_palavras": 60,
+      "P1": {
+        "tau": 0.9966101694915255,
+        "quebras": 3,
+        "quebras_por_mil": 50.0,
+        "fidelidade": {
+          "6": 0.8363636363636363,
+          "12": 0.6938775510204082,
+          "24": 0.5675675675675675
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 3
+        }
+      },
+      "P1m": {
+        "tau": 0.9423728813559322,
+        "quebras": 3,
+        "quebras_por_mil": 50.0,
+        "fidelidade": {
+          "6": 0.8363636363636363,
+          "12": 0.6938775510204082,
+          "24": 0.5675675675675675
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 3
+        }
+      },
+      "P2": {
+        "tau": 0.9536723163841808,
+        "quebras": 5,
+        "quebras_por_mil": 83.33333333333333,
+        "fidelidade": {
+          "6": 0.7272727272727273,
+          "12": 0.673469387755102,
+          "24": 0.5675675675675675
+        },
+        "origens": {
+          "bloco_atomico": 0,
+          "mesma_regiao_ouro": 0,
+          "entre_regioes_ouro": 5
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_RJ_duque_de_caxias/executive_official_diary_2022-09-28_Boletim_7197.pdf#p44",
+      "veiculo": "official_diary_RJ_duque_de_caxias",
+      "n_palavras": 358,
+      "P1": {
+        "tau": 0.8215107271959065,
+        "quebras": 75,
+        "quebras_por_mil": 209.49720670391062,
+        "fidelidade": {
+          "6": 0.5439093484419264,
+          "12": 0.484149855907781,
+          "24": 0.3761194029850746
+        },
+        "origens": {
+          "caixa_partida": 1,
+          "caixa_fundida": 67,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 7
+        }
+      },
+      "P1m": {
+        "tau": 0.8380983678387557,
+        "quebras": 74,
+        "quebras_por_mil": 206.70391061452514,
+        "fidelidade": {
+          "6": 0.5524079320113314,
+          "12": 0.49279538904899134,
+          "24": 0.3850746268656716
+        },
+        "origens": {
+          "caixa_partida": 1,
+          "caixa_fundida": 67,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 6
+        }
+      },
+      "P2": {
+        "tau": 0.8922742281270051,
+        "quebras": 69,
+        "quebras_por_mil": 192.73743016759775,
+        "fidelidade": {
+          "6": 0.5949008498583569,
+          "12": 0.5561959654178674,
+          "24": 0.5134328358208955
+        },
+        "origens": {
+          "bloco_atomico": 68,
+          "mesma_regiao_ouro": 0,
+          "entre_regioes_ouro": 1
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_RJ_duque_de_caxias/executive_official_diary_2025-05-02_Boletim_7582_vol2.pdf#p0",
+      "veiculo": "official_diary_RJ_duque_de_caxias",
+      "n_palavras": 594,
+      "P1": {
+        "tau": 0.9999659325123069,
+        "quebras": 3,
+        "quebras_por_mil": 5.050505050505051,
+        "fidelidade": {
+          "6": 0.9847198641765704,
+          "12": 0.9811320754716981,
+          "24": 0.9807355516637478
+        },
+        "origens": {
+          "caixa_partida": 1,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 2
+        }
+      },
+      "P1m": {
+        "tau": 0.9783444336564067,
+        "quebras": 5,
+        "quebras_por_mil": 8.417508417508417,
+        "fidelidade": {
+          "6": 0.967741935483871,
+          "12": 0.9485420240137221,
+          "24": 0.9264448336252189
+        },
+        "origens": {
+          "caixa_partida": 2,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 3
+        }
+      },
+      "P2": {
+        "tau": 0.9781627403887101,
+        "quebras": 11,
+        "quebras_por_mil": 18.51851851851852,
+        "fidelidade": {
+          "6": 0.9303904923599321,
+          "12": 0.8902229845626072,
+          "24": 0.8248686514886164
+        },
+        "origens": {
+          "bloco_atomico": 0,
+          "mesma_regiao_ouro": 3,
+          "entre_regioes_ouro": 8
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_RJ_seropedica/executive_official_diary_2022-05-09_986.pdf#p2",
+      "veiculo": "official_diary_RJ_seropedica",
+      "n_palavras": 778,
+      "P1": {
+        "tau": 0.965565271477868,
+        "quebras": 6,
+        "quebras_por_mil": 7.712082262210797,
+        "fidelidade": {
+          "6": 0.9715394566623544,
+          "12": 0.9595827900912647,
+          "24": 0.9430463576158941
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 1,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 5
+        }
+      },
+      "P1m": {
+        "tau": 0.9966121097226496,
+        "quebras": 6,
+        "quebras_por_mil": 7.712082262210797,
+        "fidelidade": {
+          "6": 0.9715394566623544,
+          "12": 0.9595827900912647,
+          "24": 0.9430463576158941
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 1,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 5
+        }
+      },
+      "P2": {
+        "tau": 0.9867131178185164,
+        "quebras": 6,
+        "quebras_por_mil": 7.712082262210797,
+        "fidelidade": {
+          "6": 0.9715394566623544,
+          "12": 0.9595827900912647,
+          "24": 0.9430463576158941
+        },
+        "origens": {
+          "bloco_atomico": 4,
+          "mesma_regiao_ouro": 0,
+          "entre_regioes_ouro": 2
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_RJ_seropedica/executive_official_diary_2022-05-09_986.pdf#p3",
+      "veiculo": "official_diary_RJ_seropedica",
+      "n_palavras": 245,
+      "P1": {
+        "tau": 0.9971896955503512,
+        "quebras": 3,
+        "quebras_por_mil": 12.244897959183673,
+        "fidelidade": {
+          "6": 0.9375,
+          "12": 0.8974358974358975,
+          "24": 0.8828828828828829
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 3
+        }
+      },
+      "P1m": {
+        "tau": 0.9971896955503512,
+        "quebras": 3,
+        "quebras_por_mil": 12.244897959183673,
+        "fidelidade": {
+          "6": 0.9375,
+          "12": 0.8974358974358975,
+          "24": 0.8828828828828829
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 3
+        }
+      },
+      "P2": {
+        "tau": 0.9967213114754098,
+        "quebras": 5,
+        "quebras_por_mil": 20.408163265306122,
+        "fidelidade": {
+          "6": 0.9125,
+          "12": 0.8888888888888888,
+          "24": 0.8828828828828829
+        },
+        "origens": {
+          "bloco_atomico": 3,
+          "mesma_regiao_ouro": 0,
+          "entre_regioes_ouro": 2
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_RJ_volta_redonda/executive_official_diary_2023-09-22_1987-extra.pdf#p16",
+      "veiculo": "official_diary_RJ_volta_redonda",
+      "n_palavras": 1016,
+      "P1": {
+        "tau": 0.48185097552461126,
+        "quebras": 37,
+        "quebras_por_mil": 36.41732283464567,
+        "fidelidade": {
+          "6": 0.8318496538081108,
+          "12": 0.6587064676616915,
+          "24": 0.4159113796576032
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 37
+        }
+      },
+      "P1m": {
+        "tau": 0.48185097552461126,
+        "quebras": 37,
+        "quebras_por_mil": 36.41732283464567,
+        "fidelidade": {
+          "6": 0.8318496538081108,
+          "12": 0.6587064676616915,
+          "24": 0.4159113796576032
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 37
+        }
+      },
+      "P2": {
+        "tau": 0.9981265272875376,
+        "quebras": 3,
+        "quebras_por_mil": 2.952755905511811,
+        "fidelidade": {
+          "6": 0.9891196834817013,
+          "12": 0.9771144278606965,
+          "24": 0.9647532729103726
+        },
+        "origens": {
+          "bloco_atomico": 0,
+          "mesma_regiao_ouro": 0,
+          "entre_regioes_ouro": 3
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_ac/executive_official_diary_2022-08-03.pdf#p109",
+      "veiculo": "official_diary_ac",
+      "n_palavras": 978,
+      "P1": {
+        "tau": 1.0,
+        "quebras": 0,
+        "quebras_por_mil": 0.0,
+        "fidelidade": {
+          "6": 1.0,
+          "12": 1.0,
+          "24": 1.0
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 0
+        }
+      },
+      "P1m": {
+        "tau": 0.9998869708824435,
+        "quebras": 2,
+        "quebras_por_mil": 2.044989775051125,
+        "fidelidade": {
+          "6": 0.9917780061664954,
+          "12": 0.9875904860392968,
+          "24": 0.987434554973822
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 2
+        }
+      },
+      "P2": {
+        "tau": 0.9998869708824435,
+        "quebras": 2,
+        "quebras_por_mil": 2.044989775051125,
+        "fidelidade": {
+          "6": 0.9917780061664954,
+          "12": 0.9875904860392968,
+          "24": 0.987434554973822
+        },
+        "origens": {
+          "bloco_atomico": 2,
+          "mesma_regiao_ouro": 0,
+          "entre_regioes_ouro": 0
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_ac/executive_official_diary_2025-02-11.pdf#p114",
+      "veiculo": "official_diary_ac",
+      "n_palavras": 1196,
+      "P1": {
+        "tau": 0.5649347196372847,
+        "quebras": 51,
+        "quebras_por_mil": 42.642140468227424,
+        "fidelidade": {
+          "6": 0.8211586901763224,
+          "12": 0.6582278481012658,
+          "24": 0.4663256606990622
+        },
+        "origens": {
+          "caixa_partida": 3,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 48
+        }
+      },
+      "P1m": {
+        "tau": 0.9285120555267908,
+        "quebras": 5,
+        "quebras_por_mil": 4.180602006688963,
+        "fidelidade": {
+          "6": 0.9832073887489504,
+          "12": 0.9713080168776371,
+          "24": 0.9505541346973572
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 5
+        }
+      },
+      "P2": {
+        "tau": 0.9257860931137264,
+        "quebras": 10,
+        "quebras_por_mil": 8.361204013377925,
+        "fidelidade": {
+          "6": 0.9622166246851386,
+          "12": 0.9257383966244725,
+          "24": 0.9019607843137255
+        },
+        "origens": {
+          "bloco_atomico": 0,
+          "mesma_regiao_ouro": 0,
+          "entre_regioes_ouro": 10
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_al/DOEAL-2021-10-06-COMPLETO_87_152.pdf#p0",
+      "veiculo": "official_diary_al",
+      "n_palavras": 507,
+      "P1": {
+        "tau": 0.08130442578603114,
+        "quebras": 3,
+        "quebras_por_mil": 5.9171597633136095,
+        "fidelidade": {
+          "6": 0.9701195219123506,
+          "12": 0.9375,
+          "24": 0.9070247933884298
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 3
+        }
+      },
+      "P1m": {
+        "tau": 0.9981757373061723,
+        "quebras": 2,
+        "quebras_por_mil": 3.9447731755424065,
+        "fidelidade": {
+          "6": 0.9800796812749004,
+          "12": 0.9596774193548387,
+          "24": 0.9545454545454546
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 2
+        }
+      },
+      "P2": {
+        "tau": 0.9980510013954831,
+        "quebras": 3,
+        "quebras_por_mil": 5.9171597633136095,
+        "fidelidade": {
+          "6": 0.9780876494023905,
+          "12": 0.9596774193548387,
+          "24": 0.9545454545454546
+        },
+        "origens": {
+          "bloco_atomico": 0,
+          "mesma_regiao_ouro": 0,
+          "entre_regioes_ouro": 3
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_al/DOEAL-2023-03-22-COMPLETO_54_172.pdf#p0",
+      "veiculo": "official_diary_al",
+      "n_palavras": 1368,
+      "P1": {
+        "tau": 0.5294108839521383,
+        "quebras": 33,
+        "quebras_por_mil": 24.12280701754386,
+        "fidelidade": {
+          "6": 0.8833455612619222,
+          "12": 0.759027266028003,
+          "24": 0.5650557620817844
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 33
+        }
+      },
+      "P1m": {
+        "tau": 0.9998459939167597,
+        "quebras": 2,
+        "quebras_por_mil": 1.461988304093567,
+        "fidelidade": {
+          "6": 0.9926632428466617,
+          "12": 0.9874723655121592,
+          "24": 0.9873605947955391
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 2
+        }
+      },
+      "P2": {
+        "tau": 0.9998502718635164,
+        "quebras": 6,
+        "quebras_por_mil": 4.385964912280701,
+        "fidelidade": {
+          "6": 0.9860601614086574,
+          "12": 0.9859985261606485,
+          "24": 0.9858736059479554
+        },
+        "origens": {
+          "bloco_atomico": 1,
+          "mesma_regiao_ouro": 0,
+          "entre_regioes_ouro": 5
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_al/DOEAL-2026-01-16-SUPLEMENTO.pdf#p9",
+      "veiculo": "official_diary_al",
+      "n_palavras": 741,
+      "P1": {
+        "tau": 0.9995331363752415,
+        "quebras": 3,
+        "quebras_por_mil": 4.048582995951417,
+        "fidelidade": {
+          "6": 0.9850543478260869,
+          "12": 0.9767123287671233,
+          "24": 0.9763231197771588
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 3
+        }
+      },
+      "P1m": {
+        "tau": 0.9995331363752415,
+        "quebras": 3,
+        "quebras_por_mil": 4.048582995951417,
+        "fidelidade": {
+          "6": 0.9850543478260869,
+          "12": 0.9767123287671233,
+          "24": 0.9763231197771588
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 3
+        }
+      },
+      "P2": {
+        "tau": 0.9994893679104205,
+        "quebras": 6,
+        "quebras_por_mil": 8.097165991902834,
+        "fidelidade": {
+          "6": 0.9741847826086957,
+          "12": 0.9739726027397261,
+          "24": 0.9735376044568245
+        },
+        "origens": {
+          "bloco_atomico": 1,
+          "mesma_regiao_ouro": 0,
+          "entre_regioes_ouro": 5
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_am_manaus/2023-03-13_caderno_2.pdf#p22",
+      "veiculo": "official_diary_am_manaus",
+      "n_palavras": 1567,
+      "P1": {
+        "tau": 1.0,
+        "quebras": 0,
+        "quebras_por_mil": 0.0,
+        "fidelidade": {
+          "6": 1.0,
+          "12": 1.0,
+          "24": 1.0
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 0
+        }
+      },
+      "P1m": {
+        "tau": 1.0,
+        "quebras": 0,
+        "quebras_por_mil": 0.0,
+        "fidelidade": {
+          "6": 1.0,
+          "12": 1.0,
+          "24": 1.0
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 0
+        }
+      },
+      "P2": {
+        "tau": 1.0,
+        "quebras": 0,
+        "quebras_por_mil": 0.0,
+        "fidelidade": {
+          "6": 1.0,
+          "12": 1.0,
+          "24": 1.0
+        },
+        "origens": {
+          "bloco_atomico": 0,
+          "mesma_regiao_ouro": 0,
+          "entre_regioes_ouro": 0
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_ap/2024-02-20_DOEn8106_Edicao Ordinaria.pdf#p35",
+      "veiculo": "official_diary_ap",
+      "n_palavras": 794,
+      "P1": {
+        "tau": 0.4846341254236534,
+        "quebras": 27,
+        "quebras_por_mil": 34.005037783375315,
+        "fidelidade": {
+          "6": 0.8339670468948035,
+          "12": 0.644955300127714,
+          "24": 0.364461738002594
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 27
+        }
+      },
+      "P1m": {
+        "tau": 1.0,
+        "quebras": 0,
+        "quebras_por_mil": 0.0,
+        "fidelidade": {
+          "6": 1.0,
+          "12": 1.0,
+          "24": 1.0
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 0
+        }
+      },
+      "P2": {
+        "tau": 0.9949558638083228,
+        "quebras": 3,
+        "quebras_por_mil": 3.778337531486146,
+        "fidelidade": {
+          "6": 0.9847908745247148,
+          "12": 0.9744572158365262,
+          "24": 0.9584954604409858
+        },
+        "origens": {
+          "bloco_atomico": 0,
+          "mesma_regiao_ouro": 0,
+          "entre_regioes_ouro": 3
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_ap/2024-05-07_DOEn8159_Edicao Ordinaria.pdf#p373",
+      "veiculo": "official_diary_ap",
+      "n_palavras": 713,
+      "P1": {
+        "tau": 0.9999999999999999,
+        "quebras": 0,
+        "quebras_por_mil": 0.0,
+        "fidelidade": {
+          "6": 1.0,
+          "12": 1.0,
+          "24": 1.0
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 0
+        }
+      },
+      "P1m": {
+        "tau": 0.9999999999999999,
+        "quebras": 0,
+        "quebras_por_mil": 0.0,
+        "fidelidade": {
+          "6": 1.0,
+          "12": 1.0,
+          "24": 1.0
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 0
+        }
+      },
+      "P2": {
+        "tau": 0.9999999999999999,
+        "quebras": 0,
+        "quebras_por_mil": 0.0,
+        "fidelidade": {
+          "6": 1.0,
+          "12": 1.0,
+          "24": 1.0
+        },
+        "origens": {
+          "bloco_atomico": 0,
+          "mesma_regiao_ouro": 0,
+          "entre_regioes_ouro": 0
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_ba_salvador/dom-8379-27-09-2022.pdf#p5",
+      "veiculo": "official_diary_ba_salvador",
+      "n_palavras": 1037,
+      "P1": {
+        "tau": 0.9942364185372865,
+        "quebras": 3,
+        "quebras_por_mil": 2.8929604628736745,
+        "fidelidade": {
+          "6": 0.9874031007751938,
+          "12": 0.9756335282651072,
+          "24": 0.960552268244576
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 3
+        }
+      },
+      "P1m": {
+        "tau": 0.9998436237587637,
+        "quebras": 2,
+        "quebras_por_mil": 1.9286403085824495,
+        "fidelidade": {
+          "6": 0.9922480620155039,
+          "12": 0.98635477582846,
+          "24": 0.9832347140039448
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 2
+        }
+      },
+      "P2": {
+        "tau": 0.9904610492845788,
+        "quebras": 4,
+        "quebras_por_mil": 3.857280617164899,
+        "fidelidade": {
+          "6": 0.9825581395348837,
+          "12": 0.9707602339181286,
+          "24": 0.9556213017751479
+        },
+        "origens": {
+          "bloco_atomico": 3,
+          "mesma_regiao_ouro": 0,
+          "entre_regioes_ouro": 1
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_ce/do20220530p02.pdf#p53",
+      "veiculo": "official_diary_ce",
+      "n_palavras": 1086,
+      "P1": {
+        "tau": 0.9999999999999999,
+        "quebras": 0,
+        "quebras_por_mil": 0.0,
+        "fidelidade": {
+          "6": 1.0,
+          "12": 1.0,
+          "24": 1.0
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 0
+        }
+      },
+      "P1m": {
+        "tau": 0.999938895536828,
+        "quebras": 2,
+        "quebras_por_mil": 1.8416206261510129,
+        "fidelidade": {
+          "6": 0.9944495837187789,
+          "12": 0.9888372093023255,
+          "24": 0.9821260583254939
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 2
+        }
+      },
+      "P2": {
+        "tau": 0.999938895536828,
+        "quebras": 2,
+        "quebras_por_mil": 1.8416206261510129,
+        "fidelidade": {
+          "6": 0.9944495837187789,
+          "12": 0.9888372093023255,
+          "24": 0.9821260583254939
+        },
+        "origens": {
+          "bloco_atomico": 2,
+          "mesma_regiao_ouro": 0,
+          "entre_regioes_ouro": 0
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_ma/executive_official_diary_2023-03-06.pdf#p71",
+      "veiculo": "official_diary_ma",
+      "n_palavras": 796,
+      "P1": {
+        "tau": 0.2735501406403084,
+        "quebras": 6,
+        "quebras_por_mil": 7.537688442211055,
+        "fidelidade": {
+          "6": 0.9620733249051833,
+          "12": 0.9184713375796179,
+          "24": 0.8551099611901681
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 6
+        }
+      },
+      "P1m": {
+        "tau": 0.9999999999999998,
+        "quebras": 0,
+        "quebras_por_mil": 0.0,
+        "fidelidade": {
+          "6": 1.0,
+          "12": 1.0,
+          "24": 1.0
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 0
+        }
+      },
+      "P2": {
+        "tau": 0.9999999999999998,
+        "quebras": 0,
+        "quebras_por_mil": 0.0,
+        "fidelidade": {
+          "6": 1.0,
+          "12": 1.0,
+          "24": 1.0
+        },
+        "origens": {
+          "bloco_atomico": 0,
+          "mesma_regiao_ouro": 0,
+          "entre_regioes_ouro": 0
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_mg/executive_official_diary_2021-07-06.pdf#p28",
+      "veiculo": "official_diary_mg",
+      "n_palavras": 4080,
+      "P1": {
+        "tau": 0.627462036542982,
+        "quebras": 58,
+        "quebras_por_mil": 14.215686274509803,
+        "fidelidade": {
+          "6": 0.9305521472392638,
+          "12": 0.8621282870484148,
+          "24": 0.7559773231451812
+        },
+        "origens": {
+          "caixa_partida": 3,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 55
+        }
+      },
+      "P1m": {
+        "tau": 0.627462036542982,
+        "quebras": 58,
+        "quebras_por_mil": 14.215686274509803,
+        "fidelidade": {
+          "6": 0.9305521472392638,
+          "12": 0.8621282870484148,
+          "24": 0.7559773231451812
+        },
+        "origens": {
+          "caixa_partida": 3,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 55
+        }
+      },
+      "P2": {
+        "tau": 0.9936544904796928,
+        "quebras": 14,
+        "quebras_por_mil": 3.4313725490196076,
+        "fidelidade": {
+          "6": 0.9860122699386503,
+          "12": 0.9771442614893094,
+          "24": 0.9622874044860734
+        },
+        "origens": {
+          "bloco_atomico": 0,
+          "mesma_regiao_ouro": 0,
+          "entre_regioes_ouro": 14
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_ms/executive_official_diary_46741_2021-06-29.pdf#p48",
+      "veiculo": "official_diary_ms",
+      "n_palavras": 385,
+      "P1": {
+        "tau": 0.9999999999999998,
+        "quebras": 0,
+        "quebras_por_mil": 0.0,
+        "fidelidade": {
+          "6": 1.0,
+          "12": 1.0,
+          "24": 1.0
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 0
+        }
+      },
+      "P1m": {
+        "tau": 0.9999999999999998,
+        "quebras": 0,
+        "quebras_por_mil": 0.0,
+        "fidelidade": {
+          "6": 1.0,
+          "12": 1.0,
+          "24": 1.0
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 0
+        }
+      },
+      "P2": {
+        "tau": 0.9988636363636363,
+        "quebras": 2,
+        "quebras_por_mil": 5.194805194805195,
+        "fidelidade": {
+          "6": 0.9736842105263158,
+          "12": 0.9652406417112299,
+          "24": 0.9640883977900553
+        },
+        "origens": {
+          "bloco_atomico": 2,
+          "mesma_regiao_ouro": 0,
+          "entre_regioes_ouro": 0
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_ms/executive_official_diary_48733_2024-11-05.pdf#p233",
+      "veiculo": "official_diary_ms",
+      "n_palavras": 405,
+      "P1": {
+        "tau": 0.9996821904412665,
+        "quebras": 2,
+        "quebras_por_mil": 4.938271604938271,
+        "fidelidade": {
+          "6": 0.985,
+          "12": 0.9695431472081218,
+          "24": 0.9633507853403142
+        },
+        "origens": {
+          "caixa_partida": 1,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 1
+        }
+      },
+      "P1m": {
+        "tau": 0.9996821904412665,
+        "quebras": 2,
+        "quebras_por_mil": 4.938271604938271,
+        "fidelidade": {
+          "6": 0.985,
+          "12": 0.9695431472081218,
+          "24": 0.9633507853403142
+        },
+        "origens": {
+          "caixa_partida": 1,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 1
+        }
+      },
+      "P2": {
+        "tau": 0.6076518762987412,
+        "quebras": 132,
+        "quebras_por_mil": 325.925925925926,
+        "fidelidade": {
+          "6": 0.0325,
+          "12": 0.005076142131979695,
+          "24": 0.0
+        },
+        "origens": {
+          "bloco_atomico": 132,
+          "mesma_regiao_ouro": 0,
+          "entre_regioes_ouro": 0
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_pb/Diario Oficial 10-01-2026 Portal.pdf#p26",
+      "veiculo": "official_diary_pb",
+      "n_palavras": 840,
+      "P1": {
+        "tau": 0.7284635904421364,
+        "quebras": 6,
+        "quebras_por_mil": 7.142857142857142,
+        "fidelidade": {
+          "6": 0.9688622754491018,
+          "12": 0.9324487334137516,
+          "24": 0.8714810281517748
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 6
+        }
+      },
+      "P1m": {
+        "tau": 0.9999318917078155,
+        "quebras": 2,
+        "quebras_por_mil": 2.3809523809523814,
+        "fidelidade": {
+          "6": 0.9928143712574851,
+          "12": 0.985524728588661,
+          "24": 0.9840881272949816
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 2
+        }
+      },
+      "P2": {
+        "tau": 0.9999489187808617,
+        "quebras": 3,
+        "quebras_por_mil": 3.571428571428571,
+        "fidelidade": {
+          "6": 0.9892215568862276,
+          "12": 0.9843184559710495,
+          "24": 0.9840881272949816
+        },
+        "origens": {
+          "bloco_atomico": 3,
+          "mesma_regiao_ouro": 0,
+          "entre_regioes_ouro": 0
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_pb/Diario Oficial 10-09-2025 Portal.pdf#p41",
+      "veiculo": "official_diary_pb",
+      "n_palavras": 1098,
+      "P1": {
+        "tau": 0.5194677319996744,
+        "quebras": 48,
+        "quebras_por_mil": 43.71584699453552,
+        "fidelidade": {
+          "6": 0.807868252516011,
+          "12": 0.6550137994480221,
+          "24": 0.5013953488372093
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 48
+        }
+      },
+      "P1m": {
+        "tau": 0.9628395375365502,
+        "quebras": 6,
+        "quebras_por_mil": 5.46448087431694,
+        "fidelidade": {
+          "6": 0.9743824336688015,
+          "12": 0.953081876724931,
+          "24": 0.9265116279069767
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 6
+        }
+      },
+      "P2": {
+        "tau": 0.963683036863245,
+        "quebras": 13,
+        "quebras_por_mil": 11.839708561020037,
+        "fidelidade": {
+          "6": 0.9505946935041171,
+          "12": 0.9089236430542779,
+          "24": 0.8753488372093023
+        },
+        "origens": {
+          "bloco_atomico": 2,
+          "mesma_regiao_ouro": 0,
+          "entre_regioes_ouro": 11
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_pe/2023-02-02_1-Poder Executivo.pdf#p6",
+      "veiculo": "official_diary_pe",
+      "n_palavras": 1573,
+      "P1": {
+        "tau": 0.8743070484916426,
+        "quebras": 19,
+        "quebras_por_mil": 12.078830260648443,
+        "fidelidade": {
+          "6": 0.9419642857142857,
+          "12": 0.8937259923175416,
+          "24": 0.807741935483871
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 19
+        }
+      },
+      "P1m": {
+        "tau": 0.8925846302667955,
+        "quebras": 15,
+        "quebras_por_mil": 9.535918626827717,
+        "fidelidade": {
+          "6": 0.954719387755102,
+          "12": 0.9148527528809219,
+          "24": 0.8367741935483871
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 15
+        }
+      },
+      "P2": {
+        "tau": 0.9999983823717344,
+        "quebras": 3,
+        "quebras_por_mil": 1.9071837253655435,
+        "fidelidade": {
+          "6": 0.9955357142857143,
+          "12": 0.9916773367477593,
+          "24": 0.9838709677419355
+        },
+        "origens": {
+          "bloco_atomico": 0,
+          "mesma_regiao_ouro": 2,
+          "entre_regioes_ouro": 1
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_pi_v2/executive_official_diary_2024_01_12_9_2024_243_297.pdf#p0",
+      "veiculo": "official_diary_pi_v2",
+      "n_palavras": 209,
+      "P1": {
+        "tau": 0.9992638940007362,
+        "quebras": 2,
+        "quebras_por_mil": 9.569377990430622,
+        "fidelidade": {
+          "6": 0.9705882352941176,
+          "12": 0.9696969696969697,
+          "24": 0.967741935483871
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 2
+        }
+      },
+      "P1m": {
+        "tau": 0.9992638940007362,
+        "quebras": 2,
+        "quebras_por_mil": 9.569377990430622,
+        "fidelidade": {
+          "6": 0.9705882352941176,
+          "12": 0.9696969696969697,
+          "24": 0.967741935483871
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 2
+        }
+      },
+      "P2": {
+        "tau": 0.9988958410011043,
+        "quebras": 2,
+        "quebras_por_mil": 9.569377990430622,
+        "fidelidade": {
+          "6": 0.9656862745098039,
+          "12": 0.9595959595959596,
+          "24": 0.956989247311828
+        },
+        "origens": {
+          "bloco_atomico": 0,
+          "mesma_regiao_ouro": 0,
+          "entre_regioes_ouro": 2
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_pi_v2/executive_official_diary_2025_11_07_216_2025.pdf#p2",
+      "veiculo": "official_diary_pi_v2",
+      "n_palavras": 370,
+      "P1": {
+        "tau": 0.9988866915696185,
+        "quebras": 5,
+        "quebras_por_mil": 13.513513513513514,
+        "fidelidade": {
+          "6": 0.9534246575342465,
+          "12": 0.9387186629526463,
+          "24": 0.9365994236311239
+        },
+        "origens": {
+          "caixa_partida": 1,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 4
+        }
+      },
+      "P1m": {
+        "tau": 0.9997656192778144,
+        "quebras": 2,
+        "quebras_por_mil": 5.405405405405405,
+        "fidelidade": {
+          "6": 0.9835616438356164,
+          "12": 0.9832869080779945,
+          "24": 0.9827089337175793
+        },
+        "origens": {
+          "caixa_partida": 1,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 1
+        }
+      },
+      "P2": {
+        "tau": 0.9999414048194535,
+        "quebras": 2,
+        "quebras_por_mil": 5.405405405405405,
+        "fidelidade": {
+          "6": 0.9917808219178083,
+          "12": 0.9916434540389972,
+          "24": 0.9913544668587896
+        },
+        "origens": {
+          "bloco_atomico": 0,
+          "mesma_regiao_ouro": 0,
+          "entre_regioes_ouro": 2
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_pr_curitiba/24-Supl1_2024-02-05.pdf#p4",
+      "veiculo": "official_diary_pr_curitiba",
+      "n_palavras": 188,
+      "P1": {
+        "tau": 1.0,
+        "quebras": 0,
+        "quebras_por_mil": 0.0,
+        "fidelidade": {
+          "6": 1.0,
+          "12": 1.0,
+          "24": 1.0
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 0
+        }
+      },
+      "P1m": {
+        "tau": 1.0,
+        "quebras": 0,
+        "quebras_por_mil": 0.0,
+        "fidelidade": {
+          "6": 1.0,
+          "12": 1.0,
+          "24": 1.0
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 0
+        }
+      },
+      "P2": {
+        "tau": 1.0,
+        "quebras": 0,
+        "quebras_por_mil": 0.0,
+        "fidelidade": {
+          "6": 1.0,
+          "12": 1.0,
+          "24": 1.0
+        },
+        "origens": {
+          "bloco_atomico": 0,
+          "mesma_regiao_ouro": 0,
+          "entre_regioes_ouro": 0
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_rj/Parte II (Poder Legislativo)_2024-02-06.pdf#p1",
+      "veiculo": "official_diary_rj",
+      "n_palavras": 2518,
+      "P1": {
+        "tau": 0.41380155845729577,
+        "quebras": 96,
+        "quebras_por_mil": 38.12549642573471,
+        "fidelidade": {
+          "6": 0.8328690807799443,
+          "12": 0.6804946150777822,
+          "24": 0.4380761523046092
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 96
+        }
+      },
+      "P1m": {
+        "tau": 0.41380155845729577,
+        "quebras": 96,
+        "quebras_por_mil": 38.12549642573471,
+        "fidelidade": {
+          "6": 0.8328690807799443,
+          "12": 0.6804946150777822,
+          "24": 0.4380761523046092
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 96
+        }
+      },
+      "P2": {
+        "tau": 0.9952078053509368,
+        "quebras": 46,
+        "quebras_por_mil": 18.268467037331213,
+        "fidelidade": {
+          "6": 0.9331476323119777,
+          "12": 0.9038691663342641,
+          "24": 0.8773547094188376
+        },
+        "origens": {
+          "bloco_atomico": 0,
+          "mesma_regiao_ouro": 8,
+          "entre_regioes_ouro": 38
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_rj_japeri/JAPERI-5606-09-DE-MAIO-2024.pdf#p3",
+      "veiculo": "official_diary_rj_japeri",
+      "n_palavras": 51,
+      "P1": {
+        "tau": 0.9764705882352943,
+        "quebras": 5,
+        "quebras_por_mil": 98.0392156862745,
+        "fidelidade": {
+          "6": 0.6521739130434783,
+          "12": 0.3,
+          "24": 0.0
+        },
+        "origens": {
+          "caixa_partida": 3,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 2
+        }
+      },
+      "P1m": {
+        "tau": 0.9764705882352943,
+        "quebras": 5,
+        "quebras_por_mil": 98.0392156862745,
+        "fidelidade": {
+          "6": 0.6521739130434783,
+          "12": 0.3,
+          "24": 0.0
+        },
+        "origens": {
+          "caixa_partida": 3,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 2
+        }
+      },
+      "P2": {
+        "tau": 1.0,
+        "quebras": 0,
+        "quebras_por_mil": 0.0,
+        "fidelidade": {
+          "6": 1.0,
+          "12": 1.0,
+          "24": 1.0
+        },
+        "origens": {
+          "bloco_atomico": 0,
+          "mesma_regiao_ouro": 0,
+          "entre_regioes_ouro": 0
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_rj_japeri/JAPERI-5690-06-DE-SETEMBRO-2024.pdf#p13",
+      "veiculo": "official_diary_rj_japeri",
+      "n_palavras": 619,
+      "P1": {
+        "tau": 0.6329291947028038,
+        "quebras": 17,
+        "quebras_por_mil": 27.463651050080774,
+        "fidelidade": {
+          "6": 0.8827361563517915,
+          "12": 0.7697368421052632,
+          "24": 0.6157718120805369
+        },
+        "origens": {
+          "caixa_partida": 2,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 15
+        }
+      },
+      "P1m": {
+        "tau": 0.9510223713997416,
+        "quebras": 5,
+        "quebras_por_mil": 8.077544426494345,
+        "fidelidade": {
+          "6": 0.9723127035830619,
+          "12": 0.9523026315789473,
+          "24": 0.9295302013422819
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 5
+        }
+      },
+      "P2": {
+        "tau": 0.9460660528778538,
+        "quebras": 30,
+        "quebras_por_mil": 48.46526655896607,
+        "fidelidade": {
+          "6": 0.8794788273615635,
+          "12": 0.8289473684210527,
+          "24": 0.7651006711409396
+        },
+        "origens": {
+          "bloco_atomico": 0,
+          "mesma_regiao_ouro": 22,
+          "entre_regioes_ouro": 8
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_rn/DOE-RN_2022-12-29_Ordinaria.pdf#p59",
+      "veiculo": "official_diary_rn",
+      "n_palavras": 796,
+      "P1": {
+        "tau": 0.5693688568629309,
+        "quebras": 37,
+        "quebras_por_mil": 46.482412060301506,
+        "fidelidade": {
+          "6": 0.7888748419721872,
+          "12": 0.6076433121019108,
+          "24": 0.37645536869340235
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 37
+        }
+      },
+      "P1m": {
+        "tau": 0.999898865396163,
+        "quebras": 3,
+        "quebras_por_mil": 3.7688442211055273,
+        "fidelidade": {
+          "6": 0.9848293299620733,
+          "12": 0.9732484076433121,
+          "24": 0.9573091849935317
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 3
+        }
+      },
+      "P2": {
+        "tau": 0.9999999999999998,
+        "quebras": 0,
+        "quebras_por_mil": 0.0,
+        "fidelidade": {
+          "6": 1.0,
+          "12": 1.0,
+          "24": 1.0
+        },
+        "origens": {
+          "bloco_atomico": 0,
+          "mesma_regiao_ouro": 0,
+          "entre_regioes_ouro": 0
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_ro/executive_official_diary_2023-07-26_304_320.pdf#p0",
+      "veiculo": "official_diary_ro",
+      "n_palavras": 635,
+      "P1": {
+        "tau": 0.9995230880051664,
+        "quebras": 9,
+        "quebras_por_mil": 14.173228346456693,
+        "fidelidade": {
+          "6": 0.9428571428571428,
+          "12": 0.8990384615384616,
+          "24": 0.8415032679738562
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 9
+        }
+      },
+      "P1m": {
+        "tau": 0.9995230880051664,
+        "quebras": 9,
+        "quebras_por_mil": 14.173228346456693,
+        "fidelidade": {
+          "6": 0.9428571428571428,
+          "12": 0.8990384615384616,
+          "24": 0.8415032679738562
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 9
+        }
+      },
+      "P2": {
+        "tau": 0.9995230880051664,
+        "quebras": 9,
+        "quebras_por_mil": 14.173228346456693,
+        "fidelidade": {
+          "6": 0.9428571428571428,
+          "12": 0.8990384615384616,
+          "24": 0.8415032679738562
+        },
+        "origens": {
+          "bloco_atomico": 0,
+          "mesma_regiao_ouro": 0,
+          "entre_regioes_ouro": 9
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_ro/executive_official_diary_suplemento_2026-01-09.pdf#p16",
+      "veiculo": "official_diary_ro",
+      "n_palavras": 630,
+      "P1": {
+        "tau": 1.0,
+        "quebras": 0,
+        "quebras_por_mil": 0.0,
+        "fidelidade": {
+          "6": 1.0,
+          "12": 1.0,
+          "24": 1.0
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 0
+        }
+      },
+      "P1m": {
+        "tau": 1.0,
+        "quebras": 0,
+        "quebras_por_mil": 0.0,
+        "fidelidade": {
+          "6": 1.0,
+          "12": 1.0,
+          "24": 1.0
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 0
+        }
+      },
+      "P2": {
+        "tau": 1.0,
+        "quebras": 0,
+        "quebras_por_mil": 0.0,
+        "fidelidade": {
+          "6": 1.0,
+          "12": 1.0,
+          "24": 1.0
+        },
+        "origens": {
+          "bloco_atomico": 0,
+          "mesma_regiao_ouro": 0,
+          "entre_regioes_ouro": 0
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_rr/2021-09-23_DiarioRR.pdf#p10",
+      "veiculo": "official_diary_rr",
+      "n_palavras": 494,
+      "P1": {
+        "tau": 0.9995072718463344,
+        "quebras": 5,
+        "quebras_por_mil": 10.121457489878543,
+        "fidelidade": {
+          "6": 0.967280163599182,
+          "12": 0.9585921325051759,
+          "24": 0.9575371549893843
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 5
+        }
+      },
+      "P1m": {
+        "tau": 0.9996715145642229,
+        "quebras": 2,
+        "quebras_por_mil": 4.048582995951417,
+        "fidelidade": {
+          "6": 0.9856850715746421,
+          "12": 0.9751552795031055,
+          "24": 0.9745222929936306
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 2
+        }
+      },
+      "P2": {
+        "tau": 0.9996715145642229,
+        "quebras": 2,
+        "quebras_por_mil": 4.048582995951417,
+        "fidelidade": {
+          "6": 0.9856850715746421,
+          "12": 0.9751552795031055,
+          "24": 0.9745222929936306
+        },
+        "origens": {
+          "bloco_atomico": 0,
+          "mesma_regiao_ouro": 0,
+          "entre_regioes_ouro": 2
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_rs_porto_alegre/4689_cl_20230227_legislativo.pdf#p1",
+      "veiculo": "official_diary_rs_porto_alegre",
+      "n_palavras": 375,
+      "P1": {
+        "tau": 0.9994866310160427,
+        "quebras": 6,
+        "quebras_por_mil": 16.0,
+        "fidelidade": {
+          "6": 0.9432432432432433,
+          "12": 0.9038461538461539,
+          "24": 0.8806818181818182
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 6
+        }
+      },
+      "P1m": {
+        "tau": 0.9998003565062389,
+        "quebras": 3,
+        "quebras_por_mil": 8.0,
+        "fidelidade": {
+          "6": 0.9702702702702702,
+          "12": 0.9478021978021978,
+          "24": 0.9261363636363636
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 3
+        }
+      },
+      "P2": {
+        "tau": 0.9998003565062389,
+        "quebras": 3,
+        "quebras_por_mil": 8.0,
+        "fidelidade": {
+          "6": 0.9702702702702702,
+          "12": 0.9478021978021978,
+          "24": 0.9261363636363636
+        },
+        "origens": {
+          "bloco_atomico": 0,
+          "mesma_regiao_ouro": 0,
+          "entre_regioes_ouro": 3
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_rs_porto_alegre/4689_cl_20230227_legislativo.pdf#p2",
+      "veiculo": "official_diary_rs_porto_alegre",
+      "n_palavras": 107,
+      "P1": {
+        "tau": 1.0,
+        "quebras": 0,
+        "quebras_por_mil": 0.0,
+        "fidelidade": {
+          "6": 1.0,
+          "12": 1.0,
+          "24": 1.0
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 0
+        }
+      },
+      "P1m": {
+        "tau": 1.0,
+        "quebras": 0,
+        "quebras_por_mil": 0.0,
+        "fidelidade": {
+          "6": 1.0,
+          "12": 1.0,
+          "24": 1.0
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 0
+        }
+      },
+      "P2": {
+        "tau": 1.0,
+        "quebras": 0,
+        "quebras_por_mil": 0.0,
+        "fidelidade": {
+          "6": 1.0,
+          "12": 1.0,
+          "24": 1.0
+        },
+        "origens": {
+          "bloco_atomico": 0,
+          "mesma_regiao_ouro": 0,
+          "entre_regioes_ouro": 0
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_sc/2023-11-27_22151.pdf#p28",
+      "veiculo": "official_diary_sc",
+      "n_palavras": 2155,
+      "P1": {
+        "tau": 0.9923573904482462,
+        "quebras": 5,
+        "quebras_por_mil": 2.320185614849188,
+        "fidelidade": {
+          "6": 0.9906976744186047,
+          "12": 0.9841417910447762,
+          "24": 0.9727954971857411
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 5
+        }
+      },
+      "P1m": {
+        "tau": 1.0,
+        "quebras": 0,
+        "quebras_por_mil": 0.0,
+        "fidelidade": {
+          "6": 1.0,
+          "12": 1.0,
+          "24": 1.0
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 0
+        }
+      },
+      "P2": {
+        "tau": 0.9999870741748478,
+        "quebras": 6,
+        "quebras_por_mil": 2.784222737819025,
+        "fidelidade": {
+          "6": 0.9897674418604652,
+          "12": 0.9818097014925373,
+          "24": 0.9704502814258912
+        },
+        "origens": {
+          "bloco_atomico": 0,
+          "mesma_regiao_ouro": 4,
+          "entre_regioes_ouro": 2
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_se/DOE-SE_2023-03-10_5100.pdf#p14",
+      "veiculo": "official_diary_se",
+      "n_palavras": 583,
+      "P1": {
+        "tau": 0.987845779326036,
+        "quebras": 6,
+        "quebras_por_mil": 10.291595197255575,
+        "fidelidade": {
+          "6": 0.9636678200692042,
+          "12": 0.9353146853146853,
+          "24": 0.8910714285714286
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 6
+        }
+      },
+      "P1m": {
+        "tau": 0.9835900337748226,
+        "quebras": 13,
+        "quebras_por_mil": 22.29845626072041,
+        "fidelidade": {
+          "6": 0.9394463667820069,
+          "12": 0.8968531468531469,
+          "24": 0.8303571428571429
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 13
+        }
+      },
+      "P2": {
+        "tau": 0.9835900337748226,
+        "quebras": 13,
+        "quebras_por_mil": 22.29845626072041,
+        "fidelidade": {
+          "6": 0.9394463667820069,
+          "12": 0.8968531468531469,
+          "24": 0.8303571428571429
+        },
+        "origens": {
+          "bloco_atomico": 0,
+          "mesma_regiao_ouro": 0,
+          "entre_regioes_ouro": 13
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_se/DOE-SE_2026-01-16_7401.pdf#p31",
+      "veiculo": "official_diary_se",
+      "n_palavras": 1062,
+      "P1": {
+        "tau": 0.5126581716782839,
+        "quebras": 36,
+        "quebras_por_mil": 33.898305084745765,
+        "fidelidade": {
+          "6": 0.8552507095553453,
+          "12": 0.7411988582302569,
+          "24": 0.5967276227141483
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 36
+        }
+      },
+      "P1m": {
+        "tau": 0.9962477213871006,
+        "quebras": 6,
+        "quebras_por_mil": 5.649717514124294,
+        "fidelidade": {
+          "6": 0.9858088930936613,
+          "12": 0.9743101807802094,
+          "24": 0.9624639076034649
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 6
+        }
+      },
+      "P2": {
+        "tau": 0.9962477213871006,
+        "quebras": 6,
+        "quebras_por_mil": 5.649717514124294,
+        "fidelidade": {
+          "6": 0.9858088930936613,
+          "12": 0.9743101807802094,
+          "24": 0.9624639076034649
+        },
+        "origens": {
+          "bloco_atomico": 0,
+          "mesma_regiao_ouro": 0,
+          "entre_regioes_ouro": 6
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_to/2022-12-13_4783.pdf#p10",
+      "veiculo": "official_diary_to",
+      "n_palavras": 944,
+      "P1": {
+        "tau": 0.5171019285727123,
+        "quebras": 25,
+        "quebras_por_mil": 26.483050847457626,
+        "fidelidade": {
+          "6": 0.8722044728434505,
+          "12": 0.7320471596998929,
+          "24": 0.50271444082519
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 25
+        }
+      },
+      "P1m": {
+        "tau": 0.9999820263493717,
+        "quebras": 2,
+        "quebras_por_mil": 2.1186440677966103,
+        "fidelidade": {
+          "6": 0.9946751863684771,
+          "12": 0.9946409431939979,
+          "24": 0.99457111834962
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 2
+        }
+      },
+      "P2": {
+        "tau": 0.9874454050362169,
+        "quebras": 5,
+        "quebras_por_mil": 5.296610169491525,
+        "fidelidade": {
+          "6": 0.9787007454739084,
+          "12": 0.9646302250803859,
+          "24": 0.9435396308360477
+        },
+        "origens": {
+          "bloco_atomico": 0,
+          "mesma_regiao_ouro": 0,
+          "entre_regioes_ouro": 5
+        }
+      }
+    },
+    {
+      "page_id": "official_diary_to/2024-04-17_5147.pdf#p47",
+      "veiculo": "official_diary_to",
+      "n_palavras": 861,
+      "P1": {
+        "tau": 0.5309780406774166,
+        "quebras": 62,
+        "quebras_por_mil": 72.00929152148665,
+        "fidelidade": {
+          "6": 0.6670560747663551,
+          "12": 0.41294117647058826,
+          "24": 0.19689737470167065
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 62
+        }
+      },
+      "P1m": {
+        "tau": 0.9999783918104961,
+        "quebras": 2,
+        "quebras_por_mil": 2.3228803716608595,
+        "fidelidade": {
+          "6": 0.9941588785046729,
+          "12": 0.9941176470588236,
+          "24": 0.9940334128878282
+        },
+        "origens": {
+          "caixa_partida": 0,
+          "caixa_fundida": 0,
+          "ordem_dentro_caixa": 0,
+          "ordem_entre_caixas": 2
+        }
+      },
+      "P2": {
+        "tau": 0.9863274180914566,
+        "quebras": 5,
+        "quebras_por_mil": 5.807200929152149,
+        "fidelidade": {
+          "6": 0.9766355140186916,
+          "12": 0.96,
+          "24": 0.9439140811455847
+        },
+        "origens": {
+          "bloco_atomico": 0,
+          "mesma_regiao_ouro": 0,
+          "entre_regioes_ouro": 5
+        }
+      }
+    }
+  ]
+}

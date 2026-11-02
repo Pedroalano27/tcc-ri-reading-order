@@ -1,0 +1,88 @@
+{
+  "page_id": "official_diary_RJ_barra_do_pirai/executive_official_diary_2026-01-16_010.pdf#p2",
+  "uf": "official_diary_RJ_barra_do_pirai",
+  "P2": {
+    "tau": 0.9536723163841808,
+    "quebras": 5,
+    "quebras_mil": 83.33333333333333,
+    "fid12": 0.6181818181818182,
+    "sucessor_linhas": 0.5
+  },
+  "P1m": {
+    "tau": 0.9423728813559322,
+    "quebras": 3,
+    "quebras_mil": 50.0,
+    "fid12": 0.7090909090909091,
+    "sucessor_linhas": 0.7
+  },
+  "regra_colunas_exportada": {
+    "tau": 0.9536723163841808,
+    "quebras": 5,
+    "quebras_mil": 83.33333333333333,
+    "fid12": 0.6181818181818182,
+    "sucessor_linhas": 0.5,
+    "piso_interno": 0
+  },
+  "regra_colunas_ks_cru": {
+    "tau": 0.9536723163841808,
+    "quebras": 5,
+    "quebras_mil": 83.33333333333333,
+    "fid12": 0.6181818181818182,
+    "sucessor_linhas": 0.5,
+    "piso_interno": 0
+  },
+  "expansao_canonica_diagnostico": {
+    "tau": 0.9536723163841808,
+    "quebras": 5,
+    "quebras_mil": 83.33333333333333,
+    "fid12": 0.6181818181818182,
+    "sucessor_linhas": 0.5
+  },
+  "diagnostico": {
+    "ks_diferem_da_expansao_canonica": false,
+    "canonizada_identica_P2": true,
+    "unidades_internas_diferentes": 0,
+    "detalhes": []
+  },
+  "ordem_regra_colunas_exportada": [
+    "b5",
+    "b13",
+    "b11",
+    "b8",
+    "b4",
+    "b1",
+    "b7",
+    "b2",
+    "b9",
+    "b6",
+    "b0",
+    "b3",
+    "b12",
+    "b10"
+  ],
+  "diag_regra": {
+    "unidades": 14,
+    "entrada": [
+      "b0",
+      "b1",
+      "b7",
+      "b3",
+      "b2",
+      "b8",
+      "b4",
+      "b11",
+      "b12",
+      "b9",
+      "b6",
+      "b5",
+      "b10",
+      "b13"
+    ],
+    "max_colunas": 1,
+    "pontes": 0,
+    "topo": 1,
+    "rodape": 6,
+    "marcas": 0,
+    "tempo_ms": 0.21999999989930075
+  }
+}
