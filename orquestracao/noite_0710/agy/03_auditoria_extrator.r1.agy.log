@@ -1,0 +1,45 @@
+Foi implementado o script solicitado em [`orquestracao/analises/auditoria_extrator_sem_paragrafos.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/auditoria_extrator_sem_paragrafos.py).
+
+O script foi desenvolvido estritamente de acordo com todas as regras do protocolo:
+- **Sem uso de GPU nem modelos neurais**;
+- **Sem dependências externas pesadas**: utiliza exclusivamente a biblioteca padrão do Python 3.11 e `PIL` (`Pillow`) para a renderização das imagens da galeria;
+- **Processamento em fluxo contínuo** (`streaming`, linha por linha dos arquivos JSONL), sem reter milhares de páginas de palavras na memória RAM;
+- **Leitura estrita de somente-leitura** em `data/` e exportação direcionada exclusivamente para `resultados/`;
+- **Nenhum arquivo existente modificado** no repositório.
+
+---
+
+### Resumo dos Componentes Implementados no Script
+
+1. **Detectores Automáticos (D1 a D7)**:
+   - **D1 (Linha que atravessa colunas)**: Identifica unidades de texto cuja largura ultrapassa 60% da largura da página e cujo vão horizontal máximo entre palavras consecutivas é superior a 4% da largura da página (característico de colunas fundidas na mesma linha).
+   - **D2 (Sobreposição tabela/imagem x texto)**: Detecta quando a caixa de uma tabela ou imagem sobrepõe mais de 30% da área de uma unidade de texto (ou vice-versa) sem absorver os índices das palavras daquela unidade.
+   - **D3 (Coluna não separada)**: Critério de página para identificar colapso generalizado de colunas em página com $\ge 40$ linhas onde $\ge 80\%$ das linhas têm largura $> 70\%$ da página e a mediana de palavras por linha é $< 6$.
+   - **D4 (Tabela suspeita)**: Identifica tabelas com $< 4$ linhas de palavras, $< 2$ colunas (menos de 3 linhas com vão entre palavras) ou com estrutura de texto corrido/lista de nomes.
+   - **D5 (Cabeçalho/rodapé fragmentado)**: Avaliado nas 45 páginas com anotação estrutural (`resultados/estruturas_golden_v4/linhas.jsonl`), detectando páginas com $> 2$ cabeçalhos, $> 2$ rodapés ou unidades com $< 3$ palavras.
+   - **D6 (Linha com altura anômala)**: Sinaliza linhas de texto cuja altura seja superior a 2,5 vezes a mediana das alturas de linha da página.
+   - **D7 (Texto sem dono perto de átomo)**: Identifica palavras de texto cujo ponto central recai dentro da caixa de uma tabela ou imagem mas pertencem a uma unidade de texto externa ao átomo.
+
+2. **Calibração contra as Anotações Humanas do Autor**:
+   - O script lê em fluxo [`data/golden/golden_v1/anotacoes.jsonl`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/data/golden/golden_v1/anotacoes.jsonl), `golden_v2` e `golden_v4`, indexando as observações qualitativas do Pedro.
+   - Para cada detector, é calculado o acerto/sensibilidade contra páginas que tiveram notas que descrevem o defeito, além de registrar quantas páginas com nota e quantas páginas sem nota o detector acendeu.
+
+3. **Saídas Produzidas pelo Script ao Executar**:
+   - [`resultados/auditoria_extrator_sem_paragrafos.json`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/auditoria_extrator_sem_paragrafos.json): Dicionário estruturado com todos os achados, métricas por página, estatísticas por detector e agregação por veículo (UF).
+   - [`resultados/auditoria_extrator_sem_paragrafos.md`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/auditoria_extrator_sem_paragrafos.md): Relatório formatado contendo:
+     1. Resumo executivo de cinco linhas (defeitos mais frequentes, percentual de páginas com defeito grave $\ge 0,70$, veículos que concentram inconsistências);
+     2. Tabela comparativa por detector (páginas afetadas, % do total, gravidade média, acerto contra notas humanas);
+     3. Ranking das 15 piores páginas no geral e das 5 piores por detector;
+     4. Galeria das 4 piores páginas de cada detector;
+     5. Apontamento para o arquivo JSON de dados brutos;
+     6. Limitações metodológicas detalhadas (números com vírgula decimal).
+   - [`resultados/auditoria_extrator_sem_paragrafos/`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/auditoria_extrator_sem_paragrafos/): Pasta contendo as 28 imagens JPEG (`NN_<detector>_<uf>.jpg`) com contornos das unidades normais em azul e das caixas defeituosas em vermelho (renderizadas sobre a imagem real do Golden quando disponível ou sobre fundo branco em escala).
+
+---
+
+### Execução pelo Orquestrador
+
+O script está pronto para ser executado pelo ambiente do orquestrador via:
+```powershell
+venv\Scripts\python.exe -B orquestracao/analises/auditoria_extrator_sem_paragrafos.py
+```

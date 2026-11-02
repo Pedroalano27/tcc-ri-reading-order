@@ -1,0 +1,13 @@
+#SCRIPT: orquestracao/analises/ancoragem_ls.py
+#SAIDA: resultados/labelstudio_ancoragem.md
+TAREFA: quantificar o VIÉS DE ANCORAGEM do dataset de layout: quanto os anotadores humanos mudaram a pré-anotação automática.
+Você não pode rodar comandos: escreva o script; o orquestrador executa "venv/Scripts/python.exe orquestracao/analises/ancoragem_ls.py" e devolve o erro se falhar.
+
+Dados: data/labelstudio/ls_p05_seed1.json, ls_p13_seed2.json, ls_p15_seed3.json, ls_p22_seed4.json (use a ÚLTIMA anotação não cancelada de cada tarefa).
+
+O script deve:
+1. Contar caixas por "origin" (manual / prediction / prediction-changed) no total, por seed, por classe e por anotador (completed_by).
+2. Descobrir por código se a tarefa traz a pré-anotação original (campo "predictions" na tarefa, ou "prediction" dentro da anotação). Se trouxer: casar caixas finais com as da pré-anotação pelo "id" (e por IoU quando o id não bater) e medir: caixas aceitas sem mudança; caixas com geometria alterada (IoU mediano, p10, fração com IoU < 0,9 e < 0,5); caixas com CLASSE alterada (classe da máquina -> classe humana, 15 trocas mais frequentes); caixas apagadas pelo humano; caixas criadas pelo humano. Se NÃO trouxer a pré-anotação, diga isso claramente no relatório e faça só a análise por "origin".
+3. Por página: fração de caixas mexidas; quantas páginas foram aceitas 100% como a máquina sugeriu; tempo de anotação (lead_time, se existir) contra fração de mudança.
+4. Por classe: taxa de "aceita sem mudança" — quais classes a máquina acerta sozinha e quais o humano mais corrige ou precisa criar do zero.
+Escreva resultados/labelstudio_ancoragem.md com resumo de 5 linhas, tabelas e a implicação para o TCC: um extrator parecido com o pré-anotador é favorecido quando avaliado nesse gabarito.

@@ -1,0 +1,44 @@
+OpenAI Codex v0.160.0
+--------
+workdir: C:\Users\pedro\dev\tcc-ri-reading-order
+model: gpt-6.1-sol
+provider: openai
+approval: never
+sandbox: workspace-write [workdir, /tmp, $TMPDIR]
+reasoning effort: xhigh
+reasoning summaries: none
+session id: 01a1014e-112a-73d2-a6b0-a6131503fbf4
+--------
+user
+Você trabalha no repositório de um TCC sobre ORDEM DE LEITURA e LAYOUT de diários oficiais brasileiros (PDFs multicoluna). Escreva tudo em português.
+
+REGRAS (valem sempre):
+- Crie SOMENTE os arquivos novos pedidos na tarefa. NÃO edite arquivos existentes. NÃO grave nada sob data/ (somente leitura). NÃO edite COMUNICACAO_AGENTES.md. NÃO faça commit.
+- NÃO use GPU: ela está ocupada por um treino. Qualquer modelo roda em CPU (device="cpu").
+- data/labelstudio/ é dado de um projeto parceiro (Data Policy): uso interno, nunca publique nem copie para fora do repositório. Os JSON de export são grandes (até 47 MB): não tente ler o arquivo inteiro como texto; descubra a estrutura por código e escreva código defensivo (campos podem faltar).
+- Python do projeto: venv/Scripts/python.exe (3.11, Windows), executado da raiz do repositório. Use só biblioteca padrão, numpy, scipy, PIL e matplotlib, mais os módulos do próprio repositório. Abra arquivos com encoding="utf-8".
+- Todo número de relatório tem que sair da execução do script (o script escreve o relatório). Não invente números. Declare limitações e vieses com honestidade (em especial: n pequeno; anotação feita corrigindo uma pré-anotação = viés de ancoragem).
+- Formato do export do Label Studio: lista de tarefas; cada tarefa tem "id", "data" (URLs) e "annotations" (lista). Cada anotação tem "completed_by", "was_cancelled" e "result" (lista). Em "result", uma caixa aparece como vários itens com o MESMO "id": type "rectangle" (geometria), type "labels" (value.labels = [classe], value.x/y/width/height em % da página, "origin" = manual | prediction | prediction-changed, original_width/original_height em px), type "textarea" (value.text = [transcrição]). Itens type "relation" (from_id, to_id, labels, direction) ligam caixas na ordem de leitura.
+- Três "PDFs" de Minas Gerais em data/labelstudio/pdf/ (pastas terminadas em -MG) são envelopes de assinatura digital PKCS#7: o PDF de verdade vai do primeiro b"%PDF" até o último b"%%EOF" do arquivo. Extraia esse trecho para um arquivo temporário sob resultados/ antes de abrir. Os outros PDFs abrem direto, mesmo os que terminam com bytes zerados.
+- Não conte com rede: não instale pacotes nem baixe modelos. Já estão no ambiente: pdfplumber, PyMuPDF 1.28 (import pymupdf), ultralytics, transformers, torch (use CPU). Modelos de terceiros já baixados ficam em models/terceiros/.
+- Esta máquina pode cair no meio do trabalho: grave caches e resultados intermediários sob resultados/ para a execução poder ser retomada sem refazer tudo, e escreva o relatório assim que tiver números.
+- As 16 classes do guia e os mapeamentos para 9 e 3 classes estão em src/data/taxonomia_layout.py. Regra das 3 classes: table -> tabela; figure, chart, heading -> imagem; unknown fica de fora; o resto -> texto.
+
+TAREFA (pense fundo, teste com código): implementar a T14 do quadro — a extração de PALAVRAS do extrator pelo PyMuPDF, como módulo novo e opcional, e provar que a SEGMENTAÇÃO que sai dele é a mesma.
+
+Contexto: src/data/extrator.py tira as palavras de cada página com pdfplumber (palavras_da_pagina) e depois segmenta (segmentar: linhas -> blocos v3). O pdfplumber é o gargalo: uma medição em 60 páginas (resultados/pymupdf_palavras.md, script orquestracao/analises/pymupdf_palavras.py, feitos por outro agente; LEIA e confira, não confie) deu média de 4,9 s por página contra 0,024 s do PyMuPDF, com 99,4% das palavras casando por texto e IoU >= 0,7. Velocidade é requisito do orientador. Falta transformar isso em código utilizável e medir o que importa: os BLOCOS mudam?
+
+Regras desta tarefa: NÃO edite src/data/extrator.py nem nenhum arquivo existente (mudança no extrator exige revisão de outro agente). Crie só arquivos novos:
+- src/data/palavras_pymupdf.py: função palavras_da_pagina_pymupdf(...) que devolve as palavras no MESMO formato e no MESMO sistema de coordenadas de palavras_da_pagina (leia com cuidado como ela trata CropBox/origem, rotação, tamanho de fonte, negrito e qualquer campo extra que segmentar() consome; reproduza cada campo ou declare o que não dá para reproduzir). Docstring no padrão do projeto: o que faz, por quê, como usar; comentários em português sem acento. Use "import pymupdf".
+- tests/test_palavras_pymupdf.py: testes no estilo dos que já existem em tests/ (veja como eles rodam), incluindo um PDF sintético gerado em memória pelo próprio PyMuPDF e casos de borda (página vazia, CropBox deslocada, página rotacionada).
+- orquestracao/analises/extrator_pymupdf_paridade.py: a medição abaixo.
+
+Medição de paridade (escreva caches em resultados/extrator_pymupdf_cache/ para ser retomável):
+1. Na bancada fixa de 44 páginas de src/data/avaliar_segmentacao.py (as 40 sorteadas + as 4 páginas-problema; veja como ela monta a amostra) e em mais 60 páginas semeadas espalhadas por veículo: rode segmentar() com as palavras do pdfplumber e com as do PyMuPDF.
+2. Compare os BLOCOS: número de blocos por página; fração de blocos idênticos (mesmo texto e IoU >= 0,95); blocos partidos ou fundidos; páginas em que a segmentação muda e por quê (que diferença de palavra causou). Compare também as três ordens candidatas que o extrator gera (stream, naive, xycut): tau de Kendall entre a ordem de um caminho e a do outro.
+3. ATENÇÃO ao fluxo do PDF: a referência silver do TCC é a ordem do fluxo de conteúdo (pdfplumber com use_text_flow=True). O PyMuPDF devolve as palavras em que ordem? Dá para recuperar a mesma ordem de fluxo (por exemplo com get_text("rawdict") ou "words" sem ordenar)? Meça a concordância da ordem "stream" entre os dois caminhos; se não bater, diga claramente que a referência silver não pode ser regenerada com o PyMuPDF.
+4. Tempo de ponta a ponta do extrator por página (palavras + segmentar) nos dois caminhos e páginas por segundo.
+Escreva resultados/extrator_pymupdf_paridade.md: resumo de 5 linhas com veredito (o módulo pode virar o padrão do extrator? com que ressalvas?), tabelas, lista das páginas que mudam com a causa, limitações (licença AGPL do PyMuPDF) e o diff exato de poucas linhas que teria de entrar em src/data/extrator.py para adotar o módulo como opção. Rode os testes novos e a suíte existente de tests/ e reporte o resultado. No fim rode a medição do zero e confira que o relatório bate com a saída. Resposta final: veredito, tabela principal e caminhos dos arquivos.
+
+ERROR: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at 7:29 AM.
+ERROR: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at 7:29 AM.

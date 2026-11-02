@@ -1,0 +1,32 @@
+#ESPERA: models/terceiros/layoutreader/BAIXADO_OK
+#SAIDA: resultados/ordem_layoutreader.md
+TAREFA (pense fundo, teste com código): testar um ordenador de linhas PRONTO, o LayoutReader, dentro do plano "sem bounding box fina", e comparar com a nossa projeção geométrica.
+
+Contexto: orquestracao/analises/ordem_sem_bbox.py + resultados/ordem_sem_bbox.md (leia os dois) ordenam linhas de texto por projeção de colunas, com tabela e imagem como blocos atômicos. A fraqueza está no multicoluna e em cabeçalho/rodapé. O LayoutReader é um modelo treinado justamente para ordenar caixas de linha (LayoutLMv3 afinado no ReadingBank; é o ordenador que o MinerU usa). Os pesos já estão em models/terceiros/layoutreader/ (hantian/layoutreader, licença CC BY-NC-SA 4.0: uso acadêmico; cite isso no relatório). Rode em CPU.
+
+Como usar o modelo (referência de uso; CONFIRA com um teste sintético de duas colunas antes de confiar):
+  from transformers import LayoutLMv3ForTokenClassification
+  modelo = LayoutLMv3ForTokenClassification.from_pretrained("models/terceiros/layoutreader").eval()
+  # caixas: lista de [x0, y0, x1, y1] inteiros, cada coordenada normalizada para 0..1000 pela largura/altura da página; no máximo 510 caixas por página
+  bbox = [[0, 0, 0, 0]] + caixas + [[0, 0, 0, 0]]
+  input_ids = [0] + [3] * len(caixas) + [2]          # CLS, UNK para cada caixa, EOS
+  attention_mask = [1] * len(input_ids)
+  logits = modelo(bbox=tensor([bbox]), input_ids=tensor([input_ids]), attention_mask=tensor([attention_mask])).logits[0]
+  logits = logits[1:len(caixas) + 1, :len(caixas)]    # linha i = caixa i; coluna j = posição j na leitura
+  # decodificação: cada caixa escolhe a posição de maior logit; em conflito, fica quem tem o maior logit e as outras vão para a sua próxima opção, até não haver posição repetida. O resultado é a posição de leitura de cada caixa.
+Se a página tiver mais de 510 linhas, descreva e teste a sua solução (por exemplo, fundir linhas vizinhas da mesma coluna em parágrafos antes de ordenar).
+
+Faça em orquestracao/analises/ordem_layoutreader.py (importe do script anterior; não o edite):
+1. Nas 44 páginas do golden_v4, com as MESMAS réguas (regiões e linhas), a mesma preparação de palavras/linhas/átomos e a mesma configuração LOPO do relatório anterior, compare:
+   (a) projeção geométrica (resultado anterior, reproduza); (b) LayoutReader ordenando as linhas de texto e os blocos atômicos (tabela/imagem entram como uma caixa só); (c) LayoutReader ordenando as regiões humanas do ouro (comparável à XY-cut em regiões-ouro); (d) híbrido: colunas e faixas pela projeção, LayoutReader só para decidir a ordem entre os grupos, ou o contrário; escolha o desenho que fizer mais sentido e justifique.
+2. Mesmas estatísticas: tau, sucessor, ARD normalizado, IC por bootstrap, Wilcoxon pareado contra a XY-cut em regiões-ouro e contra a projeção; estratos 1 coluna x multicoluna.
+3. O LayoutReader conserta as falhas listadas em "Onde o plano perde mais" do relatório anterior (campos do cabeçalho, tabelas lado a lado, rodapé de Barra do Piraí)? Mostre página a página.
+4. Custo: tempo por página em CPU de cada variante (velocidade é requisito do TCC) e tamanho do modelo.
+5. Atenção ao viés: o LayoutReader NÃO foi ajustado nessas páginas (ponto a favor dele contra a projeção, que foi desenvolvida nelas). Diga isso com clareza.
+Escreva resultados/ordem_layoutreader.md: resumo de 5 linhas com veredito (vale trocar a projeção pelo LayoutReader, combinar os dois, ou nenhum?), tabelas, análise de erro, limitações, recomendação. No fim rode do zero e confira que o relatório bate com a saída. Resposta final: veredito, tabela principal e caminhos dos arquivos.
+
+REQUISITOS QUE VIERAM DA REVISÃO ADVERSARIAL (leia resultados/revisao_ordem_sem_bbox.md e, se já existir, resultados/ordem_sem_bbox_justo.md):
+(i) além da XY-cut pura, inclua como linha de base a XY-cut sobre as regiões de referência COM a mesma política de margens do método (itens do topo primeiro, rodapé por último, marcas antes do rodapé, mesmos limiares), para separar o ganho da projeção de colunas do ganho da política de margens;
+(ii) trate como régua principal a sequência real de saída (linhas ou palavras, mais a fração de regiões cujas palavras ficam em mais de um trecho); a régua de regiões por mediana dos ranks é secundária, porque esconde texto intercalado;
+(iii) Wilcoxon pareado com zero_method="pratt" e IC por bootstrap agrupado por veículo;
+(iv) não use assert para região ou página sem palavras: trate o caso e conte quantos são.

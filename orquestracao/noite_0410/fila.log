@@ -1,0 +1,59 @@
+04/10 23:40:42 [codex] fila iniciada
+04/10 23:40:42 [agy] fila iniciada
+04/10 23:40:43 [codex] comecando 01_unidades_supervisionadas.txt
+04/10 23:40:43 [agy] comecando 01_auditoria_vazamento.txt
+04/10 23:44:48 [agy] agy ok 01_auditoria_vazamento.txt na rodada 1
+04/10 23:45:48 [agy] comecando 02_faixas_estreitas.txt
+04/10 23:49:17 [agy] agy ok 02_faixas_estreitas.txt na rodada 1
+05/10 00:07:33 [codex] codex ok 01_unidades_supervisionadas.txt em 26 min
+05/10 00:07:35 [codex] comecando 02_bancada_ordenadores.txt
+05/10 00:29:53 [codex] codex ok 02_bancada_ordenadores.txt em 22 min
+05/10 00:31:54 [codex] comecando 02b_bancada_ordem_interna.txt
+05/10 00:33:23 [agy] comecando 03_gemini_unidades_cola.txt
+05/10 00:36:54 [agy] agy ok 03_gemini_unidades_cola.txt na rodada 1
+05/10 01:34:29 [codex] codex ok 02b_bancada_ordem_interna.txt em 62 min
+05/10 01:39:03 [codex] comecando 03_ordenadores_treinados.txt
+05/10 01:40:45 [gemini] comecando colunas_margens__golden_v4
+05/10 01:59:17 [gemini] colunas_margens__golden_v4 terminou (rc=0)
+05/10 01:59:17 [gemini] comecando colunas_margens__golden_v3_novo
+05/10 02:03:20 [gemini] colunas_margens__golden_v3_novo terminou (rc=0)
+05/10 02:03:20 [gemini] comecando colunas__golden_v4
+05/10 02:12:09 [gemini] colunas__golden_v4 terminou (rc=0)
+05/10 02:12:09 [gemini] comecando colunas__golden_v3_novo
+05/10 02:20:17 [codex] codex tentativa 1 de 03_ordenadores_treinados.txt falhou (rc=1, 41 min)
+05/10 02:21:56 [gemini] colunas__golden_v3_novo terminou (rc=0)
+05/10 02:21:57 [gemini] conversao terminou (rc=0)
+05/10 02:22:52 [codex] comecando 03_ordenadores_treinados.txt
+05/10 02:22:55 [codex] codex FALHA RAPIDA em 03_ordenadores_treinados.txt (rc=1, 3s): ERROR: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at 3:34 | espero 20 min
+05/10 02:25:48 [gpu] GPU livre; comecando 01_sucessor_linhas.sh
+05/10 02:39:57 [gpu] 01_sucessor_linhas.sh terminou (rc=0, 14 min)
+05/10 02:40:58 [gpu] GPU livre; comecando 02_layoutreader_ajuste_linhas.sh
+05/10 02:41:06 [gpu] 02_layoutreader_ajuste_linhas.sh terminou (rc=1, 0 min)
+05/10 02:42:07 [gpu] GPU livre; comecando 03_sucessor_colunas_margens.sh
+05/10 02:42:55 [codex] comecando 04_relatorio_e_revisao.txt
+05/10 02:43:03 [codex] codex FALHA RAPIDA em 04_relatorio_e_revisao.txt (rc=1, 7s): ERROR: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at 3:34 | espero 20 min
+05/10 02:53:55 [gpu] 03_sucessor_colunas_margens.sh terminou (rc=0, 11 min)
+05/10 02:54:55 [gpu] GPU livre; comecando 04_pontual_linhas.sh
+05/10 03:05:28 [codex] comecando 04_relatorio_e_revisao.txt
+05/10 03:05:37 [codex] codex FALHA RAPIDA em 04_relatorio_e_revisao.txt (rc=1, 9s): ERROR: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at 3:34 | espero 20 min
+05/10 03:07:24 [gpu] 04_pontual_linhas.sh terminou (rc=0, 12 min)
+05/10 03:08:24 [gpu] GPU livre; comecando 04b_layoutreader_ajuste_linhas.sh
+05/10 03:14:00 [gpu] 04b_layoutreader_ajuste_linhas.sh terminou (rc=0, 5 min)
+05/10 03:15:00 [gpu] GPU livre; comecando 05_sucessor_linhas_40ep.sh
+05/10 03:28:33 [codex] comecando 04_relatorio_e_revisao.txt
+05/10 03:28:40 [codex] codex FALHA RAPIDA em 04_relatorio_e_revisao.txt (rc=1, 6s): ERROR: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at 3:34 | espero 20 min
+05/10 03:51:18 [codex] comecando 04_relatorio_e_revisao.txt
+05/10 04:07:05 [codex] codex tentativa 1 de 04_relatorio_e_revisao.txt falhou (rc=1, 15 min)
+05/10 04:09:43 [codex] comecando 04_relatorio_e_revisao.txt
+05/10 04:09:49 [codex] codex FALHA RAPIDA em 04_relatorio_e_revisao.txt (rc=1, 6s): ERROR: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at Oct  | espero 20 min
+05/10 04:22:38 [gpu] 05_sucessor_linhas_40ep.sh terminou (rc=0, 67 min)
+05/10 04:23:38 [gpu] GPU livre; comecando 06_sucessor_colunas_margens_s43.sh
+05/10 04:32:36 [codex] comecando 04_relatorio_e_revisao.txt
+05/10 04:32:41 [codex] codex FALHA RAPIDA em 04_relatorio_e_revisao.txt (rc=1, 5s): ERROR: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at Oct  | espero 20 min
+05/10 04:35:55 [gpu] 06_sucessor_colunas_margens_s43.sh terminou (rc=0, 12 min)
+05/10 04:36:55 [gpu] GPU livre; comecando 07_sucessor_linhas_s43.sh
+05/10 04:51:05 [gpu] 07_sucessor_linhas_s43.sh terminou (rc=0, 14 min)
+05/10 04:54:05 [gpu] GPU livre; comecando 08_sucessor_linhas_100ep.sh
+05/10 04:54:35 [agy] comecando 04_ganha_perde.txt
+05/10 04:57:41 [agy] agy ok 04_ganha_perde.txt na rodada 1
+05/10 07:32:12 [gpu] 08_sucessor_linhas_100ep.sh terminou (rc=0, 158 min)

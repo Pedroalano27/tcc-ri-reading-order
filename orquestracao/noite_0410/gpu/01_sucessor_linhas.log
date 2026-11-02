@@ -1,0 +1,124 @@
+Loading weights:   0%|          | 0/203 [00:00<?, ?it/s]Loading weights: 100%|██████████| 203/203 [00:00<00:00, 50811.23it/s]
+[treino] sucessor_linhas: 873/873 paginas; cuda; micro=1; acum=8
+[transformers] Caching is incompatible with gradient checkpointing in LayoutLMLayer. Setting `use_cache=False`.
+  ep=1 pagina=80/873 passo=10 loss=5.42034 s=8.2
+  ep=1 pagina=160/873 passo=20 loss=4.42140 s=15.1
+  ep=1 pagina=240/873 passo=30 loss=4.00930 s=21.9
+  ep=1 pagina=320/873 passo=40 loss=3.82572 s=29.0
+  ep=1 pagina=400/873 passo=50 loss=2.70918 s=36.0
+  ep=1 pagina=480/873 passo=60 loss=2.70711 s=42.8
+  ep=1 pagina=560/873 passo=70 loss=2.74862 s=49.6
+  ep=1 pagina=640/873 passo=80 loss=3.41813 s=56.3
+  ep=1 pagina=720/873 passo=90 loss=2.55861 s=67.4
+  ep=1 pagina=800/873 passo=100 loss=2.36384 s=74.5
+  ep=1 pagina=873/873 passo=110 loss=2.81847 s=81.1
+[val] sucessor_linhas: tau unidades=0.799323, passos=110
+  ep=2 pagina=80/873 passo=120 loss=1.43454 s=93.9
+  ep=2 pagina=160/873 passo=130 loss=1.62618 s=100.6
+  ep=2 pagina=240/873 passo=140 loss=1.62707 s=107.5
+  ep=2 pagina=320/873 passo=150 loss=2.38331 s=114.3
+  ep=2 pagina=400/873 passo=160 loss=2.35103 s=121.7
+  ep=2 pagina=480/873 passo=170 loss=1.93602 s=132.7
+  ep=2 pagina=560/873 passo=180 loss=2.05724 s=139.7
+  ep=2 pagina=640/873 passo=190 loss=2.43912 s=146.5
+  ep=2 pagina=720/873 passo=200 loss=1.97031 s=153.3
+  ep=2 pagina=800/873 passo=210 loss=2.37099 s=160.4
+  ep=2 pagina=873/873 passo=220 loss=2.03010 s=166.8
+[val] sucessor_linhas: tau unidades=0.831708, passos=220
+  ep=3 pagina=80/873 passo=230 loss=0.42192 s=180.1
+  ep=3 pagina=160/873 passo=240 loss=1.93794 s=187.8
+  ep=3 pagina=240/873 passo=250 loss=3.10916 s=199.1
+  ep=3 pagina=320/873 passo=260 loss=1.98877 s=207.3
+  ep=3 pagina=400/873 passo=270 loss=1.83613 s=214.8
+  ep=3 pagina=480/873 passo=280 loss=1.98996 s=222.2
+  ep=3 pagina=560/873 passo=290 loss=2.40181 s=230.1
+  ep=3 pagina=640/873 passo=300 loss=1.86140 s=238.0
+  ep=3 pagina=720/873 passo=310 loss=1.90259 s=245.6
+  ep=3 pagina=800/873 passo=320 loss=2.07866 s=253.3
+  ep=3 pagina=873/873 passo=330 loss=1.68542 s=263.7
+[val] sucessor_linhas: tau unidades=0.863859, passos=330
+  ep=4 pagina=80/873 passo=340 loss=1.89771 s=277.0
+  ep=4 pagina=160/873 passo=350 loss=1.96311 s=284.0
+  ep=4 pagina=240/873 passo=360 loss=1.72433 s=291.4
+  ep=4 pagina=320/873 passo=370 loss=2.52290 s=298.8
+  ep=4 pagina=400/873 passo=380 loss=2.04253 s=306.5
+  ep=4 pagina=480/873 passo=390 loss=2.72223 s=314.8
+  ep=4 pagina=560/873 passo=400 loss=1.51758 s=326.3
+  ep=4 pagina=640/873 passo=410 loss=2.00968 s=333.9
+  ep=4 pagina=720/873 passo=420 loss=0.92016 s=342.1
+  ep=4 pagina=800/873 passo=430 loss=1.40740 s=349.7
+  ep=4 pagina=873/873 passo=440 loss=2.02008 s=356.6
+[val] sucessor_linhas: tau unidades=0.843825, passos=440
+  ep=5 pagina=80/873 passo=450 loss=2.28579 s=367.9
+  ep=5 pagina=160/873 passo=460 loss=0.06387 s=375.7
+  ep=5 pagina=240/873 passo=470 loss=1.57837 s=386.8
+  ep=5 pagina=320/873 passo=480 loss=0.07671 s=394.0
+  ep=5 pagina=400/873 passo=490 loss=1.98764 s=401.4
+  ep=5 pagina=480/873 passo=500 loss=1.81079 s=409.1
+  ep=5 pagina=560/873 passo=510 loss=2.27209 s=416.7
+  ep=5 pagina=640/873 passo=520 loss=1.02807 s=424.2
+  ep=5 pagina=720/873 passo=530 loss=1.31517 s=431.7
+  ep=5 pagina=800/873 passo=540 loss=1.93775 s=439.3
+  ep=5 pagina=873/873 passo=550 loss=2.13347 s=450.1
+[val] sucessor_linhas: tau unidades=0.869452, passos=550
+  ep=6 pagina=80/873 passo=560 loss=1.85166 s=463.9
+  ep=6 pagina=160/873 passo=570 loss=1.35397 s=471.3
+  ep=6 pagina=240/873 passo=580 loss=1.74522 s=479.9
+  ep=6 pagina=320/873 passo=590 loss=1.59456 s=488.5
+  ep=6 pagina=400/873 passo=600 loss=1.65221 s=497.2
+  ep=6 pagina=480/873 passo=610 loss=1.75399 s=505.1
+  ep=6 pagina=560/873 passo=620 loss=1.72452 s=520.1
+  ep=6 pagina=640/873 passo=630 loss=1.57022 s=526.9
+  ep=6 pagina=720/873 passo=640 loss=1.47329 s=533.7
+  ep=6 pagina=800/873 passo=650 loss=1.79595 s=540.8
+  ep=6 pagina=873/873 passo=660 loss=1.71379 s=547.9
+[val] sucessor_linhas: tau unidades=0.862877, passos=660
+  ep=7 pagina=80/873 passo=670 loss=1.79042 s=559.7
+  ep=7 pagina=160/873 passo=680 loss=1.62857 s=567.6
+  ep=7 pagina=240/873 passo=690 loss=1.31681 s=575.2
+  ep=7 pagina=320/873 passo=700 loss=2.06860 s=586.3
+  ep=7 pagina=400/873 passo=710 loss=1.45107 s=594.8
+  ep=7 pagina=480/873 passo=720 loss=1.30367 s=602.5
+  ep=7 pagina=560/873 passo=730 loss=1.40661 s=610.1
+  ep=7 pagina=640/873 passo=740 loss=1.13247 s=617.6
+  ep=7 pagina=720/873 passo=750 loss=1.52208 s=625.9
+  ep=7 pagina=800/873 passo=760 loss=1.66140 s=634.2
+  ep=7 pagina=873/873 passo=770 loss=2.18250 s=641.5
+[val] sucessor_linhas: tau unidades=0.868001, passos=770
+  ep=8 pagina=80/873 passo=780 loss=1.66273 s=656.8
+  ep=8 pagina=160/873 passo=790 loss=1.43946 s=664.4
+  ep=8 pagina=240/873 passo=800 loss=1.55811 s=672.0
+  ep=8 pagina=320/873 passo=810 loss=1.84778 s=679.6
+  ep=8 pagina=400/873 passo=820 loss=1.80595 s=687.5
+  ep=8 pagina=480/873 passo=830 loss=2.19035 s=695.1
+  ep=8 pagina=560/873 passo=840 loss=1.47387 s=702.5
+  ep=8 pagina=640/873 passo=850 loss=0.23435 s=709.9
+  ep=8 pagina=720/873 passo=860 loss=1.82606 s=720.8
+  ep=8 pagina=800/873 passo=870 loss=1.46994 s=728.3
+  ep=8 pagina=873/873 passo=880 loss=1.02774 s=735.2
+[val] sucessor_linhas: tau unidades=0.864200, passos=880
+[OK] sucessor_linhas: 880 passos, 739.4s, melhor val=0.869452
+Loading weights:   0%|          | 0/203 [00:00<?, ?it/s]Loading weights: 100%|██████████| 203/203 [00:00<00:00, 36798.50it/s]
+[inferir] sucessor_linhas linhas golden_v4: 20
+[inferir] sucessor_linhas linhas golden_v4: 40
+[pred] C:\Users\pedro\dev\tcc-ri-reading-order\resultados\ordenadores_treinados_sem_caixas\pred\sucessor_linhas__linhas__golden_v4.jsonl
+[inferir] sucessor_linhas linhas golden_v3_novo: 20
+[pred] C:\Users\pedro\dev\tcc-ri-reading-order\resultados\ordenadores_treinados_sem_caixas\pred\sucessor_linhas__linhas__golden_v3_novo.jsonl
+[inferir] sucessor_linhas linhas teste_silver: 20
+[inferir] sucessor_linhas linhas teste_silver: 40
+[inferir] sucessor_linhas linhas teste_silver: 60
+[inferir] sucessor_linhas linhas teste_silver: 80
+[pred] C:\Users\pedro\dev\tcc-ri-reading-order\resultados\ordenadores_treinados_sem_caixas\pred\sucessor_linhas__linhas__teste_silver.jsonl
+Avaliar sucessor_linhas__linhas__golden_v4: 20/44
+Avaliar sucessor_linhas__linhas__golden_v4: 40/44
+sucessor_linhas__linhas__golden_v4: 44 paginas; completa=True
+ancora_ok.json publicado: 54 tabelas obrigatorias completas
+Avaliar sucessor_linhas__linhas__golden_v3_novo: 20/27
+sucessor_linhas__linhas__golden_v3_novo: 27 paginas; completa=True
+ancora_ok.json publicado: 54 tabelas obrigatorias completas
+Avaliar sucessor_linhas__linhas__teste_silver: 20/89
+Avaliar sucessor_linhas__linhas__teste_silver: 40/89
+Avaliar sucessor_linhas__linhas__teste_silver: 60/89
+Avaliar sucessor_linhas__linhas__teste_silver: 80/89
+sucessor_linhas__linhas__teste_silver: 89 paginas; completa=True
+ancora_ok.json publicado: 54 tabelas obrigatorias completas

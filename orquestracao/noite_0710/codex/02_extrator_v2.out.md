@@ -1,0 +1,3 @@
+Criei o [script v2](C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/extrator_sem_paragrafos_v2.py) com A–E, avaliação retomável, relatório automático e geração dos painéis. O [relatório inicial](C:/Users/pedro/dev/tcc-ri-reading-order/resultados/extrator_sem_paragrafos_v2.md) registra as pendências.
+
+Não executei Python, conforme sua restrição. **Âncoras, métricas, unidades exportadas e painéis permanecem pendentes**; ainda não há conclusão de melhora. Nenhum arquivo preexistente foi alterado.

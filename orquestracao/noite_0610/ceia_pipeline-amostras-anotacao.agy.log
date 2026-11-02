@@ -1,0 +1,30 @@
+O relatório detalhado foi gerado e salvo em [RELATO_pipeline-amostras-anotacao.md](file:///C:/Users/pedro/dev/ceia_datapolicy/RELATO_pipeline-amostras-anotacao.md).
+
+### Principais Achados no Repositório `pipeline-amostras-anotacao`
+
+1. **Detecção de Layout:**
+   - **Modelo e Pesos:** Utiliza a biblioteca `doclayout-yolo` com `YOLOv10` ([`app/pipeline/doclayout.py::carregar_modelo`](file:///C:/Users/pedro/dev/ceia_datapolicy/pipeline-amostras-anotacao/app/pipeline/doclayout.py#L16-L38)) e checkpoint público `doclayout_yolo_docstructbench_imgsz1024.pt` (DocStructBench).
+   - **Parâmetros:** `imgsz=1024`, `conf=0.2`, páginas renderizadas com PyMuPDF a `200 DPI` ([`shared/config.py`](file:///C:/Users/pedro/dev/ceia_datapolicy/pipeline-amostras-anotacao/shared/config.py#L128-L132)).
+   - **Classes e Pós-processamento:** Mapeia 10 classes do DocStructBench para Labels do Label Studio (`paragraph`, `caption`, `title`, `table`, `figure`) em [`app/labelstudio/functions.py`](file:///C:/Users/pedro/dev/ceia_datapolicy/pipeline-amostras-anotacao/app/labelstudio/functions.py#L296-L305). **Não há fusão de caixas (merge) nem NMS customizado**.
+   - **Estruturas Especiais:** Não há classes para cabeçalho e rodapé. Tabelas viram caixas únicas e são excluídas do OCR de fallback. Colunas não são segmentadas pelo detector (apenas há uma heurística ingênua de 2 colunas para o Label Studio dividindo em `width / 2`).
+
+2. **Ordenação de Leitura:**
+   - **Código Base:** [`app/pipeline/reading_order.py`](file:///C:/Users/pedro/dev/ceia_datapolicy/pipeline-amostras-anotacao/app/pipeline/reading_order.py) (código de Josiel portado de `doclayout-yolo-datapolicy/lib/order.py`).
+   - **Estratégia Padrão:** **XY-Cut++ Column-Aware** ([`_xycut_column_aware`](file:///C:/Users/pedro/dev/ceia_datapolicy/pipeline-amostras-anotacao/app/pipeline/reading_order.py#L99-L166)):
+     - *Sweep-line* por eventos de profundidade para cortes sem overlap ([`_find_gaps`](file:///C:/Users/pedro/dev/ceia_datapolicy/pipeline-amostras-anotacao/app/pipeline/reading_order.py#L55-L74)).
+     - **Tratamento de Wide Blocks:** Caixas com largura $\ge 0.55 \times \text{largura da página}$ são separadas em `wide`. Se houver colunas verticais nos blocos estreitos, particiona os blocos largos em `pre_wide` (acima), `post_wide` (abaixo) e `mid_wide` (intercalados no fluxo das colunas pela coordenada $y$).
+   - **Outras Estratégias:** Geometric (bandas verticais de $0.5 \times \text{altura média}$), LayoutReader (`hantian/layoutreader`, truncado em 510 blocos) e Ensemble (Borda count ponderando LayoutReader $2\times$).
+
+3. **Métricas e Avaliação:**
+   - **Métricas de Layout/Ordem:** **Não constam neste repositório** (sem IoU, mAP, Tau de Kendall ou quebras de leitura no código deste repo).
+   - **Benchmark Existente:** [`tools/benchmark_gpu_rapido.py`](file:///C:/Users/pedro/dev/ceia_datapolicy/pipeline-amostras-anotacao/tools/benchmark_gpu_rapido.py) mede apenas latência (ms/pág), throughput (pág/s) e consumo de VRAM de GPU.
+   - **Dados Registrados:** Corpus de embeddings SigLIP gerado em **121.480 páginas** ([`README.md`](file:///C:/Users/pedro/dev/ceia_datapolicy/pipeline-amostras-anotacao/README.md#L283-L285)).
+
+4. **Dados, Amostragem e Extração:**
+   - **Pipeline de Amostragem:** Embeddings visuais SigLIP (RGB + Otsu binarizado a 150 DPI) $\rightarrow$ UMAP 30D $\rightarrow$ BIRCH/Agglomerative $\rightarrow$ MMR com diversidade e priorização de cidades/capitais-alvo ([`app/pipeline/selection.py`](file:///C:/Users/pedro/dev/ceia_datapolicy/pipeline-amostras-anotacao/app/pipeline/selection.py)).
+   - **Extração com Folga:** Em [`app/labelstudio/functions.py::extract_pdf_text_by_bbox`](file:///C:/Users/pedro/dev/ceia_datapolicy/pipeline-amostras-anotacao/app/labelstudio/functions.py#L874-L901), usa `rect = rect + (-1, -1, 1, 1)` para evitar perda de caracteres rentes à borda.
+   - **Fallback OCR:** [`app/pipeline/ocr_fallback.py`](file:///C:/Users/pedro/dev/ceia_datapolicy/pipeline-amostras-anotacao/app/pipeline/ocr_fallback.py) usa PaddleOCR a 300 DPI, detecta linhas perdidas em gaps verticais $> 0.5 \times \text{altura da linha}$ para reexecutar a 600 DPI, com pós-processamento estrutural, união de letras isoladas e validação léxica pt-BR.
+
+5. **Recomendações Práticas para o TCC:**
+   - **Aproveitar:** A lógica de **Wide Blocks** do `_xycut_column_aware` (limiar $0.55 \times W$ e divisão `pre/mid/post_wide` para títulos que cruzam colunas a meio da página); a folga `(-1, -1, 1, 1)` na extração do PyMuPDF; a quantização de linha por banda de $0.5 \times \text{altura}$; e o uso da máscara de tabela para bloquear invasão de calhas de texto.
+   - **Descartar:** A heurística de 2 colunas no meio da página (`width / 2`); o LayoutReader e seu ensemble (lentos, limitados a 510 blocos e inferiores à regra geométrica); e o modelo de 10 classes do DocStructBench (o modelo de 3 classes do TCC é mais robusto para a imprensa oficial).

@@ -1,0 +1,12 @@
+========================================================================
+AUDITORIA DE BANCADAS DE TREINO E MEDIÇÃO CONCLUÍDA COM SUCESSO
+========================================================================
+Relatório Markdown gravado em: C:\Users\pedro\dev\tcc-ri-reading-order\resultados\auditoria_bancadas_treino.md
+Lista de exclusão gravada em:  C:\Users\pedro\dev\tcc-ri-reading-order\resultados\auditoria_excluir_do_treino.txt
+------------------------------------------------------------------------
+RESUMO EXECUTIVO (4 LINHAS):
+1. Sim, há 6 ocorrência(s) de page_id repetido entre treino e medição (bancada A: 6).
+2. Sim, há 6 caso(s) de sobreposição de PDF entre treino e medição (bancada A: 6 PDF(s)), apresentando vazamento de template/documento intra-PDF.
+3. Bancada A (golden_v4): 6 de 45 páginas (13,3%) são de veículos vistos no treino (39 em não vistos); Bancada B nova (golden_v3 fora do v4): 0 de 27 páginas (0,0%) são de veículos vistos no treino (27 em não vistos).
+4. O orquestrador deve excluir exatamente 36 páginas do conjunto de treino (cujos PDFs pertencem a alguma bancada humana), listadas em resultados/auditoria_excluir_do_treino.txt.
+========================================================================

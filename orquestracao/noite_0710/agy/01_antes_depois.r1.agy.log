@@ -1,0 +1,35 @@
+Foi criado com sucesso o script [`orquestracao/analises/modelos_antes_depois.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/modelos_antes_depois.py), pronto para execução pelo orquestrador via:
+
+```powershell
+venv\Scripts\python.exe -B orquestracao/analises/modelos_antes_depois.py
+```
+
+---
+
+### Resumo do que o script faz
+
+1. **Carregamento e Âncora do Ouro:**
+   - Importa [`orquestracao/analises/ordem_sem_bbox_justo.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/ordem_sem_bbox_justo.py) e executa `preparar()` para obter as 44 páginas concluídas do `golden_v4` com suas regiões, palavras digitais e ordem humana de referência.
+   - Pré-computa a expansão canônica das regiões em palavras através de `ordem_sem_bbox.linhas(ws, ks)`.
+   - **Verificação da âncora antes de qualquer cálculo:** expande a ordem humana das regiões (`q["gt_r"]`) e afere com `erros_ponta_a_ponta.medir(q, seq, [], {}, "P0")`, garantindo rigorosamente $\tau = 1,0$ e $0$ quebras em todas as 44 páginas. Se houver qualquer desvio, o script interrompe a execução com erro detalhado.
+
+2. **Avaliação do ANTES (Caixas de Parágrafo manuais):**
+   - Varre todos os arquivos `resultados/golden/golden_v4/pred_*.jsonl` (incluindo LayoutLM sucessor, LayoutLM pontual, ablações, LLMs/VLMs como Gemini 3.1 Flash Lite, Qwen 2.5 e Gemma 4), além das ordens base armazenadas em `tarefas.jsonl` (`xycut`, `naive`, `stream`).
+   - Audita e valida os identificadores preditos contra as regiões reais da página. Páginas com divergência de IDs são registradas e listadas sem interpolação fictícia.
+   - Expande cada predição na sequência exata de palavras e avalia com `erros_ponta_a_ponta.medir()`, extraindo $\tau$ de palavras, quebras de leitura por página, quebras por mil palavras, fidelidade integral de 12 palavras (`fid12`) e sucessor correto de linhas.
+
+3. **Avaliação do DEPOIS (Linhas sem Caixas de Texto):**
+   - Lê diretamente de [`resultados/ordenadores_sem_caixas.json`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/ordenadores_sem_caixas.json) todas as execuções com `representacao == "linhas"` e `bancada == "golden_v4"` (`regra_colunas`, `sucessor_linhas_40ep`, `sucessor_linhas_100ep`, `layoutreader_pronto`, `pontual_linhas`, `lstm_geo_linhas`, `xycut_margens`, etc.).
+
+4. **Classificação e Comparação por Família:**
+   - Classifica os métodos em seis famílias: *Heurística geométrica*, *LayoutLM sucessor*, *LayoutLM pontual*, *BiLSTM*, *LayoutReader* e *Modelo de linguagem (LLM/VLM)*.
+   - Determina a melhor variante do ANTES e do DEPOIS de cada família (com critério prioritário de menor número de quebras e maior $\tau$).
+
+5. **Geração Automática de Relatório e Cache:**
+   - Grava o cache intermediário em [`resultados/modelos_antes_depois.json`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/modelos_antes_depois.json) com todos os números por página para conferência rápida e retomada.
+   - Escreve o relatório final formatado em português com decimais em vírgula em [`resultados/modelos_antes_depois.md`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/modelos_antes_depois.md), contendo:
+     1. Resumo em cinco linhas respondendo se retirar caixas ajudou ou atrapalhou cada família.
+     2. Tabela comparativa por família com a melhor variante ANTES e DEPOIS, métricas ($\tau$, quebras, fid. 12), $n$ de páginas e diferenças ($\Delta$).
+     3. Tabela exaustiva de todos os métodos do ANTES na régua de palavras.
+     4. Tabela de todos os métodos do DEPOIS sobre linhas.
+     5. Seção de limitações honestas (assimetria entre caixas humanas no ANTES e linhas automáticas no DEPOIS; modelos treinados com 873 páginas e só geometria; favorecimento da regra de colunas pelo uso do v4 no desenvolvimento).

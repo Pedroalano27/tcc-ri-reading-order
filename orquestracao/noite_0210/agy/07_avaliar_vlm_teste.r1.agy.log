@@ -1,0 +1,38 @@
+## FEITO
+
+1. **Desenvolvimento do script de avaliação [avaliar_vlm_teste.py](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/avaliar_vlm_teste.py)**:
+   - Implementada a leitura da partição de teste com 89 páginas (`carregar_particao("teste")` de [src/eval/protocolo.py](file:///C:/Users/pedro/dev/tcc-ri-reading-order/src/eval/protocolo.py)) e extração da ordem de referência silver (`stream`) conforme definido em [data/processed/splits.json](file:///C:/Users/pedro/dev/tcc-ri-reading-order/data/processed/splits.json).
+   - Aplicadas as heurísticas **XY-cut** (`src.data.extrator.xycut`) e **Ingênua** (`sorted(entrada, key=lambda i: (top, x0))`) a partir da permutação determinística de entrada (`ordem_entrada(p)`).
+   - Carregadas as predições do VLM (`gemini-3.1-flash-lite`, marcas visuais ativas) de [resultados/pred_vlm_gemini_3_1_flash_lite.jsonl](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/pred_vlm_gemini_3_1_flash_lite.jsonl), contabilizando o total de páginas com predição, permutações válidas de primeira tentativa e permutações reparadas via `validar_permutacao`.
+   - Calculadas todas as métricas comparativas: $\tau$ de Kendall (média, IC 95% via bootstrap de 2.000 reamostras com semente fixa 7, percentil 10 de pior caso), continuidade local (`acerto_sucessor`), ARD normalizado, acerto exato, BLEU e latência média por página.
+   - Implementado teste pareado de postos sinalizados de Wilcoxon (`zero_method="pratt"`) em $\tau$ e em sucessor entre VLM e XY-cut, com contagem exata de vitórias, empates e derrotas.
+   - Construídas quebras analíticas por veículo (`official_diary_ce`, `official_diary_ma`, `official_diary_rj`), com subdivisão das partes do Rio de Janeiro (Parte I - Executivo, Parte II - Legislativo, Parte IV - Municipalidades), e por faixa de densidade de blocos ($\le 15$, $16-40$, $> 40$).
+   - Identificadas as 8 páginas em que o VLM mais supera a XY-cut e as 8 em que mais perde ($\Delta \tau$).
+   - Estruturada a seção metodológica **"Como ler"**, detalhando o viés favorável à XY-cut decorrente do critério de aceitação de veículos silver ($\tau \ge 0,7$), e contrastando os resultados obtidos no teste contra o $\tau = 0,924$ no `golden_v3` e $\tau = 0,962$ no `golden_v4` para fundamentar a análise sobre sobreajuste do prompt e a dependência de classes humanas de layout.
+   - Automatizada a geração direta do relatório [resultados/vlm_ordem_teste.md](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/vlm_ordem_teste.md) com resumo executivo de 5 linhas encabeçado pelo veredito.
+
+---
+
+## ARQUIVOS
+
+- **Criado**: [`orquestracao/analises/avaliar_vlm_teste.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/avaliar_vlm_teste.py) — Script autossuficiente para execução em CPU com o Python virtual do projeto (`venv/Scripts/python.exe`). Gera o relatório Markdown e imprime o sumário no console.
+- **Destino do relatório**: [`resultados/vlm_ordem_teste.md`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/vlm_ordem_teste.md) (gerado automaticamente pelo script quando executado pelo orquestrador).
+
+---
+
+## EVIDÊNCIA
+
+- Código implementado seguindo estritamente as convenções do repositório (comentários sem acento no código, tipagem estática, imports canônicos de `src.eval.protocolo` e `src.eval.metrics`, sem alteração em nenhum arquivo existente do repositório).
+- Configuração do console para UTF-8 (`sys.stdout.reconfigure(encoding="utf-8", errors="replace")`) para compatibilidade com o terminal Windows.
+- O script reutiliza as definições padronizadas de bootstrap (`ic95`, $n=2000$, semente 7) e percentil ($p_{10}$) idênticas a [src/eval/comparar.py](file:///C:/Users/pedro/dev/tcc-ri-reading-order/src/eval/comparar.py).
+- O teste pareado utiliza expressamente `scipy.stats.wilcoxon(..., zero_method="pratt")`, tratando empates de acordo com a formulação de Pratt.
+
+---
+
+## PENDÊNCIAS
+
+- Execução pelo orquestrador do comando:
+  ```powershell
+  venv\Scripts\python.exe orquestracao/analises/avaliar_vlm_teste.py
+  ```
+- O orquestrador registrará os números consolidados de [resultados/vlm_ordem_teste.md](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/vlm_ordem_teste.md) no quadro [COMUNICACAO_AGENTES.md](file:///C:/Users/pedro/dev/tcc-ri-reading-order/COMUNICACAO_AGENTES.md).

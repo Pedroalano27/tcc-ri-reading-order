@@ -1,0 +1,14 @@
+#SCRIPT: orquestracao/analises/concordancia_ls.py
+#SAIDA: resultados/labelstudio_concordancia.md
+TAREFA: medir a CONCORDÂNCIA ENTRE ANOTADORES humanos no dataset de layout (teto realista para qualquer extrator).
+Você não pode rodar comandos: escreva o script; o orquestrador executa "venv/Scripts/python.exe orquestracao/analises/concordancia_ls.py" e devolve o erro se falhar.
+
+Dados: data/labelstudio/ls_p05_seed1.json (529 tarefas; cerca de 119 têm 2 ou mais anotações não canceladas). Verifique também ls_p13_seed2.json, ls_p15_seed3.json e ls_p22_seed4.json e inclua as páginas duplamente anotadas que existirem.
+
+O script deve, para cada página com 2 ou mais anotações (pares de anotadores distintos):
+1. Casar caixas por IoU (casamento guloso 1-1, maior IoU primeiro) e calcular F1 de localização em IoU >= 0,5, 0,75 e 0,9, ignorando a classe.
+2. Entre as caixas casadas em 0,5: acerto de classe nas 16 classes, kappa de Cohen, as 10 confusões mais frequentes e F1 por classe (localização + classe).
+3. Repetir o acerto de classe e o F1 com classe colapsando para 3 classes (texto/tabela/imagem) e para as 9 classes do extrator (GUIA_PARA_EXTRATOR).
+4. Medir quanto a concordância é inflada pela pré-anotação: fração de pares de caixas casadas em que AMBOS os anotadores têm origin == "prediction" (os dois só aceitaram a sugestão da máquina), e recalcular a concordância restrita a caixas em que pelo menos um dos dois mexeu (origin manual ou prediction-changed).
+5. IC 95% por bootstrap de páginas para os números principais.
+Escreva resultados/labelstudio_concordancia.md com: resumo de 5 linhas, tabelas, e uma seção "como ler" explicando que esse número é o teto para comparar extratores e por que a ancoragem o infla.

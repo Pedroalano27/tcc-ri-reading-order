@@ -1,0 +1,43 @@
+### FEITO
+
+Implementei o script de avaliação do extrator híbrido em [`orquestracao/analises/extrator_hibrido_ls.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/extrator_hibrido_ls.py).
+
+O script avalia, nas 11 páginas do teste sem viés de ancoragem (`data/diamond/diamond_teste`, anotadas do zero pelo Pedro), se a troca ou combinação do detector genérico original (Docling Heron) por detectores treinados no domínio de diários oficiais (Label Studio 16 classes, 3 classes e fine-tuned no Diamond) melhora a qualidade da segmentação de regiões do extrator.
+
+O script implementa rigorosamente:
+1. **Linha de base (a):** `seg.propor(palavras, blocos_v3, t["detector"]["regioes"], regras=True)` com as regiões do Docling, contendo asserção estrita para garantir F1@0,5 = 0,851 na régua de 9 classes (abortando com explicação clara caso divirja);
+2. **Substituição (b):** `seg.propor()` alimentado com as regiões de cada detector do domínio traduzidas para os rótulos do Docling que o extrator espera;
+3. **União (c):** `seg.propor()` com as regiões do detector do domínio primeiro, mais as do Docling, descartando preventivamente qualquer caixa do Docling com $\ge 60\%$ de sua área coberta por uma região do domínio;
+4. **Filtro especializado (d):** `seg.propor()` ingerindo exclusivamente as previsões de `tabela` e `imagem` do detector do domínio, deixando a estruturação do texto a cargo das regras humanas e dos blocos v3;
+5. **Referência pura (e):** cada detector avaliado diretamente sem regras;
+6. **Métricas nas duas réguas:** 9 classes (Diamond/extrator) e 3 classes (texto/tabela/imagem) medindo F1@0,5, F1@0,9, F1 com classe, acerto de classe por palavras e contagem de regiões;
+7. **Análise por página:** diferença $\Delta$ de F1@0,5 contra a linha de base para cada página individual, contabilizando páginas que ganham ($\Delta > 0$), empatam ($\Delta = 0$) e perdem ($\Delta < 0$);
+8. **Relatório automático:** geração integral de [`resultados/extrator_hibrido_ls.md`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/extrator_hibrido_ls.md) com resumo executivo de 5 linhas (veredito primeiro), tabelas completas, tabelas de tradução e limitações declaradas com honestidade.
+
+---
+
+### ARQUIVOS
+
+- [`orquestracao/analises/extrator_hibrido_ls.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/extrator_hibrido_ls.py) *(novo)*: script de avaliação e geração do relatório.
+
+*(Nenhum arquivo existente foi editado. Nenhuma modificação sob `data/` ou `COMUNICACAO_AGENTES.md`. Nenhum comando foi executado e a GPU não foi utilizada).*
+
+---
+
+### EVIDÊNCIA
+
+O script define as três matrizes canônicas de tradução de classes para rótulos consumidos por [`src/data/regioes.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/src/data/regioes.py) (`CLASSE_DETECTOR`):
+- `TRADUCAO_LS16`: mapeia `act`, `act section`, `title`, `section title`, `sub section title` para `title` e `section_header`; `paragraph`, `id`, `caption`, `signature`, `heading` para `text`/`key_value_region`/`caption`; `table` para `table`; `figure`, `chart` para `picture`; `header`, `footer` para `page_header`, `page_footer`.
+- `TRADUCAO_LS3`: mapeia `tabela` $\to$ `table`, `imagem`/`figura` $\to$ `picture`, `texto` $\to$ `text`.
+- `TRADUCAO_9CLS`: mapeia as 9 classes do Diamond fine-tuning para os respectivos rótulos aceitos pelo pipeline do Docling.
+
+O comando pronto para execução pelo orquestrador é:
+```powershell
+venv\Scripts\python.exe orquestracao\analises\extrator_hibrido_ls.py
+```
+
+---
+
+### PENDÊNCIAS
+
+- Execução do script pelo orquestrador via linha de comando para gravação dos números finais em [`resultados/extrator_hibrido_ls.md`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/extrator_hibrido_ls.md).

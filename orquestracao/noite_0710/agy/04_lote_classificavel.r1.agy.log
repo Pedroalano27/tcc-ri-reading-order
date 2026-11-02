@@ -1,0 +1,66 @@
+### Resposta à Pergunta do Autor
+
+> **"Sem caixas de parágrafo (texto em LINHAS; só tabela e imagem como bloco), qual ordenador erra menos, e o que cada modelo ganhou ou perdeu ao sair das caixas de parágrafo?"** (com base em [`docs/RELATORIO_NOITE_0410.md`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/docs/RELATORIO_NOITE_0410.md)):
+
+1. **Qual ordenador erra menos em linhas:**
+   - A **regra geométrica de colunas** continua superando todos os ordenadores treinados:
+     - No **golden_v4**: $\tau = 0{,}986$ e apenas **6,05 quebras de leitura por página** (94,8% de integridade de trechos de 12 palavras), contra $0{,}928$ e 11,00 quebras do melhor modelo treinado (LayoutLM sucessor, 40 épocas) e $0{,}913$ e 18,39 do LayoutReader pré-treinado.
+     - No **golden_v3** (fora do desenvolvimento): $\tau = 0{,}960$ e **9,22 quebras por página**, contra $0{,}919$ e 12,48 do LayoutLM sucessor e $0{,}951$ e 16,22 do LayoutReader.
+   - O teto da representação em linhas é quase perfeito (0,89 quebra/página no golden_v4): todo o erro restante advém exclusivamente da ordenação entre as linhas e átomos.
+
+2. **O que cada modelo ganhou ou perdeu ao sair das caixas de parágrafo:**
+   - **Regra geométrica de colunas:** **Ganhou.** Saltou de $\tau = 0{,}952$ e 8,93 quebras (no pipeline antigo com caixas finas de parágrafo + XY-cut + margens) para $\tau = 0{,}986$ e 6,05 quebras no golden_v4 (e de 11,41 para 9,22 quebras no golden_v3 novo). Eliminar caixas de parágrafo remove o erro cascata de agrupamento prematuro de blocos que saltavam colunas.
+   - **LayoutReader pré-treinado:** **Ganhou nas páginas curtas, mas perdeu nas densas.** Em páginas de até 67 linhas, supera a regra geométrica (daí o protótipo do híbrido por densidade que baixou quebras de 9,22 para 7,89 no golden_v3 novo). Nas densas, colapsa para 47,27 quebras/página devido à dispersão de tokens.
+   - **LayoutLM sucessor:** **Precisou de muito mais épocas.** Em blocos, poucas épocas bastavam; em linhas (com centenas de unidades), 8 épocas geravam 57,59 quebras/página. Com 40 épocas estacionou em 11,00 quebras (ganho expressivo, mas ainda quase o dobro da regra).
+   - **BiLSTM e LayoutLM pontual:** **Perderam totalmente.** Como ordenam por pontuação de posição absoluta em sequências longas, picotam as linhas contíguas, saltando de 11–15 quebras para **72 a 78 quebras por página**.
+
+---
+
+### Tarefa Concluída: Script do Lote Classificável (`lote_sem_paragrafos`)
+
+Foi criado o script [`orquestracao/analises/montar_lote_sem_paragrafos.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/montar_lote_sem_paragrafos.py), pronto para ser executado pelo orquestrador:
+
+```bash
+venv\Scripts\python.exe -B orquestracao/analises/montar_lote_sem_paragrafos.py
+```
+
+### O que o script realiza:
+
+1. **Estratificação de 60 Páginas:**
+   - **30 com os piores achados do auditor** (`resultados/auditoria_extrator_sem_paragrafos.json`), priorizando a diversificação dos detectores com falhas graves:
+     - **D1** (Linha que atravessa colunas)
+     - **D7** (Texto sem dono perto de átomo)
+     - **D2** (Sobreposição tabela $\times$ texto)
+     - **D5** (Cabeçalho/rodapé fragmentado)
+     - **D4** (Tabela suspeita / vazia)
+     - **D6** (Linha com altura anômala)
+   - **30 aleatórias** (semente fixa `20261008`) sobre o acervo elegível sem defeitos graves, para medir a taxa real de erro populacional.
+   - **Teto rigoroso de $\le 4$ páginas por veículo** no lote total (evitando monopólio de qualquer diário, como Manaus ou Duque de Caxias).
+   - **Exclusão estrita:** nenhuma página do `golden_v4` (`data/golden/golden_v4/tarefas.jsonl`), nenhuma do `golden_v3` (`data/golden/_avaliacao/golden_v3/tarefas.jsonl`) e nenhuma de `data/labelstudio/`.
+   - **Verificação de existência de PDF:** apenas páginas cujo arquivo exista fisicamente em `data/raw/<uf>/<arquivo>`.
+
+2. **Renderização de Imagens a 110 dpi (PyMuPDF):**
+   - Renderiza as páginas em JPEG a 110 dpi para `resultados/lote_sem_paragrafos/img/{001..060}.jpg`.
+   - Processamento sequencial em fluxo com liberação de memória (`gc.collect()`), sem multiprocessing nem sobrecarga de RAM.
+
+3. **Formatação Exata para o Diamond:**
+   - Cada tarefa é gerada em `resultados/lote_sem_paragrafos/tarefas.jsonl` com as unidades do novo extrator como `proposta`:
+     - Linhas de texto corridas $\rightarrow$ classe `"texto"`.
+     - Átomos de tabela $\rightarrow$ classe `"tabela"`.
+     - Átomos de imagem/figura $\rightarrow$ classe `"figura"`.
+     - Cabeçalhos estruturais $\rightarrow$ classe `"cabecalho"`.
+     - Rodapés estruturais $\rightarrow$ classe `"rodape"`.
+     - Quadros e molduras $\rightarrow$ classe `"outro"`.
+     - Vocabulário 100% aderente a `servidor.CLASSES`.
+   - **Ordem não preenchida** (anotação cega de segmentação).
+   - Preserva `blocos_v3` e `detector` originais para que o Pedro possa inspecionar as camadas ao pressionar <kbd>B</kbd> e <kbd>M</kbd> no navegador.
+
+4. **Validação Automática Importando [`servidor.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/src/anotacao/servidor.py):**
+   - O script valida que as 60 tarefas possuem dimensões válidas, bboxes positivas, classes reconhecidas em `servidor.CLASSES`, imagens JPEG íntegras e ausência de IDs duplicados.
+
+5. **Documentação e Instruções de Uso (`LEIAME.md`):**
+   - Gera `resultados/lote_sem_paragrafos/LEIAME.md` com:
+     - Comando para mover/vincular a pasta para `data/diamond/lote_sem_paragrafos` (via `Copy-Item` ou junção NTFS `mklink /J`).
+     - Comando de inicialização: `venv\Scripts\python.exe src\anotacao\servidor.py --diamond`.
+     - Instruções detalhadas de correção (divisão de linhas que cruzam colunas com <kbd>Shift</kbd>+<kbd>D</kbd>, reclassificação com <kbd>1</kbd>–<kbd>9</kbd>, ajuste com <kbd>A</kbd>).
+     - Tabelas completas de estratificação por motivo, por detector e por veículo.

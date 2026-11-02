@@ -1,0 +1,60 @@
+===========================================================================
+TCC - MEDICAO DE CONCORDANCIA ENTRE ANOTADORES (VERSAO 2 - CORRIGIDA)
+===========================================================================
+Arquivos válidos de Bounding Box definidos pelo protocolo: 4
+  - ls_p05_seed1.json: EXISTE (44.8 MB)
+  - ls_p13_seed2.json: EXISTE (23.3 MB)
+  - ls_p15_seed3.json: EXISTE (17.3 MB)
+  - ls_p22_seed4.json: EXISTE (3.7 MB)
+Carregadas 529 tarefas de ls_p05_seed1.json
+Carregadas 750 tarefas de ls_p13_seed2.json
+Carregadas 720 tarefas de ls_p15_seed3.json
+Carregadas 120 tarefas de ls_p22_seed4.json
+
+Perfilando anotadores e identificando usuários de pré-anotação automática...
+Total de usuários encontrados nos projetos de bounding box: 10
+  - Usuário 10: 60 tarefas, 825 caixas (32.7% prediction, 67.3% manual/changed) -> [Humano / Válido]
+  - Usuário 11: 90 tarefas, 1771 caixas (29.1% prediction, 70.9% manual/changed) -> [Humano / Válido]
+  - Usuário 12: 95 tarefas, 1636 caixas (43.7% prediction, 56.3% manual/changed) -> [Humano / Válido]
+  - Usuário 2: 2 tarefas, 33 caixas (21.2% prediction, 78.8% manual/changed) -> [Humano / Válido]
+  - Usuário 3: 394 tarefas, 8459 caixas (36.6% prediction, 63.4% manual/changed) -> [Humano / Válido]
+  - Usuário 4: 505 tarefas, 8327 caixas (45.0% prediction, 55.0% manual/changed) -> [Humano / Válido]
+  - Usuário 5: 525 tarefas, 10030 caixas (37.7% prediction, 62.3% manual/changed) -> [Humano / Válido]
+  - Usuário 6: 573 tarefas, 9864 caixas (45.4% prediction, 54.6% manual/changed) -> [Humano / Válido]
+  - Usuário 8: 1 tarefas, 99 caixas (100.0% prediction, 0.0% manual/changed) -> [Humano / Válido]
+  - Usuário 9: 62 tarefas, 946 caixas (2.5% prediction, 97.5% manual/changed) -> [Humano / Válido]
+Usuários automáticos/Admin excluídos: Nenhum detectado
+
+Filtrando tarefas com pares válidos de anotadores humanos independentes...
+Total de páginas duplamente anotadas por humanos independentes: 144
+  - ls_p05_seed1.json: 118 páginas
+  - ls_p13_seed2.json: 23 páginas
+  - ls_p15_seed3.json: 3 páginas
+
+Total de pares avaliados: 146
+Pares suspeitos de cópia (> 95% caixas com IoU >= 0.99): 23
+Pares estritamente independentes (sem cópia): 123
+
+Calculando métricas agregadas (Conjunto Completo)...
+Calculando métricas agregadas (Conjunto Limpo sem cópias)...
+  - ls_p05_seed1.json: 120 pares | F1 0.5: 84.8% | Kappa 16c: 0.766
+  - ls_p13_seed2.json: 23 pares | F1 0.5: 89.5% | Kappa 16c: 0.716
+  - ls_p15_seed3.json: 3 pares | F1 0.5: 87.6% | Kappa 16c: 0.842
+  - ls_p22_seed4.json: 0 pares | F1 0.5: 0.0% | Kappa 16c: 0.000
+
+Executando cluster bootstrap para conjunto completo (1.000 repetições)...
+Executando cluster bootstrap para conjunto limpo (1.000 repetições)...
+
+Métricas JSON salvas com sucesso em: C:\Users\pedro\dev\tcc-ri-reading-order\resultados\concordancia_ls_metricas_v2.json
+
+Construindo relatório final em Markdown para: C:\Users\pedro\dev\tcc-ri-reading-order\resultados\labelstudio_concordancia_v2.md ...
+Traceback (most recent call last):
+  File "C:\Users\pedro\dev\tcc-ri-reading-order\orquestracao\analises\concordancia_ls.py", line 1693, in <module>
+    main()
+  File "C:\Users\pedro\dev\tcc-ri-reading-order\orquestracao\analises\concordancia_ls.py", line 1667, in main
+    relatorio_md_v2 = construir_relatorio_md_v2(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pedro\dev\tcc-ri-reading-order\orquestracao\analises\concordancia_ls.py", line 1173, in construir_relatorio_md_v2
+    for aid, cnt in pares_por_usuario.most_common():
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'most_common'

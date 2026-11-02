@@ -1,0 +1,65 @@
+## FEITO
+
+Implementamos o script de análise comparativa em [`orquestracao/analises/pymupdf_palavras.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/pymupdf_palavras.py) para avaliar a substituição do `pdfplumber` pelo `PyMuPDF 1.28` (`import pymupdf`) na extração de palavras do [`src/data/extrator.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/src/data/extrator.py).
+
+O script implementa de ponta a ponta todos os requisitos especificados:
+
+1. **Amostragem estratificada e determinística:**
+   - Semente fixa `20261003` via `random.Random(20261003)`.
+   - Lê as páginas disponíveis em [`data/processed/blocos/`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/data/processed/blocos/) agrupadas por veículo.
+   - Sorteia 60 páginas: inclui pelo menos 5 páginas do veículo de Pernambuco (`official_diary_pe`), e no máximo 3 páginas por veículo para os demais (~30 veículos cobertos), garantindo distribuição balanceada.
+
+2. **Extração dual e harmonização de coordenadas:**
+   - **Caminho (a) pdfplumber:** invoca diretamente [`palavras_da_pagina`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/src/data/extrator.py#L82-L104) do extrator, preservando filtros de rotação, deduplicação de caracteres e junção de letras espaçadas.
+   - **Caminho (b) PyMuPDF:** invoca `page.get_text("words")`, convertendo as tuplas para o formato de dicionários `{"t", "x0", "x1", "top", "bottom", "s"}` com origem e rotação harmonizadas ao referencial da `CropBox` visível e aplicando a mesma junção de letras espaçadas.
+   - Separação estrita dos tempos: mede `t_abrir` e `t_extrair` individualmente com `time.perf_counter()`.
+
+3. **Métricas de pareamento e desvio geométrico:**
+   - Matching guloso 1-para-1 ordenado por IoU decrescente para palavras com mesmo texto e $\text{IoU} \ge 0,7$.
+   - Medição da fração de correspondência nos dois sentidos ($\text{Plumber} \to \text{MuPDF}$ e $\text{MuPDF} \to \text{Plumber}$).
+   - Mediana e p95 dos desvios absolutos de coordenadas das bordas ($dx_0, dx_1, dtop, dbottom$) e do IoU nos pares casados.
+
+4. **Diagnóstico sistemático de diferenças de texto:**
+   - Rastreamento espacial de palavras divergentes para identificar:
+     - Fontes com `(cid:...)` não decodificadas no `pdfminer` e resolvidas pelo `PyMuPDF`;
+     - Ligaduras tipográficas (`fi`, `fl`, `ffi`, etc.);
+     - Acentuação e normalização Unicode (NFC vs NFD);
+     - Hífens e travessões (`-`, `–`, `—`, `‐`);
+     - Variações de espaçamento intra-palavra / palavras coladas.
+   - Registro de contagens e exemplos concretos associados ao seu `page_id`.
+
+5. **Proteção e persistência atômica:**
+   - Tratamento defensivo de envelopes PKCS#7 (encontrados em MG), páginas ausentes ou PDFs corrompidos.
+   - Cache retomável página a página em [`resultados/pymupdf_palavras_cache.json`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/pymupdf_palavras_cache.json) usando gravação atômica (`.tmp` + `os.replace`).
+   - Geração automática do relatório completo em [`resultados/pymupdf_palavras.md`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/pymupdf_palavras.md) contendo resumo de 5 linhas, tabelas por veículo, análise de throughput, desvios geométricos, limitações e o guia de adaptação no extrator.
+
+---
+
+## ARQUIVOS
+
+- **Criado:** [`orquestracao/analises/pymupdf_palavras.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/pymupdf_palavras.py)
+
+---
+
+## EVIDÊNCIA
+
+O script foi estruturado para ser executado pelo orquestrador através do comando:
+
+```powershell
+venv\Scripts\python.exe orquestracao/analises/pymupdf_palavras.py
+```
+
+### Principais componentes implementados no script:
+- `sortear_amostra()`: realiza a seleção determinística das 60 páginas garantindo 5 páginas de `official_diary_pe` e até 3 páginas para os outros veículos.
+- `extrair_palavras_pymupdf()`: trata `page.rect`, `page.cropbox`, rotação e converte as coordenadas de `page.get_text("words")` em pontos visuais top-left idênticos aos de `pdfplumber`.
+- `comparar_palavras_pagina()`: indexa palavras por texto e calcula o matching 1-para-1 com $\text{IoU} \ge 0,7$, calculando mediana e p95 de bordas e catalogando anomalias textuais.
+- `salvar_cache()`: garante que a execução possa ser interrompida e retomada sem perda de trabalho.
+- `gerar_relatorio_md()`: gera o relatório em Markdown com tabelas por veículo, números formatados no padrão brasileiro (vírgula decimal) e texto conciso.
+
+---
+
+## PENDÊNCIAS
+
+1. **Execução pelo orquestrador:** rodar `venv\Scripts\python.exe orquestracao/analises/pymupdf_palavras.py` para processar a amostra das 60 páginas.
+2. **Revisão dos números gerados:** inspecionar [`resultados/pymupdf_palavras.md`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/pymupdf_palavras.md) e confirmar a aceleração obtida nos diários de Pernambuco e no total.
+3. **Decisão de adoção:** após validação pelo Pedro e orientador, planejar a migração em [`src/data/extrator.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/src/data/extrator.py) conforme detalhado na Seção 7 do relatório.

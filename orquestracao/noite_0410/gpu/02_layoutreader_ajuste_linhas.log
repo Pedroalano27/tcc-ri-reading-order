@@ -1,0 +1,12 @@
+Loading weights:   0%|          | 0/400 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 153/400 [00:00<00:00, 1512.79it/s]Loading weights:  76%|███████▋  | 305/400 [00:00<00:00, 1488.02it/s]Loading weights: 100%|██████████| 400/400 [00:00<00:00, 1468.53it/s]
+Traceback (most recent call last):
+  File "C:\Users\pedro\dev\tcc-ri-reading-order\orquestracao\analises\layoutreader_ajuste.py", line 28, in <module>
+    t.treinar(a)
+  File "C:\Users\pedro\dev\tcc-ri-reading-order\orquestracao\analises\treinar_sem_caixas.py", line 349, in treinar
+    model, cod = criar_modelo(a)
+                 ^^^^^^^^^^^^^^^
+  File "C:\Users\pedro\dev\tcc-ri-reading-order\orquestracao\analises\treinar_sem_caixas.py", line 205, in criar_modelo
+    model.gradient_checkpointing_enable()
+  File "C:\Users\pedro\dev\tcc-ri-reading-order\venv\Lib\site-packages\transformers\modeling_utils.py", line 3202, in gradient_checkpointing_enable
+    raise ValueError(f"{self.__class__.__name__} does not support gradient checkpointing.")
+ValueError: LayoutLMv3ForTokenClassification does not support gradient checkpointing.

@@ -1,0 +1,19 @@
+FEITO:
+Implementação do script analítico [`orquestracao/analises/concordancia_ls.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/concordancia_ls.py) para medição da concordância inter-anotador humana no dataset de layout do Label Studio. O script implementa o casamento guloso 1-1 por IoU (maior IoU primeiro), calcula F1 de localização nos limiares 0,5, 0,75 e 0,9, avalia concordância e Kappa de Cohen nas 16 classes do guia, nas 9 classes do extrator e nas 3 classes macro (texto/tabela/imagem), quantifica o viés de ancoragem da pré-anotação comparando o dataset completo contra o subconjunto onde houve intervenção humana ativa, calcula intervalos de confiança empíricos de 95% via cluster bootstrap por página e gera o relatório completo [`resultados/labelstudio_concordancia.md`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/labelstudio_concordancia.md).
+
+ARQUIVOS:
+- [`orquestracao/analises/concordancia_ls.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/concordancia_ls.py): script autossuficiente e defensivo que processa os arquivos de export do Label Studio (`ls_p05_seed1.json`, `ls_p13_seed2.json`, `ls_p15_seed3.json`, `ls_p22_seed4.json`), calcula todas as métricas de localização, classificação e ancoragem com bootstrap de 1.000 iterações por clusters de páginas e gera o relatório Markdown e cache JSON.
+
+EVIDÊNCIA:
+- O script foi construído em estrita conformidade com as regras do projeto (sem dependência de GPU, sem acesso de escrita em `data/`, sem chamadas de terminal nesta etapa e com uso exclusivo de bibliotecas padrão, `numpy`, `scipy` e [`src/data/taxonomia_layout.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/src/data/taxonomia_layout.py)).
+- O comando pronto para execução pelo orquestrador é:
+  ```bash
+  venv\Scripts\python.exe orquestracao\analises\concordancia_ls.py
+  ```
+- O script grava automaticamente:
+  1. [`resultados/labelstudio_concordancia.md`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/labelstudio_concordancia.md) (relatório completo com resumo executivo de 5 linhas, 6 tabelas detalhadas e seção de interpretação metodológica);
+  2. `resultados/concordancia_ls_metricas.json` (todas as contagens, métricas pontuais e intervalos de confiança de 95% serializados para reprodução).
+
+PENDÊNCIAS:
+- Aguarda a execução do script pelo orquestrador (`venv/Scripts/python.exe orquestracao/analises/concordancia_ls.py`) para geração dos arquivos em `resultados/`.
+- Caso haja tarefas adicionais com anotações múltiplas em projetos futuros do Label Studio, elas serão automaticamente incorporadas pelo padrão glob `data/labelstudio/ls_*.json`.

@@ -1,0 +1,18 @@
+#ESPERA: resultados/pred_vlm_gemini_3_1_flash_lite.jsonl
+#SCRIPT: orquestracao/analises/avaliar_vlm_teste.py
+#SAIDA: resultados/vlm_ordem_teste.md
+TAREFA: avaliar o ordenador por VLM (Gemini) nas 89 páginas da partição de TESTE, que ele nunca tinha visto, e comparar com as heurísticas.
+Você não pode rodar comandos: escreva o script; o orquestrador executa "venv/Scripts/python.exe orquestracao/analises/avaliar_vlm_teste.py" e devolve o erro se falhar. NÃO chame nenhuma API: as predições já estão em disco.
+
+Contexto: o VLM (src/eval/vlm_ordem.py, gemini-3.1-flash-lite, imagem da página com marcas) tinha tau 0,962 no golden_v4 e 0,924 no golden_v3, mas essas são as páginas usadas para escrever as regras do prompt (docs/GUIA_ORDEM_LEITURA.md), e no golden_v4 o prompt ainda leva a classe humana de cada caixa. O orientador pediu reavaliar com separação correta. As predições novas estão em resultados/pred_vlm_gemini_3_1_flash_lite.jsonl (uma linha por página: page_id, ordem_pred, tempo_ms e possivelmente campos de validade).
+
+Leia antes: src/eval/protocolo.py (carregar_particao("teste"), ordem de referência de cada página, ordem_entrada), src/eval/metrics.py (avaliar, kendall_tau, acerto_sucessor, ard_normalizado, validar_permutacao), src/eval/baselines.py (ingênua e XY-cut) e src/eval/comparar.py (como ele casa predição com referência, IC por bootstrap e Wilcoxon). Reutilize essas funções; NÃO rode nem altere o comparar.py e NÃO grave resultados/comparacao.*.
+
+O script deve:
+1. Carregar as páginas de teste e a referência exatamente como o comparar.py faz; aplicar XY-cut e ingênua nas mesmas páginas; ler a predição do VLM. Reporte quantas páginas têm predição, quantas eram permutação válida de primeira e quantas foram reparadas (se o arquivo trouxer essa informação).
+2. Métricas por método: tau de Kendall (média, IC 95% por bootstrap de 2000 reamostras de páginas, p10), sucessor correto, ARD normalizado, acerto exato, tempo por página.
+3. Teste pareado por página VLM x XY-cut (Wilcoxon, com zero_method="pratt") em tau e em sucessor; contagem de páginas em que cada um ganha.
+4. Quebra por veículo (CE, MA, RJ e partes) e por faixa de número de blocos (até 15, 16 a 40, mais de 40).
+5. As 8 páginas em que o VLM mais perde para a XY-cut e as 8 em que mais ganha (page_id, n de blocos, tau de cada um).
+6. Seção "como ler": a referência desta partição é a ordem do fluxo do PDF em veículos escolhidos porque ela concorda com a XY-cut, o que favorece a XY-cut; e compare com os números do golden_v3 (0,924) e do golden_v4 (0,962), dizendo o que a queda ou a manutenção significa para a suspeita de vazamento.
+Escreva resultados/vlm_ordem_teste.md com resumo de 5 linhas (veredito primeiro), tabelas e a seção "como ler".

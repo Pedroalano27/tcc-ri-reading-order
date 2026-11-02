@@ -1,0 +1,64 @@
+Foi implementada a cola entre o ordenador por modelo de linguagem multimodal com imagem ([`src/eval/vlm_ordem.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/src/eval/vlm_ordem.py)) e as bancadas de unidades sem caixas finas (`colunas_margens` e `colunas`) sob [`resultados/unidades_sem_caixas/bancadas/`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/unidades_sem_caixas/bancadas/).
+
+O script foi desenvolvido exclusivamente com a **biblioteca padrão do Python**, sem dependências externas, sem tocar em [`data/labelstudio`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/data/labelstudio), sem modificar arquivos existentes e sem uso de GPU ou chamadas à rede/API.
+
+---
+
+### FEITO
+
+1. **Desenvolvimento de [`orquestracao/analises/vlm_unidades_cola.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/vlm_unidades_cola.py):**
+   - **Modo 1 (`preparar` — padrão, sem argumentos):**
+     - Lê em fluxo linha a linha as bancadas [`golden_v4.jsonl`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/unidades_sem_caixas/bancadas/golden_v4.jsonl) (44 páginas) e [`golden_v3_novo.jsonl`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/unidades_sem_caixas/bancadas/golden_v3_novo.jsonl) (27 páginas).
+     - Extrai para cada uma as representações `colunas_margens` e `colunas`.
+     - Gera as quatro partições em `resultados/ordenadores_sem_caixas/vlm/particao__<representacao>__<bancada>.jsonl` no esquema exato consumido por [`vlm_ordem.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/src/eval/vlm_ordem.py) via `--particao`.
+     - **Tratamento defensivo de campos:**
+       - `bloco.classe`: Como as unidades sem caixas finas não possuem classe humana (possuem apenas o campo `tipo`: `texto_coluna`, `tabela`, `imagem`, `cabecalho`, `rodape`), foi atribuído `classe = tipo` (valor neutro derivado da própria natureza atômica da unidade). Ao usar `--sem-classes`, o prompt omite a classe humana, restando apenas a marcação atômica de tabela/imagem, garantindo compatibilidade total com o modelo.
+       - `bloco.text`: Unidades de imagem ou sem texto vêm com `text: null`; foi normalizado para `""` para evitar falha no `.split()` de [`formatar_linha_bloco`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/src/eval/vlm_ordem.py#L92-L100).
+       - Metadados de página (`uf`, `arquivo`, `pagina`, `dimensions`): Garantidos no nível raiz de cada página da partição, permitindo que a renderização do PDF pelo `pdfplumber` localize o arquivo correto em `data/raw/<uf>/<arquivo>`.
+     - Coleta estatísticas por partição (total de páginas, mediana e máximo de unidades por página, páginas com mais de 200 unidades) e gera o relatório [`resultados/ordenadores_sem_caixas/vlm/preparo.md`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/ordenadores_sem_caixas/vlm/preparo.md).
+   - **Modo 2 (`--converter`):**
+     - Para cada arquivo de inferência bruta `resultados/ordenadores_sem_caixas/vlm/bruto__<representacao>__<bancada>.jsonl` existente:
+       - Carrega os IDs de unidades esperados a partir da partição correspondente.
+       - Audita a saída do VLM: em [`vlm_ordem.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/src/eval/vlm_ordem.py), o modelo gera rótulos `B1, B2...` que são mapeados para os IDs originais das unidades em `ordem_pred` via `rotulo_para_id`. Caso o modelo omita ou duplique rótulos, o `vlm_ordem.py` executa conserto anexando faltantes no final, mas registra `permutacao_valida: false`.
+       - **Validação estrita:** Respostas com `permutacao_valida == false`, ou cujos IDs não formem uma permutação bijetora exata das unidades da página (elementos repetidos, faltantes ou estranhos), são descartadas como inválidas (não inventamos ordem).
+       - Grava as páginas válidas em `resultados/ordenadores_sem_caixas/pred/gemini__<representacao>__<bancada>.jsonl` com o contrato da bancada: `{"page_id": ..., "ordem": [ids_unidades]}`.
+       - Audita e lista detalhadamente páginas inválidas descartadas em [`resultados/ordenadores_sem_caixas/vlm/conversao.md`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/ordenadores_sem_caixas/vlm/conversao.md).
+
+---
+
+### ARQUIVOS
+
+- [`orquestracao/analises/vlm_unidades_cola.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/vlm_unidades_cola.py) *(novo script)*
+
+---
+
+### EVIDÊNCIA
+
+1. **Assinatura e comandos suportados pelo script:**
+   - Modo Preparar (executado pelo orquestrador):
+     ```powershell
+     venv\Scripts\python.exe orquestracao/analises/vlm_unidades_cola.py
+     ```
+   - Modo Converter (executado após a inferência VLM):
+     ```powershell
+     venv\Scripts\python.exe orquestracao/analises/vlm_unidades_cola.py --converter
+     ```
+
+2. **Quatro comandos exatos gerados para a execução do VLM pelo orquestrador:**
+   ```powershell
+   venv/Scripts/python.exe src/eval/vlm_ordem.py --particao resultados/ordenadores_sem_caixas/vlm/particao__colunas_margens__golden_v4.jsonl --sem-classes --saida resultados/ordenadores_sem_caixas/vlm/bruto__colunas_margens__golden_v4.jsonl --retomar
+   venv/Scripts/python.exe src/eval/vlm_ordem.py --particao resultados/ordenadores_sem_caixas/vlm/particao__colunas__golden_v4.jsonl --sem-classes --saida resultados/ordenadores_sem_caixas/vlm/bruto__colunas__golden_v4.jsonl --retomar
+   venv/Scripts/python.exe src/eval/vlm_ordem.py --particao resultados/ordenadores_sem_caixas/vlm/particao__colunas_margens__golden_v3_novo.jsonl --sem-classes --saida resultados/ordenadores_sem_caixas/vlm/bruto__colunas_margens__golden_v3_novo.jsonl --retomar
+   venv/Scripts/python.exe src/eval/vlm_ordem.py --particao resultados/ordenadores_sem_caixas/vlm/particao__colunas__golden_v3_novo.jsonl --sem-classes --saida resultados/ordenadores_sem_caixas/vlm/bruto__colunas__golden_v3_novo.jsonl --retomar
+   ```
+
+   *Nota de implementação:* Em [`src/eval/vlm_ordem.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/src/eval/vlm_ordem.py#L226-L232), quando o argumento `--saida` termina com `.jsonl`, a função `determinar_caminho_saida` direciona a gravação diretamente para o arquivo indicado e aloca os arquivos temporários `.parcial` e `.erros.jsonl` no mesmo diretório.
+
+---
+
+### PENDÊNCIAS
+
+1. O orquestrador deve executar o comando padrão de preparo:
+   `venv\Scripts\python.exe orquestracao/analises/vlm_unidades_cola.py`.
+2. O orquestrador executa as 4 chamadas de inferência do Gemini com imagem via `vlm_ordem.py`.
+3. O orquestrador executa `venv\Scripts\python.exe orquestracao/analises/vlm_unidades_cola.py --converter` para produzir as predições limpas e o relatório `conversao.md`.

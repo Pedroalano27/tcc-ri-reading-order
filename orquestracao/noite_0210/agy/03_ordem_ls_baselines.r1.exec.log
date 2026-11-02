@@ -1,0 +1,19 @@
+=== Avaliação de Heurísticas de Ordem no Label Studio ===
+Export de entrada : C:\Users\pedro\dev\tcc-ri-reading-order\data\labelstudio\ls_p23_seed2_order.json
+Pasta conversão   : C:\Users\pedro\dev\tcc-ri-reading-order\resultados\ordem_ls\conv
+Relatório MD      : C:\Users\pedro\dev\tcc-ri-reading-order\resultados\ordem_ls_baselines.md
+Executando conversao: C:\Users\pedro\dev\tcc-ri-reading-order\data\labelstudio\ls_p23_seed2_order.json -> C:\Users\pedro\dev\tcc-ri-reading-order\resultados\ordem_ls\conv
+750 pÃ¡gina(s), 939 anotaÃ§Ã£o(Ãµes), 142 com cadeia vÃ¡lida, 14421 caixas no COCO
+saÃ­da em C:\Users\pedro\dev\tcc-ri-reading-order\resultados\ordem_ls\conv
+
+Processando anotações humanas e executando heurísticas...
+[OK] Relatório gerado em: C:\Users\pedro\dev\tcc-ri-reading-order\resultados\ordem_ls_baselines.md
+[OK] JSON completo salvo em: C:\Users\pedro\dev\tcc-ri-reading-order\resultados\ordem_ls\avaliacao.json
+
+=== RESUMO GERAL ===
+Total de páginas avaliadas: 125
+  aleatoria : tau=0.627 [0.566, 0.690] | sucessor=63.2% [58.0%, 68.4%] | ard_norm=0.145
+  naive     : tau=0.824 [0.786, 0.859] | sucessor=66.5% [61.2%, 72.0%] | ard_norm=0.076
+  xycut     : tau=0.884 [0.853, 0.914] | sucessor=75.4% [70.5%, 80.0%] | ard_norm=0.051
+
+Viés de ancoragem: 62/125 páginas (49.6%) e 1206/1726 ligações (69.9%) mantidas idênticas à sugestão XY-cut.

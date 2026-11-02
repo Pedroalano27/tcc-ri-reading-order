@@ -1,0 +1,6 @@
+[*] Iniciando Modo Preparar: geracao das particoes para VLM...
+  -> Gravado particao__colunas_margens__golden_v4.jsonl: 44 paginas | unidades: mediana=4.0, max=35 | >200=0
+  -> Gravado particao__colunas__golden_v4.jsonl: 44 paginas | unidades: mediana=3.5, max=35 | >200=0
+  -> Gravado particao__colunas_margens__golden_v3_novo.jsonl: 27 paginas | unidades: mediana=3, max=15 | >200=0
+  -> Gravado particao__colunas__golden_v3_novo.jsonl: 27 paginas | unidades: mediana=3, max=14 | >200=0
+[*] Relatorio de preparo gravado em: C:\Users\pedro\dev\tcc-ri-reading-order\resultados\ordenadores_sem_caixas\vlm\preparo.md

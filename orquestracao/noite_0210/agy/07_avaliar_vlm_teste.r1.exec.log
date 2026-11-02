@@ -1,0 +1,14 @@
+[*] Iniciando avaliacao do VLM (Gemini 3.1 Flash Lite) no conjunto de teste...
+[*] Processadas 89 paginas de teste casadas com sucesso.
+    - Permutacoes validas de primeira: 75 (84.3%)
+    - Permutacoes reparadas: 14 (15.7%)
+[OK] Relatorio gravado com sucesso em: C:\Users\pedro\dev\tcc-ri-reading-order\resultados\vlm_ordem_teste.md
+
+======================================================================
+Metodo                             tau     p10  Sucessor    ARDn       Tempo
+----------------------------------------------------------------------
+VLM (Gemini Flash Lite)          0.896   0.680    82.5%   0.043      6.98 s
+XY-cut                           0.891   0.688    78.4%   0.045      0.3 ms
+Ingenua                          0.790   0.445    69.0%   0.092      0.1 ms
+======================================================================
+

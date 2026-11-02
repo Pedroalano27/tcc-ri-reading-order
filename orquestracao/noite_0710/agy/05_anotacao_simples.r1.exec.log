@@ -1,0 +1,13 @@
+======================================================================
+TESTE DE IDA E VOLTA: Formato Próprio <-> Label Studio
+======================================================================
+
+[1/3] Convertendo do formato próprio para Label Studio...
+      OK -> 3 caixas e 1 relação(ões) geradas no Label Studio.
+
+[2/3] Convertendo de volta de Label Studio para o formato próprio...
+      OK -> 3 caixas e todas as coordenadas/classes/textos preservados exatamente.
+      OK -> Relação 'box-1' -> 'box-2' e ordem de leitura recuperadas perfeitamente.
+
+[3/3] SUCESSO: O teste de ida e volta passou em 100% das checagens sem divergências!
+======================================================================

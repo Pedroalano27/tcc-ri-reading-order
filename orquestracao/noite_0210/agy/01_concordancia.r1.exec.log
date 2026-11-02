@@ -1,0 +1,32 @@
+======================================================================
+TCC - MEDICAO DE CONCORDANCIA ENTRE ANOTADORES (LABEL STUDIO)
+======================================================================
+Arquivos JSON encontrados em data/labelstudio: 5
+  - ls_p05_seed1.json (44.8 MB)
+  - ls_p13_seed2.json (23.3 MB)
+  - ls_p15_seed3.json (17.3 MB)
+  - ls_p22_seed4.json (3.7 MB)
+  - ls_p23_seed2_order.json (25.2 MB)
+
+Total de paginas duplamente anotadas identificadas: 333
+Total de pares de anotadores avaliados: 335
+
+Calculando metricas consolidadas...
+  Caixas totais avaliadas: 13332
+  Caixas casadas em IoU >= 0.5: 6318
+  F1 Macro Localizacao IoU 0.5: 93,7%
+  F1 Macro Localizacao IoU 0.75: 92,2%
+  F1 Macro Localizacao IoU 0.90: 91,5%
+  Acerto 16 classes: 91,8% | Kappa 16: 0.892
+  Acerto 9 classes: 96,0% | Kappa 9: 0.943
+  Acerto 3 classes: 99,2% | Kappa 3: 0.970
+  Fracao ambos pre-anotacao: 39,5%
+  Acerto 16 classes (ao menos um mexeu): 86,5% | Kappa: 0.847
+
+Executando bootstrap por clusters de paginas (1.000 iteracoes)...
+Bootstrap concluido.
+Metricas completas salvas em: C:\Users\pedro\dev\tcc-ri-reading-order\resultados\concordancia_ls_metricas.json
+
+Relatorio final gravado com sucesso em: C:\Users\pedro\dev\tcc-ri-reading-order\resultados\labelstudio_concordancia.md
+Tempo total de execucao: 62.11 s
+======================================================================

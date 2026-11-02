@@ -1,0 +1,38 @@
+================================================================================
+CLASSIFICADOR DE REGIOES DO LABEL STUDIO (TEXTO, GEOMETRIA E CONTEXTO)
+================================================================================
+Total de paginas no split oficial: 2118
+Linhas lidas em conv_seed: 2119; Paginas casadas com split: 2118
+Paginas do split sem par em tarefas.jsonl: 0
+  Split train: oficial=1590, casado=1590
+  Split val  : oficial= 211, casado= 211
+  Split test : oficial= 317, casado= 317
+Caixas processadas: Train=28949, Val=4155, Test=5486
+
+Construindo matrizes de atributos para os 3 modelos...
+Usando scikit-learn (TfidfVectorizer + LogisticRegression/StandardScaler).
+Matrizes construidas em 20.06s.
+
+--- Treinando Modelo 1 (So Texto) ---
+[So Texto] Melhor C=5.0 selecionado no val (F1 macro=0.3946)
+
+--- Treinando Modelo 2 (So Geometria) ---
+[So Geometria] Melhor C=5.0 selecionado no val (F1 macro=0.2236)
+
+--- Treinando Modelo 3 (Texto + Geometria + Contexto) ---
+[Texto + Geo + Contexto] Melhor C=5.0 selecionado no val (F1 macro=0.4934)
+
+Avaliando modelos no conjunto de teste (317 paginas)...
+Calculando intervalos de confianca via bootstrap por pagina...
+
+Buscando predicoes do detector ls16 em resultados/ls_teste_cache/...
+Predicoes ls16 carregadas do cache para 317 paginas.
+Comparacao com detector: 4659 de 5486 caixas do ouro tem IoU >= 0.5.
+
+Salvando artefato final do classificador...
+Gerando resultados/classificador_regioes_ls.md...
+Relatorio salvo com sucesso em: C:\Users\pedro\dev\tcc-ri-reading-order\resultados\classificador_regioes_ls.md
+
+Execucao concluida com sucesso!
+Modelo salvo em: C:\Users\pedro\dev\tcc-ri-reading-order\resultados\classificador_regioes_ls\modelo.pkl
+Relatorio salvo em: C:\Users\pedro\dev\tcc-ri-reading-order\resultados\classificador_regioes_ls.md

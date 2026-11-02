@@ -1,0 +1,56 @@
+OpenAI Codex v0.160.0
+--------
+workdir: C:\Users\pedro\dev\tcc-ri-reading-order
+model: gpt-6.1-sol
+provider: openai
+approval: never
+sandbox: workspace-write [workdir, /tmp, $TMPDIR]
+reasoning effort: xhigh
+reasoning summaries: none
+session id: 01a10a83-ce02-74e2-a5f2-a4174a7e3f28
+--------
+user
+Você trabalha no repositório de um TCC sobre ORDEM DE LEITURA em diários oficiais brasileiros (PDFs multicoluna). Escreva tudo em português.
+
+A PERGUNTA DESTA NOITE (palavras do autor): "testar os ordenadores nesse novo tipo de modelo". O novo tipo é a representação SEM CAIXAS FINAS: o texto não é dividido em parágrafos; só tabela e imagem viram bloco; o texto vira linhas ou faixas de coluna; cabeçalho, rodapé e quadros institucionais são separados. Queremos saber qual ORDENADOR entrega menos erros de leitura sobre essas unidades: regra geométrica, XY-cut, BiLSTM, LayoutLM (pontual e sucessor), LayoutReader (pronto e ajustado) e, se autorizado, um modelo de linguagem. Leia docs/HANDOFF_CODEX_0410.md e as seções 2.10 e 2.11 de docs/RELATORIO_NOITE_0210.md antes de começar.
+
+REGRAS (valem sempre):
+- Crie SOMENTE os arquivos novos pedidos na tarefa. NÃO edite arquivos existentes (se precisar de uma opção nova num script existente, importe-o e embrulhe, ou diga no relatório o que faltou). NÃO grave nada sob data/ (somente leitura): saídas vão para resultados/ e scripts para orquestracao/analises/. NÃO edite COMUNICACAO_AGENTES.md nem docs/. NÃO faça commit.
+- NÃO use GPU: ela está ocupada por outro trabalho do autor. Tudo o que você rodar é em CPU (device="cpu"). Treino em GPU não é você quem roda: escreva um roteiro orquestracao/noite_0410/gpu/NN_nome.sh (bash, executado da raiz, um modelo por roteiro, retomável, com --max-minutos quando o script tiver) e a fila da GPU o executa quando a placa liberar.
+- MEMÓRIA: a máquina tem 16 GB e está com pouca RAM livre; uma tela azul por falta de memória já derrubou uma noite. Rode UM processo pesado por vez, sem multiprocessing, sem DataLoader com workers (num_workers=0), torch.set_num_threads(4) no máximo, e processe páginas em fluxo (não carregue milhares de páginas com palavras na memória de uma vez).
+- A máquina pode cair: grave caches e resultados intermediários sob resultados/ para retomar sem refazer, e escreva o relatório assim que tiver números (atualize-o conforme chegam mais).
+- data/labelstudio/ é dado de um projeto parceiro (Data Policy): NÃO use nesta noite. O detector ls3 já treinado pode ser usado como modelo (só os pesos).
+- Nunca edite nem regenere anotação humana (data/golden/**, data/diamond/**) nem data/raw/.
+- Python do projeto: venv/Scripts/python.exe (3.11, Windows), executado da raiz. Sem rede: não instale pacotes nem baixe modelos. Já estão no ambiente: pdfplumber, PyMuPDF (import pymupdf), ultralytics, transformers, torch. Modelos de terceiros em models/terceiros/. Abra arquivos com encoding="utf-8".
+- Todo número de relatório sai da execução do script (o script escreve o relatório). Não invente números. Declare limitações com honestidade: páginas usadas no desenvolvimento, referência silver automática, n pequeno, veículos vistos no treino.
+
+PROTOCOLO (não mudar):
+- Referência silver = ordem do fluxo de conteúdo do PDF, só nos veículos confiáveis; divisão por VEÍCULO em data/processed/splits.json (treino 7 veículos, validação RN, teste CE, MA, RJ). Nunca treinar com página de veículo de validação/teste nem com página das bancadas humanas.
+- Entrada embaralhada por página com random.Random(f"entrada-{page_id}") (src/eval/protocolo.py).
+- A régua é de PALAVRAS, a mesma de orquestracao/analises/erros_ponta_a_ponta.py: tau de Kendall de palavras, quebras de leitura por página, fidelidade de 12 palavras, sucessor de linhas. Reutilize as funções desse script importando-o; não reimplemente a métrica.
+- Bancadas: (a) 44 páginas do golden_v4 (usadas no desenvolvimento do método de colunas); (b) 27 páginas do golden_v3 fora do v4; (c) páginas de teste silver (CE, MA, RJ). Reporte as três separadas e, nas humanas, separe veículos vistos e não vistos no treino.
+- Âncoras a reproduzir antes de qualquer número novo (resultados/erros_ponta_a_ponta.md, coorte v4): regra geométrica sem caixas finas com átomos ls3 = tau 0,986 e 6,05 quebras por página; extrator + XY-cut + margens = 0,952 e 8,93. Se a sua bancada não reproduzir (tolerância 0,006 em tau), pare e explique.
+
+TAREFA 03 — treinar e medir os ordenadores APRENDIDOS do TCC sobre as unidades sem caixas finas.
+
+Os treinadores existentes leem a pasta de TCC_DIR_BLOCOS e aceitam --blocos-extra, --dir-saida, --nome, --n-treino e --max-minutos. NÃO os edite: se algo impedir o uso (por exemplo, número de unidades acima do limite de tokens do LayoutLM na representação `linhas`), escreva um embrulho em orquestracao/analises/ e explique. Leia resultados/unidades_sem_caixas.md para saber quantas páginas de treino existem e quantas unidades por página cada representação tem.
+
+1. BiLSTM (src/models/lstm_ordem.py, variantes geo e geo_texto) em CPU, nas três representações, com --max-minutos 8 cada, um por vez. Converta as predições de teste para o contrato da bancada e avalie com `bancada_ordenadores.py --avaliar-pred`. Para as bancadas humanas, gere predições com o modelo treinado (escreva o script de inferência que faltar em orquestracao/analises/ordenar_bancadas.py: carrega um checkpoint e ordena as páginas de resultados/unidades_sem_caixas/bancadas/).
+2. LayoutLM sucessor e LayoutLM pontual: NÃO treine (GPU). Escreva um roteiro por modelo e representação em orquestracao/noite_0410/gpu/, nesta ordem de prioridade: 01_sucessor_colunas_margens.sh, 02_sucessor_linhas.sh (se couber no limite de tokens; senão um desenho em dois níveis: o modelo ordena as faixas e a ordem interna é a gravada), 03_pontual_colunas_margens.sh, 04_layoutreader_ajuste_linhas.sh. Cada roteiro: define TCC_DIR_BLOCOS e --blocos-extra para resultados/unidades_sem_caixas/..., treina com os hiperparâmetros do melhor modelo atual (models/layoutlm_ordem/curva_layoutlm_sucessor_n3235_config.json), --max-minutos 75, micro-batch que caiba em 6 GB, avalia no teste silver, roda a inferência nas bancadas humanas e chama a bancada com --avaliar-pred. Tudo retomável; nenhum roteiro depende do anterior.
+3. LayoutReader ajustado (04): escreva o script de ajuste fino em orquestracao/analises/layoutreader_ajuste.py a partir do modelo em models/terceiros/layoutreader/, com a referência silver das unidades `linhas`, fp16, lote pequeno; teste-o em CPU com 8 páginas e 2 passos só para provar que roda de ponta a ponta.
+4. Prove em CPU que cada roteiro de GPU começa a treinar (uma execução de fumaça com --n-treino 16 --max-minutos 1 e device cpu, se o script permitir; senão valide até o primeiro lote).
+5. Relatório resultados/ordenadores_treinados_sem_caixas.md: o que foi treinado em CPU e os números; os roteiros de GPU deixados prontos e o que cada um mede; o que não coube e por quê. Diga com clareza quais páginas das bancadas humanas são de veículos vistos no treino.
+
+NOTA DO ORQUESTRADOR (05/10 00:15): por tempo, o conjunto de treino desta noite é a AMOSTRA ALEATÓRIA FIXA e CONGELADA (prefixo de 891 páginas pedidas da ordem embaralhada de semente 20261004, de 3.217 elegíveis; 8 puladas por recorte deslocado; contagens exatas no JSON), já exportada quando você começar; as contagens estão em resultados/unidades_sem_caixas/treino_noite.json. NÃO exporte mais páginas nem rode unidades_sem_caixas.py com outro limite: todos os modelos têm de treinar exatamente no mesmo conjunto. Registre em cada relatório e em cada roteiro de GPU o número de páginas de treino usado. O relatório resultados/unidades_sem_caixas.md mostra que a representação `colunas` tem mediana de 3 a 4 unidades por página e `linhas` de 56 a 178 (máximo 493): diga no seu relatório o que isso implica para cada modelo (quase nada a ordenar em colunas; orçamento de tokens apertado em linhas).
+
+NOTA DO ORQUESTRADOR (05/10 00:35): a bancada (tarefa 02b) expande cada unidade com a ordem interna canônica `ordem_sem_bbox.fluxo()`; o ordenador decide só a ordem ENTRE unidades. Use a bancada como está; não reimplemente a expansão.
+
+NOTA DO ORQUESTRADOR (05/10 01:40) — PRIORIDADES REVISTAS depois da bancada (leia resultados/ordenadores_sem_caixas.md):
+- Em `linhas` o teto é quase perfeito (golden_v4: tau 1,000 e 0,89 quebra por página) e a regra de colunas fica em 0,986 e 6,05; XY-cut 45,6; XY-cut com margens 23,1; LayoutReader pronto 18,4. É AQUI que um ordenador aprendido pode ganhar (de 6,05 para perto de 0,89), e é esta a comparação principal da noite.
+- Em `colunas` e `colunas_margens` a ordem entre unidades quase não muda as quebras (5,2 a 5,6 com qualquer ordenador, teto 5,2; piso interno 3,7 a 3,9) e o tau tem teto de 0,953 a 0,960; ali só o tau distingue os ordenadores (regra 0,82 a 0,85; LayoutReader pronto 0,90 a 0,92). Vale UM modelo treinado em `colunas_margens` para ver se chega ao teto; não mais que isso.
+- No teste silver o piso interno é alto (16 quebras por página em `linhas`) porque a referência silver é o fluxo do PDF por palavra e a expansão canônica dentro das tabelas discorda dele; compare por tau e pela distância ao teto, não pelo valor absoluto de quebras.
+Portanto a ordem dos roteiros de GPU passa a ser: 01_sucessor_linhas.sh, 02_layoutreader_ajuste_linhas.sh, 03_sucessor_colunas_margens.sh, 04_pontual_linhas.sh. O BiLSTM em CPU começa por `linhas`.
+Para caber as linhas no LayoutLM (mediana de 56 a 178 unidades por página, máximo 493; limite de 512 tokens): o achado de 13/09 no quadro é que o LayoutLM sucessor SEM TEXTO não piora, então poucos tokens por linha (até um só, com a caixa da linha) é um desenho legítimo; diga quantos tokens por linha cada roteiro usa e quantas páginas ficaram fora do limite. Se o treinador existente não permitir isso por opção, escreva o embrulho. Cada roteiro de GPU deve gravar a predição das TRÊS bancadas no contrato da bancada e chamar --avaliar-pred, para as linhas novas entrarem em resultados/ordenadores_sem_caixas.md.
+
+ERROR: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at 3:34 AM.
+ERROR: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at 3:34 AM.

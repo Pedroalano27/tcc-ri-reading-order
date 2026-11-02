@@ -1,0 +1,21 @@
+[*] Iniciando montagem do lote classificavel sem caixas de paragrafo...
+[*] IDs proibidos carregados: 2191 (golden_v4, golden_v3, labelstudio)
+[*] Paginas carregadas do extrator sem caixas (linhas): 614
+[*] Metadados Diamond vinculados: 614
+[*] Auditoria carregada: 614 paginas auditadas
+[OK] Estratificacao concluida: 30 piores achados + 30 aleatorias
+[*] Renderizando imagens PyMuPDF (110 dpi) e montando tarefas.jsonl...
+    -> 10/60 paginas processadas
+    -> 20/60 paginas processadas
+    -> 30/60 paginas processadas
+    -> 40/60 paginas processadas
+    -> 50/60 paginas processadas
+    -> 60/60 paginas processadas
+[*] Gravando C:\Users\pedro\dev\tcc-ri-reading-order\resultados\lote_sem_paragrafos\tarefas.jsonl...
+[*] Validando lote com regras de src/anotacao/servidor.py...
+[OK] Validacao do servidor.py: SUCESSO (todas as 60 tarefas abrem sem erro)
+[*] Gravando C:\Users\pedro\dev\tcc-ri-reading-order\resultados\lote_sem_paragrafos\LEIAME.md...
+[OK] Lote montado com sucesso em resultados\lote_sem_paragrafos
+     - Tarefas: resultados\lote_sem_paragrafos\tarefas.jsonl (60 linhas)
+     - Imagens: resultados\lote_sem_paragrafos\img/ (60 JPEGs)
+     - Documentacao: resultados\lote_sem_paragrafos\LEIAME.md

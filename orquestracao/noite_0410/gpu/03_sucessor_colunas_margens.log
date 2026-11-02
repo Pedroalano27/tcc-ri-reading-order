@@ -1,0 +1,124 @@
+Loading weights:   0%|          | 0/203 [00:00<?, ?it/s]Loading weights: 100%|██████████| 203/203 [00:00<00:00, 36358.52it/s]
+[treino] sucessor_colunas_margens: 873/873 paginas; cuda; micro=1; acum=8
+[transformers] Caching is incompatible with gradient checkpointing in LayoutLMLayer. Setting `use_cache=False`.
+  ep=1 pagina=80/873 passo=10 loss=0.82419 s=8.5
+  ep=1 pagina=160/873 passo=20 loss=2.01669 s=14.6
+  ep=1 pagina=240/873 passo=30 loss=1.76982 s=20.7
+  ep=1 pagina=320/873 passo=40 loss=1.61126 s=26.8
+  ep=1 pagina=400/873 passo=50 loss=1.69479 s=32.7
+  ep=1 pagina=480/873 passo=60 loss=1.64129 s=38.7
+  ep=1 pagina=560/873 passo=70 loss=1.19275 s=45.2
+  ep=1 pagina=640/873 passo=80 loss=3.09644 s=52.2
+  ep=1 pagina=720/873 passo=90 loss=2.48567 s=59.1
+  ep=1 pagina=800/873 passo=100 loss=1.23169 s=69.6
+  ep=1 pagina=873/873 passo=110 loss=1.42244 s=75.8
+[val] sucessor_colunas_margens: tau unidades=0.811429, passos=110
+  ep=2 pagina=80/873 passo=120 loss=0.60572 s=88.0
+  ep=2 pagina=160/873 passo=130 loss=1.07156 s=94.0
+  ep=2 pagina=240/873 passo=140 loss=1.31953 s=100.0
+  ep=2 pagina=320/873 passo=150 loss=0.23120 s=106.8
+  ep=2 pagina=400/873 passo=160 loss=0.45849 s=113.3
+  ep=2 pagina=480/873 passo=170 loss=1.46932 s=120.0
+  ep=2 pagina=560/873 passo=180 loss=0.06819 s=130.4
+  ep=2 pagina=640/873 passo=190 loss=3.68855 s=137.0
+  ep=2 pagina=720/873 passo=200 loss=0.51019 s=143.0
+  ep=2 pagina=800/873 passo=210 loss=0.88315 s=149.1
+  ep=2 pagina=873/873 passo=220 loss=0.19053 s=154.8
+[val] sucessor_colunas_margens: tau unidades=0.804444, passos=220
+  ep=3 pagina=80/873 passo=230 loss=0.09997 s=165.2
+  ep=3 pagina=160/873 passo=240 loss=0.01120 s=171.6
+  ep=3 pagina=240/873 passo=250 loss=2.29018 s=177.9
+  ep=3 pagina=320/873 passo=260 loss=0.38948 s=184.2
+  ep=3 pagina=400/873 passo=270 loss=1.14905 s=194.4
+  ep=3 pagina=480/873 passo=280 loss=1.11291 s=200.9
+  ep=3 pagina=560/873 passo=290 loss=0.46760 s=207.2
+  ep=3 pagina=640/873 passo=300 loss=0.48875 s=213.6
+  ep=3 pagina=720/873 passo=310 loss=0.00329 s=220.1
+  ep=3 pagina=800/873 passo=320 loss=0.56757 s=227.4
+  ep=3 pagina=873/873 passo=330 loss=0.74651 s=232.9
+[val] sucessor_colunas_margens: tau unidades=0.815873, passos=330
+  ep=4 pagina=80/873 passo=340 loss=2.82269 s=244.2
+  ep=4 pagina=160/873 passo=350 loss=0.13333 s=250.2
+  ep=4 pagina=240/873 passo=360 loss=0.02305 s=260.1
+  ep=4 pagina=320/873 passo=370 loss=0.29626 s=266.3
+  ep=4 pagina=400/873 passo=380 loss=0.73582 s=273.0
+  ep=4 pagina=480/873 passo=390 loss=1.27301 s=279.2
+  ep=4 pagina=560/873 passo=400 loss=1.15004 s=285.1
+  ep=4 pagina=640/873 passo=410 loss=2.69160 s=292.1
+  ep=4 pagina=720/873 passo=420 loss=0.11146 s=299.0
+  ep=4 pagina=800/873 passo=430 loss=0.31482 s=306.0
+  ep=4 pagina=873/873 passo=440 loss=0.40272 s=312.2
+[val] sucessor_colunas_margens: tau unidades=0.844444, passos=440
+  ep=5 pagina=80/873 passo=450 loss=0.44710 s=328.2
+  ep=5 pagina=160/873 passo=460 loss=0.00929 s=334.3
+  ep=5 pagina=240/873 passo=470 loss=0.04582 s=340.4
+  ep=5 pagina=320/873 passo=480 loss=0.03214 s=346.5
+  ep=5 pagina=400/873 passo=490 loss=0.15029 s=352.9
+  ep=5 pagina=480/873 passo=500 loss=0.55030 s=359.4
+  ep=5 pagina=560/873 passo=510 loss=0.58026 s=365.9
+  ep=5 pagina=640/873 passo=520 loss=0.76992 s=372.5
+  ep=5 pagina=720/873 passo=530 loss=2.13075 s=378.8
+  ep=5 pagina=800/873 passo=540 loss=1.72843 s=388.9
+  ep=5 pagina=873/873 passo=550 loss=2.18450 s=394.5
+[val] sucessor_colunas_margens: tau unidades=0.817778, passos=550
+  ep=6 pagina=80/873 passo=560 loss=0.32230 s=404.7
+  ep=6 pagina=160/873 passo=570 loss=0.05981 s=411.4
+  ep=6 pagina=240/873 passo=580 loss=0.87305 s=418.1
+  ep=6 pagina=320/873 passo=590 loss=0.00077 s=424.5
+  ep=6 pagina=400/873 passo=600 loss=0.44434 s=431.2
+  ep=6 pagina=480/873 passo=610 loss=2.25112 s=437.7
+  ep=6 pagina=560/873 passo=620 loss=0.44249 s=444.3
+  ep=6 pagina=640/873 passo=630 loss=0.06657 s=454.7
+  ep=6 pagina=720/873 passo=640 loss=2.47461 s=461.1
+  ep=6 pagina=800/873 passo=650 loss=2.65611 s=467.5
+  ep=6 pagina=873/873 passo=660 loss=0.00865 s=473.5
+[val] sucessor_colunas_margens: tau unidades=0.811429, passos=660
+  ep=7 pagina=80/873 passo=670 loss=2.82610 s=483.5
+  ep=7 pagina=160/873 passo=680 loss=0.00377 s=489.6
+  ep=7 pagina=240/873 passo=690 loss=0.79574 s=495.8
+  ep=7 pagina=320/873 passo=700 loss=1.97382 s=502.1
+  ep=7 pagina=400/873 passo=710 loss=0.49922 s=508.2
+  ep=7 pagina=480/873 passo=720 loss=0.25653 s=518.3
+  ep=7 pagina=560/873 passo=730 loss=0.40630 s=524.2
+  ep=7 pagina=640/873 passo=740 loss=0.09362 s=530.9
+  ep=7 pagina=720/873 passo=750 loss=1.76539 s=537.7
+  ep=7 pagina=800/873 passo=760 loss=1.06001 s=544.9
+  ep=7 pagina=873/873 passo=770 loss=0.20123 s=551.3
+[val] sucessor_colunas_margens: tau unidades=0.831111, passos=770
+  ep=8 pagina=80/873 passo=780 loss=0.00344 s=561.3
+  ep=8 pagina=160/873 passo=790 loss=0.07575 s=567.3
+  ep=8 pagina=240/873 passo=800 loss=2.39909 s=573.6
+  ep=8 pagina=320/873 passo=810 loss=0.50962 s=583.6
+  ep=8 pagina=400/873 passo=820 loss=0.25669 s=590.1
+  ep=8 pagina=480/873 passo=830 loss=0.91446 s=596.7
+  ep=8 pagina=560/873 passo=840 loss=1.59922 s=603.3
+  ep=8 pagina=640/873 passo=850 loss=0.00797 s=610.0
+  ep=8 pagina=720/873 passo=860 loss=0.29322 s=616.5
+  ep=8 pagina=800/873 passo=870 loss=0.04983 s=622.9
+  ep=8 pagina=873/873 passo=880 loss=0.00675 s=628.7
+[val] sucessor_colunas_margens: tau unidades=0.831111, passos=880
+[OK] sucessor_colunas_margens: 880 passos, 632.7s, melhor val=0.844444
+Loading weights:   0%|          | 0/203 [00:00<?, ?it/s]Loading weights: 100%|██████████| 203/203 [00:00<00:00, 40456.32it/s]
+[inferir] sucessor_colunas_margens colunas_margens golden_v4: 20
+[inferir] sucessor_colunas_margens colunas_margens golden_v4: 40
+[pred] C:\Users\pedro\dev\tcc-ri-reading-order\resultados\ordenadores_treinados_sem_caixas\pred\sucessor_colunas_margens__colunas_margens__golden_v4.jsonl
+[inferir] sucessor_colunas_margens colunas_margens golden_v3_novo: 20
+[pred] C:\Users\pedro\dev\tcc-ri-reading-order\resultados\ordenadores_treinados_sem_caixas\pred\sucessor_colunas_margens__colunas_margens__golden_v3_novo.jsonl
+[inferir] sucessor_colunas_margens colunas_margens teste_silver: 20
+[inferir] sucessor_colunas_margens colunas_margens teste_silver: 40
+[inferir] sucessor_colunas_margens colunas_margens teste_silver: 60
+[inferir] sucessor_colunas_margens colunas_margens teste_silver: 80
+[pred] C:\Users\pedro\dev\tcc-ri-reading-order\resultados\ordenadores_treinados_sem_caixas\pred\sucessor_colunas_margens__colunas_margens__teste_silver.jsonl
+Avaliar sucessor_colunas_margens__colunas_margens__golden_v4: 20/44
+Avaliar sucessor_colunas_margens__colunas_margens__golden_v4: 40/44
+sucessor_colunas_margens__colunas_margens__golden_v4: 44 paginas; completa=True
+ancora_ok.json publicado: 54 tabelas obrigatorias completas
+Avaliar sucessor_colunas_margens__colunas_margens__golden_v3_novo: 20/27
+sucessor_colunas_margens__colunas_margens__golden_v3_novo: 27 paginas; completa=True
+ancora_ok.json publicado: 54 tabelas obrigatorias completas
+Avaliar sucessor_colunas_margens__colunas_margens__teste_silver: 20/89
+Avaliar sucessor_colunas_margens__colunas_margens__teste_silver: 40/89
+Avaliar sucessor_colunas_margens__colunas_margens__teste_silver: 60/89
+Avaliar sucessor_colunas_margens__colunas_margens__teste_silver: 80/89
+sucessor_colunas_margens__colunas_margens__teste_silver: 89 paginas; completa=True
+ancora_ok.json publicado: 54 tabelas obrigatorias completas

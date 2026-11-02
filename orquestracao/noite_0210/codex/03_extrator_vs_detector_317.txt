@@ -1,0 +1,16 @@
+#ESPERA: data/labelstudio/pdf_paginas.jsonl
+TAREFA (pense fundo, teste com código): comparar o EXTRATOR de regras do TCC com os DETECTORES treinados, em 317 páginas de fontes que os detectores nunca viram.
+
+Dados:
+- data/deteccao/ls_split.json: página -> split ("test" = 317 páginas), fonte, nome da imagem. Imagens em data/deteccao/ls16/images/test/, rótulos YOLO em data/deteccao/ls16/labels/test/ (16 classes) e data/deteccao/ls3/labels/test/ (3 classes). Ouro com texto e origem de cada caixa: data/labelstudio/conv_seed{1..4}/tarefas.jsonl (bounding_boxes em pixels) e os exports data/labelstudio/ls_p*_seed*.json.
+- data/labelstudio/pdf_paginas.jsonl: para cada página de teste, o PDF local (data/labelstudio/pdf/...) e o número da página informado pelo Label Studio. CONFIRA o índice da página (0 ou 1-based) comparando o texto extraído com as transcrições do ouro antes de confiar.
+- Detectores: runs/detect/ls3/weights/best.pt e runs/detect/ls16/weights/best.pt, rodando em CPU (device="cpu", imgsz=1024). O treino deles pode ainda estar em andamento: inclua na comparação SÓ o detector cujo arquivo runs/detect/NOME/treino_ok exista, e diga no relatório qual ficou de fora. O script tem que ser RE-EXECUTÁVEL: rodado de novo mais tarde, ele reaproveita o cache (resultados/ls_teste_cache/: palavras, saída do Docling e predição do extrator por página) e só acrescenta os detectores que tiverem terminado. Não espere pelo treino: entregue o que der agora.
+- Extrator: src/data/regioes.py (propor(palavras, blocos_v3, detector, regras=True)). Veja como src/anotacao/preparar_diamond.py monta as entradas dele para uma página: palavras do PDF (src/data/extrator.py), blocos v3 e a saída do detector Docling (src/data/layout.py). Reproduza esse preparo para as 317 páginas SEM gravar em data/ (use resultados/ls_teste_cache/). O Docling deve rodar em CPU, a menos que orquestracao/logs/noite_detector_ls/roteiro.log já contenha a palavra FIM (aí a GPU está livre e pode ser usada).
+
+Faça em orquestracao/analises/extrator_vs_detector_ls.py:
+1. Predições nas 317 páginas: extrator (regiões em pontos do PDF convertidas para pixels da imagem; classes traduzidas para o guia e para 3 classes via src/data/taxonomia_layout.py), detector ls16 e detector ls3.
+2. Métricas por IoU contra o ouro: F1 de localização em IoU >= 0,5 e >= 0,75 sem classe; F1 com classe em 3 classes para todos; em 16 classes para o ls16; em 9 classes (ouro colapsado por GUIA_PARA_EXTRATOR) para extrator e ls16. Páginas sem camada de texto no PDF (digitalizadas): conte-as e reporte separado — o extrator depende do texto do PDF, o detector não.
+3. Ancoragem: revocação de cada sistema nas caixas do ouro separadas por origem (manual, prediction, prediction-changed). O detector treinado nesse ouro herda o viés do pré-anotador?
+4. Por fonte (42 fontes de teste): quem ganha onde; IC 95% por bootstrap de páginas; teste pareado por página entre o extrator e o melhor detector.
+5. Tempo por página de cada sistema, já que velocidade é um requisito.
+Escreva resultados/extrator_vs_detector_ls_teste.md (resumo de 5 linhas com veredito, tabelas, análise de erro com exemplos, limitações, recomendação: qual usar e quando). No fim rode do zero e confira que o relatório bate com a saída. Resposta final: veredito, tabela principal e caminhos dos arquivos.

@@ -1,0 +1,7 @@
+#SAIDA: resultados/e003_lm/PREPARO.md
+TAREFA E003 (preparo) — ESCORE CONTRASTIVO DO LM. Leia o cartão experimentos/cards/E003_*.md, resultados/ordem_lm_arestas.md, orquestracao/analises/ordem_lm_arestas.py e cluster/pontuar_pares_lm.py.
+O escore desejado por par (i→j) é s = [log P(t_j | contexto_i) − log P(t_j | sem contexto)] / |t_j| (tokens da continuação). Hoje só existe o termo condicional.
+1. Acrescente a orquestracao/analises/ordem_lm_arestas.py (você PODE editar este arquivo e cluster/pontuar_pares_lm.py nesta tarefa; mantenha compatibilidade com os escores já gerados) uma ação `exportar-marginal` que grava resultados/ordem_lm/pares_marginal/<bancada>.jsonl com UM item por destino distinto (contexto vazio = só o token BOS, continuação = as mesmas ~24 palavras), e faça `decodificar` aceitar `--escores-marginal DIR` para usar o escore contrastivo (manter a opção antiga como ablação). Se pontuar_pares_lm.py não aceitar contexto vazio, ajuste-o (BOS como contexto).
+2. Rode exportar-marginal; rode o pontuador localmente com Qwen/Qwen3-0.6B em 3 páginas do golden_v4 (fumaça) e decodificar com as duas opções só para provar o caminho.
+3. Escreva resultados/e003_lm/PREPARO.md com: comandos exatos para o cluster (o job usa cluster/job_pontuar.sh; a entrada marginal deve ir para ~/tcc/ordem_lm/pares_marginal), tamanho dos arquivos, estimativa de tempo, e o que falta para o 2×2 (depende do E004).
+Não rode nada no cluster.

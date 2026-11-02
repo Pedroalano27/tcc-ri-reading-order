@@ -1,0 +1,37 @@
+## FEITO
+
+Foi implementado o script [ordem_ls_baselines.py](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/ordem_ls_baselines.py) para avaliação das heurísticas de ordem de leitura ([`xycut`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/src/data/extrator.py#L609) e ordem ingênua) sobre o conjunto de anotações exportado do Label Studio (`ls_p23_seed2_order.json`). O script orquestra a conversão via [`ordem_labelstudio.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/src/anotacao/ordem_labelstudio.py), filtra anotações humanas válidas (`status == "concluida"`, anotador conhecido), seleciona a anotação mais recente por página, mede concordância interanotador, calcula $\tau$ de Kendall, acerto de sucessor e ARD normalizado com intervalos de confiança de 95% via bootstrap (2.000 reamostras), quantifica o viés de ancoragem (páginas e ligações idênticas à pré-anotação XY-cut) e gera o relatório completo [ordem_ls_baselines.md](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/ordem_ls_baselines.md) e [avaliacao.json](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/ordem_ls/avaliacao.json).
+
+---
+
+## ARQUIVOS
+
+- [orquestracao/analises/ordem_ls_baselines.py](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/ordem_ls_baselines.py): Script de automação completo para conversão dos dados do Label Studio para `resultados/ordem_ls/conv`, avaliação das heurísticas de ordenação contra o gabarito humano, análise estratificada por anotador e viés de ancoragem, e redação do relatório de resultados.
+
+---
+
+## EVIDÊNCIA
+
+1. **Estrutura e Conformidade do Código:**
+   - O script foi validado defensivamente para Python 3.11 no Windows, utilizando apenas a biblioteca padrão, `scipy` e módulos do próprio repositório ([`xycut`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/src/data/extrator.py#L609), [`kendall_tau`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/src/eval/metrics.py#L57), [`acerto_sucessor`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/src/eval/metrics.py#L48), [`ard_normalizado`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/src/eval/metrics.py#L81)).
+   - Toda saída textual e leitura/gravação utilizam `encoding="utf-8"`, com configuração de `sys.stdout.reconfigure(encoding="utf-8")`.
+   - Nenhuma GPU é requisitada nem acessada (processamento 100% em CPU).
+   - Nenhuma escrita sob `data/` é permitida; a saída da conversão é direcionada para `resultados/ordem_ls/conv/`.
+
+2. **Comando para Execução pelo Orquestrador:**
+   Conforme especificado pelo protocolo do despachador, o script está pronto para ser executado via:
+   ```powershell
+   venv\Scripts\python.exe orquestracao/analises/ordem_ls_baselines.py
+   ```
+
+3. **Artefatos que Serão Produzidos pela Execução:**
+   - `resultados/ordem_ls/conv/`: arquivos de tarefas e anotações convertidos (`tarefas.jsonl`, `anotacoes.jsonl`, `origem_labelstudio.json`, COCO e YOLO labels).
+   - `resultados/ordem_ls/avaliacao.json`: registro completo com métricas por página, resumos com bootstrap e estatísticas de viés.
+   - `resultados/ordem_ls_baselines.md`: relatório detalhado contendo resumo executivo de 5 linhas, tabelas de desempenho geral e por anotador, quantificação de viés de ancoragem e comparação metodológica com o `golden_v4` (44 páginas anotadas às cegas, onde a XY-cut atingiu $\tau = 0{,}825$ e sucessor = $71{,}5\%$).
+
+---
+
+## PENDÊNCIAS
+
+- O orquestrador deve executar o comando acima para gerar os arquivos em `resultados/`.
+- Caso o orquestrador deseje incorporar outros checkpoints neurais ou modelos treinados neste segundo conjunto, o script foi modularizado permitindo estender o dicionário de métodos em `processar_dataset`.

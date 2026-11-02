@@ -1,0 +1,26 @@
+O relatório de análise do repositório [`./Benchmark-LayoutAnalysis`](file:///C:/Users/pedro/dev/ceia_datapolicy/Benchmark-LayoutAnalysis) foi elaborado e salvo no arquivo:
+👉 [**`./RELATO_Benchmark-LayoutAnalysis.md`**](file:///C:/Users/pedro/dev/ceia_datapolicy/RELATO_Benchmark-LayoutAnalysis.md)
+
+---
+
+### Resumo Executivo das Constatações para o TCC
+
+1. **Detecção de Layout:**
+   - **Modelos:** Suporta DocLayout-YOLO (YOLOv10 via [`engines/doclayout.py`](file:///C:/Users/pedro/dev/ceia_datapolicy/Benchmark-LayoutAnalysis/engines/doclayout.py)), PaddleOCR-VL v1 e v1.5 ([`engines/paddleocrvl.py`](file:///C:/Users/pedro/dev/ceia_datapolicy/Benchmark-LayoutAnalysis/engines/paddleocrvl.py)), PPStructureV3 ([`engines/ppstructure.py`](file:///C:/Users/pedro/dev/ceia_datapolicy/Benchmark-LayoutAnalysis/engines/ppstructure.py)), MinerU via CLI subprocess ([`engines/mineru.py`](file:///C:/Users/pedro/dev/ceia_datapolicy/Benchmark-LayoutAnalysis/engines/mineru.py)), MonkeyOCR ([`engines/monkeyocr.py`](file:///C:/Users/pedro/dev/ceia_datapolicy/Benchmark-LayoutAnalysis/engines/monkeyocr.py)) e Azure Document Intelligence cached ([`engines/azure_di.py`](file:///C:/Users/pedro/dev/ceia_datapolicy/Benchmark-LayoutAnalysis/engines/azure_di.py)).
+   - **Pesos e Limiares:** Pesos do DocLayout-YOLO referenciados em [`.env`](file:///C:/Users/pedro/dev/ceia_datapolicy/Benchmark-LayoutAnalysis/.env) (`doclayout_yolo.pt`), rodando com `imgsz=1024`, `conf=0.2`, `render_dpi=200`.
+   - **Taxonomia:** 17 classes canônicas normalizadas em [`lib/normalize.py`](file:///C:/Users/pedro/dev/ceia_datapolicy/Benchmark-LayoutAnalysis/lib/normalize.py) (`CANONICAL_LABELS`), mapeando sinônimos para `title`, `text`, `table`, `figure`, `list`, `header`, `footer`, etc.
+   - **Fusão de Caixas:** Função [`build_consensus()`](file:///C:/Users/pedro/dev/ceia_datapolicy/Benchmark-LayoutAnalysis/lib/metrics.py#L299) em [`lib/metrics.py`](file:///C:/Users/pedro/dev/ceia_datapolicy/Benchmark-LayoutAnalysis/lib/metrics.py) agrupa caixas com IoU $\ge 0{,}5$ por voto majoritário ($\ge 2$ motores) e calcula a média aritmética das coordenadas.
+
+2. **Ordenação de Leitura:**
+   - **XY-Cut++:** Implementado em [`engines/xycut.py`](file:///C:/Users/pedro/dev/ceia_datapolicy/Benchmark-LayoutAnalysis/engines/xycut.py) nas funções [`xycut_order()`](file:///C:/Users/pedro/dev/ceia_datapolicy/Benchmark-LayoutAnalysis/engines/xycut.py#L134) e [`_xycut_recursive()`](file:///C:/Users/pedro/dev/ceia_datapolicy/Benchmark-LayoutAnalysis/engines/xycut.py#L99). Prioriza cortes horizontais e depois verticais.
+   - **Spanners e Limitações:** Apesar da citação do artigo *XY-Cut++*, **não há mecanismo de máscara hierárquica**. O algoritmo é um XY-Cut clássico em projeções 1D. Elementos que atravessam colunas (títulos largos, tabelas) travam os cortes verticais e jogam a ordenação no fallback ingênuo top-to-bottom.
+   - **Demais motores:** Caem em ordenação top-to-bottom ingênua `key=lambda b: (b.bbox[1], b.bbox[0])`, que falha gravemente em diários multicolunares.
+
+3. **Métricas e Avaliação:**
+   - **Detecção:** Emparelhamento guloso [`match_blocks()`](file:///C:/Users/pedro/dev/ceia_datapolicy/Benchmark-LayoutAnalysis/lib/metrics.py#L38) por IoU decrescente com threshold de 0,5. Precision, Recall e F1 globais e por classe em [`compute_metrics()`](file:///C:/Users/pedro/dev/ceia_datapolicy/Benchmark-LayoutAnalysis/lib/metrics.py#L143).
+   - **Ordem (Kendall $\tau$):** Função [`reading_order_kendall_tau()`](file:///C:/Users/pedro/dev/ceia_datapolicy/Benchmark-LayoutAnalysis/lib/metrics.py#L99). **Diferença crucial:** o $\tau$ do repositório é calculado **apenas sobre blocos emparelhados com IoU $\ge 0{,}5$** (descarta caixas com falha de detecção), enquanto o do TCC é medido em nível de palavras reais extraídas do PDF.
+   - **Resultados Gravados:** *Não foram encontrados resultados numéricos pré-calculados gravados em arquivos neste repositório* (o [`.env`](file:///C:/Users/pedro/dev/ceia_datapolicy/Benchmark-LayoutAnalysis/.env) direcionava as saídas para `/home/jpantaleao/data/poly/paddlevl/runs` no servidor do autor).
+
+4. **Diretrizes para o TCC:**
+   - **O que adotar:** O modelo **DocLayout-YOLO** (especializado em documentos) para substituir ou complementar o detector de 3 classes na identificação precisa de tabelas, figuras, cabeçalhos e rodapés; usar as bboxes de tabelas detectadas como **máscaras de exclusão** antes da projeção de calhas de texto (evitando sobreposições e falsas colunas); e o módulo de anotação vetorial ([`lib/annotate.py`](file:///C:/Users/pedro/dev/ceia_datapolicy/Benchmark-LayoutAnalysis/lib/annotate.py)) para depuração visual da ordem de leitura.
+   - **O que descartar:** O XY-Cut do repositório (sua regra geométrica por colunas com política de margens com $\tau = 0{,}986$ já é muito superior); ordenação ingênua `(y, x)`; VLMs gerativos (GLM-OCR/olmOCR); e o cálculo de Kendall $\tau$ em nível de blocos com filtro de IoU (o cálculo por palavras do TCC é muito mais fidedigno).

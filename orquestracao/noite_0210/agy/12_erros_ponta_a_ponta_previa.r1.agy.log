@@ -1,0 +1,38 @@
+O script [`orquestracao/analises/erros_ponta_a_ponta_previa.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/erros_ponta_a_ponta_previa.py) foi criado com sucesso, estritamente de acordo com as regras e especificações do projeto.
+
+### O que o script implementa
+
+1. **Importação e Reutilização dos Módulos Existentes**:
+   - Reutiliza [`orquestracao/analises/ordem_sem_bbox.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/ordem_sem_bbox.py) e [`orquestracao/analises/ordem_sem_bbox_justo.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/ordem_sem_bbox_justo.py) sem duplicar código nem alterar arquivos existentes.
+   - Carrega as 44 páginas concluídas do `golden_v4` via `osbj.preparar()`, com a sequência-ouro de palavras (`gt_w`) preservada.
+
+2. **Pipelines Totalmente Automáticos**:
+   - **P1**: extrator atual com caixas finas automáticas (`propor(regras=True)`) + ordenação por XY-cut pura;
+   - **P1m**: extrator atual com caixas finas automáticas + política geométrica de margens/cabeçalho/rodapé (`politica="geo"`);
+   - **P2**: plano sem bounding box fina (`Config("projecao_local_margens", 0.45, 1.2, 0.08)`), com blocos atômicos de tabelas/figuras detectados pelo Docling.
+
+3. **Conferência Obrigatória de Segurança**:
+   - Verifica se o $\tau$ médio de palavras nas 44 páginas atinge $0{,}819 \pm 0{,}006$ para P1 e $0{,}952 \pm 0{,}006$ para P1m (conforme [`resultados/ordem_sem_bbox_justo.md`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/ordem_sem_bbox_justo.md)). Se houver divergência, aborta imediatamente com erro explícito.
+
+4. **Métricas e Diagnósticos Computados**:
+   - $\tau$ de Kendall de palavras (média e IC 95% bootstrap de páginas, 2.000 iterações, semente `20261003`);
+   - **Quebras de continuidade**: pares consecutivos na saída que não são consecutivos no ouro (total, média por página e por 1.000 palavras);
+   - **Fidelidade de janelas textuais**: fração de janelas de 6, 12 e 24 palavras do ouro que aparecem intactas e na mesma ordem na saída;
+   - **Origem dos erros em P1 e P1m** (ordem estrita de teste):
+     - `(a) CAIXA PARTIDA`: palavra e sucessora no ouro pertencem à mesma região do ouro, mas o extrator as dividiu em caixas diferentes;
+     - `(b) CAIXA FUNDIDA`: palavra e subsequente na predição estão na mesma caixa do extrator, mas pertencem a regiões distintas do ouro;
+     - `(c) ORDEM DENTRO DA CAIXA`: mesma caixa do extrator e mesma região do ouro, mas a ordem interna divergiu;
+     - `(d) ORDEM ENTRE CAIXAS`: resto (falha exclusiva da ordenação de caixas).
+     - Consolidação: etapa das caixas (`(a) + (b) + (c)`) vs. etapa de ordenação (`(d)`);
+   - **Origem das quebras em P2**: decomposição em quebras envolvendo bloco atômico (tabela/imagem), na mesma região do ouro (intercalação de linhas/colunas) e entre regiões do ouro;
+   - **Testes pareados de Wilcoxon com correção Pratt**: P2 vs. P1 e P2 vs. P1m em quebras/1.000 palavras e fidelidade de 12;
+   - **Casos extremos**: as 5 páginas em que P2 mais reduz quebras vs. P1m e as 5 em que mais aumenta.
+
+5. **Saídas Geradas na Execução**:
+   - [`resultados/erros_ponta_a_ponta_previa.md`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/erros_ponta_a_ponta_previa.md): relatório completo contendo o resumo em cinco linhas respondendo às três perguntas do autor, tabelas agregadas e de detalhamento por página, e seção explícita de limitações metodológicas;
+   - [`resultados/erros_ponta_a_ponta_previa.json`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/erros_ponta_a_ponta_previa.json): dados brutos estruturados e intermediários para garantir persistência e auditabilidade.
+
+O script está pronto para ser executado pelo orquestrador via:
+```powershell
+venv\Scripts\python.exe orquestracao\analises\erros_ponta_a_ponta_previa.py
+```

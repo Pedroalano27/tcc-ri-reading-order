@@ -1,0 +1,18 @@
+#ESPERA: resultados/ordenadores_sem_caixas.md
+#SAIDA: resultados/ordenadores_sem_caixas/ancora_ok.json
+TAREFA 02b — destravar a bancada de ordenadores (continuação da tarefa 02, que parou corretamente na âncora).
+
+O que a tarefa 02 achou (resultados/ordenadores_sem_caixas.md): a regra de colunas sobre as unidades exportadas dá tau 0,983 e 16,86 quebras por página no golden_v4, contra 0,986 e 6,05 da âncora, porque a ordem INTERNA das palavras gravada em `ks` difere da expansão canônica do método em 10 páginas; aplicando `ordem_sem_bbox.fluxo()` dentro das unidades, as 44 sequências ficam idênticas ao P2.
+
+DECISÃO DO ORQUESTRADOR (registrada; não é mudança de método, é alinhar a bancada ao método já medido):
+- Uma unidade é um CONJUNTO de palavras (`ks` define só a pertinência). A ordem interna das palavras de uma unidade, na bancada, é sempre a expansão canônica `ordem_sem_bbox.fluxo()` aplicada às palavras da unidade — a mesma do P2. Vale para as três representações, para todas as bancadas e para todo ordenador (com ou sem treino). O ordenador decide só a ordem ENTRE unidades.
+- Não reexporte nem edite os arquivos da tarefa 01. Aplique a expansão dentro de orquestracao/analises/bancada_ordenadores.py (este arquivo é seu, da tarefa 02: pode editá-lo). Arquive as saídas bloqueadas da execução anterior em resultados/ordenadores_sem_caixas/arquivo_0030/ antes de repetir.
+- Guarde no relatório, como linha de diagnóstico separada, o número com `ks` cru (16,86 quebras; piso interno 11,07), para registrar quanto custa uma ordem interna ingênua. Diga em quais tipos de unidade a diferença aparece (tabela? faixa com linhas lado a lado?), com 3 exemplos de page_id.
+
+Depois disso, conclua TODA a tarefa 02 como estava especificada: âncoras (agora têm de passar: 0,986 e 6,05; 0,952 e 8,93), os seis ordenadores sem treino (teto, ingenuo, xycut, xycut_margens, regra_colunas, layoutreader_pronto) nas três representações e nas três bancadas, IC por veículo, Wilcoxon contra a regra, coluna de veículos vistos e não vistos, modo --avaliar-pred, e o relatório resultados/ordenadores_sem_caixas.md com o resumo de cinco linhas respondendo "qual ordenador erra menos em cada representação, e quanto custa a representação em si (teto e piso interno)".
+
+Sobre o `teto`: além do posto mediano, reporte o piso interno com a expansão canônica (quebras que nenhuma ordem de unidades conserta). Se o teto por mediana ficar abaixo da regra em alguma bancada, diga, porque então a mediana não é teto de verdade.
+
+Atenção: a exportação do treino está rodando em paralelo (outro processo, só CPU) e republica arquivos em resultados/unidades_sem_caixas/; não mantenha arquivos de lá abertos por muito tempo (leia e feche) e não escreva nessa pasta. O LayoutReader roda em CPU, um processo, torch.set_num_threads(4).
+
+Ao final, com as âncoras aprovadas e as tabelas publicadas, grave resultados/ordenadores_sem_caixas/ancora_ok.json com os valores medidos das âncoras e a lista de ordenadores avaliados. Só grave esse arquivo se tudo passou.

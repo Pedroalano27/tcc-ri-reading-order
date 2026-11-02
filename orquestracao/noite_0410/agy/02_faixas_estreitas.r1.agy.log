@@ -1,0 +1,50 @@
+O script solicitado foi implementado e gravado com sucesso em [`orquestracao/analises/diagnostico_faixas_estreitas.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/diagnostico_faixas_estreitas.py).
+
+Seguindo estritamente as regras operacionais:
+- **Nenhum comando foi executado** (o orquestrador executará `venv/Scripts/python.exe orquestracao/analises/diagnostico_faixas_estreitas.py`).
+- **Nenhum arquivo existente foi modificado** e nada foi gravado sob [`data/`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/data/).
+- **Nenhum modelo neural e nenhuma GPU** são utilizados: o script emprega exclusivamente a biblioteca padrão do Python (`sys`, `os`, `json`, `math`, `statistics`, `re`, `pathlib`) e `PIL` (`Pillow`) para processamento geométrico e renderização visual.
+- **Processamento em fluxo e baixo consumo de memória**: o leitor descarta listas cruas de palavras e textos desnecessários na carga, retendo apenas as coordenadas e contagens estruturais, garantindo execução leve e segura na máquina de 16 GB de RAM.
+- **Deduplicação de páginas**: `bancada_humana.jsonl` é carregada prioritariamente sobre as demais partições (`treino`, `validacao`, `teste`, `sem_split`), assegurando que cada `page_id` seja contado uma única vez, preservando a versão canônica da bancada.
+
+---
+
+### Estrutura do Script Criado
+
+O script [`orquestracao/analises/diagnostico_faixas_estreitas.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/diagnostico_faixas_estreitas.py) executa de forma autônoma as cinco etapas:
+
+1. **Medida 1 — Distribuição Geral das Faixas de Texto**:
+   - Calcula largura relativa à página ($w / W_{\text{pag}}$), número de linhas, número de palavras e largura relativa à mediana das faixas de texto da página ($w / \text{mediana}_{\text{pag}}$).
+   - Apura estatísticas completas: média, desvio padrão, mínimo, percentis ($p_{10}, p_{25}, p_{50}, p_{75}, p_{90}$) e máximo.
+
+2. **Medida 2 — Diagnóstico de Faixas Suspeitas por Veículo**:
+   - Aplica o critério formal: faixa de texto com $\ge 4$ linhas cuja largura seja $< 45\%$ da mediana da página **OU** $< 12\%$ da largura da página.
+   - Computa o total de faixas suspeitas, páginas afetadas e fração das palavras do conjunto atingidas.
+   - Gera a tabela agregada por veículo (`uf`), ordenada pela fração decrescente de páginas afetadas.
+
+3. **Medida 3 — Faixas Sobrepostas na Mesma Página**:
+   - Identifica pares de faixas de texto cuja interseção geométrica exceda $20\%$ da área da menor faixa ($\text{Área}_{\text{inter}} / \min(\text{Área}_1, \text{Área}_2) > 0{,}20$).
+   - Computa o total de pares sobrepostos, total de páginas afetadas e lista detalhada com as 20 piores sobreposições (com dimensões, % de sobreposição e IoU).
+
+4. **Medida 4 — Fragmentação de Cabeçalhos e Rodapés (Golden v4)**:
+   - Lê [`resultados/estruturas_golden_v4/colunas.jsonl`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/estruturas_golden_v4/colunas.jsonl) (45 páginas).
+   - Calcula a mediana e o máximo de unidades de cabeçalho por página, além da contagem e porcentagem de páginas com $> 2$ cabeçalhos.
+   - Repete o cálculo para unidades de rodapé, incluindo tabela de distribuição de frequência e fundamentação técnica da causa da fragmentação.
+
+5. **Medida 5 & Relatório — Galeria Visual e Documento Markdown**:
+   - Seleciona as 12 páginas do Golden v4 mais afetadas por faixas suspeitas.
+   - Recupera a imagem correspondente em [`data/golden/golden_v4/tarefas.jsonl`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/data/golden/golden_v4/tarefas.jsonl) e renderiza com escala correta:
+     - **Azul:** faixas de texto regulares.
+     - **Vermelho:** faixas suspeitas detectadas.
+     - **Verde:** estruturas de cabeçalho e rodapé.
+   - Redimensiona proporcionalmente para altura máxima de 1.400 px e salva em [`resultados/faixas_estreitas/NN_<veiculo>.jpg`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/faixas_estreitas/).
+   - Grava o relatório consolidado em [`resultados/faixas_estreitas.md`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/faixas_estreitas.md), iniciando com o **resumo executivo de quatro linhas** (frequência do defeito, concentração por veículo, volume de texto afetado e recomendação para a regra de calhas) seguido de todas as tabelas e referências às imagens geradas.
+
+---
+
+### Execução pelo Orquestrador
+
+Para rodar o diagnóstico e gerar os artefatos:
+```powershell
+venv\Scripts\python.exe orquestracao\analises\diagnostico_faixas_estreitas.py
+```

@@ -1,0 +1,11 @@
+#ESPERA: orquestracao/noite_0210/codex/01_sem_bbox.done
+#SAIDA: resultados/revisao_ordem_sem_bbox.md
+TAREFA: REVISÃO ADVERSARIAL do experimento "ordem de leitura sem bounding box fina". Outro agente escreveu orquestracao/analises/ordem_sem_bbox.py e o relatório resultados/ordem_sem_bbox.md, que afirma que ordenar linhas direto (colunas por projeção; tabela e imagem como blocos atômicos) dá tau = 0,917 contra 0,825 da XY-cut sobre regiões humanas, nas 44 páginas do golden_v4. Seu papel é tentar DERRUBAR esse resultado lendo o código com ceticismo. Você não roda nada: só lê e escreve o relatório.
+
+Procure, citando arquivo e linha:
+1. VAZAMENTO do gabarito para o preditor: o preditor usa em algum ponto as regiões humanas, a ordem humana, o campo "bloco" das palavras, a ordem "stream" do PDF, stats.n_colunas ou qualquer coisa derivada do ouro?
+2. A PROJEÇÃO da sequência prevista nas regiões do ouro (mediana dos ranks das palavras) favorece o método? Empates são resolvidos sem olhar o ouro? A comparação com a XY-cut é justa (a XY-cut ordena regiões-ouro inteiras; o método novo ordena linhas e é projetado)?
+3. SELEÇÃO de parâmetros: o leave-one-page-out está implementado de verdade? As heurísticas de margem (cabeçalho acima de 7% da altura, rodapé abaixo de 95%) e a lista de marcas foram escolhidas olhando essas mesmas páginas? Isso está declarado?
+4. ESTATÍSTICA: bootstrap, Wilcoxon e IC estão corretos? As médias são macro por página?
+5. Casos de borda: páginas sem palavras, palavras fora de região, regiões sem palavras, tabelas grandes.
+Escreva resultados/revisao_ordem_sem_bbox.md: veredito em 3 linhas (o resultado se sustenta? totalmente / com ressalvas / não), lista numerada de problemas do mais grave ao menos grave com linha e correção sugerida, e o que precisaria ser feito para o número ser defensável numa banca.

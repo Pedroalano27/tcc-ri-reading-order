@@ -1,0 +1,30 @@
+O relatório foi gerado e salvo em [RELATO_synthetic-doc-gen.md](file:///C:/Users/pedro/dev/ceia_datapolicy/RELATO_synthetic-doc-gen.md).
+
+### Resumo dos Principais Achados
+
+1. **Natureza do Repositório**:
+   * O repositório `./synthetic-doc-gen` implementa o pacote Python `simple-synthetic-doc-gen` (v0.1.0).
+   * Ele **não é um extrator de PDF nem um leitor de ordem de leitura**. Trata-se de um gerador local e determinístico de páginas e rótulos sintéticos a partir de recortes (*crops*) de páginas reais anotadas (*seed*), baseado na estratégia `structured_synthetic:median_split:shuffled_pool`.
+
+2. **Detecção de Layout**:
+   * **Modelos, pesos e limiares de inferência**: **Não encontrado**. Não há modelos (YOLO/LayoutLM), pesos `.pt` nem pós-processamentos de detecção (NMS, fusão de caixas).
+   * **Detecção de colunas**: Implementa a heurística [`_infer_columns`](file:///C:/Users/pedro/dev/ceia_datapolicy/synthetic-doc-gen/src/synthdocgen/generator.py#L74-L92) em [`src/synthdocgen/generator.py`](file:///C:/Users/pedro/dev/ceia_datapolicy/synthetic-doc-gen/src/synthdocgen/generator.py), que filtra elementos de corpo de texto (`0.08 <= width <= 0.75`, `height <= 0.12`), agrupa centros horizontais (`x + width/2`) com tolerância de `0.18` (18% da largura) e infere entre 1 e 4 colunas.
+   * **Tabelas e elementos grandes**: Separados pela mediana de largura e altura ([`build_profile`](file:///C:/Users/pedro/dev/ceia_datapolicy/synthetic-doc-gen/src/synthdocgen/generator.py#L98-L113)). Em páginas multicolunas, tabelas são forçadas a caber na largura da coluna (`width = column_width`).
+   * **Sobreposição**: Caixas sobrepostas são rigorosamente descartadas na síntese via [`_overlaps`](file:///C:/Users/pedro/dev/ceia_datapolicy/synthetic-doc-gen/src/synthdocgen/generator.py#L142-L150).
+
+3. **Ordenação de Leitura**:
+   * **XY-cut, XY-cut++, LayoutReader**: **Não encontrado**.
+   * **Ordem interna**: Embora as caixas sejam geradas coluna por coluna, na saída da função [`generate_layouts`](file:///C:/Users/pedro/dev/ceia_datapolicy/synthetic-doc-gen/src/synthdocgen/generator.py#L246) elas são reordenadas por `(y, x)` (`boxes.sort(key=lambda box: (box["bbox"][1], box["bbox"][0]))`), o que introduz entrelaçamento horizontal e quebra a ordem natural de colunas.
+
+4. **Métricas e Benchmarks**:
+   * **Métricas de caixa, IoU, Kendall's tau, quebras e logs numéricos**: **Não encontrado**. Há apenas testes unitários sintéticos de integridade de código em [`tests/`](file:///C:/Users/pedro/dev/ceia_datapolicy/synthetic-doc-gen/tests/).
+
+5. **Dados e Anotações**:
+   * Formato de entrada (*seed*): [`annotations.json`](file:///C:/Users/pedro/dev/ceia_datapolicy/synthetic-doc-gen/src/synthdocgen/models.py#L47-L51) + PDFs/imagens com bounding boxes `[x, y, width, height]`.
+   * Formatos de saída: labels YOLO (`labels_yolo/<id>.txt` via [`write_yolo`](file:///C:/Users/pedro/dev/ceia_datapolicy/synthetic-doc-gen/src/synthdocgen/exporters.py#L6-L20)), COCO (`annotations_coco.json` via [`write_coco`](file:///C:/Users/pedro/dev/ceia_datapolicy/synthetic-doc-gen/src/synthdocgen/exporters.py#L23-L59)), além de `layouts.json`, `classes.txt` e `provenance.json`.
+
+6. **Impacto e Utilidade para o TCC**:
+   * **O que NÃO serve**: Não serve para extrair texto nem ordenar texto de PDFs reais (não possui OCR, não extrai texto vetorial, não ordena colunas).
+   * **O que MELHORA o TCC**:
+     1. **Data Augmentation**: Pode usar as 2.119 páginas anotadas no Label Studio como *seed* para gerar dezenas de milhares de páginas sintéticas no formato YOLO, ajudando a mitigar a falta de detecção de cabeçalhos/rodapés e ensinando fronteiras nítidas entre tabelas e texto (sem sobreposição).
+     2. **Heurística de calhas/colunas**: O filtro de blocos de corpo (`height <= 0.12` e `0.08 <= width <= 0.75`) combinado com agrupamento de centros com limiar relativo de `0.18` pode ser adaptado para solucionar os problemas de faixas estreitas indevidas e páginas sem separação de colunas.

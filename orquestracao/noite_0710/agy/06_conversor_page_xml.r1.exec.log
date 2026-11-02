@@ -1,0 +1,17 @@
+============================================================================
+TESTE DE IDA E VOLTA: Formato Próprio <-> PAGE XML 2019 <-> Label Studio
+============================================================================
+
+[Ciclo 1/2] Testando: Formato Próprio -> PAGE XML 2019 -> Formato Próprio...
+      -> Estrutura XML válida contra o esquema PAGE 2019.
+      -> 3 caixas recuperadas com 100% de precisão (ids, classes, textos e bbox <= 1px).
+      -> Ordem de leitura ['box-1', 'box-2'] e relação recuperadas perfeitamente.
+      OK: Ciclo 1 aprovado com sucesso.
+
+[Ciclo 2/2] Testando: Label Studio <-> PAGE XML 2019 (composição)...
+      -> Ciclo completo Label Studio <-> PAGE XML validado com integridade estrita.
+      OK: Ciclo 2 aprovado com sucesso.
+
+============================================================================
+SUCESSO: Todos os testes passaram sem nenhuma divergência!
+============================================================================

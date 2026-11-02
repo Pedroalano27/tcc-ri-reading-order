@@ -1,0 +1,7 @@
+Iniciando analise comparativa de ordenadores...
+Total de chaves carregadas do JSON: 93
+Ancoras validadas com sucesso:
+  - Regra colunas linhas v4: tau=0.9859, quebras=6.05
+  - Extrator caixas finas v4: tau=0.9524, quebras=8.93
+Melhor modelo treinado em 'linhas' (menor quebras no v4): sucessor_linhas_40ep (11.00 quebras)
+Relatório gerado com sucesso em: C:\Users\pedro\dev\tcc-ri-reading-order\resultados\ordenadores_ganha_perde.md

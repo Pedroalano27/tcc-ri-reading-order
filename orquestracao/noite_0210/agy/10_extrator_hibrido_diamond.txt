@@ -1,0 +1,23 @@
+#SCRIPT: orquestracao/analises/extrator_hibrido_ls.py
+#SAIDA: resultados/extrator_hibrido_ls.md
+TAREFA: testar se o EXTRATOR de regiões melhora quando o componente visual dele (o detector genérico Docling) é trocado por um detector treinado em diários oficiais. Só nas 11 páginas do teste sem viés.
+Você não pode rodar comandos: escreva o script; o orquestrador executa "venv/Scripts/python.exe orquestracao/analises/extrator_hibrido_ls.py" e devolve o erro se falhar. NÃO use GPU e NÃO rode nenhum modelo: as predições dos detectores já estão em disco.
+
+Leia antes, com atenção:
+- orquestracao/analises/avaliar_detector_ls.py: é o MODELO do seu script (mesma régua, mesmas funções: seg.propor, medir_pagina, resumir, as funções para9 e para3). Copie a estrutura dele.
+- src/data/regioes.py: a função propor(palavras, blocos_v3, regioes_do_detector, regras=True) e TUDO o que ela faz com cada região do detector: quais campos lê (rotulo, score, bbox), quais rótulos reconhece e o que faz com cada um (qual vira tabela, figura, título, cabeçalho, rodapé, lista, texto), e os limiares de score. O detector original é o Docling (rótulos em inglês do DocLayNet).
+- src/data/taxonomia_layout.py: os mapeamentos entre as 16 classes do guia, as 9 classes do extrator e os rótulos do Docling.
+
+Predições disponíveis (jsonl: page_id -> regioes [{id, classe, bbox em pontos do PDF, score}]), todas no lote data/diamond/diamond_teste:
+- resultados/deteccao/pred_ls16_diamond_teste.jsonl (16 classes do guia)
+- resultados/deteccao/pred_ls3_diamond_teste.jsonl (texto / tabela / imagem)
+- resultados/deteccao/pred_diamond_ft_ls16_diamond_teste.jsonl e pred_diamond_ft_coco_diamond_teste.jsonl (9 classes do extrator; use os que existirem, e pred_diamond_ft_ls3_diamond_teste.jsonl se existir)
+
+O script deve medir, nas duas réguas (9 classes e 3 classes) e com a mesma tabela do avaliar_detector_ls.py, estes sistemas:
+(a) extrator atual: propor() com as regiões do Docling (linha de base; tem que dar F1@0,5 = 0,851 em 9 classes; se não der, pare e explique);
+(b) propor() com as regiões de cada detector do domínio NO LUGAR das do Docling, traduzindo a classe do detector para o rótulo do Docling que propor() espera (escreva a tabela de tradução no topo do script, uma por vocabulário, e imprima-a no relatório);
+(c) propor() com a UNIÃO: regiões do Docling mais as do detector do domínio (o detector do domínio primeiro; descarte do Docling as que tiverem 60% ou mais da área coberta por uma do domínio);
+(d) propor() só com tabela e imagem vindas do detector do domínio (as outras classes saem; o texto fica por conta das regras e dos blocos);
+(e) cada detector puro, sem regras (como referência).
+Para cada sistema: F1@0,5, F1@0,9, F1 com classe, acerto de classe por palavras, regiões do sistema / do gabarito. Além disso, por página, a diferença de F1@0,5 de cada variante contra (a), com quantas páginas ganham, empatam e perdem (são só 11 páginas: diga isso e não chame diferença pequena de melhora).
+Escreva resultados/extrator_hibrido_ls.md com: resumo de 5 linhas (veredito primeiro: alguma variante supera o extrator atual? por quanto? em quantas das 11 páginas?), as tabelas, as tabelas de tradução usadas, limitações.

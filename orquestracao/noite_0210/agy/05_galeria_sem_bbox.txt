@@ -1,0 +1,11 @@
+#ESPERA: orquestracao/noite_0210/codex/01_sem_bbox.done
+#SCRIPT: orquestracao/analises/galeria_ordem_sem_bbox.py
+#SAIDA: resultados/galeria_ordem_sem_bbox/index.html
+TAREFA: galeria visual do método "ordem de leitura sem bounding box fina" nas 44 páginas do golden_v4, para o autor e o orientador conferirem a olho.
+Você não pode rodar comandos: escreva o script; o orquestrador executa "venv/Scripts/python.exe orquestracao/analises/galeria_ordem_sem_bbox.py" e devolve o erro se falhar.
+
+Leia orquestracao/analises/ordem_sem_bbox.py (de outro agente) e IMPORTE as funções dele para obter, por página, com a melhor configuração do relatório: as linhas de texto, os blocos atômicos (tabela/imagem), as colunas detectadas e a sequência de leitura prevista. Não reimplemente o método; se alguma função não for importável, diga no topo do script e adapte com o mínimo de cópia.
+Imagens das páginas: data/golden/golden_v4/img/ + campo "imagem" da tarefa; coordenadas de palavras e caixas em pontos do PDF (use "dimensions" para escalar para pixels).
+
+Para cada página gere resultados/galeria_ordem_sem_bbox/pagNN.jpg (largura de uns 1100 px) com: faixas das colunas detectadas em cores translúcidas; blocos atômicos com contorno (tabela roxo, imagem cinza); o caminho de leitura previsto como uma linha ligando o centro de cada linha de texto na ordem, com o número de ordem a cada 10 linhas; e, no título, tau e sucessor da página na régua de regiões.
+Gere resultados/galeria_ordem_sem_bbox/index.html estático (HTML + CSS simples, sem dependência externa) listando as páginas da PIOR para a melhor (tau crescente), com uf, número de colunas e as métricas, e a imagem clicável.

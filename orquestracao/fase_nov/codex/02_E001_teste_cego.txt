@@ -1,0 +1,11 @@
+#SAIDA: resultados/e001_teste_cego/RELATORIO.md
+TAREFA E001 — MONTAR O TESTE CEGO E O DESENVOLVIMENTO NOVO. Leia o cartão experimentos/cards/E001_*.md e experimentos/consultas/2026-11-02_chatgpt_02_hibrido.md.
+
+Escreva orquestracao/analises/e001_montar_teste_cego.py (CPU, retomável). data/raw/ é SOMENTE LEITURA.
+1. INVENTÁRIO DO QUE JÁ FOI TOCADO: colete todos os PDFs (uf/arquivo) que aparecem em qualquer um destes: data/golden/*/tarefas.jsonl, data/diamond/*/tarefas.jsonl, resultados/unidades_sem_caixas/** (todas as páginas exportadas, de treino, validação, teste e bancadas), data/processed/blocos*/ e quaisquer listas de páginas em resultados/ usadas como bancada. Grave resultados/e001_teste_cego/pdfs_tocados.json.
+2. SORTEIO DO TESTE CEGO: semente fixa 20261102. Nas pastas data/raw/official_diary_ce, official_diary_ma e official_diary_rj, só PDFs NÃO tocados, com camada de texto (descarte páginas com < 200 palavras ou > 5% de caracteres ilegíveis "(cid:"), sorteie ~15 PDFs por UF e até 2 páginas por PDF (não consecutivas, evitando capa), 30 páginas por UF. Estratifique por número de colunas estimado (1, 2, 3+) e presença de tabela detectada (use o extrator de linhas e o detector ls3 já usados em orquestracao/analises/unidades_sem_caixas.py / montar_lote_sem_paragrafos.py, em CPU). Garanta que nenhuma página seja de PDF tocado.
+3. DESENVOLVIMENTO NOVO: 45 páginas de PDFs NÃO tocados dos 7 veículos de treino e de RN (mesmas regras, ~6 por veículo), semente 20261103.
+4. Gere as tarefas no MESMO formato de data/diamond/lote_sem_paragrafos/tarefas.jsonl (para a ferramenta Diamond), mas grave em resultados/e001_teste_cego/teste_cego/tarefas.jsonl e resultados/e001_teste_cego/desenvolvimento/tarefas.jsonl (+ imagens), SEM ordem pré-preenchida no teste cego. Não grave nada em data/.
+5. Grave experimentos/TESTE_CEGO.lock (JSON: semente, data, lista de page_id, sha256 de cada PDF, sha256 da lista) — este é o ÚNICO arquivo fora de resultados/ que você pode criar.
+6. Relatório resultados/e001_teste_cego/RELATORIO.md: contagens por UF/estrato, verificação de não sobreposição (deve ser zero), como o Pedro abre o lote na ferramenta (copiar para data/diamond/<lote>/ é ação DO PEDRO; escreva o comando).
+NÃO avalie nenhum método nessas páginas e NÃO abra as predições de modelos para elas.

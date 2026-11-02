@@ -1,0 +1,23 @@
+Você trabalha no repositório de um TCC sobre ORDEM DE LEITURA em diários oficiais brasileiros (PDFs multicoluna). Escreva tudo em português.
+
+A PERGUNTA (palavras do autor): "quero testar uma comparação entre modelos". Sem caixas de parágrafo (texto em LINHAS; só tabela e imagem como bloco), qual ordenador erra menos, e o que cada modelo ganhou ou perdeu ao sair das caixas de parágrafo. Leia docs/RELATORIO_NOITE_0410.md antes de começar.
+
+REGRAS (valem sempre):
+- Crie SOMENTE os arquivos novos pedidos na tarefa. NÃO edite arquivos existentes (se precisar de uma opção nova num script existente, importe-o e embrulhe, ou diga no relatório o que faltou). NÃO grave nada sob data/ (somente leitura): saídas vão para resultados/ e scripts para orquestracao/analises/. NÃO edite COMUNICACAO_AGENTES.md nem docs/. NÃO faça commit.
+- NÃO use GPU nem inicie treino: a placa está ocupada por um treino. O que você rodar é em CPU (device="cpu"), com --n-treino pequeno, só para provar que funciona.
+- MEMÓRIA: a máquina tem 16 GB e está com pouca RAM livre; uma tela azul por falta de memória já derrubou uma noite. Rode UM processo pesado por vez, sem multiprocessing, sem DataLoader com workers (num_workers=0), torch.set_num_threads(4) no máximo, e processe páginas em fluxo (não carregue milhares de páginas com palavras na memória de uma vez).
+- A máquina pode cair: grave caches e resultados intermediários sob resultados/ para retomar sem refazer, e escreva o relatório assim que tiver números (atualize-o conforme chegam mais).
+- data/labelstudio/ é dado de um projeto parceiro (Data Policy): NÃO use nesta noite. O detector ls3 já treinado pode ser usado como modelo (só os pesos).
+- Nunca edite nem regenere anotação humana (data/golden/**, data/diamond/**) nem data/raw/.
+- Python do projeto: venv/Scripts/python.exe (3.11, Windows), executado da raiz. Sem rede: não instale pacotes nem baixe modelos. Já estão no ambiente: pdfplumber, PyMuPDF (import pymupdf), ultralytics, transformers, torch. Modelos de terceiros em models/terceiros/. Abra arquivos com encoding="utf-8".
+- Todo número de relatório sai da execução do script (o script escreve o relatório). Não invente números. Declare limitações com honestidade: páginas usadas no desenvolvimento, referência silver automática, n pequeno, veículos vistos no treino.
+
+PROTOCOLO (não mudar):
+- Referência silver = ordem do fluxo de conteúdo do PDF, só nos veículos confiáveis; divisão por VEÍCULO em data/processed/splits.json (treino 7 veículos, validação RN, teste CE, MA, RJ). Nunca treinar com página de veículo de validação/teste nem com página das bancadas humanas.
+- Entrada embaralhada por página com random.Random(f"entrada-{page_id}") (src/eval/protocolo.py).
+- A régua é de PALAVRAS, a mesma de orquestracao/analises/erros_ponta_a_ponta.py: tau de Kendall de palavras, quebras de leitura por página, fidelidade de 12 palavras, sucessor de linhas. Reutilize as funções desse script importando-o; não reimplemente a métrica.
+- Bancadas: (a) 44 páginas do golden_v4 (usadas no desenvolvimento do método de colunas); (b) 27 páginas do golden_v3 fora do v4; (c) páginas de teste silver (CE, MA, RJ). Reporte as três separadas e, nas humanas, separe veículos vistos e não vistos no treino.
+- NÃO despache subagentes nem espere por eles (no modo sem interface a execução termina antes de eles responderem). SE VOCÊ É O ANTIGRAVITY (agy, modelo Gemini): NÃO use ferramenta de terminal ou de comando (é negada e a execução inteira falha): use só listar pasta, ler arquivo, buscar texto e ESCREVER arquivo, tudo você mesmo, na mesma resposta; você DEVE escrever o arquivo do script pedido. SE VOCÊ É O CODEX: você PODE e DEVE rodar os scripts que escrever (venv/Scripts/python.exe, da raiz, um processo por vez) para validá-los e corrigir os erros antes de entregar; nunca entregue código que você não executou.
+- A máquina reinicia sem aviso (laptop): escreva o relatório cedo e grave resultados parciais.
+- Diários oficiais públicos são livres; data/labelstudio (projeto parceiro Data Policy) NÃO é para usar nem copiar.
+- Âncoras a reproduzir antes de qualquer número novo (resultados/erros_ponta_a_ponta.md, coorte v4): regra geométrica sem caixas finas com átomos ls3 = tau 0,986 e 6,05 quebras por página; extrator + XY-cut + margens = 0,952 e 8,93. Se a sua bancada não reproduzir (tolerância 0,006 em tau), pare e explique.

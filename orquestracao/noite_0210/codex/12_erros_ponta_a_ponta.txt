@@ -1,0 +1,24 @@
+#SAIDA: resultados/erros_ponta_a_ponta.md
+TAREFA (pense fundo, teste com código): comparar DE PONTA A PONTA, só com componentes automáticos, o pipeline com bounding box fina e o pipeline sem bounding box fina, contando os ERROS que chegam ao texto final.
+
+A pergunta do autor (leia com atenção, porque as análises anteriores responderam outra): a ideia "sem bbox fina" NÃO é para ganhar da XY-cut. É para diminuir os erros do sistema, porque hoje a maior parte dos erros nasce na etapa das caixas finas (caixa errada, classe errada, parágrafo partido ou fundido), e a ordenação herda esses erros. Comparar o plano contra a XY-cut sobre regiões HUMANAS (como fizeram resultados/ordem_sem_bbox_justo.md e os outros) esconde isso: em produção não existem regiões humanas. A comparação certa é automático contra automático.
+
+Pipelines (todos sem nenhuma informação humana na entrada):
+ P1  extrator atual (propor(), caixas finas automáticas) + XY-cut;
+ P1m o mesmo, com a política de margens (src/eval/politica_margens.py, variante recomendada em resultados/politica_margens.md);
+ P2  plano sem bbox fina: tabela e imagem do detector de 3 classes (runs/detect/ls3, CPU) como blocos atômicos + linhas + projeção de colunas + margens, na configuração congelada de resultados/ordem_sem_bbox_ls3.md;
+ P2d o mesmo com Docling no lugar do ls3;
+ P0  sem nada: palavras na ordem ingênua (topo-base, esquerda-direita), como piso.
+Reaproveite os scripts e caches já existentes em orquestracao/analises/ (ordem_sem_bbox*.py; importe, não edite) e em resultados/.
+
+Onde medir: as 44 páginas do golden_v4 e as páginas do golden_v3 que não estão no v4 (ordem humana cega nos dois; veja orquestracao/analises/ordem_sem_bbox_validacao_acervo.py para o preparo).
+
+O que medir, sempre no TEXTO FINAL (sequência de palavras que o pipeline entrega), contra a sequência-ouro de palavras:
+1. tau de Kendall de palavras e sucessor correto de linhas;
+2. FIDELIDADE: fração das frases de 12 palavras consecutivas do ouro que aparecem intactas na saída (a métrica do piloto de RI, src/ri/piloto_japeri.py; reutilize a função), e também com janelas de 6 e de 24;
+3. CONTAGEM DE ERROS por página, com definições operacionais que você declara: (i) quebras de continuidade (pontos em que a saída pula para um trecho que não é o seguinte no ouro); (ii) trechos intercalados (duas regiões do ouro misturadas); (iii) blocos deslocados em mais de N posições. Reporte o total e a média por página de cada pipeline;
+4. ORIGEM DO ERRO: para cada quebra de continuidade do P1, classifique por código se ela nasce da SEGMENTAÇÃO (as duas palavras estão na mesma região do ouro mas em caixas diferentes do extrator, ou em regiões diferentes do ouro e na mesma caixa do extrator) ou da ORDENAÇÃO (caixas certas, ordem errada). Faça o equivalente para o P2 (linha partida, coluna errada, átomo errado). Isso responde diretamente se a maioria dos erros de hoje vem das caixas.
+5. IC 95% por bootstrap agrupado por veículo e teste pareado (Wilcoxon com zero_method="pratt") de P2 contra P1 e contra P1m.
+Escreva resultados/erros_ponta_a_ponta.md: resumo de 5 linhas respondendo, nesta ordem: (a) que fração dos erros do pipeline atual nasce na etapa das caixas; (b) quantos erros por página cada pipeline entrega; (c) o plano sem bbox fina diminui os erros de ponta a ponta? por quanto?; tabelas; exemplos de página; limitações; recomendação. No fim rode do zero e confira que o relatório bate com a saída. Resposta final: veredito, tabela principal e caminhos dos arquivos.
+
+NOTA: se resultados/erros_ponta_a_ponta_previa.md existir (outro agente fez uma primeira contagem só no golden_v4, script orquestracao/analises/erros_ponta_a_ponta_previa.py), LEIA, confira as definições e os números dele com o seu próprio código, diga no relatório o que confere e o que não confere, e acrescente o que ele não fez (golden_v3 fora do v4; átomos do ls3; frases preservadas do piloto de RI).

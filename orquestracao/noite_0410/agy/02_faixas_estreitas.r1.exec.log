@@ -1,0 +1,41 @@
+======================================================================
+DIAGNOSTICO DE FAIXAS ESTREITAS E CABECALHOS FRAGMENTADOS
+======================================================================
+[INFO] Carregadas 614 paginas unicas.
+       - bancada_humana: 44 paginas retidas
+       - treino: 191 paginas retidas
+       - validacao: 12 paginas retidas
+       - sem_split: 367 paginas retidas
+
+[PROCESSANDO] Medidas 1 e 2: Distribuicoes e Faixas Suspeitas...
+
+[PROCESSANDO] Medida 3: Faixas Sobrepostas (> 20% area menor)...
+
+[PROCESSANDO] Medida 4: Cabecalhos e Rodapes no Golden v4...
+
+[PROCESSANDO] Medida 5: Galeria visual das 12 paginas mais criticas...
+[OK] Imagem salva: 01_official_diary_pr.jpg (991x1400 px, 2 suspeitas)
+[OK] Imagem salva: 02_official_diary_rs_porto_alegre.jpg (989x1400 px, 0 suspeitas)
+[OK] Imagem salva: 03_official_diary_RJ_barra_do_pirai.jpg (1209x1400 px, 0 suspeitas)
+[OK] Imagem salva: 04_official_diary_pi_v2.jpg (991x1400 px, 0 suspeitas)
+[OK] Imagem salva: 05_official_diary_se.jpg (1021x1400 px, 0 suspeitas)
+[OK] Imagem salva: 06_official_diary_rj.jpg (902x1400 px, 0 suspeitas)
+[OK] Imagem salva: 07_official_diary_al.jpg (991x1400 px, 0 suspeitas)
+[OK] Imagem salva: 08_official_diary_ce.jpg (991x1400 px, 0 suspeitas)
+[OK] Imagem salva: 09_official_diary_RJ_duque_de_caxias.jpg (991x1400 px, 0 suspeitas)
+[OK] Imagem salva: 10_official_diary_ac.jpg (991x1400 px, 0 suspeitas)
+[OK] Imagem salva: 11_official_diary_ro.jpg (990x1400 px, 0 suspeitas)
+[OK] Imagem salva: 12_official_diary_ms.jpg (990x1400 px, 0 suspeitas)
+
+[PROCESSANDO] Gerando relatorio Markdown em resultados/faixas_estreitas.md...
+[OK] Relatorio gravado com sucesso: C:\Users\pedro\dev\tcc-ri-reading-order\resultados\faixas_estreitas.md
+
+======================================================================
+DIAGNOSTICO CONCLUIDO COM SUCESSO!
+- Total paginas analisadas: 614
+- Total faixas de texto: 3600
+- Faixas suspeitas: 69 em 13 paginas
+- Faixas sobrepostas (>20%): 249 pares em 56 paginas
+- Golden v4: Mediana Cabecalhos=2, Rodapes=1
+- Imagens da galeria salvas: 12
+======================================================================

@@ -1,0 +1,16 @@
+A causa da falha na execução do script foi identificada e corrigida em [`orquestracao/analises/concordancia_ls.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/concordancia_ls.py).
+
+### Diagnóstico do Erro
+- **Origem da falha:** Na função `carregar_dados_bounding_box`, os contadores de pares (`pares_por_usuario` e `matriz_pares`) eram convertidos para `dict` antes do retorno (`dict(pares_por_usuario)`).
+- **Linha que quebrou:** Na função `construir_relatorio_md_v2` (antiga linha 1173), o código tentava invocar `.most_common()` diretamente sobre o objeto retornado (`pares_por_usuario.most_common()`), resultando na exceção:
+  ```text
+  AttributeError: 'dict' object has no attribute 'most_common'
+  ```
+
+### Correções Aplicadas
+1. **Retorno consistente como `Counter`:** Em [`carregar_dados_bounding_box`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/concordancia_ls.py#L500-L506), `pares_por_usuario` e `matriz_pares` agora são retornados explicitamente como instâncias de `Counter`.
+2. **Acesso defensivo e ordenado em `construir_relatorio_md_v2`:**
+   - Adicionada verificação polimórfica com `hasattr(..., "most_common")`: caso o objeto seja um `Counter`, invoca `.most_common()`; se for um `dict` genérico, itera com ordenação decrescente por contagem via `sorted(..., key=lambda x: x[1], reverse=True)`.
+   - O mesmo tratamento defensivo foi estendido para a `matriz_pares` e para o ranking das 10 principais confusões taxonômicas (`confusoes_16`).
+
+O script está pronto para ser reexecutado pelo orquestrador (`venv/Scripts/python.exe orquestracao/analises/concordancia_ls.py`) e concluirá a geração de [`resultados/labelstudio_concordancia_v2.md`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/labelstudio_concordancia_v2.md).

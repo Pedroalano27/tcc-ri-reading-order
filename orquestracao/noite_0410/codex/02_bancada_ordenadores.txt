@@ -1,0 +1,19 @@
+#ESPERA: resultados/unidades_sem_caixas.md
+#SAIDA: resultados/ordenadores_sem_caixas.md
+TAREFA 02 — a bancada única que mede QUALQUER ordenador sobre as unidades sem caixas finas, e os ordenadores que não precisam de treino.
+
+Escreva orquestracao/analises/bancada_ordenadores.py com:
+1. Contrato de predição: arquivo JSONL com uma linha por página, {"page_id", "ordem": [ids das unidades na ordem prevista]}, guardado em resultados/ordenadores_sem_caixas/pred/<ordenador>__<representacao>__<bancada>.jsonl. A função avaliar() expande a ordem das unidades em sequência de palavras (dentro da unidade, a ordem interna gravada pela tarefa 01) e calcula, reutilizando as funções de orquestracao/analises/erros_ponta_a_ponta.py: tau de palavras, quebras por página e por mil palavras, fidelidade de 12, sucessor de linhas, e o piso de quebras internas (as que nenhuma ordem de unidades conserta: é o custo da representação). IC 95% por bootstrap agrupado por veículo (5000 reamostras, semente 20261004) e teste pareado de Wilcoxon (zero_method="pratt") por veículo contra a regra geométrica.
+2. Bancadas: golden_v4 (44), golden_v3_novo (27) e teste silver (CE, MA, RJ), lidas de resultados/unidades_sem_caixas/. Nas humanas, uma coluna a mais separando veículos vistos e não vistos no treino (data/processed/splits.json).
+3. Ordenadores sem treino, cada um nas três representações (linhas, colunas, colunas_margens):
+   - `teto`: as unidades na ordem de referência (quanto se perde só por usar essa representação);
+   - `ingenuo`: de cima para baixo, da esquerda para a direita;
+   - `xycut`: a XY-cut do repositório (src/eval/baselines.py) sobre as unidades;
+   - `xycut_margens`: com src/eval/politica_margens.py;
+   - `regra_colunas`: a regra geométrica do método sem caixas finas (orquestracao/analises/ordem_sem_bbox.py, configuração projecao_local_margens 0,45 / 1,2 / 0,08), que é o P2 de erros_ponta_a_ponta.md;
+   - `layoutreader_pronto`: o LayoutReader pré-treinado em CPU, reaproveitando o adaptador de orquestracao/analises/ordem_layoutreader.py (declare quando o limite de 510 unidades força agrupamento).
+4. Âncoras: antes de escrever qualquer tabela, confira que `regra_colunas` com átomos ls3 no golden_v4 reproduz tau 0,986 e 6,05 quebras por página, e que o extrator + XY-cut + margens (caixas finas, lido de resultados/erros_ponta_a_ponta.json, não recalculado) entra na tabela como linha de comparação com 0,952 e 8,93. Se não reproduzir, pare e explique a diferença.
+5. Modo `--avaliar-pred <arquivo>`: avalia uma predição feita por outro script (é assim que os modelos treinados entram) e acrescenta a linha ao JSON de resultados sem recalcular o resto.
+6. Relatório resultados/ordenadores_sem_caixas.md (e .json): resumo de cinco linhas respondendo "qual ordenador erra menos em cada representação, e quanto custa a representação em si (teto)"; uma tabela por bancada; limitações. O relatório é regenerado a cada predição nova.
+
+Só CPU. O LayoutReader é o único modelo carregado; um por vez.

@@ -1,0 +1,14 @@
+#SCRIPT: orquestracao/analises/pymupdf_palavras.py
+#SAIDA: resultados/pymupdf_palavras.md
+TAREFA: medir se o PyMuPDF pode substituir o pdfplumber na extração de PALAVRAS do extrator (requisito de velocidade do orientador).
+Você não pode rodar comandos: escreva o script; o orquestrador executa "venv/Scripts/python.exe orquestracao/analises/pymupdf_palavras.py" e devolve o erro se falhar. O PyMuPDF 1.28 está instalado: use "import pymupdf" (não "import fitz").
+
+Leia antes: src/data/extrator.py (função palavras_da_pagina e como ela abre a página com pdfplumber: parâmetros de extract_words, tratamento da CropBox/origem) e src/eval/protocolo.py (iterar_paginas, para listar as páginas de data/processed/blocos com uf, arquivo, pagina).
+
+O script deve:
+1. Sortear, com semente fixa 20261003, 60 páginas de data/processed/blocos espalhadas pelos veículos (no máximo 3 por veículo; inclua pelo menos 5 do veículo de Pernambuco, official_diary_pe, se existir). O PDF de cada página fica em data/raw/<uf>/<arquivo> (somente leitura).
+2. Para cada página, extrair as palavras pelos dois caminhos: (a) palavras_da_pagina do extrator (pdfplumber); (b) pymupdf: page.get_text("words"), convertendo para o mesmo formato e o MESMO sistema de coordenadas (atenção à CropBox, à rotação e à origem; confira por código). Medir o tempo de cada caminho por página, separando o tempo de abrir o PDF do tempo de extrair, e guardando tudo em resultados/pymupdf_palavras_cache.json para a execução ser retomável (uma página por vez; se já estiver no cache, não refaça).
+3. Comparar: número de palavras; fração de palavras do pdfplumber que têm par no pymupdf com o mesmo texto e IoU de caixa >= 0,7 (e o contrário); diferença mediana e p95 das coordenadas nos pares; as diferenças de texto mais frequentes (ligaduras, hífen, espaços, acentos, palavras coladas ou partidas), com exemplos.
+4. Tempo: média, mediana e p95 por página de cada caminho, aceleração (pdfplumber / pymupdf) no total e por veículo, e páginas por segundo.
+5. Um teste de proteção: se um PDF não abrir ou a página não existir, registre o erro na tabela e siga.
+Escreva resultados/pymupdf_palavras.md com: resumo de 5 linhas (veredito: dá para trocar? com que perda?), tabelas por veículo, lista das diferenças sistemáticas com exemplos, limitações e o que precisaria mudar no extrator para adotar o PyMuPDF.

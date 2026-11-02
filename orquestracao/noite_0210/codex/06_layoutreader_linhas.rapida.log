@@ -1,0 +1,59 @@
+OpenAI Codex v0.160.0
+--------
+workdir: C:\Users\pedro\dev\tcc-ri-reading-order
+model: gpt-6.1-sol
+provider: openai
+approval: never
+sandbox: workspace-write [workdir, /tmp, $TMPDIR]
+reasoning effort: xhigh
+reasoning summaries: none
+session id: 01a10104-7313-7601-96ae-078300164587
+--------
+user
+Você trabalha no repositório de um TCC sobre ORDEM DE LEITURA e LAYOUT de diários oficiais brasileiros (PDFs multicoluna). Escreva tudo em português.
+
+REGRAS (valem sempre):
+- Crie SOMENTE os arquivos novos pedidos na tarefa. NÃO edite arquivos existentes. NÃO grave nada sob data/ (somente leitura). NÃO edite COMUNICACAO_AGENTES.md. NÃO faça commit.
+- NÃO use GPU: ela está ocupada por um treino. Qualquer modelo roda em CPU (device="cpu").
+- data/labelstudio/ é dado de um projeto parceiro (Data Policy): uso interno, nunca publique nem copie para fora do repositório. Os JSON de export são grandes (até 47 MB): não tente ler o arquivo inteiro como texto; descubra a estrutura por código e escreva código defensivo (campos podem faltar).
+- Python do projeto: venv/Scripts/python.exe (3.11, Windows), executado da raiz do repositório. Use só biblioteca padrão, numpy, scipy, PIL e matplotlib, mais os módulos do próprio repositório. Abra arquivos com encoding="utf-8".
+- Todo número de relatório tem que sair da execução do script (o script escreve o relatório). Não invente números. Declare limitações e vieses com honestidade (em especial: n pequeno; anotação feita corrigindo uma pré-anotação = viés de ancoragem).
+- Formato do export do Label Studio: lista de tarefas; cada tarefa tem "id", "data" (URLs) e "annotations" (lista). Cada anotação tem "completed_by", "was_cancelled" e "result" (lista). Em "result", uma caixa aparece como vários itens com o MESMO "id": type "rectangle" (geometria), type "labels" (value.labels = [classe], value.x/y/width/height em % da página, "origin" = manual | prediction | prediction-changed, original_width/original_height em px), type "textarea" (value.text = [transcrição]). Itens type "relation" (from_id, to_id, labels, direction) ligam caixas na ordem de leitura.
+- Três "PDFs" de Minas Gerais em data/labelstudio/pdf/ (pastas terminadas em -MG) são envelopes de assinatura digital PKCS#7: o PDF de verdade vai do primeiro b"%PDF" até o último b"%%EOF" do arquivo. Extraia esse trecho para um arquivo temporário sob resultados/ antes de abrir. Os outros PDFs abrem direto, mesmo os que terminam com bytes zerados.
+- Não conte com rede: não instale pacotes nem baixe modelos. Já estão no ambiente: pdfplumber, PyMuPDF 1.28 (import pymupdf), ultralytics, transformers, torch (use CPU). Modelos de terceiros já baixados ficam em models/terceiros/.
+- Esta máquina pode cair no meio do trabalho: grave caches e resultados intermediários sob resultados/ para a execução poder ser retomada sem refazer tudo, e escreva o relatório assim que tiver números.
+- As 16 classes do guia e os mapeamentos para 9 e 3 classes estão em src/data/taxonomia_layout.py. Regra das 3 classes: table -> tabela; figure, chart, heading -> imagem; unknown fica de fora; o resto -> texto.
+
+TAREFA (pense fundo, teste com código): testar um ordenador de linhas PRONTO, o LayoutReader, dentro do plano "sem bounding box fina", e comparar com a nossa projeção geométrica.
+
+Contexto: orquestracao/analises/ordem_sem_bbox.py + resultados/ordem_sem_bbox.md (leia os dois) ordenam linhas de texto por projeção de colunas, com tabela e imagem como blocos atômicos. A fraqueza está no multicoluna e em cabeçalho/rodapé. O LayoutReader é um modelo treinado justamente para ordenar caixas de linha (LayoutLMv3 afinado no ReadingBank; é o ordenador que o MinerU usa). Os pesos já estão em models/terceiros/layoutreader/ (hantian/layoutreader, licença CC BY-NC-SA 4.0: uso acadêmico; cite isso no relatório). Rode em CPU.
+
+Como usar o modelo (referência de uso; CONFIRA com um teste sintético de duas colunas antes de confiar):
+  from transformers import LayoutLMv3ForTokenClassification
+  modelo = LayoutLMv3ForTokenClassification.from_pretrained("models/terceiros/layoutreader").eval()
+  # caixas: lista de [x0, y0, x1, y1] inteiros, cada coordenada normalizada para 0..1000 pela largura/altura da página; no máximo 510 caixas por página
+  bbox = [[0, 0, 0, 0]] + caixas + [[0, 0, 0, 0]]
+  input_ids = [0] + [3] * len(caixas) + [2]          # CLS, UNK para cada caixa, EOS
+  attention_mask = [1] * len(input_ids)
+  logits = modelo(bbox=tensor([bbox]), input_ids=tensor([input_ids]), attention_mask=tensor([attention_mask])).logits[0]
+  logits = logits[1:len(caixas) + 1, :len(caixas)]    # linha i = caixa i; coluna j = posição j na leitura
+  # decodificação: cada caixa escolhe a posição de maior logit; em conflito, fica quem tem o maior logit e as outras vão para a sua próxima opção, até não haver posição repetida. O resultado é a posição de leitura de cada caixa.
+Se a página tiver mais de 510 linhas, descreva e teste a sua solução (por exemplo, fundir linhas vizinhas da mesma coluna em parágrafos antes de ordenar).
+
+Faça em orquestracao/analises/ordem_layoutreader.py (importe do script anterior; não o edite):
+1. Nas 44 páginas do golden_v4, com as MESMAS réguas (regiões e linhas), a mesma preparação de palavras/linhas/átomos e a mesma configuração LOPO do relatório anterior, compare:
+   (a) projeção geométrica (resultado anterior, reproduza); (b) LayoutReader ordenando as linhas de texto e os blocos atômicos (tabela/imagem entram como uma caixa só); (c) LayoutReader ordenando as regiões humanas do ouro (comparável à XY-cut em regiões-ouro); (d) híbrido: colunas e faixas pela projeção, LayoutReader só para decidir a ordem entre os grupos, ou o contrário; escolha o desenho que fizer mais sentido e justifique.
+2. Mesmas estatísticas: tau, sucessor, ARD normalizado, IC por bootstrap, Wilcoxon pareado contra a XY-cut em regiões-ouro e contra a projeção; estratos 1 coluna x multicoluna.
+3. O LayoutReader conserta as falhas listadas em "Onde o plano perde mais" do relatório anterior (campos do cabeçalho, tabelas lado a lado, rodapé de Barra do Piraí)? Mostre página a página.
+4. Custo: tempo por página em CPU de cada variante (velocidade é requisito do TCC) e tamanho do modelo.
+5. Atenção ao viés: o LayoutReader NÃO foi ajustado nessas páginas (ponto a favor dele contra a projeção, que foi desenvolvida nelas). Diga isso com clareza.
+Escreva resultados/ordem_layoutreader.md: resumo de 5 linhas com veredito (vale trocar a projeção pelo LayoutReader, combinar os dois, ou nenhum?), tabelas, análise de erro, limitações, recomendação. No fim rode do zero e confira que o relatório bate com a saída. Resposta final: veredito, tabela principal e caminhos dos arquivos.
+
+REQUISITOS QUE VIERAM DA REVISÃO ADVERSARIAL (leia resultados/revisao_ordem_sem_bbox.md e, se já existir, resultados/ordem_sem_bbox_justo.md):
+(i) além da XY-cut pura, inclua como linha de base a XY-cut sobre as regiões de referência COM a mesma política de margens do método (itens do topo primeiro, rodapé por último, marcas antes do rodapé, mesmos limiares), para separar o ganho da projeção de colunas do ganho da política de margens;
+(ii) trate como régua principal a sequência real de saída (linhas ou palavras, mais a fração de regiões cujas palavras ficam em mais de um trecho); a régua de regiões por mediana dos ranks é secundária, porque esconde texto intercalado;
+(iii) Wilcoxon pareado com zero_method="pratt" e IC por bootstrap agrupado por veículo;
+(iv) não use assert para região ou página sem palavras: trate o caso e conte quantos são.
+
+ERROR: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at 7:29 AM.
+ERROR: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at 7:29 AM.

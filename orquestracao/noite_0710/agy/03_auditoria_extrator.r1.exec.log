@@ -1,0 +1,4 @@
+  File "C:\Users\pedro\dev\tcc-ri-reading-order\orquestracao\analises\auditoria_extrator_sem_paragrafos.py", line 719
+    ],
+    ^
+SyntaxError: closing parenthesis ']' does not match opening parenthesis '{' on line 707

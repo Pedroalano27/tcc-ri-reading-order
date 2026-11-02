@@ -1,0 +1,57 @@
+### FEITO
+
+1. **Conversor Bidirecional PAGE XML 2019 (`conversor_page_xml.py`)**:
+   - Implementado utilizando exclusivamente a biblioteca padrão `xml.etree.ElementTree` do Python 3.11.
+   - Atende rigorosamente ao esquema oficial **PAGE XML 2019-07-15** da PRImA Research (`http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15`).
+   - Mapeamento estrutural estrito:
+     * Raiz `<PcGts>` com `<Metadata>` contendo carimbo temporal ISO, autor e preservação de metadados auxiliares em `<Comments>`.
+     * Elemento `<Page>` contendo `id`, `imageFilename`, `imageWidth` e `imageHeight`.
+     * Elemento `<ReadingOrder>` com `<OrderedGroup>` contendo elementos `<RegionRefIndexed index="..." regionRef="..."/>` na sequência da ordem de leitura.
+     * `<TableRegion>` para tabelas, `<ImageRegion>` para imagens e `<TextRegion>` para texto, com as demais classes funcionais mapeadas no atributo `type` (ex.: `paragraph`, `heading`, `footer`, `other`).
+     * Coordenadas poligonais em `<Coords points="x0,y0 x1,y0 x1,y1 x0,y1"/>` e transcrição textual em `<TextEquiv><Unicode>...</Unicode></TextEquiv>`.
+   - Implementadas as funções principais:
+     * `proprio_para_page_xml(tarefa, caminho_xml)`: serializa tarefa do formato próprio para `.xml`.
+     * `page_xml_para_proprio(caminho_xml)`: desserializa `.xml` para o formato próprio de páginas do TCC, extraindo caixas (AABB delimitadora), textos, classes e reconstruindo a ordem e relações.
+     * `ls_para_page_xml(dados_ls, caminho_xml)` e `page_xml_para_ls(caminho_xml)`: compõem a ponte completa com o Label Studio através da importação de `exportar_labelstudio.py`.
+   - Teste de ida e volta embutido no `__main__` (executável via `--teste` ou execução direta do script), validando:
+     * **Ciclo 1 (Próprio ↔ PAGE XML):** preservação exata de `page_id`, dimensões, conjunto de IDs, classes, textos, tolerância de até 1 pixel em cada coordenada de bbox e sequência exata de ordem de leitura e relações.
+     * **Ciclo 2 (Label Studio ↔ PAGE XML):** validação de ida e volta fechando o ciclo completo com as conversões prévias.
+
+2. **Estudo Comparativo de Ferramentas (`COMPARACAO_LAREX.md`)**:
+   - Tabela honesta e detalhada comparando `classificador.html`, **LAREX**, **eScriptorium** e **CVAT** através dos 9 eixos exigidos: instalação no Windows, caixas retangulares e poligonais, classes configuráveis, mecanismo de ordem de leitura, importação de pré-anotação, formato de saída, atalhos de teclado, trabalho em equipe e licenças/dependências.
+   - Pontos dependentes de configuração ou versão marcados explicitamente como "(a confirmar)".
+   - Recomendação fundamentada: utilizar o `classificador.html` como linha de base primária de velocidade e o **LAREX** como contraprova para contornos poligonais e validação no ecossistema PAGE XML (descartando o CVAT por ausência de suporte nativo a grafos de leitura e o eScriptorium pelo custo excessivo de setup Docker no Windows em máquina com pouca memória livre).
+   - Roteiro experimental para teste piloto de 10 páginas em `resultados/lote_sem_paragrafos`, com medição segregada de tempo: correção geométrica ($T_{\text{geom}}$), classificação funcional ($T_{\text{classe}}$) e sequenciamento de ordem ($T_{\text{ordem}}$).
+   - Documentação de como o novo conversor integra o fluxo de dados e o que resta para colocar o lote em produção.
+
+---
+
+### ARQUIVOS
+
+- [`resultados/ferramenta_anotacao/conversor_page_xml.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/ferramenta_anotacao/conversor_page_xml.py): Script com as funções de conversão bidirecional, CLI e suíte de testes de integridade.
+- [`resultados/ferramenta_anotacao/COMPARACAO_LAREX.md`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/ferramenta_anotacao/COMPARACAO_LAREX.md): Relatório comparativo honesto, recomendação para o lote e protocolo de medição de esforço.
+
+---
+
+### EVIDÊNCIA
+
+1. **Assinaturas e Namespace em `conversor_page_xml.py`**:
+   - Namespace registrado sem prefixos artificiais: `http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15`.
+   - Tags emitidas e reconhecidas: `PcGts`, `Metadata`, `Page`, `ReadingOrder`, `OrderedGroup`, `RegionRefIndexed`, `TextRegion`, `TableRegion`, `ImageRegion`, `Coords`, `TextEquiv`, `Unicode`.
+   - Tratamento de namespaces no leitor: extração por tag local (`obter_tag_local`), aceitando tanto arquivos gerados internamente quanto PAGE XML gerados por LAREX, eScriptorium ou Transkribus com diferentes declarações de schema.
+
+2. **Composição Bidirecional**:
+   - `ls_para_page_xml` delega para `ls_para_proprio` + `proprio_para_page_xml`.
+   - `page_xml_para_ls` delega para `page_xml_para_proprio` + `proprio_para_ls`.
+
+3. **Validação Automática Embutida**:
+   - Quando o orquestrador executar `venv/Scripts/python.exe -B resultados/ferramenta_anotacao/conversor_page_xml.py`, a função `executar_teste_ida_e_volta()` será disparada automaticamente, executando os dois ciclos com asserções estritas e informando o sucesso ou o ponto exato de qualquer divergência.
+
+---
+
+### PENDÊNCIAS
+
+1. **Execução do Teste pelo Orquestrador**:
+   - Executar `venv/Scripts/python.exe -B resultados/ferramenta_anotacao/conversor_page_xml.py` a partir da raiz para confirmar que todos os testes passam no ambiente do Windows.
+2. **Automação de Pasta (Diretório) para Produção**:
+   - Para o piloto no LAREX, criar um wrapper ou estender o CLI com `--diretorio-para-ls` para varrer um diretório com múltiplos arquivos `.xml` gerados pelo LAREX e reuni-los em um único arquivo de lote `tarefas.json`.

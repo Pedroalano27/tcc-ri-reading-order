@@ -1,0 +1,22 @@
+#ESPERA: runs/detect/ls16/treino_ok
+#SAIDA: resultados/extrator_v4.md
+TAREFA (pense fundo, teste com código): construir o EXTRATOR v4 do TCC a partir do dataset anotado por humanos, e medir quanto ele melhora sobre o extrator atual.
+
+O que o autor quer: usar as 2.119 páginas anotadas à mão (dataset do projeto parceiro, classes do guia em src/data/taxonomia_layout.py) para melhorar MUITO o extrator de regiões. A convenção de caixas a seguir é a do guia (a do dataset). O extrator atual (propor() em src/data/regioes.py: palavras do PDF + blocos v3 + detector genérico Docling + regras) NÃO usa esse dataset e, medido nele, fica em F1 de localização 0,573 nas 317 páginas de teste de fontes não vistas, contra 0,780 do detector de 3 classes (runs/detect/ls3) e 0,753 do de 16 classes (runs/detect/ls16), treinados em 1.590 páginas do dataset. Leia resultados/extrator_vs_detector_ls_teste.md e o script orquestracao/analises/extrator_vs_detector_ls.py (importe dele; não o edite; reaproveite o cache resultados/ls_teste_cache/: palavras do PDF, predições dos detectores e do extrator, ouro). Uma tentativa anterior (resultados/extrator_hibrido_ls.md) colocou o detector DENTRO do extrator antigo e mediu só nas 11 páginas da convenção antiga: não ganhou. Aqui é o contrário: o DETECTOR é a base e as palavras do PDF e as regras consertam as caixas dele.
+
+Faça em orquestracao/analises/extrator_v4.py (não edite src/):
+1. Extrator v4, em etapas que possam ser ligadas e desligadas (para ablação):
+   (a) caixas e classes do detector (compare usar ls16, ls3 e a união: localização do ls3 com a classe do ls16 quando houver par);
+   (b) ajuste às palavras: em página com camada de texto, cada caixa de texto encolhe ou cresce até o envelope das palavras cujo centro cai dentro dela (não mexa em tabela e imagem);
+   (c) palavras órfãs: palavras fora de qualquer caixa viram caixas novas (agrupe por linhas e parágrafos, como o segmentador v3 faz) ou entram na caixa vizinha quando a folga é pequena;
+   (d) cada palavra pertence a uma caixa só: resolva sobreposições (suprima caixa contida em outra; divida a interseção);
+   (e) texto de cada caixa lido da camada do PDF (é o que um detector puro não entrega);
+   (f) páginas sem camada de texto: só o detector.
+2. Medição nas 317 páginas de teste, com a régua do script anterior: F1 de localização em IoU >= 0,5 e >= 0,75, F1 em 3 classes, F1 em 16 classes, revocação por origem da caixa do ouro, tempo por página. Sistemas: extrator atual, ls3 puro, ls16 puro, v4 completo e v4 sem cada etapa. IC por bootstrap de páginas e teste pareado do v4 contra o extrator atual e contra o melhor detector puro.
+3. Qualquer limiar (score mínimo, folga de órfãs, contenção) tem de ser escolhido SEM olhar a página avaliada: validação cruzada deixando a FONTE de fora dentro das 317 páginas (42 fontes), e reporte o número assim obtido. Diga também o resultado com os limiares padrão, sem ajuste.
+4. Qualidade do TEXTO: para as caixas casadas com o ouro, compare o texto lido do PDF com a transcrição humana (taxa de erro de caracteres mediana e fração de caixas com texto idêntico após normalizar espaços).
+5. Onde o v4 ainda erra: as classes e os tipos de página com mais perda, com exemplos; e o que mais renderia (detector maior, classificador de classe por texto, regras).
+6. Para referência, rode o v4 também nas 11 páginas de data/diamond/diamond_teste com a régua de src/eval/avaliar_diamond.py (convenção antiga do autor); é esperado que perca do extrator antigo lá, diga quanto.
+Escreva resultados/extrator_v4.md: resumo de 5 linhas com veredito (quanto o v4 melhora sobre o extrator atual na convenção do guia, e se supera o detector puro), tabela principal, ablação, qualidade do texto, erros, limitações (ancoragem do ouro; convenção) e o esqueleto do módulo que viraria src/data/extrator_v4.py. No fim rode do zero e confira que o relatório bate com a saída. Resposta final: veredito, tabela principal e caminhos dos arquivos.
+
+NOTA: chegaram detectores maiores treinados no Kaggle no mesmo split (pesos em models/detector_ls/<nome>/best.pt; mAP50 no teste: ls16_rtdetr_l_1024 0,517; ls16_yolo11m_1280 0,510; ls3_yolo11m_1280 0,792; os locais ls16 0,483 e ls3 0,826). Se couber no tempo, teste o v4 também com o melhor de 16 classes do Kaggle como base (CPU), reportando separado.

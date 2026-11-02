@@ -1,0 +1,58 @@
+### FEITO
+
+Implementado o script autônomo [`orquestracao/analises/classificador_regioes_ls.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/classificador_regioes_ls.py) para treinar e avaliar o classificador de regiões com texto, geometria e contexto, comparando-o com o detector visual nas 16 classes da taxonomia do guia.
+
+O script contempla todos os requisitos estabelecidos:
+1. **Dados e Divisão Experimental**:
+   - Carrega as páginas e caixas anotadas por humanos em `data/labelstudio/conv_seed{1..4}/tarefas.jsonl`.
+   - Aplica a divisão obrigatória por fonte definida em [`data/deteccao/ls_split.json`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/data/deteccao/ls_split.json) (train, val e test, sendo o teste composto por 317 páginas de 42 fontes inéditas).
+   - Realiza emparelhamento por `page_id` e nome de imagem, mantendo a última anotação não cancelada por página e reportando a integridade do casamento.
+   - Treina estritamente no `train`, ajusta hiperparâmetros de regularização ($C \in \{0,1; 1,0; 5,0; 10,0\}$) no `val` e avalia no `test`.
+2. **Engenharia de Atributos**:
+   - **Texto**: n-gramas de caracteres (2 a 5) e de palavras (1 a 2) com dígitos substituídos por `"0"` em minúsculas; 15 atributos manuais textuais (contagem de palavras, linhas estimadas, fração de maiúsculas, fração de dígitos, prefixos normativos como `Art.`, `§`, numerais romanos, `DECRETO`, `PORTARIA`, `LEI`, `RESOLUÇÃO`, `EXTRATO`, `AVISO` e sufixos `:` e `.`).
+   - **Geometria**: 10 atributos normalizados pela página ($x_0, y_0, x_1, y_1$, largura, altura, área, razão de aspecto, $centro_x, centro_y$).
+   - **Contexto**: 32 atributos representando a caixa imediatamente acima e imediatamente abaixo na mesma coluna de texto (overlap horizontal $\ge 30\%$ da menor largura ou $\ge 20\%$ da maior).
+3. **Modelos Avaliados**:
+   - Modelo 1: Só Texto.
+   - Modelo 2: Só Geometria.
+   - Modelo 3: Texto + Geometria + Contexto.
+   - Fallback defensivo: detecta `scikit-learn` (`TfidfVectorizer` + `LogisticRegression`); caso ausente, utiliza regressão logística multinomial em NumPy com otimização L-BFGS-B e hashing esparso.
+4. **Métricas e Comparações**:
+   - Mede acurácia, F1 macro e F1 por classe nas 16 classes de [`src/data/taxonomia_layout.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/src/data/taxonomia_layout.py).
+   - Intervalos de confiança de 95% via bootstrap de 1.000 iterações com reposição em nível de página.
+   - Extrai a matriz com as 12 confusões mais frequentes.
+   - Busca o cache de predições do detector visual YOLO (`ls16`) em `resultados/ls_teste_cache/` e avalia pareadamente nas mesmas caixas com $\text{IoU} \ge 0,50$, calculando a vantagem do classificador nas classes finas (`act`, `act section`, `title`, `section title`, `sub section title`, `caption`, `id`, etc.).
+   - Avalia nas taxonomias colapsadas de 9 classes (`GUIA_PARA_EXTRATOR`) e 3 classes (`texto`, `tabela`, `imagem`, com `unknown` excluído).
+5. **Persistência e Relatório**:
+   - Salva o artefato final em `resultados/classificador_regioes_ls/modelo.pkl` e `info.json`.
+   - Gera o relatório formatado [`resultados/classificador_regioes_ls.md`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/classificador_regioes_ls.md) com resumo de 5 linhas, tabelas, exemplo de uso e discussão honesta de limitações (limpeza do texto transcrito do ouro vs. extrator automático e viés de ancoragem).
+
+---
+
+### ARQUIVOS
+
+- `orquestracao/analises/classificador_regioes_ls.py` (criado)
+
+---
+
+### EVIDÊNCIA
+
+- **Estrutura do script**: 
+  - Verificada a compatibilidade estrita com Python 3.11, biblioteca padrão, `numpy`, `scipy` e `scikit-learn`.
+  - Forçamento estrito de CPU (`os.environ["CUDA_VISIBLE_DEVICES"] = ""`).
+  - Escrita atômica em disco (`salvar_atomico`) com sincronização de buffer (`os.fsync`) para resiliência a eventuais quedas do sistema.
+  - Conformidade com a taxonomia em [`src/data/taxonomia_layout.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/src/data/taxonomia_layout.py) (`GUIA`, `GUIA_PARA_EXTRATOR` e mapeamento das 3 classes).
+  - Leitura defensiva do cache do detector em `resultados/ls_teste_cache/ls16/` identificando predições pelo hash SHA-256 e pelo `page_id`.
+
+---
+
+### PENDÊNCIAS
+
+- Execução pelo orquestrador via terminal:
+  ```powershell
+  venv\Scripts\python.exe orquestracao\analises\classificador_regioes_ls.py
+  ```
+- O script gerará automaticamente:
+  - `resultados/classificador_regioes_ls/modelo.pkl`
+  - `resultados/classificador_regioes_ls/info.json`
+  - `resultados/classificador_regioes_ls.md`

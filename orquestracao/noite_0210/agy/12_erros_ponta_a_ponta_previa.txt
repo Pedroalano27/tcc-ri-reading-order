@@ -1,0 +1,32 @@
+#SCRIPT: orquestracao/analises/erros_ponta_a_ponta_previa.py
+#SAIDA: resultados/erros_ponta_a_ponta_previa.md
+TAREFA: contar os ERROS que chegam ao texto final em dois pipelines totalmente automáticos, nas 44 páginas do golden_v4, e dizer de onde eles vêm.
+Você não pode rodar comandos: escreva o script; o orquestrador executa "venv/Scripts/python.exe orquestracao/analises/erros_ponta_a_ponta_previa.py" e devolve o erro se falhar. Só CPU, sem rodar nenhum modelo. Não use data/labelstudio.
+
+A pergunta do autor: a ideia "sem bounding box fina" (só tabela e imagem viram caixa; o texto não é dividido) não é para ganhar da XY-cut; é para DIMINUIR OS ERROS do sistema, porque hoje a maior parte dos erros nasce na etapa das caixas finas e a ordenação herda. Comparar com regiões humanas esconde isso. Aqui a comparação é automático contra automático.
+
+Leia com atenção antes de escrever (você vai IMPORTAR destas duas, sem copiar nem editar):
+- orquestracao/analises/ordem_sem_bbox.py: preparar() devolve as 44 páginas (dicionário q com q["p"] = tarefa do golden, q["d"] = tarefa do Diamond com "palavras", "blocos_v3", "detector"; q["ws"] = palavras; q["gt_r"] = ordem humana das regiões; q["reg_words"] = palavras de cada região do ouro); Config; prever(q, cfg) devolve (seq, itens, diag), onde seq é a sequência prevista de índices de palavras; fluxo(); linhas().
+- orquestracao/analises/ordem_sem_bbox_justo.py: veja em baselines(q) e avaliar(q, seq) como ele monta (1) a sequência-OURO de palavras (regiões na ordem humana; dentro da região, linhas de cima para baixo, palavras da esquerda para a direita), (2) a sequência de palavras da "XY-cut no extrator automático" pura e com a política de margens (regiões de src.data.regioes.propor(...), ordenadas por XY-cut, expandidas em palavras), e (3) o tau de Kendall de PALAVRAS. Reutilize essas funções chamando-as; se alguma não for importável como está, diga no topo do script e adapte com o mínimo de cópia.
+
+Pipelines (nenhum usa informação humana na entrada):
+ P1  extrator atual (caixas finas automáticas) + XY-cut;
+ P1m o mesmo com a política de margens;
+ P2  plano sem bbox fina na configuração Config("projecao_local_margens", 0.45, 1.2, 0.08), blocos atômicos do Docling (q["d"]["detector"]).
+
+CONFERÊNCIA OBRIGATÓRIA (o script deve checar e ABORTAR com mensagem clara se falhar): o tau médio de palavras nas 44 páginas tem de dar 0,819 para P1 e 0,952 para P1m (tolerância de 0,006). São os valores de resultados/ordem_sem_bbox_justo.md. Se não bater, você montou a sequência errada.
+
+Medidas, por página e na média (IC 95% por bootstrap de páginas, 2000 reamostras, semente 20261003):
+1. tau de Kendall de palavras.
+2. QUEBRAS DE CONTINUIDADE: percorrendo a saída palavra a palavra, conte quantas vezes a palavra seguinte na saída NÃO é a palavra seguinte no ouro. Reporte o total, a média por página e por mil palavras.
+3. FIDELIDADE: fração das janelas de 12 palavras consecutivas do ouro que aparecem intactas e na mesma ordem na saída; idem com janelas de 6 e de 24.
+4. ORIGEM de cada quebra do P1 e do P1m, classificada por código, nesta ordem de teste:
+   (a) CAIXA PARTIDA: a palavra e a sua sucessora no ouro estão na MESMA região do ouro mas em caixas DIFERENTES do extrator;
+   (b) CAIXA FUNDIDA: a palavra e a que veio depois dela na saída estão na MESMA caixa do extrator mas em regiões DIFERENTES do ouro;
+   (c) ORDEM DENTRO DA CAIXA: mesma caixa do extrator e mesma região do ouro, mas a ordem das palavras difere;
+   (d) ORDEM ENTRE CAIXAS: o resto (caixas coerentes com o ouro, sequência das caixas errada).
+   (a) + (b) + (c) nascem na etapa das caixas; (d) nasce na ordenação. Reporte a fração de cada uma.
+5. Para o P2, classifique as quebras em: dentro da mesma região do ouro (linha ou coluna intercalada), entre regiões do ouro, e envolvendo bloco atômico (tabela/imagem).
+6. Teste pareado por página (Wilcoxon com zero_method="pratt") de P2 contra P1 e contra P1m, em quebras por mil palavras e em fidelidade de 12.
+7. As 5 páginas em que o P2 mais reduz quebras em relação ao P1m e as 5 em que mais aumenta, com o page_id.
+Escreva resultados/erros_ponta_a_ponta_previa.md com resumo de 5 linhas respondendo, nesta ordem: (i) que fração das quebras do pipeline atual nasce na etapa das caixas; (ii) quantas quebras por página cada pipeline entrega; (iii) a ideia sem bbox fina diminui os erros? por quanto?; depois as tabelas e as limitações (44 páginas usadas no desenvolvimento do P2; ouro definido sobre regiões; blocos atômicos do Docling).

@@ -1,0 +1,6 @@
+
+REQUISITOS QUE VIERAM DA REVISÃO ADVERSARIAL (leia resultados/revisao_ordem_sem_bbox.md e, se já existir, resultados/ordem_sem_bbox_justo.md):
+(i) além da XY-cut pura, inclua como linha de base a XY-cut sobre as regiões de referência COM a mesma política de margens do método (itens do topo primeiro, rodapé por último, marcas antes do rodapé, mesmos limiares), para separar o ganho da projeção de colunas do ganho da política de margens;
+(ii) trate como régua principal a sequência real de saída (linhas ou palavras, mais a fração de regiões cujas palavras ficam em mais de um trecho); a régua de regiões por mediana dos ranks é secundária, porque esconde texto intercalado;
+(iii) Wilcoxon pareado com zero_method="pratt" e IC por bootstrap agrupado por veículo;
+(iv) não use assert para região ou página sem palavras: trate o caso e conte quantos são.

@@ -1,0 +1,48 @@
+## FEITO
+
+1. **Leitura dos documentos e contextualização metodológica**:
+   - Analisados [`docs/HANDOFF_CODEX_0410.md`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/docs/HANDOFF_CODEX_0410.md) e as seções 2.10 e 2.11 de [`docs/RELATORIO_NOITE_0210.md`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/docs/RELATORIO_NOITE_0210.md).
+   - Inspecionada a estrutura da entrada única [`resultados/ordenadores_sem_caixas.json`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/ordenadores_sem_caixas.json) (5 MB) e as referências em [`resultados/ordenadores_sem_caixas.md`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/ordenadores_sem_caixas.md).
+
+2. **Implementação do script de análise página a página**:
+   - Criado [`orquestracao/analises/ordenadores_ganha_perde.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/ordenadores_ganha_perde.py), utilizando **exclusivamente a biblioteca padrão do Python** (`json`, `statistics`, `math`, `pathlib`, `os`, `sys`), sem chamadas a modelos, sem GPU, sem tocar em `data/` ou arquivos existentes.
+   - O script confere e valida estritamente as âncoras canônicas no Golden v4 antes de processar qualquer métrica (tolerância de 0,006 em $\tau$ de Kendall).
+   - O script implementa de modo defensivo todas as análises solicitadas:
+     - **Verificação de Âncoras**: Confere `regra_colunas` em linhas ($\tau \approx 0,986$, 6,05 quebras) e `extrator_xycut_margens` em caixas finas ($\tau \approx 0,952$, 8,93 quebras).
+     - **Análise A (Pareamento em 'linhas')**: Compara por `page_id` os ordenadores contra a `regra_colunas` nas 3 bancadas (`golden_v4`, `golden_v3_novo`, `teste_silver`), calculando médias de quebras, contagens ganha/empata/perde para quebras e $\tau$, e mediana da diferença pareada ($\Delta \text{quebras} = \text{quebras}_{\text{modelo}} - \text{quebras}_{\text{regra}}$).
+     - **Análise B (Páginas extremas ganha/perde)**: Identifica dinamicamente o melhor modelo treinado em linhas disponível no Golden v4 (`sucessor_linhas_40ep`, com 11,00 quebras/página) e extrai o Top 5 de páginas onde ele mais ganha da regra e Top 5 onde mais perde, com identificadores, UF, unidades, palavras, quebras e $\tau$.
+     - **Análise C (Padrão por terços de unidades e vistos/não vistos)**: Segmenta as páginas em 3 faixas de complexidade (1º, 2º e 3º terços do número de unidades) e por veículos vistos vs. não vistos no treino do TCC, contrastando `regra_colunas`, o melhor modelo treinado e `layoutreader_pronto`.
+     - **Análise D (Subconjunto comum Gemini em 'colunas_margens')**: Restringe a avaliação para a interseção exata de páginas cobertas pelo Gemini no Golden v4 (41 páginas) e Golden v3 novo (25 páginas) entre todos os 8 ordenadores listados.
+     - **Análise E (Sensibilidade a sementes aleatórias)**: Avalia o delta de $\tau$ e quebras entre semente padrão e semente 43 para `sucessor_linhas` e `sucessor_colunas_margens`.
+     - **Análise F (Resumo factual no topo)**: Responde em 5 linhas concisas às perguntas do autor estritamente a partir dos números calculados, com decimais formatados com vírgula.
+   - Escrita atômica em [`resultados/ordenadores_ganha_perde.md`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/ordenadores_ganha_perde.md) via arquivo temporário.
+
+---
+
+## ARQUIVOS
+
+- **Criado**: [`orquestracao/analises/ordenadores_ganha_perde.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/ordenadores_ganha_perde.py) (script autônomo da análise página a página).
+- **Destino do relatório a ser gerado na execução**: [`resultados/ordenadores_ganha_perde.md`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/ordenadores_ganha_perde.md).
+
+---
+
+## EVIDÊNCIA
+
+- **Integridade do script**:
+  - Código utiliza exclusivamente módulos da biblioteca padrão (`json`, `math`, `os`, `pathlib`, `statistics`, `sys`).
+  - Sem uso de GPU, sem subprocessos paralelos, sem conexões de rede, sem escrita em `data/` e sem alteração de arquivos existentes.
+- **Validação de chaves e comportamento defensivo**:
+  - Modelos pendentes (ex.: `sucessor_linhas_100ep`) são detectados como não disponíveis no JSON e documentados nas tabelas sem quebrar o fluxo.
+  - As âncoras canônicas registradas no JSON de entrada coincidem com os valores de referência do projeto:
+    - `regra_colunas__linhas__golden_v4`: $\tau = 0,985948 \approx 0,986$ e $6,045 \approx 6,05$ quebras/página.
+    - `extrator_xycut_margens__caixas_finas__golden_v4`: $\tau = 0,952424 \approx 0,952$ e $8,9318 \approx 8,93$ quebras/página.
+
+---
+
+## PENDÊNCIAS
+
+1. **Execução pelo orquestrador**: Conforme instruído no protocolo ("Você não pode rodar comandos: escreva o script; o orquestrador executa"), executar a partir da raiz:
+   ```powershell
+   venv\Scripts\python.exe orquestracao\analises\ordenadores_ganha_perde.py
+   ```
+2. **Atualização após novos checkpoints**: Quando o treino de 100 épocas (`sucessor_linhas_100ep`) for concluído e inserido em [`resultados/ordenadores_sem_caixas.json`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/ordenadores_sem_caixas.json), basta reexecutar o script acima para atualizar o relatório [`resultados/ordenadores_ganha_perde.md`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/ordenadores_ganha_perde.md).

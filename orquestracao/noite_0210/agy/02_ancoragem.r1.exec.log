@@ -1,0 +1,33 @@
+======================================================================
+ANALISE DE VIES DE ANCORAGEM - LABEL STUDIO
+======================================================================
+Iniciando carregamento dos exports do Label Studio...
+Lendo seed1 (ls_p05_seed1.json, 44.8 MB)...
+  -> 529 paginas anotadas | 529 com pre-anotacao original completa.
+Lendo seed2 (ls_p13_seed2.json, 23.3 MB)...
+  -> 750 paginas anotadas | 0 com pre-anotacao original completa.
+Lendo seed3 (ls_p15_seed3.json, 17.3 MB)...
+  -> 720 paginas anotadas | 0 com pre-anotacao original completa.
+Lendo seed4 (ls_p22_seed4.json, 3.7 MB)...
+  -> 120 paginas anotadas | 0 com pre-anotacao original completa.
+
+Compilando metricas estatisticas...
+
+Salvando cache de dados intermediarios em JSON...
+  -> Cache gravado em: C:\Users\pedro\dev\tcc-ri-reading-order\resultados\labelstudio_ancoragem_dados.json
+
+Gerando relatorio Markdown...
+  -> Relatorio gravado em: C:\Users\pedro\dev\tcc-ri-reading-order\resultados\labelstudio_ancoragem.md
+
+======================================================================
+CONCLUSAO DA ANALISE
+======================================================================
+Total de paginas anotadas : 2119
+Total de caixas            : 38517
+  - prediction (intacta)   : 15410 (40.0%)
+  - prediction-changed     : 17257 (44.8%)
+  - manual (criada zero)   : 5850 (15.2%)
+Paginas 100% aceitas       : 5 (0.2%)
+IoU mediano das alteradas  : 0.824 (p10: 0.175)
+Arquivos gerados com sucesso sob resultados/.
+======================================================================

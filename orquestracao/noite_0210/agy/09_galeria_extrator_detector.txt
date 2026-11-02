@@ -1,0 +1,12 @@
+#ESPERA: resultados/deteccao/pred_ls16_diamond_teste.jsonl
+#SCRIPT: orquestracao/analises/galeria_extrator_detector.py
+#SAIDA: resultados/galeria_extrator_detector/index.html
+TAREFA: galeria visual comparando, nas 11 páginas do teste sem viés (data/diamond/diamond_teste), a anotação humana, o extrator de regras e os dois detectores treinados, para o autor conferir a olho.
+Você não pode rodar comandos: escreva o script; o orquestrador executa "venv/Scripts/python.exe orquestracao/analises/galeria_extrator_detector.py" e devolve o erro se falhar.
+
+Leia antes: src/eval/avaliar_diamond.py (como carrega o lote, o ouro das páginas concluídas, as predições de --pred e como roda o extrator com propor()), src/models/detector_layout.py (função prever: formato do jsonl de predição, regiões em pontos do PDF) e src/data/taxonomia_layout.py (classes do guia e o mapeamento para 3 classes).
+
+Entradas: data/diamond/diamond_teste/tarefas.jsonl e anotacoes.jsonl (só páginas concluídas; 11), imagens em data/diamond/diamond_teste/img/; resultados/deteccao/pred_ls3_diamond_teste.jsonl e pred_ls16_diamond_teste.jsonl. As caixas estão em pontos do PDF: escale para pixels pelas dimensões da página e da imagem.
+
+Para cada página gere resultados/galeria_extrator_detector/pagNN.jpg com QUATRO painéis lado a lado (cada um com uns 700 px de largura): ouro humano, extrator, detector ls16, detector ls3. Em todos, caixas coloridas pela classe colapsada em 3 (texto azul, tabela roxo, imagem cinza; o que não entrar em nenhuma, laranja), contorno de 2 px, sem preenchimento; no título de cada painel, o número de caixas. Reutilize as funções do avaliar_diamond.py para obter as regiões do extrator em vez de reimplementar.
+Gere resultados/galeria_extrator_detector/index.html estático (HTML + CSS simples, sem dependência externa) com uma seção por página (veículo no título), a imagem clicável para abrir em tamanho real e uma tabela pequena com o número de caixas de cada sistema por classe.

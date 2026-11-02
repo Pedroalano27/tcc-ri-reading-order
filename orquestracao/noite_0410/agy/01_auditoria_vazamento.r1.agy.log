@@ -1,0 +1,35 @@
+O script de auditoria foi criado com sucesso conforme todas as instruções e restrições metodológicas estabelecidas.
+
+### Resumo do que foi implementado
+
+O módulo [`auditoria_bancadas_treino.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/auditoria_bancadas_treino.py) foi construído utilizando **exclusivamente a biblioteca padrão do Python**, com leitura em fluxo e baixo consumo de memória (descarta caixas e textos de cada linha JSONL, retendo apenas identificadores de página, veículo e arquivo).
+
+O script audita e calcula:
+1. **Visão geral das partições**: contagem de páginas únicas (`page_id`), documentos PDF distintos (`<veiculo>/<arquivo>`) e veículos distintos em cada partição (`treino` base + extra, `validação silver`, `teste silver`, `bancada humana A` / Golden v4, `bancada humana B nova` / Golden v3 fora do v4 e `bancada humana B total`).
+2. **Sobreposição exata de `page_id`**: verifica e lista todas as páginas idênticas entre treino e cada partição de avaliação.
+3. **Sobreposição de PDFs (mesmo veículo e arquivo)**: audita vazamentos intra-documento em nível de arquivo PDF (mesmo veículo e arquivo, páginas distintas ou iguais).
+4. **Distribuição por veículo nas bancadas humanas**: tabela discriminada por veículo para a Bancada A e Bancada B nova, com identificação do papel metodológico no [`splits.json`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/data/processed/splits.json) e cômputo dos totais em veículos **vistos no treino** vs. **não vistos** (capacidade de generalização zero-shot de veículo/layout).
+5. **Resumo executivo de 4 linhas no topo** do relatório [`auditoria_bancadas_treino.md`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/auditoria_bancadas_treino.md).
+6. **Exportação da lista de exclusão limpa** para [`auditoria_excluir_do_treino.txt`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/auditoria_excluir_do_treino.txt), contendo todos os `page_id`s do conjunto de treino cujos PDFs físicos aparecem em qualquer bancada humana.
+
+---
+
+### FEITO
+- Desenvolvimento do script autônomo [`orquestracao/analises/auditoria_bancadas_treino.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/auditoria_bancadas_treino.py).
+- Implementação de parsing defensivo para múltiplos formatos de `page_id` e extração robusta de metadados de partição a partir de [`data/processed/splits.json`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/data/processed/splits.json).
+- Lógica de geração do relatório analítico em Markdown estruturado e do arquivo TXT de isolamento para consumo do orquestrador.
+
+### ARQUIVOS
+- [`orquestracao/analises/auditoria_bancadas_treino.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/auditoria_bancadas_treino.py) *(novo)*
+
+### EVIDÊNCIA
+- O script foi estruturado e inspecionado para conformidade estrita com a biblioteca padrão (`argparse`, `collections`, `datetime`, `json`, `os`, `pathlib`, `sys`).
+- Não foram acessados nem referenciados diretórios restritos (`data/labelstudio`).
+- Nenhuma modificação foi realizada em arquivos existentes ou sob `data/`.
+
+### PENDÊNCIAS
+- Execução do comando pelo orquestrador:
+  ```powershell
+  venv\Scripts\python.exe orquestracao/analises/auditoria_bancadas_treino.py
+  ```
+- Assim que executado, o script gravará os artefatos [`resultados/auditoria_bancadas_treino.md`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/auditoria_bancadas_treino.md) e [`resultados/auditoria_excluir_do_treino.txt`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/auditoria_excluir_do_treino.txt).

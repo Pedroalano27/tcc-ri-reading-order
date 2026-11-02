@@ -1,0 +1,54 @@
+======================================================================
+Iniciando geração da galeria visual: Ordem sem Bounding Box Fina
+Configuração alvo: projecao_local_margens_s0.45_g1.2_v0.08
+======================================================================
+[1/4] 44 páginas carregadas com sucesso.
+[2/4] Calculando predições, métricas e detecções de colunas...
+[3/4] Páginas ordenadas da pior (τ = 0.333) à melhor (τ = 1.000).
+[4/4] Renderizando imagens e index.html...
+  [#01/44] pag01.jpg (τ=0.333) -> official_diary_ac/executive_official_diary_2022-08-03.pdf#p109
+  [#02/44] pag02.jpg (τ=0.600) -> official_diary_ms/executive_official_diary_46741_2021-06-29.pdf#p48
+  [#03/44] pag03.jpg (τ=0.733) -> official_diary_RJ_barra_do_pirai/executive_official_diary_2022-05-26_095.pdf#p2
+  [#04/44] pag04.jpg (τ=0.733) -> official_diary_RJ_barra_do_pirai/executive_official_diary_2026-01-16_010.pdf#p2
+  [#05/44] pag05.jpg (τ=0.800) -> official_diary_ms/executive_official_diary_48733_2024-11-05.pdf#p233
+  [#06/44] pag06.jpg (τ=0.800) -> official_diary_se/DOE-SE_2023-03-10_5100.pdf#p14
+  [#07/44] pag07.jpg (τ=0.923) -> official_diary_se/DOE-SE_2026-01-16_7401.pdf#p31
+  [#08/44] pag08.jpg (τ=0.924) -> official_diary_RJ_barra_do_pirai/executive_official_diary_2023-11-24_214.pdf#p3
+  [#09/44] pag09.jpg (τ=0.927) -> official_diary_rj_japeri/JAPERI-5690-06-DE-SETEMBRO-2024.pdf#p13
+  [#10/44] pag10.jpg (τ=0.942) -> official_diary_al/DOEAL-2021-10-06-COMPLETO_87_152.pdf#p0
+  [#11/44] pag11.jpg (τ=0.943) -> official_diary_RJ_duque_de_caxias/executive_official_diary_2022-09-28_Boletim_7197.pdf#p44
+  [#12/44] pag12.jpg (τ=0.951) -> official_diary_RJ_seropedica/executive_official_diary_2022-05-09_986.pdf#p2
+  [#13/44] pag13.jpg (τ=0.958) -> official_diary_RJ_volta_redonda/executive_official_diary_2023-09-22_1987-extra.pdf#p16
+  [#14/44] pag14.jpg (τ=0.959) -> official_diary_pb/Diario Oficial 10-09-2025 Portal.pdf#p41
+  [#15/44] pag15.jpg (τ=0.960) -> official_diary_ro/executive_official_diary_2023-07-26_304_320.pdf#p0
+  [#16/44] pag16.jpg (τ=0.963) -> official_diary_mg/executive_official_diary_2021-07-06.pdf#p28
+  [#17/44] pag17.jpg (τ=0.973) -> official_diary_ac/executive_official_diary_2025-02-11.pdf#p114
+  [#18/44] pag18.jpg (τ=0.974) -> official_diary_to/2024-04-17_5147.pdf#p47
+  [#19/44] pag19.jpg (τ=0.979) -> official_diary_rj/Parte II (Poder Legislativo)_2024-02-06.pdf#p1
+  [#20/44] pag20.jpg (τ=0.981) -> official_diary_pb/Diario Oficial 10-01-2026 Portal.pdf#p26
+  [#21/44] pag21.jpg (τ=0.981) -> official_diary_RJ_seropedica/executive_official_diary_2022-05-09_986.pdf#p3
+  [#22/44] pag22.jpg (τ=0.982) -> official_diary_to/2022-12-13_4783.pdf#p10
+  [#23/44] pag23.jpg (τ=0.983) -> official_diary_rr/2021-09-23_DiarioRR.pdf#p10
+  [#24/44] pag24.jpg (τ=0.983) -> official_diary_pi_v2/executive_official_diary_2024_01_12_9_2024_243_297.pdf#p0
+  [#25/44] pag25.jpg (τ=0.987) -> official_diary_ce/do20220530p02.pdf#p53
+  [#26/44] pag26.jpg (τ=0.987) -> official_diary_pi_v2/executive_official_diary_2025_11_07_216_2025.pdf#p2
+  [#27/44] pag27.jpg (τ=0.990) -> official_diary_al/DOEAL-2026-01-16-SUPLEMENTO.pdf#p9
+  [#28/44] pag28.jpg (τ=0.993) -> official_diary_ba_salvador/dom-8379-27-09-2022.pdf#p5
+  [#29/44] pag29.jpg (τ=0.993) -> official_diary_rs_porto_alegre/4689_cl_20230227_legislativo.pdf#p1
+  [#30/44] pag30.jpg (τ=0.995) -> official_diary_MG_congonhas/executive_official_diary_2020-12-10_2591.pdf#p1
+  [#31/44] pag31.jpg (τ=0.999) -> official_diary_al/DOEAL-2023-03-22-COMPLETO_54_172.pdf#p0
+  [#32/44] pag32.jpg (τ=1.000) -> official_diary_RJ_duque_de_caxias/executive_official_diary_2025-05-02_Boletim_7582_vol2.pdf#p0
+  [#33/44] pag33.jpg (τ=1.000) -> official_diary_rs_porto_alegre/4689_cl_20230227_legislativo.pdf#p2
+  [#34/44] pag34.jpg (τ=1.000) -> official_diary_ap/2024-05-07_DOEn8159_Edicao Ordinaria.pdf#p373
+  [#35/44] pag35.jpg (τ=1.000) -> official_diary_sc/2023-11-27_22151.pdf#p28
+  [#36/44] pag36.jpg (τ=1.000) -> official_diary_MG_congonhas/executive_official_diary_2022-09-02_3022.pdf#p20
+  [#37/44] pag37.jpg (τ=1.000) -> official_diary_am_manaus/2023-03-13_caderno_2.pdf#p22
+  [#38/44] pag38.jpg (τ=1.000) -> official_diary_ap/2024-02-20_DOEn8106_Edicao Ordinaria.pdf#p35
+  [#39/44] pag39.jpg (τ=1.000) -> official_diary_ma/executive_official_diary_2023-03-06.pdf#p71
+  [#40/44] pag40.jpg (τ=1.000) -> official_diary_pe/2023-02-02_1-Poder Executivo.pdf#p6
+  [#41/44] pag41.jpg (τ=1.000) -> official_diary_pr_curitiba/24-Supl1_2024-02-05.pdf#p4
+  [#42/44] pag42.jpg (τ=1.000) -> official_diary_rj_japeri/JAPERI-5606-09-DE-MAIO-2024.pdf#p3
+  [#43/44] pag43.jpg (τ=1.000) -> official_diary_rn/DOE-RN_2022-12-29_Ordinaria.pdf#p59
+  [#44/44] pag44.jpg (τ=1.000) -> official_diary_ro/executive_official_diary_suplemento_2026-01-09.pdf#p16
+[OK] Galeria gerada com sucesso em: C:\Users\pedro\dev\tcc-ri-reading-order\resultados\galeria_ordem_sem_bbox
+[OK] index.html: C:\Users\pedro\dev\tcc-ri-reading-order\resultados\galeria_ordem_sem_bbox\index.html

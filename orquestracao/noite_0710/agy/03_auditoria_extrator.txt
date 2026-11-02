@@ -1,0 +1,22 @@
+#SCRIPT: orquestracao/analises/auditoria_extrator_sem_paragrafos.py
+#SAIDA: resultados/auditoria_extrator_sem_paragrafos.md
+TAREFA: auditar o EXTRATOR NOVO (sem caixas de parágrafo: texto em linhas, só tabela e imagem como bloco, margens e quadros separados) e achar ERROS e INCONSISTÊNCIAS de forma automática, em todas as páginas exportadas.
+Você não pode rodar comandos: escreva o script; o orquestrador executa "venv/Scripts/python.exe -B orquestracao/analises/auditoria_extrator_sem_paragrafos.py" e devolve o erro se falhar. Só biblioteca padrão e PIL. Não rode modelo. Não edite arquivos existentes.
+
+Entradas (JSONL, leia em fluxo, uma página por linha; descubra os campos por código, são grandes):
+- resultados/datasets_sem_caixas/{linhas,colunas}/{treino,validacao,teste,sem_split,bancada_humana}.jsonl: cada página tem "page_id", "uf", "dimensions" {width,height}, "palavras" (lista; cada palavra [texto, x0, y0, x1, y1, ...]), "unidades" (cada uma: "id", "tipo" = "texto"|"texto_coluna"|"table"|"picture", "bbox" [x0,y0,x1,y1], "ks" = índices das palavras, "text"; em colunas também "linhas"). A bancada_humana repete páginas dos outros arquivos: conte cada page_id uma vez.
+- resultados/estruturas_golden_v4/{linhas,colunas}.jsonl: 45 páginas do Golden com os tipos extras "cabecalho", "rodape", "quadro_externo".
+- imagens do Golden: data/golden/golden_v4/tarefas.jsonl (campos page_id, imagem) e a pasta data/golden/golden_v4/img/.
+- Notas do autor sobre defeitos reais: data/golden/golden_v1/anotacoes.jsonl, golden_v2 e golden_v4 (campo "nota", por page_id): use-as para CALIBRAR os detectores (o detector tem de acender nas páginas com nota que descreve o defeito) e reporte a taxa de acerto.
+
+Detectores (cada um devolve, por página, uma lista de achados com unidade, tipo de defeito e gravidade de 0 a 1):
+ D1 LINHA QUE ATRAVESSA COLUNAS: unidade de texto cuja largura passa de 60% da página E que tem um vão horizontal entre palavras consecutivas maior que 4% da largura da página (duas colunas coladas numa linha só).
+ D2 SOBREPOSIÇÃO TABELA x TEXTO: caixa de tabela ou imagem que cobre mais de 30% da área de uma unidade de texto (ou o contrário) sem conter as palavras dela.
+ D3 COLUNA NÃO SEPARADA: página em que 80% ou mais das unidades de texto têm largura acima de 70% da página, mas a mediana do comprimento das linhas em palavras é menor que 6 e há pelo menos 40 linhas (indício de duas ou mais colunas que viraram uma só).
+ D4 TABELA SUSPEITA: tabela com menos de 4 linhas de palavras ou menos de 2 colunas de palavras (vão vertical entre palavras em pelo menos 3 linhas), ou "tabela" cuja primeira coluna é só texto corrido (lista de nomes).
+ D5 CABEÇALHO/RODAPÉ FRAGMENTADO (só nas 45 páginas de estruturas): mais de 2 unidades "cabecalho" ou mais de 2 "rodape" na mesma página, ou unidade desse tipo com menos de 3 palavras.
+ D6 LINHA COM ALTURA ANÔMALA: unidade de texto com altura maior que 2,5 vezes a mediana das alturas de linha da página (linhas de duas alturas coladas).
+ D7 TEXTO SEM DONO PERTO DE ÁTOMO: palavra de texto cujo centro cai dentro de uma tabela/imagem mas que pertence a uma unidade de texto fora dela.
+Para cada detector, com a ajuda das notas, diga quantas páginas com nota acende e quantas páginas sem nota acende.
+
+Relatório resultados/auditoria_extrator_sem_paragrafos.md: (1) resumo de cinco linhas: quais defeitos são mais frequentes, quantos por cento das páginas têm pelo menos um defeito grave, quais veículos (uf) concentram; (2) tabela por detector: páginas afetadas, % do total, gravidade média, acerto contra as notas; (3) as 15 páginas piores no geral e as 5 piores por detector, com page_id e uf; (4) galeria resultados/auditoria_extrator_sem_paragrafos/NN_<detector>_<uf>.jpg das 4 piores páginas de cada detector (só as do Golden têm imagem local; para as demais, desenhe as caixas sobre fundo branco em escala), com as unidades em azul e as suspeitas em vermelho; (5) JSON resultados/auditoria_extrator_sem_paragrafos.json com todos os achados por página (o orquestrador usa depois); (6) limitações. Decimais com vírgula, todo número sai do script.

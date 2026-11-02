@@ -1,0 +1,27 @@
+#SAIDA: resultados/ordem_sem_bbox_validacao_acervo.md
+TAREFA (pense fundo, teste com código): validar o método "ordem de leitura sem bounding box fina" em páginas do PRÓPRIO acervo do TCC que NÃO foram usadas para desenvolvê-lo.
+
+Contexto: orquestracao/analises/ordem_sem_bbox.py + resultados/ordem_sem_bbox.md (leia os dois) ordenam linhas de texto direto, com tabela e imagem do detector Docling como blocos atômicos e colunas por projeção. Nas 44 páginas do golden_v4: tau 0,917 contra 0,825 da XY-cut em regiões humanas, mas o método foi desenvolvido olhando essas mesmas páginas e perde no estrato multicoluna. Falta teste em dado novo, e este é o mais limpo que temos: ordem humana CEGA (não é correção de uma sugestão automática).
+
+Dois conjuntos novos (somente leitura; não use data/labelstudio aqui):
+A. data/golden/_avaliacao/golden_v3/ (tarefas.jsonl + referencia.jsonl; leia o LEIAME.md): 47 páginas com ordem humana sobre os blocos da segmentação v3. Vinte delas são as mesmas páginas do piloto do golden_v4 (confira pelo page_id contra data/golden/golden_v4/tarefas.jsonl): reporte SEPARADO "páginas novas" (as que não estão no golden_v4) e "páginas repetidas".
+B. A partição de teste do protocolo (src/eval/protocolo.py: carregar_particao("teste"), 89 páginas dos veículos CE, MA, RJ; veja como src/eval/baselines.py e src/eval/comparar.py obtêm a referência e a entrada embaralhada). Aqui a referência é "silver": a ordem do fluxo do PDF, em veículos escolhidos justamente porque ela concorda com a XY-cut. Isso favorece a XY-cut; diga isso.
+
+Para rodar o método nessas páginas você precisa de palavras com coordenadas e das regiões table/picture do Docling:
+- palavras: abra o PDF em data/raw (campos uf/arquivo/pagina da página) com pdfplumber e use src/data/extrator.py (palavras_da_pagina), como o próprio extrator faz; confira que as caixas dos blocos da referência batem com as palavras (mesmo sistema de coordenadas) antes de confiar;
+- Docling: leia o cache data/processed/layout/<uf>.jsonl (formato no docstring de src/data/layout.py; guarda score >= 0,3). Se alguma página não estiver no cache, rode o detector em CPU e guarde em resultados/ordem_sem_bbox_cache/ (nunca em data/).
+Guarde as palavras extraídas em resultados/ordem_sem_bbox_cache/ para a execução ser retomável.
+
+Faça em orquestracao/analises/ordem_sem_bbox_validacao_acervo.py (importe do script anterior; não o edite):
+1. CONGELE a configuração: a mais escolhida no leave-one-page-out do golden_v4 (projecao_local_margens_s0.45_g1.2_v0.08), sem reajustar nada nas páginas novas. Reporte também, só como sensibilidade e rotulado como tal, a variante sem a política de margens.
+2. Régua de regiões: projete a sequência prevista de linhas nos blocos da referência (mesma projeção por mediana dos ranks) e meça tau de Kendall, sucessor correto e ARD normalizado contra a ordem de referência. Compare com XY-cut e ingênua sobre os mesmos blocos (src/eval/baselines.py). IC 95% por bootstrap de páginas e teste pareado (Wilcoxon) contra a XY-cut.
+3. Estratos: 1 coluna x multicoluna (use a detecção de colunas do próprio método e declare o critério); por veículo; e, no conjunto A, grupos silver x incerto.
+4. Continuidade real: a projeção por mediana esconde texto intercalado. Reporte a fração de blocos da referência cujas palavras aparecem em mais de um trecho da sequência prevista.
+5. Análise de erro: as 8 páginas em que o método mais perde para a XY-cut, com o motivo (cabeçalho/rodapé, tabelas lado a lado, coluna não detectada, título atravessando colunas, bloco v3 que mistura colunas). Diga quais desses motivos já apareciam no golden_v4 e quais são novos.
+Escreva resultados/ordem_sem_bbox_validacao_acervo.md: resumo de 5 linhas com veredito claro (o ganho do golden_v4 se confirma em páginas novas? em quais condições?), tabelas, análise de erro, limitações e recomendação para o TCC. No fim rode do zero e confira que o relatório bate com a saída. Resposta final: veredito, tabela principal e caminhos dos arquivos.
+
+REQUISITOS QUE VIERAM DA REVISÃO ADVERSARIAL (leia resultados/revisao_ordem_sem_bbox.md e, se já existir, resultados/ordem_sem_bbox_justo.md):
+(i) além da XY-cut pura, inclua como linha de base a XY-cut sobre as regiões de referência COM a mesma política de margens do método (itens do topo primeiro, rodapé por último, marcas antes do rodapé, mesmos limiares), para separar o ganho da projeção de colunas do ganho da política de margens;
+(ii) trate como régua principal a sequência real de saída (linhas ou palavras, mais a fração de regiões cujas palavras ficam em mais de um trecho); a régua de regiões por mediana dos ranks é secundária, porque esconde texto intercalado;
+(iii) Wilcoxon pareado com zero_method="pratt" e IC por bootstrap agrupado por veículo;
+(iv) não use assert para região ou página sem palavras: trate o caso e conte quantos são.

@@ -1,0 +1,18 @@
+#ESPERA: runs/detect/ls3/treino_ok
+TAREFA (pense fundo, teste com código): o plano do orientador DE PONTA A PONTA, com o nosso próprio detector de 3 classes.
+
+Contexto: orquestracao/analises/ordem_sem_bbox.py e resultados/ordem_sem_bbox.md (já prontos) testaram ordenar linhas de texto direto, usando tabelas/imagens do detector Docling como blocos atômicos, nas 44 páginas do golden_v4 (ordem humana em data/golden/golden_v4). Agora existe um detector YOLO treinado em 1.590 páginas anotadas à mão com 3 classes (texto, tabela, imagem): runs/detect/ls3/weights/best.pt (dataset em data/deteccao/ls3, só para referência).
+
+Faça em orquestracao/analises/ordem_sem_bbox_ls3.py (importando do script anterior; não o edite):
+1. Rode o detector ls3 EM CPU (ultralytics YOLO(...).predict(img, device="cpu", imgsz=1024)) nas imagens das 44 páginas (data/golden/golden_v4/img/) e converta as caixas de pixel para pontos do PDF. Guarde as predições em resultados/ordem_sem_bbox_ls3_pred.jsonl.
+2. Reavalie o pipeline "sem bbox fina" trocando a origem dos blocos atômicos: (a) Docling (como antes), (b) detector ls3 (tabela e imagem), (c) tabela/figura do ouro (diagnóstico), (d) nenhum bloco atômico (tudo é texto). Mesmas réguas (regiões e linhas), mesma seleção leave-one-page-out, IC por bootstrap, Wilcoxon pareado entre (a) e (b).
+3. Use também a classe "texto" do ls3: as caixas de texto do detector ajudam a delimitar colunas ou parágrafos melhor que a projeção geométrica? Teste pelo menos uma variante que ordena as caixas de texto do ls3 (XY-cut sobre elas, projetada no ouro) e compare.
+4. Qualidade do detector nessas 44 páginas contra o ouro do Diamond colapsado em 3 classes (tabela -> tabela; figura -> imagem; resto -> texto): revocação e precisão de tabela e de imagem por IoU >= 0,5.
+5. Análise de erro: onde trocar Docling por ls3 muda a ordem, para melhor e para pior, e por quê.
+Escreva resultados/ordem_sem_bbox_ls3.md (resumo de 5 linhas com veredito, tabelas, erros, limitações, recomendação). No fim rode o script do zero e confira que o relatório bate com a saída. Resposta final: veredito, tabela principal e caminhos dos arquivos.
+
+REQUISITOS QUE VIERAM DA REVISÃO ADVERSARIAL (leia resultados/revisao_ordem_sem_bbox.md e, se já existir, resultados/ordem_sem_bbox_justo.md):
+(i) além da XY-cut pura, inclua como linha de base a XY-cut sobre as regiões de referência COM a mesma política de margens do método (itens do topo primeiro, rodapé por último, marcas antes do rodapé, mesmos limiares), para separar o ganho da projeção de colunas do ganho da política de margens;
+(ii) trate como régua principal a sequência real de saída (linhas ou palavras, mais a fração de regiões cujas palavras ficam em mais de um trecho); a régua de regiões por mediana dos ranks é secundária, porque esconde texto intercalado;
+(iii) Wilcoxon pareado com zero_method="pratt" e IC por bootstrap agrupado por veículo;
+(iv) não use assert para região ou página sem palavras: trate o caso e conte quantos são.

@@ -1,0 +1,75 @@
+Loading weights:   0%|          | 0/400 [00:00<?, ?it/s]Loading weights:  43%|████▎     | 173/400 [00:00<00:00, 1706.16it/s]Loading weights:  91%|█████████▏| 365/400 [00:00<00:00, 1818.32it/s]Loading weights: 100%|██████████| 400/400 [00:00<00:00, 1821.14it/s]
+[treino] layoutreader_ajustado_linhas: 873/873 paginas; cuda; micro=1; acum=8
+  ep=1 pagina=80/873 passo=10 loss=8.00112 s=9.1
+  ep=1 pagina=160/873 passo=20 loss=0.82359 s=12.5
+  ep=1 pagina=240/873 passo=30 loss=1.60448 s=15.8
+  ep=1 pagina=320/873 passo=40 loss=1.15139 s=19.1
+  ep=1 pagina=400/873 passo=50 loss=3.30215 s=22.4
+  ep=1 pagina=480/873 passo=60 loss=4.56482 s=25.6
+  ep=1 pagina=560/873 passo=70 loss=3.34222 s=29.0
+  ep=1 pagina=640/873 passo=80 loss=4.12223 s=32.5
+  ep=1 pagina=720/873 passo=90 loss=3.78753 s=36.0
+  ep=1 pagina=800/873 passo=100 loss=1.14712 s=39.7
+  ep=1 pagina=873/873 passo=110 loss=0.68958 s=43.1
+[val] layoutreader_ajustado_linhas: tau unidades=0.901046, passos=110
+  ep=2 pagina=80/873 passo=120 loss=1.98230 s=57.3
+  ep=2 pagina=160/873 passo=130 loss=1.77993 s=66.4
+  ep=2 pagina=240/873 passo=140 loss=1.81146 s=70.0
+  ep=2 pagina=320/873 passo=150 loss=1.36517 s=73.5
+  ep=2 pagina=400/873 passo=160 loss=2.48647 s=77.1
+  ep=2 pagina=480/873 passo=170 loss=1.16093 s=81.2
+  ep=2 pagina=560/873 passo=180 loss=0.43553 s=84.6
+  ep=2 pagina=640/873 passo=190 loss=3.61115 s=88.3
+  ep=2 pagina=720/873 passo=200 loss=0.33485 s=91.6
+  ep=2 pagina=800/873 passo=210 loss=0.76883 s=94.8
+  ep=2 pagina=873/873 passo=220 loss=0.69264 s=98.0
+[val] layoutreader_ajustado_linhas: tau unidades=0.894988, passos=220
+  ep=3 pagina=80/873 passo=230 loss=2.02293 s=107.5
+  ep=3 pagina=160/873 passo=240 loss=0.36470 s=110.9
+  ep=3 pagina=240/873 passo=250 loss=4.89646 s=114.2
+  ep=3 pagina=320/873 passo=260 loss=0.56341 s=117.5
+  ep=3 pagina=400/873 passo=270 loss=4.53366 s=120.8
+  ep=3 pagina=480/873 passo=280 loss=0.52695 s=123.9
+  ep=3 pagina=560/873 passo=290 loss=1.39798 s=132.9
+  ep=3 pagina=640/873 passo=300 loss=4.02607 s=136.1
+  ep=3 pagina=720/873 passo=310 loss=1.09750 s=139.5
+  ep=3 pagina=800/873 passo=320 loss=0.72838 s=143.0
+  ep=3 pagina=873/873 passo=330 loss=2.97549 s=145.9
+[val] layoutreader_ajustado_linhas: tau unidades=0.897268, passos=330
+  ep=4 pagina=80/873 passo=340 loss=0.85171 s=156.5
+  ep=4 pagina=160/873 passo=350 loss=3.75611 s=160.3
+  ep=4 pagina=240/873 passo=360 loss=0.42877 s=164.1
+  ep=4 pagina=320/873 passo=370 loss=5.57080 s=167.9
+  ep=4 pagina=400/873 passo=380 loss=1.30749 s=171.8
+  ep=4 pagina=480/873 passo=390 loss=1.36357 s=175.8
+  ep=4 pagina=560/873 passo=400 loss=0.94485 s=179.2
+  ep=4 pagina=640/873 passo=410 loss=5.38020 s=182.6
+  ep=4 pagina=720/873 passo=420 loss=0.93693 s=185.8
+  ep=4 pagina=800/873 passo=430 loss=0.99113 s=189.5
+  ep=4 pagina=873/873 passo=440 loss=5.39418 s=198.0
+[val] layoutreader_ajustado_linhas: tau unidades=0.897531, passos=440
+[OK] layoutreader_ajustado_linhas: 440 passos, 204.0s, melhor val=0.901046
+Loading weights:   0%|          | 0/400 [00:00<?, ?it/s]Loading weights:  35%|███▌      | 141/400 [00:00<00:00, 1409.71it/s]Loading weights:  83%|████████▎ | 333/400 [00:00<00:00, 1709.72it/s]Loading weights: 100%|██████████| 400/400 [00:00<00:00, 1694.06it/s]
+[inferir] layoutreader_ajustado_linhas linhas golden_v4: 20
+[inferir] layoutreader_ajustado_linhas linhas golden_v4: 40
+[pred] C:\Users\pedro\dev\tcc-ri-reading-order\resultados\ordenadores_treinados_sem_caixas\pred\layoutreader_ajustado_linhas__linhas__golden_v4.jsonl
+[inferir] layoutreader_ajustado_linhas linhas golden_v3_novo: 20
+[pred] C:\Users\pedro\dev\tcc-ri-reading-order\resultados\ordenadores_treinados_sem_caixas\pred\layoutreader_ajustado_linhas__linhas__golden_v3_novo.jsonl
+[inferir] layoutreader_ajustado_linhas linhas teste_silver: 20
+[inferir] layoutreader_ajustado_linhas linhas teste_silver: 40
+[inferir] layoutreader_ajustado_linhas linhas teste_silver: 60
+[inferir] layoutreader_ajustado_linhas linhas teste_silver: 80
+[pred] C:\Users\pedro\dev\tcc-ri-reading-order\resultados\ordenadores_treinados_sem_caixas\pred\layoutreader_ajustado_linhas__linhas__teste_silver.jsonl
+Avaliar layoutreader_ajustado_linhas__linhas__golden_v4: 20/44
+Avaliar layoutreader_ajustado_linhas__linhas__golden_v4: 40/44
+layoutreader_ajustado_linhas__linhas__golden_v4: 44 paginas; completa=True
+ancora_ok.json publicado: 54 tabelas obrigatorias completas
+Avaliar layoutreader_ajustado_linhas__linhas__golden_v3_novo: 20/27
+layoutreader_ajustado_linhas__linhas__golden_v3_novo: 27 paginas; completa=True
+ancora_ok.json publicado: 54 tabelas obrigatorias completas
+Avaliar layoutreader_ajustado_linhas__linhas__teste_silver: 20/89
+Avaliar layoutreader_ajustado_linhas__linhas__teste_silver: 40/89
+Avaliar layoutreader_ajustado_linhas__linhas__teste_silver: 60/89
+Avaliar layoutreader_ajustado_linhas__linhas__teste_silver: 80/89
+layoutreader_ajustado_linhas__linhas__teste_silver: 89 paginas; completa=True
+ancora_ok.json publicado: 54 tabelas obrigatorias completas

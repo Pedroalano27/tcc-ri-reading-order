@@ -1,0 +1,40 @@
+06/10 23:42:09 exportacao completa: inicio
+06/10 23:49:45 [ceia] lendo Benchmark-LayoutAnalysis_xycut_pp
+06/10 23:50:29 [ceia] Benchmark-LayoutAnalysis_xycut_pp: rc=0 relato=AUSENTE
+06/10 23:50:29 [ceia] lendo Benchmark-LayoutAnalysis
+06/10 23:51:24 [ceia] Benchmark-LayoutAnalysis: rc=0 relato=AUSENTE
+06/10 23:51:24 [ceia] lendo Benchmark
+06/10 23:51:47 [ceia] Benchmark: rc=0 relato=AUSENTE
+06/10 23:51:47 [ceia] lendo official-diaries-analysis
+07/10 00:01:10 [ceia] official-diaries-analysis: rc=0 relato=13597
+07/10 00:01:10 [ceia] lendo pipeline-amostras-anotacao
+07/10 00:07:46 [ceia] pipeline-amostras-anotacao: rc=0 relato=28690
+07/10 00:07:46 [ceia] lendo synthetic-doc-gen
+07/10 00:11:01 [ceia] synthetic-doc-gen: rc=0 relato=13588
+07/10 00:11:01 [ceia] lendo official-diaries-collector
+07/10 00:15:57 [ceia] official-diaries-collector: rc=0 relato=9559
+07/10 00:15:57 [ceia] sintese
+07/10 00:17:05 [ceia] fim (copiado para resultados/ceia_datapolicy)
+{'linhas': 3140, 'colunas': 3140, 'colunas_margens': 3140} 43
+07/10 05:00:53 exportacao completa: fim
+07/10 05:01:26 [ceia] lendo Benchmark-LayoutAnalysis_xycut_pp
+07/10 05:03:09 [ceia] Benchmark-LayoutAnalysis_xycut_pp: rc=0 relato=AUSENTE
+07/10 05:03:09 [ceia] lendo Benchmark-LayoutAnalysis
+07/10 05:03:47 [ceia] Benchmark-LayoutAnalysis: rc=0 relato=AUSENTE
+07/10 05:03:47 [ceia] lendo Benchmark
+07/10 05:08:52 [ceia] Benchmark: rc=0 relato=20490
+07/10 05:08:52 [ceia] sintese
+07/10 05:11:09 [ceia] fim (copiado para resultados/ceia_datapolicy)
+07/10 05:11:46 [ceia] lendo Benchmark-LayoutAnalysis_xycut_pp
+07/10 05:36:51 [ceia] Benchmark-LayoutAnalysis_xycut_pp: rc=0 relato=AUSENTE
+07/10 05:36:51 [ceia] lendo Benchmark-LayoutAnalysis
+07/10 05:48:44 [ceia] Benchmark-LayoutAnalysis: rc=0 relato=26883
+07/10 05:48:44 [ceia] sintese
+07/10 05:49:45 [ceia] fim (copiado para resultados/ceia_datapolicy)
+07/10 20:34:24 treino sucessor_linhas_completo_s42: inicio
+07/10 23:28:33 treino sucessor_linhas_completo_s42: inicio
+08/10 01:14:38 treino sucessor_linhas_completo_s42: fim (rc=0)
+08/10 01:14:39 fim
+08/10 04:18:39 treino sucessor_linhas_completo_s43: inicio
+08/10 06:10:26 treino sucessor_linhas_completo_s43: fim (rc=0)
+08/10 06:10:27 fim

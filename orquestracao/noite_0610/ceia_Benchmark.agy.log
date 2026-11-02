@@ -1,0 +1,28 @@
+O relatório técnico foi gerado com sucesso e salvo em [RELATO_Benchmark.md](file:///C:/Users/pedro/dev/ceia_datapolicy/RELATO_Benchmark.md).
+
+### Resumo dos Principais Achados para o TCC
+
+1. **Escopo Real do Repositório `./Benchmark` (`gazette-layout-benchmark`, v1.0.0):**
+   - É exclusivamente um **benchmark lacrado (*frozen yardstick*) de detecção de caixas 2D** (Bounding Box Object Detection) estilo COCO para páginas de Diários Oficiais brasileiros.
+   - **Ordenação de Leitura e Colunas:** **NÃO ACHOU.** Não há qualquer implementação de ordenação de leitura (XY-cut, XY-cut++, LayoutReader, LayoutLM), calhas, projeção de histogramas ou métricas de sequência (tau de Kendall, quebras de leitura).
+
+2. **Detecção de Layout:**
+   - **Modelo e Pesos:** Suporta inferência de `DocLayout-YOLO` via classe `YOLOv10` no script [benchmark/predict_doclayout.py](file:///C:/Users/pedro/dev/ceia_datapolicy/Benchmark/benchmark/predict_doclayout.py#L39-L70), exemplificando pesos como `doclayout_yolo_docsynth300k_imgsz1600.pt`.
+   - **Classes (15 ativas):** Definidas em [configs/benchmark-v1.json](file:///C:/Users/pedro/dev/ceia_datapolicy/Benchmark/configs/benchmark-v1.json#L1) (`header`, `footer`, `title`, `section title`, `paragraph`, `table`, `figure`, `caption`, `sub section title`, `id`, `signature`, `heading`, `chart`, `act`, `act section`). `unknown` é explicitamente excluída via `_taxonomy()` em [benchmark/core.py](file:///C:/Users/pedro/dev/ceia_datapolicy/Benchmark/benchmark/core.py#L77-L86).
+   - **Parâmetros de Inferência:** Resolução padrão `--imgsz 1024` (com suporte a `1600`) e `--conf 0.001` (para varredura completa da curva Precision-Recall).
+   - **Pós-processamento:** Sem algoritmo próprio de fusão de caixas (NMS); aplica teto de 100 detecções por imagem/classe (`MAX_DETECTIONS = 100`).
+
+3. **Métricas e Metodologia:**
+   - **Emparelhamento e IoU:** Função `_match_page()` e `_iou()` em [benchmark/core.py](file:///C:/Users/pedro/dev/ceia_datapolicy/Benchmark/benchmark/core.py#L360-L406) com greedy matching em 10 limiares (0.50 a 0.95 com passo de 0.05). Interpolação de 101 pontos em `_ap()`.
+   - **Incerteza e Bootstrap:** 1.000 reamostragens agrupadas por edição de diário (`document_group_id` / `document-group`) em `_resamples()` ([benchmark/core.py#L483-L493](file:///C:/Users/pedro/dev/ceia_datapolicy/Benchmark/benchmark/core.py#L483-L493)), essencial para evitar *data leakage* de diagramação.
+   - **Estatísticas Congeladas:** No [configs/benchmark-v1.json](file:///C:/Users/pedro/dev/ceia_datapolicy/Benchmark/configs/benchmark-v1.json):
+     - *Validation:* 191 páginas, 46 edições, 3.842 caixas (1.704 `paragraph`, 500 `header`, 223 `table`, 231 `figure`, 169 `footer`, etc.).
+     - *Test:* 192 páginas, 44 edições, 3.574 caixas (1.542 `paragraph`, 520 `header`, 225 `table`, 271 `figure`, 183 `footer`, etc.).
+
+4. **Diagnóstico e Recomendações para o TCC:**
+   - **O que NÃO serve:** A taxonomia orientada a parágrafos (`paragraph` em bloco) colide diretamente com o design do TCC (não prever caixas de parágrafo e usar calhas). Não há código de ordenação.
+   - **O que MELHORA o TCC:**
+     - **Adicionar `header` e `footer` ao detector do TCC:** O dataset possui centenas de anotações reais dessas classes. Detectá-las e removê-las antes da projeção de calhas resolve o problema de contaminação e divisão indevida de colunas.
+     - **Avaliar tabelas em mAP75 (e não apenas mAP50):** O teste [tests/test_benchmark.py#L209-L217](file:///C:/Users/pedro/dev/ceia_datapolicy/Benchmark/tests/test_benchmark.py#L209-L217) ilustra que caixas com 30% de folga passam em IoU 0.50 mas quebram em 0.75, explicando as sobreposições de tabelas com faixas de texto no TCC.
+     - **Split e Bootstrap agrupados por Edição:** Evita inflar artificialmente o tau de Kendall por vazamento de templates idênticos entre treino e teste.
+     - **Testar resolução `imgsz=1600`:** Ajuda na captura de logos e elementos finos/estreitos.

@@ -1,0 +1,52 @@
+OpenAI Codex v0.160.0
+--------
+workdir: C:\Users\pedro\dev\tcc-ri-reading-order
+model: gpt-6.1-sol
+provider: openai
+approval: never
+sandbox: workspace-write [workdir, /tmp, $TMPDIR]
+reasoning effort: xhigh
+reasoning summaries: none
+session id: 01a10263-8725-7fb0-94a1-c961fc2f15cb
+--------
+user
+Você trabalha no repositório de um TCC sobre ORDEM DE LEITURA e LAYOUT de diários oficiais brasileiros (PDFs multicoluna). Escreva tudo em português.
+
+REGRAS (valem sempre):
+- Crie SOMENTE os arquivos novos pedidos na tarefa. NÃO edite arquivos existentes. NÃO grave nada sob data/ (somente leitura). NÃO edite COMUNICACAO_AGENTES.md. NÃO faça commit.
+- NÃO use GPU: ela está ocupada por um treino. Qualquer modelo roda em CPU (device="cpu").
+- data/labelstudio/ é dado de um projeto parceiro (Data Policy): uso interno, nunca publique nem copie para fora do repositório. Os JSON de export são grandes (até 47 MB): não tente ler o arquivo inteiro como texto; descubra a estrutura por código e escreva código defensivo (campos podem faltar).
+- Python do projeto: venv/Scripts/python.exe (3.11, Windows), executado da raiz do repositório. Use só biblioteca padrão, numpy, scipy, PIL e matplotlib, mais os módulos do próprio repositório. Abra arquivos com encoding="utf-8".
+- Todo número de relatório tem que sair da execução do script (o script escreve o relatório). Não invente números. Declare limitações e vieses com honestidade (em especial: n pequeno; anotação feita corrigindo uma pré-anotação = viés de ancoragem).
+- Formato do export do Label Studio: lista de tarefas; cada tarefa tem "id", "data" (URLs) e "annotations" (lista). Cada anotação tem "completed_by", "was_cancelled" e "result" (lista). Em "result", uma caixa aparece como vários itens com o MESMO "id": type "rectangle" (geometria), type "labels" (value.labels = [classe], value.x/y/width/height em % da página, "origin" = manual | prediction | prediction-changed, original_width/original_height em px), type "textarea" (value.text = [transcrição]). Itens type "relation" (from_id, to_id, labels, direction) ligam caixas na ordem de leitura.
+- Três "PDFs" de Minas Gerais em data/labelstudio/pdf/ (pastas terminadas em -MG) são envelopes de assinatura digital PKCS#7: o PDF de verdade vai do primeiro b"%PDF" até o último b"%%EOF" do arquivo. Extraia esse trecho para um arquivo temporário sob resultados/ antes de abrir. Os outros PDFs abrem direto, mesmo os que terminam com bytes zerados.
+- Não conte com rede: não instale pacotes nem baixe modelos. Já estão no ambiente: pdfplumber, PyMuPDF 1.28 (import pymupdf), ultralytics, transformers, torch (use CPU). Modelos de terceiros já baixados ficam em models/terceiros/.
+- Esta máquina pode cair no meio do trabalho: grave caches e resultados intermediários sob resultados/ para a execução poder ser retomada sem refazer tudo, e escreva o relatório assim que tiver números.
+- As 16 classes do guia e os mapeamentos para 9 e 3 classes estão em src/data/taxonomia_layout.py. Regra das 3 classes: table -> tabela; figure, chart, heading -> imagem; unknown fica de fora; o resto -> texto.
+
+TAREFA (pense fundo, teste com código): comparar DE PONTA A PONTA, só com componentes automáticos, o pipeline com bounding box fina e o pipeline sem bounding box fina, contando os ERROS que chegam ao texto final.
+
+A pergunta do autor (leia com atenção, porque as análises anteriores responderam outra): a ideia "sem bbox fina" NÃO é para ganhar da XY-cut. É para diminuir os erros do sistema, porque hoje a maior parte dos erros nasce na etapa das caixas finas (caixa errada, classe errada, parágrafo partido ou fundido), e a ordenação herda esses erros. Comparar o plano contra a XY-cut sobre regiões HUMANAS (como fizeram resultados/ordem_sem_bbox_justo.md e os outros) esconde isso: em produção não existem regiões humanas. A comparação certa é automático contra automático.
+
+Pipelines (todos sem nenhuma informação humana na entrada):
+ P1  extrator atual (propor(), caixas finas automáticas) + XY-cut;
+ P1m o mesmo, com a política de margens (src/eval/politica_margens.py, variante recomendada em resultados/politica_margens.md);
+ P2  plano sem bbox fina: tabela e imagem do detector de 3 classes (runs/detect/ls3, CPU) como blocos atômicos + linhas + projeção de colunas + margens, na configuração congelada de resultados/ordem_sem_bbox_ls3.md;
+ P2d o mesmo com Docling no lugar do ls3;
+ P0  sem nada: palavras na ordem ingênua (topo-base, esquerda-direita), como piso.
+Reaproveite os scripts e caches já existentes em orquestracao/analises/ (ordem_sem_bbox*.py; importe, não edite) e em resultados/.
+
+Onde medir: as 44 páginas do golden_v4 e as páginas do golden_v3 que não estão no v4 (ordem humana cega nos dois; veja orquestracao/analises/ordem_sem_bbox_validacao_acervo.py para o preparo).
+
+O que medir, sempre no TEXTO FINAL (sequência de palavras que o pipeline entrega), contra a sequência-ouro de palavras:
+1. tau de Kendall de palavras e sucessor correto de linhas;
+2. FIDELIDADE: fração das frases de 12 palavras consecutivas do ouro que aparecem intactas na saída (a métrica do piloto de RI, src/ri/piloto_japeri.py; reutilize a função), e também com janelas de 6 e de 24;
+3. CONTAGEM DE ERROS por página, com definições operacionais que você declara: (i) quebras de continuidade (pontos em que a saída pula para um trecho que não é o seguinte no ouro); (ii) trechos intercalados (duas regiões do ouro misturadas); (iii) blocos deslocados em mais de N posições. Reporte o total e a média por página de cada pipeline;
+4. ORIGEM DO ERRO: para cada quebra de continuidade do P1, classifique por código se ela nasce da SEGMENTAÇÃO (as duas palavras estão na mesma região do ouro mas em caixas diferentes do extrator, ou em regiões diferentes do ouro e na mesma caixa do extrator) ou da ORDENAÇÃO (caixas certas, ordem errada). Faça o equivalente para o P2 (linha partida, coluna errada, átomo errado). Isso responde diretamente se a maioria dos erros de hoje vem das caixas.
+5. IC 95% por bootstrap agrupado por veículo e teste pareado (Wilcoxon com zero_method="pratt") de P2 contra P1 e contra P1m.
+Escreva resultados/erros_ponta_a_ponta.md: resumo de 5 linhas respondendo, nesta ordem: (a) que fração dos erros do pipeline atual nasce na etapa das caixas; (b) quantos erros por página cada pipeline entrega; (c) o plano sem bbox fina diminui os erros de ponta a ponta? por quanto?; tabelas; exemplos de página; limitações; recomendação. No fim rode do zero e confira que o relatório bate com a saída. Resposta final: veredito, tabela principal e caminhos dos arquivos.
+
+NOTA: se resultados/erros_ponta_a_ponta_previa.md existir (outro agente fez uma primeira contagem só no golden_v4, script orquestracao/analises/erros_ponta_a_ponta_previa.py), LEIA, confira as definições e os números dele com o seu próprio código, diga no relatório o que confere e o que não confere, e acrescente o que ele não fez (golden_v3 fora do v4; átomos do ls3; frases preservadas do piloto de RI).
+
+ERROR: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at 12:38 PM.
+ERROR: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at 12:38 PM.

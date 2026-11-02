@@ -1,0 +1,18 @@
+#SCRIPT: orquestracao/analises/auditoria_bancadas_treino.py
+#SAIDA: resultados/auditoria_bancadas_treino.md
+TAREFA: auditar se as páginas usadas para MEDIR os ordenadores se misturam com as usadas para TREINAR.
+Você não pode rodar comandos: escreva o script; o orquestrador executa "venv/Scripts/python.exe orquestracao/analises/auditoria_bancadas_treino.py" e devolve o erro se falhar. Só biblioteca padrão. Não abra data/labelstudio.
+
+Entradas (JSONL, uma página por linha, todas com "page_id" no formato "<veiculo>/<arquivo.pdf>#p<pagina>"):
+- treino: data/processed/blocos/<veiculo>.jsonl dos veículos listados em "treino" de data/processed/splits.json, mais TODOS os arquivos de data/processed/blocos_extra/;
+- validação e teste silver: data/processed/blocos/<veiculo>.jsonl dos veículos em "validacao" e "teste" de splits.json;
+- bancada humana A: data/golden/golden_v4/tarefas.jsonl (45 tarefas);
+- bancada humana B: data/golden/_avaliacao/golden_v3/tarefas.jsonl (47 tarefas); as que não estão na A formam o "golden_v3 novo".
+Escreva código defensivo: descubra os campos por código, não suponha.
+
+O script calcula e escreve em resultados/auditoria_bancadas_treino.md:
+1. Tabela: para cada conjunto, número de páginas, de PDFs distintos e de veículos distintos.
+2. Sobreposição exata de page_id entre treino e cada conjunto de medição (validação, teste, bancada A, bancada B nova). Liste cada page_id repetido.
+3. Sobreposição de PDF (mesmo veículo e mesmo arquivo, página diferente) entre treino e cada conjunto de medição. Liste.
+4. Para cada bancada humana, tabela por veículo: quantas páginas, e se o veículo é de treino, validação, teste ou "não confiável" segundo splits.json. No fim, o total de páginas em veículos VISTOS no treino e NÃO VISTOS.
+5. Resumo de quatro linhas no topo: há page_id repetido? há PDF repetido? quantas páginas de cada bancada humana são de veículo visto no treino? o que o orquestrador deve excluir do treino para a medição ser limpa (lista de page_id em resultados/auditoria_excluir_do_treino.txt, um por linha: toda página de treino cujo PDF aparece em alguma bancada humana).

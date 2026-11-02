@@ -1,0 +1,64 @@
+OpenAI Codex v0.160.0
+--------
+workdir: C:\Users\pedro\dev\tcc-ri-reading-order
+model: gpt-6.1-sol
+provider: openai
+approval: never
+sandbox: workspace-write [workdir, /tmp, $TMPDIR]
+reasoning effort: xhigh
+reasoning summaries: none
+session id: 01a10afa-9bf0-7d13-9d40-1d5ceb1d4e93
+--------
+user
+Você trabalha no repositório de um TCC sobre ORDEM DE LEITURA em diários oficiais brasileiros (PDFs multicoluna). Escreva tudo em português.
+
+A PERGUNTA DESTA NOITE (palavras do autor): "testar os ordenadores nesse novo tipo de modelo". O novo tipo é a representação SEM CAIXAS FINAS: o texto não é dividido em parágrafos; só tabela e imagem viram bloco; o texto vira linhas ou faixas de coluna; cabeçalho, rodapé e quadros institucionais são separados. Queremos saber qual ORDENADOR entrega menos erros de leitura sobre essas unidades: regra geométrica, XY-cut, BiLSTM, LayoutLM (pontual e sucessor), LayoutReader (pronto e ajustado) e, se autorizado, um modelo de linguagem. Leia docs/HANDOFF_CODEX_0410.md e as seções 2.10 e 2.11 de docs/RELATORIO_NOITE_0210.md antes de começar.
+
+REGRAS (valem sempre):
+- Crie SOMENTE os arquivos novos pedidos na tarefa. NÃO edite arquivos existentes (se precisar de uma opção nova num script existente, importe-o e embrulhe, ou diga no relatório o que faltou). NÃO grave nada sob data/ (somente leitura): saídas vão para resultados/ e scripts para orquestracao/analises/. NÃO edite COMUNICACAO_AGENTES.md nem docs/. NÃO faça commit.
+- NÃO use GPU: ela está ocupada por outro trabalho do autor. Tudo o que você rodar é em CPU (device="cpu"). Treino em GPU não é você quem roda: escreva um roteiro orquestracao/noite_0410/gpu/NN_nome.sh (bash, executado da raiz, um modelo por roteiro, retomável, com --max-minutos quando o script tiver) e a fila da GPU o executa quando a placa liberar.
+- MEMÓRIA: a máquina tem 16 GB e está com pouca RAM livre; uma tela azul por falta de memória já derrubou uma noite. Rode UM processo pesado por vez, sem multiprocessing, sem DataLoader com workers (num_workers=0), torch.set_num_threads(4) no máximo, e processe páginas em fluxo (não carregue milhares de páginas com palavras na memória de uma vez).
+- A máquina pode cair: grave caches e resultados intermediários sob resultados/ para retomar sem refazer, e escreva o relatório assim que tiver números (atualize-o conforme chegam mais).
+- data/labelstudio/ é dado de um projeto parceiro (Data Policy): NÃO use nesta noite. O detector ls3 já treinado pode ser usado como modelo (só os pesos).
+- Nunca edite nem regenere anotação humana (data/golden/**, data/diamond/**) nem data/raw/.
+- Python do projeto: venv/Scripts/python.exe (3.11, Windows), executado da raiz. Sem rede: não instale pacotes nem baixe modelos. Já estão no ambiente: pdfplumber, PyMuPDF (import pymupdf), ultralytics, transformers, torch. Modelos de terceiros em models/terceiros/. Abra arquivos com encoding="utf-8".
+- Todo número de relatório sai da execução do script (o script escreve o relatório). Não invente números. Declare limitações com honestidade: páginas usadas no desenvolvimento, referência silver automática, n pequeno, veículos vistos no treino.
+
+PROTOCOLO (não mudar):
+- Referência silver = ordem do fluxo de conteúdo do PDF, só nos veículos confiáveis; divisão por VEÍCULO em data/processed/splits.json (treino 7 veículos, validação RN, teste CE, MA, RJ). Nunca treinar com página de veículo de validação/teste nem com página das bancadas humanas.
+- Entrada embaralhada por página com random.Random(f"entrada-{page_id}") (src/eval/protocolo.py).
+- A régua é de PALAVRAS, a mesma de orquestracao/analises/erros_ponta_a_ponta.py: tau de Kendall de palavras, quebras de leitura por página, fidelidade de 12 palavras, sucessor de linhas. Reutilize as funções desse script importando-o; não reimplemente a métrica.
+- Bancadas: (a) 44 páginas do golden_v4 (usadas no desenvolvimento do método de colunas); (b) 27 páginas do golden_v3 fora do v4; (c) páginas de teste silver (CE, MA, RJ). Reporte as três separadas e, nas humanas, separe veículos vistos e não vistos no treino.
+- Âncoras a reproduzir antes de qualquer número novo (resultados/erros_ponta_a_ponta.md, coorte v4): regra geométrica sem caixas finas com átomos ls3 = tau 0,986 e 6,05 quebras por página; extrator + XY-cut + margens = 0,952 e 8,93. Se a sua bancada não reproduzir (tolerância 0,006 em tau), pare e explique.
+
+TAREFA 04 — fechar a comparação dos ordenadores treinados e revisá-la como um adversário.
+
+Contexto: a tarefa 03 foi interrompida pelo seu limite de uso às 02:20 e o orquestrador assumiu o resto. O que JÁ EXISTE e você NÃO deve refazer:
+- orquestracao/analises/treinar_sem_caixas.py, ordenar_bancadas.py e layoutreader_ajuste.py (seus, da tarefa 03);
+- BiLSTM treinado em CPU: resultados/ordenadores_treinados_sem_caixas/lstm_geo_linhas, lstm_geo_texto_linhas, lstm_geo_colunas_margens, lstm_geo_texto_colunas_margens (o último pode ter ficado sem predição das bancadas);
+- roteiros de GPU em orquestracao/noite_0410/gpu/ (01_sucessor_linhas, 02_layoutreader_ajuste_linhas, 03_sucessor_colunas_margens, 04_pontual_linhas), escritos pelo orquestrador e executados pela fila da GPU um por vez; cada um treina e depois chama ordenar_bancadas.py --avaliar. NÃO edite, não rode e não apague nada em orquestracao/noite_0410/gpu/, e NÃO use a GPU nem inicie treino: a placa está ocupada por essa fila;
+- predições do Gemini (faixas de coluna, páginas do Golden) em resultados/ordenadores_sem_caixas/pred/gemini__*.jsonl, já avaliadas pela bancada (cobertura parcial em três dos quatro arquivos: 41/44, 42/44, 25/27, 27/27; veja resultados/ordenadores_sem_caixas/vlm/conversao.md);
+- a bancada e as tabelas dos ordenadores sem treino em resultados/ordenadores_sem_caixas.md.
+
+O que fazer:
+1. Inventário: liste os checkpoints e predições existentes em resultados/ordenadores_treinados_sem_caixas/ e diga, para cada modelo, se já está na bancada. Para os que têm checkpoint mas não têm predição/avaliação (por exemplo lstm_geo_texto_colunas_margens), rode `venv/Scripts/python.exe -B orquestracao/analises/ordenar_bancadas.py --checkpoint <melhor.pt> --avaliar` em CPU, um por vez. Não rode isso para um modelo cujo roteiro de GPU ainda esteja em execução (arquivo .rodando em orquestracao/noite_0410/gpu/).
+2. Comparação justa com cobertura parcial: o Gemini não cobre todas as páginas. Faça também a comparação pareada restrita às páginas que o Gemini cobriu (mesmas páginas para todos os ordenadores da linha), além da tabela com todas as páginas.
+3. Relatório resultados/ordenadores_treinados_sem_caixas.md, gerado por script (orquestracao/analises/relatorio_ordenadores_treinados.py, para o orquestrador poder regenerar quando os treinos seguintes terminarem), com:
+   - resumo de cinco linhas respondendo à pergunta do autor: "testando os ordenadores nesse novo tipo de modelo, qual erra menos?" — por representação, e dizendo com clareza se algum modelo treinado chega perto da regra de colunas em `linhas` (tau 0,986 e 6,05 quebras por página no golden_v4; teto 1,000 e 0,89) e se algum chega ao teto em `colunas_margens` (tau 0,960);
+   - uma tabela por bancada (golden_v4, golden_v3_novo, teste silver) com TODOS os ordenadores: os sem treino (lidos da bancada), BiLSTM, LayoutLM sucessor, LayoutLM pontual, LayoutReader pronto e ajustado, Gemini; colunas: tau de palavras, quebras por página, fidelidade de 12, sucessor de linhas, n de páginas, e Wilcoxon por veículo contra a regra de colunas;
+   - para cada modelo treinado: páginas de treino (873 congeladas), tokens por unidade (1, só layout), épocas concluídas, tempo, melhor tau de validação, e a separação veículos vistos / não vistos nas bancadas humanas;
+   - o que ainda está treinando ou falhou (leia os .log, .done e .falhou de orquestracao/noite_0410/gpu/).
+4. Revisão adversarial (seção própria, escrita para derrubar as conclusões): (a) os modelos treinaram com UM token [UNK] por unidade, ou seja, sem texto — isso é uma comparação justa com o LayoutLM do TCC, que usava texto? (b) 873 páginas e no máximo 75 minutos por modelo contra 3.235 páginas do melhor modelo anterior; (c) a referência silver é o fluxo do PDF por palavra e o treino usa a mediana por unidade: quanto ruído isso põe no rótulo de `linhas`? meça (fração de pares de linhas vizinhas cuja ordem pela mediana contradiz a ordem das suas palavras); (d) golden_v4 foi usado para desenvolver a regra de colunas e não os modelos: isso favorece a regra; (e) o piso interno alto no teste silver vem da ordem dentro das tabelas — as conclusões mudam se as páginas com tabela forem retiradas? meça; (f) qualquer vazamento ou inconsistência que você encontre nos scripts desta noite (inclusive nos do orquestrador em orquestracao/noite_0410/gpu/). Diga o que cada ponto faz com a conclusão: derruba, enfraquece ou não muda.
+5. Análise de erros do melhor modelo treinado em `linhas` contra a regra de colunas, no golden_v4 e no golden_v3_novo: em que páginas o modelo ganha e em que perde (cinco de cada, com page_id e as quebras de cada um), e se há um padrão (número de colunas, tabelas, páginas curtas).
+
+Só CPU, um processo pesado por vez. Se um treino de GPU terminar enquanto você trabalha, inclua-o regenerando o relatório ao final.
+
+NOTA DO ORQUESTRADOR (05/10 02:45) — primeiro resultado da GPU, que você deve explicar:
+O LayoutLM sucessor em `linhas` (8 épocas, 12 min, tau de validação por unidade estabilizado em 0,865 desde a época 3) ficou em tau 0,902 e 57,6 quebras por página no golden_v4, contra 0,986 e 6,05 da regra de colunas; BiLSTM geo 0,872 e 75,5. Ou seja, o modelo treinado picota o texto. Antes de aceitar isso como resultado, DIAGNOSTIQUE (item extra da revisão adversarial, com números):
+ (g) acerto de sucessor do modelo por tipo de transição no golden_v4 e na validação: linha seguinte na mesma coluna; fim de coluna para topo da próxima; mudança de zona; entrada e saída de tabela/imagem; margens. Onde ele erra?
+ (h) é defeito do desenho (um token [UNK] por linha, entrada embaralhada, decodificação em cadeias com limiar 0,5) ou do treino curto? Compare a decodificação gulosa, em feixe e em cadeias com o mesmo checkpoint (resultados/ordenadores_treinados_sem_caixas/sucessor_linhas/melhor.pt), e compare com resultados/ordenadores_treinados_sem_caixas/sucessor_linhas_40ep quando existir (roteiro 05 da GPU, 40 épocas).
+ (i) confira se as características geométricas do par e a normalização das caixas das LINHAS fazem sentido no embrulho (linhas são caixas muito largas e baixas; as 10 características relativas foram pensadas para blocos).
+Não corrija o treinador nesta tarefa; diga o que mudaria e por quê.
+
+ERROR: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at Oct 9th, 2026 7:06 PM.
+ERROR: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at Oct 9th, 2026 7:06 PM.

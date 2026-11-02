@@ -1,0 +1,13 @@
+#SCRIPT: orquestracao/analises/ordem_ls_baselines.py
+#SAIDA: resultados/ordem_ls_baselines.md
+TAREFA: criar um SEGUNDO conjunto de avaliação de ordem de leitura a partir das anotações de ordem do Label Studio e medir nele as heurísticas de referência.
+Você não pode rodar comandos: escreva o script; o orquestrador executa "venv/Scripts/python.exe orquestracao/analises/ordem_ls_baselines.py" e devolve o erro se falhar. O script pode chamar outros scripts do repositório com subprocess (use sys.executable).
+
+Leia antes: src/anotacao/ordem_labelstudio.py (conversor; veja o comando "converter" e o formato de saída tarefas.jsonl / anotacoes.jsonl), src/eval/baselines.py (ordem ingênua e XY-cut) e src/eval/metrics.py (kendall_tau, acerto_sucessor, ard_normalizado).
+
+O script deve:
+1. Rodar o conversor sobre data/labelstudio/ls_p23_seed2_order.json com --saida resultados/ordem_ls/conv (pasta nova, fora de data/).
+2. Ficar só com anotações de status "concluida" (cadeia válida) feitas por humanos (anotador diferente de "desconhecido"); se houver mais de uma por página, usar a mais recente e medir a concordância de ordem entre anotadores nas páginas em comum.
+3. Para cada página: aplicar a ordem ingênua (topo->base, esquerda->direita) e a XY-cut de src/eval/baselines.py sobre as caixas (adapte o formato de entrada que essas funções esperam, lendo o código) e medir tau de Kendall, sucessor correto e ARD normalizado contra a ordem humana. Média e IC 95% por bootstrap de páginas, no total, por anotador, e separando páginas em que o humano manteve a ordem sugerida (campo iguais_a_origem, se existir) das que ele mudou.
+4. Reportar o viés: essa ordem humana foi produzida CORRIGINDO a ordem da XY-cut, então a XY-cut é favorecida nesse gabarito. Quantifique a fração de páginas e de ligações que o humano deixou idênticas à sugestão.
+Escreva resultados/ordem_ls_baselines.md com resumo de 5 linhas, tabelas, n de páginas, e como esse conjunto se compara ao golden_v4 (44 páginas; lá a XY-cut deu tau = 0,825 e sucessor 71,5%).

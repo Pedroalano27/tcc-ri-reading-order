@@ -1,0 +1,2 @@
+# Alem do torch ja fornecido pelo conteiner NGC. Nao reinstalar torch.
+transformers>=4.51.3,<6

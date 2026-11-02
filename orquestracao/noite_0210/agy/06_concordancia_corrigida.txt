@@ -1,0 +1,13 @@
+#SCRIPT: orquestracao/analises/concordancia_ls.py
+#SAIDA: resultados/labelstudio_concordancia_v2.md
+TAREFA: CORRIGIR a medição de concordância entre anotadores (o revisor achou um erro grave na primeira versão).
+Exceção à regra geral: nesta tarefa você DEVE editar o seu script orquestracao/analises/concordancia_ls.py (ele já existe). Você não pode rodar comandos: o orquestrador executa "venv/Scripts/python.exe orquestracao/analises/concordancia_ls.py" e devolve o erro se falhar.
+
+O erro: a primeira versão (resultados/labelstudio_concordancia.md) incluiu 189 páginas do arquivo data/labelstudio/ls_p23_seed2_order.json. Esse é o projeto de ORDEM de leitura: lá a segunda anotação é uma CÓPIA da primeira (o anotador clica em "Duplicate Annotation" na anotação automática do Admin e só acrescenta as relações de ordem). As caixas são as mesmas por construção, então não é concordância entre anotadores independentes e infla todos os números (189 de 333 páginas).
+
+Corrija assim:
+1. Use SOMENTE os projetos de bounding box: ls_p05_seed1.json, ls_p13_seed2.json, ls_p15_seed3.json, ls_p22_seed4.json. Nunca o ls_p23.
+2. Considere um par válido só quando as duas anotações têm "completed_by" diferentes, nenhuma foi cancelada e nenhuma é do usuário automático/Admin de pré-anotação (descubra por código quem é: o usuário que aparece em quase todas as tarefas ou cujas caixas têm todas origin == "prediction"; declare o critério no relatório e liste quantos pares cada usuário tem).
+3. Detecte e reporte pares SUSPEITOS de cópia: pares em que mais de 95% das caixas têm IoU >= 0,99 entre si. Reporte os números com e sem esses pares.
+4. Mantenha todas as medidas da primeira versão (F1 de localização em IoU 0,5 / 0,75 / 0,9; acerto de classe e kappa em 16, 9 e 3 classes; confusões; F1 por classe; efeito da ancoragem; IC por bootstrap de páginas), agora também separadas por projeto (seed).
+5. Grave o relatório novo em resultados/labelstudio_concordancia_v2.md (não sobrescreva o antigo), começando por uma seção "O que mudou em relação à versão 1" com os números lado a lado.

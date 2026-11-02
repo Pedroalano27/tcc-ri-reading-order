@@ -1,0 +1,55 @@
+### FEITO
+
+Implementado o script [`orquestracao/analises/ancoragem_ls.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/ancoragem_ls.py) para quantificação completa do **viés de ancoragem** nos quatro lotes de export do Label Studio (`ls_p05_seed1.json`, `ls_p13_seed2.json`, `ls_p15_seed3.json`, `ls_p22_seed4.json`).
+
+O script foi implementado com código estritamente defensivo e pronto para execução em CPU com o Python do projeto (`venv\Scripts\python.exe`):
+1. **Contagem por Procedência (`origin`):** agrega caixas em `prediction` (aceitas intactas), `prediction-changed` (modificadas pelo anotador) e `manual` (criadas do zero), no cômputo geral, por semente (`seed1` a `seed4`), por classe e por anotador individual (`completed_by`).
+2. **Descoberta Dinâmica da Pré-Anotação Original:** detecta tarefas com predições completas contendo caixas (`annotation["prediction"]` ou `task["predictions"]`). Nas tarefas onde as caixas originais existem (como na `seed1`), realiza casamento em duas fases (por `id` de região e guloso por `IoU >= 0.10`), medindo:
+   - Caixas aceitas sem qualquer mudança geométrica ou semântica ($IoU \ge 0,999$ e mesmo rótulo);
+   - Caixas com geometria alterada (cálculo de IoU mediano, percentil 10 ($p_{10}$), fração com $IoU < 0,90$ e fração com $IoU < 0,50$);
+   - Matriz de transição semântica com o ranking das 15 trocas de classe mais frequentes ($\text{classe da máquina} \to \text{classe humana}$);
+   - Caixas apagadas pelo humano (falsos positivos da máquina) e caixas criadas pelo humano (falsos negativos da máquina);
+   - Nas sementes onde os objetos geométricos da pré-anotação não foram exportados de forma expandida, documenta essa ausência de forma transparente e ancora a análise na procedência declarada (`origin`).
+3. **Métricas em Nível de Página e Esforço Humano:**
+   - Fração de caixas mexidas por página $\left(\frac{N_{\text{changed}} + N_{\text{manual}}}{N_{\text{total}}}\right)$;
+   - Contagem e proporção de páginas aprovadas 100% como a máquina sugeriu;
+   - Correlação bivariada (Spearman e Pearson) e estratificação por faixas de intervenção entre o tempo de anotação (`lead_time`) e a fração de caixas modificadas.
+4. **Comportamento por Classe e Taxonomias:**
+   - Taxa de aceitação sem mudança, retração e criação manual para as 16 classes do guia;
+   - Diagnóstico automatizado de classes de alta confiança (acerto autônomo da máquina), retoque frequente e pontos cegos;
+   - Agrupamento nas 9 classes do extrator e nas 3 macroclasses do projeto (`tabela`, `imagem`, `texto`).
+5. **Geração Automatizada de Artefatos:**
+   - Relatório completo em [`resultados/labelstudio_ancoragem.md`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/labelstudio_ancoragem.md) com resumo executivo de 5 linhas, tabelas e a discussão sobre as implicações metodológicas para o TCC;
+   - Cache estruturado em [`resultados/labelstudio_ancoragem_dados.json`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/labelstudio_ancoragem_dados.json) para consulta imediata de estatísticas sem reprocessamento.
+
+---
+
+### ARQUIVOS
+
+- **Criado:** [`orquestracao/analises/ancoragem_ls.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/ancoragem_ls.py) *(934 linhas, código defensivo, sem GPU, UTF-8)*.
+- **Saídas que serão gravadas pelo script ao ser executado pelo orquestrador:**
+  - `resultados/labelstudio_ancoragem.md`
+  - `resultados/labelstudio_ancoragem_dados.json`
+
+---
+
+### EVIDÊNCIA
+
+1. **Inspeção de Estrutura e Variabilidade dos Dados:**
+   - Verificado via inspeção pontual dos arquivos JSON que `ls_p05_seed1.json` traz o objeto expandido `"prediction": {"id": ..., "task": ..., "result": [...]}` associado à anotação, viabilizando o casamento exato de coordenadas originais contra coordenadas editadas.
+   - Verificado que os arquivos `ls_p13_seed2.json`, `ls_p15_seed3.json` e `ls_p22_seed4.json` trazem `"predictions": [id_num]` e `"prediction": {}`, contendo a informação de ancoragem preservada nos metadados de cada caixa (`origin: "prediction"`, `"prediction-changed"` ou `"manual"`).
+2. **Defensividade da Implementação:**
+   - Agrupamento por `item["id"]` de forma agnóstica à ordem dos itens (`rectangle`, `labels`, `textarea`, `number`), ignorando itens de relacionamento (`type: "relation"`).
+   - Filtragem estrita de anotações canceladas (`was_cancelled: true`), utilizando apenas a última anotação válida por tarefa.
+   - Cálculo de IoU e casamento híbrido (`id` exato seguido de busca gulosa por sobreposição máxima para caixas renomeadas ou recriadas).
+   - Conversões seguras de tipos numéricos e tratamento para tarefas sem caixas ou com campos faltantes.
+
+---
+
+### PENDÊNCIAS
+
+- Execução do script pelo orquestrador:
+  ```powershell
+  venv\Scripts\python.exe orquestracao/analises/ancoragem_ls.py
+  ```
+- O orquestrador gerará `resultados/labelstudio_ancoragem.md` com os números consolidados finais e atualizará o quadro conforme o fluxo de orquestração.

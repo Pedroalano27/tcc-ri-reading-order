@@ -1,0 +1,65 @@
+## FEITO
+
+1. **Desenvolvimento do script de galeria visual**:
+   - Criado o script [`orquestracao/analises/galeria_extrator_detector.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/galeria_extrator_detector.py) para comparar, nas 11 páginas do teste sem viés de ancoragem (`data/diamond/diamond_teste`), os 4 sistemas de layout:
+     1. **Ouro humano (gabarito)**: anotações humanas concluídas em [`data/diamond/diamond_teste/anotacoes.jsonl`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/data/diamond/diamond_teste/anotacoes.jsonl);
+     2. **Extrator de regras**: reutilização direta da função `seg.propor(t["palavras"], t["blocos_v3"], t["detector"]["regioes"], regras=True)` de [`src/data/regioes.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/src/data/regioes.py), conforme estabelecido no protocolo de [`src/eval/avaliar_diamond.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/src/eval/avaliar_diamond.py);
+     3. **Detector LS-16**: predições do modelo treinado nas 16 classes da taxonomia do guia (`resultados/deteccao/pred_ls16_diamond_teste.jsonl`);
+     4. **Detector LS-3**: predições do modelo treinado no plano grosso de 3 classes (`resultados/deteccao/pred_ls3_diamond_teste.jsonl`).
+
+2. **Mapeamento para a regra das 3 classes e convenção de cores**:
+   - Implementada a função `mapear_para_3_classes` que colapsa uniformemente as taxonomias dos quatro sistemas:
+     - `table` / `tabela` $\rightarrow$ **Tabela** (Roxo: `#7c3aed` / RGB `124, 58, 237`);
+     - `figure`, `chart`, `heading`, `figura`, `imagem` $\rightarrow$ **Imagem** (Cinza: `#64748b` / RGB `100, 116, 139`);
+     - `unknown`, `outro` $\rightarrow$ **Outro** (Laranja: `#ea580c` / RGB `234, 88, 12`);
+     - Restante (classes textuais: `act`, `act section`, `paragraph`, `signature`, `id`, `header`, `footer`, `caption`, `title`, `section title`, `sub section title`, `texto`, `titulo`, `lista`, `assinatura`, `cabecalho`, `rodape`) $\rightarrow$ **Texto** (Azul: `#2563eb` / RGB `37, 99, 235`).
+
+3. **Geração das imagens comparativas (`pagNN.jpg`)**:
+   - Cada painel é redimensionado para 700 px de largura;
+   - As caixas em pontos do PDF são escaladas para pixels com base nas dimensões da página (`dimensions.width`, `dimensions.height`) e da imagem renderizada;
+   - Contornos desenhados com exatamente 2 px de espessura, sem preenchimento;
+   - Cada painel individual possui banner com título do sistema e contagem de caixas;
+   - Os 4 painéis são montados lado a lado (~2800 px de largura total) com faixa superior contendo identificador da página, veículo, arquivo PDF e legenda com caixas coloridas;
+   - Saída salva em `resultados/galeria_extrator_detector/pag01.jpg` até `pag11.jpg`.
+
+4. **Geração da página web estática (`index.html`)**:
+   - Criada página HTML5 + CSS pura e autossuficiente (sem dependências externas ou fontes de CDNs);
+   - Cabeçalho explicativo e declaração honesta de vieses e limitações metodológicas (tamanho reduzido $n=11$; anotação sem viés de pré-anotação; extrator operando sobre camada de texto vs detectores operando sobre imagem visual);
+   - Tabela consolidada geral com o total de caixas de cada sistema nas 11 páginas;
+   - Barra de navegação rápida com links para cada página (`Pág 01` a `Pág 11`);
+   - Para cada página: título com o veículo e dados do PDF, tabela pequena com a contagem de caixas por sistema e por classe, e imagem comparativa clicável para inspeção em resolução máxima em nova aba.
+
+---
+
+## ARQUIVOS
+
+- Arquivo novo criado:
+  - [`orquestracao/analises/galeria_extrator_detector.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/galeria_extrator_detector.py) (script executável para produção da galeria).
+
+- Arquivos gerados durante a execução pelo orquestrador (sob `resultados/galeria_extrator_detector/`):
+  - `pag01.jpg` a `pag11.jpg` (painéis quádruplos de ~2800 px de largura);
+  - `index.html` (interface estática da galeria);
+  - `contagens.json` (cache estruturado com as contagens por sistema e página).
+
+---
+
+## EVIDÊNCIA
+
+1. **Reutilização de código do extrator**:
+   O script importa `src.data.regioes` e invoca `seg.propor(t["palavras"], t["blocos_v3"], t["detector"]["regioes"], regras=True)`, exatamente a mesma chamada de avaliação utilizada em [`src/eval/avaliar_diamond.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/src/eval/avaliar_diamond.py).
+
+2. **Compatibilidade e robustez técnica**:
+   - Zero uso de GPU (processamento puramente em CPU via biblioteca padrão e Pillow);
+   - Abertura de arquivos com `encoding="utf-8"` e reconfiguração do console `sys.stdout.reconfigure(encoding="utf-8")`;
+   - Tratamento de fontes TrueType do sistema operacional com fallback seguro caso fontes específicas do Windows não estejam disponíveis;
+   - Clamping defensivo das coordenadas escaladas para garantir que nenhuma caixa extrapole os limites da imagem.
+
+---
+
+## PENDÊNCIAS
+
+- Execução pelo orquestrador:
+  ```bash
+  venv/Scripts/python.exe orquestracao/analises/galeria_extrator_detector.py
+  ```
+- O autor inspecionar o arquivo `resultados/galeria_extrator_detector/index.html` no navegador para conferir a olho as diferenças estruturais entre a segmentação baseada em regras e os detectores neurais.

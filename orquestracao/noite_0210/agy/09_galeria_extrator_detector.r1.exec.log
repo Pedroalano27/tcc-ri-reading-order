@@ -1,0 +1,16 @@
+[INICIO] Galeria visual: Ouro vs Extrator vs Detectores (Diamond Teste)
+[DADOS] 11 paginas concluidas encontradas.
+[01/11] Pág 01 (Tocantins (TO)) -> pag01.jpg | Ouro: 14 | Extrator: 30 | LS16: 49 | LS3: 48
+[02/11] Pág 02 (Curitiba (PR)) -> pag02.jpg | Ouro: 6 | Extrator: 7 | LS16: 8 | LS3: 7
+[03/11] Pág 03 (Sergipe (SE)) -> pag03.jpg | Ouro: 120 | Extrator: 124 | LS16: 93 | LS3: 104
+[04/11] Pág 04 (Duque de Caxias (RJ)) -> pag04.jpg | Ouro: 38 | Extrator: 44 | LS16: 51 | LS3: 43
+[05/11] Pág 05 (Congonhas (MG)) -> pag05.jpg | Ouro: 16 | Extrator: 18 | LS16: 17 | LS3: 16
+[06/11] Pág 06 (Roraima (RR)) -> pag06.jpg | Ouro: 28 | Extrator: 33 | LS16: 39 | LS3: 37
+[07/11] Pág 07 (Rondônia (RO)) -> pag07.jpg | Ouro: 25 | Extrator: 28 | LS16: 29 | LS3: 30
+[08/11] Pág 08 (Mato Grosso do Sul (MS)) -> pag08.jpg | Ouro: 23 | Extrator: 35 | LS16: 26 | LS3: 23
+[09/11] Pág 09 (Porto Alegre (RS)) -> pag09.jpg | Ouro: 4 | Extrator: 4 | LS16: 4 | LS3: 4
+[10/11] Pág 10 (Pernambuco (PE)) -> pag10.jpg | Ouro: 55 | Extrator: 50 | LS16: 83 | LS3: 89
+[11/11] Pág 11 (Piauí (PI)) -> pag11.jpg | Ouro: 16 | Extrator: 21 | LS16: 22 | LS3: 20
+[OK] Imagens salvas sob: resultados\galeria_extrator_detector
+[OK] Relatorio HTML estatico salvo em: resultados\galeria_extrator_detector\index.html
+[CONCLUIDO] Execucao finalizada com sucesso.

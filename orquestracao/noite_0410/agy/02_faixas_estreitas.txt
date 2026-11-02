@@ -1,0 +1,18 @@
+#SCRIPT: orquestracao/analises/diagnostico_faixas_estreitas.py
+#SAIDA: resultados/faixas_estreitas.md
+TAREFA: medir o defeito conhecido da nova representação por colunas: FAIXAS ESTREITAS INDEVIDAS (a separação de colunas cria uma faixa fina que não é uma coluna de verdade) e CABEÇALHOS FRAGMENTADOS.
+Você não pode rodar comandos: escreva o script; o orquestrador executa "venv/Scripts/python.exe orquestracao/analises/diagnostico_faixas_estreitas.py" e devolve o erro se falhar. Use só biblioteca padrão e PIL. Não rode nenhum modelo. Não abra data/labelstudio.
+
+Entradas:
+- resultados/datasets_sem_caixas/colunas/{treino,validacao,teste,sem_split,bancada_humana}.jsonl: uma página por linha, com "page_id", "uf", "dimensions" {width, height}, "unidades" (lista; cada unidade tem "id", "tipo" — "texto_coluna", "table" ou "picture" —, "bbox" [x0, y0, x1, y1] em pontos do PDF, "ks" (índices das palavras), e nas de texto "linhas" (lista de linhas, cada uma com "bbox" e "ks")). A bancada_humana repete páginas dos outros arquivos: conte cada page_id uma vez, preferindo a versão da bancada.
+- resultados/estruturas_golden_v4/colunas.jsonl: 45 páginas com os tipos a mais "cabecalho", "rodape" e "quadro_externo".
+- imagens das 45 páginas do Golden: data/golden/golden_v4/tarefas.jsonl tem "page_id" e "imagem" (arquivo em data/golden/golden_v4/img/).
+Descubra os campos por código e escreva código defensivo.
+
+Medidas:
+1. Para cada faixa de texto: largura relativa à página, número de linhas, número de palavras, e a largura relativa à MEDIANA das larguras das faixas de texto da mesma página.
+2. Faixa suspeita = faixa de texto com pelo menos 4 linhas cuja largura é menor que 45% da mediana da página OU menor que 12% da largura da página. Reporte: quantas faixas suspeitas, em quantas páginas, que fração das palavras do conjunto está nelas; a tabela por veículo ("uf") ordenada pela fração de páginas afetadas.
+3. Faixas sobrepostas: pares de faixas de texto da mesma página cuja interseção passa de 20% da área da menor. Conte e liste as 20 piores.
+4. Nas 45 páginas do Golden (arquivo de estruturas): número de unidades "cabecalho" por página (mediana, máximo, quantas páginas têm mais de 2) e idem "rodape".
+5. Galeria: para as 12 páginas do Golden com mais faixas suspeitas, desenhe a imagem da página com as faixas de texto em azul, as suspeitas em vermelho e cabeçalho/rodapé em verde (escala = largura da imagem dividida por dimensions.width), salvando em resultados/faixas_estreitas/NN_<veiculo>.jpg com no máximo 1400 px de altura.
+Escreva resultados/faixas_estreitas.md com um resumo de quatro linhas (quão comum é o defeito, onde se concentra, quanto texto afeta, o que isso sugere para a regra de calhas), as tabelas e a lista das imagens.

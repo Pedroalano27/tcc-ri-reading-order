@@ -1,0 +1,20 @@
+Você trabalha no repositório de um TCC sobre ORDEM DE LEITURA em diários oficiais brasileiros (PDFs multicoluna). Escreva tudo em português.
+
+A PERGUNTA DESTA NOITE (palavras do autor): "testar os ordenadores nesse novo tipo de modelo". O novo tipo é a representação SEM CAIXAS FINAS: o texto não é dividido em parágrafos; só tabela e imagem viram bloco; o texto vira linhas ou faixas de coluna; cabeçalho, rodapé e quadros institucionais são separados. Queremos saber qual ORDENADOR entrega menos erros de leitura sobre essas unidades: regra geométrica, XY-cut, BiLSTM, LayoutLM (pontual e sucessor), LayoutReader (pronto e ajustado) e, se autorizado, um modelo de linguagem. Leia docs/HANDOFF_CODEX_0410.md e as seções 2.10 e 2.11 de docs/RELATORIO_NOITE_0210.md antes de começar.
+
+REGRAS (valem sempre):
+- Crie SOMENTE os arquivos novos pedidos na tarefa. NÃO edite arquivos existentes (se precisar de uma opção nova num script existente, importe-o e embrulhe, ou diga no relatório o que faltou). NÃO grave nada sob data/ (somente leitura): saídas vão para resultados/ e scripts para orquestracao/analises/. NÃO edite COMUNICACAO_AGENTES.md nem docs/. NÃO faça commit.
+- NÃO use GPU: ela está ocupada por outro trabalho do autor. Tudo o que você rodar é em CPU (device="cpu"). Treino em GPU não é você quem roda: escreva um roteiro orquestracao/noite_0410/gpu/NN_nome.sh (bash, executado da raiz, um modelo por roteiro, retomável, com --max-minutos quando o script tiver) e a fila da GPU o executa quando a placa liberar.
+- MEMÓRIA: a máquina tem 16 GB e está com pouca RAM livre; uma tela azul por falta de memória já derrubou uma noite. Rode UM processo pesado por vez, sem multiprocessing, sem DataLoader com workers (num_workers=0), torch.set_num_threads(4) no máximo, e processe páginas em fluxo (não carregue milhares de páginas com palavras na memória de uma vez).
+- A máquina pode cair: grave caches e resultados intermediários sob resultados/ para retomar sem refazer, e escreva o relatório assim que tiver números (atualize-o conforme chegam mais).
+- data/labelstudio/ é dado de um projeto parceiro (Data Policy): NÃO use nesta noite. O detector ls3 já treinado pode ser usado como modelo (só os pesos).
+- Nunca edite nem regenere anotação humana (data/golden/**, data/diamond/**) nem data/raw/.
+- Python do projeto: venv/Scripts/python.exe (3.11, Windows), executado da raiz. Sem rede: não instale pacotes nem baixe modelos. Já estão no ambiente: pdfplumber, PyMuPDF (import pymupdf), ultralytics, transformers, torch. Modelos de terceiros em models/terceiros/. Abra arquivos com encoding="utf-8".
+- Todo número de relatório sai da execução do script (o script escreve o relatório). Não invente números. Declare limitações com honestidade: páginas usadas no desenvolvimento, referência silver automática, n pequeno, veículos vistos no treino.
+
+PROTOCOLO (não mudar):
+- Referência silver = ordem do fluxo de conteúdo do PDF, só nos veículos confiáveis; divisão por VEÍCULO em data/processed/splits.json (treino 7 veículos, validação RN, teste CE, MA, RJ). Nunca treinar com página de veículo de validação/teste nem com página das bancadas humanas.
+- Entrada embaralhada por página com random.Random(f"entrada-{page_id}") (src/eval/protocolo.py).
+- A régua é de PALAVRAS, a mesma de orquestracao/analises/erros_ponta_a_ponta.py: tau de Kendall de palavras, quebras de leitura por página, fidelidade de 12 palavras, sucessor de linhas. Reutilize as funções desse script importando-o; não reimplemente a métrica.
+- Bancadas: (a) 44 páginas do golden_v4 (usadas no desenvolvimento do método de colunas); (b) 27 páginas do golden_v3 fora do v4; (c) páginas de teste silver (CE, MA, RJ). Reporte as três separadas e, nas humanas, separe veículos vistos e não vistos no treino.
+- Âncoras a reproduzir antes de qualquer número novo (resultados/erros_ponta_a_ponta.md, coorte v4): regra geométrica sem caixas finas com átomos ls3 = tau 0,986 e 6,05 quebras por página; extrator + XY-cut + margens = 0,952 e 8,93. Se a sua bancada não reproduzir (tolerância 0,006 em tau), pare e explique.

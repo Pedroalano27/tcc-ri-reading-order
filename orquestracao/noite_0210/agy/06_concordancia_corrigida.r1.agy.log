@@ -1,0 +1,56 @@
+# Relatório de Execução — Correção da Medição de Concordância entre Anotadores (Versão 2)
+
+## FEITO
+Foi corrigida de forma completa e rigorosa a medição de concordância inter-anotador no script [`orquestracao/analises/concordancia_ls.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/concordancia_ls.py), sanando o erro metodológico identificado na Versão 1:
+
+1. **Eliminação Categórica de Projetos de Ordem de Leitura:**
+   - O universo de arquivos foi estritamente restrito aos 4 projetos de caixas delimitadoras (*bounding box*): [`ls_p05_seed1.json`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/data/labelstudio/ls_p05_seed1.json), [`ls_p13_seed2.json`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/data/labelstudio/ls_p13_seed2.json), [`ls_p15_seed3.json`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/data/labelstudio/ls_p15_seed3.json) e [`ls_p22_seed4.json`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/data/labelstudio/ls_p22_seed4.json).
+   - O arquivo `ls_p23_seed2_order.json` foi 100% excluído da análise (suas 189 páginas continham anotações duplicadas de ordem com caixas geometricamente idênticas por construção, o que inflava artificialmente a concordância na v1).
+
+2. **Perfilamento Programático de Anotadores e Expurgador de Pré-Anotação:**
+   - Criada a rotina `perfilar_anotadores()` que examina todas as tarefas carregadas antes da montagem dos pares, quantificando o volume de anotações, total de caixas e a taxa de caixas com `origin == 'prediction'` vs. `origin in ('manual', 'prediction-changed')`.
+   - **Critério declarado no relatório:** usuários cujas anotações apresentam $\ge 98\%$ de caixas com `origin == 'prediction'` (isto é, passividade absoluta sem intervenção manual em $\ge 5$ tarefas) ou presença maciça em $\ge 70\%$ de todas as tarefas com $\ge 90\%$ de predições puras são classificados como pré-anotação automática da máquina/Admin e sumariamente excluídos da formação de pares humanos.
+   - O relatório lista a tabela completa de perfis de usuários, o número de pares que cada anotador humano compõe e a matriz cruzada de colaboração entre anotadores.
+
+3. **Validação Estrita de Pares Independentes:**
+   - Um par só é aceito se ambas as anotações tiverem `completed_by` distintos, nenhuma foi cancelada (`was_cancelled == False`) e nenhuma pertence a usuário automático de pré-anotação.
+   - Se um mesmo usuário salvou múltiplas versões ou rascunhos na mesma tarefa, mantém-se unicamente a anotação mais recente (maior ID).
+
+4. **Detecção e Segregação de Pares Suspeitos de Cópia:**
+   - Implementado o detector de pares com sobreposição quase perfeita: se mais de 95% das caixas casadas possuem $\text{IoU} \ge 0{,}99$, o par é sinalizado como suspeito de duplicação por interface.
+   - O script calcula e reporta todas as métricas em dois cenários:
+     - **Conjunto Completo:** todos os pares válidos de anotadores humanos distintos.
+     - **Conjunto Estrito (Sem Cópias):** isolando exclusivamente anotações com delineamento geométrico comprovadamente independente.
+
+5. **Estratificação por Projeto (Seed) e Manutenção de Todas as Medidas da v1:**
+   - F1 de localização micro e macro em $\text{IoU} \ge 0{,}50$, $\ge 0{,}75$ e $\ge 0{,}90$ com precisão e revocação.
+   - Concordância semântica (acerto de classe e $\kappa$ de Cohen) nas 16 classes do Guia, nas 9 classes do extrator e nas 3 macroclasses (texto/tabela/imagem).
+   - Análise aprofundada do viés de ancoragem (todas as caixas vs. ambos mantiveram predição vs. ao menos um realizou intervenção ativa, com cálculo de $\Delta$).
+   - F1 por classe para todas as 16 classes com suporte, TP e acerto condicional entre casadas.
+   - Matriz com as 10 confusões mais frequentes contextualizadas para Diários Oficiais.
+   - Intervalos de confiança de 95% via *cluster bootstrap* por página (1.000 repetições com semente 42 fixa).
+   - Tabela comparativa decomposta para cada projeto individual (**Seed 1, Seed 2, Seed 3 e Seed 4**).
+
+6. **Relatório Novo e Comparação Lado a Lado:**
+   - O relatório novo é gravado em [`resultados/labelstudio_concordancia_v2.md`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/labelstudio_concordancia_v2.md) (sem sobrescrever [`resultados/labelstudio_concordancia.md`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/labelstudio_concordancia.md)).
+   - O relatório inicia obrigatoriamente pela seção **"1. O que mudou em relação à Versão 1"**, contendo o diagnóstico da falha e o quadro comparativo completo lado a lado com os números da v1 vs. v2 completa vs. v2 estrita.
+   - Salvo cache estruturado em [`resultados/concordancia_ls_metricas_v2.json`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/concordancia_ls_metricas_v2.json).
+
+---
+
+## ARQUIVOS
+- [`orquestracao/analises/concordancia_ls.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/concordancia_ls.py) *(editado e atualizado conforme a exceção autorizada)*
+- [`resultados/labelstudio_concordancia_v2.md`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/labelstudio_concordancia_v2.md) *(gerado pela execução do script)*
+- [`resultados/concordancia_ls_metricas_v2.json`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/concordancia_ls_metricas_v2.json) *(cache estruturado gerado pela execução do script)*
+
+---
+
+## EVIDÊNCIA
+- Conforme as regras, **nenhum comando foi executado no terminal**, respeitando o papel do orquestrador de disparar `venv/Scripts/python.exe orquestracao/analises/concordancia_ls.py`.
+- O código utiliza apenas bibliotecas padrão, `numpy` e os módulos do próprio repositório (`src/data/taxonomia_layout.py`), rodando 100% em CPU com codificação UTF-8 defensiva no Windows.
+- O script contém todas as constantes históricas da versão 1 (`METRICAS_V1_HISTORICO`) para emitir a tabela lado a lado no cabeçalho do relatório `v2` de forma imediata e reprodutível.
+
+---
+
+## PENDÊNCIAS
+- Nenhuma pendência de implementação. O script está pronto para execução pelo orquestrador.

@@ -1,0 +1,23 @@
+#ESPERA: orquestracao/noite_0210/pymupdf_ok
+#SAIDA: resultados/caminho_rapido_pymupdf.md
+TAREFA (pense fundo, teste com código): um CAMINHO RÁPIDO sem rede neural para o plano "texto / tabela / imagem", usando só a camada digital do PDF com o PyMuPDF (import pymupdf, versão 1.28, já instalado).
+
+Motivação: o orientador pediu um extrator rápido, e o plano "sem bounding box fina" só precisa saber o que é tabela, o que é imagem e o que é texto. Hoje as palavras saem do pdfplumber (lento: segundos por página; os PDFs de PE levam ~50 s) e tabela/imagem saem de um detector neural (Docling). Pergunta: dá para tirar os dois do caminho em PDFs nascidos digitais?
+
+Faça em orquestracao/analises/caminho_rapido_pymupdf.py:
+1. PALAVRAS. Compare pymupdf (page.get_text("words")) com src/data/extrator.py (palavras_da_pagina, via pdfplumber) numa amostra fixa e semeada de 60 páginas de data/raw espalhadas por veículo (use as páginas de data/processed/blocos para saber quais existem; inclua pelo menos 5 de PE): mesmas palavras? mesmas caixas (tolerância em pontos)? mesmo sistema de coordenadas (cuidado com CropBox e rotação)? Tempo por página de cada um. Liste as diferenças sistemáticas (ligaduras, hifenização, espaços, texto invisível, ordem).
+2. TABELA e IMAGEM sem detector: tabelas por page.find_tables() (teste as estratégias "lines" e "text") e por agrupamento de traços/retângulos de page.get_drawings(); imagens por page.get_image_info() e por desenhos vetoriais grandes. Transforme em regiões {rotulo: table|picture, bbox em pontos}.
+3. Qualidade dessas regiões, em dois ouros:
+   (a) as 44 páginas do golden_v4 (ouro do Diamond: classe tabela e figura; orquestracao/analises/ordem_sem_bbox.py mostra como carregar): precisão e revocação por IoU >= 0,5 para tabela e para imagem, comparadas às do Docling (campo detector.regioes dos lotes Diamond);
+   (b) as páginas de teste do Label Studio com PDF local (data/labelstudio/pdf_paginas.jsonl, uso == "teste_deteccao"; ouro em data/labelstudio/conv_seed{1..4}/tarefas.jsonl em pixels; 3 classes: table -> tabela; figure, chart, heading -> imagem). CONFIRA o índice da página e a escala pontos->pixels comparando texto. Reporte separado as páginas sem camada de texto (digitalizadas), onde o caminho rápido não se aplica.
+4. EFEITO NA ORDEM: no golden_v4, com a configuração LOPO do relatório resultados/ordem_sem_bbox.md congelada, troque a origem dos blocos atômicos: Docling (como antes) x caminho rápido do PyMuPDF x nenhum átomo. Mesmas réguas, IC e Wilcoxon pareado. Um pipeline sem nenhuma rede neural chega perto?
+5. TEMPO de ponta a ponta por página: pdfplumber + Docling (CPU) x PyMuPDF puro. Quantas páginas por segundo?
+Escreva resultados/caminho_rapido_pymupdf.md: resumo de 5 linhas com veredito (onde o caminho rápido basta e onde o detector continua necessário), tabelas, análise de erro com exemplos, limitações (licença AGPL do PyMuPDF; PDFs digitalizados), recomendação de desenho (por exemplo: caminho rápido primeiro e detector só quando ele não achar nada confiável). No fim rode do zero e confira que o relatório bate com a saída. Resposta final: veredito, tabela principal e caminhos dos arquivos.
+
+REQUISITOS QUE VIERAM DA REVISÃO ADVERSARIAL (leia resultados/revisao_ordem_sem_bbox.md e, se já existir, resultados/ordem_sem_bbox_justo.md):
+(i) além da XY-cut pura, inclua como linha de base a XY-cut sobre as regiões de referência COM a mesma política de margens do método (itens do topo primeiro, rodapé por último, marcas antes do rodapé, mesmos limiares), para separar o ganho da projeção de colunas do ganho da política de margens;
+(ii) trate como régua principal a sequência real de saída (linhas ou palavras, mais a fração de regiões cujas palavras ficam em mais de um trecho); a régua de regiões por mediana dos ranks é secundária, porque esconde texto intercalado;
+(iii) Wilcoxon pareado com zero_method="pratt" e IC por bootstrap agrupado por veículo;
+(iv) não use assert para região ou página sem palavras: trate o caso e conte quantos são.
+
+NOTA: se resultados/pymupdf_palavras.md já existir (outro agente mediu a paridade e o tempo das palavras), leia, confira por amostragem em 10 páginas e não repita a medição inteira do item 1; concentre-se nos itens 2 a 5.

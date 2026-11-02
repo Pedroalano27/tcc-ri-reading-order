@@ -1,0 +1,49 @@
+07/10 20:35:56 [agy] fila iniciada
+07/10 20:35:56 [agy] comecando 01_antes_depois.txt
+07/10 20:45:52 [agy] agy ok 01_antes_depois.txt na rodada 1
+07/10 20:49:04 [agy] comecando 02_treinador_com_texto.txt
+07/10 20:51:09 [agy] agy rodada 1 de 02_treinador_com_texto.txt falhou (rc=99): arquivo orquestracao/analises/treinar_sem_caixas_texto.py nao foi criado
+07/10 20:52:16 [agy] agy rodada 2 de 02_treinador_com_texto.txt falhou (rc=99): arquivo orquestracao/analises/treinar_sem_caixas_texto.py nao foi criado
+07/10 20:53:45 [agy] agy rodada 3 de 02_treinador_com_texto.txt falhou (rc=99): arquivo orquestracao/analises/treinar_sem_caixas_texto.py nao foi criado
+07/10 20:54:40 [agy] agy rodada 4 de 02_treinador_com_texto.txt falhou (rc=99): arquivo orquestracao/analises/treinar_sem_caixas_texto.py nao foi criado
+07/10 20:56:36 [agy] agy rodada 5 de 02_treinador_com_texto.txt falhou (rc=99): arquivo orquestracao/analises/treinar_sem_caixas_texto.py nao foi criado
+07/10 20:56:36 [agy] agy DESISTIU de 02_treinador_com_texto.txt
+07/10 23:27:33 [agy] fila iniciada
+07/10 23:27:33 [agy] comecando 03_auditoria_extrator.txt
+07/10 23:35:23 [agy] agy rodada 1 de 03_auditoria_extrator.txt falhou (rc=1): SyntaxError: closing parenthesis ']' does not match opening parenthesis '{' on line 707
+07/10 23:38:34 [agy] agy ok 03_auditoria_extrator.txt na rodada 2
+07/10 23:41:55 [codex] fila iniciada
+07/10 23:41:55 [codex] comecando 01_treinador_com_texto.txt
+07/10 23:42:30 [agy] comecando 04_lote_classificavel.txt
+07/10 23:50:38 [agy] agy ok 04_lote_classificavel.txt na rodada 1
+07/10 23:53:47 [agy] comecando 05_anotacao_simples.txt
+07/10 23:55:02 [codex] codex ok 01_treinador_com_texto.txt em 13 min (ATENCAO: nao gerou resultados/ordenadores_treinados_sem_caixas/fumaca_texto/treino.json)
+07/10 23:55:06 [codex] comecando 02_extrator_v2.txt
+08/10 00:01:37 [agy] agy ok 05_anotacao_simples.txt na rodada 1
+08/10 00:17:29 [codex] codex ok 02_extrator_v2.txt em 22 min
+08/10 00:20:06 [codex] ALERTA: arquivos sob data/ mudaram durante 02_extrator_v2.txt: data/diamond/lote_sem_paragrafos/img/001.jpg data/diamond/lote_sem_paragrafos/img/002.jpg data/diamond/lote_sem_paragrafos/img/003.jpg data/diamond/lote_sem_paragrafos/img/004.jpg data/diamond/lote_sem_paragrafos/img/005.jpg 
+08/10 00:20:06 [codex] comecando 03_corretor_de_transicoes.txt
+08/10 00:44:14 [codex] codex ok 03_corretor_de_transicoes.txt em 24 min
+08/10 00:56:13 [codex] fila iniciada
+08/10 00:56:13 [codex] comecando 04_executar_extrator_v2.txt
+08/10 00:57:46 [agy] comecando 06_conversor_page_xml.txt
+08/10 01:03:14 [agy] agy ok 06_conversor_page_xml.txt na rodada 1
+08/10 01:19:59 [codex] codex ok 04_executar_extrator_v2.txt em 23 min
+08/10 01:23:10 [codex] comecando 05_executar_corretor.txt
+08/10 01:33:08 [codex] codex ok 05_executar_corretor.txt em 9 min
+08/10 01:52:11 [codex] comecando 06_margens_e_transversais.txt
+08/10 02:11:16 [codex] codex ok 06_margens_e_transversais.txt em 19 min
+08/10 02:48:04 [codex] comecando 07_margens_por_repeticao.txt
+08/10 03:06:09 [codex] codex ok 07_margens_por_repeticao.txt em 18 min
+08/10 03:08:25 [codex] comecando 08_reordenacao_restrita.txt
+08/10 03:34:35 [codex] codex ok 08_reordenacao_restrita.txt em 26 min
+08/10 03:44:47 [codex] comecando 09_regra_mais_modelo_seletivo.txt
+08/10 03:47:23 [codex] codex tentativa 1 de 09_regra_mais_modelo_seletivo.txt falhou (rc=1, 2 min)
+08/10 03:49:54 [codex] comecando 09_regra_mais_modelo_seletivo.txt
+08/10 03:49:57 [codex] codex FALHA RAPIDA em 09_regra_mais_modelo_seletivo.txt (rc=1, 3s): ERROR: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at 4:31 | espero 20 min
+08/10 04:09:59 [codex] comecando 09_regra_mais_modelo_seletivo.txt
+08/10 04:10:03 [codex] codex FALHA RAPIDA em 09_regra_mais_modelo_seletivo.txt (rc=1, 4s): ERROR: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at 4:31 | espero 20 min
+08/10 04:20:04 [agy] comecando 07_paineis_reordenacao.txt
+08/10 04:33:13 [codex] comecando 09_regra_mais_modelo_seletivo.txt
+08/10 04:34:33 [agy] agy ok 07_paineis_reordenacao.txt na rodada 1
+08/10 05:00:43 [codex] codex ok 09_regra_mais_modelo_seletivo.txt em 27 min

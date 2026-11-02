@@ -1,0 +1,11 @@
+O relatório foi elaborado e salvo no arquivo [RELATO_official-diaries-collector.md](file:///C:/Users/pedro/dev/ceia_datapolicy/RELATO_official-diaries-collector.md).
+
+### Resumo dos Principais Achados
+
+1. **Detecção de layout:** **NÃO ACHOU**. O repositório é restrito à ingestão e raspagem (*crawling/download*) de PDFs brutos de portais oficiais. Não há modelos YOLO, segmentação de blocos, caixas de texto/tabelas/imagens, nem filtros de cabeçalho/rodapé.
+2. **Ordenação de leitura:** **NÃO ACHOU**. Não há algoritmos de ordenação (XY-cut, heurísticas de leitura por coluna ou modelos neurais como LayoutReader/LayoutLM).
+3. **Métricas e benchmarks:** **NÃO ACHOU**. Não há avaliação de IoU, $\tau$ de Kendall, quebras de leitura ou scripts de benchmark de layout. O único monitoramento existente é via Spidermon para requisições HTTP e integridade de downloads ([`data_collection/gazette/monitors.py`](file:///C:/Users/pedro/dev/ceia_datapolicy/official-diaries-collector/data_collection/gazette/monitors.py)).
+4. **Dados e anotação:** **NÃO ACHOU**. Não há arquivos de rotulagem (Label Studio, COCO, YOLO) nem guias de classes de layout.
+5. **Aproveitamento para o TCC:**
+   - **Útil:** A função [`extrair_pdf_de_bytes`](file:///C:/Users/pedro/dev/ceia_datapolicy/official-diaries-collector/data_collection/gazette/spiders/externos/coletas/ColetaMG/mg_jornal_downloader.py#L610) em [`mg_jornal_downloader.py`](file:///C:/Users/pedro/dev/ceia_datapolicy/official-diaries-collector/data_collection/gazette/spiders/externos/coletas/ColetaMG/mg_jornal_downloader.py#L610-L633) e [`rj_ioerj_downloader.py`](file:///C:/Users/pedro/dev/ceia_datapolicy/official-diaries-collector/data_collection/gazette/spiders/externos/coletas/ColetaRJ/rj_ioerj_downloader.py#L268-L289), que extrai o fluxo `%PDF` ... `%%EOF` de envelopes binários/assinados onde cabeçalhos proprietários corrompem a leitura no `pdfplumber` e `PyMuPDF`.
+   - **Não serve:** Toda a infraestrutura de scrapers Scrapy/Playwright e o OCR com Pesseract em [`ColetaParana/downloader.py`](file:///C:/Users/pedro/dev/ceia_datapolicy/official-diaries-collector/data_collection/gazette/spiders/externos/coletas/ColetaParana/downloader.py#L139-L220) (focado estritamente em CAPTCHA monolinha `--psm 8`).

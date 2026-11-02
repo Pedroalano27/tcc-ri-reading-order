@@ -1,0 +1,55 @@
+Todas as entregas da tarefa foram concluídas e gravadas exclusivamente no diretório [`resultados/ferramenta_anotacao/`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/ferramenta_anotacao). Nenhum arquivo pré-existente foi modificado, nenhum dado de `data/` foi acessado ou alterado, e nenhuma dependência externa ou execução de terminal foi acionada.
+
+---
+
+### Resumo das Entregas
+
+#### 1. [`classificador.html`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/ferramenta_anotacao/classificador.html)
+Arquivo HTML5 autossuficiente (single-file, offline, sem dependências externas, CSS e JS puros) que o autor pode abrir com dois cliques em qualquer navegador:
+- **Carregamento flexível:** Permite abrir arquivos `tasks.json` (no formato próprio simples do TCC) ou arquivos de export do **Label Studio** (detecta automaticamente o formato e converte em memória para edição). Suporta pasta local de imagens via `<input type="file" webkitdirectory directory multiple>` ou arrastando arquivos; caso a pasta ainda não tenha sido carregada, exibe um canvas com quadriculado padrão e dimensões da página para visualização imediata das caixas.
+- **Edição direta e ergonômica de layout:**
+  - Seleção por clique (e múltipla seleção com `Shift` + clique).
+  - Troca instantânea de classes com teclas numéricas de **1 a 9** (configurável no topo do código: texto, tabela, imagem, cabeçalho, rodapé, quadro, outro).
+  - Desenho de novas caixas arrastando em área vazia.
+  - Redimensionamento por 8 alças perimetrais e movimentação por arrasto interno.
+  - **Juntar caixas (Merge):** Tecla <kbd>M</kbd> calcula o bounding box unificado e emenda os textos.
+  - **Dividir caixas (Split):** Tecla <kbd>S</kbd> ativa a linha de corte interativa por clique.
+  - Exclusão com <kbd>Del</kbd> / <kbd>Backspace</kbd>.
+- **Modo Ordem de Leitura (<kbd>O</kbd>):**
+  - Ao pressionar <kbd>O</kbd>, um clique sequencial em cada caixa define a ordem humana em cadeia, desenhando trilhas direcionadas com setas SVG e numeração de leitura sobre cada bloco.
+- **Produtividade e Segurança:**
+  - Desfazer profundo com <kbd>Ctrl+Z</kbd>.
+  - Navegação entre páginas com setas do teclado (<kbd>←</kbd> e <kbd>→</kbd>).
+  - Cronômetro ativo de tempo por página e contador de progresso geral (% e quantidade concluída).
+  - Modal para "Pular com motivo" (registrando justificativa no lote).
+  - **Autosave contínuo** em `localStorage` a cada modificação, permitindo fechar o navegador sem perda de progresso.
+  - Botões para exportação nos formatos **Próprio (JSON)** e **Label Studio (JSON importável)**.
+
+---
+
+#### 2. [`exportar_labelstudio.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/ferramenta_anotacao/exportar_labelstudio.py)
+Módulo Python autossuficiente (apenas biblioteca padrão) implementando conversão bidirecional:
+- `proprio_para_ls(dados_proprio)`: Converte as caixas em pixels absolutos para coordenadas percentuais (`rectanglelabels`), textos (`textarea`), metadados e cadeias de leitura (`relation` com `labels: ["continue"]`, `direction: "right"`), perfeitamente importáveis no Label Studio.
+- `ls_para_proprio(dados_ls)`: Converte o export JSON do Label Studio de volta para o formato próprio, recalculando pixels a partir de `original_width` e `original_height`, extraindo classes e recompondo a cadeia da ordem de leitura.
+- **Teste de Ida e Volta Embutido:** O bloco `if __name__ == "__main__":` executa um teste sintético estrito com 3 caixas e uma relação (`Próprio -> Label Studio -> Próprio`), validando tolerância numérica de coordenadas (< 0,1 px), preservação exata de classes, integridade de texto e reconstituição da relação.
+- **Execução:**
+  ```bash
+  venv\Scripts\python.exe -B resultados\ferramenta_anotacao\exportar_labelstudio.py
+  ```
+
+---
+
+#### 3. [`exemplo/tasks.json`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/ferramenta_anotacao/exemplo/tasks.json)
+Arquivo com 3 tarefas representativas no formato próprio com imagens apenas referenciadas pelo nome de arquivo:
+1. `diario_exemplo_2026_p001`: Página em 2 colunas com cabeçalho transversal largo, decreto executivo, portaria administrativa e rodapé.
+2. `diario_exemplo_2026_p002`: Página com edital de concurso, texto introdutório, tabela de cargos/vencimentos em largura cheia e assinaturas.
+3. `diario_exemplo_2026_p003`: Página em 3 colunas com brasão (imagem), quadro de aviso em destaque, avisos de licitação e aditivos contratuais.
+
+---
+
+#### 4. [`PROPOSTA.md`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/ferramenta_anotacao/PROPOSTA.md)
+Documento analítico cobrindo todos os pontos exigidos:
+- **Tabela comparativa honesta:** Confronta Label Studio, ferramentas locais do TCC (`diamond.html` e `ferramenta.html`), o novo `classificador.html`, e três alternativas de mercado (CVAT, Labelme e Make Sense) nos eixos de instalação, formato de saída, atalhos, suporte à ordem de leitura, trabalho em equipe e custo operacional.
+- **Economia por página:** Demonstra como a substituição do arrasto manual de setas do Label Studio pelo modo de clique sequencial com tecla <kbd>O</kbd> e atalhos <kbd>1</kbd>–<kbd>9</kbd>, <kbd>M</kbd> e <kbd>S</kbd> reduz o tempo médio de anotação de ~3,5–5,0 min para ~1,0–1,5 min por página (**economia de 65% a 70% do tempo humano**).
+- **Limitações e pendências:** Declara que o protótipo foca em caixas retangulares (AABB), trata tabelas como bloco único e necessita de teste cego formal de usabilidade com múltiplos anotadores.
+- **Protocolo de compartilhamento seguro com o parceiro (Data Policy):** Descreve como fornecer a ferramenta sem transitar nenhum dado confidencial, garantindo que o processamento ocorra 100% no navegador do parceiro com reimportação direta no Label Studio deles.

@@ -1,0 +1,51 @@
+## FEITO
+
+Implementei o script [`orquestracao/analises/galeria_ordem_sem_bbox.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/galeria_ordem_sem_bbox.py) para gerar a galeria visual completa e a interface estática de conferência qualitativa das 44 páginas do `golden_v4`.
+
+### Principais características da implementação:
+
+1. **Reutilização integral e sem duplicação de lógica:**
+   - O script importa diretamente de [`orquestracao/analises/ordem_sem_bbox.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/ordem_sem_bbox.py) as rotinas `preparar`, `Config`, `prever`, `avaliar_fluxo`, `atomos`, `linhas_partidas`, `vales`, `vales_locais`, `envelope`, `RE_MARCACAO` e `NOTAS_INSPECAO`.
+   - Utiliza a melhor configuração apontada no relatório do método (`resultados/ordem_sem_bbox.md`): `Config("projecao_local_margens", score=0.45, gap=1.2, vale=0.08)`.
+
+2. **Renderização visual de cada página (`pag01.jpg` a `pag44.jpg`):**
+   - **Resolução padronizada:** Largura exata de 1100 px, escalando coordenadas dos pontos do PDF para pixels com base em `dimensions`.
+   - **Faixas de colunas detectadas:** Retângulos verticais translúcidos cobrindo o corpo do texto em cores alternadas (azul, laranja, verde, roxo) e linhas pontilhadas nos cortes de calha (`vales_locais`).
+   - **Blocos atômicos:** Contornos destacados com preenchimento sutil e etiquetas identificadoras — roxo (`#7E22CE`) para `table` (tabela) e cinza (`#475569`) para `picture` (imagem).
+   - **Caminho de leitura previsto:** Trajetória em linha carmesim (`#DC2626`) conectando os centros de cada linha de texto prevista na sequência, com círculos e numeração de ordem a cada 10 linhas (1, 10, 20, 30...) e na linha final.
+   - **Banner de cabeçalho:** Faixa superior escura exibindo rank, `page_id`, UF, contagem de colunas detectadas, número de linhas e átomos, e em destaque métricas da régua de regiões ($\tau$ de Kendall, acerto de sucessor e ARD normalizado).
+
+3. **Página de índice estática (`index.html`):**
+   - HTML e CSS puros, autocontidos, sem qualquer dependência externa de fontes ou CDNs.
+   - Ordenação estrita da **PIOR para a MELHOR** página ($\tau$ crescente da régua de regiões), permitindo ao orientador e ao autor inspecionarem imediatamente os casos de maior falha e inversão de fluxo.
+   - Dashboard de resumo no topo com médias gerais e destaques extremos.
+   - Tabela-índice navegável com miniaturas e métricas tanto da régua de regiões quanto da régua de linhas.
+   - Cartões individuais para cada página contendo dados estruturados, notas qualitativas de inspeção existentes em `NOTAS_INSPECAO` e a imagem gerada clicável (abre em tamanho original de 1100 px em nova aba).
+
+---
+
+## ARQUIVOS
+
+- **Criado:** [`orquestracao/analises/galeria_ordem_sem_bbox.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/galeria_ordem_sem_bbox.py)
+- **Saídas geradas na execução do script:**
+  - `resultados/galeria_ordem_sem_bbox/pag01.jpg` a `pag44.jpg` (44 imagens de 1100 px)
+  - `resultados/galeria_ordem_sem_bbox/index.html` (painel estático navegável)
+
+---
+
+## EVIDÊNCIA
+
+- Código totalmente compatível com a biblioteca padrão Python 3.11, Pillow (`PIL`), NumPy e módulos internos do repositório.
+- A função de renderização foi construída com `PIL.Image.alpha_composite` para garantir que o texto original do PDF permaneça nítido sob as camadas translúcidas das colunas e caixas.
+- Tratamento defensivo de fontes com fallback para fontes do sistema (`Segoe UI`, `Arial`, `Calibri`) e `ImageFont.load_default()`.
+- Criação automática do diretório de destino `resultados/galeria_ordem_sem_bbox/`.
+
+---
+
+## PENDÊNCIAS
+
+- Execução pelo orquestrador:
+  ```powershell
+  $env:PYTHONIOENCODING='utf-8'
+  venv\Scripts\python.exe orquestracao/analises/galeria_ordem_sem_bbox.py
+  ```

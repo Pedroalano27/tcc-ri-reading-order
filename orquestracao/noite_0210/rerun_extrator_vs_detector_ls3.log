@@ -1,0 +1,108 @@
+Ouro: 317 paginas; 42 fontes. Detectores: {'ls3': {'treino_ok': True, 'checkpoint': True, 'incluido': True, 'motivo': 'concluído; incluído'}, 'ls16': {'treino_ok': False, 'checkpoint': True, 'incluido': False, 'motivo': 'fora: treino_ok ausente'}}
+[palavras] 10/317; novas 0
+[palavras] 20/317; novas 0
+[palavras] 30/317; novas 0
+[palavras] 40/317; novas 0
+[palavras] 50/317; novas 0
+[palavras] 60/317; novas 0
+[palavras] 70/317; novas 0
+[palavras] 80/317; novas 0
+[palavras] 90/317; novas 0
+[palavras] 100/317; novas 0
+[palavras] 110/317; novas 0
+[palavras] 120/317; novas 0
+[palavras] 130/317; novas 0
+[palavras] 140/317; novas 0
+[palavras] 150/317; novas 0
+[palavras] 160/317; novas 0
+[palavras] 170/317; novas 0
+[palavras] 180/317; novas 0
+[palavras] 190/317; novas 0
+[palavras] 200/317; novas 0
+[palavras] 210/317; novas 0
+[palavras] 220/317; novas 0
+[palavras] 230/317; novas 0
+[palavras] 240/317; novas 0
+[palavras] 250/317; novas 0
+[palavras] 260/317; novas 0
+[palavras] 270/317; novas 0
+[palavras] 280/317; novas 0
+[palavras] 290/317; novas 0
+[palavras] 300/317; novas 0
+[palavras] 310/317; novas 0
+[palavras] 317/317; novas 0
+[extrator] 10/317; novas 0; erros 0
+[extrator] 20/317; novas 0; erros 0
+[extrator] 30/317; novas 0; erros 0
+[extrator] 40/317; novas 0; erros 0
+[extrator] 50/317; novas 0; erros 0
+[extrator] 60/317; novas 0; erros 0
+[extrator] 70/317; novas 0; erros 0
+[extrator] 80/317; novas 0; erros 0
+[extrator] 90/317; novas 0; erros 0
+[extrator] 100/317; novas 0; erros 0
+[extrator] 110/317; novas 0; erros 0
+[extrator] 120/317; novas 0; erros 0
+[extrator] 130/317; novas 0; erros 0
+[extrator] 140/317; novas 0; erros 0
+[extrator] 150/317; novas 0; erros 0
+[extrator] 160/317; novas 0; erros 0
+[extrator] 170/317; novas 0; erros 0
+[extrator] 180/317; novas 0; erros 0
+[extrator] 190/317; novas 0; erros 0
+[extrator] 200/317; novas 0; erros 0
+[extrator] 210/317; novas 0; erros 0
+[extrator] 220/317; novas 0; erros 0
+[extrator] 230/317; novas 0; erros 0
+[extrator] 240/317; novas 0; erros 0
+[extrator] 250/317; novas 0; erros 0
+[extrator] 260/317; novas 0; erros 0
+[extrator] 270/317; novas 0; erros 0
+[extrator] 280/317; novas 0; erros 0
+[extrator] 290/317; novas 0; erros 0
+[extrator] 300/317; novas 0; erros 0
+[extrator] 310/317; novas 0; erros 0
+[extrator] 317/317; novas 0; erros 0
+WARNING user config directory 'C:\Users\pedro\dev\tcc-ri-reading-order\resultados\ls_teste_cache\ultralytics_config\Ultralytics' is not writable, using 'C:\Users\pedro\dev\tcc-ri-reading-order\Ultralytics'. Set YOLO_CONFIG_DIR to override.
+Creating new Ultralytics Settings v0.0.8 file  
+View Ultralytics Settings with 'yolo settings' or at 'C:\Users\pedro\dev\tcc-ri-reading-order\Ultralytics\settings.json'
+Update Settings with 'yolo settings key=value', i.e. 'yolo settings runs_dir=path/to/dir'. For help see https://docs.ultralytics.com/usage/settings.
+[ls3] CPU; carga 0.12s; 317 paginas novas
+[ls3] 10/317
+[ls3] 20/317
+[ls3] 30/317
+[ls3] 40/317
+[ls3] 50/317
+[ls3] 60/317
+[ls3] 70/317
+[ls3] 80/317
+[ls3] 90/317
+[ls3] 100/317
+[ls3] 110/317
+[ls3] 120/317
+[ls3] 130/317
+[ls3] 140/317
+[ls3] 150/317
+[ls3] 160/317
+[ls3] 170/317
+[ls3] 180/317
+[ls3] 190/317
+[ls3] 200/317
+[ls3] 210/317
+[ls3] 220/317
+[ls3] 230/317
+[ls3] 240/317
+[ls3] 250/317
+[ls3] 260/317
+[ls3] 270/317
+[ls3] 280/317
+[ls3] 290/317
+[ls3] 300/317
+[ls3] 310/317
+[ls3] 317/317
+
+TABELA FINAL (F1 micro; tempos medidos, sem acesso ao cache):
+extrator paginas 317 {'loc50': 0.572863, 'loc75': 0.398767, 'c3_50': 0.554606, 'c3_75': 0.387131, 'c9_50': 0.480176, 'c9_75': 0.344493} {'n': 317, 'media_ms': 4486.8045570978275, 'mediana_ms': 2313.0397999993875, 'p95_ms': 16708.414139998422, 'total_s': 1422.3170446000113}
+ls3 paginas 317 {'loc50': 0.780134, 'loc75': 0.73063, 'c3_50': 0.768871, 'c3_75': 0.721613} {'n': 317, 'media_ms': 711.2316605679285, 'mediana_ms': 697.9217000007338, 'p95_ms': 850.7314199989196, 'total_s': 225.46043640003336}
+Relatorio: C:\Users\pedro\dev\tcc-ri-reading-order\resultados\extrator_vs_detector_ls_teste.md
+Evidencia: C:\Users\pedro\dev\tcc-ri-reading-order\resultados\ls_teste_cache\metricas.json

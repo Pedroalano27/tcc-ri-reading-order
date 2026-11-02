@@ -1,0 +1,29 @@
+O erro de sintaxe e inconsistências potenciais no arquivo [`auditoria_extrator_sem_paragrafos.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/auditoria_extrator_sem_paragrafos.py) foram corrigidos.
+
+---
+
+### Causa Identificada
+
+Na montagem do dicionário `json_completo` para exportação do arquivo JSON:
+- Na linha 707 (original), a chave `"piores_paginas_por_detector"` abriu um *dict comprehension* com `{`;
+- Na linha 719 (original), o fechamento foi feito erroneamente com colchete `],` em vez de chave `},`, disparando:
+  ```text
+  SyntaxError: closing parenthesis ']' does not match opening parenthesis '{' on line 707
+  ```
+
+---
+
+### Modificações Realizadas
+
+1. **Correção do Fechamento de Sintaxe (`json_completo`):**
+   - Corrigido o fechamento da compreensão de dicionário de `],` para `},` em [`auditoria_extrator_sem_paragrafos.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/auditoria_extrator_sem_paragrafos.py#L716-L728).
+
+2. **Proteções Adicionais de Robustez em Tempo de Execução:**
+   - **Dimensões em [`gerar_imagem_galeria`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/auditoria_extrator_sem_paragrafos.py#L424-L431):** Adicionado tratamento para extração segura de `width` e `height` com valores padrão (`595.0` e `842.0`) caso o campo `dimensions` venha nulo ou ausente em algum registro JSONL.
+   - **Acesso Seguro a `bbox` nos Detectores D3 e D6:** Substituído o acesso indexado direto `u["bbox"]` por `u.get("bbox", [0, 0, 0, 0])`, prevenindo `KeyError` se alguma unidade malformada não contiver a caixa delimitadora.
+   - **Tratamento de Divisão por Zero e Listas Vazias:** Protegido o cálculo de `pct_grave_str` e o desempacotamento de `det_ordenados` e `ufs_ordenadas` para garantir que o script não falhe mesmo se executado contra lotes vazios ou parciais.
+
+O script está pronto para ser reexecutado pelo orquestrador via:
+```bash
+venv\Scripts\python.exe -B orquestracao/analises/auditoria_extrator_sem_paragrafos.py
+```

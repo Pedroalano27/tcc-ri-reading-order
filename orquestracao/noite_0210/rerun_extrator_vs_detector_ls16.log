@@ -1,0 +1,106 @@
+Ouro: 317 paginas; 42 fontes. Detectores: {'ls3': {'treino_ok': True, 'checkpoint': True, 'incluido': True, 'motivo': 'concluído; incluído'}, 'ls16': {'treino_ok': True, 'checkpoint': True, 'incluido': True, 'motivo': 'concluído; incluído'}}
+[palavras] 10/317; novas 0
+[palavras] 20/317; novas 0
+[palavras] 30/317; novas 0
+[palavras] 40/317; novas 0
+[palavras] 50/317; novas 0
+[palavras] 60/317; novas 0
+[palavras] 70/317; novas 0
+[palavras] 80/317; novas 0
+[palavras] 90/317; novas 0
+[palavras] 100/317; novas 0
+[palavras] 110/317; novas 0
+[palavras] 120/317; novas 0
+[palavras] 130/317; novas 0
+[palavras] 140/317; novas 0
+[palavras] 150/317; novas 0
+[palavras] 160/317; novas 0
+[palavras] 170/317; novas 0
+[palavras] 180/317; novas 0
+[palavras] 190/317; novas 0
+[palavras] 200/317; novas 0
+[palavras] 210/317; novas 0
+[palavras] 220/317; novas 0
+[palavras] 230/317; novas 0
+[palavras] 240/317; novas 0
+[palavras] 250/317; novas 0
+[palavras] 260/317; novas 0
+[palavras] 270/317; novas 0
+[palavras] 280/317; novas 0
+[palavras] 290/317; novas 0
+[palavras] 300/317; novas 0
+[palavras] 310/317; novas 0
+[palavras] 317/317; novas 0
+[extrator] 10/317; novas 0; erros 0
+[extrator] 20/317; novas 0; erros 0
+[extrator] 30/317; novas 0; erros 0
+[extrator] 40/317; novas 0; erros 0
+[extrator] 50/317; novas 0; erros 0
+[extrator] 60/317; novas 0; erros 0
+[extrator] 70/317; novas 0; erros 0
+[extrator] 80/317; novas 0; erros 0
+[extrator] 90/317; novas 0; erros 0
+[extrator] 100/317; novas 0; erros 0
+[extrator] 110/317; novas 0; erros 0
+[extrator] 120/317; novas 0; erros 0
+[extrator] 130/317; novas 0; erros 0
+[extrator] 140/317; novas 0; erros 0
+[extrator] 150/317; novas 0; erros 0
+[extrator] 160/317; novas 0; erros 0
+[extrator] 170/317; novas 0; erros 0
+[extrator] 180/317; novas 0; erros 0
+[extrator] 190/317; novas 0; erros 0
+[extrator] 200/317; novas 0; erros 0
+[extrator] 210/317; novas 0; erros 0
+[extrator] 220/317; novas 0; erros 0
+[extrator] 230/317; novas 0; erros 0
+[extrator] 240/317; novas 0; erros 0
+[extrator] 250/317; novas 0; erros 0
+[extrator] 260/317; novas 0; erros 0
+[extrator] 270/317; novas 0; erros 0
+[extrator] 280/317; novas 0; erros 0
+[extrator] 290/317; novas 0; erros 0
+[extrator] 300/317; novas 0; erros 0
+[extrator] 310/317; novas 0; erros 0
+[extrator] 317/317; novas 0; erros 0
+[ls3] cache completo (317 paginas)
+[ls16] CPU; carga 0.04s; 317 paginas novas
+[ls16] 10/317
+[ls16] 20/317
+[ls16] 30/317
+[ls16] 40/317
+[ls16] 50/317
+[ls16] 60/317
+[ls16] 70/317
+[ls16] 80/317
+[ls16] 90/317
+[ls16] 100/317
+[ls16] 110/317
+[ls16] 120/317
+[ls16] 130/317
+[ls16] 140/317
+[ls16] 150/317
+[ls16] 160/317
+[ls16] 170/317
+[ls16] 180/317
+[ls16] 190/317
+[ls16] 200/317
+[ls16] 210/317
+[ls16] 220/317
+[ls16] 230/317
+[ls16] 240/317
+[ls16] 250/317
+[ls16] 260/317
+[ls16] 270/317
+[ls16] 280/317
+[ls16] 290/317
+[ls16] 300/317
+[ls16] 310/317
+[ls16] 317/317
+
+TABELA FINAL (F1 micro; tempos medidos, sem acesso ao cache):
+extrator paginas 317 {'loc50': 0.572863, 'loc75': 0.398767, 'c3_50': 0.554606, 'c3_75': 0.387131, 'c9_50': 0.480176, 'c9_75': 0.344493} {'n': 317, 'media_ms': 4486.8045570978275, 'mediana_ms': 2313.0397999993875, 'p95_ms': 16708.414139998422, 'total_s': 1422.3170446000113}
+ls3 paginas 317 {'loc50': 0.780134, 'loc75': 0.73063, 'c3_50': 0.768871, 'c3_75': 0.721613} {'n': 317, 'media_ms': 711.2316605679285, 'mediana_ms': 697.9217000007338, 'p95_ms': 850.7314199989196, 'total_s': 225.46043640003336}
+ls16 paginas 317 {'loc50': 0.753029, 'loc75': 0.705375, 'c3_50': 0.743024, 'c3_75': 0.697145, 'c9_50': 0.667643, 'c9_75': 0.628934, 'c16_50': 0.621778, 'c16_75': 0.585834} {'n': 317, 'media_ms': 277.7332735015814, 'mediana_ms': 270.1569000018935, 'p95_ms': 330.03172000098857, 'total_s': 88.0414477000013}
+Relatorio: C:\Users\pedro\dev\tcc-ri-reading-order\resultados\extrator_vs_detector_ls_teste.md
+Evidencia: C:\Users\pedro\dev\tcc-ri-reading-order\resultados\ls_teste_cache\metricas.json

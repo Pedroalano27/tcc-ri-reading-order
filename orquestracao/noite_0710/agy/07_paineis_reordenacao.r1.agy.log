@@ -1,0 +1,50 @@
+### FEITO
+
+1. **Desenvolvimento do gerador de painéis visuais**: Criado o script [`orquestracao/analises/paineis_reordenacao.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/paineis_reordenacao.py) para visualização e auditoria da "reordenação restrita" (Codex) versus a regra geométrica de colunas.
+2. **Seleção automatizada das páginas representativas**:
+   - Para **`golden_v4`**: seleciona as 3 páginas com maior redução de quebras de leitura ($\Delta q < 0$) e as 3 páginas com pior comportamento (a única página com $\Delta q = +1$, Congonhas/MG, complementada pelas 2 páginas neutras com maior reordenação física de linhas).
+   - Para **`golden_v3_novo`**: seleciona as 3 páginas com maior redução de quebras e as 3 páginas de pior comportamento (as 2 páginas com $\Delta q > 0$, complementadas pela neutra mais alterada).
+3. **Composição gráfica e conformidade visual estrita**:
+   - **Renderização lado a lado**: regra geométrica original à esquerda com trilha poligonal e marcadores em **azul** (`#1C62D7`); variante com reordenação restrita à direita em **verde** (`#148C37`).
+   - **Destaque de alterações**: caixas delimitadoras e marcadores numerados de unidades cuja posição na ordem de leitura mudou são destacados em **vermelho** (`#DC1414`), com preenchimento translúcido para fácil localização visual pelo Pedro.
+   - **Restrição de dimensões**: altura máxima limitada com rigor a **1300 px** (`H_CABECALHO = 85 px`, `H_RODAPE = 35 px`, `H_PAGINA = 1180 px`, total = 1300 px).
+   - **Tratamento de fundos**: mapeia imagens originais de `golden_v4`, `golden_v1`, `golden_v2` e `_avaliacao/golden_v3`, com fallback limpo em fundo neutro/branco.
+4. **Relatório e índice analítico**:
+   - O script gera [`resultados/reordenacao_restrita/PAINEIS.md`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/reordenacao_restrita/PAINEIS.md) contendo a tabela de índices com `page_id`, UF, quebras da regra vs. variante, Kendall's $\tau$, unidades alteradas e as 5 linhas de leitura honesta sobre os padrões visuais observados.
+
+---
+
+### ARQUIVOS
+
+- [`orquestracao/analises/paineis_reordenacao.py`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/orquestracao/analises/paineis_reordenacao.py) *(novo)*: script autônomo compatível com Python 3.11, dependendo exclusivamente da biblioteca padrão e Pillow (`PIL`).
+- [`resultados/reordenacao_restrita/PAINEIS.md`](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/reordenacao_restrita/PAINEIS.md) *(gerado pelo script)*: relatório com índice, metadados e análise diagnóstica.
+- `resultados/reordenacao_restrita/<bancada>_<melhora|piora>_NN.jpg` *(12 imagens geradas pelo script)*:
+  - `golden_v4_melhora_01.jpg` a `03.jpg`
+  - `golden_v4_piora_01.jpg` a `03.jpg`
+  - `golden_v3_novo_melhora_01.jpg` a `03.jpg`
+  - `golden_v3_novo_piora_01.jpg` a `03.jpg`
+
+---
+
+### EVIDÊNCIA
+
+- **Estrutura e integridade do código**:
+  - Script validado estaticamente quanto à sintaxe, importações e convenções do repositório.
+  - Carrega dinamicamente o cache em `resultados/reordenacao_restrita_cache/` (identificado pela chave de `ultima_execucao.json`, fingerprint `6d48b2a2ed557dc239ab6c68ff1272f5b45e2c3f73946e1932fdf3e402febf1f`).
+  - Carrega caixas de linhas oficiais de `resultados/unidades_sem_caixas/bancadas/` e predições sob `resultados/ordenadores_sem_caixas/pred/`.
+- **Síntese da Leitura Honesta dos Painéis (incorporada em `PAINEIS.md`)**:
+  1. *Melhoras por inversão de linhas vizinhas na mesma coluna*: Nas páginas com redução de quebras (ex.: de 6 para 3 quebras em v4), a variante conserta trocas espúrias de linhas adjacentes onde ruídos na linha de base faziam a regra pura ler a linha inferior antes da superior.
+  2. *Preservação estrita dos limites das colunas*: As alterações ocorrem dentro das janelas locais (4 a 8 linhas) da coluna, sem saltar transversalmente colunas vizinhas nem quebrar o macrofluxo.
+  3. *Pioras concentradas em cabeçalhos densos e tabelas*: Nas regressões (ex.: Congonhas/MG, $+1$ quebra), o corretor tenta unir verticalmente metadados ou fragmentos tabulares que deveriam ser lidos na horizontal.
+  4. *Proxy puramente geométrica*: Sem informação léxica ou de cabeçalho, o corretor pode hesitar em listas com recuo e espaçamento variável.
+  5. *Conclusão*: A reordenação restrita é um refinamento local eficiente para colunas simples, mas depende de que tabelas e cabeçalhos sejam devidamente preservados como blocos antes da ordenação.
+
+---
+
+### PENDÊNCIAS
+
+- Execução pelo orquestrador via linha de comando:
+  ```powershell
+  venv\Scripts\python.exe -B orquestracao/analises/paineis_reordenacao.py
+  ```
+- Inspeção visual dos arquivos `.jpg` em `resultados/reordenacao_restrita/` pelo Pedro para validação visual qualitativa das trocas indicadas em vermelho.

@@ -1,0 +1,20 @@
+#ESPERA: runs/detect/ls3/treino_ok
+TAREFA (pense fundo, teste com código): VALIDAÇÃO INDEPENDENTE do método "ordem de leitura sem bounding box fina" em páginas que NÃO foram usadas para desenvolvê-lo.
+
+Contexto: orquestracao/analises/ordem_sem_bbox.py + resultados/ordem_sem_bbox.md mostraram, nas 44 páginas do golden_v4, tau 0,917 contra 0,825 da XY-cut em regiões humanas, mas com PERDA no estrato multicoluna (0,887 contra 0,913) e com o método desenvolvido olhando essas mesmas páginas. Falta um teste em dado novo.
+
+Dado novo: o projeto 23 do Label Studio (data/labelstudio/ls_p23_seed2_order.json) tem ordem de leitura anotada por humanos como relações entre caixas. src/anotacao/ordem_labelstudio.py valida e converte (comando converter -> tarefas.jsonl com bounding_boxes em pixels e anotacoes.jsonl com "ordem"; só status "concluida" tem cadeia válida; ignore o anotador "desconhecido", que é a sugestão automática). data/labelstudio/pdf_paginas.jsonl (registros com uso == "ordem") aponta o PDF local e a página de cada tarefa; as palavras com coordenadas saem do PDF (veja src/data/extrator.py). CONFIRA o índice da página e a escala pontos->pixels comparando o texto das palavras com as transcrições das caixas.
+
+Faça em orquestracao/analises/ordem_sem_bbox_validacao_ls.py (importe do script anterior; não o edite; converta para resultados/ordem_ls/ — nunca grave em data/):
+1. CONGELE a configuração: use exatamente a configuração escolhida no golden_v4 (a mais escolhida no leave-one-page-out), sem reajustar nada nas páginas novas. Diga qual é.
+2. Blocos atômicos: (a) caixas table/figure/chart/heading do próprio ouro do Label Studio (diagnóstico); (b) detector runs/detect/ls3/weights/best.pt em CPU, se runs/detect/ls3/treino_ok existir. ATENÇÃO: as páginas do projeto 23 são as mesmas do seed 2; se uma página estiver no treino do ls3 (data/deteccao/ls_split.json), reporte separado ou exclua do item (b).
+3. Avalie na régua de regiões (projeção nas caixas do ouro) contra a ordem humana: tau de Kendall, sucessor, ARD normalizado, com IC por bootstrap; compare com a XY-cut e a ordem ingênua sobre as caixas do ouro (src/eval/baselines.py); teste pareado. Separe 1 coluna e multicoluna usando a detecção de colunas do próprio método (declare o critério).
+4. VIÉS: essa ordem humana foi feita CORRIGINDO a ordem da XY-cut (campo iguais_a_origem do conversor), o que favorece a XY-cut. Reporte também só nas páginas em que o humano mudou a sugestão.
+5. Depois, e separadamente (rotule como exploratório): proponha e teste UMA melhoria para o caso multicoluna (por exemplo, tabela que atravessa colunas, cabeçalho/rodapé, título de largura total), desenvolvendo no golden_v4 e validando nessas páginas novas.
+Escreva resultados/ordem_sem_bbox_validacao_ls.md (resumo de 5 linhas com veredito claro: o ganho se confirma em dado novo?, tabelas, análise de erro, limitações, recomendação para o TCC). No fim rode do zero e confira que o relatório bate com a saída. Resposta final: veredito, tabela principal e caminhos dos arquivos.
+
+REQUISITOS QUE VIERAM DA REVISÃO ADVERSARIAL (leia resultados/revisao_ordem_sem_bbox.md e, se já existir, resultados/ordem_sem_bbox_justo.md):
+(i) além da XY-cut pura, inclua como linha de base a XY-cut sobre as regiões de referência COM a mesma política de margens do método (itens do topo primeiro, rodapé por último, marcas antes do rodapé, mesmos limiares), para separar o ganho da projeção de colunas do ganho da política de margens;
+(ii) trate como régua principal a sequência real de saída (linhas ou palavras, mais a fração de regiões cujas palavras ficam em mais de um trecho); a régua de regiões por mediana dos ranks é secundária, porque esconde texto intercalado;
+(iii) Wilcoxon pareado com zero_method="pratt" e IC por bootstrap agrupado por veículo;
+(iv) não use assert para região ou página sem palavras: trate o caso e conte quantos são.

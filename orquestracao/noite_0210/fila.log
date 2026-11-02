@@ -1,0 +1,93 @@
+23:53:31 [agy] comecando 01_concordancia.txt
+23:53:32 [codex] codex 01 (sem bbox fina) terminou
+23:57:10 [codex] codex 01 (sem bbox fina) terminou
+23:57:11 [codex] comecando 03_extrator_vs_detector_317.txt
+23:57:42 [agy] agy rodada 1 de 01_concordancia.txt falhou (rc=1)
+03/10 02:29:28 [gemini] ordem VLM na particao de teste (volta 1)
+03/10 02:29:28 [gpu] GPU em uso (744 MiB, 36%); espero liberar
+03/10 02:29:28 [codex] fila iniciada
+03/10 02:29:28 [agy] fila iniciada
+03/10 02:29:29 [agy] comecando 00_revisao_sem_bbox.txt
+03/10 02:29:29 [codex] comecando 03_extrator_vs_detector_317.txt
+03/10 02:32:30 [agy] agy ok 00_revisao_sem_bbox.txt
+03/10 02:32:48 [agy] comecando 01_concordancia.txt
+03/10 02:33:03 [gpu] GPU livre; iniciando orquestracao/noite_detector_ls.sh
+03/10 02:37:08 [gpu] GPU livre; iniciando orquestracao/noite_detector_ls.sh
+03/10 02:38:30 [agy] agy ok 01_concordancia.txt na rodada 1
+03/10 02:38:41 [agy] comecando 02_ancoragem.txt
+03/10 02:42:28 [agy] agy ok 02_ancoragem.txt na rodada 1
+03/10 02:42:30 [agy] comecando 03_ordem_ls_baselines.txt
+03/10 02:42:52 [gemini] vlm_ordem rc=0 | parcial: 0 | final: 89
+03/10 02:42:52 [gemini] massa de anotacao: 273/383; retomando
+03/10 02:47:32 [agy] agy ok 03_ordem_ls_baselines.txt na rodada 1
+03/10 02:47:35 [agy] comecando 05_galeria_sem_bbox.txt
+03/10 02:56:21 [agy] agy ok 05_galeria_sem_bbox.txt na rodada 1
+03/10 02:56:33 [agy] comecando 06_concordancia_corrigida.txt
+03/10 03:01:46 [agy] agy rodada 1 de 06_concordancia_corrigida.txt falhou (rc=1): AttributeError: 'dict' object has no attribute 'most_common'
+03/10 03:05:05 [agy] agy ok 06_concordancia_corrigida.txt na rodada 2
+03/10 03:05:16 [agy] comecando 07_avaliar_vlm_teste.txt
+03/10 03:10:14 [agy] agy ok 07_avaliar_vlm_teste.txt na rodada 1
+03/10 03:10:35 [codex] codex ok 03_extrator_vs_detector_317.txt em 41 min
+03/10 03:10:37 [codex] comecando 01b_sem_bbox_justo.txt
+03/10 03:40:52 [codex] codex ok 01b_sem_bbox_justo.txt em 30 min
+03/10 03:40:54 [codex] comecando 02_ponta_a_ponta_ls3.txt
+03/10 03:41:24 [agy] comecando 08_pymupdf_palavras.txt
+03/10 03:50:29 [agy] agy ok 08_pymupdf_palavras.txt na rodada 1
+03/10 04:08:40 [codex] codex ok 02_ponta_a_ponta_ls3.txt em 27 min
+03/10 04:08:43 [codex] comecando 04_validacao_independente_ls.txt
+03/10 04:54:38 [gemini] parado pelo orquestrador: massa em 345/383; as 38 restantes falham sempre na validacao (paginas densas), repetir so gastava cota
+03/10 04:55:58 [codex] codex ok 04_validacao_independente_ls.txt em 47 min
+03/10 04:56:09 [codex] comecando 05_sem_bbox_validacao_acervo.txt
+03/10 05:23:00 [gpu] noite_detector_ls.sh terminou (rc=0)
+03/10 05:23:46 [agy] comecando 09_galeria_extrator_detector.txt
+03/10 05:27:08 [agy] agy ok 09_galeria_extrator_detector.txt na rodada 1
+03/10 05:29:30 [codex] codex ok 05_sem_bbox_validacao_acervo.txt em 33 min
+03/10 05:29:32 [codex] comecando 06_layoutreader_linhas.txt
+03/10 05:31:26 [gpu] detectores e comparacao ja prontos; nada a fazer
+03/10 05:32:27 [gpu2] ajuste fino no Diamond a partir de coco
+03/10 05:49:00 [gpu2] diamond_ft_coco pronto: detector ft_coco 0.750 0.631 0.639 60.0% 373/328
+03/10 05:49:00 [gpu2] ajuste fino no Diamond a partir de ls16
+03/10 06:06:55 [codex] codex tentativa 1 de 06_layoutreader_linhas.txt falhou (rc=1, 37 min)
+03/10 06:07:10 [codex] comecando 06_layoutreader_linhas.txt
+03/10 06:07:14 [codex] codex FALHA RAPIDA em 06_layoutreader_linhas.txt (rc=1, 4s): ERROR: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at 7:29 | espero 20 min
+03/10 06:11:13 [gpu2] diamond_ft_ls16 pronto: detector ft_ls16 0.789 0.675 0.642 62.2% 389/328
+03/10 06:11:13 [gpu2] ajuste fino no Diamond a partir de ls3
+03/10 06:21:19 [agy] comecando 10_extrator_hibrido_diamond.txt
+03/10 06:21:24 [codex] 06_layoutreader_linhas marcada como feita pelo orquestrador: o Codex escreveu script e relatorio ate 43/44 paginas e bateu no limite de uso; reexecutei o script (rc=0, 44/44)
+03/10 06:24:44 [agy] agy ok 10_extrator_hibrido_diamond.txt na rodada 1
+03/10 06:27:16 [codex] comecando 08_extrator_com_detector_ls.txt
+03/10 06:27:23 [codex] codex FALHA RAPIDA em 08_extrator_com_detector_ls.txt (rc=1, 7s): ERROR: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at 7:29 | espero 20 min
+03/10 06:29:10 [gpu2] diamond_ft_ls3 pronto: detector ft_ls3 0.775 0.644 0.653 63.0% 389/328
+03/10 06:29:10 [gpu2] ajuste fino terminou
+03/10 06:47:25 [codex] comecando 08_extrator_com_detector_ls.txt
+03/10 06:47:29 [codex] codex FALHA RAPIDA em 08_extrator_com_detector_ls.txt (rc=1, 4s): ERROR: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at 7:29 | espero 20 min
+03/10 07:07:29 [codex] comecando 09_T14_palavras_pymupdf_modulo.txt
+03/10 07:07:33 [codex] codex FALHA RAPIDA em 09_T14_palavras_pymupdf_modulo.txt (rc=1, 3s): ERROR: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at 7:29 | espero 20 min
+03/10 07:27:35 [codex] comecando 09_T14_palavras_pymupdf_modulo.txt
+03/10 07:27:39 [codex] codex FALHA RAPIDA em 09_T14_palavras_pymupdf_modulo.txt (rc=1, 4s): ERROR: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at 7:29 | espero 20 min
+03/10 07:38:25 [codex] comecando 09_T14_palavras_pymupdf_modulo.txt
+03/10 08:19:05 [codex] codex ok 09_T14_palavras_pymupdf_modulo.txt em 40 min
+03/10 08:19:07 [codex] comecando 09b_politica_margens_modulo.txt
+03/10 08:48:47 [codex] codex ok 09b_politica_margens_modulo.txt em 29 min
+03/10 08:48:49 [codex] comecando 10_caminho_rapido_pymupdf.txt
+03/10 09:08:09 [agy] comecando 11_classificador_regioes_ls.txt
+03/10 09:20:44 [agy] agy ok 11_classificador_regioes_ls.txt na rodada 1
+03/10 09:43:50 [codex] codex ok 10_caminho_rapido_pymupdf.txt em 55 min
+03/10 09:44:08 [codex] comecando 11_extrator_v4_detector_primeiro.txt
+03/10 11:05:39 [codex] codex ok 11_extrator_v4_detector_primeiro.txt em 81 min
+03/10 11:08:57 [codex] comecando 12_erros_ponta_a_ponta.txt
+03/10 11:10:13 [codex] codex FALHA RAPIDA em 12_erros_ponta_a_ponta.txt (rc=1, 76s): tokens used 60.285  | espero 20 min
+03/10 11:30:15 [codex] comecando 12_erros_ponta_a_ponta.txt
+03/10 11:30:20 [codex] codex FALHA RAPIDA em 12_erros_ponta_a_ponta.txt (rc=1, 5s): ERROR: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at 12:3 | espero 20 min
+03/10 11:47:03 [agy] comecando 12_erros_ponta_a_ponta_previa.txt
+03/10 11:50:23 [codex] comecando 12_erros_ponta_a_ponta.txt
+03/10 11:50:27 [codex] codex FALHA RAPIDA em 12_erros_ponta_a_ponta.txt (rc=1, 4s): ERROR: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at 12:3 | espero 20 min
+03/10 11:50:59 [agy] agy ok 12_erros_ponta_a_ponta_previa.txt na rodada 1
+03/10 12:10:30 [codex] comecando 12_erros_ponta_a_ponta.txt
+03/10 12:10:35 [codex] codex FALHA RAPIDA em 12_erros_ponta_a_ponta.txt (rc=1, 5s): ERROR: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at 12:3 | espero 20 min
+03/10 12:30:38 [codex] comecando 12_erros_ponta_a_ponta.txt
+03/10 12:30:43 [codex] codex FALHA RAPIDA em 12_erros_ponta_a_ponta.txt (rc=1, 5s): ERROR: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at 12:3 | espero 20 min
+03/10 12:50:47 [codex] comecando 12_erros_ponta_a_ponta.txt
+03/10 13:15:36 [codex] codex ok 12_erros_ponta_a_ponta.txt em 24 min
+03/10 13:29:41 [codex] fila encerrada
+03/10 13:30:13 [agy] fila encerrada
