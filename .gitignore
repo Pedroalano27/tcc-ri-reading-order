@@ -33,3 +33,39 @@ dist/
 
 # Logs dos despachos de agentes por linha de comando (saidas completas, regeneraveis)
 orquestracao/logs/
+
+# Diamond: tarefas e anotacoes sao versionadas; as imagens se regeneram dos PDFs
+data/diamond/*/img/
+
+# dataset de deteccao gerado (imagens copiadas, regeneravel)
+data/deteccao/
+runs/
+resultados/deteccao/
+
+# exports do Label Studio do projeto Data Policy (uso permitido no TCC; NAO publicar)
+data/labelstudio/
+# derivados desses dados gerados pelas analises (palavras, imagens e caixas das paginas do parceiro)
+resultados/ls_teste_cache/
+resultados/ordem_ls/
+resultados/comparacao_visual_ls/
+resultados/classificador_regioes_ls/
+# caches regeneraveis das analises (grandes)
+resultados/ordem_sem_bbox_cache/
+resultados/extrator_pymupdf_cache/
+resultados/pymupdf_palavras_cache.json
+resultados/ceia_datapolicy/
+
+# caches e saidas por pagina das analises de out-nov/2026 (regeneraveis, ~3 GB);
+# os relatorios .md/.json de resumo em resultados/ continuam versionados
+resultados/*_cache/
+resultados/unidades_sem_caixas/
+resultados/extrator_sem_paragrafos_v2/
+resultados/ordenadores_sem_caixas/
+# predicoes do detector sobre as paginas do Data Policy (uso permitido no TCC; NAO publicar)
+resultados/kaggle/detector_ls/
+# copias de seguranca e pacotes duplicados
+*.bak
+*.bak_*
+docs/envio_professor_0410/*.zip
+# configuracao local do Ultralytics
+Ultralytics/
