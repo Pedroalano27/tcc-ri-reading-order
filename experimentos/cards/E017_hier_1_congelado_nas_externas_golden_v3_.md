@@ -34,11 +34,26 @@ Falhar (1) ou (2): HIER-1 fica como exploratório; finalistas do teste cego = h�
 
 ## Execuções
 
-<!-- Preenchido por `src/exp/registro.py registrar`; resumo humano aqui. -->
+- 05/11 ~00:50, local (CPU), Codex, `orquestracao/analises/e017_hier1_externas.py`; código e modelo
+  congelados antes das externas (`congelamento.json`); E016 reproduzido (golden_v4 4,659 / τ 0,9854).
+
+| Bancada | Regra | Híbrido 67 | HIER-1 | Δ quebras vs híbrido [IC95] | LI do IC95 de Δτ vs híbrido |
+|---|---:|---:|---:|---:|---:|
+| golden_v3_novo | 9,222 / 0,9596 | 7,889 / 0,9590 | **6,667 / 0,9594** | −1,222 [−2,429; +0,611] | −0,0044 |
+| teste silver | 27,449 / 0,9596 | 26,427 / 0,9591 | **25,056 / 0,9584** | −1,371 [−5,077; −0,316] | −0,0025 |
+
+  (1) Segurança nas duas ✔; (2) superioridade no silver (IC < 0) e Δ médio ≤ 0 no v3 ✔. **GO.**
+  Fonte: `resultados/e017_hier1_externas/RELATORIO.md`, `resumo_registro.json`.
 
 ## Conclusão e aprendizado
 
-<!-- O que mudou no nosso entendimento. Se não funcionou, copiar para NAO_FUNCIONOU.md. -->
+1. **Primeiro candidato que passa:** a ordenação em dois níveis mantém o τ do híbrido e reduz as
+   quebras nas duas externas. O HIER-1 entra congelado como **finalista do teste cego**, ao lado do
+   híbrido 67 (baseline) e da regra (âncora).
+2. **Ressalva importante:** na bancada humana da Data Policy (E012, 123 págs, 29 veículos), avaliada
+   em paralelo e fora deste critério, o HIER-1 **não** supera o híbrido (−0,20 [−1,72; +0,99]; LI de
+   Δτ −0,043). A margem de segurança no golden_v3_novo também foi apertada (−0,0044 vs −0,005).
+   O teste cego decide; a expectativa realista é de ganho pequeno.
 
 ## Para o texto do TCC
 

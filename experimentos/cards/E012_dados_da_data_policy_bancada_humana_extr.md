@@ -34,11 +34,32 @@ Ambiguidade > 20% das relações na auditoria: usar a Data Policy só como banca
 
 ## Execuções
 
-<!-- Preenchido por `src/exp/registro.py registrar`; resumo humano aqui. -->
+- 05/11 ~00:30, local (CPU), Claude, `orquestracao/analises/e012_bancada_ls.py` (dados da Data Policy;
+  por página em `resultados/ordem_ls/e012/`, fora do git). Export de outubro da seed 2: 123 páginas com
+  cadeia humana válida e palavras, 29 veículos (3 páginas vazias descartadas). Mesma régua das outras
+  bancadas; IC95 por bootstrap de veículos (5.000). Fonte: `resultados/e012_ls/RELATORIO.md`.
+
+| Método | Quebras/pág | τ | Δ quebras vs híbrido [IC95] | Δ τ vs híbrido [IC95] |
+|---|---:|---:|---:|---:|
+| regra | 8,577 | 0,9538 | +1,398 [+0,326; +2,485] | −0,0157 [−0,0455; +0,0028] |
+| **híbrido 67** | **7,179** | **0,9695** | — | — |
+| grafo E004 | 6,675 | 0,9090 | −0,504 [−2,103; +0,625] | −0,0605 [−0,1202; −0,0191] |
+| HIER-1 | 6,976 | 0,9561 | −0,203 [−1,717; +0,992] | −0,0134 [−0,0432; +0,0049] |
+
+  Sem as 15 páginas com cópia comprovada da pré-anotação (108 págs, 28 veículos): mesmo padrão
+  (regra +1,43 [+0,35; +2,57]; grafo −0,46 com τ −0,069 [IC < 0]; HIER-1 −0,13 [−1,77; +1,20]).
+- 04/11 23:58, a sessão "Anotar layout de diários" reexportou as seeds de ordem: seed 2 com 740
+  cadeias válidas e seed 1 (projeto 31) com 529. As páginas do usuário 13 são em boa parte
+  pré-anotações sem revisão e devem ser excluídas (`data/labelstudio/MANIFESTO_ORDEM_20261104.md`).
 
 ## Conclusão e aprendizado
 
-<!-- O que mudou no nosso entendimento. Se não funcionou, copiar para NAO_FUNCIONOU.md. -->
+1. **O híbrido 67 se confirma em dado humano independente** (29 veículos, nenhum usado para escolher
+   o limiar 67): a regra fica 1,40 quebra/página pior, com IC95 inteiro acima de zero.
+2. **O padrão do grafo se repete:** menos quebras, τ significativamente menor (−0,06).
+3. **O HIER-1 não supera o híbrido** nesta bancada: ganho de quebras pequeno e incerto, τ um pouco menor.
+4. Com as exportações novas (seed 2: 283 + 236 + 65 revisadas; seed 1: 200 + 200 + 10 — cerca de 990 páginas após excluir as pré-anotações sem revisão), esta
+   bancada pode crescer ~9×; falta extrair palavras e detecções dessas páginas (PDFs).
 
 ## Para o texto do TCC
 

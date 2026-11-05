@@ -396,6 +396,22 @@ era do E014 (renumerado; `registro.py novo --id` criado para evitar).
 RAM com o PC em uso → negativos amostrados (decisão documentada no relatório); cota do Codex esgotada
 das 20:37 às 23:25; VPN caiu uma vez depois do job 1115.
 
+## Sessão 12 — 2026-11-04 noite a 05/11 madrugada: candidato finalista e bancada humana extra
+
+Decisões do Pedro (04/11): testar o HIER-1 nas externas; aprovar o protocolo do teste cego com a regra
+co-primária 3b; bancada da Data Policy; atualizar a apresentação; commit e push.
+
+| Exp. | O que foi | Resultado | Veredito |
+|---|---|---|---|
+| E017 | HIER-1 congelado nas externas | golden_v3_novo 6,67 / τ 0,959 (híbrido 7,89 / 0,959); silver 25,06 / 0,958, Δq −1,37 [−5,08; −0,32] | **GO — finalista do teste cego** |
+| E012 | Bancada humana Data Policy (123 págs, 29 veículos) | híbrido 7,18 vs regra 8,58 (+1,40 [+0,33; +2,49]); HIER-1 −0,20 [−1,72; +0,99] vs híbrido | híbrido confirmado; HIER-1 não se repete |
+
+Outros: a sessão "Anotar layout de diários" reexportou as seeds de ordem (seed 2: 740 cadeias válidas;
+seed 1: 529), com alerta de que as páginas do usuário 13 são em boa parte pré-anotações não revisadas
+(~990 páginas humanas revisadas no total; 360 com PDF local). ChatGPT (consulta 04): manter o HIER-1
+finalista e reportar o E012 como evidência contrária; tese = continuidade local × ordem global, com seleção
+por complexidade de página e restrições estruturais. Apresentação refeita para a reunião de 05/11.
+
 ## Problemas encontrados e soluções
 
 | Problema | Causa | Solução |

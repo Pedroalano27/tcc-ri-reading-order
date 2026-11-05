@@ -1,0 +1,259 @@
+<title>Ordem de Leitura em Diários Oficiais</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+  /* Relatório de progresso no espírito de um expediente de diário oficial: folha central, seções em ordem de leitura. */
+  :root {
+    --chao: #f4f5f7; --papel: #ffffff; --tinta: #15181d; --tinta-2: #525965; --tinta-3: #79808c;
+    --fio: #dadee4; --acento: #2a78d6; --acento-tinta: #1b5da9; --acento-fundo: #e6effa;
+    --alerta: #85580a; --alerta-fundo: #faf0d8; --alerta-fio: #e8cf95;
+    --bom: #2f7a4a; --bom-fundo: #e3f2e8; --ruim: #a23c32; --ruim-fundo: #f8e4e1; --neutro-fundo: #eef0f3;
+    --f-disp: "IBM Plex Sans Condensed", "Roboto Condensed", "Arial Narrow", sans-serif;
+    --f-texto: "IBM Plex Serif", Georgia, "Times New Roman", serif;
+    --f-dados: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --chao: #0f1217; --papel: #171b22; --tinta: #e9ecf1; --tinta-2: #a4abb7; --tinta-3: #7e8692;
+      --fio: #2b323c; --acento: #5a9bea; --acento-tinta: #8bb9f3; --acento-fundo: #152438;
+      --alerta: #e2b865; --alerta-fundo: #262116; --alerta-fio: #5a4a26;
+      --bom: #7cc896; --bom-fundo: #14261b; --ruim: #ec8f84; --ruim-fundo: #2c1715; --neutro-fundo: #1f242c;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --chao: #0f1217; --papel: #171b22; --tinta: #e9ecf1; --tinta-2: #a4abb7; --tinta-3: #7e8692;
+    --fio: #2b323c; --acento: #5a9bea; --acento-tinta: #8bb9f3; --acento-fundo: #152438;
+    --alerta: #e2b865; --alerta-fundo: #262116; --alerta-fio: #5a4a26;
+    --bom: #7cc896; --bom-fundo: #14261b; --ruim: #ec8f84; --ruim-fundo: #2c1715; --neutro-fundo: #1f242c;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--chao); color: var(--tinta); font-family: var(--f-texto); font-size: 17px; line-height: 1.62; -webkit-font-smoothing: antialiased; }
+  a { color: var(--acento-tinta); text-underline-offset: 3px; }
+  .folha { max-width: 1040px; margin: 0 auto; padding-block: 0 80px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .expediente { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 24px; padding: 18px 0 10px; border-bottom: 3px double var(--fio); font-family: var(--f-dados); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--tinta-2); }
+  header.abertura { padding: 40px 0 8px; }
+  h1 { font-family: var(--f-disp); font-weight: 700; text-transform: uppercase; font-size: clamp(2rem, 5vw, 3.3rem); line-height: 1.02; margin: 0 0 16px; text-wrap: balance; max-width: 18ch; }
+  .linha-fina { font-style: italic; color: var(--tinta-2); font-size: 1.12rem; max-width: 62ch; margin: 0; text-wrap: pretty; }
+  .numeros { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 0 28px; margin: 32px 0 8px; padding: 0; list-style: none; }
+  .numeros li { border-top: 1px solid var(--fio); padding: 14px 0 8px; display: grid; gap: 4px; align-content: start; }
+  .numeros strong { font-family: var(--f-dados); font-weight: 500; font-size: 1.6rem; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .numeros span { font-family: var(--f-disp); font-weight: 500; font-size: .92rem; color: var(--tinta-2); line-height: 1.3; }
+  main { margin-top: 28px; }
+  .secao { position: relative; padding: 30px 0 8px 60px; }
+  .secao::before { content: ""; position: absolute; left: 17px; top: 72px; bottom: -32px; width: 2px; background: linear-gradient(var(--acento), transparent); opacity: .35; }
+  .secao:last-of-type::before { display: none; }
+  .marco { position: absolute; left: 0; top: 32px; width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: var(--acento); color: #fff; font-family: var(--f-dados); font-weight: 500; font-size: 15px; }
+  h2 { font-family: var(--f-disp); font-weight: 600; font-size: clamp(1.4rem, 3vw, 1.85rem); line-height: 1.15; margin: 0 0 14px; text-wrap: balance; }
+  h3 { font-family: var(--f-disp); font-weight: 600; font-size: 1.1rem; margin: 22px 0 6px; }
+  .secao p, .secao li { max-width: 68ch; text-wrap: pretty; }
+  .secao > p:first-of-type { margin-top: 0; }
+  .dado { font-family: var(--f-dados); font-size: .92em; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .tabela { overflow-x: auto; background: var(--papel); border: 1px solid var(--fio); border-radius: 3px; margin: 16px 0; }
+  table { border-collapse: collapse; width: 100%; font-size: .92rem; min-width: 620px; }
+  th, td { padding: 8px 12px; text-align: right; border-bottom: 1px solid var(--fio); font-variant-numeric: tabular-nums; vertical-align: top; }
+  th { font-family: var(--f-disp); font-weight: 600; font-size: .85rem; color: var(--tinta-2); vertical-align: bottom; line-height: 1.25; }
+  td { font-family: var(--f-dados); font-size: .85rem; }
+  th:first-child, td:first-child { text-align: left; font-family: var(--f-disp); font-size: .95rem; }
+  td.txt { text-align: left; font-family: var(--f-texto); font-size: .9rem; }
+  tr:last-child td { border-bottom: 0; }
+  tr.destaque td { background: var(--acento-fundo); }
+  .ic { color: var(--tinta-3); font-size: .78rem; display: block; }
+  .nota-tabela { font-family: var(--f-disp); font-size: .88rem; color: var(--tinta-2); margin: -6px 0 16px; max-width: 80ch; }
+  .selo { display: inline-block; font-family: var(--f-dados); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; padding: 2px 7px; border-radius: 2px; white-space: nowrap; }
+  .selo.go { background: var(--bom-fundo); color: var(--bom); }
+  .selo.nogo { background: var(--ruim-fundo); color: var(--ruim); }
+  .selo.neutro { background: var(--neutro-fundo); color: var(--tinta-2); }
+  .grafico { background: var(--papel); border: 1px solid var(--fio); border-radius: 3px; padding: 14px 10px 6px; margin: 18px 0; }
+  .grafico svg { display: block; width: 100%; height: auto; }
+  .grafico text { font-family: var(--f-dados); fill: var(--tinta-2); font-size: 11px; }
+  .grafico .rot { fill: var(--tinta); font-family: var(--f-disp); font-size: 12px; }
+  figcaption { font-family: var(--f-disp); font-size: .9rem; color: var(--tinta-2); margin: 8px 4px 0; max-width: 80ch; line-height: 1.45; }
+  .correcao { background: var(--alerta-fundo); border: 1px solid var(--alerta-fio); border-radius: 3px; padding: 14px 18px; margin: 16px 0; max-width: 76ch; }
+  .correcao .rotulo { font-family: var(--f-dados); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--alerta); }
+  .correcao p { margin: 6px 0 0; }
+  ol.perguntas { padding-left: 1.3em; }
+  ol.perguntas li { margin: 10px 0; padding-left: 4px; }
+  ol.perguntas li::marker { font-family: var(--f-dados); color: var(--acento-tinta); }
+  footer { margin-top: 52px; padding-top: 16px; border-top: 3px double var(--fio); font-family: var(--f-disp); font-size: .92rem; color: var(--tinta-2); display: grid; gap: 6px; }
+  @media (max-width: 640px) {
+    .secao { padding-left: 0; padding-top: 66px; }
+    .secao::before { display: none; }
+    .marco { top: 24px; }
+    body { font-size: 16px; }
+  }
+</style>
+
+<div class="folha">
+  <div class="expediente">
+    <span>TCC · Instituto de Informática · UFG</span>
+    <span>Relatório de progresso · 5 nov. 2026 · commit 6837829</span>
+  </div>
+
+  <header class="abertura">
+    <h1>Ordem de leitura em Diários Oficiais</h1>
+    <p class="linha-fina">Outubro trocou as caixas de parágrafo por linhas de texto e encontrou um baseline difícil de bater. Novembro testou, com critérios fixados antes de rodar, se modelos aprendidos conseguem superá-lo — e montou o teste cego para a avaliação final.</p>
+    <ul class="numeros">
+      <li><strong>5,14</strong><span>quebras por página do híbrido por densidade no golden_v4 — o baseline a superar (regra: 6,05)</span></li>
+      <li><strong>1,05</strong><span>quebras por página que um grafo de ligações atingiria com notas perfeitas (teto)</span></li>
+      <li><strong>6,67</strong><span>quebras por página do HIER-1 no golden_v3_novo, com o mesmo τ do híbrido (7,89) — primeiro candidato a passar no critério</span></li>
+      <li><strong>90</strong><span>páginas de teste cego (CE, MA, RJ) de PDFs nunca usados, lacradas até a avaliação final</span></li>
+    </ul>
+  </header>
+
+  <main>
+    <section class="secao" aria-labelledby="s1">
+      <span class="marco" aria-hidden="true">1</span>
+      <h2 id="s1">Onde outubro terminou</h2>
+      <p>A página passou a ser representada por <strong>linhas de texto</strong> mais <strong>átomos</strong> de tabela e imagem detectados por um YOLO (mAP50 <span class="dado">0,826</span>). A métrica principal é o número de <strong>quebras de leitura por página</strong>: transições entre palavras que não seguem a referência humana. O τ de Kendall sobre palavras controla a ordem global.</p>
+      <p>O melhor resultado de outubro foi um <strong>híbrido por densidade</strong>: o LayoutReader pronto, sem ajuste, nas páginas com até 67 unidades, e a regra de colunas nas mais densas. É o único método com intervalo de confiança abaixo de zero nas três bancadas.</p>
+      <div class="tabela"><table>
+        <thead><tr><th>Método</th><th>golden_v4<br>(44 págs, ajuste)</th><th>golden_v3_novo<br>(27 págs, externa)</th><th>teste silver<br>(89 págs CE/MA/RJ)</th></tr></thead>
+        <tbody>
+          <tr><td>Regra de colunas</td><td>6,05 <span class="ic">τ 0,986</span></td><td>9,22 <span class="ic">τ 0,960</span></td><td>27,45 <span class="ic">τ 0,960</span></td></tr>
+          <tr class="destaque"><td>Híbrido 67</td><td>5,14 <span class="ic">Δ −0,91 [−1,78; −0,10]</span></td><td>7,89 <span class="ic">Δ −1,33 [−2,63; −0,35]</span></td><td>26,43 <span class="ic">Δ −1,02 [−1,89; −0,08]</span></td></tr>
+          <tr><td>LayoutLM sucessor</td><td>9,00</td><td>10,41</td><td>29,15</td></tr>
+        </tbody>
+      </table></div>
+      <p class="nota-tabela">Quebras por página (menor é melhor). Δ = diferença para a regra, com IC95 por bootstrap de veículos. O teste silver usa o fluxo de texto do PDF como referência e é ruidoso.</p>
+    </section>
+
+    <section class="secao" aria-labelledby="s2">
+      <span class="marco" aria-hidden="true">2</span>
+      <h2 id="s2">Como novembro foi conduzido</h2>
+      <ul>
+        <li><strong>Critério antes de rodar.</strong> Cada experimento tem um cartão com hipótese, critério de sucesso e de abandono escritos antes da execução, e um registro com commit, hash dos dados e métricas.</li>
+        <li><strong>Ajuste separado de avaliação.</strong> Parâmetros só são escolhidos no golden_v4 e na validação RN; o golden_v3_novo e o teste silver são vistos uma única vez, com a escolha congelada.</li>
+        <li><strong>Teste cego.</strong> 90 páginas (30 por UF) de 46 PDFs nunca usados, sobreposição zero com os 1.085 PDFs já tocados, verificada por caminho e por hash. Mais 45 páginas de desenvolvimento. Aguardam gabarito humano.</li>
+        <li><strong>Protocolo aprovado.</strong> Quebras por página é o desfecho primário. Um candidato só supera o híbrido se o limite superior do IC95 de Δquebras for negativo <em>e</em> o limite inferior do IC95 de Δτ for ≥ −0,005. Bootstrap por PDF, estratificado por UF.</li>
+        <li><strong>Orientação externa.</strong> Quatro consultas a um modelo de raciocínio (ChatGPT) como segundo parecer técnico, registradas por escrito.</li>
+      </ul>
+    </section>
+
+    <section class="secao" aria-labelledby="s3">
+      <span class="marco" aria-hidden="true">3</span>
+      <h2 id="s3">O que foi testado</h2>
+      <div class="tabela"><table>
+        <thead><tr><th>Experimento</th><th style="text-align:left">O que mede</th><th>golden_v3_novo<br>quebras / τ</th><th>Veredito</th></tr></thead>
+        <tbody>
+          <tr><td>E002 · Tetos</td><td class="txt">Quanto cada família alcança com notas perfeitas</td><td>grafo 1,26 / 0,943</td><td><span class="selo go">vale investir</span></td></tr>
+          <tr><td>E003 · LM causal</td><td class="txt">Qwen3-8B (DGX Spark) decidindo a ordem pela continuidade do texto, condicional e contrastivo</td><td>piora em 12 de 12 configurações</td><td><span class="selo nogo">não</span></td></tr>
+          <tr><td>E004 · Grafo LightGBM</td><td class="txt">Classificador de ligações entre linhas treinado em 3.140 páginas silver, decodificação global</td><td>6,52 / 0,942</td><td><span class="selo nogo">não (τ)</span></td></tr>
+          <tr><td>E005 · Seletor</td><td class="txt">Escolher o método por página com um classificador</td><td>não supera o limiar 67</td><td><span class="selo nogo">não</span></td></tr>
+          <tr><td>E014 / E015 · Cadeias</td><td class="txt">Ordenar os trechos do grafo pela posição na regra</td><td>6,52 / 0,942</td><td><span class="selo nogo">não (τ)</span></td></tr>
+          <tr><td>E006 · Correção local</td><td class="txt">Partir do híbrido e aceitar só trocas locais sugeridas pelo grafo</td><td>7,07 / 0,939</td><td><span class="selo nogo">não (τ)</span></td></tr>
+          <tr><td>E009 · Caixas × linhas</td><td class="txt">Efeito da representação, com cobertura de palavras controlada</td><td>sem diferença significativa</td><td><span class="selo neutro">resultado</span></td></tr>
+          <tr><td>E016 · Dois níveis</td><td class="txt">Grafo dentro de cada trecho da página, regra entre os trechos (ajuste)</td><td>golden_v4: 4,66 / 0,985</td><td><span class="selo nogo">não no portão</span></td></tr>
+          <tr class="destaque"><td>E017 · HIER-1 externo</td><td class="txt">A mesma ordenação em dois níveis, congelada, nas bancadas externas</td><td>6,67 / 0,959</td><td><span class="selo go">passou</span></td></tr>
+        </tbody>
+      </table></div>
+      <p class="nota-tabela">Referência no golden_v3_novo: regra 9,22 / 0,960; híbrido 67 7,89 / 0,959. "Não (τ)" = menos quebras que o híbrido, mas o τ caiu além da margem fixada antes.</p>
+    </section>
+
+    <section class="secao" aria-labelledby="s4">
+      <span class="marco" aria-hidden="true">4</span>
+      <h2 id="s4">O que aprendemos: continuidade local contra ordem global</h2>
+      <p>Os métodos aprendidos melhoram a ligação de cada linha com a seguinte — as quebras caem — mas erram a ordem entre trechos inteiros em páginas densas de várias colunas, e o τ cai. O diagnóstico página a página no golden_v3_novo mostrou que a perda vem quase toda de duas páginas de três colunas do RJ (161 e 110 unidades), em que trechos certos por dentro são costurados na ordem errada.</p>
+      <figure class="grafico" aria-labelledby="cap-dispersao">
+        <svg viewBox="0 0 720 360" role="img" aria-label="Dispersão de quebras por página contra tau no golden_v3_novo">
+          <rect x="70" y="20" width="620" height="167.6" style="fill:var(--bom-fundo)"/>
+          <text x="686" y="34" text-anchor="end" style="fill:var(--bom)">região aceita: τ ≥ híbrido − 0,005</text>
+          <line x1="70" x2="690" y1="277.8" y2="277.8" style="stroke:var(--fio)" stroke-width="1"/>
+          <text x="62" y="281.8" text-anchor="end">0,94</text>
+          <line x1="70" x2="690" y1="213.3" y2="213.3" style="stroke:var(--fio)" stroke-width="1"/>
+          <text x="62" y="217.3" text-anchor="end">0,95</text>
+          <line x1="70" x2="690" y1="148.9" y2="148.9" style="stroke:var(--fio)" stroke-width="1"/>
+          <text x="62" y="152.9" text-anchor="end">0,96</text>
+          <line x1="70" x2="690" y1="84.4" y2="84.4" style="stroke:var(--fio)" stroke-width="1"/>
+          <text x="62" y="88.4" text-anchor="end">0,97</text>
+          <line x1="70" x2="690" y1="20.0" y2="20.0" style="stroke:var(--fio)" stroke-width="1"/>
+          <text x="62" y="24.0" text-anchor="end">0,98</text>
+          <line x1="70.0" x2="70.0" y1="310" y2="316" style="stroke:var(--tinta-3)" stroke-width="1"/>
+          <text x="70.0" y="330" text-anchor="middle">0</text>
+          <line x1="194.0" x2="194.0" y1="310" y2="316" style="stroke:var(--tinta-3)" stroke-width="1"/>
+          <text x="194.0" y="330" text-anchor="middle">2</text>
+          <line x1="318.0" x2="318.0" y1="310" y2="316" style="stroke:var(--tinta-3)" stroke-width="1"/>
+          <text x="318.0" y="330" text-anchor="middle">4</text>
+          <line x1="442.0" x2="442.0" y1="310" y2="316" style="stroke:var(--tinta-3)" stroke-width="1"/>
+          <text x="442.0" y="330" text-anchor="middle">6</text>
+          <line x1="566.0" x2="566.0" y1="310" y2="316" style="stroke:var(--tinta-3)" stroke-width="1"/>
+          <text x="566.0" y="330" text-anchor="middle">8</text>
+          <line x1="690.0" x2="690.0" y1="310" y2="316" style="stroke:var(--tinta-3)" stroke-width="1"/>
+          <text x="690.0" y="330" text-anchor="middle">10</text>
+          <line x1="70" x2="690" y1="310" y2="310" style="stroke:var(--tinta-3)" stroke-width="1"/>
+          <text x="380" y="352" text-anchor="middle">quebras por página (menor é melhor)</text>
+          <text x="14" y="165" text-anchor="middle" transform="rotate(-90 14 165)">τ de palavras</text>
+          <circle cx="641.8" cy="151.5" r="5.5" style="fill:var(--acento)"/>
+          <text x="641.8" y="139.5" text-anchor="middle" class="rot">Regra</text>
+          <circle cx="559.1" cy="155.3" r="5.5" style="fill:var(--tinta)"/>
+          <text x="559.1" y="175.3" text-anchor="middle" class="rot">Híbrido 67</text>
+          <circle cx="474.2" cy="266.8" r="5.5" style="fill:var(--acento)"/>
+          <text x="474.2" y="286.8" text-anchor="middle" class="rot">Grafo E004</text>
+          <circle cx="508.6" cy="286.8" r="5.5" style="fill:var(--acento)"/>
+          <text x="520.6" y="290.8" text-anchor="start" class="rot">Correção local E006</text>
+          <circle cx="483.4" cy="152.8" r="7" style="fill:var(--bom)"/>
+          <text x="483.4" y="140.8" text-anchor="middle" class="rot" font-weight="600">HIER-1</text>
+          <circle cx="148.1" cy="261.0" r="5" style="fill:var(--papel);stroke:var(--tinta-3)" stroke-width="1.5" stroke-dasharray="2 2"/>
+          <text x="148.1" y="249.0" text-anchor="middle" class="">teto: grafo</text>
+          <circle cx="207.8" cy="135.4" r="5" style="fill:var(--papel);stroke:var(--tinta-3)" stroke-width="1.5" stroke-dasharray="2 2"/>
+          <text x="207.8" y="123.4" text-anchor="middle" class="">teto: correção local</text>
+          <circle cx="442.0" cy="52.9" r="5" style="fill:var(--papel);stroke:var(--tinta-3)" stroke-width="1.5" stroke-dasharray="2 2"/>
+          <text x="442.0" y="40.9" text-anchor="middle" class="">teto: roteamento</text>
+        </svg>
+        <figcaption id="cap-dispersao">golden_v3_novo (27 páginas humanas, externa). Eixo horizontal: quebras por página (melhor à esquerda). Eixo vertical: τ de palavras (melhor em cima). A faixa sombreada é a região aceita pelo protocolo: τ até 0,005 abaixo do híbrido 67. Tetos usam a referência e servem só de horizonte.</figcaption>
+      </figure>
+      <h3>A representação desloca o erro</h3>
+      <p>Trocar caixas de parágrafo por linhas zera os erros <em>dentro</em> das unidades (golden_v3_novo: de 5,30 para 0,26 por página), mas os erros <em>entre</em> unidades sobem de 5,70 para 8,96, porque há mais peças para ordenar. O número de outubro (213 → 29) vale só para os erros internos. Isso desloca o problema da segmentação para a ordenação, que é exatamente o foco do TCC.</p>
+    </section>
+
+    <section class="secao" aria-labelledby="s5">
+      <span class="marco" aria-hidden="true">5</span>
+      <h2 id="s5">Mais gabarito humano</h2>
+      <p>O projeto parceiro (Data Policy, CEIA) autorizou o uso das suas anotações de ordem na pesquisa. Uma primeira bancada com a exportação de outubro tem <strong>123 páginas de 29 veículos</strong>, nenhum deles usado para escolher parâmetros. A referência é a ordem humana entre regiões, expandida para palavras com a mesma régua.</p>
+      <div class="tabela"><table>
+        <thead><tr><th>Método</th><th>Quebras/pág</th><th>τ</th><th>Δ quebras vs híbrido<br>[IC95 por veículo]</th><th>Δ τ vs híbrido<br>[IC95 por veículo]</th></tr></thead>
+        <tbody>
+          <tr><td>Regra de colunas</td><td>8,58</td><td>0,954</td><td>+1,40 <span class="ic">[+0,33; +2,49]</span></td><td>−0,016 <span class="ic">[−0,046; +0,003]</span></td></tr>
+          <tr class="destaque"><td>Híbrido 67</td><td>7,18</td><td>0,970</td><td>—</td><td>—</td></tr>
+          <tr><td>Grafo E004</td><td>6,68</td><td>0,909</td><td>−0,50 <span class="ic">[−2,10; +0,63]</span></td><td>−0,061 <span class="ic">[−0,120; −0,019]</span></td></tr>
+          <tr><td>HIER-1</td><td>6,98</td><td>0,956</td><td>−0,20 <span class="ic">[−1,72; +0,99]</span></td><td>−0,013 <span class="ic">[−0,043; +0,005]</span></td></tr>
+        </tbody>
+      </table></div>
+      <p class="nota-tabela">Viés conhecido: a anotação partiu de uma pré-anotação XY-cut. Sem as 15 páginas em que ela foi aceita sem mudança, o padrão é o mesmo.</p>
+      <ul>
+        <li><strong>O híbrido se confirma em dado independente:</strong> a regra fica 1,40 quebra por página pior, com o intervalo inteiro acima de zero.</li>
+        <li><strong>O grafo repete o padrão:</strong> menos quebras, τ significativamente menor.</li>
+        <li><strong>O HIER-1 não se repete aqui:</strong> o ganho de quebras é pequeno e incerto. Ele segue como finalista porque passou no critério fixado antes, mas esta é evidência contrária e será reportada.</li>
+      </ul>
+      <p>A exportação completa, feita em 4/11, tem cerca de <strong>990 páginas humanas revisadas</strong> (seeds 1 e 2, excluídas as pré-anotações não revisadas). 360 já têm PDF local; o restante depende de baixar cerca de 2,4 GB.</p>
+    </section>
+
+    <section class="secao" aria-labelledby="s6">
+      <span class="marco" aria-hidden="true">6</span>
+      <h2 id="s6">Próximos passos e perguntas</h2>
+      <div class="correcao"><span class="rotulo">Tese proposta</span><p>Em Diários Oficiais digitais multicoluna, métodos que melhoram a continuidade local não preservam necessariamente a ordem global. Escolher o método pela complexidade da página e impor restrições estruturais é mais robusto do que ordenar a página inteira com um modelo aprendido.</p></div>
+      <h3>Até dezembro</h3>
+      <ul>
+        <li>Anotar as 90 páginas do teste cego e as 45 de desenvolvimento (Pedro).</li>
+        <li>Teste de anotação densa × simplificada: 36 páginas em desenho cruzado, com cronômetro, para medir custo, erros de segmentação, ordem e cobertura.</li>
+        <li>Treinar a decisão entre trechos com os rótulos humanos da Data Policy (que anotam exatamente a ordem entre regiões).</li>
+        <li>Congelar no máximo três finalistas e fazer uma única avaliação confirmatória no teste cego.</li>
+      </ul>
+      <h3>Para decidir com o orientador</h3>
+      <ol class="perguntas">
+        <li>O TCC pode ter como resultado principal um baseline simples (híbrido) bem medido e uma análise de por que os métodos aprendidos trocam continuidade local por ordem global, se nenhum candidato passar no teste cego?</li>
+        <li>A margem de τ (0,005) e o desfecho co-primário estão adequados para o uso final em recuperação de informação?</li>
+        <li>Procedência do acervo: de onde vieram os 4.644 PDFs, para a seção de dados?</li>
+        <li>Prazo e formato da entrega.</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>
+    <span>Pedro Alano · orientação: Prof. Thierson Couto Rosa · INF/UFG</span>
+    <span>Fontes: experimentos/REGISTRO.md e cartões em experimentos/cards/ no repositório tcc-ri-reading-order. Os dados do projeto parceiro (Data Policy) são usados com autorização e aparecem aqui apenas como números agregados.</span>
+  </footer>
+</div>

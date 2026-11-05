@@ -1,0 +1,84 @@
+{
+ "gravado_utc": "2026-11-05T03:03:38.688649+00:00",
+ "assinatura": "f3e9a43dd0eab04adde8e9b46123e11fa0078f6b7eaa4bb61b049af7cb7c4824",
+ "protocolo": {
+  "experimento": "E017",
+  "fontes": {
+   "orquestracao/analises/e016_hierarquico.py": "1313a23a22b3f67c805ae7f23b491b3fb9b29efc53e23dfa1c247aed0df648f9",
+   "orquestracao/analises/e004_grafo.py": "dbb496c31860782be1d211ec2e1a50e84408242229d1373240339d2ce2642c06",
+   "orquestracao/analises/e014_cadeias.py": "cc2e40b1ca72b2681e1cfa2cbd1402e2ef167a4e363752c9d378304e45466b6e",
+   "orquestracao/analises/e002_oraculos.py": "a82e0f84c9e28f76555dfe9fa4504bb0580c75c31e7cfefe8a49ed95e4cb8b57",
+   "orquestracao/analises/corretor_de_transicoes.py": "66a60c9817e2e305aadbdb63cd6ff96cd52650d7267b6ebcc637e5f40d8bbbac",
+   "orquestracao/analises/ordem_lm_arestas.py": "c5436d0325057f7de8bb441dded3d4cfd9f6b00c30d4fbb79580b7770170985a",
+   "orquestracao/analises/bancada_ordenadores.py": "42ab35c43393384e73951f8c9969c062e093621ace0e1d3346ebbb77f4e31831",
+   "orquestracao/analises/erros_ponta_a_ponta.py": "870c83bdd4bc034eff3982b552ff907ef665cf0aecd0c5adc3c253bd16f38b88",
+   "orquestracao/analises/ordem_sem_bbox.py": "f6d4589ec7752272c3635e3eafbe91b640fd93339cd075fc1a5f2c70aeb8715f",
+   "orquestracao/analises/ordem_sem_bbox_justo.py": "58aca7c6ee1e3bccdcbcd915a62b9fb71bc0814e5e5b8e8d48825d2cf8119736",
+   "orquestracao/analises/ordem_sem_bbox_ls3.py": "3698cd220abba6815a4498f43469a3e578f5c2ec172025b051e8a86b140aaaa5",
+   "orquestracao/analises/ordem_sem_bbox_validacao_acervo.py": "bf0aca24402c2083fac360834e11855168fcb5378bf6b21abb4055fc3a76effe",
+   "src/ri/piloto_japeri.py": "69bf69e12132ef8dff00ef56aea4546a32eed63ddbb9064da5bad603414309c9",
+   "src/data/regioes.py": "d1af2d7bb5d663c2dfeacf46f10a01180fce17487f3e9fd06ab8c8138b5ed8ae",
+   "src/data/extrator.py": "c4d86890b89c13d154475129e9e2ce1bf073b84680317e04b9550e79748daa35",
+   "src/eval/metrics.py": "9a84261a7ceaf65e2263c5754fee09f9a54dd1019752271332943064922fe3d7",
+   "src/eval/baselines.py": "634d6441b9f6850eae5f477199dd7b8c47d6814822478505abf2b9597f8bdaff",
+   "src/eval/politica_margens.py": "45c3796236d98ee350b82f30b192a0b614bb164fb56dacdc2cb2700900509b33",
+   "src/eval/protocolo.py": "4fadd8fc523408dfc1aebac7e6f3faf85d8c3eb1e63acc9d1be6f8ee49625ba0",
+   "orquestracao/analises/ordem_layoutreader.py": "ab0da59d9e9ce35a0608784c2ea14333912efd5df1942ec515b54034e3b6789a",
+   "resultados/unidades_sem_caixas/bancadas/golden_v4.jsonl": "683c64e71e63a753587912bc31ffa0973e4b3e7d24fadc08b05f4ce8ef49ea51",
+   "resultados/unidades_sem_caixas/linhas/official_diary_rn.jsonl": "4158acbb9d1f0f4207d4e4ddd29d2365eac7bd0de45b77a6c5cffde8e582a859",
+   "resultados/unidades_sem_caixas/linhas/official_diary_rn.palavras.jsonl": "9b3bf68c741d180b8caac485970a93996ab2c38647ed5d7f37e7c0460d6501b3",
+   "resultados/e004_grafo/cache/1238a2d3214b898c7eeb91680518c308da0bea644aa60a8b6ee15b358ed7b7b8/selecao_congelada.json": "ec1968b78df5070177908d8ba000fd4a082bafaf1325056442e36288a32c741c",
+   "resultados/e004_grafo/cache/1238a2d3214b898c7eeb91680518c308da0bea644aa60a8b6ee15b358ed7b7b8/modelo.json": "7e92ca9c5fd1b30458e7c3db4dccef12cad38586c857b828cd29157feeca496d",
+   "resultados/e004_grafo/cache/1238a2d3214b898c7eeb91680518c308da0bea644aa60a8b6ee15b358ed7b7b8/modelo.txt": "d71f30779b611b9d3ee725746eab2433737bc67d21ca91b8a0cf5b6c277127e9",
+   "orquestracao/analises/e017_hier1_externas.py": "af1df20752107d76de7e2eb8cd4e74bae7c84580d5f835febf7d6c642120d094",
+   "resultados/e016_hierarquico/cache/ultima_execucao.json": "efce000fd8fd620dd29cd765d940c91e6d6426e6b0b1c6efbda30e1c7b4b568f",
+   "resultados/e016_hierarquico/cache/769d17bd1df40a7f66f6e81d932d707dc59d699177cc42af9105fb049b538713/manifesto.json": "8a0d64061a12f9974d10beea29a25bbc05f74c7ed02e3e90cb6e3de56d21cd14",
+   "data/processed/splits.json": "f957e4c2e174600f9d71d26510226aabd894689870b3b5b7881a9b19640a587d",
+   "resultados/e016_hierarquico/resumo_registro.json": "09b14181ed89c68a0f9775d169ee34f43b2623253a09b5b333f8b27177625efa",
+   "experimentos/PROTOCOLO_TESTE_CEGO.md": "abe650e285d31bc8793b264132f5a6f7754d55a6e509ee95cacda7d8d46fe661",
+   "experimentos/cards/E017_hier_1_congelado_nas_externas_golden_v3_.md": "4f825a00ce45a6fcf0170b289e29ce44ce6e9d7e574f4565b6680632fcfe8d03"
+  },
+  "lock_sha256": "6acd0058def9618d3e3566b698f5925295c88941524b14c4b216981804c2fae9",
+  "e016_sha256": "1313a23a22b3f67c805ae7f23b491b3fb9b29efc53e23dfa1c247aed0df648f9",
+  "e004_sha256": "dbb496c31860782be1d211ec2e1a50e84408242229d1373240339d2ce2642c06",
+  "modelo_sha256": "d71f30779b611b9d3ee725746eab2433737bc67d21ca91b8a0cf5b6c277127e9",
+  "origem_e004": "resultados/e004_grafo/cache/1238a2d3214b898c7eeb91680518c308da0bea644aa60a8b6ee15b358ed7b7b8",
+  "origem_e016": "resultados/e016_hierarquico/cache/769d17bd1df40a7f66f6e81d932d707dc59d699177cc42af9105fb049b538713",
+  "config": {
+   "K": 24,
+   "decoder": "maxregret",
+   "limiar": 0.0,
+   "restricao_coluna": false
+  },
+  "segmentacao": "folhas e pontes da recursao original; margens; atomos singleton",
+  "metodos": [
+   "regra",
+   "hibrido67",
+   "grafo_K24_maxregret_t0.00",
+   "hier1"
+  ],
+  "ajuste": [
+   "golden_v4",
+   "validacao_silver"
+  ],
+  "externas": [
+   "golden_v3_novo",
+   "teste_silver"
+  ],
+  "cpu": true,
+  "threads": 4,
+  "num_workers": 0,
+  "retreino": false,
+  "bootstrap": {
+   "unidade": "veiculo",
+   "reamostras": 5000,
+   "semente": 20261004
+  },
+  "criterio": {
+   "seguranca_ambas_ic_tau_inferior": -0.005,
+   "superioridade_uma_ic_quebras_superior_menor": 0,
+   "outra_media_delta_quebras_maxima": 0
+  }
+ },
+ "externas_abertas_na_criacao": false
+}

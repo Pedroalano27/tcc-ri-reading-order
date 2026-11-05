@@ -70,3 +70,5 @@
 04/11 23:56:28 [codex] fila iniciada
 04/11 23:56:28 [agy] fila iniciada
 04/11 23:56:28 [codex] comecando 13_E017_hier1_externas.txt
+05/11 00:07:22 [codex] codex ok 13_E017_hier1_externas.txt em 10 min
+05/11 00:10:33 [codex] ALERTA: arquivos sob data/ mudaram durante 13_E017_hier1_externas.txt: data/labelstudio/ls_p23_seed2_order_20261104.json data/labelstudio/ls_p31_seed1_order_20261104.json data/labelstudio/MANIFESTO_ORDEM_20261104.md data/labelstudio/pdf_paginas_20261104.jsonl 

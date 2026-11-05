@@ -22,8 +22,8 @@ mudar conforme se pondere palavras, linhas ou unidades.
 ## 2. Comparações
 
 - Finalistas: no máximo 3 métodos, congelados (código, pesos e limiares com hash) antes de abrir o teste.
-  Hoje: **híbrido 67** (baseline a superar), **regra de colunas** (âncora) e, se algum candidato passar
-  nos critérios do seu cartão até o congelamento, esse candidato.
+  Hoje: **híbrido 67** (baseline a superar), **regra de colunas** (âncora) e **HIER-1** (E017, GO em
+  05/11; código e modelo congelados em `resultados/e017_hier1_externas/congelamento.json`).
 - Contraste principal: candidato − híbrido 67 em quebras por página.
 - Agregação: macro-média das 3 UFs (CE, MA, RJ, 30 páginas cada); IC95 do Δ por bootstrap de PDFs
   (5.000 reamostras, semente 20261102); Holm se houver mais de um contraste confirmatório.

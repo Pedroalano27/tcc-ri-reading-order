@@ -14,9 +14,11 @@ Gerado por `src/exp/registro.py tabela` a partir de `registro.jsonl`. Não edita
 | [E006](cards/E006_correcao_residual_local_guiada_pelo_mode.md) | E006 — Correcao residual local guiada pelo modelo de arestas do E004 | 1 | abandonado |
 | [E008](cards/E008_anotacao_densa_x_simplificada_teste_cruz.md) | E008 — Anotacao densa x simplificada (teste cruzado com cronometro) | 0 | planejado |
 | [E009](cards/E009_representacao_para_inferencia_caixas_aut.md) | E009 — Representacao para inferencia: caixas automaticas x linhas automaticas | 1 | inconclusivo |
+| [E012](cards/E012_dados_da_data_policy_bancada_humana_extr.md) | E012 — Dados da Data Policy: bancada humana extra (126 paginas, 29 veiculos) e supervisao entre regioes | 1 | controle |
 | [E014](cards/E014_grafo_do_e004_com_ordenacao_das_cadeias.md) | E014 — Grafo do E004 com ordenacao das cadeias pela regra (recuperar o tau) | 1 | abandonado |
 | [E015](cards/E015_cadeias_do_grafo_ordenadas_pela_mediana_.md) | E015 — Cadeias do grafo ordenadas pela mediana da regra: externas e falha catastrofica | 1 | abandonado |
 | [E016](cards/E016_oraculo_e_decodificacao_hierarquica_linh.md) | E016 — Oraculo e decodificacao hierarquica: linhas dentro de segmentos, segmentos ordenados globalmente | 1 | abandonado |
+| [E017](cards/E017_hier_1_congelado_nas_externas_golden_v3_.md) | E017 — HIER-1 congelado nas externas (golden_v3_novo e teste silver) | 1 | melhorou |
 
 ## Execuções
 
@@ -142,5 +144,29 @@ Gerado por `src/exp/registro.py tabela` a partir de `registro.jsonl`. Não edita
 | E016 | 2026-11-03T04:54 | 7dd036d* | local | validacao_silver/oraculo_segmentos_interna_grafo | 0,979 | 11,533 | 0,938 | abandonado | Fase 1 NAO GO: oraculo hierarquico 2,80 quebras (tau 0,9935) > limite 1,36 (1,3x |
 | E016 | 2026-11-03T04:54 | 7dd036d* | local | validacao_silver/hier1 | 0,957 | 12,133 | 0,935 | abandonado | Fase 1 NAO GO: oraculo hierarquico 2,80 quebras (tau 0,9935) > limite 1,36 (1,3x |
 | E016 | 2026-11-03T04:54 | 7dd036d* | local | validacao_silver/oraculo_hierarquico_quebras | 0,763 | 6,467 | 0,969 | abandonado | Fase 1 NAO GO: oraculo hierarquico 2,80 quebras (tau 0,9935) > limite 1,36 (1,3x |
+| E012 | 2026-11-05T00:03 | 6837829 | local | ls_humana_todas/regra | 0,954 | 8,577 | 0,886 | controle | Bancada humana Data Policy seed2 (export de out): 123 pags, 29 veiculos. Hibrido |
+| E012 | 2026-11-05T00:03 | 6837829 | local | ls_humana_todas/hibrido67 | 0,970 | 7,179 | 0,931 | controle | Bancada humana Data Policy seed2 (export de out): 123 pags, 29 veiculos. Hibrido |
+| E012 | 2026-11-05T00:03 | 6837829 | local | ls_humana_todas/grafo_e004 | 0,909 | 6,675 | 0,920 | controle | Bancada humana Data Policy seed2 (export de out): 123 pags, 29 veiculos. Hibrido |
+| E012 | 2026-11-05T00:03 | 6837829 | local | ls_humana_todas/hier1 | 0,956 | 6,976 | 0,916 | controle | Bancada humana Data Policy seed2 (export de out): 123 pags, 29 veiculos. Hibrido |
+| E012 | 2026-11-05T00:03 | 6837829 | local | ls_humana_sem/regra | 0,950 | 9,167 | 0,894 | controle | Bancada humana Data Policy seed2 (export de out): 123 pags, 29 veiculos. Hibrido |
+| E012 | 2026-11-05T00:03 | 6837829 | local | ls_humana_sem/hibrido67 | 0,965 | 7,741 | 0,930 | controle | Bancada humana Data Policy seed2 (export de out): 123 pags, 29 veiculos. Hibrido |
+| E012 | 2026-11-05T00:03 | 6837829 | local | ls_humana_sem/grafo_e004 | 0,897 | 7,278 | 0,919 | controle | Bancada humana Data Policy seed2 (export de out): 123 pags, 29 veiculos. Hibrido |
+| E012 | 2026-11-05T00:03 | 6837829 | local | ls_humana_sem/hier1 | 0,950 | 7,611 | 0,915 | controle | Bancada humana Data Policy seed2 (export de out): 123 pags, 29 veiculos. Hibrido |
+| E017 | 2026-11-05T00:07 | 6837829* | local | golden_v4/regra | 0,986 | 6,045 | 0,927 | melhorou | GO: HIER-1 congelado. v3n 6,67 / tau 0,9594 (hibrido 7,89 / 0,9590), dq -1,22 [- |
+| E017 | 2026-11-05T00:07 | 6837829* | local | golden_v4/hibrido67 | 0,980 | 5,136 | 0,966 | melhorou | GO: HIER-1 congelado. v3n 6,67 / tau 0,9594 (hibrido 7,89 / 0,9590), dq -1,22 [- |
+| E017 | 2026-11-05T00:07 | 6837829* | local | golden_v4/grafo_K24_maxregret_t0.00 | 0,938 | 3,614 | 0,955 | melhorou | GO: HIER-1 congelado. v3n 6,67 / tau 0,9594 (hibrido 7,89 / 0,9590), dq -1,22 [- |
+| E017 | 2026-11-05T00:07 | 6837829* | local | golden_v4/hier1 | 0,985 | 4,659 | 0,947 | melhorou | GO: HIER-1 congelado. v3n 6,67 / tau 0,9594 (hibrido 7,89 / 0,9590), dq -1,22 [- |
+| E017 | 2026-11-05T00:07 | 6837829* | local | golden_v3_novo/regra | 0,960 | 9,222 | 0,911 | melhorou | GO: HIER-1 congelado. v3n 6,67 / tau 0,9594 (hibrido 7,89 / 0,9590), dq -1,22 [- |
+| E017 | 2026-11-05T00:07 | 6837829* | local | golden_v3_novo/hibrido67 | 0,959 | 7,889 | 0,938 | melhorou | GO: HIER-1 congelado. v3n 6,67 / tau 0,9594 (hibrido 7,89 / 0,9590), dq -1,22 [- |
+| E017 | 2026-11-05T00:07 | 6837829* | local | golden_v3_novo/grafo_K24_maxregret_t0.00 | 0,942 | 6,519 | 0,935 | melhorou | GO: HIER-1 congelado. v3n 6,67 / tau 0,9594 (hibrido 7,89 / 0,9590), dq -1,22 [- |
+| E017 | 2026-11-05T00:07 | 6837829* | local | golden_v3_novo/hier1 | 0,959 | 6,667 | 0,935 | melhorou | GO: HIER-1 congelado. v3n 6,67 / tau 0,9594 (hibrido 7,89 / 0,9590), dq -1,22 [- |
+| E017 | 2026-11-05T00:07 | 6837829* | local | teste_silver/regra | 0,960 | 27,449 | 0,840 | melhorou | GO: HIER-1 congelado. v3n 6,67 / tau 0,9594 (hibrido 7,89 / 0,9590), dq -1,22 [- |
+| E017 | 2026-11-05T00:07 | 6837829* | local | teste_silver/hibrido67 | 0,959 | 26,427 | 0,850 | melhorou | GO: HIER-1 congelado. v3n 6,67 / tau 0,9594 (hibrido 7,89 / 0,9590), dq -1,22 [- |
+| E017 | 2026-11-05T00:07 | 6837829* | local | teste_silver/grafo_K24_maxregret_t0.00 | 0,943 | 24,146 | 0,854 | melhorou | GO: HIER-1 congelado. v3n 6,67 / tau 0,9594 (hibrido 7,89 / 0,9590), dq -1,22 [- |
+| E017 | 2026-11-05T00:07 | 6837829* | local | teste_silver/hier1 | 0,958 | 25,056 | 0,853 | melhorou | GO: HIER-1 congelado. v3n 6,67 / tau 0,9594 (hibrido 7,89 / 0,9590), dq -1,22 [- |
+| E017 | 2026-11-05T00:07 | 6837829* | local | validacao_silver/regra | 0,957 | 16,667 | 0,911 | melhorou | GO: HIER-1 congelado. v3n 6,67 / tau 0,9594 (hibrido 7,89 / 0,9590), dq -1,22 [- |
+| E017 | 2026-11-05T00:07 | 6837829* | local | validacao_silver/hibrido67 | 0,959 | 16,400 | 0,917 | melhorou | GO: HIER-1 congelado. v3n 6,67 / tau 0,9594 (hibrido 7,89 / 0,9590), dq -1,22 [- |
+| E017 | 2026-11-05T00:07 | 6837829* | local | validacao_silver/grafo_K24_maxregret_t0.00 | 0,687 | 9,467 | 0,948 | melhorou | GO: HIER-1 congelado. v3n 6,67 / tau 0,9594 (hibrido 7,89 / 0,9590), dq -1,22 [- |
+| E017 | 2026-11-05T00:07 | 6837829* | local | validacao_silver/hier1 | 0,957 | 12,133 | 0,935 | melhorou | GO: HIER-1 congelado. v3n 6,67 / tau 0,9594 (hibrido 7,89 / 0,9590), dq -1,22 [- |
 
 `*` = árvore de trabalho com alterações não commitadas no momento da execução.
