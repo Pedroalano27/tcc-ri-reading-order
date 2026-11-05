@@ -1,0 +1,6284 @@
+{
+ "ancora": {
+  "tau": 0.9859481733498361,
+  "quebras": 6.045454545454546
+ },
+ "inventario": {
+  "golden_v4": {
+   "paginas": 44,
+   "faltantes_A": 0,
+   "ids_faltantes_A": []
+  },
+  "golden_v3_novo": {
+   "paginas": 27,
+   "faltantes_A": 0,
+   "ids_faltantes_A": []
+  },
+  "teste_silver": {
+   "paginas": 89,
+   "faltantes_A": 0,
+   "ids_faltantes_A": []
+  }
+ },
+ "resumos": {
+  "golden_v4": {
+   "n": 44,
+   "veiculos": 27,
+   "metodos": {
+    "A_regra": {
+     "tau": {
+      "media": 0.9800007838073242,
+      "ic": [
+       0.957958549114881,
+       0.9961261696270067
+      ],
+      "n": 44
+     },
+     "quebras": {
+      "media": 5.4772727272727275,
+      "ic": [
+       2.733229166666667,
+       9.500961538461524
+      ],
+      "n": 44,
+      "total": 241
+     },
+     "quebras_mil": {
+      "media": 13.578986328421013,
+      "ic": [
+       4.8749060913628774,
+       24.951877269362456
+      ],
+      "n": 44
+     },
+     "fid12": {
+      "media": 0.9383052410682983,
+      "ic": [
+       0.8970475913018757,
+       0.973935645274551
+      ],
+      "n": 44
+     },
+     "sucessor_linhas": {
+      "media": 0.9296280293125453,
+      "ic": [
+       0.8922043565033511,
+       0.9624569140120567
+      ],
+      "n": 44
+     },
+     "piso_interno": {
+      "media": 1.5909090909090908,
+      "ic": [
+       0.0,
+       5.048780487804878
+      ],
+      "n": 44,
+      "total": 70
+     },
+     "entre_unidades": {
+      "media": 3.8863636363636362,
+      "ic": [
+       2.5227025691699607,
+       5.547744360902254
+      ],
+      "n": 44,
+      "total": 171
+     }
+    },
+    "A_hibrido67": {
+     "tau": {
+      "media": 0.9658344811752696,
+      "ic": [
+       0.9374450505075506,
+       0.9902631436363981
+      ],
+      "n": 44
+     },
+     "quebras": {
+      "media": 4.75,
+      "ic": [
+       1.9230769230769231,
+       8.948780487804877
+      ],
+      "n": 44,
+      "total": 209
+     },
+     "quebras_mil": {
+      "media": 8.072459153823784,
+      "ic": [
+       2.1078664477293962,
+       19.03411993114172
+      ],
+      "n": 44
+     },
+     "fid12": {
+      "media": 0.9701241785469101,
+      "ic": [
+       0.9423693849510878,
+       0.9892209921981019
+      ],
+      "n": 44
+     },
+     "sucessor_linhas": {
+      "media": 0.9639802577845352,
+      "ic": [
+       0.9357339206048533,
+       0.9842132439891398
+      ],
+      "n": 44
+     },
+     "piso_interno": {
+      "media": 1.5909090909090908,
+      "ic": [
+       0.0,
+       5.048780487804878
+      ],
+      "n": 44,
+      "total": 70
+     },
+     "entre_unidades": {
+      "media": 3.159090909090909,
+      "ic": [
+       1.725,
+       4.8890350877192965
+      ],
+      "n": 44,
+      "total": 139
+     }
+    },
+    "B_regra": {
+     "tau": {
+      "media": 0.9859481733498362,
+      "ic": [
+       0.9734950629242268,
+       0.9950196328075368
+      ],
+      "n": 44
+     },
+     "quebras": {
+      "media": 6.045454545454546,
+      "ic": [
+       4.022714646464646,
+       8.886572966507174
+      ],
+      "n": 44,
+      "total": 266
+     },
+     "quebras_mil": {
+      "media": 11.88475157932978,
+      "ic": [
+       5.910381875681975,
+       19.66139836252935
+      ],
+      "n": 44
+     },
+     "fid12": {
+      "media": 0.948128658431846,
+      "ic": [
+       0.9135513308007408,
+       0.9724108260665049
+      ],
+      "n": 44
+     },
+     "sucessor_linhas": {
+      "media": 0.9272403501010136,
+      "ic": [
+       0.8780996065915098,
+       0.9608330214916025
+      ],
+      "n": 44
+     },
+     "piso_interno": {
+      "media": 0.5454545454545454,
+      "ic": [
+       0.04878048780487805,
+       1.2093023255813953
+      ],
+      "n": 44,
+      "total": 24
+     },
+     "entre_unidades": {
+      "media": 5.5,
+      "ic": [
+       3.727272727272727,
+       7.866666666666666
+      ],
+      "n": 44,
+      "total": 242
+     }
+    },
+    "B_hibrido67": {
+     "tau": {
+      "media": 0.9797375818109462,
+      "ic": [
+       0.954202894473553,
+       0.994030672052702
+      ],
+      "n": 44
+     },
+     "quebras": {
+      "media": 5.136363636363637,
+      "ic": [
+       2.9531205505458,
+       8.244583333333331
+      ],
+      "n": 44,
+      "total": 226
+     },
+     "quebras_mil": {
+      "media": 6.041242295003462,
+      "ic": [
+       3.50036223565084,
+       9.015397797263034
+      ],
+      "n": 44
+     },
+     "fid12": {
+      "media": 0.9734185984181681,
+      "ic": [
+       0.9606480844501283,
+       0.9846465017008199
+      ],
+      "n": 44
+     },
+     "sucessor_linhas": {
+      "media": 0.9661428806892427,
+      "ic": [
+       0.9527195710268914,
+       0.9782974739653169
+      ],
+      "n": 44
+     },
+     "piso_interno": {
+      "media": 0.5454545454545454,
+      "ic": [
+       0.04878048780487805,
+       1.2093023255813953
+      ],
+      "n": 44,
+      "total": 24
+     },
+     "entre_unidades": {
+      "media": 4.590909090909091,
+      "ic": [
+       2.6956521739130435,
+       7.219512195121951
+      ],
+      "n": 44,
+      "total": 202
+     }
+    }
+   },
+   "contrastes": {
+    "A_regra-B_regra": {
+     "tau": {
+      "media": -0.005947389542511788,
+      "ic": [
+       -0.024159211332209204,
+       0.0049531984803606955
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 0.00043067713212102676,
+       "official_diary_RJ_barra_do_pirai": -0.007316352468562696,
+       "official_diary_RJ_duque_de_caxias": 0.02883754084225787,
+       "official_diary_RJ_seropedica": 0.014541943788254685,
+       "official_diary_RJ_volta_redonda": 0.0,
+       "official_diary_ac": -0.17755139166818262,
+       "official_diary_al": 7.3024361946968e-05,
+       "official_diary_am_manaus": 0.0,
+       "official_diary_ap": 0.0025379501367444046,
+       "official_diary_ba_salvador": 0.009438423131769458,
+       "official_diary_ce": 0.0,
+       "official_diary_ma": 0.0,
+       "official_diary_mg": 8.652639776229876e-06,
+       "official_diary_ms": 0.00040927703881499244,
+       "official_diary_pb": -0.0004217496633474038,
+       "official_diary_pe": 1.6176282655600005e-06,
+       "official_diary_pi_v2": 9.613372899641703e-05,
+       "official_diary_pr_curitiba": 0.0,
+       "official_diary_rj": -1.3884931157503999e-05,
+       "official_diary_rj_japeri": -0.00662505647207684,
+       "official_diary_rn": -0.0001011346038367611,
+       "official_diary_ro": 0.0,
+       "official_diary_rr": 0.0,
+       "official_diary_rs_porto_alegre": 0.0,
+       "official_diary_sc": 1.2925825152221293e-05,
+       "official_diary_se": 0.0,
+       "official_diary_to": 0.013093797516097128
+      },
+      "wilcoxon_veiculo": {
+       "W": 117.0,
+       "p": 0.22456732710080862
+      },
+      "melhor": 18,
+      "igual": 16,
+      "pior": 10
+     },
+     "quebras": {
+      "media": -0.5681818181818182,
+      "ic": [
+       -3.2093023255813953,
+       2.926914350538853
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": -1.5,
+       "official_diary_RJ_barra_do_pirai": -1.6666666666666667,
+       "official_diary_RJ_duque_de_caxias": 29.5,
+       "official_diary_RJ_seropedica": -4.5,
+       "official_diary_RJ_volta_redonda": 0,
+       "official_diary_ac": 4.5,
+       "official_diary_al": -1.6666666666666667,
+       "official_diary_am_manaus": 0,
+       "official_diary_ap": -3,
+       "official_diary_ba_salvador": -8,
+       "official_diary_ce": 0,
+       "official_diary_ma": 0,
+       "official_diary_mg": -6,
+       "official_diary_ms": 0,
+       "official_diary_pb": -3.5,
+       "official_diary_pe": -3,
+       "official_diary_pi_v2": 0,
+       "official_diary_pr_curitiba": 0,
+       "official_diary_rj": -25,
+       "official_diary_rj_japeri": -3.5,
+       "official_diary_rn": 3,
+       "official_diary_ro": 0,
+       "official_diary_rr": 0,
+       "official_diary_rs_porto_alegre": 0,
+       "official_diary_sc": -6,
+       "official_diary_se": 0,
+       "official_diary_to": -3
+      },
+      "wilcoxon_veiculo": {
+       "W": 65.0,
+       "p": 0.023087445220698007
+      },
+      "melhor": 21,
+      "igual": 18,
+      "pior": 5
+     },
+     "quebras_mil": {
+      "media": 1.6942347490912335,
+      "ic": [
+       -5.106216281491316,
+       11.826415721930623
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": -2.0080321285140563,
+       "official_diary_RJ_barra_do_pirai": -22.57604999540483,
+       "official_diary_RJ_duque_de_caxias": 85.73161785452288,
+       "official_diary_RJ_seropedica": -14.172918524736374,
+       "official_diary_RJ_volta_redonda": 0.0,
+       "official_diary_ac": 3.7625418060200664,
+       "official_diary_al": -2.044476740833016,
+       "official_diary_am_manaus": 0.0,
+       "official_diary_ap": -3.7783375314861463,
+       "official_diary_ba_salvador": -7.714561234329797,
+       "official_diary_ce": 0.0,
+       "official_diary_ma": 0.0,
+       "official_diary_mg": -1.4705882352941175,
+       "official_diary_ms": -0.12826679493346171,
+       "official_diary_pb": -3.187613843351548,
+       "official_diary_pe": -1.9071837253655435,
+       "official_diary_pi_v2": 0.0,
+       "official_diary_pr_curitiba": 0.0,
+       "official_diary_rj": -9.928514694201747,
+       "official_diary_rj_japeri": 21.33422027938801,
+       "official_diary_rn": 3.768844221105528,
+       "official_diary_ro": 0.0,
+       "official_diary_rr": 0.0,
+       "official_diary_rs_porto_alegre": 0.0,
+       "official_diary_sc": -2.7842227378190256,
+       "official_diary_se": 0.0,
+       "official_diary_to": -3.331143329593102
+      },
+      "wilcoxon_veiculo": {
+       "W": 91.0,
+       "p": 0.0813568213138646
+      },
+      "melhor": 21,
+      "igual": 18,
+      "pior": 5
+     },
+     "fid12": {
+      "media": -0.00982341736354781,
+      "ic": [
+       -0.0405104903861509,
+       0.013945154420430038
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 0.016707920792079223,
+       "official_diary_RJ_barra_do_pirai": 0.06291661554819454,
+       "official_diary_RJ_duque_de_caxias": -0.176421568627451,
+       "official_diary_RJ_seropedica": 0.0053542050702661825,
+       "official_diary_RJ_volta_redonda": 0.0,
+       "official_diary_ac": -0.019669551534225005,
+       "official_diary_al": 0.001351756173512982,
+       "official_diary_am_manaus": 0.0,
+       "official_diary_ap": 0.025128865979381465,
+       "official_diary_ba_salvador": 0.0045045045045045695,
+       "official_diary_ce": 0.0,
+       "official_diary_ma": 0.0,
+       "official_diary_mg": 0.008326216908625117,
+       "official_diary_ms": 0.0062660743511807615,
+       "official_diary_pb": 0.023089840470193135,
+       "official_diary_pe": 0.009798584648884057,
+       "official_diary_pi_v2": -0.00584087848564141,
+       "official_diary_pr_curitiba": 0.0,
+       "official_diary_rj": 0.047850467289719534,
+       "official_diary_rj_japeri": -0.24305555555555552,
+       "official_diary_rn": -0.022497187851518552,
+       "official_diary_ro": 0.0,
+       "official_diary_rr": 0.0,
+       "official_diary_rs_porto_alegre": 0.0,
+       "official_diary_sc": 0.018476791347453836,
+       "official_diary_se": 0.0,
+       "official_diary_to": 0.02269321953532477
+      },
+      "wilcoxon_veiculo": {
+       "W": 105.0,
+       "p": 0.13132686158651943
+      },
+      "melhor": 20,
+      "igual": 17,
+      "pior": 7
+     },
+     "sucessor_linhas": {
+      "media": 0.002387679211531803,
+      "ic": [
+       -0.025464493221496437,
+       0.02835759780301944
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 0.018181818181818188,
+       "official_diary_RJ_barra_do_pirai": 0.1373737373737374,
+       "official_diary_RJ_duque_de_caxias": -0.1974596483443341,
+       "official_diary_RJ_seropedica": 0.017783857729138153,
+       "official_diary_RJ_volta_redonda": 0.0,
+       "official_diary_ac": -0.03146853146853151,
+       "official_diary_al": 0.015076720556172632,
+       "official_diary_am_manaus": 0.0,
+       "official_diary_ap": 0.022123893805309713,
+       "official_diary_ba_salvador": 0.020270270270270285,
+       "official_diary_ce": 0.0,
+       "official_diary_ma": 0.0,
+       "official_diary_mg": 0.01224489795918371,
+       "official_diary_ms": -0.006085192697768749,
+       "official_diary_pb": 0.025000000000000022,
+       "official_diary_pe": 0.009478672985781977,
+       "official_diary_pi_v2": -0.01315789473684209,
+       "official_diary_pr_curitiba": 0.0,
+       "official_diary_rj": 0.056213017751479244,
+       "official_diary_rj_japeri": -0.07077922077922072,
+       "official_diary_rn": -0.03658536585365857,
+       "official_diary_ro": 0.0,
+       "official_diary_rr": 0.0,
+       "official_diary_rs_porto_alegre": 0.0,
+       "official_diary_sc": 0.015748031496062964,
+       "official_diary_se": 0.0,
+       "official_diary_to": 0.021029411764705908
+      },
+      "wilcoxon_veiculo": {
+       "W": 120.0,
+       "p": 0.25392479531876166
+      },
+      "melhor": 20,
+      "igual": 17,
+      "pior": 7
+     },
+     "piso_interno": {
+      "media": 1.0454545454545454,
+      "ic": [
+       -1.0,
+       4.61926910299003
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 0,
+       "official_diary_RJ_barra_do_pirai": 0,
+       "official_diary_RJ_duque_de_caxias": 34,
+       "official_diary_RJ_seropedica": -3,
+       "official_diary_RJ_volta_redonda": 0,
+       "official_diary_ac": 0,
+       "official_diary_al": 0,
+       "official_diary_am_manaus": 0,
+       "official_diary_ap": -0.5,
+       "official_diary_ba_salvador": -6,
+       "official_diary_ce": 0,
+       "official_diary_ma": 0,
+       "official_diary_mg": 0,
+       "official_diary_ms": 0.5,
+       "official_diary_pb": 0,
+       "official_diary_pe": 0,
+       "official_diary_pi_v2": 0,
+       "official_diary_pr_curitiba": 0,
+       "official_diary_rj": -9,
+       "official_diary_rj_japeri": 0,
+       "official_diary_rn": -1,
+       "official_diary_ro": 0,
+       "official_diary_rr": 0,
+       "official_diary_rs_porto_alegre": 0,
+       "official_diary_sc": 0,
+       "official_diary_se": 0,
+       "official_diary_to": 0
+      },
+      "wilcoxon_veiculo": {
+       "W": 48.5,
+       "p": 0.26512856012443997
+      },
+      "melhor": 6,
+      "igual": 36,
+      "pior": 2
+     },
+     "entre_unidades": {
+      "media": -1.6136363636363635,
+      "ic": [
+       -2.725056818181818,
+       -0.6110772357723583
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": -1.5,
+       "official_diary_RJ_barra_do_pirai": -1.6666666666666667,
+       "official_diary_RJ_duque_de_caxias": -4.5,
+       "official_diary_RJ_seropedica": -1.5,
+       "official_diary_RJ_volta_redonda": 0,
+       "official_diary_ac": 4.5,
+       "official_diary_al": -1.6666666666666667,
+       "official_diary_am_manaus": 0,
+       "official_diary_ap": -2.5,
+       "official_diary_ba_salvador": -2,
+       "official_diary_ce": 0,
+       "official_diary_ma": 0,
+       "official_diary_mg": -6,
+       "official_diary_ms": -0.5,
+       "official_diary_pb": -3.5,
+       "official_diary_pe": -3,
+       "official_diary_pi_v2": 0,
+       "official_diary_pr_curitiba": 0,
+       "official_diary_rj": -16,
+       "official_diary_rj_japeri": -3.5,
+       "official_diary_rn": 4,
+       "official_diary_ro": 0,
+       "official_diary_rr": 0,
+       "official_diary_rs_porto_alegre": 0,
+       "official_diary_sc": -6,
+       "official_diary_se": 0,
+       "official_diary_to": -3
+      },
+      "wilcoxon_veiculo": {
+       "W": 45.5,
+       "p": 0.004126138771742489
+      },
+      "melhor": 21,
+      "igual": 19,
+      "pior": 4
+     },
+     "reparos_sucessor": 92,
+     "regressoes_sucessor": 96
+    },
+    "A_regra-A_regra": {
+     "tau": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 0.0,
+       "official_diary_RJ_barra_do_pirai": 0.0,
+       "official_diary_RJ_duque_de_caxias": 0.0,
+       "official_diary_RJ_seropedica": 0.0,
+       "official_diary_RJ_volta_redonda": 0.0,
+       "official_diary_ac": 0.0,
+       "official_diary_al": 0.0,
+       "official_diary_am_manaus": 0.0,
+       "official_diary_ap": 0.0,
+       "official_diary_ba_salvador": 0.0,
+       "official_diary_ce": 0.0,
+       "official_diary_ma": 0.0,
+       "official_diary_mg": 0.0,
+       "official_diary_ms": 0.0,
+       "official_diary_pb": 0.0,
+       "official_diary_pe": 0.0,
+       "official_diary_pi_v2": 0.0,
+       "official_diary_pr_curitiba": 0.0,
+       "official_diary_rj": 0.0,
+       "official_diary_rj_japeri": 0.0,
+       "official_diary_rn": 0.0,
+       "official_diary_ro": 0.0,
+       "official_diary_rr": 0.0,
+       "official_diary_rs_porto_alegre": 0.0,
+       "official_diary_sc": 0.0,
+       "official_diary_se": 0.0,
+       "official_diary_to": 0.0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 44,
+      "pior": 0
+     },
+     "quebras": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 0,
+       "official_diary_RJ_barra_do_pirai": 0,
+       "official_diary_RJ_duque_de_caxias": 0,
+       "official_diary_RJ_seropedica": 0,
+       "official_diary_RJ_volta_redonda": 0,
+       "official_diary_ac": 0,
+       "official_diary_al": 0,
+       "official_diary_am_manaus": 0,
+       "official_diary_ap": 0,
+       "official_diary_ba_salvador": 0,
+       "official_diary_ce": 0,
+       "official_diary_ma": 0,
+       "official_diary_mg": 0,
+       "official_diary_ms": 0,
+       "official_diary_pb": 0,
+       "official_diary_pe": 0,
+       "official_diary_pi_v2": 0,
+       "official_diary_pr_curitiba": 0,
+       "official_diary_rj": 0,
+       "official_diary_rj_japeri": 0,
+       "official_diary_rn": 0,
+       "official_diary_ro": 0,
+       "official_diary_rr": 0,
+       "official_diary_rs_porto_alegre": 0,
+       "official_diary_sc": 0,
+       "official_diary_se": 0,
+       "official_diary_to": 0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 44,
+      "pior": 0
+     },
+     "quebras_mil": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 0.0,
+       "official_diary_RJ_barra_do_pirai": 0.0,
+       "official_diary_RJ_duque_de_caxias": 0.0,
+       "official_diary_RJ_seropedica": 0.0,
+       "official_diary_RJ_volta_redonda": 0.0,
+       "official_diary_ac": 0.0,
+       "official_diary_al": 0.0,
+       "official_diary_am_manaus": 0.0,
+       "official_diary_ap": 0.0,
+       "official_diary_ba_salvador": 0.0,
+       "official_diary_ce": 0.0,
+       "official_diary_ma": 0.0,
+       "official_diary_mg": 0.0,
+       "official_diary_ms": 0.0,
+       "official_diary_pb": 0.0,
+       "official_diary_pe": 0.0,
+       "official_diary_pi_v2": 0.0,
+       "official_diary_pr_curitiba": 0.0,
+       "official_diary_rj": 0.0,
+       "official_diary_rj_japeri": 0.0,
+       "official_diary_rn": 0.0,
+       "official_diary_ro": 0.0,
+       "official_diary_rr": 0.0,
+       "official_diary_rs_porto_alegre": 0.0,
+       "official_diary_sc": 0.0,
+       "official_diary_se": 0.0,
+       "official_diary_to": 0.0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 44,
+      "pior": 0
+     },
+     "fid12": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 0.0,
+       "official_diary_RJ_barra_do_pirai": 0.0,
+       "official_diary_RJ_duque_de_caxias": 0.0,
+       "official_diary_RJ_seropedica": 0.0,
+       "official_diary_RJ_volta_redonda": 0.0,
+       "official_diary_ac": 0.0,
+       "official_diary_al": 0.0,
+       "official_diary_am_manaus": 0.0,
+       "official_diary_ap": 0.0,
+       "official_diary_ba_salvador": 0.0,
+       "official_diary_ce": 0.0,
+       "official_diary_ma": 0.0,
+       "official_diary_mg": 0.0,
+       "official_diary_ms": 0.0,
+       "official_diary_pb": 0.0,
+       "official_diary_pe": 0.0,
+       "official_diary_pi_v2": 0.0,
+       "official_diary_pr_curitiba": 0.0,
+       "official_diary_rj": 0.0,
+       "official_diary_rj_japeri": 0.0,
+       "official_diary_rn": 0.0,
+       "official_diary_ro": 0.0,
+       "official_diary_rr": 0.0,
+       "official_diary_rs_porto_alegre": 0.0,
+       "official_diary_sc": 0.0,
+       "official_diary_se": 0.0,
+       "official_diary_to": 0.0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 44,
+      "pior": 0
+     },
+     "sucessor_linhas": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 0.0,
+       "official_diary_RJ_barra_do_pirai": 0.0,
+       "official_diary_RJ_duque_de_caxias": 0.0,
+       "official_diary_RJ_seropedica": 0.0,
+       "official_diary_RJ_volta_redonda": 0.0,
+       "official_diary_ac": 0.0,
+       "official_diary_al": 0.0,
+       "official_diary_am_manaus": 0.0,
+       "official_diary_ap": 0.0,
+       "official_diary_ba_salvador": 0.0,
+       "official_diary_ce": 0.0,
+       "official_diary_ma": 0.0,
+       "official_diary_mg": 0.0,
+       "official_diary_ms": 0.0,
+       "official_diary_pb": 0.0,
+       "official_diary_pe": 0.0,
+       "official_diary_pi_v2": 0.0,
+       "official_diary_pr_curitiba": 0.0,
+       "official_diary_rj": 0.0,
+       "official_diary_rj_japeri": 0.0,
+       "official_diary_rn": 0.0,
+       "official_diary_ro": 0.0,
+       "official_diary_rr": 0.0,
+       "official_diary_rs_porto_alegre": 0.0,
+       "official_diary_sc": 0.0,
+       "official_diary_se": 0.0,
+       "official_diary_to": 0.0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 44,
+      "pior": 0
+     },
+     "piso_interno": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 0,
+       "official_diary_RJ_barra_do_pirai": 0,
+       "official_diary_RJ_duque_de_caxias": 0,
+       "official_diary_RJ_seropedica": 0,
+       "official_diary_RJ_volta_redonda": 0,
+       "official_diary_ac": 0,
+       "official_diary_al": 0,
+       "official_diary_am_manaus": 0,
+       "official_diary_ap": 0,
+       "official_diary_ba_salvador": 0,
+       "official_diary_ce": 0,
+       "official_diary_ma": 0,
+       "official_diary_mg": 0,
+       "official_diary_ms": 0,
+       "official_diary_pb": 0,
+       "official_diary_pe": 0,
+       "official_diary_pi_v2": 0,
+       "official_diary_pr_curitiba": 0,
+       "official_diary_rj": 0,
+       "official_diary_rj_japeri": 0,
+       "official_diary_rn": 0,
+       "official_diary_ro": 0,
+       "official_diary_rr": 0,
+       "official_diary_rs_porto_alegre": 0,
+       "official_diary_sc": 0,
+       "official_diary_se": 0,
+       "official_diary_to": 0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 44,
+      "pior": 0
+     },
+     "entre_unidades": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 0,
+       "official_diary_RJ_barra_do_pirai": 0,
+       "official_diary_RJ_duque_de_caxias": 0,
+       "official_diary_RJ_seropedica": 0,
+       "official_diary_RJ_volta_redonda": 0,
+       "official_diary_ac": 0,
+       "official_diary_al": 0,
+       "official_diary_am_manaus": 0,
+       "official_diary_ap": 0,
+       "official_diary_ba_salvador": 0,
+       "official_diary_ce": 0,
+       "official_diary_ma": 0,
+       "official_diary_mg": 0,
+       "official_diary_ms": 0,
+       "official_diary_pb": 0,
+       "official_diary_pe": 0,
+       "official_diary_pi_v2": 0,
+       "official_diary_pr_curitiba": 0,
+       "official_diary_rj": 0,
+       "official_diary_rj_japeri": 0,
+       "official_diary_rn": 0,
+       "official_diary_ro": 0,
+       "official_diary_rr": 0,
+       "official_diary_rs_porto_alegre": 0,
+       "official_diary_sc": 0,
+       "official_diary_se": 0,
+       "official_diary_to": 0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 44,
+      "pior": 0
+     },
+     "reparos_sucessor": 0,
+     "regressoes_sucessor": 0
+    },
+    "A_hibrido67-B_regra": {
+     "tau": {
+      "media": -0.020113692174566225,
+      "ic": [
+       -0.04802766865188582,
+       0.004116098822680215
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 0.0004845117736361204,
+       "official_diary_RJ_barra_do_pirai": 0.030208127559170017,
+       "official_diary_RJ_duque_de_caxias": 0.03509702787729535,
+       "official_diary_RJ_seropedica": -0.0009020716557607278,
+       "official_diary_RJ_volta_redonda": 0.0018734727124624095,
+       "official_diary_ac": -0.17749487710940437,
+       "official_diary_al": -0.15658535290674505,
+       "official_diary_am_manaus": 0.0,
+       "official_diary_ap": 0.0025379501367444046,
+       "official_diary_ba_salvador": 0.003831217910292284,
+       "official_diary_ce": 6.110446317186824e-05,
+       "official_diary_ma": -0.2186403716696691,
+       "official_diary_mg": 8.652639776229876e-06,
+       "official_diary_ms": 0.00040927703881499244,
+       "official_diary_pb": -0.0004132361268243123,
+       "official_diary_pe": 1.6176282655600005e-06,
+       "official_diary_pi_v2": 0.0005813770897211135,
+       "official_diary_pr_curitiba": 0.0,
+       "official_diary_rj": -1.3884931157503999e-05,
+       "official_diary_rj_japeri": 0.027453539126960746,
+       "official_diary_rn": 0.0,
+       "official_diary_ro": 0.00023845599741678658,
+       "official_diary_rr": 0.00032848543577701506,
+       "official_diary_rs_porto_alegre": 9.982174688055734e-05,
+       "official_diary_sc": 1.2925825152221293e-05,
+       "official_diary_se": 0.004113744141015063,
+       "official_diary_to": -0.03887251986262563
+      },
+      "wilcoxon_veiculo": {
+       "W": 138.0,
+       "p": 0.24834991529218753
+      },
+      "melhor": 27,
+      "igual": 7,
+      "pior": 10
+     },
+     "quebras": {
+      "media": -1.2954545454545454,
+      "ic": [
+       -4.0476190476190474,
+       2.4566471571906336
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": -2.5,
+       "official_diary_RJ_barra_do_pirai": -5.666666666666667,
+       "official_diary_RJ_duque_de_caxias": 30,
+       "official_diary_RJ_seropedica": -5,
+       "official_diary_RJ_volta_redonda": -3,
+       "official_diary_ac": 3.5,
+       "official_diary_al": 1.3333333333333333,
+       "official_diary_am_manaus": 0,
+       "official_diary_ap": -3,
+       "official_diary_ba_salvador": -7,
+       "official_diary_ce": -2,
+       "official_diary_ma": 5,
+       "official_diary_mg": -6,
+       "official_diary_ms": 0,
+       "official_diary_pb": -3,
+       "official_diary_pe": -3,
+       "official_diary_pi_v2": -2,
+       "official_diary_pr_curitiba": 0,
+       "official_diary_rj": -25,
+       "official_diary_rj_japeri": -7,
+       "official_diary_rn": 0,
+       "official_diary_ro": -4.5,
+       "official_diary_rr": -2,
+       "official_diary_rs_porto_alegre": -1.5,
+       "official_diary_sc": -6,
+       "official_diary_se": -3,
+       "official_diary_to": 0.5
+      },
+      "wilcoxon_veiculo": {
+       "W": 74.5,
+       "p": 0.008314286027897346
+      },
+      "melhor": 29,
+      "igual": 7,
+      "pior": 8
+     },
+     "quebras_mil": {
+      "media": -3.812292425505994,
+      "ic": [
+       -14.678993793340153,
+       8.83863688202436
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": -3.3467202141900936,
+       "official_diary_RJ_barra_do_pirai": -59.645253193640286,
+       "official_diary_RJ_duque_de_caxias": 87.12826589921562,
+       "official_diary_RJ_seropedica": -14.815592046587273,
+       "official_diary_RJ_volta_redonda": -2.952755905511811,
+       "official_diary_ac": 2.740046918494504,
+       "official_diary_al": 4.081744466359852,
+       "official_diary_am_manaus": 0.0,
+       "official_diary_ap": -3.7783375314861463,
+       "official_diary_ba_salvador": -6.750241080038572,
+       "official_diary_ce": -1.8416206261510126,
+       "official_diary_ma": 6.28140703517588,
+       "official_diary_mg": -1.4705882352941175,
+       "official_diary_ms": -0.12826679493346171,
+       "official_diary_pb": -2.5923757481134526,
+       "official_diary_pe": -1.9071837253655435,
+       "official_diary_pi_v2": -7.487391697918014,
+       "official_diary_pr_curitiba": 0.0,
+       "official_diary_rj": -9.928514694201747,
+       "official_diary_rj_japeri": -29.300896449048118,
+       "official_diary_rn": 0.0,
+       "official_diary_ro": -7.086614173228346,
+       "official_diary_rr": -4.048582995951417,
+       "official_diary_rs_porto_alegre": -4.0,
+       "official_diary_sc": -2.7842227378190256,
+       "official_diary_se": -5.532620738888727,
+       "official_diary_to": 0.3764837890509656
+      },
+      "wilcoxon_veiculo": {
+       "W": 78.0,
+       "p": 0.009395304175528125
+      },
+      "melhor": 29,
+      "igual": 7,
+      "pior": 8
+     },
+     "fid12": {
+      "media": 0.02199552011506398,
+      "ic": [
+       -0.015695508213456565,
+       0.06400652916460714
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 0.024133663366336655,
+       "official_diary_RJ_barra_do_pirai": 0.275046006624954,
+       "official_diary_RJ_duque_de_caxias": -0.19308823529411767,
+       "official_diary_RJ_seropedica": 0.0053542050702661825,
+       "official_diary_RJ_volta_redonda": 0.009478672985781977,
+       "official_diary_ac": -0.013015559138787769,
+       "official_diary_al": -0.04101035914922572,
+       "official_diary_am_manaus": 0.0,
+       "official_diary_ap": 0.025128865979381465,
+       "official_diary_ba_salvador": 0.0045045045045045695,
+       "official_diary_ce": 0.010389610389610393,
+       "official_diary_ma": -0.06632653061224492,
+       "official_diary_mg": 0.008326216908625117,
+       "official_diary_ms": 0.0062660743511807615,
+       "official_diary_pb": 0.023089840470193135,
+       "official_diary_pe": 0.009798584648884057,
+       "official_diary_pi_v2": 0.028098621618366737,
+       "official_diary_pr_curitiba": 0.0,
+       "official_diary_rj": 0.047850467289719534,
+       "official_diary_rj_japeri": 0.0705555555555556,
+       "official_diary_rn": 0.0,
+       "official_diary_ro": 0.0518796992481203,
+       "official_diary_rr": 0.020602218700475405,
+       "official_diary_rs_porto_alegre": 0.027848101265822767,
+       "official_diary_sc": 0.018476791347453836,
+       "official_diary_se": 0.03858172138420579,
+       "official_diary_to": 0.00646514935988618
+      },
+      "wilcoxon_veiculo": {
+       "W": 83.0,
+       "p": 0.013246285276995392
+      },
+      "melhor": 27,
+      "igual": 8,
+      "pior": 9
+     },
+     "sucessor_linhas": {
+      "media": 0.03673990768352167,
+      "ic": [
+       -0.01014290798753413,
+       0.09400761257867328
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 0.036363636363636376,
+       "official_diary_RJ_barra_do_pirai": 0.3888888888888889,
+       "official_diary_RJ_duque_de_caxias": -0.2008153530423207,
+       "official_diary_RJ_seropedica": 0.023597811217510256,
+       "official_diary_RJ_volta_redonda": 0.02752293577981646,
+       "official_diary_ac": -0.019840624491787306,
+       "official_diary_al": -0.028394833189353763,
+       "official_diary_am_manaus": 0.0,
+       "official_diary_ap": 0.022123893805309713,
+       "official_diary_ba_salvador": 0.013513513513513487,
+       "official_diary_ce": 0.028169014084507005,
+       "official_diary_ma": -0.04761904761904767,
+       "official_diary_mg": 0.01224489795918371,
+       "official_diary_ms": -0.006085192697768749,
+       "official_diary_pb": 0.021753246753246802,
+       "official_diary_pe": 0.009478672985781977,
+       "official_diary_pi_v2": 0.058573853989813296,
+       "official_diary_pr_curitiba": 0.0,
+       "official_diary_rj": 0.056213017751479244,
+       "official_diary_rj_japeri": 0.11688311688311692,
+       "official_diary_rn": 0.0,
+       "official_diary_ro": 0.07894736842105265,
+       "official_diary_rr": 0.02857142857142858,
+       "official_diary_rs_porto_alegre": 0.03191489361702127,
+       "official_diary_sc": 0.015748031496062964,
+       "official_diary_se": 0.03450292397660826,
+       "official_diary_to": -0.002303921568627465
+      },
+      "wilcoxon_veiculo": {
+       "W": 82.0,
+       "p": 0.012379857715756603
+      },
+      "melhor": 28,
+      "igual": 7,
+      "pior": 9
+     },
+     "piso_interno": {
+      "media": 1.0454545454545454,
+      "ic": [
+       -1.0,
+       4.61926910299003
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 0,
+       "official_diary_RJ_barra_do_pirai": 0,
+       "official_diary_RJ_duque_de_caxias": 34,
+       "official_diary_RJ_seropedica": -3,
+       "official_diary_RJ_volta_redonda": 0,
+       "official_diary_ac": 0,
+       "official_diary_al": 0,
+       "official_diary_am_manaus": 0,
+       "official_diary_ap": -0.5,
+       "official_diary_ba_salvador": -6,
+       "official_diary_ce": 0,
+       "official_diary_ma": 0,
+       "official_diary_mg": 0,
+       "official_diary_ms": 0.5,
+       "official_diary_pb": 0,
+       "official_diary_pe": 0,
+       "official_diary_pi_v2": 0,
+       "official_diary_pr_curitiba": 0,
+       "official_diary_rj": -9,
+       "official_diary_rj_japeri": 0,
+       "official_diary_rn": -1,
+       "official_diary_ro": 0,
+       "official_diary_rr": 0,
+       "official_diary_rs_porto_alegre": 0,
+       "official_diary_sc": 0,
+       "official_diary_se": 0,
+       "official_diary_to": 0
+      },
+      "wilcoxon_veiculo": {
+       "W": 48.5,
+       "p": 0.26512856012443997
+      },
+      "melhor": 6,
+      "igual": 36,
+      "pior": 2
+     },
+     "entre_unidades": {
+      "media": -2.340909090909091,
+      "ic": [
+       -3.707317073170732,
+       -1.0952380952380953
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": -2.5,
+       "official_diary_RJ_barra_do_pirai": -5.666666666666667,
+       "official_diary_RJ_duque_de_caxias": -4,
+       "official_diary_RJ_seropedica": -2,
+       "official_diary_RJ_volta_redonda": -3,
+       "official_diary_ac": 3.5,
+       "official_diary_al": 1.3333333333333333,
+       "official_diary_am_manaus": 0,
+       "official_diary_ap": -2.5,
+       "official_diary_ba_salvador": -1,
+       "official_diary_ce": -2,
+       "official_diary_ma": 5,
+       "official_diary_mg": -6,
+       "official_diary_ms": -0.5,
+       "official_diary_pb": -3,
+       "official_diary_pe": -3,
+       "official_diary_pi_v2": -2,
+       "official_diary_pr_curitiba": 0,
+       "official_diary_rj": -16,
+       "official_diary_rj_japeri": -7,
+       "official_diary_rn": 1,
+       "official_diary_ro": -4.5,
+       "official_diary_rr": -2,
+       "official_diary_rs_porto_alegre": -1.5,
+       "official_diary_sc": -6,
+       "official_diary_se": -3,
+       "official_diary_to": 0.5
+      },
+      "wilcoxon_veiculo": {
+       "W": 57.0,
+       "p": 0.0016945891859825371
+      },
+      "melhor": 30,
+      "igual": 6,
+      "pior": 8
+     },
+     "reparos_sucessor": 151,
+     "regressoes_sucessor": 122
+    },
+    "A_hibrido67-A_regra": {
+     "tau": {
+      "media": -0.014166302632054439,
+      "ic": [
+       -0.039758704038629605,
+       0.005338436371254257
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 5.383464151509365e-05,
+       "official_diary_RJ_barra_do_pirai": 0.03752448002773271,
+       "official_diary_RJ_duque_de_caxias": 0.006259487035037481,
+       "official_diary_RJ_seropedica": -0.015444015444015413,
+       "official_diary_RJ_volta_redonda": 0.0018734727124624095,
+       "official_diary_ac": 5.65145587782534e-05,
+       "official_diary_al": -0.15665837726869203,
+       "official_diary_am_manaus": 0.0,
+       "official_diary_ap": 0.0,
+       "official_diary_ba_salvador": -0.005607205221477174,
+       "official_diary_ce": 6.110446317186824e-05,
+       "official_diary_ma": -0.2186403716696691,
+       "official_diary_mg": 0.0,
+       "official_diary_ms": 0.0,
+       "official_diary_pb": 8.513536523091503e-06,
+       "official_diary_pe": 0.0,
+       "official_diary_pi_v2": 0.0004852433607246964,
+       "official_diary_pr_curitiba": 0.0,
+       "official_diary_rj": 0.0,
+       "official_diary_rj_japeri": 0.03407859559903759,
+       "official_diary_rn": 0.0001011346038367611,
+       "official_diary_ro": 0.00023845599741678658,
+       "official_diary_rr": 0.00032848543577701506,
+       "official_diary_rs_porto_alegre": 9.982174688055734e-05,
+       "official_diary_sc": 0.0,
+       "official_diary_se": 0.004113744141015063,
+       "official_diary_to": -0.05196631737872276
+      },
+      "wilcoxon_veiculo": {
+       "W": 120.0,
+       "p": 0.21360355814862353
+      },
+      "melhor": 19,
+      "igual": 18,
+      "pior": 7
+     },
+     "quebras": {
+      "media": -0.7272727272727273,
+      "ic": [
+       -1.6666666666666667,
+       0.2553315190499751
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": -1,
+       "official_diary_RJ_barra_do_pirai": -4,
+       "official_diary_RJ_duque_de_caxias": 0.5,
+       "official_diary_RJ_seropedica": -0.5,
+       "official_diary_RJ_volta_redonda": -3,
+       "official_diary_ac": -1,
+       "official_diary_al": 3,
+       "official_diary_am_manaus": 0,
+       "official_diary_ap": 0,
+       "official_diary_ba_salvador": 1,
+       "official_diary_ce": -2,
+       "official_diary_ma": 5,
+       "official_diary_mg": 0,
+       "official_diary_ms": 0,
+       "official_diary_pb": 0.5,
+       "official_diary_pe": 0,
+       "official_diary_pi_v2": -2,
+       "official_diary_pr_curitiba": 0,
+       "official_diary_rj": 0,
+       "official_diary_rj_japeri": -3.5,
+       "official_diary_rn": -3,
+       "official_diary_ro": -4.5,
+       "official_diary_rr": -2,
+       "official_diary_rs_porto_alegre": -1.5,
+       "official_diary_sc": 0,
+       "official_diary_se": -3,
+       "official_diary_to": 3.5
+      },
+      "wilcoxon_veiculo": {
+       "W": 104.0,
+       "p": 0.10198576132063515
+      },
+      "melhor": 18,
+      "igual": 18,
+      "pior": 8
+     },
+     "quebras_mil": {
+      "media": -5.506527174597228,
+      "ic": [
+       -12.296683780071097,
+       -0.07268215849920229
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": -1.3386880856760375,
+       "official_diary_RJ_barra_do_pirai": -37.069203198235456,
+       "official_diary_RJ_duque_de_caxias": 1.3966480446927392,
+       "official_diary_RJ_seropedica": -0.6426735218508997,
+       "official_diary_RJ_volta_redonda": -2.952755905511811,
+       "official_diary_ac": -1.0224948875255624,
+       "official_diary_al": 6.126221207192868,
+       "official_diary_am_manaus": 0.0,
+       "official_diary_ap": 0.0,
+       "official_diary_ba_salvador": 0.9643201542912248,
+       "official_diary_ce": -1.8416206261510126,
+       "official_diary_ma": 6.28140703517588,
+       "official_diary_mg": 0.0,
+       "official_diary_ms": 0.0,
+       "official_diary_pb": 0.5952380952380953,
+       "official_diary_pe": 0.0,
+       "official_diary_pi_v2": -7.487391697918014,
+       "official_diary_pr_curitiba": 0.0,
+       "official_diary_rj": 0.0,
+       "official_diary_rj_japeri": -50.63511672843613,
+       "official_diary_rn": -3.768844221105528,
+       "official_diary_ro": -7.086614173228346,
+       "official_diary_rr": -4.048582995951417,
+       "official_diary_rs_porto_alegre": -4.0,
+       "official_diary_sc": 0.0,
+       "official_diary_se": -5.532620738888727,
+       "official_diary_to": 3.7076271186440675
+      },
+      "wilcoxon_veiculo": {
+       "W": 96.0,
+       "p": 0.06740016211843679
+      },
+      "melhor": 18,
+      "igual": 18,
+      "pior": 8
+     },
+     "fid12": {
+      "media": 0.031818937478611795,
+      "ic": [
+       -0.0011057269328179208,
+       0.07269209486359358
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 0.007425742574257432,
+       "official_diary_RJ_barra_do_pirai": 0.21212939107675946,
+       "official_diary_RJ_duque_de_caxias": -0.016666666666666663,
+       "official_diary_RJ_seropedica": 0.0,
+       "official_diary_RJ_volta_redonda": 0.009478672985781977,
+       "official_diary_ac": 0.006653992395437236,
+       "official_diary_al": -0.0423621153227387,
+       "official_diary_am_manaus": 0.0,
+       "official_diary_ap": 0.0,
+       "official_diary_ba_salvador": 0.0,
+       "official_diary_ce": 0.010389610389610393,
+       "official_diary_ma": -0.06632653061224492,
+       "official_diary_mg": 0.0,
+       "official_diary_ms": 0.0,
+       "official_diary_pb": 0.0,
+       "official_diary_pe": 0.0,
+       "official_diary_pi_v2": 0.03393950010400815,
+       "official_diary_pr_curitiba": 0.0,
+       "official_diary_rj": 0.0,
+       "official_diary_rj_japeri": 0.3136111111111111,
+       "official_diary_rn": 0.022497187851518552,
+       "official_diary_ro": 0.0518796992481203,
+       "official_diary_rr": 0.020602218700475405,
+       "official_diary_rs_porto_alegre": 0.027848101265822767,
+       "official_diary_sc": 0.0,
+       "official_diary_se": 0.03858172138420579,
+       "official_diary_to": -0.01622807017543859
+      },
+      "wilcoxon_veiculo": {
+       "W": 81.0,
+       "p": 0.0612766086266539
+      },
+      "melhor": 17,
+      "igual": 21,
+      "pior": 6
+     },
+     "sucessor_linhas": {
+      "media": 0.03435222847198988,
+      "ic": [
+       0.003694160908015302,
+       0.0719485955090218
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 0.018181818181818188,
+       "official_diary_RJ_barra_do_pirai": 0.2515151515151515,
+       "official_diary_RJ_duque_de_caxias": -0.0033557046979866,
+       "official_diary_RJ_seropedica": 0.005813953488372103,
+       "official_diary_RJ_volta_redonda": 0.02752293577981646,
+       "official_diary_ac": 0.011627906976744207,
+       "official_diary_al": -0.043471553745526394,
+       "official_diary_am_manaus": 0.0,
+       "official_diary_ap": 0.0,
+       "official_diary_ba_salvador": -0.006756756756756799,
+       "official_diary_ce": 0.028169014084507005,
+       "official_diary_ma": -0.04761904761904767,
+       "official_diary_mg": 0.0,
+       "official_diary_ms": 0.0,
+       "official_diary_pb": -0.00324675324675322,
+       "official_diary_pe": 0.0,
+       "official_diary_pi_v2": 0.07173174872665539,
+       "official_diary_pr_curitiba": 0.0,
+       "official_diary_rj": 0.0,
+       "official_diary_rj_japeri": 0.18766233766233764,
+       "official_diary_rn": 0.03658536585365857,
+       "official_diary_ro": 0.07894736842105265,
+       "official_diary_rr": 0.02857142857142858,
+       "official_diary_rs_porto_alegre": 0.03191489361702127,
+       "official_diary_sc": 0.0,
+       "official_diary_se": 0.03450292397660826,
+       "official_diary_to": -0.023333333333333373
+      },
+      "wilcoxon_veiculo": {
+       "W": 91.0,
+       "p": 0.051065445976543326
+      },
+      "melhor": 18,
+      "igual": 18,
+      "pior": 8
+     },
+     "piso_interno": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 0,
+       "official_diary_RJ_barra_do_pirai": 0,
+       "official_diary_RJ_duque_de_caxias": 0,
+       "official_diary_RJ_seropedica": 0,
+       "official_diary_RJ_volta_redonda": 0,
+       "official_diary_ac": 0,
+       "official_diary_al": 0,
+       "official_diary_am_manaus": 0,
+       "official_diary_ap": 0,
+       "official_diary_ba_salvador": 0,
+       "official_diary_ce": 0,
+       "official_diary_ma": 0,
+       "official_diary_mg": 0,
+       "official_diary_ms": 0,
+       "official_diary_pb": 0,
+       "official_diary_pe": 0,
+       "official_diary_pi_v2": 0,
+       "official_diary_pr_curitiba": 0,
+       "official_diary_rj": 0,
+       "official_diary_rj_japeri": 0,
+       "official_diary_rn": 0,
+       "official_diary_ro": 0,
+       "official_diary_rr": 0,
+       "official_diary_rs_porto_alegre": 0,
+       "official_diary_sc": 0,
+       "official_diary_se": 0,
+       "official_diary_to": 0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 44,
+      "pior": 0
+     },
+     "entre_unidades": {
+      "media": -0.7272727272727273,
+      "ic": [
+       -1.6666666666666667,
+       0.2553315190499751
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": -1,
+       "official_diary_RJ_barra_do_pirai": -4,
+       "official_diary_RJ_duque_de_caxias": 0.5,
+       "official_diary_RJ_seropedica": -0.5,
+       "official_diary_RJ_volta_redonda": -3,
+       "official_diary_ac": -1,
+       "official_diary_al": 3,
+       "official_diary_am_manaus": 0,
+       "official_diary_ap": 0,
+       "official_diary_ba_salvador": 1,
+       "official_diary_ce": -2,
+       "official_diary_ma": 5,
+       "official_diary_mg": 0,
+       "official_diary_ms": 0,
+       "official_diary_pb": 0.5,
+       "official_diary_pe": 0,
+       "official_diary_pi_v2": -2,
+       "official_diary_pr_curitiba": 0,
+       "official_diary_rj": 0,
+       "official_diary_rj_japeri": -3.5,
+       "official_diary_rn": -3,
+       "official_diary_ro": -4.5,
+       "official_diary_rr": -2,
+       "official_diary_rs_porto_alegre": -1.5,
+       "official_diary_sc": 0,
+       "official_diary_se": -3,
+       "official_diary_to": 3.5
+      },
+      "wilcoxon_veiculo": {
+       "W": 104.0,
+       "p": 0.10198576132063515
+      },
+      "melhor": 18,
+      "igual": 18,
+      "pior": 8
+     },
+     "reparos_sucessor": 73,
+     "regressoes_sucessor": 40
+    },
+    "B_regra-B_regra": {
+     "tau": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 0.0,
+       "official_diary_RJ_barra_do_pirai": 0.0,
+       "official_diary_RJ_duque_de_caxias": 0.0,
+       "official_diary_RJ_seropedica": 0.0,
+       "official_diary_RJ_volta_redonda": 0.0,
+       "official_diary_ac": 0.0,
+       "official_diary_al": 0.0,
+       "official_diary_am_manaus": 0.0,
+       "official_diary_ap": 0.0,
+       "official_diary_ba_salvador": 0.0,
+       "official_diary_ce": 0.0,
+       "official_diary_ma": 0.0,
+       "official_diary_mg": 0.0,
+       "official_diary_ms": 0.0,
+       "official_diary_pb": 0.0,
+       "official_diary_pe": 0.0,
+       "official_diary_pi_v2": 0.0,
+       "official_diary_pr_curitiba": 0.0,
+       "official_diary_rj": 0.0,
+       "official_diary_rj_japeri": 0.0,
+       "official_diary_rn": 0.0,
+       "official_diary_ro": 0.0,
+       "official_diary_rr": 0.0,
+       "official_diary_rs_porto_alegre": 0.0,
+       "official_diary_sc": 0.0,
+       "official_diary_se": 0.0,
+       "official_diary_to": 0.0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 44,
+      "pior": 0
+     },
+     "quebras": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 0,
+       "official_diary_RJ_barra_do_pirai": 0,
+       "official_diary_RJ_duque_de_caxias": 0,
+       "official_diary_RJ_seropedica": 0,
+       "official_diary_RJ_volta_redonda": 0,
+       "official_diary_ac": 0,
+       "official_diary_al": 0,
+       "official_diary_am_manaus": 0,
+       "official_diary_ap": 0,
+       "official_diary_ba_salvador": 0,
+       "official_diary_ce": 0,
+       "official_diary_ma": 0,
+       "official_diary_mg": 0,
+       "official_diary_ms": 0,
+       "official_diary_pb": 0,
+       "official_diary_pe": 0,
+       "official_diary_pi_v2": 0,
+       "official_diary_pr_curitiba": 0,
+       "official_diary_rj": 0,
+       "official_diary_rj_japeri": 0,
+       "official_diary_rn": 0,
+       "official_diary_ro": 0,
+       "official_diary_rr": 0,
+       "official_diary_rs_porto_alegre": 0,
+       "official_diary_sc": 0,
+       "official_diary_se": 0,
+       "official_diary_to": 0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 44,
+      "pior": 0
+     },
+     "quebras_mil": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 0.0,
+       "official_diary_RJ_barra_do_pirai": 0.0,
+       "official_diary_RJ_duque_de_caxias": 0.0,
+       "official_diary_RJ_seropedica": 0.0,
+       "official_diary_RJ_volta_redonda": 0.0,
+       "official_diary_ac": 0.0,
+       "official_diary_al": 0.0,
+       "official_diary_am_manaus": 0.0,
+       "official_diary_ap": 0.0,
+       "official_diary_ba_salvador": 0.0,
+       "official_diary_ce": 0.0,
+       "official_diary_ma": 0.0,
+       "official_diary_mg": 0.0,
+       "official_diary_ms": 0.0,
+       "official_diary_pb": 0.0,
+       "official_diary_pe": 0.0,
+       "official_diary_pi_v2": 0.0,
+       "official_diary_pr_curitiba": 0.0,
+       "official_diary_rj": 0.0,
+       "official_diary_rj_japeri": 0.0,
+       "official_diary_rn": 0.0,
+       "official_diary_ro": 0.0,
+       "official_diary_rr": 0.0,
+       "official_diary_rs_porto_alegre": 0.0,
+       "official_diary_sc": 0.0,
+       "official_diary_se": 0.0,
+       "official_diary_to": 0.0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 44,
+      "pior": 0
+     },
+     "fid12": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 0.0,
+       "official_diary_RJ_barra_do_pirai": 0.0,
+       "official_diary_RJ_duque_de_caxias": 0.0,
+       "official_diary_RJ_seropedica": 0.0,
+       "official_diary_RJ_volta_redonda": 0.0,
+       "official_diary_ac": 0.0,
+       "official_diary_al": 0.0,
+       "official_diary_am_manaus": 0.0,
+       "official_diary_ap": 0.0,
+       "official_diary_ba_salvador": 0.0,
+       "official_diary_ce": 0.0,
+       "official_diary_ma": 0.0,
+       "official_diary_mg": 0.0,
+       "official_diary_ms": 0.0,
+       "official_diary_pb": 0.0,
+       "official_diary_pe": 0.0,
+       "official_diary_pi_v2": 0.0,
+       "official_diary_pr_curitiba": 0.0,
+       "official_diary_rj": 0.0,
+       "official_diary_rj_japeri": 0.0,
+       "official_diary_rn": 0.0,
+       "official_diary_ro": 0.0,
+       "official_diary_rr": 0.0,
+       "official_diary_rs_porto_alegre": 0.0,
+       "official_diary_sc": 0.0,
+       "official_diary_se": 0.0,
+       "official_diary_to": 0.0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 44,
+      "pior": 0
+     },
+     "sucessor_linhas": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 0.0,
+       "official_diary_RJ_barra_do_pirai": 0.0,
+       "official_diary_RJ_duque_de_caxias": 0.0,
+       "official_diary_RJ_seropedica": 0.0,
+       "official_diary_RJ_volta_redonda": 0.0,
+       "official_diary_ac": 0.0,
+       "official_diary_al": 0.0,
+       "official_diary_am_manaus": 0.0,
+       "official_diary_ap": 0.0,
+       "official_diary_ba_salvador": 0.0,
+       "official_diary_ce": 0.0,
+       "official_diary_ma": 0.0,
+       "official_diary_mg": 0.0,
+       "official_diary_ms": 0.0,
+       "official_diary_pb": 0.0,
+       "official_diary_pe": 0.0,
+       "official_diary_pi_v2": 0.0,
+       "official_diary_pr_curitiba": 0.0,
+       "official_diary_rj": 0.0,
+       "official_diary_rj_japeri": 0.0,
+       "official_diary_rn": 0.0,
+       "official_diary_ro": 0.0,
+       "official_diary_rr": 0.0,
+       "official_diary_rs_porto_alegre": 0.0,
+       "official_diary_sc": 0.0,
+       "official_diary_se": 0.0,
+       "official_diary_to": 0.0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 44,
+      "pior": 0
+     },
+     "piso_interno": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 0,
+       "official_diary_RJ_barra_do_pirai": 0,
+       "official_diary_RJ_duque_de_caxias": 0,
+       "official_diary_RJ_seropedica": 0,
+       "official_diary_RJ_volta_redonda": 0,
+       "official_diary_ac": 0,
+       "official_diary_al": 0,
+       "official_diary_am_manaus": 0,
+       "official_diary_ap": 0,
+       "official_diary_ba_salvador": 0,
+       "official_diary_ce": 0,
+       "official_diary_ma": 0,
+       "official_diary_mg": 0,
+       "official_diary_ms": 0,
+       "official_diary_pb": 0,
+       "official_diary_pe": 0,
+       "official_diary_pi_v2": 0,
+       "official_diary_pr_curitiba": 0,
+       "official_diary_rj": 0,
+       "official_diary_rj_japeri": 0,
+       "official_diary_rn": 0,
+       "official_diary_ro": 0,
+       "official_diary_rr": 0,
+       "official_diary_rs_porto_alegre": 0,
+       "official_diary_sc": 0,
+       "official_diary_se": 0,
+       "official_diary_to": 0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 44,
+      "pior": 0
+     },
+     "entre_unidades": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 0,
+       "official_diary_RJ_barra_do_pirai": 0,
+       "official_diary_RJ_duque_de_caxias": 0,
+       "official_diary_RJ_seropedica": 0,
+       "official_diary_RJ_volta_redonda": 0,
+       "official_diary_ac": 0,
+       "official_diary_al": 0,
+       "official_diary_am_manaus": 0,
+       "official_diary_ap": 0,
+       "official_diary_ba_salvador": 0,
+       "official_diary_ce": 0,
+       "official_diary_ma": 0,
+       "official_diary_mg": 0,
+       "official_diary_ms": 0,
+       "official_diary_pb": 0,
+       "official_diary_pe": 0,
+       "official_diary_pi_v2": 0,
+       "official_diary_pr_curitiba": 0,
+       "official_diary_rj": 0,
+       "official_diary_rj_japeri": 0,
+       "official_diary_rn": 0,
+       "official_diary_ro": 0,
+       "official_diary_rr": 0,
+       "official_diary_rs_porto_alegre": 0,
+       "official_diary_sc": 0,
+       "official_diary_se": 0,
+       "official_diary_to": 0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 44,
+      "pior": 0
+     },
+     "reparos_sucessor": 0,
+     "regressoes_sucessor": 0
+    },
+    "B_hibrido67-B_regra": {
+     "tau": {
+      "media": -0.006210591538889976,
+      "ic": [
+       -0.03305108550857439,
+       0.009968037175616718
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 0.0004845117736361204,
+       "official_diary_RJ_barra_do_pirai": 0.030208127559170017,
+       "official_diary_RJ_duque_de_caxias": 0.06800932663568221,
+       "official_diary_RJ_seropedica": 0.00030110404817662584,
+       "official_diary_RJ_volta_redonda": 0.0,
+       "official_diary_ac": 5.65145587782534e-05,
+       "official_diary_al": -0.016007100217626524,
+       "official_diary_am_manaus": -0.008900038387528286,
+       "official_diary_ap": 0.0,
+       "official_diary_ba_salvador": -0.44798069870393875,
+       "official_diary_ce": 6.110446317186824e-05,
+       "official_diary_ma": 0.0,
+       "official_diary_mg": 0.0,
+       "official_diary_ms": 0.0005681818181817455,
+       "official_diary_pb": 8.513536523091503e-06,
+       "official_diary_pe": 0.0,
+       "official_diary_pi_v2": 0.0005813770897211135,
+       "official_diary_pr_curitiba": 0.0,
+       "official_diary_rj": 0.0,
+       "official_diary_rj_japeri": 0.003137254901960651,
+       "official_diary_rn": 0.0,
+       "official_diary_ro": 0.00023845599741678658,
+       "official_diary_rr": 0.00032848543577701506,
+       "official_diary_rs_porto_alegre": -0.003074221631712226,
+       "official_diary_sc": 0.0,
+       "official_diary_se": 0.0,
+       "official_diary_to": 0.0
+      },
+      "wilcoxon_veiculo": {
+       "W": 95.0,
+       "p": 0.12797184030419162
+      },
+      "melhor": 16,
+      "igual": 24,
+      "pior": 4
+     },
+     "quebras": {
+      "media": -0.9090909090909091,
+      "ic": [
+       -1.7755668934240363,
+       -0.09523809523809523
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": -2.5,
+       "official_diary_RJ_barra_do_pirai": -5.666666666666667,
+       "official_diary_RJ_duque_de_caxias": -0.5,
+       "official_diary_RJ_seropedica": -0.5,
+       "official_diary_RJ_volta_redonda": 0,
+       "official_diary_ac": -1,
+       "official_diary_al": -0.6666666666666666,
+       "official_diary_am_manaus": 3,
+       "official_diary_ap": 0,
+       "official_diary_ba_salvador": 6,
+       "official_diary_ce": -2,
+       "official_diary_ma": 0,
+       "official_diary_mg": 0,
+       "official_diary_ms": -1,
+       "official_diary_pb": 0.5,
+       "official_diary_pe": 0,
+       "official_diary_pi_v2": -2,
+       "official_diary_pr_curitiba": 0,
+       "official_diary_rj": 0,
+       "official_diary_rj_japeri": -1,
+       "official_diary_rn": 0,
+       "official_diary_ro": -4.5,
+       "official_diary_rr": -2,
+       "official_diary_rs_porto_alegre": -0.5,
+       "official_diary_sc": 0,
+       "official_diary_se": 0,
+       "official_diary_to": 0
+      },
+      "wilcoxon_veiculo": {
+       "W": 64.5,
+       "p": 0.022323147518776967
+      },
+      "melhor": 16,
+      "igual": 24,
+      "pior": 4
+     },
+     "quebras_mil": {
+      "media": -5.84350928432632,
+      "ic": [
+       -14.066404730883297,
+       -0.4571705560974992
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": -3.3467202141900936,
+       "official_diary_RJ_barra_do_pirai": -59.645253193640286,
+       "official_diary_RJ_duque_de_caxias": -1.3966480446927374,
+       "official_diary_RJ_seropedica": -2.0408163265306136,
+       "official_diary_RJ_volta_redonda": 0.0,
+       "official_diary_ac": -1.0224948875255624,
+       "official_diary_al": -0.8996851102114259,
+       "official_diary_am_manaus": 1.9144862795149968,
+       "official_diary_ap": 0.0,
+       "official_diary_ba_salvador": 5.785920925747348,
+       "official_diary_ce": -1.8416206261510126,
+       "official_diary_ma": 0.0,
+       "official_diary_mg": 0.0,
+       "official_diary_ms": -2.5974025974025974,
+       "official_diary_pb": 0.5952380952380953,
+       "official_diary_pe": 0.0,
+       "official_diary_pi_v2": -7.487391697918014,
+       "official_diary_pr_curitiba": 0.0,
+       "official_diary_rj": 0.0,
+       "official_diary_rj_japeri": -19.607843137254903,
+       "official_diary_rn": 0.0,
+       "official_diary_ro": -7.086614173228346,
+       "official_diary_rr": -4.048582995951417,
+       "official_diary_rs_porto_alegre": 5.345794392523365,
+       "official_diary_sc": 0.0,
+       "official_diary_se": 0.0,
+       "official_diary_to": 0.0
+      },
+      "wilcoxon_veiculo": {
+       "W": 74.0,
+       "p": 0.04073994025414739
+      },
+      "melhor": 16,
+      "igual": 24,
+      "pior": 4
+     },
+     "fid12": {
+      "media": 0.025289939986322178,
+      "ic": [
+       0.0007830479901859127,
+       0.06327552827921772
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 0.024133663366336655,
+       "official_diary_RJ_barra_do_pirai": 0.275046006624954,
+       "official_diary_RJ_duque_de_caxias": -0.015833333333333366,
+       "official_diary_RJ_seropedica": 0.003984063745019917,
+       "official_diary_RJ_volta_redonda": 0.0,
+       "official_diary_ac": 0.006653992395437236,
+       "official_diary_al": -0.0008900756564308073,
+       "official_diary_am_manaus": -0.01460221550855989,
+       "official_diary_ap": 0.0,
+       "official_diary_ba_salvador": -0.01531531531531527,
+       "official_diary_ce": 0.010389610389610393,
+       "official_diary_ma": 0.0,
+       "official_diary_mg": 0.0,
+       "official_diary_ms": 0.015384615384615385,
+       "official_diary_pb": 0.0,
+       "official_diary_pe": 0.0,
+       "official_diary_pi_v2": 0.028098621618366737,
+       "official_diary_pr_curitiba": 0.0,
+       "official_diary_rj": 0.0,
+       "official_diary_rj_japeri": 0.05555555555555558,
+       "official_diary_rn": 0.0,
+       "official_diary_ro": 0.0518796992481203,
+       "official_diary_rr": 0.020602218700475405,
+       "official_diary_rs_porto_alegre": -0.025249243866920623,
+       "official_diary_sc": 0.0,
+       "official_diary_se": 0.0,
+       "official_diary_to": 0.0
+      },
+      "wilcoxon_veiculo": {
+       "W": 91.0,
+       "p": 0.13648060865564246
+      },
+      "melhor": 14,
+      "igual": 25,
+      "pior": 5
+     },
+     "sucessor_linhas": {
+      "media": 0.03890253058822906,
+      "ic": [
+       0.0041939693926624265,
+       0.09231462912151524
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 0.036363636363636376,
+       "official_diary_RJ_barra_do_pirai": 0.3888888888888889,
+       "official_diary_RJ_duque_de_caxias": 0.0033557046979865723,
+       "official_diary_RJ_seropedica": 0.02941176470588236,
+       "official_diary_RJ_volta_redonda": 0.0,
+       "official_diary_ac": 0.011627906976744207,
+       "official_diary_al": 0.006006006006006019,
+       "official_diary_am_manaus": -0.01382488479262678,
+       "official_diary_ap": 0.0,
+       "official_diary_ba_salvador": -0.027027027027027084,
+       "official_diary_ce": 0.028169014084507005,
+       "official_diary_ma": 0.0,
+       "official_diary_mg": 0.0,
+       "official_diary_ms": 0.008620689655172431,
+       "official_diary_pb": -0.00324675324675322,
+       "official_diary_pe": 0.0,
+       "official_diary_pi_v2": 0.058573853989813296,
+       "official_diary_pr_curitiba": 0.0,
+       "official_diary_rj": 0.0,
+       "official_diary_rj_japeri": 0.07142857142857145,
+       "official_diary_rn": 0.0,
+       "official_diary_ro": 0.07894736842105265,
+       "official_diary_rr": 0.02857142857142858,
+       "official_diary_rs_porto_alegre": -0.039513677811550185,
+       "official_diary_sc": 0.0,
+       "official_diary_se": 0.0,
+       "official_diary_to": 0.0
+      },
+      "wilcoxon_veiculo": {
+       "W": 70.0,
+       "p": 0.03187457018792246
+      },
+      "melhor": 16,
+      "igual": 24,
+      "pior": 4
+     },
+     "piso_interno": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 0,
+       "official_diary_RJ_barra_do_pirai": 0,
+       "official_diary_RJ_duque_de_caxias": 0,
+       "official_diary_RJ_seropedica": 0,
+       "official_diary_RJ_volta_redonda": 0,
+       "official_diary_ac": 0,
+       "official_diary_al": 0,
+       "official_diary_am_manaus": 0,
+       "official_diary_ap": 0,
+       "official_diary_ba_salvador": 0,
+       "official_diary_ce": 0,
+       "official_diary_ma": 0,
+       "official_diary_mg": 0,
+       "official_diary_ms": 0,
+       "official_diary_pb": 0,
+       "official_diary_pe": 0,
+       "official_diary_pi_v2": 0,
+       "official_diary_pr_curitiba": 0,
+       "official_diary_rj": 0,
+       "official_diary_rj_japeri": 0,
+       "official_diary_rn": 0,
+       "official_diary_ro": 0,
+       "official_diary_rr": 0,
+       "official_diary_rs_porto_alegre": 0,
+       "official_diary_sc": 0,
+       "official_diary_se": 0,
+       "official_diary_to": 0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 44,
+      "pior": 0
+     },
+     "entre_unidades": {
+      "media": -0.9090909090909091,
+      "ic": [
+       -1.7755668934240363,
+       -0.09523809523809523
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": -2.5,
+       "official_diary_RJ_barra_do_pirai": -5.666666666666667,
+       "official_diary_RJ_duque_de_caxias": -0.5,
+       "official_diary_RJ_seropedica": -0.5,
+       "official_diary_RJ_volta_redonda": 0,
+       "official_diary_ac": -1,
+       "official_diary_al": -0.6666666666666666,
+       "official_diary_am_manaus": 3,
+       "official_diary_ap": 0,
+       "official_diary_ba_salvador": 6,
+       "official_diary_ce": -2,
+       "official_diary_ma": 0,
+       "official_diary_mg": 0,
+       "official_diary_ms": -1,
+       "official_diary_pb": 0.5,
+       "official_diary_pe": 0,
+       "official_diary_pi_v2": -2,
+       "official_diary_pr_curitiba": 0,
+       "official_diary_rj": 0,
+       "official_diary_rj_japeri": -1,
+       "official_diary_rn": 0,
+       "official_diary_ro": -4.5,
+       "official_diary_rr": -2,
+       "official_diary_rs_porto_alegre": -0.5,
+       "official_diary_sc": 0,
+       "official_diary_se": 0,
+       "official_diary_to": 0
+      },
+      "wilcoxon_veiculo": {
+       "W": 64.5,
+       "p": 0.022323147518776967
+      },
+      "melhor": 16,
+      "igual": 24,
+      "pior": 4
+     },
+     "reparos_sucessor": 58,
+     "regressoes_sucessor": 16
+    },
+    "B-A_regra": {
+     "tau": {
+      "media": 0.005947389542511788,
+      "ic": [
+       -0.004953198480360696,
+       0.024159211332209194
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": -0.00043067713212102676,
+       "official_diary_RJ_barra_do_pirai": 0.007316352468562696,
+       "official_diary_RJ_duque_de_caxias": -0.02883754084225787,
+       "official_diary_RJ_seropedica": -0.014541943788254685,
+       "official_diary_RJ_volta_redonda": 0.0,
+       "official_diary_ac": 0.17755139166818262,
+       "official_diary_al": -7.3024361946968e-05,
+       "official_diary_am_manaus": 0.0,
+       "official_diary_ap": -0.0025379501367444046,
+       "official_diary_ba_salvador": -0.009438423131769458,
+       "official_diary_ce": 0.0,
+       "official_diary_ma": 0.0,
+       "official_diary_mg": -8.652639776229876e-06,
+       "official_diary_ms": -0.00040927703881499244,
+       "official_diary_pb": 0.0004217496633474038,
+       "official_diary_pe": -1.6176282655600005e-06,
+       "official_diary_pi_v2": -9.613372899641703e-05,
+       "official_diary_pr_curitiba": 0.0,
+       "official_diary_rj": 1.3884931157503999e-05,
+       "official_diary_rj_japeri": 0.00662505647207684,
+       "official_diary_rn": 0.0001011346038367611,
+       "official_diary_ro": 0.0,
+       "official_diary_rr": 0.0,
+       "official_diary_rs_porto_alegre": 0.0,
+       "official_diary_sc": -1.2925825152221293e-05,
+       "official_diary_se": 0.0,
+       "official_diary_to": -0.013093797516097128
+      },
+      "wilcoxon_veiculo": {
+       "W": 117.0,
+       "p": 0.22456732710080862
+      },
+      "melhor": 10,
+      "igual": 16,
+      "pior": 18
+     },
+     "quebras": {
+      "media": 0.5681818181818182,
+      "ic": [
+       -2.926914350538854,
+       3.2093023255813953
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 1.5,
+       "official_diary_RJ_barra_do_pirai": 1.6666666666666667,
+       "official_diary_RJ_duque_de_caxias": -29.5,
+       "official_diary_RJ_seropedica": 4.5,
+       "official_diary_RJ_volta_redonda": 0,
+       "official_diary_ac": -4.5,
+       "official_diary_al": 1.6666666666666667,
+       "official_diary_am_manaus": 0,
+       "official_diary_ap": 3,
+       "official_diary_ba_salvador": 8,
+       "official_diary_ce": 0,
+       "official_diary_ma": 0,
+       "official_diary_mg": 6,
+       "official_diary_ms": 0,
+       "official_diary_pb": 3.5,
+       "official_diary_pe": 3,
+       "official_diary_pi_v2": 0,
+       "official_diary_pr_curitiba": 0,
+       "official_diary_rj": 25,
+       "official_diary_rj_japeri": 3.5,
+       "official_diary_rn": -3,
+       "official_diary_ro": 0,
+       "official_diary_rr": 0,
+       "official_diary_rs_porto_alegre": 0,
+       "official_diary_sc": 6,
+       "official_diary_se": 0,
+       "official_diary_to": 3
+      },
+      "wilcoxon_veiculo": {
+       "W": 65.0,
+       "p": 0.023087445220698007
+      },
+      "melhor": 5,
+      "igual": 18,
+      "pior": 21
+     },
+     "quebras_mil": {
+      "media": -1.6942347490912335,
+      "ic": [
+       -11.82641572193063,
+       5.106216281491314
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 2.0080321285140563,
+       "official_diary_RJ_barra_do_pirai": 22.57604999540483,
+       "official_diary_RJ_duque_de_caxias": -85.73161785452288,
+       "official_diary_RJ_seropedica": 14.172918524736374,
+       "official_diary_RJ_volta_redonda": 0.0,
+       "official_diary_ac": -3.7625418060200664,
+       "official_diary_al": 2.044476740833016,
+       "official_diary_am_manaus": 0.0,
+       "official_diary_ap": 3.7783375314861463,
+       "official_diary_ba_salvador": 7.714561234329797,
+       "official_diary_ce": 0.0,
+       "official_diary_ma": 0.0,
+       "official_diary_mg": 1.4705882352941175,
+       "official_diary_ms": 0.12826679493346171,
+       "official_diary_pb": 3.187613843351548,
+       "official_diary_pe": 1.9071837253655435,
+       "official_diary_pi_v2": 0.0,
+       "official_diary_pr_curitiba": 0.0,
+       "official_diary_rj": 9.928514694201747,
+       "official_diary_rj_japeri": -21.33422027938801,
+       "official_diary_rn": -3.768844221105528,
+       "official_diary_ro": 0.0,
+       "official_diary_rr": 0.0,
+       "official_diary_rs_porto_alegre": 0.0,
+       "official_diary_sc": 2.7842227378190256,
+       "official_diary_se": 0.0,
+       "official_diary_to": 3.331143329593102
+      },
+      "wilcoxon_veiculo": {
+       "W": 91.0,
+       "p": 0.0813568213138646
+      },
+      "melhor": 5,
+      "igual": 18,
+      "pior": 21
+     },
+     "fid12": {
+      "media": 0.00982341736354781,
+      "ic": [
+       -0.01394515442043004,
+       0.040510490386150864
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": -0.016707920792079223,
+       "official_diary_RJ_barra_do_pirai": -0.06291661554819454,
+       "official_diary_RJ_duque_de_caxias": 0.176421568627451,
+       "official_diary_RJ_seropedica": -0.0053542050702661825,
+       "official_diary_RJ_volta_redonda": 0.0,
+       "official_diary_ac": 0.019669551534225005,
+       "official_diary_al": -0.001351756173512982,
+       "official_diary_am_manaus": 0.0,
+       "official_diary_ap": -0.025128865979381465,
+       "official_diary_ba_salvador": -0.0045045045045045695,
+       "official_diary_ce": 0.0,
+       "official_diary_ma": 0.0,
+       "official_diary_mg": -0.008326216908625117,
+       "official_diary_ms": -0.0062660743511807615,
+       "official_diary_pb": -0.023089840470193135,
+       "official_diary_pe": -0.009798584648884057,
+       "official_diary_pi_v2": 0.00584087848564141,
+       "official_diary_pr_curitiba": 0.0,
+       "official_diary_rj": -0.047850467289719534,
+       "official_diary_rj_japeri": 0.24305555555555552,
+       "official_diary_rn": 0.022497187851518552,
+       "official_diary_ro": 0.0,
+       "official_diary_rr": 0.0,
+       "official_diary_rs_porto_alegre": 0.0,
+       "official_diary_sc": -0.018476791347453836,
+       "official_diary_se": 0.0,
+       "official_diary_to": -0.02269321953532477
+      },
+      "wilcoxon_veiculo": {
+       "W": 105.0,
+       "p": 0.13132686158651943
+      },
+      "melhor": 7,
+      "igual": 17,
+      "pior": 20
+     },
+     "sucessor_linhas": {
+      "media": -0.002387679211531803,
+      "ic": [
+       -0.028357597803019458,
+       0.025464493221496423
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": -0.018181818181818188,
+       "official_diary_RJ_barra_do_pirai": -0.1373737373737374,
+       "official_diary_RJ_duque_de_caxias": 0.1974596483443341,
+       "official_diary_RJ_seropedica": -0.017783857729138153,
+       "official_diary_RJ_volta_redonda": 0.0,
+       "official_diary_ac": 0.03146853146853151,
+       "official_diary_al": -0.015076720556172632,
+       "official_diary_am_manaus": 0.0,
+       "official_diary_ap": -0.022123893805309713,
+       "official_diary_ba_salvador": -0.020270270270270285,
+       "official_diary_ce": 0.0,
+       "official_diary_ma": 0.0,
+       "official_diary_mg": -0.01224489795918371,
+       "official_diary_ms": 0.006085192697768749,
+       "official_diary_pb": -0.025000000000000022,
+       "official_diary_pe": -0.009478672985781977,
+       "official_diary_pi_v2": 0.01315789473684209,
+       "official_diary_pr_curitiba": 0.0,
+       "official_diary_rj": -0.056213017751479244,
+       "official_diary_rj_japeri": 0.07077922077922072,
+       "official_diary_rn": 0.03658536585365857,
+       "official_diary_ro": 0.0,
+       "official_diary_rr": 0.0,
+       "official_diary_rs_porto_alegre": 0.0,
+       "official_diary_sc": -0.015748031496062964,
+       "official_diary_se": 0.0,
+       "official_diary_to": -0.021029411764705908
+      },
+      "wilcoxon_veiculo": {
+       "W": 120.0,
+       "p": 0.25392479531876166
+      },
+      "melhor": 7,
+      "igual": 17,
+      "pior": 20
+     },
+     "piso_interno": {
+      "media": -1.0454545454545454,
+      "ic": [
+       -4.619269102990033,
+       1.0
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 0,
+       "official_diary_RJ_barra_do_pirai": 0,
+       "official_diary_RJ_duque_de_caxias": -34,
+       "official_diary_RJ_seropedica": 3,
+       "official_diary_RJ_volta_redonda": 0,
+       "official_diary_ac": 0,
+       "official_diary_al": 0,
+       "official_diary_am_manaus": 0,
+       "official_diary_ap": 0.5,
+       "official_diary_ba_salvador": 6,
+       "official_diary_ce": 0,
+       "official_diary_ma": 0,
+       "official_diary_mg": 0,
+       "official_diary_ms": -0.5,
+       "official_diary_pb": 0,
+       "official_diary_pe": 0,
+       "official_diary_pi_v2": 0,
+       "official_diary_pr_curitiba": 0,
+       "official_diary_rj": 9,
+       "official_diary_rj_japeri": 0,
+       "official_diary_rn": 1,
+       "official_diary_ro": 0,
+       "official_diary_rr": 0,
+       "official_diary_rs_porto_alegre": 0,
+       "official_diary_sc": 0,
+       "official_diary_se": 0,
+       "official_diary_to": 0
+      },
+      "wilcoxon_veiculo": {
+       "W": 48.5,
+       "p": 0.26512856012443997
+      },
+      "melhor": 2,
+      "igual": 36,
+      "pior": 6
+     },
+     "entre_unidades": {
+      "media": 1.6136363636363635,
+      "ic": [
+       0.6110772357723577,
+       2.7250568181818173
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 1.5,
+       "official_diary_RJ_barra_do_pirai": 1.6666666666666667,
+       "official_diary_RJ_duque_de_caxias": 4.5,
+       "official_diary_RJ_seropedica": 1.5,
+       "official_diary_RJ_volta_redonda": 0,
+       "official_diary_ac": -4.5,
+       "official_diary_al": 1.6666666666666667,
+       "official_diary_am_manaus": 0,
+       "official_diary_ap": 2.5,
+       "official_diary_ba_salvador": 2,
+       "official_diary_ce": 0,
+       "official_diary_ma": 0,
+       "official_diary_mg": 6,
+       "official_diary_ms": 0.5,
+       "official_diary_pb": 3.5,
+       "official_diary_pe": 3,
+       "official_diary_pi_v2": 0,
+       "official_diary_pr_curitiba": 0,
+       "official_diary_rj": 16,
+       "official_diary_rj_japeri": 3.5,
+       "official_diary_rn": -4,
+       "official_diary_ro": 0,
+       "official_diary_rr": 0,
+       "official_diary_rs_porto_alegre": 0,
+       "official_diary_sc": 6,
+       "official_diary_se": 0,
+       "official_diary_to": 3
+      },
+      "wilcoxon_veiculo": {
+       "W": 45.5,
+       "p": 0.004126138771742489
+      },
+      "melhor": 4,
+      "igual": 19,
+      "pior": 21
+     },
+     "reparos_sucessor": 96,
+     "regressoes_sucessor": 92
+    },
+    "B-A_hibrido67": {
+     "tau": {
+      "media": 0.013903100635676251,
+      "ic": [
+       -0.020302370543257942,
+       0.044734819024183595
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 0.0,
+       "official_diary_RJ_barra_do_pirai": 0.0,
+       "official_diary_RJ_duque_de_caxias": 0.03291229875838686,
+       "official_diary_RJ_seropedica": 0.0012031757039373536,
+       "official_diary_RJ_volta_redonda": -0.0018734727124624095,
+       "official_diary_ac": 0.17755139166818262,
+       "official_diary_al": 0.14057825268911853,
+       "official_diary_am_manaus": -0.008900038387528286,
+       "official_diary_ap": -0.0025379501367444046,
+       "official_diary_ba_salvador": -0.45181191661423104,
+       "official_diary_ce": 0.0,
+       "official_diary_ma": 0.2186403716696691,
+       "official_diary_mg": -8.652639776229876e-06,
+       "official_diary_ms": 0.00015890477936675307,
+       "official_diary_pb": 0.0004217496633474038,
+       "official_diary_pe": -1.6176282655600005e-06,
+       "official_diary_pi_v2": 0.0,
+       "official_diary_pr_curitiba": 0.0,
+       "official_diary_rj": 1.3884931157503999e-05,
+       "official_diary_rj_japeri": -0.024316284225000095,
+       "official_diary_rn": 0.0,
+       "official_diary_ro": 0.0,
+       "official_diary_rr": 0.0,
+       "official_diary_rs_porto_alegre": -0.0031740433785927835,
+       "official_diary_sc": -1.2925825152221293e-05,
+       "official_diary_se": -0.004113744141015063,
+       "official_diary_to": 0.03887251986262563
+      },
+      "wilcoxon_veiculo": {
+       "W": 168.0,
+       "p": 0.9416789141117539
+      },
+      "melhor": 11,
+      "igual": 19,
+      "pior": 14
+     },
+     "quebras": {
+      "media": 0.38636363636363635,
+      "ic": [
+       -3.2890530303030303,
+       3.2703316953316945
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 0,
+       "official_diary_RJ_barra_do_pirai": 0,
+       "official_diary_RJ_duque_de_caxias": -30.5,
+       "official_diary_RJ_seropedica": 4.5,
+       "official_diary_RJ_volta_redonda": 3,
+       "official_diary_ac": -4.5,
+       "official_diary_al": -2,
+       "official_diary_am_manaus": 3,
+       "official_diary_ap": 3,
+       "official_diary_ba_salvador": 13,
+       "official_diary_ce": 0,
+       "official_diary_ma": -5,
+       "official_diary_mg": 6,
+       "official_diary_ms": -1,
+       "official_diary_pb": 3.5,
+       "official_diary_pe": 3,
+       "official_diary_pi_v2": 0,
+       "official_diary_pr_curitiba": 0,
+       "official_diary_rj": 25,
+       "official_diary_rj_japeri": 6,
+       "official_diary_rn": 0,
+       "official_diary_ro": 0,
+       "official_diary_rr": 0,
+       "official_diary_rs_porto_alegre": 1,
+       "official_diary_sc": 6,
+       "official_diary_se": 3,
+       "official_diary_to": -0.5
+      },
+      "wilcoxon_veiculo": {
+       "W": 99.0,
+       "p": 0.07882653330493634
+      },
+      "melhor": 7,
+      "igual": 19,
+      "pior": 18
+     },
+     "quebras_mil": {
+      "media": -2.031216858820324,
+      "ic": [
+       -11.570904407577162,
+       3.7310501043948516
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 0.0,
+       "official_diary_RJ_barra_do_pirai": 0.0,
+       "official_diary_RJ_duque_de_caxias": -88.52491394390836,
+       "official_diary_RJ_seropedica": 12.77477572005666,
+       "official_diary_RJ_volta_redonda": 2.952755905511811,
+       "official_diary_ac": -3.7625418060200664,
+       "official_diary_al": -4.981429576571277,
+       "official_diary_am_manaus": 1.9144862795149968,
+       "official_diary_ap": 3.7783375314861463,
+       "official_diary_ba_salvador": 12.53616200578592,
+       "official_diary_ce": 0.0,
+       "official_diary_ma": -6.28140703517588,
+       "official_diary_mg": 1.4705882352941175,
+       "official_diary_ms": -2.4691358024691357,
+       "official_diary_pb": 3.187613843351548,
+       "official_diary_pe": 1.9071837253655435,
+       "official_diary_pi_v2": 0.0,
+       "official_diary_pr_curitiba": 0.0,
+       "official_diary_rj": 9.928514694201747,
+       "official_diary_rj_japeri": 9.693053311793214,
+       "official_diary_rn": 0.0,
+       "official_diary_ro": 0.0,
+       "official_diary_rr": 0.0,
+       "official_diary_rs_porto_alegre": 9.345794392523365,
+       "official_diary_sc": 2.7842227378190256,
+       "official_diary_se": 5.532620738888727,
+       "official_diary_to": -0.3764837890509656
+      },
+      "wilcoxon_veiculo": {
+       "W": 106.0,
+       "p": 0.11293677138429263
+      },
+      "melhor": 7,
+      "igual": 19,
+      "pior": 18
+     },
+     "fid12": {
+      "media": 0.0032944198712582,
+      "ic": [
+       -0.012950837516855851,
+       0.02421723165329857
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 0.0,
+       "official_diary_RJ_barra_do_pirai": 0.0,
+       "official_diary_RJ_duque_de_caxias": 0.1772549019607843,
+       "official_diary_RJ_seropedica": -0.0013701413252462658,
+       "official_diary_RJ_volta_redonda": -0.009478672985781977,
+       "official_diary_ac": 0.019669551534225005,
+       "official_diary_al": 0.040120283492794916,
+       "official_diary_am_manaus": -0.01460221550855989,
+       "official_diary_ap": -0.025128865979381465,
+       "official_diary_ba_salvador": -0.01981981981981984,
+       "official_diary_ce": 0.0,
+       "official_diary_ma": 0.06632653061224492,
+       "official_diary_mg": -0.008326216908625117,
+       "official_diary_ms": 0.009118541033434624,
+       "official_diary_pb": -0.023089840470193135,
+       "official_diary_pe": -0.009798584648884057,
+       "official_diary_pi_v2": 0.0,
+       "official_diary_pr_curitiba": 0.0,
+       "official_diary_rj": -0.047850467289719534,
+       "official_diary_rj_japeri": -0.015000000000000013,
+       "official_diary_rn": 0.0,
+       "official_diary_ro": 0.0,
+       "official_diary_rr": 0.0,
+       "official_diary_rs_porto_alegre": -0.05309734513274339,
+       "official_diary_sc": -0.018476791347453836,
+       "official_diary_se": -0.03858172138420579,
+       "official_diary_to": -0.00646514935988618
+      },
+      "wilcoxon_veiculo": {
+       "W": 106.0,
+       "p": 0.11293677138429263
+      },
+      "melhor": 9,
+      "igual": 19,
+      "pior": 16
+     },
+     "sucessor_linhas": {
+      "media": 0.0021626229047073775,
+      "ic": [
+       -0.016497552528836265,
+       0.026058623310626527
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 0.0,
+       "official_diary_RJ_barra_do_pirai": 0.0,
+       "official_diary_RJ_duque_de_caxias": 0.20417105774030728,
+       "official_diary_RJ_seropedica": 0.005813953488372103,
+       "official_diary_RJ_volta_redonda": -0.02752293577981646,
+       "official_diary_ac": 0.03146853146853151,
+       "official_diary_al": 0.03440083919535978,
+       "official_diary_am_manaus": -0.01382488479262678,
+       "official_diary_ap": -0.022123893805309713,
+       "official_diary_ba_salvador": -0.04054054054054057,
+       "official_diary_ce": 0.0,
+       "official_diary_ma": 0.04761904761904767,
+       "official_diary_mg": -0.01224489795918371,
+       "official_diary_ms": 0.01470588235294118,
+       "official_diary_pb": -0.025000000000000022,
+       "official_diary_pe": -0.009478672985781977,
+       "official_diary_pi_v2": 0.0,
+       "official_diary_pr_curitiba": 0.0,
+       "official_diary_rj": -0.056213017751479244,
+       "official_diary_rj_japeri": -0.04545454545454547,
+       "official_diary_rn": 0.0,
+       "official_diary_ro": 0.0,
+       "official_diary_rr": 0.0,
+       "official_diary_rs_porto_alegre": -0.07142857142857145,
+       "official_diary_sc": -0.015748031496062964,
+       "official_diary_se": -0.03450292397660826,
+       "official_diary_to": 0.002303921568627465
+      },
+      "wilcoxon_veiculo": {
+       "W": 123.0,
+       "p": 0.2417766351143612
+      },
+      "melhor": 8,
+      "igual": 20,
+      "pior": 16
+     },
+     "piso_interno": {
+      "media": -1.0454545454545454,
+      "ic": [
+       -4.619269102990033,
+       1.0
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 0,
+       "official_diary_RJ_barra_do_pirai": 0,
+       "official_diary_RJ_duque_de_caxias": -34,
+       "official_diary_RJ_seropedica": 3,
+       "official_diary_RJ_volta_redonda": 0,
+       "official_diary_ac": 0,
+       "official_diary_al": 0,
+       "official_diary_am_manaus": 0,
+       "official_diary_ap": 0.5,
+       "official_diary_ba_salvador": 6,
+       "official_diary_ce": 0,
+       "official_diary_ma": 0,
+       "official_diary_mg": 0,
+       "official_diary_ms": -0.5,
+       "official_diary_pb": 0,
+       "official_diary_pe": 0,
+       "official_diary_pi_v2": 0,
+       "official_diary_pr_curitiba": 0,
+       "official_diary_rj": 9,
+       "official_diary_rj_japeri": 0,
+       "official_diary_rn": 1,
+       "official_diary_ro": 0,
+       "official_diary_rr": 0,
+       "official_diary_rs_porto_alegre": 0,
+       "official_diary_sc": 0,
+       "official_diary_se": 0,
+       "official_diary_to": 0
+      },
+      "wilcoxon_veiculo": {
+       "W": 48.5,
+       "p": 0.26512856012443997
+      },
+      "melhor": 2,
+      "igual": 36,
+      "pior": 6
+     },
+     "entre_unidades": {
+      "media": 1.4318181818181819,
+      "ic": [
+       0.2978723404255319,
+       2.8056547619047603
+      ],
+      "n": 44,
+      "por_veiculo": {
+       "official_diary_MG_congonhas": 0,
+       "official_diary_RJ_barra_do_pirai": 0,
+       "official_diary_RJ_duque_de_caxias": 3.5,
+       "official_diary_RJ_seropedica": 1.5,
+       "official_diary_RJ_volta_redonda": 3,
+       "official_diary_ac": -4.5,
+       "official_diary_al": -2,
+       "official_diary_am_manaus": 3,
+       "official_diary_ap": 2.5,
+       "official_diary_ba_salvador": 7,
+       "official_diary_ce": 0,
+       "official_diary_ma": -5,
+       "official_diary_mg": 6,
+       "official_diary_ms": -0.5,
+       "official_diary_pb": 3.5,
+       "official_diary_pe": 3,
+       "official_diary_pi_v2": 0,
+       "official_diary_pr_curitiba": 0,
+       "official_diary_rj": 16,
+       "official_diary_rj_japeri": 6,
+       "official_diary_rn": -1,
+       "official_diary_ro": 0,
+       "official_diary_rr": 0,
+       "official_diary_rs_porto_alegre": 1,
+       "official_diary_sc": 6,
+       "official_diary_se": 3,
+       "official_diary_to": -0.5
+      },
+      "wilcoxon_veiculo": {
+       "W": 83.5,
+       "p": 0.026268042370137207
+      },
+      "melhor": 7,
+      "igual": 18,
+      "pior": 19
+     },
+     "reparos_sucessor": 122,
+     "regressoes_sucessor": 109
+    }
+   },
+   "cobertura": {
+    "A": {
+     "antes_fallback": {
+      "n": 36171,
+      "cobertas": 36171,
+      "duplicadas": 0,
+      "orfas": 0,
+      "geometricamente_multiplas": 122,
+      "cobertas_pct": 100.0,
+      "duplicadas_pct": 0.0,
+      "orfas_pct": 0.0,
+      "paginas_com_orfas": 0
+     },
+     "final": {
+      "n": 36171,
+      "cobertas": 36171,
+      "duplicadas": 0,
+      "orfas": 0,
+      "geometricamente_multiplas": 122,
+      "cobertas_pct": 100.0,
+      "duplicadas_pct": 0.0,
+      "orfas_pct": 0.0,
+      "paginas_com_orfas": 0
+     }
+    },
+    "B": {
+     "antes_fallback": {
+      "n": 36171,
+      "cobertas": 36171,
+      "duplicadas": 0,
+      "orfas": 0,
+      "geometricamente_multiplas": 66,
+      "cobertas_pct": 100.0,
+      "duplicadas_pct": 0.0,
+      "orfas_pct": 0.0,
+      "paginas_com_orfas": 0
+     },
+     "final": {
+      "n": 36171,
+      "cobertas": 36171,
+      "duplicadas": 0,
+      "orfas": 0,
+      "geometricamente_multiplas": 66,
+      "cobertas_pct": 100.0,
+      "duplicadas_pct": 0.0,
+      "orfas_pct": 0.0,
+      "paginas_com_orfas": 0
+     }
+    }
+   }
+  },
+  "golden_v3_novo": {
+   "n": 27,
+   "veiculos": 10,
+   "metodos": {
+    "A_regra": {
+     "tau": {
+      "media": 0.944567413914818,
+      "ic": [
+       0.8632660887371311,
+       0.9949383484431148
+      ],
+      "n": 27
+     },
+     "quebras": {
+      "media": 11.0,
+      "ic": [
+       4.644821731748727,
+       16.208388157894735
+      ],
+      "n": 27,
+      "total": 297
+     },
+     "quebras_mil": {
+      "media": 19.91585340423556,
+      "ic": [
+       7.558681858398373,
+       32.77585203299054
+      ],
+      "n": 27
+     },
+     "fid12": {
+      "media": 0.9207582377838949,
+      "ic": [
+       0.8820146883284631,
+       0.9716417503021861
+      ],
+      "n": 27
+     },
+     "sucessor_linhas": {
+      "media": 0.9038821221222612,
+      "ic": [
+       0.8691858758817609,
+       0.9356759396888098
+      ],
+      "n": 27
+     },
+     "piso_interno": {
+      "media": 5.296296296296297,
+      "ic": [
+       0.0,
+       11.617647058823529
+      ],
+      "n": 27,
+      "total": 143
+     },
+     "entre_unidades": {
+      "media": 5.703703703703703,
+      "ic": [
+       3.194422043010753,
+       9.294117647058824
+      ],
+      "n": 27,
+      "total": 154
+     }
+    },
+    "A_hibrido67": {
+     "tau": {
+      "media": 0.9703376779746947,
+      "ic": [
+       0.944737089781601,
+       0.9937825272476037
+      ],
+      "n": 27
+     },
+     "quebras": {
+      "media": 8.962962962962964,
+      "ic": [
+       2.0,
+       15.676664086687303
+      ],
+      "n": 27,
+      "total": 242
+     },
+     "quebras_mil": {
+      "media": 16.509710910890963,
+      "ic": [
+       3.3167624071278827,
+       31.73122893582066
+      ],
+      "n": 27
+     },
+     "fid12": {
+      "media": 0.9385915371921264,
+      "ic": [
+       0.8893596759869258,
+       0.9908688784627065
+      ],
+      "n": 27
+     },
+     "sucessor_linhas": {
+      "media": 0.931416296179621,
+      "ic": [
+       0.8849304660932219,
+       0.9748779081705712
+      ],
+      "n": 27
+     },
+     "piso_interno": {
+      "media": 5.296296296296297,
+      "ic": [
+       0.0,
+       11.617647058823529
+      ],
+      "n": 27,
+      "total": 143
+     },
+     "entre_unidades": {
+      "media": 3.6666666666666665,
+      "ic": [
+       1.8999137931034482,
+       5.809523809523809
+      ],
+      "n": 27,
+      "total": 99
+     }
+    },
+    "B_regra": {
+     "tau": {
+      "media": 0.9595574053404858,
+      "ic": [
+       0.9153503008602267,
+       0.9970561031292716
+      ],
+      "n": 27
+     },
+     "quebras": {
+      "media": 9.222222222222221,
+      "ic": [
+       4.8998684210526315,
+       12.866666666666667
+      ],
+      "n": 27,
+      "total": 249
+     },
+     "quebras_mil": {
+      "media": 17.20575361440686,
+      "ic": [
+       8.1633799224628,
+       26.678756551847894
+      ],
+      "n": 27
+     },
+     "fid12": {
+      "media": 0.9284148490830633,
+      "ic": [
+       0.8985864898798889,
+       0.9658527074960311
+      ],
+      "n": 27
+     },
+     "sucessor_linhas": {
+      "media": 0.9113013479721646,
+      "ic": [
+       0.8806478962170438,
+       0.9355629680599972
+      ],
+      "n": 27
+     },
+     "piso_interno": {
+      "media": 0.25925925925925924,
+      "ic": [
+       0.0,
+       0.6666666666666666
+      ],
+      "n": 27,
+      "total": 7
+     },
+     "entre_unidades": {
+      "media": 8.962962962962964,
+      "ic": [
+       4.8998684210526315,
+       12.575837320574163
+      ],
+      "n": 27,
+      "total": 242
+     }
+    },
+    "B_hibrido67": {
+     "tau": {
+      "media": 0.9589772112634248,
+      "ic": [
+       0.9171730365417647,
+       0.9961152932602126
+      ],
+      "n": 27
+     },
+     "quebras": {
+      "media": 7.888888888888889,
+      "ic": [
+       2.3043478260869565,
+       12.414025198938988
+      ],
+      "n": 27,
+      "total": 213
+     },
+     "quebras_mil": {
+      "media": 13.739464200199588,
+      "ic": [
+       3.6655688513623192,
+       24.244904324231626
+      ],
+      "n": 27
+     },
+     "fid12": {
+      "media": 0.9412198934569608,
+      "ic": [
+       0.9034219509602094,
+       0.9879112663652191
+      ],
+      "n": 27
+     },
+     "sucessor_linhas": {
+      "media": 0.9384097661491402,
+      "ic": [
+       0.9064383977549063,
+       0.9712377168438767
+      ],
+      "n": 27
+     },
+     "piso_interno": {
+      "media": 0.25925925925925924,
+      "ic": [
+       0.0,
+       0.6666666666666666
+      ],
+      "n": 27,
+      "total": 7
+     },
+     "entre_unidades": {
+      "media": 7.62962962962963,
+      "ic": [
+       2.3043478260869565,
+       12.166666666666666
+      ],
+      "n": 27,
+      "total": 206
+     }
+    }
+   },
+   "contrastes": {
+    "A_regra-B_regra": {
+     "tau": {
+      "media": -0.014989991425667789,
+      "ic": [
+       -0.0582261393447968,
+       0.014421499173887489
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": -0.20953170400483245,
+       "official_diary_ac": 0.0005515719801434393,
+       "official_diary_ap": 0.015050167224080369,
+       "official_diary_ce": 1.8768309565190637e-06,
+       "official_diary_ma": 0.02777226256694882,
+       "official_diary_mg": 0.0,
+       "official_diary_pi_v2": 0.000273170493002739,
+       "official_diary_rj": -0.08126296312259028,
+       "official_diary_ro": 0.0,
+       "official_diary_se": 0.0
+      },
+      "wilcoxon_veiculo": {
+       "W": 19.0,
+       "p": 0.5679375897317215
+      },
+      "melhor": 14,
+      "igual": 9,
+      "pior": 4
+     },
+     "quebras": {
+      "media": 1.7777777777777777,
+      "ic": [
+       -0.7224999999999999,
+       3.642857142857143
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 13,
+       "official_diary_ac": -0.5,
+       "official_diary_ap": -9,
+       "official_diary_ce": 0.5,
+       "official_diary_ma": 4.714285714285714,
+       "official_diary_mg": 0,
+       "official_diary_pi_v2": -1.5,
+       "official_diary_rj": 2.4,
+       "official_diary_ro": 0,
+       "official_diary_se": 0
+      },
+      "wilcoxon_veiculo": {
+       "W": 19.5,
+       "p": 0.6033951485377673
+      },
+      "melhor": 7,
+      "igual": 16,
+      "pior": 4
+     },
+     "quebras_mil": {
+      "media": 2.7100997898287016,
+      "ic": [
+       -5.476360957428282,
+       7.670631996876374
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 19.28783382789318,
+       "official_diary_ac": -3.378378378378379,
+       "official_diary_ap": -43.26923076923077,
+       "official_diary_ce": 0.6561679790026247,
+       "official_diary_ma": 11.946079285968015,
+       "official_diary_mg": 0.0,
+       "official_diary_pi_v2": -2.717391304347826,
+       "official_diary_rj": 4.35721355127462,
+       "official_diary_ro": 0.0,
+       "official_diary_se": 0.0
+      },
+      "wilcoxon_veiculo": {
+       "W": 21.0,
+       "p": 0.7162897505408428
+      },
+      "melhor": 7,
+      "igual": 16,
+      "pior": 4
+     },
+     "fid12": {
+      "media": -0.007656611299168335,
+      "ic": [
+       -0.022245826714521306,
+       0.01947589375494044
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": -0.06072874493927127,
+       "official_diary_ac": 0.0,
+       "official_diary_ap": 0.1661538461538462,
+       "official_diary_ce": -0.0008245987015962722,
+       "official_diary_ma": -0.028068279896429366,
+       "official_diary_mg": 0.0,
+       "official_diary_pi_v2": 0.013085854733451974,
+       "official_diary_rj": -0.027379952854888145,
+       "official_diary_ro": 0.0,
+       "official_diary_se": 0.0
+      },
+      "wilcoxon_veiculo": {
+       "W": 16.0,
+       "p": 0.49021408469758154
+      },
+      "melhor": 8,
+      "igual": 14,
+      "pior": 5
+     },
+     "sucessor_linhas": {
+      "media": -0.00741922584990359,
+      "ic": [
+       -0.028692866400595807,
+       0.02407910628019323
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": -0.16666666666666674,
+       "official_diary_ac": 0.0,
+       "official_diary_ap": 0.21739130434782605,
+       "official_diary_ce": -0.004504504504504496,
+       "official_diary_ma": -0.028351287464587965,
+       "official_diary_mg": 0.0,
+       "official_diary_pi_v2": 0.010416666666666685,
+       "official_diary_rj": -0.009278205936549377,
+       "official_diary_ro": 0.0,
+       "official_diary_se": 0.0
+      },
+      "wilcoxon_veiculo": {
+       "W": 17.0,
+       "p": 0.5593418369740718
+      },
+      "melhor": 6,
+      "igual": 17,
+      "pior": 4
+     },
+     "piso_interno": {
+      "media": 5.037037037037037,
+      "ic": [
+       0.0,
+       11.363636363636363
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 0,
+       "official_diary_ac": 0,
+       "official_diary_ap": 0,
+       "official_diary_ce": 0,
+       "official_diary_ma": 17.857142857142858,
+       "official_diary_mg": 0,
+       "official_diary_pi_v2": 0,
+       "official_diary_rj": 2.2,
+       "official_diary_ro": 0,
+       "official_diary_se": 0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 0.1578737498417857
+      },
+      "melhor": 2,
+      "igual": 21,
+      "pior": 4
+     },
+     "entre_unidades": {
+      "media": -3.259259259259259,
+      "ic": [
+       -8.46671875,
+       1.4376736111111086
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 13,
+       "official_diary_ac": -0.5,
+       "official_diary_ap": -9,
+       "official_diary_ce": 0.5,
+       "official_diary_ma": -13.142857142857142,
+       "official_diary_mg": 0,
+       "official_diary_pi_v2": -1.5,
+       "official_diary_rj": 0.2,
+       "official_diary_ro": 0,
+       "official_diary_se": 0
+      },
+      "wilcoxon_veiculo": {
+       "W": 18.5,
+       "p": 0.5330025143007084
+      },
+      "melhor": 8,
+      "igual": 15,
+      "pior": 4
+     },
+     "reparos_sucessor": 53,
+     "regressoes_sucessor": 92
+    },
+    "A_regra-A_regra": {
+     "tau": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 0.0,
+       "official_diary_ac": 0.0,
+       "official_diary_ap": 0.0,
+       "official_diary_ce": 0.0,
+       "official_diary_ma": 0.0,
+       "official_diary_mg": 0.0,
+       "official_diary_pi_v2": 0.0,
+       "official_diary_rj": 0.0,
+       "official_diary_ro": 0.0,
+       "official_diary_se": 0.0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 27,
+      "pior": 0
+     },
+     "quebras": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 0,
+       "official_diary_ac": 0,
+       "official_diary_ap": 0,
+       "official_diary_ce": 0,
+       "official_diary_ma": 0,
+       "official_diary_mg": 0,
+       "official_diary_pi_v2": 0,
+       "official_diary_rj": 0,
+       "official_diary_ro": 0,
+       "official_diary_se": 0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 27,
+      "pior": 0
+     },
+     "quebras_mil": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 0.0,
+       "official_diary_ac": 0.0,
+       "official_diary_ap": 0.0,
+       "official_diary_ce": 0.0,
+       "official_diary_ma": 0.0,
+       "official_diary_mg": 0.0,
+       "official_diary_pi_v2": 0.0,
+       "official_diary_rj": 0.0,
+       "official_diary_ro": 0.0,
+       "official_diary_se": 0.0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 27,
+      "pior": 0
+     },
+     "fid12": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 0.0,
+       "official_diary_ac": 0.0,
+       "official_diary_ap": 0.0,
+       "official_diary_ce": 0.0,
+       "official_diary_ma": 0.0,
+       "official_diary_mg": 0.0,
+       "official_diary_pi_v2": 0.0,
+       "official_diary_rj": 0.0,
+       "official_diary_ro": 0.0,
+       "official_diary_se": 0.0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 27,
+      "pior": 0
+     },
+     "sucessor_linhas": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 0.0,
+       "official_diary_ac": 0.0,
+       "official_diary_ap": 0.0,
+       "official_diary_ce": 0.0,
+       "official_diary_ma": 0.0,
+       "official_diary_mg": 0.0,
+       "official_diary_pi_v2": 0.0,
+       "official_diary_rj": 0.0,
+       "official_diary_ro": 0.0,
+       "official_diary_se": 0.0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 27,
+      "pior": 0
+     },
+     "piso_interno": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 0,
+       "official_diary_ac": 0,
+       "official_diary_ap": 0,
+       "official_diary_ce": 0,
+       "official_diary_ma": 0,
+       "official_diary_mg": 0,
+       "official_diary_pi_v2": 0,
+       "official_diary_rj": 0,
+       "official_diary_ro": 0,
+       "official_diary_se": 0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 27,
+      "pior": 0
+     },
+     "entre_unidades": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 0,
+       "official_diary_ac": 0,
+       "official_diary_ap": 0,
+       "official_diary_ce": 0,
+       "official_diary_ma": 0,
+       "official_diary_mg": 0,
+       "official_diary_pi_v2": 0,
+       "official_diary_rj": 0,
+       "official_diary_ro": 0,
+       "official_diary_se": 0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 27,
+      "pior": 0
+     },
+     "reparos_sucessor": 0,
+     "regressoes_sucessor": 0
+    },
+    "A_hibrido67-B_regra": {
+     "tau": {
+      "media": 0.010780272634208908,
+      "ic": [
+       -0.027602251772456194,
+       0.04131731310235332
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": -0.20418781222305016,
+       "official_diary_ac": -0.002109491440897393,
+       "official_diary_ap": 0.015050167224080369,
+       "official_diary_ce": 0.0001266303573501104,
+       "official_diary_ma": 0.010088516904161127,
+       "official_diary_mg": 0.00997331819472036,
+       "official_diary_pi_v2": 0.0003738342083738355,
+       "official_diary_rj": 0.0795659493814745,
+       "official_diary_ro": 0.00019393469249218143,
+       "official_diary_se": 0.004299920319843831
+      },
+      "wilcoxon_veiculo": {
+       "W": 14.0,
+       "p": 0.1688069535565081
+      },
+      "melhor": 15,
+      "igual": 4,
+      "pior": 8
+     },
+     "quebras": {
+      "media": -0.25925925925925924,
+      "ic": [
+       -3.4002941176470585,
+       3.1601666666666643
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 8,
+       "official_diary_ac": -0.5,
+       "official_diary_ap": -9,
+       "official_diary_ce": -3.1666666666666665,
+       "official_diary_ma": 6.142857142857143,
+       "official_diary_mg": -1,
+       "official_diary_pi_v2": -3.5,
+       "official_diary_rj": -2.6,
+       "official_diary_ro": -3,
+       "official_diary_se": -5
+      },
+      "wilcoxon_veiculo": {
+       "W": 17.0,
+       "p": 0.2845026979112075
+      },
+      "melhor": 14,
+      "igual": 5,
+      "pior": 8
+     },
+     "quebras_mil": {
+      "media": -0.6960427035158971,
+      "ic": [
+       -10.348369634684149,
+       6.441764624360413
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 11.869436201780415,
+       "official_diary_ac": -11.968714337406407,
+       "official_diary_ap": -43.26923076923077,
+       "official_diary_ce": -3.219913222563521,
+       "official_diary_ma": 13.715167968589785,
+       "official_diary_mg": -0.6150061500615003,
+       "official_diary_pi_v2": -7.989193119703125,
+       "official_diary_rj": -2.5686978964657228,
+       "official_diary_ro": -6.024096385542169,
+       "official_diary_se": -4.681647940074906
+      },
+      "wilcoxon_veiculo": {
+       "W": 16.0,
+       "p": 0.24112136827741826
+      },
+      "melhor": 14,
+      "igual": 5,
+      "pior": 8
+     },
+     "fid12": {
+      "media": 0.010176688109063178,
+      "ic": [
+       -0.014751148235778326,
+       0.039960620067264065
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": -0.02564102564102566,
+       "official_diary_ac": 0.004459076994166256,
+       "official_diary_ap": 0.1661538461538462,
+       "official_diary_ce": 0.020229512571206604,
+       "official_diary_ma": -0.03761110532791456,
+       "official_diary_mg": 0.00434546442151007,
+       "official_diary_pi_v2": 0.028154928383761324,
+       "official_diary_rj": 0.02854196336291286,
+       "official_diary_ro": 0.038961038961038974,
+       "official_diary_se": 0.02491408934707906
+      },
+      "wilcoxon_veiculo": {
+       "W": 13.0,
+       "p": 0.13941397332153205
+      },
+      "melhor": 15,
+      "igual": 4,
+      "pior": 8
+     },
+     "sucessor_linhas": {
+      "media": 0.020114948207456393,
+      "ic": [
+       -0.013100461986738044,
+       0.06305141907080963
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": -0.11538461538461542,
+       "official_diary_ac": 0.048951048951049014,
+       "official_diary_ap": 0.21739130434782605,
+       "official_diary_ce": 0.03708111905943886,
+       "official_diary_ma": -0.04043660651132339,
+       "official_diary_mg": 0.0037174721189591198,
+       "official_diary_pi_v2": 0.07500000000000001,
+       "official_diary_rj": 0.029164810527146433,
+       "official_diary_ro": 0.05660377358490565,
+       "official_diary_se": 0.04761904761904756
+      },
+      "wilcoxon_veiculo": {
+       "W": 13.0,
+       "p": 0.13941397332153205
+      },
+      "melhor": 16,
+      "igual": 5,
+      "pior": 6
+     },
+     "piso_interno": {
+      "media": 5.037037037037037,
+      "ic": [
+       0.0,
+       11.363636363636363
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 0,
+       "official_diary_ac": 0,
+       "official_diary_ap": 0,
+       "official_diary_ce": 0,
+       "official_diary_ma": 17.857142857142858,
+       "official_diary_mg": 0,
+       "official_diary_pi_v2": 0,
+       "official_diary_rj": 2.2,
+       "official_diary_ro": 0,
+       "official_diary_se": 0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 0.1578737498417857
+      },
+      "melhor": 2,
+      "igual": 21,
+      "pior": 4
+     },
+     "entre_unidades": {
+      "media": -5.296296296296297,
+      "ic": [
+       -8.606060606060606,
+       -1.6108333333333373
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 8,
+       "official_diary_ac": -0.5,
+       "official_diary_ap": -9,
+       "official_diary_ce": -3.1666666666666665,
+       "official_diary_ma": -11.714285714285714,
+       "official_diary_mg": -1,
+       "official_diary_pi_v2": -3.5,
+       "official_diary_rj": -4.8,
+       "official_diary_ro": -3,
+       "official_diary_se": -5
+      },
+      "wilcoxon_veiculo": {
+       "W": 8.0,
+       "p": 0.04685328478814715
+      },
+      "melhor": 18,
+      "igual": 4,
+      "pior": 5
+     },
+     "reparos_sucessor": 106,
+     "regressoes_sucessor": 90
+    },
+    "A_hibrido67-A_regra": {
+     "tau": {
+      "media": 0.0257702640598767,
+      "ic": [
+       -0.009963228410601597,
+       0.08675152782898943
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 0.005343891781782295,
+       "official_diary_ac": -0.0026610634210408324,
+       "official_diary_ap": 0.0,
+       "official_diary_ce": 0.00012475352639359136,
+       "official_diary_ma": -0.017683745662787693,
+       "official_diary_mg": 0.00997331819472036,
+       "official_diary_pi_v2": 0.00010066371537109653,
+       "official_diary_rj": 0.16082891250406478,
+       "official_diary_ro": 0.00019393469249218143,
+       "official_diary_se": 0.004299920319843831
+      },
+      "wilcoxon_veiculo": {
+       "W": 14.0,
+       "p": 0.18457255283988294
+      },
+      "melhor": 12,
+      "igual": 6,
+      "pior": 9
+     },
+     "quebras": {
+      "media": -2.037037037037037,
+      "ic": [
+       -4.0,
+       0.1
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": -5,
+       "official_diary_ac": 0,
+       "official_diary_ap": 0,
+       "official_diary_ce": -3.6666666666666665,
+       "official_diary_ma": 1.4285714285714286,
+       "official_diary_mg": -1,
+       "official_diary_pi_v2": -2,
+       "official_diary_rj": -5,
+       "official_diary_ro": -3,
+       "official_diary_se": -5
+      },
+      "wilcoxon_veiculo": {
+       "W": 4.0,
+       "p": 0.02362855185626584
+      },
+      "melhor": 13,
+      "igual": 7,
+      "pior": 7
+     },
+     "quebras_mil": {
+      "media": -3.4061424933446,
+      "ic": [
+       -6.327905111659957,
+       -0.5801225525189264
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": -7.418397626112764,
+       "official_diary_ac": -8.590335959028028,
+       "official_diary_ap": 0.0,
+       "official_diary_ce": -3.8760812015661457,
+       "official_diary_ma": 1.7690886826217709,
+       "official_diary_mg": -0.6150061500615003,
+       "official_diary_pi_v2": -5.271801815355299,
+       "official_diary_rj": -6.925911447740343,
+       "official_diary_ro": -6.024096385542169,
+       "official_diary_se": -4.681647940074906
+      },
+      "wilcoxon_veiculo": {
+       "W": 3.0,
+       "p": 0.014305878435429619
+      },
+      "melhor": 13,
+      "igual": 7,
+      "pior": 7
+     },
+     "fid12": {
+      "media": 0.01783329940823151,
+      "ic": [
+       0.00017246051118724134,
+       0.03874755290243569
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 0.03508771929824561,
+       "official_diary_ac": 0.004459076994166256,
+       "official_diary_ap": 0.0,
+       "official_diary_ce": 0.021054111272802878,
+       "official_diary_ma": -0.009542825431485198,
+       "official_diary_mg": 0.00434546442151007,
+       "official_diary_pi_v2": 0.01506907365030935,
+       "official_diary_rj": 0.055921916217801,
+       "official_diary_ro": 0.038961038961038974,
+       "official_diary_se": 0.02491408934707906
+      },
+      "wilcoxon_veiculo": {
+       "W": 4.0,
+       "p": 0.01890354301112134
+      },
+      "melhor": 15,
+      "igual": 6,
+      "pior": 6
+     },
+     "sucessor_linhas": {
+      "media": 0.027534174057359983,
+      "ic": [
+       0.006038326350927725,
+       0.04747546561011806
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 0.05128205128205132,
+       "official_diary_ac": 0.048951048951049014,
+       "official_diary_ap": 0.0,
+       "official_diary_ce": 0.04158562356394335,
+       "official_diary_ma": -0.012085319046735423,
+       "official_diary_mg": 0.0037174721189591198,
+       "official_diary_pi_v2": 0.06458333333333333,
+       "official_diary_rj": 0.038443016463695814,
+       "official_diary_ro": 0.05660377358490565,
+       "official_diary_se": 0.04761904761904756
+      },
+      "wilcoxon_veiculo": {
+       "W": 3.0,
+       "p": 0.014305878435429619
+      },
+      "melhor": 13,
+      "igual": 7,
+      "pior": 7
+     },
+     "piso_interno": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 0,
+       "official_diary_ac": 0,
+       "official_diary_ap": 0,
+       "official_diary_ce": 0,
+       "official_diary_ma": 0,
+       "official_diary_mg": 0,
+       "official_diary_pi_v2": 0,
+       "official_diary_rj": 0,
+       "official_diary_ro": 0,
+       "official_diary_se": 0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 27,
+      "pior": 0
+     },
+     "entre_unidades": {
+      "media": -2.037037037037037,
+      "ic": [
+       -4.0,
+       0.1
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": -5,
+       "official_diary_ac": 0,
+       "official_diary_ap": 0,
+       "official_diary_ce": -3.6666666666666665,
+       "official_diary_ma": 1.4285714285714286,
+       "official_diary_mg": -1,
+       "official_diary_pi_v2": -2,
+       "official_diary_rj": -5,
+       "official_diary_ro": -3,
+       "official_diary_se": -5
+      },
+      "wilcoxon_veiculo": {
+       "W": 4.0,
+       "p": 0.02362855185626584
+      },
+      "melhor": 13,
+      "igual": 7,
+      "pior": 7
+     },
+     "reparos_sucessor": 83,
+     "regressoes_sucessor": 28
+    },
+    "B_regra-B_regra": {
+     "tau": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 0.0,
+       "official_diary_ac": 0.0,
+       "official_diary_ap": 0.0,
+       "official_diary_ce": 0.0,
+       "official_diary_ma": 0.0,
+       "official_diary_mg": 0.0,
+       "official_diary_pi_v2": 0.0,
+       "official_diary_rj": 0.0,
+       "official_diary_ro": 0.0,
+       "official_diary_se": 0.0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 27,
+      "pior": 0
+     },
+     "quebras": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 0,
+       "official_diary_ac": 0,
+       "official_diary_ap": 0,
+       "official_diary_ce": 0,
+       "official_diary_ma": 0,
+       "official_diary_mg": 0,
+       "official_diary_pi_v2": 0,
+       "official_diary_rj": 0,
+       "official_diary_ro": 0,
+       "official_diary_se": 0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 27,
+      "pior": 0
+     },
+     "quebras_mil": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 0.0,
+       "official_diary_ac": 0.0,
+       "official_diary_ap": 0.0,
+       "official_diary_ce": 0.0,
+       "official_diary_ma": 0.0,
+       "official_diary_mg": 0.0,
+       "official_diary_pi_v2": 0.0,
+       "official_diary_rj": 0.0,
+       "official_diary_ro": 0.0,
+       "official_diary_se": 0.0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 27,
+      "pior": 0
+     },
+     "fid12": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 0.0,
+       "official_diary_ac": 0.0,
+       "official_diary_ap": 0.0,
+       "official_diary_ce": 0.0,
+       "official_diary_ma": 0.0,
+       "official_diary_mg": 0.0,
+       "official_diary_pi_v2": 0.0,
+       "official_diary_rj": 0.0,
+       "official_diary_ro": 0.0,
+       "official_diary_se": 0.0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 27,
+      "pior": 0
+     },
+     "sucessor_linhas": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 0.0,
+       "official_diary_ac": 0.0,
+       "official_diary_ap": 0.0,
+       "official_diary_ce": 0.0,
+       "official_diary_ma": 0.0,
+       "official_diary_mg": 0.0,
+       "official_diary_pi_v2": 0.0,
+       "official_diary_rj": 0.0,
+       "official_diary_ro": 0.0,
+       "official_diary_se": 0.0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 27,
+      "pior": 0
+     },
+     "piso_interno": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 0,
+       "official_diary_ac": 0,
+       "official_diary_ap": 0,
+       "official_diary_ce": 0,
+       "official_diary_ma": 0,
+       "official_diary_mg": 0,
+       "official_diary_pi_v2": 0,
+       "official_diary_rj": 0,
+       "official_diary_ro": 0,
+       "official_diary_se": 0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 27,
+      "pior": 0
+     },
+     "entre_unidades": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 0,
+       "official_diary_ac": 0,
+       "official_diary_ap": 0,
+       "official_diary_ce": 0,
+       "official_diary_ma": 0,
+       "official_diary_mg": 0,
+       "official_diary_pi_v2": 0,
+       "official_diary_rj": 0,
+       "official_diary_ro": 0,
+       "official_diary_se": 0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 27,
+      "pior": 0
+     },
+     "reparos_sucessor": 0,
+     "regressoes_sucessor": 0
+    },
+    "B_hibrido67-B_regra": {
+     "tau": {
+      "media": -0.000580194077061237,
+      "ic": [
+       -0.0049802415547994736,
+       0.005062327010849506
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 0.0,
+       "official_diary_ac": 0.017471313854193593,
+       "official_diary_ap": 0.0,
+       "official_diary_ce": -0.009309829118585874,
+       "official_diary_ma": 0.0,
+       "official_diary_mg": 0.0,
+       "official_diary_pi_v2": 0.0003738342083738355,
+       "official_diary_rj": 1.9166986781948835e-06,
+       "official_diary_ro": 0.00019393469249218143,
+       "official_diary_se": 0.004299920319843831
+      },
+      "wilcoxon_veiculo": {
+       "W": 9.0,
+       "p": 0.15185463388619438
+      },
+      "melhor": 8,
+      "igual": 17,
+      "pior": 2
+     },
+     "quebras": {
+      "media": -1.3333333333333333,
+      "ic": [
+       -2.6486824324324325,
+       -0.36363636363636365
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 0,
+       "official_diary_ac": -2.5,
+       "official_diary_ap": 0,
+       "official_diary_ce": -2.6666666666666665,
+       "official_diary_ma": 0,
+       "official_diary_mg": 0,
+       "official_diary_pi_v2": -3.5,
+       "official_diary_rj": 0,
+       "official_diary_ro": -3,
+       "official_diary_se": -5
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 0.027670427963096964
+      },
+      "melhor": 7,
+      "igual": 18,
+      "pior": 2
+     },
+     "quebras_mil": {
+      "media": -3.4662894142072695,
+      "ic": [
+       -9.1919157838122,
+       -0.6656068422464679
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 0.0,
+       "official_diary_ac": -25.482227850919923,
+       "official_diary_ap": 0.0,
+       "official_diary_ce": -2.6568713194555165,
+       "official_diary_ma": 0.0,
+       "official_diary_mg": 0.0,
+       "official_diary_pi_v2": -7.989193119703125,
+       "official_diary_rj": 0.0,
+       "official_diary_ro": -6.024096385542169,
+       "official_diary_se": -4.681647940074906
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 0.027670427963096964
+      },
+      "melhor": 7,
+      "igual": 18,
+      "pior": 2
+     },
+     "fid12": {
+      "media": 0.012805044373897553,
+      "ic": [
+       0.0035135291111387055,
+       0.02835085640459601
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 0.0,
+       "official_diary_ac": 0.06193034136198233,
+       "official_diary_ap": 0.0,
+       "official_diary_ce": 0.016733852463711934,
+       "official_diary_ma": 0.0,
+       "official_diary_mg": 0.0,
+       "official_diary_pi_v2": 0.028154928383761324,
+       "official_diary_rj": 0.0002574831026713964,
+       "official_diary_ro": 0.038961038961038974,
+       "official_diary_se": 0.02491408934707906
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 0.016924122629515245
+      },
+      "melhor": 8,
+      "igual": 17,
+      "pior": 2
+     },
+     "sucessor_linhas": {
+      "media": 0.027108418176975617,
+      "ic": [
+       0.0068270410294520205,
+       0.06182451522836137
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 0.0,
+       "official_diary_ac": 0.1398601398601399,
+       "official_diary_ap": 0.0,
+       "official_diary_ce": 0.03299736497568476,
+       "official_diary_ma": 0.0,
+       "official_diary_mg": 0.0,
+       "official_diary_pi_v2": 0.07500000000000001,
+       "official_diary_rj": 0.0,
+       "official_diary_ro": 0.05660377358490565,
+       "official_diary_se": 0.04761904761904756
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 0.027670427963096964
+      },
+      "melhor": 7,
+      "igual": 18,
+      "pior": 2
+     },
+     "piso_interno": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 0,
+       "official_diary_ac": 0,
+       "official_diary_ap": 0,
+       "official_diary_ce": 0,
+       "official_diary_ma": 0,
+       "official_diary_mg": 0,
+       "official_diary_pi_v2": 0,
+       "official_diary_rj": 0,
+       "official_diary_ro": 0,
+       "official_diary_se": 0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 27,
+      "pior": 0
+     },
+     "entre_unidades": {
+      "media": -1.3333333333333333,
+      "ic": [
+       -2.6486824324324325,
+       -0.36363636363636365
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 0,
+       "official_diary_ac": -2.5,
+       "official_diary_ap": 0,
+       "official_diary_ce": -2.6666666666666665,
+       "official_diary_ma": 0,
+       "official_diary_mg": 0,
+       "official_diary_pi_v2": -3.5,
+       "official_diary_rj": 0,
+       "official_diary_ro": -3,
+       "official_diary_se": -5
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 0.027670427963096964
+      },
+      "melhor": 7,
+      "igual": 18,
+      "pior": 2
+     },
+     "reparos_sucessor": 39,
+     "regressoes_sucessor": 5
+    },
+    "B-A_regra": {
+     "tau": {
+      "media": 0.014989991425667789,
+      "ic": [
+       -0.014421499173887495,
+       0.05822613934479671
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 0.20953170400483245,
+       "official_diary_ac": -0.0005515719801434393,
+       "official_diary_ap": -0.015050167224080369,
+       "official_diary_ce": -1.8768309565190637e-06,
+       "official_diary_ma": -0.02777226256694882,
+       "official_diary_mg": 0.0,
+       "official_diary_pi_v2": -0.000273170493002739,
+       "official_diary_rj": 0.08126296312259028,
+       "official_diary_ro": 0.0,
+       "official_diary_se": 0.0
+      },
+      "wilcoxon_veiculo": {
+       "W": 19.0,
+       "p": 0.5679375897317215
+      },
+      "melhor": 4,
+      "igual": 9,
+      "pior": 14
+     },
+     "quebras": {
+      "media": -1.7777777777777777,
+      "ic": [
+       -3.642857142857143,
+       0.7224999999999959
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": -13,
+       "official_diary_ac": 0.5,
+       "official_diary_ap": 9,
+       "official_diary_ce": -0.5,
+       "official_diary_ma": -4.714285714285714,
+       "official_diary_mg": 0,
+       "official_diary_pi_v2": 1.5,
+       "official_diary_rj": -2.4,
+       "official_diary_ro": 0,
+       "official_diary_se": 0
+      },
+      "wilcoxon_veiculo": {
+       "W": 19.5,
+       "p": 0.6033951485377673
+      },
+      "melhor": 4,
+      "igual": 16,
+      "pior": 7
+     },
+     "quebras_mil": {
+      "media": -2.7100997898287016,
+      "ic": [
+       -7.670631996876386,
+       5.476360957428277
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": -19.28783382789318,
+       "official_diary_ac": 3.378378378378379,
+       "official_diary_ap": 43.26923076923077,
+       "official_diary_ce": -0.6561679790026247,
+       "official_diary_ma": -11.946079285968015,
+       "official_diary_mg": 0.0,
+       "official_diary_pi_v2": 2.717391304347826,
+       "official_diary_rj": -4.35721355127462,
+       "official_diary_ro": 0.0,
+       "official_diary_se": 0.0
+      },
+      "wilcoxon_veiculo": {
+       "W": 21.0,
+       "p": 0.7162897505408428
+      },
+      "melhor": 4,
+      "igual": 16,
+      "pior": 7
+     },
+     "fid12": {
+      "media": 0.007656611299168335,
+      "ic": [
+       -0.019475893754940465,
+       0.022245826714521296
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 0.06072874493927127,
+       "official_diary_ac": 0.0,
+       "official_diary_ap": -0.1661538461538462,
+       "official_diary_ce": 0.0008245987015962722,
+       "official_diary_ma": 0.028068279896429366,
+       "official_diary_mg": 0.0,
+       "official_diary_pi_v2": -0.013085854733451974,
+       "official_diary_rj": 0.027379952854888145,
+       "official_diary_ro": 0.0,
+       "official_diary_se": 0.0
+      },
+      "wilcoxon_veiculo": {
+       "W": 16.0,
+       "p": 0.49021408469758154
+      },
+      "melhor": 5,
+      "igual": 14,
+      "pior": 8
+     },
+     "sucessor_linhas": {
+      "media": 0.00741922584990359,
+      "ic": [
+       -0.02407910628019323,
+       0.028692866400595783
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 0.16666666666666674,
+       "official_diary_ac": 0.0,
+       "official_diary_ap": -0.21739130434782605,
+       "official_diary_ce": 0.004504504504504496,
+       "official_diary_ma": 0.028351287464587965,
+       "official_diary_mg": 0.0,
+       "official_diary_pi_v2": -0.010416666666666685,
+       "official_diary_rj": 0.009278205936549377,
+       "official_diary_ro": 0.0,
+       "official_diary_se": 0.0
+      },
+      "wilcoxon_veiculo": {
+       "W": 17.0,
+       "p": 0.5593418369740718
+      },
+      "melhor": 4,
+      "igual": 17,
+      "pior": 6
+     },
+     "piso_interno": {
+      "media": -5.037037037037037,
+      "ic": [
+       -11.363636363636363,
+       0.0
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 0,
+       "official_diary_ac": 0,
+       "official_diary_ap": 0,
+       "official_diary_ce": 0,
+       "official_diary_ma": -17.857142857142858,
+       "official_diary_mg": 0,
+       "official_diary_pi_v2": 0,
+       "official_diary_rj": -2.2,
+       "official_diary_ro": 0,
+       "official_diary_se": 0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 0.1578737498417857
+      },
+      "melhor": 4,
+      "igual": 21,
+      "pior": 2
+     },
+     "entre_unidades": {
+      "media": 3.259259259259259,
+      "ic": [
+       -1.437673611111111,
+       8.46671875
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": -13,
+       "official_diary_ac": 0.5,
+       "official_diary_ap": 9,
+       "official_diary_ce": -0.5,
+       "official_diary_ma": 13.142857142857142,
+       "official_diary_mg": 0,
+       "official_diary_pi_v2": 1.5,
+       "official_diary_rj": -0.2,
+       "official_diary_ro": 0,
+       "official_diary_se": 0
+      },
+      "wilcoxon_veiculo": {
+       "W": 18.5,
+       "p": 0.5330025143007084
+      },
+      "melhor": 4,
+      "igual": 15,
+      "pior": 8
+     },
+     "reparos_sucessor": 92,
+     "regressoes_sucessor": 53
+    },
+    "B-A_hibrido67": {
+     "tau": {
+      "media": -0.011360466711270145,
+      "ic": [
+       -0.04063139725895852,
+       0.029488626079023045
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 0.20418781222305016,
+       "official_diary_ac": 0.019580805295090986,
+       "official_diary_ap": -0.015050167224080369,
+       "official_diary_ce": -0.009436459475935985,
+       "official_diary_ma": -0.010088516904161127,
+       "official_diary_mg": -0.00997331819472036,
+       "official_diary_pi_v2": 0.0,
+       "official_diary_rj": -0.0795640326827963,
+       "official_diary_ro": 0.0,
+       "official_diary_se": 0.0
+      },
+      "wilcoxon_veiculo": {
+       "W": 18.0,
+       "p": 0.4997225450471765
+      },
+      "melhor": 7,
+      "igual": 11,
+      "pior": 9
+     },
+     "quebras": {
+      "media": -1.0740740740740742,
+      "ic": [
+       -3.95,
+       1.7669444444444404
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": -8,
+       "official_diary_ac": -2,
+       "official_diary_ap": 9,
+       "official_diary_ce": 0.5,
+       "official_diary_ma": -6.142857142857143,
+       "official_diary_mg": 1,
+       "official_diary_pi_v2": 0,
+       "official_diary_rj": 2.6,
+       "official_diary_ro": 0,
+       "official_diary_se": 0
+      },
+      "wilcoxon_veiculo": {
+       "W": 23.0,
+       "p": 0.8762283184279593
+      },
+      "melhor": 8,
+      "igual": 11,
+      "pior": 8
+     },
+     "quebras_mil": {
+      "media": -2.770246710691372,
+      "ic": [
+       -9.238541747532983,
+       5.084314759849922
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": -11.869436201780415,
+       "official_diary_ac": -13.513513513513514,
+       "official_diary_ap": 43.26923076923077,
+       "official_diary_ce": 0.5630419031080045,
+       "official_diary_ma": -13.715167968589785,
+       "official_diary_mg": 0.6150061500615003,
+       "official_diary_pi_v2": 0.0,
+       "official_diary_rj": 2.5686978964657228,
+       "official_diary_ro": 0.0,
+       "official_diary_se": 0.0
+      },
+      "wilcoxon_veiculo": {
+       "W": 24.0,
+       "p": 0.9585944992876271
+      },
+      "melhor": 8,
+      "igual": 11,
+      "pior": 8
+     },
+     "fid12": {
+      "media": 0.002628356264834375,
+      "ic": [
+       -0.025604611977390664,
+       0.026307229336500426
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 0.02564102564102566,
+       "official_diary_ac": 0.05747126436781608,
+       "official_diary_ap": -0.1661538461538462,
+       "official_diary_ce": -0.0034956601074946727,
+       "official_diary_ma": 0.03761110532791456,
+       "official_diary_mg": -0.00434546442151007,
+       "official_diary_pi_v2": 0.0,
+       "official_diary_rj": -0.02828448026024146,
+       "official_diary_ro": 0.0,
+       "official_diary_se": 0.0
+      },
+      "wilcoxon_veiculo": {
+       "W": 23.0,
+       "p": 0.8762283184279593
+      },
+      "melhor": 8,
+      "igual": 11,
+      "pior": 8
+     },
+     "sucessor_linhas": {
+      "media": 0.006993469969519221,
+      "ic": [
+       -0.026748688344311072,
+       0.0384311726456406
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 0.11538461538461542,
+       "official_diary_ac": 0.09090909090909088,
+       "official_diary_ap": -0.21739130434782605,
+       "official_diary_ce": -0.0040837540837540915,
+       "official_diary_ma": 0.04043660651132339,
+       "official_diary_mg": -0.0037174721189591198,
+       "official_diary_pi_v2": 0.0,
+       "official_diary_rj": -0.029164810527146433,
+       "official_diary_ro": 0.0,
+       "official_diary_se": 0.0
+      },
+      "wilcoxon_veiculo": {
+       "W": 24.0,
+       "p": 0.9585944992876271
+      },
+      "melhor": 6,
+      "igual": 11,
+      "pior": 10
+     },
+     "piso_interno": {
+      "media": -5.037037037037037,
+      "ic": [
+       -11.363636363636363,
+       0.0
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": 0,
+       "official_diary_ac": 0,
+       "official_diary_ap": 0,
+       "official_diary_ce": 0,
+       "official_diary_ma": -17.857142857142858,
+       "official_diary_mg": 0,
+       "official_diary_pi_v2": 0,
+       "official_diary_rj": -2.2,
+       "official_diary_ro": 0,
+       "official_diary_se": 0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 0.1578737498417857
+      },
+      "melhor": 4,
+      "igual": 21,
+      "pior": 2
+     },
+     "entre_unidades": {
+      "media": 3.962962962962963,
+      "ic": [
+       -0.5652173913043478,
+       7.95861742424242
+      ],
+      "n": 27,
+      "por_veiculo": {
+       "official_diary_RJ_barra_do_pirai": -8,
+       "official_diary_ac": -2,
+       "official_diary_ap": 9,
+       "official_diary_ce": 0.5,
+       "official_diary_ma": 11.714285714285714,
+       "official_diary_mg": 1,
+       "official_diary_pi_v2": 0,
+       "official_diary_rj": 4.8,
+       "official_diary_ro": 0,
+       "official_diary_se": 0
+      },
+      "wilcoxon_veiculo": {
+       "W": 14.0,
+       "p": 0.2755961301178551
+      },
+      "melhor": 5,
+      "igual": 10,
+      "pior": 12
+     },
+     "reparos_sucessor": 89,
+     "regressoes_sucessor": 71
+    }
+   },
+   "cobertura": {
+    "A": {
+     "antes_fallback": {
+      "n": 23778,
+      "cobertas": 23778,
+      "duplicadas": 0,
+      "orfas": 0,
+      "geometricamente_multiplas": 125,
+      "cobertas_pct": 100.0,
+      "duplicadas_pct": 0.0,
+      "orfas_pct": 0.0,
+      "paginas_com_orfas": 0
+     },
+     "final": {
+      "n": 23778,
+      "cobertas": 23778,
+      "duplicadas": 0,
+      "orfas": 0,
+      "geometricamente_multiplas": 125,
+      "cobertas_pct": 100.0,
+      "duplicadas_pct": 0.0,
+      "orfas_pct": 0.0,
+      "paginas_com_orfas": 0
+     }
+    },
+    "B": {
+     "antes_fallback": {
+      "n": 23778,
+      "cobertas": 23778,
+      "duplicadas": 0,
+      "orfas": 0,
+      "geometricamente_multiplas": 1,
+      "cobertas_pct": 100.0,
+      "duplicadas_pct": 0.0,
+      "orfas_pct": 0.0,
+      "paginas_com_orfas": 0
+     },
+     "final": {
+      "n": 23778,
+      "cobertas": 23778,
+      "duplicadas": 0,
+      "orfas": 0,
+      "geometricamente_multiplas": 1,
+      "cobertas_pct": 100.0,
+      "duplicadas_pct": 0.0,
+      "orfas_pct": 0.0,
+      "paginas_com_orfas": 0
+     }
+    }
+   }
+  },
+  "teste_silver": {
+   "n": 89,
+   "veiculos": 3,
+   "metodos": {
+    "A_regra": {
+     "tau": {
+      "media": 0.9525009010390619,
+      "ic": [
+       0.8616119908769583,
+       0.9990520810649796
+      ],
+      "n": 89
+     },
+     "quebras": {
+      "media": 23.528089887640448,
+      "ic": [
+       20.076923076923077,
+       26.657894736842106
+      ],
+      "n": 89,
+      "total": 2094
+     },
+     "quebras_mil": {
+      "media": 38.79202259656584,
+      "ic": [
+       12.925006023481988,
+       64.05585464149742
+      ],
+      "n": 89
+     },
+     "fid12": {
+      "media": 0.8473448706237802,
+      "ic": [
+       0.7692474982695812,
+       0.9232608415901351
+      ],
+      "n": 89
+     },
+     "sucessor_linhas": {
+      "media": 0.8596909342106271,
+      "ic": [
+       0.8111347379641404,
+       0.9428423722641472
+      ],
+      "n": 89
+     },
+     "piso_interno": {
+      "media": 17.775280898876403,
+      "ic": [
+       3.6923076923076925,
+       24.05263157894737
+      ],
+      "n": 89,
+      "total": 1582
+     },
+     "entre_unidades": {
+      "media": 5.752808988764045,
+      "ic": [
+       2.6052631578947367,
+       16.384615384615383
+      ],
+      "n": 89,
+      "total": 512
+     }
+    },
+    "A_hibrido67": {
+     "tau": {
+      "media": 0.9442806201042702,
+      "ic": [
+       0.8893303577396281,
+       0.9991417413472501
+      ],
+      "n": 89
+     },
+     "quebras": {
+      "media": 22.741573033707866,
+      "ic": [
+       18.076923076923077,
+       28.657894736842106
+      ],
+      "n": 89,
+      "total": 2024
+     },
+     "quebras_mil": {
+      "media": 38.09797561838477,
+      "ic": [
+       10.301838441924025,
+       66.30047415648514
+      ],
+      "n": 89
+     },
+     "fid12": {
+      "media": 0.8555812684334143,
+      "ic": [
+       0.7633336743613764,
+       0.9437653310576974
+      ],
+      "n": 89
+     },
+     "sucessor_linhas": {
+      "media": 0.8640518502442617,
+      "ic": [
+       0.7915986975982058,
+       0.956477214872416
+      ],
+      "n": 89
+     },
+     "piso_interno": {
+      "media": 17.775280898876403,
+      "ic": [
+       3.6923076923076925,
+       24.05263157894737
+      ],
+      "n": 89,
+      "total": 1582
+     },
+     "entre_unidades": {
+      "media": 4.966292134831461,
+      "ic": [
+       2.1052631578947367,
+       14.384615384615385
+      ],
+      "n": 89,
+      "total": 442
+     }
+    },
+    "B_regra": {
+     "tau": {
+      "media": 0.9595653453976628,
+      "ic": [
+       0.8895049598265661,
+       0.9984353165150778
+      ],
+      "n": 89
+     },
+     "quebras": {
+      "media": 27.44943820224719,
+      "ic": [
+       22.18421052631579,
+       32.31578947368421
+      ],
+      "n": 89,
+      "total": 2443
+     },
+     "quebras_mil": {
+      "media": 44.49555077344962,
+      "ic": [
+       16.630019023920674,
+       75.57427463153614
+      ],
+      "n": 89
+     },
+     "fid12": {
+      "media": 0.8254007653067797,
+      "ic": [
+       0.7293455430246761,
+       0.8987168498439068
+      ],
+      "n": 89
+     },
+     "sucessor_linhas": {
+      "media": 0.8402116805771741,
+      "ic": [
+       0.7708029739225538,
+       0.9408578360410621
+      ],
+      "n": 89
+     },
+     "piso_interno": {
+      "media": 16.179775280898877,
+      "ic": [
+       7.846153846153846,
+       23.86842105263158
+      ],
+      "n": 89,
+      "total": 1440
+     },
+     "entre_unidades": {
+      "media": 11.269662921348315,
+      "ic": [
+       8.447368421052632,
+       20.76923076923077
+      ],
+      "n": 89,
+      "total": 1003
+     }
+    },
+    "B_hibrido67": {
+     "tau": {
+      "media": 0.9590921317931348,
+      "ic": [
+       0.8895252391458701,
+       0.9968372503802976
+      ],
+      "n": 89
+     },
+     "quebras": {
+      "media": 26.426966292134832,
+      "ic": [
+       20.289473684210527,
+       31.842105263157894
+      ],
+      "n": 89,
+      "total": 2352
+     },
+     "quebras_mil": {
+      "media": 43.15724316173569,
+      "ic": [
+       16.578043971945622,
+       74.30466763884436
+      ],
+      "n": 89
+     },
+     "fid12": {
+      "media": 0.834332209438107,
+      "ic": [
+       0.7397195614962896,
+       0.9091665953844026
+      ],
+      "n": 89
+     },
+     "sucessor_linhas": {
+      "media": 0.8495245161749768,
+      "ic": [
+       0.7812731215545501,
+       0.9409356934063688
+      ],
+      "n": 89
+     },
+     "piso_interno": {
+      "media": 16.179775280898877,
+      "ic": [
+       7.846153846153846,
+       23.86842105263158
+      ],
+      "n": 89,
+      "total": 1440
+     },
+     "entre_unidades": {
+      "media": 10.247191011235955,
+      "ic": [
+       7.973684210526316,
+       20.692307692307693
+      ],
+      "n": 89,
+      "total": 912
+     }
+    }
+   },
+   "contrastes": {
+    "A_regra-B_regra": {
+     "tau": {
+      "media": -0.007064444358600985,
+      "ic": [
+       -0.027892968949607938,
+       0.0006167645499020076
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": 0.0006167645499020076,
+       "official_diary_ma": -0.007620105380706864,
+       "official_diary_rj": -0.02789296894960794
+      },
+      "wilcoxon_veiculo": {
+       "W": 1.0,
+       "p": 0.28504940740261275
+      },
+      "melhor": 39,
+      "igual": 33,
+      "pior": 17
+     },
+     "quebras": {
+      "media": -3.9213483146067416,
+      "ic": [
+       -8.538461538461538,
+       -0.6052631578947368
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": -0.6052631578947368,
+       "official_diary_ma": -5.657894736842105,
+       "official_diary_rj": -8.538461538461538
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 0.10880943004054569
+      },
+      "melhor": 38,
+      "igual": 40,
+      "pior": 11
+     },
+     "quebras_mil": {
+      "media": -5.703528176883782,
+      "ic": [
+       -11.518419990038732,
+       -0.5723389240916288
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": -0.5723389240916286,
+       "official_diary_ma": -11.518419990038732,
+       "official_diary_rj": -3.7050130004386883
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 0.10880943004054569
+      },
+      "melhor": 38,
+      "igual": 40,
+      "pior": 11
+     },
+     "fid12": {
+      "media": 0.02194410531700052,
+      "ic": [
+       0.0007541399087405274,
+       0.03990195524490503
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": 0.0007541399087405274,
+       "official_diary_ma": 0.03990195524490503,
+       "official_diary_rj": 0.03139182749034734
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 0.10880943004054569
+      },
+      "melhor": 40,
+      "igual": 40,
+      "pior": 9
+     },
+     "sucessor_linhas": {
+      "media": 0.019479253633452872,
+      "ic": [
+       0.001984536223085185,
+       0.04033176404158653
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": 0.004611778128866056,
+       "official_diary_ma": 0.040331764041586525,
+       "official_diary_rj": 0.001984536223085185
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 0.10880943004054569
+      },
+      "melhor": 36,
+      "igual": 40,
+      "pior": 13
+     },
+     "piso_interno": {
+      "media": 1.595505617977528,
+      "ic": [
+       -4.153846153846154,
+       4.973684210526316
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": 4.973684210526316,
+       "official_diary_ma": 0.18421052631578946,
+       "official_diary_rj": -4.153846153846154
+      },
+      "wilcoxon_veiculo": {
+       "W": 2.0,
+       "p": 0.5929800980174267
+      },
+      "melhor": 29,
+      "igual": 50,
+      "pior": 10
+     },
+     "entre_unidades": {
+      "media": -5.51685393258427,
+      "ic": [
+       -5.842105263157895,
+       -4.384615384615385
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": -5.578947368421052,
+       "official_diary_ma": -5.842105263157895,
+       "official_diary_rj": -4.384615384615385
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 0.10880943004054569
+      },
+      "melhor": 37,
+      "igual": 39,
+      "pior": 13
+     },
+     "reparos_sucessor": 444,
+     "regressoes_sucessor": 128
+    },
+    "A_regra-A_regra": {
+     "tau": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": 0.0,
+       "official_diary_ma": 0.0,
+       "official_diary_rj": 0.0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 89,
+      "pior": 0
+     },
+     "quebras": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": 0,
+       "official_diary_ma": 0,
+       "official_diary_rj": 0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 89,
+      "pior": 0
+     },
+     "quebras_mil": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": 0.0,
+       "official_diary_ma": 0.0,
+       "official_diary_rj": 0.0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 89,
+      "pior": 0
+     },
+     "fid12": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": 0.0,
+       "official_diary_ma": 0.0,
+       "official_diary_rj": 0.0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 89,
+      "pior": 0
+     },
+     "sucessor_linhas": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": 0.0,
+       "official_diary_ma": 0.0,
+       "official_diary_rj": 0.0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 89,
+      "pior": 0
+     },
+     "piso_interno": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": 0,
+       "official_diary_ma": 0,
+       "official_diary_rj": 0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 89,
+      "pior": 0
+     },
+     "entre_unidades": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": 0,
+       "official_diary_ma": 0,
+       "official_diary_rj": 0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 89,
+      "pior": 0
+     },
+     "reparos_sucessor": 0,
+     "regressoes_sucessor": 0
+    },
+    "A_hibrido67-B_regra": {
+     "tau": {
+      "media": -0.015284725293392663,
+      "ic": [
+       -0.055333043183363434,
+       0.055036226633331325
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": 0.0007064248321725364,
+       "official_diary_ma": -0.05533304318336344,
+       "official_diary_rj": 0.055036226633331325
+      },
+      "wilcoxon_veiculo": {
+       "W": 3.0,
+       "p": 1.0
+      },
+      "melhor": 47,
+      "igual": 14,
+      "pior": 28
+     },
+     "quebras": {
+      "media": -4.707865168539326,
+      "ic": [
+       -10.538461538461538,
+       -3.6578947368421053
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": -3.763157894736842,
+       "official_diary_ma": -3.6578947368421053,
+       "official_diary_rj": -10.538461538461538
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 0.10880943004054569
+      },
+      "melhor": 43,
+      "igual": 21,
+      "pior": 25
+     },
+     "quebras_mil": {
+      "media": -6.397575155064854,
+      "ic": [
+       -9.273800475051006,
+       -3.54509008375993
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": -3.54509008375993,
+       "official_diary_ma": -9.273800475051006,
+       "official_diary_rj": -6.328180581996651
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 0.10880943004054569
+      },
+      "melhor": 43,
+      "igual": 21,
+      "pior": 25
+     },
+     "fid12": {
+      "media": 0.030180503126634662,
+      "ic": [
+       0.01894378071113291,
+       0.05189631695790968
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": 0.018943780711132913,
+       "official_diary_ma": 0.033988131336700214,
+       "official_diary_rj": 0.05189631695790967
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 0.10880943004054569
+      },
+      "melhor": 48,
+      "igual": 23,
+      "pior": 18
+     },
+     "sucessor_linhas": {
+      "media": 0.02384016966708758,
+      "ic": [
+       0.015619378831353926,
+       0.029696991470747877
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": 0.029696991470747874,
+       "official_diary_ma": 0.020795723675651967,
+       "official_diary_rj": 0.015619378831353926
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 0.10880943004054569
+      },
+      "melhor": 41,
+      "igual": 21,
+      "pior": 27
+     },
+     "piso_interno": {
+      "media": 1.595505617977528,
+      "ic": [
+       -4.153846153846154,
+       4.973684210526316
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": 4.973684210526316,
+       "official_diary_ma": 0.18421052631578946,
+       "official_diary_rj": -4.153846153846154
+      },
+      "wilcoxon_veiculo": {
+       "W": 2.0,
+       "p": 0.5929800980174267
+      },
+      "melhor": 29,
+      "igual": 50,
+      "pior": 10
+     },
+     "entre_unidades": {
+      "media": -6.303370786516854,
+      "ic": [
+       -8.736842105263158,
+       -3.8421052631578947
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": -8.736842105263158,
+       "official_diary_ma": -3.8421052631578947,
+       "official_diary_rj": -6.384615384615385
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 0.10880943004054569
+      },
+      "melhor": 43,
+      "igual": 17,
+      "pior": 29
+     },
+     "reparos_sucessor": 561,
+     "regressoes_sucessor": 180
+    },
+    "A_hibrido67-A_regra": {
+     "tau": {
+      "media": -0.008220280934791676,
+      "ic": [
+       -0.04771293780265657,
+       0.08292919558293926
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": 8.966028227052876e-05,
+       "official_diary_ma": -0.04771293780265657,
+       "official_diary_rj": 0.08292919558293926
+      },
+      "wilcoxon_veiculo": {
+       "W": 2.0,
+       "p": 0.5929800980174267
+      },
+      "melhor": 34,
+      "igual": 29,
+      "pior": 26
+     },
+     "quebras": {
+      "media": -0.7865168539325843,
+      "ic": [
+       -3.1578947368421053,
+       2.0
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": -3.1578947368421053,
+       "official_diary_ma": 2,
+       "official_diary_rj": -2
+      },
+      "wilcoxon_veiculo": {
+       "W": 1.5,
+       "p": 0.4142161782425252
+      },
+      "melhor": 30,
+      "igual": 32,
+      "pior": 27
+     },
+     "quebras_mil": {
+      "media": -0.6940469781810714,
+      "ic": [
+       -2.9727511596683014,
+       2.244619514987727
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": -2.9727511596683014,
+       "official_diary_ma": 2.2446195149877264,
+       "official_diary_rj": -2.6231675815579623
+      },
+      "wilcoxon_veiculo": {
+       "W": 1.0,
+       "p": 0.28504940740261275
+      },
+      "melhor": 30,
+      "igual": 32,
+      "pior": 27
+     },
+     "fid12": {
+      "media": 0.008236397809634137,
+      "ic": [
+       -0.00591382390820481,
+       0.02050448946756233
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": 0.018189640802392385,
+       "official_diary_ma": -0.00591382390820481,
+       "official_diary_rj": 0.02050448946756233
+      },
+      "wilcoxon_veiculo": {
+       "W": 1.0,
+       "p": 0.28504940740261275
+      },
+      "melhor": 32,
+      "igual": 33,
+      "pior": 24
+     },
+     "sucessor_linhas": {
+      "media": 0.004360916033634713,
+      "ic": [
+       -0.019536040365934555,
+       0.025085213341881824
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": 0.025085213341881817,
+       "official_diary_ma": -0.019536040365934558,
+       "official_diary_rj": 0.01363484260826874
+      },
+      "wilcoxon_veiculo": {
+       "W": 2.0,
+       "p": 0.5929800980174267
+      },
+      "melhor": 29,
+      "igual": 32,
+      "pior": 28
+     },
+     "piso_interno": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": 0,
+       "official_diary_ma": 0,
+       "official_diary_rj": 0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 89,
+      "pior": 0
+     },
+     "entre_unidades": {
+      "media": -0.7865168539325843,
+      "ic": [
+       -3.1578947368421053,
+       2.0
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": -3.1578947368421053,
+       "official_diary_ma": 2,
+       "official_diary_rj": -2
+      },
+      "wilcoxon_veiculo": {
+       "W": 1.5,
+       "p": 0.4142161782425252
+      },
+      "melhor": 30,
+      "igual": 32,
+      "pior": 27
+     },
+     "reparos_sucessor": 197,
+     "regressoes_sucessor": 132
+    },
+    "B_regra-B_regra": {
+     "tau": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": 0.0,
+       "official_diary_ma": 0.0,
+       "official_diary_rj": 0.0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 89,
+      "pior": 0
+     },
+     "quebras": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": 0,
+       "official_diary_ma": 0,
+       "official_diary_rj": 0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 89,
+      "pior": 0
+     },
+     "quebras_mil": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": 0.0,
+       "official_diary_ma": 0.0,
+       "official_diary_rj": 0.0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 89,
+      "pior": 0
+     },
+     "fid12": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": 0.0,
+       "official_diary_ma": 0.0,
+       "official_diary_rj": 0.0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 89,
+      "pior": 0
+     },
+     "sucessor_linhas": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": 0.0,
+       "official_diary_ma": 0.0,
+       "official_diary_rj": 0.0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 89,
+      "pior": 0
+     },
+     "piso_interno": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": 0,
+       "official_diary_ma": 0,
+       "official_diary_rj": 0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 89,
+      "pior": 0
+     },
+     "entre_unidades": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": 0,
+       "official_diary_ma": 0,
+       "official_diary_rj": 0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 89,
+      "pior": 0
+     },
+     "reparos_sucessor": 0,
+     "regressoes_sucessor": 0
+    },
+    "B_hibrido67-B_regra": {
+     "tau": {
+      "media": -0.0004732136045280086,
+      "ic": [
+       -0.0015980661347799303,
+       0.00048281239914982636
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": -0.0015980661347799303,
+       "official_diary_ma": 0.00048281239914982636,
+       "official_diary_rj": 2.027931930393711e-05
+      },
+      "wilcoxon_veiculo": {
+       "W": 3.0,
+       "p": 1.0
+      },
+      "melhor": 16,
+      "igual": 66,
+      "pior": 7
+     },
+     "quebras": {
+      "media": -1.0224719101123596,
+      "ic": [
+       -1.894736842105263,
+       -0.07692307692307693
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": -1.894736842105263,
+       "official_diary_ma": -0.47368421052631576,
+       "official_diary_rj": -0.07692307692307693
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 0.10880943004054569
+      },
+      "melhor": 14,
+      "igual": 72,
+      "pior": 3
+     },
+     "quebras_mil": {
+      "media": -1.3383076117139319,
+      "ic": [
+       -1.8470693695941232,
+       -0.051975051975052027
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": -1.8470693695941234,
+       "official_diary_ma": -1.2696069926917781,
+       "official_diary_rj": -0.051975051975052027
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 0.10880943004054569
+      },
+      "melhor": 14,
+      "igual": 72,
+      "pior": 3
+     },
+     "fid12": {
+      "media": 0.00893144413132726,
+      "ic": [
+       0.0002765765559985021,
+       0.010449745540495744
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": 0.010449745540495744,
+       "official_diary_ma": 0.01037401847161335,
+       "official_diary_rj": 0.0002765765559985021
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 0.10880943004054569
+      },
+      "melhor": 15,
+      "igual": 74,
+      "pior": 0
+     },
+     "sucessor_linhas": {
+      "media": 0.00931283559780273,
+      "ic": [
+       7.785736530675235e-05,
+       0.011314858222094742
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": 0.011314858222094742,
+       "official_diary_ma": 0.010470147631996182,
+       "official_diary_rj": 7.785736530675235e-05
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 0.10880943004054569
+      },
+      "melhor": 14,
+      "igual": 72,
+      "pior": 3
+     },
+     "piso_interno": {
+      "media": 0.0,
+      "ic": [
+       0.0,
+       0.0
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": 0,
+       "official_diary_ma": 0,
+       "official_diary_rj": 0
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 1.0
+      },
+      "melhor": 0,
+      "igual": 89,
+      "pior": 0
+     },
+     "entre_unidades": {
+      "media": -1.0224719101123596,
+      "ic": [
+       -1.894736842105263,
+       -0.07692307692307693
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": -1.894736842105263,
+       "official_diary_ma": -0.47368421052631576,
+       "official_diary_rj": -0.07692307692307693
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 0.10880943004054569
+      },
+      "melhor": 14,
+      "igual": 72,
+      "pior": 3
+     },
+     "reparos_sucessor": 102,
+     "regressoes_sucessor": 11
+    },
+    "B-A_regra": {
+     "tau": {
+      "media": 0.007064444358600985,
+      "ic": [
+       -0.0006167645499020076,
+       0.027892968949607938
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": -0.0006167645499020076,
+       "official_diary_ma": 0.007620105380706864,
+       "official_diary_rj": 0.02789296894960794
+      },
+      "wilcoxon_veiculo": {
+       "W": 1.0,
+       "p": 0.28504940740261275
+      },
+      "melhor": 17,
+      "igual": 33,
+      "pior": 39
+     },
+     "quebras": {
+      "media": 3.9213483146067416,
+      "ic": [
+       0.6052631578947368,
+       8.538461538461538
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": 0.6052631578947368,
+       "official_diary_ma": 5.657894736842105,
+       "official_diary_rj": 8.538461538461538
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 0.10880943004054569
+      },
+      "melhor": 11,
+      "igual": 40,
+      "pior": 38
+     },
+     "quebras_mil": {
+      "media": 5.703528176883782,
+      "ic": [
+       0.5723389240916288,
+       11.518419990038732
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": 0.5723389240916286,
+       "official_diary_ma": 11.518419990038732,
+       "official_diary_rj": 3.7050130004386883
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 0.10880943004054569
+      },
+      "melhor": 11,
+      "igual": 40,
+      "pior": 38
+     },
+     "fid12": {
+      "media": -0.02194410531700052,
+      "ic": [
+       -0.03990195524490503,
+       -0.0007541399087405274
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": -0.0007541399087405274,
+       "official_diary_ma": -0.03990195524490503,
+       "official_diary_rj": -0.03139182749034734
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 0.10880943004054569
+      },
+      "melhor": 9,
+      "igual": 40,
+      "pior": 40
+     },
+     "sucessor_linhas": {
+      "media": -0.019479253633452872,
+      "ic": [
+       -0.04033176404158653,
+       -0.001984536223085185
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": -0.004611778128866056,
+       "official_diary_ma": -0.040331764041586525,
+       "official_diary_rj": -0.001984536223085185
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 0.10880943004054569
+      },
+      "melhor": 13,
+      "igual": 40,
+      "pior": 36
+     },
+     "piso_interno": {
+      "media": -1.595505617977528,
+      "ic": [
+       -4.973684210526316,
+       4.153846153846154
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": -4.973684210526316,
+       "official_diary_ma": -0.18421052631578946,
+       "official_diary_rj": 4.153846153846154
+      },
+      "wilcoxon_veiculo": {
+       "W": 2.0,
+       "p": 0.5929800980174267
+      },
+      "melhor": 10,
+      "igual": 50,
+      "pior": 29
+     },
+     "entre_unidades": {
+      "media": 5.51685393258427,
+      "ic": [
+       4.384615384615385,
+       5.842105263157895
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": 5.578947368421052,
+       "official_diary_ma": 5.842105263157895,
+       "official_diary_rj": 4.384615384615385
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 0.10880943004054569
+      },
+      "melhor": 13,
+      "igual": 39,
+      "pior": 37
+     },
+     "reparos_sucessor": 128,
+     "regressoes_sucessor": 444
+    },
+    "B-A_hibrido67": {
+     "tau": {
+      "media": 0.014811511688864656,
+      "ic": [
+       -0.05501594731402738,
+       0.05581585558251326
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": -0.0023044909669524666,
+       "official_diary_ma": 0.055815855582513264,
+       "official_diary_rj": -0.05501594731402738
+      },
+      "wilcoxon_veiculo": {
+       "W": 3.0,
+       "p": 1.0
+      },
+      "melhor": 29,
+      "igual": 27,
+      "pior": 33
+     },
+     "quebras": {
+      "media": 3.6853932584269664,
+      "ic": [
+       1.868421052631579,
+       10.461538461538462
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": 1.868421052631579,
+       "official_diary_ma": 3.1842105263157894,
+       "official_diary_rj": 10.461538461538462
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 0.10880943004054569
+      },
+      "melhor": 27,
+      "igual": 30,
+      "pior": 32
+     },
+     "quebras_mil": {
+      "media": 5.059267543350923,
+      "ic": [
+       1.6980207141658068,
+       8.004193482359227
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": 1.6980207141658068,
+       "official_diary_ma": 8.004193482359227,
+       "official_diary_rj": 6.276205530021599
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 0.10880943004054569
+      },
+      "melhor": 27,
+      "igual": 30,
+      "pior": 32
+     },
+     "fid12": {
+      "media": -0.0212490589953074,
+      "ic": [
+       -0.05161974040191117,
+       -0.00849403517063717
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": -0.008494035170637168,
+       "official_diary_ma": -0.023614112865086866,
+       "official_diary_rj": -0.05161974040191117
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 0.10880943004054569
+      },
+      "melhor": 23,
+      "igual": 31,
+      "pior": 35
+     },
+     "sucessor_linhas": {
+      "media": -0.014527334069284853,
+      "ic": [
+       -0.01838213324865313,
+       -0.010325576043655783
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": -0.01838213324865313,
+       "official_diary_ma": -0.010325576043655783,
+       "official_diary_rj": -0.015541521466047174
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 0.10880943004054569
+      },
+      "melhor": 29,
+      "igual": 30,
+      "pior": 30
+     },
+     "piso_interno": {
+      "media": -1.595505617977528,
+      "ic": [
+       -4.973684210526316,
+       4.153846153846154
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": -4.973684210526316,
+       "official_diary_ma": -0.18421052631578946,
+       "official_diary_rj": 4.153846153846154
+      },
+      "wilcoxon_veiculo": {
+       "W": 2.0,
+       "p": 0.5929800980174267
+      },
+      "melhor": 10,
+      "igual": 50,
+      "pior": 29
+     },
+     "entre_unidades": {
+      "media": 5.280898876404494,
+      "ic": [
+       3.3684210526315788,
+       6.842105263157895
+      ],
+      "n": 89,
+      "por_veiculo": {
+       "official_diary_ce": 6.842105263157895,
+       "official_diary_ma": 3.3684210526315788,
+       "official_diary_rj": 6.3076923076923075
+      },
+      "wilcoxon_veiculo": {
+       "W": 0.0,
+       "p": 0.10880943004054569
+      },
+      "melhor": 32,
+      "igual": 26,
+      "pior": 31
+     },
+     "reparos_sucessor": 181,
+     "regressoes_sucessor": 471
+    }
+   },
+   "cobertura": {
+    "A": {
+     "antes_fallback": {
+      "n": 95311,
+      "cobertas": 95107,
+      "duplicadas": 0,
+      "orfas": 204,
+      "geometricamente_multiplas": 185,
+      "cobertas_pct": 99.7859638446769,
+      "duplicadas_pct": 0.0,
+      "orfas_pct": 0.21403615532310016,
+      "paginas_com_orfas": 22
+     },
+     "final": {
+      "n": 95311,
+      "cobertas": 95311,
+      "duplicadas": 0,
+      "orfas": 0,
+      "geometricamente_multiplas": 185,
+      "cobertas_pct": 100.0,
+      "duplicadas_pct": 0.0,
+      "orfas_pct": 0.0,
+      "paginas_com_orfas": 0
+     }
+    },
+    "B": {
+     "antes_fallback": {
+      "n": 95311,
+      "cobertas": 95311,
+      "duplicadas": 0,
+      "orfas": 0,
+      "geometricamente_multiplas": 2,
+      "cobertas_pct": 100.0,
+      "duplicadas_pct": 0.0,
+      "orfas_pct": 0.0,
+      "paginas_com_orfas": 0
+     },
+     "final": {
+      "n": 95311,
+      "cobertas": 95311,
+      "duplicadas": 0,
+      "orfas": 0,
+      "geometricamente_multiplas": 2,
+      "cobertas_pct": 100.0,
+      "duplicadas_pct": 0.0,
+      "orfas_pct": 0.0,
+      "paginas_com_orfas": 0
+     }
+    }
+   }
+  }
+ },
+ "veredito": "CRITÉRIO NÃO ATINGIDO",
+ "criterios": {
+  "golden_v4/regra": false,
+  "golden_v4/hibrido67": false,
+  "golden_v4/cobertura": true,
+  "golden_v3_novo/regra": false,
+  "golden_v3_novo/hibrido67": false,
+  "golden_v3_novo/cobertura": true
+ },
+ "historico": {
+  "golden_v4": {
+   "P1": {
+    "piso_antigo": 70,
+    "piso_atual": 70,
+    "quebras": 716
+   },
+   "P1m": {
+    "piso_antigo": 70,
+    "piso_atual": 70,
+    "quebras": 393
+   },
+   "P2": {
+    "piso_antigo": 23,
+    "piso_atual": 24,
+    "quebras": 266
+   }
+  },
+  "golden_v3_novo": {
+   "P1": {
+    "piso_antigo": 143,
+    "piso_atual": 143,
+    "quebras": 430
+   },
+   "P1m": {
+    "piso_antigo": 143,
+    "piso_atual": 143,
+    "quebras": 308
+   },
+   "P2": {
+    "piso_antigo": 6,
+    "piso_atual": 7,
+    "quebras": 249
+   }
+  }
+ },
+ "historico_somas": {
+  "P1": {
+   "piso_antigo": 213,
+   "piso_atual": 213
+  },
+  "P1m": {
+   "piso_antigo": 213,
+   "piso_atual": 213
+  },
+  "P2": {
+   "piso_antigo": 29,
+   "piso_atual": 31
+  }
+ },
+ "historico_213_29_reproduzido": true,
+ "manifesto": {
+  "versao": "e009-v1-palavras-fixas",
+  "data_utc": "2026-11-03T06:26:13.670353+00:00",
+  "comando": "venv/Scripts/python.exe -B orquestracao/analises/e009_representacao.py --conferir",
+  "script_sha256": "46054c4656090f93d3598ef2187291c98695bd36eb4d5cbbe74f46ffa74771e9",
+  "dependencias": {
+   "orquestracao/analises/bancada_ordenadores.py": "42ab35c43393384e73951f8c9969c062e093621ace0e1d3346ebbb77f4e31831",
+   "orquestracao/analises/erros_ponta_a_ponta.py": "870c83bdd4bc034eff3982b552ff907ef665cf0aecd0c5adc3c253bd16f38b88",
+   "orquestracao/analises/ordem_sem_bbox.py": "f6d4589ec7752272c3635e3eafbe91b640fd93339cd075fc1a5f2c70aeb8715f",
+   "orquestracao/analises/ordem_sem_bbox_justo.py": "58aca7c6ee1e3bccdcbcd915a62b9fb71bc0814e5e5b8e8d48825d2cf8119736",
+   "orquestracao/analises/ordem_sem_bbox_ls3.py": "3698cd220abba6815a4498f43469a3e578f5c2ec172025b051e8a86b140aaaa5",
+   "orquestracao/analises/ordem_sem_bbox_validacao_acervo.py": "bf0aca24402c2083fac360834e11855168fcb5378bf6b21abb4055fc3a76effe",
+   "src/ri/piloto_japeri.py": "69bf69e12132ef8dff00ef56aea4546a32eed63ddbb9064da5bad603414309c9",
+   "src/data/regioes.py": "d1af2d7bb5d663c2dfeacf46f10a01180fce17487f3e9fd06ab8c8138b5ed8ae",
+   "src/data/extrator.py": "c4d86890b89c13d154475129e9e2ce1bf073b84680317e04b9550e79748daa35",
+   "src/eval/metrics.py": "9a84261a7ceaf65e2263c5754fee09f9a54dd1019752271332943064922fe3d7",
+   "src/eval/baselines.py": "634d6441b9f6850eae5f477199dd7b8c47d6814822478505abf2b9597f8bdaff",
+   "src/eval/politica_margens.py": "45c3796236d98ee350b82f30b192a0b614bb164fb56dacdc2cb2700900509b33",
+   "src/eval/protocolo.py": "4fadd8fc523408dfc1aebac7e6f3faf85d8c3eb1e63acc9d1be6f8ee49625ba0",
+   "orquestracao/analises/ordem_layoutreader.py": "ab0da59d9e9ce35a0608784c2ea14333912efd5df1942ec515b54034e3b6789a",
+   "resultados/erros_ponta_a_ponta.json": "15e329b002131afee7eed284ddaad9c11d672c9663c968a49b3b71f19a151098",
+   "models/terceiros/layoutreader/model.safetensors": "9df7c046b212c1892a649cbf98f2a521bbb32741e8cbc06f10ffd4247b53c451",
+   "models/terceiros/layoutreader/config.json": "b77e78d8333ee47d5c618eb08ca2070c22347cab5d753b1461e366cda9f42698"
+  },
+  "lacre_sha256": "6acd0058def9618d3e3566b698f5925295c88941524b14c4b216981804c2fae9",
+  "paginas_cegas_bloqueadas": 90,
+  "device": "cpu",
+  "threads": 4,
+  "num_workers": 0,
+  "processos_pesados": 1,
+  "inferencia_detector_cpu": 0,
+  "inferencia_detector_gpu": 0,
+  "parametros_ajustados": 0,
+  "limiar_hibrido": 67,
+  "auditoria_fontes": {
+   "hashes_palavras_e_unidades_conferidos": {
+    "data/diamond/diamond_piloto/tarefas.jsonl": "de4f8827bc0a66375b1aeda28186de77f88cce7a65695323512625e9e3800916",
+    "data/diamond/diamond_treino/tarefas.jsonl": "a5e1ea69b1924a815fecfd6629d94a6e82690176fe97348ce36c8b241436aed1",
+    "resultados/ordem_sem_bbox_cache/palavras/e052f3155014fb29851dda94.json": "17a7ae509b6871a58507b12293fef14a66bdab53b2d4eebe339a4fcd722d9ee3",
+    "resultados/ordem_sem_bbox_cache/palavras/00e1f64ea5cffa09bf663320.json": "7db341408cfdea8076a51987b24de2ab4eec20b165e7a059d0b5ce3a2f08fbdc",
+    "resultados/ordem_sem_bbox_cache/palavras/9e6a0d05edbce5bc1be2cc09.json": "f8aad27b112f79c5c5943c72f96561eb4cdefc2946d4eb3d8fb6ef53a796f285",
+    "resultados/ordem_sem_bbox_cache/palavras/83a24e200b07f8f02978a90d.json": "a1e807ee54884d987f3f8b971655c8aa145e6ad565e693aeef8fe0074ba955b0",
+    "resultados/ordem_sem_bbox_cache/palavras/d0155d66e9a53f1fb615264f.json": "f3291ea4ef455dacf1ac0e3b54541ddc9707ac45b12b777030929d37c4962967",
+    "resultados/ordem_sem_bbox_cache/palavras/06676fc3f2070dd27d8a9304.json": "1c7ea20d949998c2e9a8158f420d2a0ab4f61382094acf3826ae5aba7f893849",
+    "resultados/ordem_sem_bbox_cache/palavras/92e5734a6ba8aa91b6c81346.json": "600916c6b4db02e3c3412a620dbeac374ae2289c9c2a92157bdfa4ba054d15c7",
+    "resultados/ordem_sem_bbox_cache/palavras/280a63b0901a22caec62c2e1.json": "fe471df337f5f3d22b4062026a1d0ab5627318a3657b9e69a37cf628cfef216e",
+    "resultados/ordem_sem_bbox_cache/palavras/c91032b5ded3ab401006a804.json": "82157efbeb4ca919bd553e2abc9a5f8a2990b20425c398b0e559304e3ac3e190",
+    "resultados/ordem_sem_bbox_cache/palavras/042a7a5036c278648496447f.json": "ae112967dc3bab4a01723b29da9f35bbee656ab3dcf997b8918b688213993beb",
+    "resultados/ordem_sem_bbox_cache/palavras/843152277b3f5b24ba7e382c.json": "7eaf59d60df066c1d4adf85ea0ca43670c0510d0cc7e10a02e7a3c4dcd66a023",
+    "resultados/ordem_sem_bbox_cache/palavras/2bd8e2f03e0a2a8f37afe58d.json": "37d9c278ed839066d5fa9c7f65de418d879e088e3054f70111754fc79647e987",
+    "resultados/ordem_sem_bbox_cache/palavras/a20ba89547f94c0c374c94cd.json": "da1eb315aa1b515ad22f81537da8488e972153b58c99e96ebdde4e3ee94ee21f",
+    "resultados/ordem_sem_bbox_cache/palavras/9569f1d671a81de55f966279.json": "7ad110182113b7d3e2608cff2e44bd55f7ee4050d1d7f661ca1c79ec69b324ea",
+    "resultados/ordem_sem_bbox_cache/palavras/b12a992bb12be9cb53a3f211.json": "392269ddd99bea8e62407428ac80ad5cae96cd0d0d2198d9d1c71200f04d60b1",
+    "resultados/ordem_sem_bbox_cache/palavras/0f67b25f69071cb273edaa30.json": "a258bffe85312ce048a7cd1adb5c61599a9c350a2f6853bf1a6ca72a804ffcdc",
+    "resultados/ordem_sem_bbox_cache/palavras/e07ec9123744da9f75622bc6.json": "3e19616056add27e57bd6824550a693ef9acc15a60e391d95a3cbacec690b81b",
+    "resultados/ordem_sem_bbox_cache/palavras/45217f775da443d68b57e643.json": "e3fee9aefab96676dd905e24769004893b10c2a06d3be2a251cdb6ac172956fa",
+    "resultados/ordem_sem_bbox_cache/palavras/56cef1c8ec847c46c4363b21.json": "a3df73ccc09094f349c6127363b9d57b96d9935b52327238c98fdc0054cf0ef7",
+    "resultados/ordem_sem_bbox_cache/palavras/5cd18aa43e2f4e16f22b02c6.json": "904ff8852f50d13b2d8dab281da60e8a547a0a9ced817dda4993a473697132b1",
+    "resultados/ordem_sem_bbox_cache/palavras/1c4ab1c4718354e7d16492ac.json": "e49c0c88c3e94de72ab3d2807fd5e456254dccb6f297b037ec2a04767e5ade34",
+    "resultados/ordem_sem_bbox_cache/palavras/b840b287f4c79d968e606647.json": "f0411b05f82604e5e0e7dcc6d6ba664efeb6f373f4c1652f8916f417e7a1fc17",
+    "resultados/ordem_sem_bbox_cache/palavras/d05a585bd095c5670cdedf4b.json": "c31276c7f3344e17b8b4849609bb2186bdd5c0cc8338af530bca1791c8a003e7",
+    "resultados/ordem_sem_bbox_cache/palavras/9d83c1aca14f39eef96c9fed.json": "cd9e34618cdcf2ec22243336faf5968f1913857975a7fdbd0cb6a09e1eb87ba3",
+    "resultados/ordem_sem_bbox_cache/palavras/8816e53cb77f2b29f376592e.json": "779dd0bc17416ee441f1247d47b760280806208d9af6108abf76e6a42ac74ab7",
+    "resultados/ordem_sem_bbox_cache/palavras/e8693eab591bf300a756723e.json": "c9c64e07decf15974a5d83e7525b6785dda3b6664655db71d32421b1f4db78c6",
+    "resultados/ordem_sem_bbox_cache/palavras/95bb2775e6f43d4c135694cf.json": "e7237d864c85e4062e448e780231020ba9f8681a4b95e8263601038d65b1c505",
+    "src/data/extrator.py": "c4d86890b89c13d154475129e9e2ce1bf073b84680317e04b9550e79748daa35",
+    "src/data/regioes.py": "d1af2d7bb5d663c2dfeacf46f10a01180fce17487f3e9fd06ab8c8138b5ed8ae",
+    "src/data/layout.py": "fde1a018fd1168dbaaf9e4a1c6a103cdd2e5cc30a188d933e2edd858c0312fd5",
+    "resultados/unidades_sem_caixas/bancadas/golden_v4.jsonl": "683c64e71e63a753587912bc31ffa0973e4b3e7d24fadc08b05f4ce8ef49ea51",
+    "resultados/unidades_sem_caixas/bancadas/golden_v3_novo.jsonl": "3cbf0331eb778740b7f61f5f38d6bd07e1c0874038932a209f19f6875295f6e0",
+    "resultados/unidades_sem_caixas/linhas/official_diary_ce.jsonl": "477b3c12293cddbb20e17513b31701709da0e91e863812aff56c1737c7f42859",
+    "resultados/unidades_sem_caixas/linhas/official_diary_ce.palavras.jsonl": "de6fa3024e002037963e0b29ecf129d5fdcb9a5609166ab2a412858b53a5fd6d",
+    "resultados/unidades_sem_caixas/linhas/official_diary_ma.jsonl": "c78a6b80a0cd1a0c225be2ab4b2a15884d9862b7b88bd8cd0c2725cbcb11ce5a",
+    "resultados/unidades_sem_caixas/linhas/official_diary_ma.palavras.jsonl": "26de37adc54ffac324b2d7900cfc03db77043427acb924a4a5a7cc7db4d68646",
+    "resultados/unidades_sem_caixas/linhas/official_diary_rj.jsonl": "957233a90e562987f3bd2a4d319bd1e262676350dc080a37991f171b4239c711",
+    "resultados/unidades_sem_caixas/linhas/official_diary_rj.palavras.jsonl": "ff40a2671c98d935c93d106efc659670ed68b9c8a53ab266218adb7e1034b7f6",
+    "models/terceiros/layoutreader/model.safetensors": "9df7c046b212c1892a649cbf98f2a521bbb32741e8cbc06f10ffd4247b53c451",
+    "models/terceiros/layoutreader/config.json": "b77e78d8333ee47d5c618eb08ca2070c22347cab5d753b1461e366cda9f42698",
+    "orquestracao/analises/ordem_layoutreader.py": "ab0da59d9e9ce35a0608784c2ea14333912efd5df1942ec515b54034e3b6789a",
+    "orquestracao/analises/bancada_ordenadores.py": "42ab35c43393384e73951f8c9969c062e093621ace0e1d3346ebbb77f4e31831"
+   },
+   "palavras_identicas_por_id": true,
+   "receita_caixas_outubro_identica": true,
+   "layoutreader_B_mesmos_shards_pesos_adaptador": true
+  },
+  "deteccoes_silver_sha256": "bcac761bffdac9fc5f256ffc4b762723e6886be6a3bdc186a876140940ceb4ef",
+  "predicoes_layoutreader_B_sha256": "5a523985da09458d41cbc5b3a1c68736617c9e6e364109eed829efa993a5ae6b"
+ },
+ "layoutreader": {
+  "carga_ms": 1355.6155000042054,
+  "threads": 4,
+  "parametros": 356583422,
+  "pesos_bytes": 713217212,
+  "arquivos_bytes": 713241660,
+  "torch": "2.9.1+cu128",
+  "transformers": "5.16.1",
+  "dispositivo": "cpu",
+  "dtype": "torch.float32",
+  "carregamento_assincrono": false,
+  "disable_mmap": true
+ }
+}

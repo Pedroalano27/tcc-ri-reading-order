@@ -1,0 +1,59 @@
+{
+  "semente": 20261104,
+  "embaralhar_no_anotador": false,
+  "intervalo_minimo_dias": 7,
+  "blocos": [
+    {
+      "bloco": 1,
+      "sequencia": "A→B",
+      "sessao_1": "A",
+      "sessao_2": "B",
+      "ordem_apresentacao": [
+        "official_diary_rn/DOE-RN_2025-04-17_Ordinaria.pdf#p65",
+        "official_diary_rj/Parte IB - (Tribunal de Contas)_2025-10-06.pdf#p8",
+        "official_diary_sc/2023-11-20_22146.pdf#p4",
+        "official_diary_ma/executive_official_diary_2021-09-24.pdf#p34",
+        "official_diary_sc/2024-06-10_22282.pdf#p14",
+        "official_diary_rn/DOE-RN_2025-11-18_Ordinaria.pdf#p66",
+        "official_diary_sc/2020-11-11_21392.pdf#p50",
+        "official_diary_rn/DOE-RN_2026-01-14_Ordinaria.pdf#p7",
+        "official_diary_pr/executive_official_diary_2021-08-20.pdf#p23",
+        "official_diary_sc/2023-11-20_22146.pdf#p2",
+        "official_diary_ce/do20211109p03.pdf#p14",
+        "official_diary_pr/executive_official_diary_2024-05-03.pdf#p137",
+        "official_diary_pr/executive_official_diary_2022-10-25.pdf#p65",
+        "official_diary_ma/executive_official_diary_2023-11-20.pdf#p41",
+        "official_diary_rj/Parte IV (Municipalidades)_2022-05-17.pdf#p1",
+        "official_diary_sc/2022-10-03_21869.pdf#p24",
+        "official_diary_ce/do20240801p01.pdf#p8",
+        "official_diary_rn/DOE-RN_2025-02-21_Ordinaria.pdf#p38"
+      ]
+    },
+    {
+      "bloco": 2,
+      "sequencia": "B→A",
+      "sessao_1": "B",
+      "sessao_2": "A",
+      "ordem_apresentacao": [
+        "official_diary_sc/2020-05-27_21277.pdf#p8",
+        "official_diary_ce/do20260113p01.pdf#p18",
+        "official_diary_sc/2022-10-03_21869.pdf#p28",
+        "official_diary_rn/DOE-RN_2024-10-15_Ordinaria.pdf#p1",
+        "official_diary_ma/executive_official_diary_2021-12-07.pdf#p39",
+        "official_diary_sc/2022-12-12_21915.pdf#p21",
+        "official_diary_sc/2020-09-22_21358.pdf#p25",
+        "official_diary_sc/2020-11-11_21392.pdf#p11",
+        "official_diary_ma/executive_official_diary_2021-12-07.pdf#p16",
+        "official_diary_pr/executive_official_diary_2023-07-18.pdf#p92",
+        "official_diary_ma/executive_official_diary_2021-09-24.pdf#p26",
+        "official_diary_rj/Parte IV (Municipalidades)_2022-11-18.pdf#p1",
+        "official_diary_rr/2021-11-24_DiarioRR.pdf#p53",
+        "official_diary_sc/2020-05-27_21277.pdf#p4",
+        "official_diary_pr/executive_official_diary_2024-07-01.pdf#p21",
+        "official_diary_rn/DOE-RN_2026-01-14_Ordinaria.pdf#p41",
+        "official_diary_rn/DOE-RN_2025-02-21_Ordinaria.pdf#p5",
+        "official_diary_pr/executive_official_diary_2025-09-19.pdf#p174"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "config": {
+    "modelo": "Qwen/Qwen3-0.6B",
+    "revisao": "c1899de289a04d12100db370d81485cdf75e47ca",
+    "nsp": null,
+    "dtype": "float32",
+    "lote": 4,
+    "max_tokens": 512,
+    "threads": 4,
+    "dispositivo": "cpu",
+    "versao": "causal-continuacao-v2-bos",
+    "script_sha256": "3eb037f2ddbd2ef91bb25689286901a3e2c72a532a1eea031053f9217f79ccdb"
+  },
+  "revisao_resolvida": "c1899de289a04d12100db370d81485cdf75e47ca",
+  "avisos": [],
+  "nsp_ativo": false,
+  "segundos_carga": 51.264740300000994,
+  "memoria_carga": {
+    "rss_mb": 3300.8359375,
+    "pico_rss_mb": 4193.97265625
+  },
+  "torch": "2.9.1+cu128",
+  "parametros": 596049920,
+  "gpu": null,
+  "tokenizacao": {
+    "contexto_vazio": "somente_bos",
+    "bos_token_id": 151643,
+    "bos_origem": "config_modelo",
+    "eos_token_id": 151645,
+    "continuacao": "espaco_prefixado_sem_tokens_especiais; FIM=EOS"
+  }
+}

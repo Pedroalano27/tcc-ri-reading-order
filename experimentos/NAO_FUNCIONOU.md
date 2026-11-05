@@ -34,6 +34,15 @@ golden_v4 | golden_v3_novo | teste silver (CE/MA/RJ). Regra de colunas = 0,986/6
 | Margens por repetição entre páginas do mesmo PDF | v4 6,05 → 4,89; v3 +1,0 (piora) | Sobreajuste ao golden_v4; o veto de corpo erra fora do ajuste | `resultados/margens_por_repeticao.md` |
 | Regra + LayoutLM textual seletivo | +0,86 \| +1,37 \| +2,01 quebras (piora) | O modelo confia nos mesmos erros da regra ou erra onde ela acerta | `resultados/regra_mais_modelo_seletivo.md` |
 
+## Fase 3 — novembro de 2026 (registro em `experimentos/registro.jsonl`)
+
+| Tentativa | Resultado | Por que não funcionou / aprendizado | Fonte |
+|---|---|---|---|
+| LM causal só com o termo condicional log P(t_j \| t_i) nas arestas (Qwen3-8B, 12 configurações) — E003, ablação | Piorou: Δ médio de +12,2 a +95,9 quebras/página no ajuste v4/RN; seleção ficou com a regra | Hipótese (não medida): sem normalizar pela probabilidade marginal, o escore premia destinos fáceis de prever, não os corretos; por isso o escore contrastivo (− log P(t_j)) é o teste real de H3 | `resultados/ordem_lm_arestas.md` |
+| Seletor aprendido por página (árvore rasa, logística, LightGBM) entre regra, LayoutReader e grafo — E005 | Nenhum supera o híbrido 67 com IC95 < 0 (melhor: logística −2,29 [−4,96; +1,64]) | 160 páginas e 27 veículos são pouco para aprender o roteamento; a regra de densidade (1 feature) generaliza melhor | `resultados/e005_seletor/RELATORIO.md` |
+| Grafo de arestas LightGBM (E004) e costura das cadeias pela regra (E014, E015) | Menos quebras que o híbrido nas externas (silver −2,28, IC<0), mas τ cai 0,018 no golden_v3_novo; NÃO GO nos três cartões | Acerta as ligações locais e erra a ordem global nas páginas densas; ordenar cadeias pela regra não recupera o τ fora do golden_v4 | `resultados/e015_mediana/RELATORIO.md` |
+| Correção residual local guiada pelo modelo de arestas, a partir do híbrido 67 (E006) | Menos quebras que o híbrido e a reordenação nas externas, mas τ cai 0,020 no golden_v3_novo e as regressões passam de 1/3 dos reparos; NÃO GO | O modelo de arestas propõe trocas que desfazem sucessões certas; o ganho local não é confiável o bastante | `resultados/e006_residual/RELATORIO.md` |
+
 ## Em aberto (não é fracasso ainda)
 
 | Tentativa | Estado |

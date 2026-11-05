@@ -1,0 +1,92 @@
+{
+ "golden_v4/regra_colunas": {
+  "tau": 0.9859481733498362,
+  "quebras": 6.045454545454546,
+  "sucessor": 0.9272403501010136
+ },
+ "golden_v4/hibrido67": {
+  "tau": 0.9797375818109462,
+  "quebras": 5.136363636363637,
+  "sucessor": 0.9661428806892427
+ },
+ "golden_v4/oraculo_decodificador_matching_K32": {
+  "tau": 0.9167916805215888,
+  "quebras": 1.0454545454545454,
+  "sucessor": 0.994558747045437
+ },
+ "golden_v4/oraculo_residual": {
+  "tau": 0.9896837120785485,
+  "quebras": 1.9090909090909092,
+  "sucessor": 0.9862994051138265
+ },
+ "golden_v4/oraculo_roteamento": {
+  "tau": 0.9935077136387658,
+  "quebras": 3.590909090909091,
+  "sucessor": 0.9778420152604645
+ },
+ "validacao_silver/regra_colunas": {
+  "tau": 0.957217501323891,
+  "quebras": 16.666666666666668,
+  "sucessor": 0.9108589612898997
+ },
+ "validacao_silver/oraculo_decodificador_matching_K32": {
+  "tau": 0.9639313807419644,
+  "quebras": 6.333333333333333,
+  "sucessor": 0.9723719922044024
+ },
+ "validacao_silver/oraculo_residual": {
+  "tau": 0.9691519311086151,
+  "quebras": 6.333333333333333,
+  "sucessor": 0.9687995577324505
+ },
+ "golden_v3_novo/regra_colunas": {
+  "tau": 0.9595574053404858,
+  "quebras": 9.222222222222221,
+  "sucessor": 0.9113013479721646
+ },
+ "golden_v3_novo/hibrido67": {
+  "tau": 0.9589772112634248,
+  "quebras": 7.888888888888889,
+  "sucessor": 0.9384097661491402
+ },
+ "golden_v3_novo/oraculo_decodificador_matching_K32": {
+  "tau": 0.9426104464459321,
+  "quebras": 1.2592592592592593,
+  "sucessor": 0.9922878417577793
+ },
+ "golden_v3_novo/oraculo_residual": {
+  "tau": 0.9621316493149059,
+  "quebras": 2.2222222222222223,
+  "sucessor": 0.977345170693898
+ },
+ "golden_v3_novo/oraculo_roteamento": {
+  "tau": 0.9749147455902092,
+  "quebras": 6.0,
+  "sucessor": 0.9517814303322373
+ },
+ "teste_silver/regra_colunas": {
+  "tau": 0.9595653453976628,
+  "quebras": 27.44943820224719,
+  "sucessor": 0.8402116805771741
+ },
+ "teste_silver/hibrido67": {
+  "tau": 0.9590921317931348,
+  "quebras": 26.426966292134832,
+  "sucessor": 0.8495245161749768
+ },
+ "teste_silver/oraculo_decodificador_matching_K32": {
+  "tau": 0.9397006198493916,
+  "quebras": 19.786516853932586,
+  "sucessor": 0.887170010464895
+ },
+ "teste_silver/oraculo_residual": {
+  "tau": 0.9604877284257397,
+  "quebras": 19.96629213483146,
+  "sucessor": 0.8873623976631787
+ },
+ "teste_silver/oraculo_roteamento": {
+  "tau": 0.9665338575040946,
+  "quebras": 21.224719101123597,
+  "sucessor": 0.8773062130951474
+ }
+}

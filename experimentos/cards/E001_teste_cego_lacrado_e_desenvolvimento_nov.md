@@ -32,11 +32,21 @@ Lista congelada em experimentos/TESTE_CEGO.lock (page_id, sha256 do PDF, semente
 
 ## Execuções
 
-<!-- Preenchido por `src/exp/registro.py registrar`; resumo humano aqui. -->
+- 02/11 19:25, local, `orquestracao/analises/e001_montar_teste_cego.py` (Codex, 64 min) →
+  `resultados/e001_teste_cego/RELATORIO.md`. **135 tarefas**: teste cego 90 (CE 30 páginas/15 PDFs,
+  MA 30/15, RJ 30/16; semente 20261102) e desenvolvimento 45 (9 veículos; semente 20261103).
+  Sobreposição com PDFs já tocados (1.085 PDFs referenciados no repositório): **0** por caminho e
+  por sha256; teste × desenvolvimento: 0. Âncora reproduzida. Lacre: `experimentos/TESTE_CEGO.lock`.
+- Copiado (sem sobrescrever) para `data/diamond/e001_teste_cego` e `data/diamond/e001_desenvolvimento`
+  para anotação na ferramenta Diamond.
+- **Limitação registrada:** o estrato do CE saiu quase todo de 1 coluna (29 de 30 páginas), porque
+  é o que o acervo do CE tem; BA e PA no desenvolvimento só têm 2 páginas cada (acervo esgotado).
 
 ## Conclusão e aprendizado
 
-<!-- O que mudou no nosso entendimento. Se não funcionou, copiar para NAO_FUNCIONOU.md. -->
+O acervo dos veículos de desenvolvimento antigos está quase esgotado (ex.: PA 166 de 167 PDFs já
+tocados): novos dados de desenvolvimento terão de vir de veículos ainda pouco usados (PR, RR, SC, RN).
+Regra a partir daqui: nenhum agente abre `data/diamond/e001_teste_cego`; avaliação confirmatória única.
 
 ## Para o texto do TCC
 

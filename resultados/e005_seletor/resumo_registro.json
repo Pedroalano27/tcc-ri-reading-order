@@ -1,0 +1,402 @@
+{
+ "golden_v4/regra": {
+  "tau": 0.9859481733498361,
+  "quebras": 6.045454545454546,
+  "sucessor": 0.9272403501010137
+ },
+ "golden_v4/layoutreader_pronto": {
+  "tau": 0.9130707332871878,
+  "quebras": 18.386363636363637,
+  "sucessor": 0.927182405157255
+ },
+ "golden_v4/grafo_e004": {
+  "tau": 0.9379613365386672,
+  "quebras": 3.6136363636363638,
+  "sucessor": 0.9552692354255556
+ },
+ "golden_v4/hibrido67": {
+  "tau": 0.9797375818109462,
+  "quebras": 5.136363636363637,
+  "sucessor": 0.9661428806892427
+ },
+ "golden_v4/arvore_rasa": {
+  "tau": 0.9743838815733261,
+  "quebras": 5.5227272727272725,
+  "sucessor": 0.9412207202178456
+ },
+ "golden_v4/logistica": {
+  "tau": 0.9770087048776782,
+  "quebras": 5.9772727272727275,
+  "sucessor": 0.9582069337912015
+ },
+ "golden_v4/lightgbm": {
+  "tau": 0.9644673105109095,
+  "quebras": 6.136363636363637,
+  "sucessor": 0.9534503040195536
+ },
+ "golden_v4/oraculo_roteamento": {
+  "tau": 0.9522559040790614,
+  "quebras": 2.659090909090909,
+  "sucessor": 0.9820172994953943
+ },
+ "validacao_silver/regra": {
+  "tau": 0.957217501323891,
+  "quebras": 16.666666666666668,
+  "sucessor": 0.9108589612898996
+ },
+ "validacao_silver/layoutreader_pronto": {
+  "tau": null,
+  "quebras": null,
+  "sucessor": null
+ },
+ "validacao_silver/grafo_e004": {
+  "tau": 0.6866662318495421,
+  "quebras": 9.466666666666667,
+  "sucessor": 0.947916198745523
+ },
+ "validacao_silver/hibrido67": {
+  "tau": null,
+  "quebras": null,
+  "sucessor": null
+ },
+ "validacao_silver/arvore_rasa": {
+  "tau": null,
+  "quebras": null,
+  "sucessor": null
+ },
+ "validacao_silver/logistica": {
+  "tau": null,
+  "quebras": null,
+  "sucessor": null
+ },
+ "validacao_silver/lightgbm": {
+  "tau": null,
+  "quebras": null,
+  "sucessor": null
+ },
+ "validacao_silver/oraculo_roteamento": {
+  "tau": null,
+  "quebras": null,
+  "sucessor": null
+ },
+ "golden_v3_novo/regra": {
+  "tau": 0.9595574053404858,
+  "quebras": 9.222222222222221,
+  "sucessor": 0.9113013479721647
+ },
+ "golden_v3_novo/layoutreader_pronto": {
+  "tau": 0.9508753212679473,
+  "quebras": 16.22222222222222,
+  "sucessor": 0.9083365353838789
+ },
+ "golden_v3_novo/grafo_e004": {
+  "tau": 0.9417371609420607,
+  "quebras": 6.518518518518518,
+  "sucessor": 0.9352753001481041
+ },
+ "golden_v3_novo/hibrido67": {
+  "tau": 0.9589772112634246,
+  "quebras": 7.888888888888889,
+  "sucessor": 0.9384097661491403
+ },
+ "golden_v3_novo/arvore_rasa": {
+  "tau": 0.9507783797675038,
+  "quebras": 14.518518518518519,
+  "sucessor": 0.9196632806752811
+ },
+ "golden_v3_novo/logistica": {
+  "tau": 0.9320953114113164,
+  "quebras": 7.666666666666667,
+  "sucessor": 0.9336111769812138
+ },
+ "golden_v3_novo/lightgbm": {
+  "tau": 0.9427440315856959,
+  "quebras": 14.703703703703704,
+  "sucessor": 0.9176628973088593
+ },
+ "golden_v3_novo/oraculo_roteamento": {
+  "tau": 0.9509406378062655,
+  "quebras": 5.7407407407407405,
+  "sucessor": 0.9525680158358437
+ },
+ "teste_silver/regra": {
+  "tau": 0.9595653453976628,
+  "quebras": 27.44943820224719,
+  "sucessor": 0.8402116805771741
+ },
+ "teste_silver/layoutreader_pronto": {
+  "tau": 0.9418497808492855,
+  "quebras": 31.247191011235955,
+  "sucessor": 0.8412855707786484
+ },
+ "teste_silver/grafo_e004": {
+  "tau": 0.9426127893997411,
+  "quebras": 24.146067415730336,
+  "sucessor": 0.8544504449309128
+ },
+ "teste_silver/hibrido67": {
+  "tau": 0.9590921317931348,
+  "quebras": 26.426966292134832,
+  "sucessor": 0.8495245161749768
+ },
+ "teste_silver/arvore_rasa": {
+  "tau": 0.9533527065356102,
+  "quebras": 31.02247191011236,
+  "sucessor": 0.842186769231672
+ },
+ "teste_silver/logistica": {
+  "tau": 0.9411050869200609,
+  "quebras": 21.96629213483146,
+  "sucessor": 0.8659960984022661
+ },
+ "teste_silver/lightgbm": {
+  "tau": 0.948051854042156,
+  "quebras": 32.95505617977528,
+  "sucessor": 0.8359578023893316
+ },
+ "teste_silver/oraculo_roteamento": {
+  "tau": 0.9656235968906893,
+  "quebras": 20.56179775280899,
+  "sucessor": 0.878923939554241
+ },
+ "conjunto/regra": {
+  "tau": 0.9668192831998619,
+  "quebras": 18.4875,
+  "sucessor": 0.8761409460691346
+ },
+ "conjunto/layoutreader_pronto": {
+  "tau": 0.9354586027153577,
+  "quebras": 25.175,
+  "sucessor": 0.8762220505098979
+ },
+ "conjunto/grafo_e004": {
+  "tau": 0.9411858775607123,
+  "quebras": 15.525,
+  "sucessor": 0.8958148066348406
+ },
+ "conjunto/hibrido67": {
+  "tau": 0.9647502377086443,
+  "quebras": 17.44375,
+  "sucessor": 0.8965939523495401
+ },
+ "conjunto/arvore_rasa": {
+  "tau": 0.9587018620288641,
+  "quebras": 21.225,
+  "sucessor": 0.8824952670589788
+ },
+ "conjunto/logistica": {
+  "tau": 0.9494581822413051,
+  "quebras": 15.15625,
+  "sucessor": 0.9027641226444207
+ },
+ "conjunto/lightgbm": {
+  "tau": 0.9516704095315356,
+  "quebras": 22.5,
+  "sucessor": 0.882055975105313
+ },
+ "conjunto/oraculo_roteamento": {
+  "tau": 0.9594697320219951,
+  "quebras": 13.1375,
+  "sucessor": 0.9197020514105786
+ },
+ "golden_v4/regra_transferencia": {
+  "tau": 0.9859481733498361,
+  "quebras": 6.045454545454546,
+  "sucessor": 0.9272403501010137
+ },
+ "golden_v4/layoutreader_pronto_transferencia": {
+  "tau": 0.9130707332871878,
+  "quebras": 18.386363636363637,
+  "sucessor": 0.927182405157255
+ },
+ "golden_v4/grafo_e004_transferencia": {
+  "tau": 0.9379613365386672,
+  "quebras": 3.6136363636363638,
+  "sucessor": 0.9552692354255556
+ },
+ "golden_v4/hibrido67_transferencia": {
+  "tau": 0.9797375818109462,
+  "quebras": 5.136363636363637,
+  "sucessor": 0.9661428806892427
+ },
+ "golden_v4/arvore_rasa_transferencia": {
+  "tau": 0.9117495591877971,
+  "quebras": 18.636363636363637,
+  "sucessor": 0.9130754308462389
+ },
+ "golden_v4/logistica_transferencia": {
+  "tau": 0.9576916102926775,
+  "quebras": 3.75,
+  "sucessor": 0.9703845188037585
+ },
+ "golden_v4/lightgbm_transferencia": {
+  "tau": 0.9367242761636396,
+  "quebras": 4.795454545454546,
+  "sucessor": 0.9607218643261393
+ },
+ "golden_v4/oraculo_roteamento_transferencia": {
+  "tau": 0.9522559040790614,
+  "quebras": 2.659090909090909,
+  "sucessor": 0.9820172994953943
+ },
+ "validacao_silver/regra_transferencia": {
+  "tau": 0.957217501323891,
+  "quebras": 16.666666666666668,
+  "sucessor": 0.9108589612898996
+ },
+ "validacao_silver/layoutreader_pronto_transferencia": {
+  "tau": null,
+  "quebras": null,
+  "sucessor": null
+ },
+ "validacao_silver/grafo_e004_transferencia": {
+  "tau": 0.6866662318495421,
+  "quebras": 9.466666666666667,
+  "sucessor": 0.947916198745523
+ },
+ "validacao_silver/hibrido67_transferencia": {
+  "tau": null,
+  "quebras": null,
+  "sucessor": null
+ },
+ "validacao_silver/arvore_rasa_transferencia": {
+  "tau": null,
+  "quebras": null,
+  "sucessor": null
+ },
+ "validacao_silver/logistica_transferencia": {
+  "tau": null,
+  "quebras": null,
+  "sucessor": null
+ },
+ "validacao_silver/lightgbm_transferencia": {
+  "tau": null,
+  "quebras": null,
+  "sucessor": null
+ },
+ "validacao_silver/oraculo_roteamento_transferencia": {
+  "tau": null,
+  "quebras": null,
+  "sucessor": null
+ },
+ "golden_v3_novo/regra_transferencia": {
+  "tau": 0.9595574053404858,
+  "quebras": 9.222222222222221,
+  "sucessor": 0.9113013479721647
+ },
+ "golden_v3_novo/layoutreader_pronto_transferencia": {
+  "tau": 0.9508753212679473,
+  "quebras": 16.22222222222222,
+  "sucessor": 0.9083365353838789
+ },
+ "golden_v3_novo/grafo_e004_transferencia": {
+  "tau": 0.9417371609420607,
+  "quebras": 6.518518518518518,
+  "sucessor": 0.9352753001481041
+ },
+ "golden_v3_novo/hibrido67_transferencia": {
+  "tau": 0.9589772112634246,
+  "quebras": 7.888888888888889,
+  "sucessor": 0.9384097661491403
+ },
+ "golden_v3_novo/arvore_rasa_transferencia": {
+  "tau": 0.9572626283522573,
+  "quebras": 15.925925925925926,
+  "sucessor": 0.9041493645300415
+ },
+ "golden_v3_novo/logistica_transferencia": {
+  "tau": 0.9511317867075961,
+  "quebras": 6.925925925925926,
+  "sucessor": 0.944000086707167
+ },
+ "golden_v3_novo/lightgbm_transferencia": {
+  "tau": 0.9584806270045264,
+  "quebras": 6.814814814814815,
+  "sucessor": 0.9358787221315017
+ },
+ "golden_v3_novo/oraculo_roteamento_transferencia": {
+  "tau": 0.9509406378062655,
+  "quebras": 5.7407407407407405,
+  "sucessor": 0.9525680158358437
+ },
+ "teste_silver/regra_transferencia": {
+  "tau": 0.9595653453976628,
+  "quebras": 27.44943820224719,
+  "sucessor": 0.8402116805771741
+ },
+ "teste_silver/layoutreader_pronto_transferencia": {
+  "tau": 0.9418497808492855,
+  "quebras": 31.247191011235955,
+  "sucessor": 0.8412855707786484
+ },
+ "teste_silver/grafo_e004_transferencia": {
+  "tau": 0.9426127893997411,
+  "quebras": 24.146067415730336,
+  "sucessor": 0.8544504449309128
+ },
+ "teste_silver/hibrido67_transferencia": {
+  "tau": 0.9590921317931348,
+  "quebras": 26.426966292134832,
+  "sucessor": 0.8495245161749768
+ },
+ "teste_silver/arvore_rasa_transferencia": {
+  "tau": 0.9434497491975055,
+  "quebras": 33.57303370786517,
+  "sucessor": 0.8294924153849242
+ },
+ "teste_silver/logistica_transferencia": {
+  "tau": 0.9484720972967949,
+  "quebras": 22.39325842696629,
+  "sucessor": 0.8642057923453232
+ },
+ "teste_silver/lightgbm_transferencia": {
+  "tau": 0.9569559399547684,
+  "quebras": 23.662921348314608,
+  "sucessor": 0.8602034648713466
+ },
+ "teste_silver/oraculo_roteamento_transferencia": {
+  "tau": 0.9656235968906893,
+  "quebras": 20.56179775280899,
+  "sucessor": 0.878923939554241
+ },
+ "conjunto/regra_transferencia": {
+  "tau": 0.9668192831998619,
+  "quebras": 18.4875,
+  "sucessor": 0.8761409460691346
+ },
+ "conjunto/layoutreader_pronto_transferencia": {
+  "tau": 0.9354586027153577,
+  "quebras": 25.175,
+  "sucessor": 0.8762220505098979
+ },
+ "conjunto/grafo_e004_transferencia": {
+  "tau": 0.9411858775607123,
+  "quebras": 15.525,
+  "sucessor": 0.8958148066348406
+ },
+ "conjunto/hibrido67_transferencia": {
+  "tau": 0.9647502377086443,
+  "quebras": 17.44375,
+  "sucessor": 0.8965939523495401
+ },
+ "conjunto/arvore_rasa_transferencia": {
+  "tau": 0.9370631203022001,
+  "quebras": 26.4875,
+  "sucessor": 0.8650761048050243
+ },
+ "conjunto/logistica_transferencia": {
+  "tau": 0.9514562859587353,
+  "quebras": 14.65625,
+  "sucessor": 0.9068702292949541
+ },
+ "conjunto/lightgbm_transferencia": {
+  "tau": 0.9516495233518546,
+  "quebras": 15.63125,
+  "sucessor": 0.9006162243840657
+ },
+ "conjunto/oraculo_roteamento_transferencia": {
+  "tau": 0.9594697320219951,
+  "quebras": 13.1375,
+  "sucessor": 0.9197020514105786
+ }
+}

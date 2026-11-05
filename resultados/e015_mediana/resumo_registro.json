@@ -1,0 +1,122 @@
+{
+ "golden_v4/regra": {
+  "tau": 0.9859481733498362,
+  "quebras": 6.045454545454546,
+  "sucessor": 0.9272403501010136
+ },
+ "golden_v4/hibrido67": {
+  "tau": 0.9797375818109462,
+  "quebras": 5.136363636363637,
+  "sucessor": 0.9661428806892427
+ },
+ "golden_v4/grafo_K24_maxregret_t0.00": {
+  "tau": 0.9379613365386672,
+  "quebras": 3.6136363636363638,
+  "sucessor": 0.9552692354255558
+ },
+ "golden_v4/b_mediana": {
+  "tau": 0.9866806613845344,
+  "quebras": 3.5681818181818183,
+  "sucessor": 0.9590571142134344
+ },
+ "golden_v4/b_mediana_salvaguarda": {
+  "tau": 0.9866806613845344,
+  "quebras": 3.5681818181818183,
+  "sucessor": 0.9590571142134344
+ },
+ "golden_v4/hibrido67_mediana_salvaguarda": {
+  "tau": 0.980754098096179,
+  "quebras": 3.1818181818181817,
+  "sucessor": 0.9763858343339905
+ },
+ "validacao_silver/regra": {
+  "tau": 0.957217501323891,
+  "quebras": 16.666666666666668,
+  "sucessor": 0.9108589612898997
+ },
+ "validacao_silver/hibrido67": {
+  "tau": 0.9585444130683203,
+  "quebras": 17.846153846153847,
+  "sucessor": 0.9161319915097246
+ },
+ "validacao_silver/grafo_K24_maxregret_t0.00": {
+  "tau": 0.6866662318495422,
+  "quebras": 9.466666666666667,
+  "sucessor": 0.9479161987455231
+ },
+ "validacao_silver/b_mediana": {
+  "tau": 0.8910337912153625,
+  "quebras": 9.266666666666667,
+  "sucessor": 0.9487424579419012
+ },
+ "validacao_silver/b_mediana_salvaguarda": {
+  "tau": 0.8910337912153625,
+  "quebras": 9.266666666666667,
+  "sucessor": 0.9487424579419012
+ },
+ "validacao_silver/hibrido67_mediana_salvaguarda": {
+  "tau": 0.9590990084587812,
+  "quebras": 9.461538461538462,
+  "sucessor": 0.9551817137538753
+ },
+ "golden_v3_novo/regra": {
+  "tau": 0.9595574053404858,
+  "quebras": 9.222222222222221,
+  "sucessor": 0.9113013479721646
+ },
+ "golden_v3_novo/hibrido67": {
+  "tau": 0.9589772112634248,
+  "quebras": 7.888888888888889,
+  "sucessor": 0.9384097661491402
+ },
+ "golden_v3_novo/grafo_K24_maxregret_t0.00": {
+  "tau": 0.9417371609420606,
+  "quebras": 6.518518518518518,
+  "sucessor": 0.935275300148104
+ },
+ "golden_v3_novo/b_mediana": {
+  "tau": 0.9417371609420606,
+  "quebras": 6.518518518518518,
+  "sucessor": 0.935275300148104
+ },
+ "golden_v3_novo/b_mediana_salvaguarda": {
+  "tau": 0.9417371609420606,
+  "quebras": 6.518518518518518,
+  "sucessor": 0.935275300148104
+ },
+ "golden_v3_novo/hibrido67_mediana_salvaguarda": {
+  "tau": 0.9407936567056348,
+  "quebras": 6.296296296296297,
+  "sucessor": 0.947029662264785
+ },
+ "teste_silver/regra": {
+  "tau": 0.9595653453976628,
+  "quebras": 27.44943820224719,
+  "sucessor": 0.8402116805771741
+ },
+ "teste_silver/hibrido67": {
+  "tau": 0.9590921317931348,
+  "quebras": 26.426966292134832,
+  "sucessor": 0.8495245161749768
+ },
+ "teste_silver/grafo_K24_maxregret_t0.00": {
+  "tau": 0.942612789399741,
+  "quebras": 24.146067415730336,
+  "sucessor": 0.8544504449309128
+ },
+ "teste_silver/b_mediana": {
+  "tau": 0.9550619549411531,
+  "quebras": 24.146067415730336,
+  "sucessor": 0.85451927156944
+ },
+ "teste_silver/b_mediana_salvaguarda": {
+  "tau": 0.9550619549411531,
+  "quebras": 24.146067415730336,
+  "sucessor": 0.85451927156944
+ },
+ "teste_silver/hibrido67_mediana_salvaguarda": {
+  "tau": 0.9548296771677812,
+  "quebras": 23.876404494382022,
+  "sucessor": 0.8591104607104569
+ }
+}

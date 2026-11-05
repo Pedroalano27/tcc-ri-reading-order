@@ -1,0 +1,17 @@
+{
+ "golden_v4": {
+  "paginas": 44,
+  "faltantes_A": 0,
+  "ids_faltantes_A": []
+ },
+ "golden_v3_novo": {
+  "paginas": 27,
+  "faltantes_A": 0,
+  "ids_faltantes_A": []
+ },
+ "teste_silver": {
+  "paginas": 89,
+  "faltantes_A": 0,
+  "ids_faltantes_A": []
+ }
+}

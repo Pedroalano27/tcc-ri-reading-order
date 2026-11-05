@@ -1,0 +1,28 @@
+{
+  "teste_cego": {
+    "ok": true,
+    "erros": [],
+    "avisos": [],
+    "total_tarefas": 90,
+    "total_palavras": 141274,
+    "total_caixas": 14095,
+    "classes_contagem": {
+      "texto": 13910,
+      "tabela": 101,
+      "figura": 84
+    }
+  },
+  "desenvolvimento": {
+    "ok": true,
+    "erros": [],
+    "avisos": [],
+    "total_tarefas": 45,
+    "total_palavras": 59388,
+    "total_caixas": 5830,
+    "classes_contagem": {
+      "texto": 5728,
+      "figura": 42,
+      "tabela": 60
+    }
+  }
+}

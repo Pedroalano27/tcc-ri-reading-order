@@ -1,0 +1,307 @@
+{
+ "golden_v4/regra_colunas": {
+  "tau": 0.9859481733498362,
+  "quebras": 6.045454545454546,
+  "sucessor": 0.9272403501010136
+ },
+ "golden_v4/hibrido67": {
+  "tau": 0.9797375818109462,
+  "quebras": 5.136363636363637,
+  "sucessor": 0.9661428806892427
+ },
+ "golden_v4/layoutreader_pronto": {
+  "tau": 0.9130707332871878,
+  "quebras": 18.386363636363637,
+  "sucessor": 0.927182405157255
+ },
+ "golden_v4/regra_reordena": {
+  "tau": 0.9859666102513881,
+  "quebras": 5.181818181818182,
+  "sucessor": 0.9363222060913217
+ },
+ "golden_v4/oraculo_decodificador_guloso_K12": {
+  "tau": 0.8549574035136362,
+  "quebras": 1.5227272727272727,
+  "sucessor": 0.9903224348924495
+ },
+ "golden_v4/oraculo_decodificador_matching_K12": {
+  "tau": 0.899447515004196,
+  "quebras": 1.4318181818181819,
+  "sucessor": 0.991079452993965
+ },
+ "golden_v4/oraculo_decodificador_maxregret_K12": {
+  "tau": 0.8549574035136362,
+  "quebras": 1.5227272727272727,
+  "sucessor": 0.9903224348924495
+ },
+ "golden_v4/oraculo_decodificador_guloso_K24": {
+  "tau": 0.8554460885784995,
+  "quebras": 1.2954545454545454,
+  "sucessor": 0.992158294680764
+ },
+ "golden_v4/oraculo_decodificador_matching_K24": {
+  "tau": 0.8800172907263714,
+  "quebras": 1.2045454545454546,
+  "sucessor": 0.9928236212570216
+ },
+ "golden_v4/oraculo_decodificador_maxregret_K24": {
+  "tau": 0.8554460885784995,
+  "quebras": 1.2954545454545454,
+  "sucessor": 0.992158294680764
+ },
+ "golden_v4/oraculo_decodificador_guloso_K32": {
+  "tau": 0.8710738995785662,
+  "quebras": 1.1590909090909092,
+  "sucessor": 0.9936868088989314
+ },
+ "golden_v4/oraculo_decodificador_matching_K32": {
+  "tau": 0.9167916805215888,
+  "quebras": 1.0454545454545454,
+  "sucessor": 0.994558747045437
+ },
+ "golden_v4/oraculo_decodificador_maxregret_K32": {
+  "tau": 0.8710738995785662,
+  "quebras": 1.1590909090909092,
+  "sucessor": 0.9936868088989314
+ },
+ "golden_v4/oraculo_residual": {
+  "tau": 0.9896837120785485,
+  "quebras": 1.9090909090909092,
+  "sucessor": 0.9862994051138265
+ },
+ "golden_v4/oraculo_roteamento": {
+  "tau": 0.9935077136387658,
+  "quebras": 3.590909090909091,
+  "sucessor": 0.9778420152604645
+ },
+ "golden_v4/oraculo_decodificador_melhor_desenvolvimento": {
+  "tau": 0.9167916805215888,
+  "quebras": 1.0454545454545454,
+  "sucessor": 0.994558747045437
+ },
+ "validacao_silver/regra_colunas": {
+  "tau": 0.957217501323891,
+  "quebras": 16.666666666666668,
+  "sucessor": 0.9108589612898997
+ },
+ "validacao_silver/oraculo_decodificador_guloso_K12": {
+  "tau": 0.8842567306976332,
+  "quebras": 7.866666666666666,
+  "sucessor": 0.9599167480141353
+ },
+ "validacao_silver/oraculo_decodificador_matching_K12": {
+  "tau": 0.9260615566548925,
+  "quebras": 7.733333333333333,
+  "sucessor": 0.9621606636808696
+ },
+ "validacao_silver/oraculo_decodificador_maxregret_K12": {
+  "tau": 0.8842567306976332,
+  "quebras": 7.866666666666666,
+  "sucessor": 0.9599167480141353
+ },
+ "validacao_silver/oraculo_decodificador_guloso_K24": {
+  "tau": 0.9177009421011355,
+  "quebras": 6.933333333333334,
+  "sucessor": 0.9661352436488467
+ },
+ "validacao_silver/oraculo_decodificador_matching_K24": {
+  "tau": 0.9687482188999852,
+  "quebras": 6.6,
+  "sucessor": 0.9710434837190361
+ },
+ "validacao_silver/oraculo_decodificador_maxregret_K24": {
+  "tau": 0.9177009421011355,
+  "quebras": 6.933333333333334,
+  "sucessor": 0.9661352436488467
+ },
+ "validacao_silver/oraculo_decodificador_guloso_K32": {
+  "tau": 0.9171223524160065,
+  "quebras": 6.466666666666667,
+  "sucessor": 0.9718182455545695
+ },
+ "validacao_silver/oraculo_decodificador_matching_K32": {
+  "tau": 0.9639313807419644,
+  "quebras": 6.333333333333333,
+  "sucessor": 0.9723719922044024
+ },
+ "validacao_silver/oraculo_decodificador_maxregret_K32": {
+  "tau": 0.9171223524160065,
+  "quebras": 6.466666666666667,
+  "sucessor": 0.9718182455545695
+ },
+ "validacao_silver/oraculo_residual": {
+  "tau": 0.9691519311086151,
+  "quebras": 6.333333333333333,
+  "sucessor": 0.9687995577324505
+ },
+ "validacao_silver/oraculo_roteamento": {
+  "tau": null,
+  "quebras": null,
+  "sucessor": null
+ },
+ "validacao_silver/oraculo_decodificador_melhor_desenvolvimento": {
+  "tau": 0.9639313807419644,
+  "quebras": 6.333333333333333,
+  "sucessor": 0.9723719922044024
+ },
+ "golden_v3_novo/regra_colunas": {
+  "tau": 0.9595574053404858,
+  "quebras": 9.222222222222221,
+  "sucessor": 0.9113013479721646
+ },
+ "golden_v3_novo/hibrido67": {
+  "tau": 0.9589772112634248,
+  "quebras": 7.888888888888889,
+  "sucessor": 0.9384097661491402
+ },
+ "golden_v3_novo/layoutreader_pronto": {
+  "tau": 0.9508753212679474,
+  "quebras": 16.22222222222222,
+  "sucessor": 0.9083365353838789
+ },
+ "golden_v3_novo/regra_reordena": {
+  "tau": 0.9595776873483034,
+  "quebras": 7.777777777777778,
+  "sucessor": 0.9257537725530187
+ },
+ "golden_v3_novo/oraculo_decodificador_guloso_K12": {
+  "tau": 0.9440791536530867,
+  "quebras": 2.0,
+  "sucessor": 0.9862339605130584
+ },
+ "golden_v3_novo/oraculo_decodificador_matching_K12": {
+  "tau": 0.9589853369946949,
+  "quebras": 1.8888888888888888,
+  "sucessor": 0.9865166859866236
+ },
+ "golden_v3_novo/oraculo_decodificador_maxregret_K12": {
+  "tau": 0.9440791536530867,
+  "quebras": 2.0,
+  "sucessor": 0.9862339605130584
+ },
+ "golden_v3_novo/oraculo_decodificador_guloso_K24": {
+  "tau": 0.926476520089276,
+  "quebras": 1.3703703703703705,
+  "sucessor": 0.9920051162842142
+ },
+ "golden_v3_novo/oraculo_decodificador_matching_K24": {
+  "tau": 0.9426104464459321,
+  "quebras": 1.2592592592592593,
+  "sucessor": 0.9922878417577793
+ },
+ "golden_v3_novo/oraculo_decodificador_maxregret_K24": {
+  "tau": 0.926476520089276,
+  "quebras": 1.3703703703703705,
+  "sucessor": 0.9920051162842142
+ },
+ "golden_v3_novo/oraculo_decodificador_guloso_K32": {
+  "tau": 0.926476520089276,
+  "quebras": 1.3703703703703705,
+  "sucessor": 0.9920051162842142
+ },
+ "golden_v3_novo/oraculo_decodificador_matching_K32": {
+  "tau": 0.9426104464459321,
+  "quebras": 1.2592592592592593,
+  "sucessor": 0.9922878417577793
+ },
+ "golden_v3_novo/oraculo_decodificador_maxregret_K32": {
+  "tau": 0.926476520089276,
+  "quebras": 1.3703703703703705,
+  "sucessor": 0.9920051162842142
+ },
+ "golden_v3_novo/oraculo_residual": {
+  "tau": 0.9621316493149059,
+  "quebras": 2.2222222222222223,
+  "sucessor": 0.977345170693898
+ },
+ "golden_v3_novo/oraculo_roteamento": {
+  "tau": 0.9749147455902092,
+  "quebras": 6.0,
+  "sucessor": 0.9517814303322373
+ },
+ "golden_v3_novo/oraculo_decodificador_melhor_desenvolvimento": {
+  "tau": 0.9426104464459321,
+  "quebras": 1.2592592592592593,
+  "sucessor": 0.9922878417577793
+ },
+ "teste_silver/regra_colunas": {
+  "tau": 0.9595653453976628,
+  "quebras": 27.44943820224719,
+  "sucessor": 0.8402116805771741
+ },
+ "teste_silver/hibrido67": {
+  "tau": 0.9590921317931348,
+  "quebras": 26.426966292134832,
+  "sucessor": 0.8495245161749768
+ },
+ "teste_silver/layoutreader_pronto": {
+  "tau": 0.9418497808492855,
+  "quebras": 31.247191011235955,
+  "sucessor": 0.8412855707786483
+ },
+ "teste_silver/regra_reordena": {
+  "tau": 0.9596148407944312,
+  "quebras": 26.44943820224719,
+  "sucessor": 0.8480232898238829
+ },
+ "teste_silver/oraculo_decodificador_guloso_K12": {
+  "tau": 0.9504275493741309,
+  "quebras": 20.719101123595507,
+  "sucessor": 0.8816307816578525
+ },
+ "teste_silver/oraculo_decodificador_matching_K12": {
+  "tau": 0.94181558985726,
+  "quebras": 20.617977528089888,
+  "sucessor": 0.8817900022157401
+ },
+ "teste_silver/oraculo_decodificador_maxregret_K12": {
+  "tau": 0.9504275493741309,
+  "quebras": 20.719101123595507,
+  "sucessor": 0.8816307816578525
+ },
+ "teste_silver/oraculo_decodificador_guloso_K24": {
+  "tau": 0.9496169202071886,
+  "quebras": 20.15730337078652,
+  "sucessor": 0.8850575329227865
+ },
+ "teste_silver/oraculo_decodificador_matching_K24": {
+  "tau": 0.938995038778255,
+  "quebras": 20.123595505617978,
+  "sucessor": 0.8849041241402864
+ },
+ "teste_silver/oraculo_decodificador_maxregret_K24": {
+  "tau": 0.9496169202071886,
+  "quebras": 20.15730337078652,
+  "sucessor": 0.8850575329227865
+ },
+ "teste_silver/oraculo_decodificador_guloso_K32": {
+  "tau": 0.946948770472385,
+  "quebras": 19.775280898876403,
+  "sucessor": 0.8875133871354447
+ },
+ "teste_silver/oraculo_decodificador_matching_K32": {
+  "tau": 0.9397006198493916,
+  "quebras": 19.786516853932586,
+  "sucessor": 0.887170010464895
+ },
+ "teste_silver/oraculo_decodificador_maxregret_K32": {
+  "tau": 0.946948770472385,
+  "quebras": 19.775280898876403,
+  "sucessor": 0.8875133871354447
+ },
+ "teste_silver/oraculo_residual": {
+  "tau": 0.9604877284257397,
+  "quebras": 19.96629213483146,
+  "sucessor": 0.8873623976631787
+ },
+ "teste_silver/oraculo_roteamento": {
+  "tau": 0.9665338575040946,
+  "quebras": 21.224719101123597,
+  "sucessor": 0.8773062130951474
+ },
+ "teste_silver/oraculo_decodificador_melhor_desenvolvimento": {
+  "tau": 0.9397006198493916,
+  "quebras": 19.786516853932586,
+  "sucessor": 0.887170010464895
+ }
+}

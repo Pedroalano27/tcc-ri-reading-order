@@ -1,0 +1,10 @@
+{
+ "ajuste_v4_RN/melhor_config_global_r2.0": {
+  "quebras": 12.205303,
+  "tau": -0.188459
+ },
+ "ajuste_v4_RN/melhor_config_seletiva_r2.0_t1.5": {
+  "quebras": 20.428788,
+  "tau": -0.014444
+ }
+}

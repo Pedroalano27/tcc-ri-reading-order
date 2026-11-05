@@ -1,0 +1,16 @@
+{
+ "veredito": {
+  "veredito": "NÃO GO",
+  "itens": {
+   "1a_quebras_nao_pioram_nas_duas": true,
+   "1b_ic95_negativo_em_ao_menos_uma": true,
+   "2_tau_dentro_da_margem_nas_duas": false,
+   "3_sem_catastrofe_ou_salvaguarda_resolve_sem_violar_1_2": true
+  },
+  "catastrofes_sem_salvaguarda": 0,
+  "catastrofes_candidato": 0,
+  "candidato": "b_mediana_salvaguarda"
+ },
+ "registrado_em_utc": "2026-11-03T03:59:29.423953+00:00",
+ "assinatura_numeros": "62da12e8e9df6dc874ff5bddd7fd6a74913652d769bcd93e844833861f923bb1"
+}

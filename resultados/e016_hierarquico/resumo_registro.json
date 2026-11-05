@@ -1,0 +1,82 @@
+{
+ "golden_v4/regra": {
+  "tau": 0.9859481733498362,
+  "quebras": 6.045454545454546,
+  "sucessor": 0.9272403501010136
+ },
+ "golden_v4/hibrido67": {
+  "tau": 0.9797375818109462,
+  "quebras": 5.136363636363637,
+  "sucessor": 0.9661428806892427
+ },
+ "golden_v4/grafo_K24_maxregret_t0.00": {
+  "tau": 0.9379613365386672,
+  "quebras": 3.6136363636363638,
+  "sucessor": 0.9552692354255558
+ },
+ "golden_v4/oraculo_hierarquico": {
+  "tau": 0.9935147218524616,
+  "quebras": 2.7954545454545454,
+  "sucessor": 0.9662615239941439
+ },
+ "golden_v4/oraculo_interna_segmentos_regra": {
+  "tau": 0.9873861339729046,
+  "quebras": 3.25,
+  "sucessor": 0.9634419141299198
+ },
+ "golden_v4/oraculo_segmentos_interna_grafo": {
+  "tau": 0.9915736784339709,
+  "quebras": 4.25,
+  "sucessor": 0.9492029678767891
+ },
+ "golden_v4/hier1": {
+  "tau": 0.9854450905544141,
+  "quebras": 4.659090909090909,
+  "sucessor": 0.9466499605058881
+ },
+ "golden_v4/oraculo_hierarquico_quebras": {
+  "tau": 0.9398021051958529,
+  "quebras": 2.1363636363636362,
+  "sucessor": 0.9758736311933834
+ },
+ "validacao_silver/regra": {
+  "tau": 0.957217501323891,
+  "quebras": 16.666666666666668,
+  "sucessor": 0.9108589612898997
+ },
+ "validacao_silver/hibrido67": {
+  "tau": 0.9586561577927871,
+  "quebras": 16.4,
+  "sucessor": 0.9169489488695303
+ },
+ "validacao_silver/grafo_K24_maxregret_t0.00": {
+  "tau": 0.6866662318495422,
+  "quebras": 9.466666666666667,
+  "sucessor": 0.9479161987455231
+ },
+ "validacao_silver/oraculo_hierarquico": {
+  "tau": 0.9804805348495841,
+  "quebras": 8.066666666666666,
+  "sucessor": 0.9592168006872137
+ },
+ "validacao_silver/oraculo_interna_segmentos_regra": {
+  "tau": 0.9579823978281181,
+  "quebras": 8.666666666666666,
+  "sucessor": 0.9562652596384937
+ },
+ "validacao_silver/oraculo_segmentos_interna_grafo": {
+  "tau": 0.9792757281754216,
+  "quebras": 11.533333333333333,
+  "sucessor": 0.9378361766726236
+ },
+ "validacao_silver/hier1": {
+  "tau": 0.9567775911539556,
+  "quebras": 12.133333333333333,
+  "sucessor": 0.9348948401060262
+ },
+ "validacao_silver/oraculo_hierarquico_quebras": {
+  "tau": 0.7633718454223991,
+  "quebras": 6.466666666666667,
+  "sucessor": 0.9690785987067796
+ }
+}

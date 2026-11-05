@@ -1,0 +1,97 @@
+{
+ "golden_v4/regra": {
+  "tau": 0.9859481733498362,
+  "quebras": 6.045454545454546,
+  "sucessor": 0.9272403501010136
+ },
+ "golden_v4/hibrido67": {
+  "tau": 0.9797375818109462,
+  "quebras": 5.136363636363637,
+  "sucessor": 0.9661428806892427
+ },
+ "golden_v4/regra_reordena": {
+  "tau": 0.9859666102513881,
+  "quebras": 5.181818181818182,
+  "sucessor": 0.9363222060913217
+ },
+ "golden_v4/oraculo_residual": {
+  "tau": 0.9896837120785485,
+  "quebras": 1.9090909090909092,
+  "sucessor": 0.9862994051138265
+ },
+ "golden_v4/e006_residual": {
+  "tau": 0.9779743098207074,
+  "quebras": 4.431818181818182,
+  "sucessor": 0.952266161751158
+ },
+ "validacao_silver/regra": {
+  "tau": 0.957217501323891,
+  "quebras": 16.666666666666668,
+  "sucessor": 0.9108589612898997
+ },
+ "validacao_silver/hibrido67": {
+  "tau": 0.9586561577927871,
+  "quebras": 16.4,
+  "sucessor": 0.9169489488695303
+ },
+ "validacao_silver/oraculo_residual": {
+  "tau": 0.9691519311086151,
+  "quebras": 6.333333333333333,
+  "sucessor": 0.9687995577324505
+ },
+ "validacao_silver/e006_residual": {
+  "tau": 0.9623299991802068,
+  "quebras": 13.733333333333333,
+  "sucessor": 0.9281935666816579
+ },
+ "golden_v3_novo/regra": {
+  "tau": 0.9595574053404858,
+  "quebras": 9.222222222222221,
+  "sucessor": 0.9113013479721646
+ },
+ "golden_v3_novo/hibrido67": {
+  "tau": 0.9589772112634248,
+  "quebras": 7.888888888888889,
+  "sucessor": 0.9384097661491402
+ },
+ "golden_v3_novo/regra_reordena": {
+  "tau": 0.9595776873483034,
+  "quebras": 7.777777777777778,
+  "sucessor": 0.9257537725530187
+ },
+ "golden_v3_novo/oraculo_residual": {
+  "tau": 0.9621316493149059,
+  "quebras": 2.2222222222222223,
+  "sucessor": 0.977345170693898
+ },
+ "golden_v3_novo/e006_residual": {
+  "tau": 0.9386148419197143,
+  "quebras": 7.074074074074074,
+  "sucessor": 0.9277074718381381
+ },
+ "teste_silver/regra": {
+  "tau": 0.9595653453976628,
+  "quebras": 27.44943820224719,
+  "sucessor": 0.8402116805771741
+ },
+ "teste_silver/hibrido67": {
+  "tau": 0.9590921317931348,
+  "quebras": 26.426966292134832,
+  "sucessor": 0.8495245161749768
+ },
+ "teste_silver/regra_reordena": {
+  "tau": 0.9596148407944312,
+  "quebras": 26.44943820224719,
+  "sucessor": 0.8480232898238829
+ },
+ "teste_silver/oraculo_residual": {
+  "tau": 0.9604877284257397,
+  "quebras": 19.96629213483146,
+  "sucessor": 0.8873623976631787
+ },
+ "teste_silver/e006_residual": {
+  "tau": 0.953280987546894,
+  "quebras": 24.8876404494382,
+  "sucessor": 0.8539150891992233
+ }
+}

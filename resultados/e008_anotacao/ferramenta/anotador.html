@@ -1,0 +1,2632 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>E008 · Ferramenta de Anotação & Ordem de Leitura</title>
+<style>
+  :root {
+    --fundo: #0f172a;
+    --fundo-palco: #1e293b;
+    --painel: #1e293b;
+    --painel-sec: #334155;
+    --linha: #475569;
+    --tinta: #f8fafc;
+    --tinta-sec: #cbd5e1;
+    --tinta-fraca: #94a3b8;
+    --acento: #38bdf8;
+    --acento-hover: #0284c7;
+    --sucesso: #22c55e;
+    --aviso: #f59e0b;
+    --erro: #ef4444;
+    --roxo: #a855f7;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--sans);
+    background: var(--fundo);
+    color: var(--tinta);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* BARRA SUPERIOR */
+  header {
+    background: var(--painel);
+    border-bottom: 1px solid var(--linha);
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    z-index: 100;
+  }
+  .marca { display: flex; align-items: baseline; gap: 8px; }
+  .marca h1 { font-size: 15px; font-weight: 700; color: var(--acento); }
+  .marca span { font-size: 11px; color: var(--tinta-fraca); }
+
+  .meta-sessao-badges {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .badge-meta {
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid var(--linha);
+    background: var(--painel-sec);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .badge-meta:hover { border-color: var(--acento); }
+  .badge-meta.modo-a { background: #1e3a8a; color: #93c5fd; border-color: #3b82f6; }
+  .badge-meta.modo-b { background: #064e3b; color: #6ee7b7; border-color: #10b981; }
+
+  .botoes-topo { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  button, label.btn {
+    background: var(--painel-sec);
+    color: var(--tinta);
+    border: 1px solid var(--linha);
+    border-radius: 6px;
+    padding: 5px 9px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: background 0.15s, border-color 0.15s;
+    user-select: none;
+  }
+  button:hover, label.btn:hover { background: var(--linha); border-color: var(--acento); }
+  button:disabled { opacity: 0.5; cursor: not-allowed; }
+  button.primario { background: var(--acento-hover); border-color: var(--acento); color: #fff; }
+  button.primario:hover { background: #0369a1; }
+  button.sucesso { background: #15803d; border-color: var(--sucesso); color: #fff; }
+  button.sucesso:hover { background: #166534; }
+  button.alerta { background: #b45309; border-color: var(--aviso); color: #fff; }
+  button.perigo { background: #b91c1c; border-color: var(--erro); color: #fff; }
+  input[type="file"] { display: none; }
+
+  /* SUB-BARRA DE NAVEGAÇÃO E CRONÔMETRO */
+  .sub-barra {
+    background: #111827;
+    border-bottom: 1px solid var(--linha);
+    padding: 6px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    gap: 12px;
+  }
+  .nav-paginas { display: flex; align-items: center; gap: 8px; }
+  .seletor-pag {
+    background: var(--painel);
+    color: var(--tinta);
+    border: 1px solid var(--linha);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    max-width: 260px;
+  }
+  .info-pagina { display: flex; align-items: center; gap: 10px; color: var(--tinta-sec); }
+  
+  .tag-status {
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .tag-status.concluida { background: #166534; color: #86efac; }
+  .tag-status.rascunho { background: #854d0e; color: #fde047; }
+  .tag-status.pulada { background: #374151; color: #d1d5db; }
+  .tag-status.nova { background: #1e3a8a; color: #93c5fd; }
+
+  /* CRONÔMETRO */
+  .box-cronometro {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #020617;
+    border: 1px solid var(--linha);
+    border-radius: 6px;
+    padding: 2px 8px;
+  }
+  .cronometro-tempo {
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 13px;
+    color: #38bdf8;
+    min-width: 55px;
+    text-align: center;
+  }
+  .cronometro-tag {
+    font-size: 10px;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .cronometro-tag.ativo { background: #166534; color: #86efac; }
+  .cronometro-tag.pausado-manual { background: #b45309; color: #fde047; }
+  .cronometro-tag.pausado-inativo { background: #7f1d1d; color: #fca5a5; }
+
+  .autosave-ind { font-size: 11px; color: var(--sucesso); display: flex; align-items: center; gap: 4px; }
+
+  /* ÁREA DE TRABALHO GRID */
+  main {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 240px 1fr 290px;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  /* BARRA LATERAL ESQUERDA (LISTA DE TAREFAS) */
+  .col-esquerda {
+    background: var(--painel);
+    border-right: 1px solid var(--linha);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .topo-lateral {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--linha);
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .filtro-tarefas {
+    padding: 6px 10px;
+    border-bottom: 1px solid var(--linha);
+    background: #111827;
+  }
+  .filtro-tarefas input {
+    width: 100%;
+    background: var(--painel);
+    color: var(--tinta);
+    border: 1px solid var(--linha);
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+  .lista-tarefas {
+    flex: 1;
+    overflow-y: auto;
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .item-tarefa {
+    padding: 8px 10px;
+    border-radius: 6px;
+    background: var(--fundo-palco);
+    border: 1px solid transparent;
+    cursor: pointer;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    transition: all 0.15s;
+  }
+  .item-tarefa:hover { border-color: var(--acento); background: var(--painel-sec); }
+  .item-tarefa.ativa { border-color: var(--acento); background: #0369a133; }
+  .item-tarefa-cabecalho { display: flex; justify-content: space-between; align-items: center; }
+  .item-tarefa-nome { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 150px; }
+  .item-tarefa-detalhes { font-size: 11px; color: var(--tinta-fraca); display: flex; justify-content: space-between; }
+
+  /* PALCO CENTRAL */
+  .palco {
+    background: #020617;
+    position: relative;
+    overflow: auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 24px;
+    user-select: none;
+  }
+  .container-documento {
+    position: relative;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 8px 10px -6px rgba(0, 0, 0, 0.6);
+    background: #ffffff;
+    cursor: default;
+  }
+  .container-documento.modo-ordem { cursor: pointer; }
+  .container-documento.modo-dividir { cursor: crosshair; }
+  .container-documento.modo-desenhar { cursor: crosshair; }
+  #imagem-pagina {
+    display: block;
+    max-width: none;
+    pointer-events: none;
+  }
+  #overlay-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: all;
+  }
+
+  /* OVERLAY DE PAUSA MANUAL */
+  .overlay-pausa {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(4px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    z-index: 50;
+    color: var(--tinta);
+    cursor: pointer;
+  }
+
+  /* BARRA LATERAL DIREITA */
+  .col-direita {
+    background: var(--painel);
+    border-left: 1px solid var(--linha);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding: 12px;
+    gap: 14px;
+  }
+  .secao-painel { display: flex; flex-direction: column; gap: 8px; }
+  .titulo-secao {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+    color: var(--tinta-fraca);
+    border-bottom: 1px solid var(--linha);
+    padding-bottom: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* PALETA DE CLASSES */
+  .grade-classes { display: grid; grid-template-columns: 1fr; gap: 4px; }
+  .btn-classe {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 8px;
+    border-radius: 4px;
+    background: var(--painel-sec);
+    border: 1px solid transparent;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .btn-classe:hover { border-color: var(--acento); }
+  .btn-classe.selecionada { border-color: #fff; box-shadow: 0 0 0 2px var(--acento); }
+  .classe-info { display: flex; align-items: center; gap: 8px; }
+  .ponto-cor { width: 10px; height: 10px; border-radius: 2px; }
+  kbd {
+    background: #0f172a;
+    border: 1px solid var(--linha);
+    border-radius: 3px;
+    padding: 1px 5px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--tinta-sec);
+  }
+
+  /* PAINEL DA CAIXA SELECIONADA */
+  .info-caixa-box {
+    background: var(--fundo-palco);
+    border: 1px solid var(--linha);
+    border-radius: 6px;
+    padding: 8px;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .linha-info { display: flex; justify-content: space-between; }
+  .botoes-caixa { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 4px; }
+
+  /* MODO DE LEITURA & AÇÕES */
+  .box-modo-ordem {
+    background: #1e1b4b;
+    border: 1px solid #6366f1;
+    border-radius: 6px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .box-modo-ordem.ativo { background: #312e81; border-color: #818cf8; }
+
+  /* RESUMO DE AÇÕES */
+  .grade-resumo-acoes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    font-size: 11px;
+    background: #0f172a;
+    padding: 6px;
+    border-radius: 4px;
+    border: 1px solid var(--linha);
+  }
+  .item-resumo-acao {
+    display: flex;
+    justify-content: space-between;
+    padding: 2px 4px;
+  }
+
+  /* ATALHOS RÁPIDOS */
+  .tabela-atalhos {
+    font-size: 11px;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  .tabela-atalhos td { padding: 3px 0; }
+  .tabela-atalhos td:first-child { width: 45%; }
+
+  /* MODAL GERAL */
+  .modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+  }
+  .modal-conteudo {
+    background: var(--painel);
+    border: 1px solid var(--linha);
+    border-radius: 8px;
+    padding: 20px;
+    width: 500px;
+    max-width: 92vw;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .modal-conteudo h3 { font-size: 15px; font-weight: 700; color: var(--acento); }
+  .modal-conteudo p { font-size: 12px; color: var(--tinta-sec); line-height: 1.4; }
+  .campo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .campo-form label { font-size: 11px; font-weight: 600; color: var(--tinta-fraca); }
+  .campo-form input, .campo-form select, .campo-form textarea {
+    background: var(--fundo);
+    color: var(--tinta);
+    border: 1px solid var(--linha);
+    border-radius: 4px;
+    padding: 6px 8px;
+    font-size: 12px;
+  }
+
+  /* ELEMENTOS SVG */
+  .svg-caixa {
+    cursor: move;
+    transition: stroke-width 0.1s;
+  }
+  .svg-caixa:hover { stroke-width: 2.5px !important; }
+  .svg-caixa.selecionada { stroke: #38bdf8 !important; stroke-width: 3px !important; }
+  .svg-caixa.ruido {
+    stroke-dasharray: 4, 3;
+    opacity: 0.55;
+  }
+  .svg-alca {
+    fill: #ffffff;
+    stroke: #0284c7;
+    stroke-width: 1.5px;
+    cursor: pointer;
+  }
+  .svg-label {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    pointer-events: none;
+    user-select: none;
+  }
+  .svg-ordem-num {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 800;
+    fill: #ffffff;
+    pointer-events: none;
+    user-select: none;
+  }
+  .svg-linha-ordem {
+    stroke: #38bdf8;
+    stroke-width: 2.5px;
+    stroke-dasharray: 5, 4;
+    fill: none;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<!-- BARRA PRINCIPAL SUPERIOR -->
+<header>
+  <div class="marca">
+    <h1>E008 · Anotador com Cronômetro</h1>
+    <span>TCC Ordem de Leitura</span>
+  </div>
+
+  <div class="meta-sessao-badges">
+    <div id="badge-modo" class="badge-meta modo-b" title="Clique para trocar de modo ou semente">
+      Modo: B — Simplificada
+    </div>
+    <div id="badge-semente" class="badge-meta" title="Semente de aleatorização">
+      Semente: 20261102
+    </div>
+    <div id="badge-anotador" class="badge-meta" title="Identificador do anotador">
+      👤 Pedro
+    </div>
+  </div>
+
+  <div class="botoes-topo">
+    <label class="btn" title="Carregar tarefas.json ou tarefas.jsonl">
+      📂 Abrir Tarefas
+      <input type="file" id="input-json" accept=".json,.jsonl">
+    </label>
+
+    <label class="btn" title="Carregar pasta local contendo as imagens JPG das páginas">
+      🖼️ Pasta Imagens
+      <input type="file" id="input-pasta-imagens" webkitdirectory directory multiple>
+    </label>
+
+    <button id="btn-exportar-sessao" class="sucesso" title="Baixar JSON completo da sessão (com ações, tempos e palavras cobertas)">
+      💾 Exportar Sessão (JSON)
+    </button>
+
+    <button id="btn-exportar-pagina" class="primario" title="Baixar JSON apenas da página atual">
+      📄 Exportar Página
+    </button>
+
+    <button id="btn-exportar-ls" title="Baixar formato compatível com Label Studio">
+      🏷️ Label Studio
+    </button>
+
+    <button id="btn-desfazer" title="Desfazer última alteração (Ctrl+Z)">
+      ↩️ <kbd>Ctrl+Z</kbd>
+    </button>
+
+    <button id="btn-pular" class="alerta" title="Pular página informando motivo">
+      ⏭️ Pular
+    </button>
+
+    <button id="btn-abrir-sessao" title="Configurar Modo, Semente e Anotador">
+      ⚙️ Sessão
+    </button>
+  </div>
+</header>
+
+<!-- SUB-BARRA DE NAVEGAÇÃO E STATUS -->
+<div class="sub-barra">
+  <div class="nav-paginas">
+    <button id="btn-anterior" title="Página Anterior (Seta Esquerda)">← Anterior</button>
+    <select id="select-pagina" class="seletor-pag"></select>
+    <button id="btn-proxima" title="Próxima Página (Seta Direita)">Próxima →</button>
+  </div>
+
+  <div class="info-pagina">
+    <span id="contador-progresso">0 de 0 concluídas (0%)</span>
+    <span id="status-pagina" class="tag-status nova">Nova</span>
+
+    <!-- CRONÔMETRO ATIVO -->
+    <div class="box-cronometro">
+      <button id="btn-pausar-cronometro" style="padding: 2px 6px; font-size: 11px;" title="Pausar / Retomar Cronômetro">⏸️ Pausar</button>
+      <span id="cronometro-display" class="cronometro-tempo">00:00</span>
+      <span id="cronometro-status-tag" class="cronometro-tag ativo">Ativo</span>
+    </div>
+
+    <span id="contador-acoes-badge" style="font-size: 11px; color: var(--acento);" title="Total de ações registradas na página">⚡ 0 ações</span>
+    <span id="autosave-indicador" class="autosave-ind">✓ Salvo</span>
+  </div>
+
+  <div class="zoom-controles">
+    <button id="btn-zoom-menos" title="Reduzir zoom">-</button>
+    <span id="zoom-nivel" style="padding: 0 4px; font-variant-numeric: tabular-nums;">100%</span>
+    <button id="btn-zoom-mais" title="Aumentar zoom">+</button>
+    <button id="btn-zoom-ajustar" title="Ajustar à largura">Ajustar</button>
+  </div>
+</div>
+
+<!-- CORPO PRINCIPAL -->
+<main>
+  <!-- LATERAL ESQUERDA: LISTA DE PÁGINAS -->
+  <aside class="col-esquerda">
+    <div class="topo-lateral">
+      <span>PÁGINAS DO LOTE</span>
+      <span id="total-paginas-badge" style="color: var(--tinta-fraca);">0 páginas</span>
+    </div>
+    <div class="filtro-tarefas">
+      <input type="text" id="input-filtro-tarefas" placeholder="Filtrar páginas (page_id)...">
+    </div>
+    <div id="lista-tarefas" class="lista-tarefas"></div>
+  </aside>
+
+  <!-- PALCO CENTRAL: VISUALIZAÇÃO E EDIÇÃO -->
+  <section id="palco" class="palco">
+    <div id="container-documento" class="container-documento">
+      <img id="imagem-pagina" alt="Imagem da página">
+      <svg id="overlay-svg">
+        <defs>
+          <marker id="seta-ordem" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8" />
+          </marker>
+          <pattern id="padrao-ruido" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+            <line x1="0" y1="0" x2="0" y2="10" stroke="#94a3b8" stroke-width="2" />
+          </pattern>
+        </defs>
+        <g id="camada-linhas-ordem"></g>
+        <g id="camada-caixas"></g>
+        <g id="camada-alcas"></g>
+        <g id="camada-guias"></g>
+      </svg>
+
+      <!-- OVERLAY DE PAUSA MANUAL -->
+      <div id="overlay-pausa" class="overlay-pausa" style="display: none;">
+        <span style="font-size: 28px;">⏸️</span>
+        <h2 style="font-size: 18px;">Cronômetro Pausado</h2>
+        <p style="font-size: 13px; color: var(--tinta-sec);">Clique em qualquer lugar ou no botão abaixo para retomar.</p>
+        <button id="btn-retomar-overlay" class="sucesso" style="margin-top: 6px; padding: 8px 16px; font-size: 13px;">▶️ Retomar Trabalho</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- LATERAL DIREITA: CLASSES, CAIXA SELECIONADA E ATALHOS -->
+  <aside class="col-direita">
+    <!-- PALETA DE CLASSES -->
+    <div class="secao-painel">
+      <div class="titulo-secao">
+        <span>Classes (<span id="rotulo-modo-paleta">Modo B</span>)</span>
+        <span id="atalho-paleta-info" style="font-size: 10px; color: var(--tinta-fraca);">Teclas 1 a 5</span>
+      </div>
+      <div id="grade-classes" class="grade-classes"></div>
+    </div>
+
+    <!-- MODO DE ORDEM DE LEITURA -->
+    <div class="secao-painel">
+      <div class="titulo-secao">Ordem de Leitura</div>
+      <div id="box-ordem" class="box-modo-ordem">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <strong id="label-modo-ordem" style="font-size: 12px;">Modo Ordem: DESATIVADO</strong>
+          <kbd>O</kbd>
+        </div>
+        <p style="font-size: 11px; color: var(--tinta-sec);">
+          Clique nas caixas na sequência exata de leitura humana.
+        </p>
+        <div style="display: flex; gap: 6px; margin-top: 4px;">
+          <button id="btn-toggle-ordem" class="primario" style="flex: 1;">Ativar Modo Ordem (O)</button>
+          <button id="btn-limpar-ordem" title="Zerar sequência da página">Zerar</button>
+        </div>
+        <div id="resumo-ordem" style="font-size: 11px; color: var(--acento); margin-top: 4px;">0 caixas na sequência</div>
+      </div>
+    </div>
+
+    <!-- PAINEL DA CAIXA SELECIONADA -->
+    <div class="secao-painel">
+      <div class="titulo-secao">Unidade Selecionada</div>
+      <div id="painel-caixa-vazio" style="font-size: 11px; color: var(--tinta-fraca); padding: 8px;">
+        Nenhuma unidade selecionada.<br>Clique numa caixa ou arraste no vazio para desenhar.
+      </div>
+      <div id="painel-caixa-ativo" class="info-caixa-box" style="display: none;">
+        <div class="linha-info">
+          <span>ID:</span>
+          <strong id="detalhe-caixa-id" style="font-family: var(--mono);">-</strong>
+        </div>
+        <div class="linha-info">
+          <span>Classe:</span>
+          <strong id="detalhe-caixa-classe">-</strong>
+        </div>
+        <div class="linha-info">
+          <span>Posição na Ordem:</span>
+          <strong id="detalhe-caixa-ordem" style="color: var(--acento);">-</strong>
+        </div>
+        <div class="linha-info">
+          <span>Dimensões:</span>
+          <span id="detalhe-caixa-dim" style="font-family: var(--mono); font-size: 10px;">-</span>
+        </div>
+        <div class="linha-info">
+          <span>Palavras Cobertas:</span>
+          <strong id="detalhe-caixa-palavras" style="color: var(--sucesso); font-size: 11px;">0</strong>
+        </div>
+
+        <div style="margin-top: 4px;">
+          <label style="font-size: 10px; color: var(--tinta-fraca); display: block; margin-bottom: 2px;">Texto extraído / transcrito:</label>
+          <textarea id="detalhe-caixa-texto" style="width: 100%; height: 46px; background: var(--fundo); color: var(--tinta); border: 1px solid var(--linha); border-radius: 4px; font-size: 11px; padding: 4px; resize: vertical;"></textarea>
+        </div>
+
+        <div class="botoes-caixa">
+          <button id="btn-apagar-caixa" class="perigo" title="Apagar (Del)">Apagar <kbd>Del</kbd></button>
+          <button id="btn-dividir-caixa" class="alerta" title="Dividir na horizontal (S)">Dividir <kbd>S</kbd></button>
+          <button id="btn-juntar-caixas" title="Juntar caixas selecionadas (M)">Juntar <kbd>M</kbd></button>
+          <button id="btn-deselecionar">Limpar Foco</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESUMO DE AÇÕES DA PÁGINA ATUAL -->
+    <div class="secao-painel">
+      <div class="titulo-secao">Ações na Página (E008)</div>
+      <div class="grade-resumo-acoes">
+        <div class="item-resumo-acao"><span>Criar:</span><b id="cnt-criar">0</b></div>
+        <div class="item-resumo-acao"><span>Apagar:</span><b id="cnt-apagar">0</b></div>
+        <div class="item-resumo-acao"><span>Mover:</span><b id="cnt-mover">0</b></div>
+        <div class="item-resumo-acao"><span>Redimensionar:</span><b id="cnt-redimensionar">0</b></div>
+        <div class="item-resumo-acao"><span>Reclassificar:</span><b id="cnt-reclassificar">0</b></div>
+        <div class="item-resumo-acao"><span>Ligar Ordem:</span><b id="cnt-ligar_ordem">0</b></div>
+        <div class="item-resumo-acao"><span>Dividir:</span><b id="cnt-dividir">0</b></div>
+        <div class="item-resumo-acao"><span>Juntar:</span><b id="cnt-juntar">0</b></div>
+        <div class="item-resumo-acao" style="grid-column: span 2;"><span>Desfazer:</span><b id="cnt-desfazer">0</b></div>
+      </div>
+    </div>
+
+    <!-- GUIA DE ATALHOS -->
+    <div class="secao-painel">
+      <div class="titulo-secao">Atalhos de Teclado</div>
+      <table class="tabela-atalhos">
+        <tr><td><kbd>1</kbd> a <kbd>9</kbd> / <kbd>0</kbd></td><td>Mudar classe</td></tr>
+        <tr><td><kbd>O</kbd></td><td>Modo ordem de leitura</td></tr>
+        <tr><td><kbd>S</kbd></td><td>Dividir caixa (Split)</td></tr>
+        <tr><td><kbd>M</kbd></td><td>Juntar caixas (Merge)</td></tr>
+        <tr><td><kbd>N</kbd></td><td>Marcar ruído (Modo B)</td></tr>
+        <tr><td><kbd>Del</kbd> / <kbd>⌫</kbd></td><td>Apagar selecionada</td></tr>
+        <tr><td><kbd>Ctrl+Z</kbd></td><td>Desfazer última ação</td></tr>
+        <tr><td><kbd>P</kbd></td><td>Pausar / Retomar</td></tr>
+        <tr><td><kbd>←</kbd> / <kbd>→</kbd></td><td>Página anterior / próxima</td></tr>
+        <tr><td><kbd>Shift</kbd>+clique</td><td>Múltipla seleção</td></tr>
+        <tr><td><kbd>Esc</kbd></td><td>Cancelar seleção / modo</td></tr>
+      </table>
+    </div>
+  </aside>
+</main>
+
+<!-- MODAL DE CONFIGURAÇÃO DE SESSÃO (MODO, SEMENTE, ANOTADOR) -->
+<div id="modal-sessao" class="modal-overlay" style="display: none;">
+  <div class="modal-conteudo">
+    <h3>Configurar Sessão Experimental (E008)</h3>
+    <p>Selecione o modo do protocolo, a semente de aleatorização das páginas e o seu identificador:</p>
+
+    <div class="campo-form">
+      <label>Modo Experimental:</label>
+      <select id="modal-select-modo">
+        <option value="B — simplificada">B — Simplificada (Linhas automáticas como unidades; corrigir tabela, figura, ruído e ligar ordem)</option>
+        <option value="A — densa">A — Densa (Desenhar/corrigir caixas completas: título, texto, lista, assinatura, etc.)</option>
+      </select>
+    </div>
+
+    <div class="campo-form">
+      <label>Nome / Identificador do Anotador:</label>
+      <input type="text" id="modal-input-anotador" value="Pedro" placeholder="Ex.: Pedro">
+    </div>
+
+    <div class="campo-form">
+      <label>Semente de Aleatorização (Seed):</label>
+      <div style="display: flex; gap: 6px;">
+        <input type="number" id="modal-input-semente" value="20261102" style="flex: 1;">
+        <button id="modal-btn-gerar-semente" title="Gerar semente aleatória">🎲 Nova</button>
+      </div>
+    </div>
+
+    <div class="campo-form" style="flex-direction: row; align-items: center; gap: 8px;">
+      <input type="checkbox" id="modal-check-embaralhar" checked style="width: auto;">
+      <label for="modal-check-embaralhar" style="cursor: pointer;">Embaralhar ordem das páginas com esta semente</label>
+    </div>
+
+    <div id="modal-bloco-modo-a" class="campo-form" style="display: none; background: #0f172a; padding: 8px; border-radius: 4px; border: 1px solid var(--linha);">
+      <label>Inicialização no Modo A (Densa):</label>
+      <select id="modal-select-origem-a">
+        <option value="proposta">Partir das unidades propostas (recomendado para correção rápida)</option>
+        <option value="blocos_v3">Partir dos blocos_v3 (se disponíveis na tarefa)</option>
+        <option value="branco">Começar tela limpa (desenhar tudo do zero)</option>
+      </select>
+    </div>
+
+    <div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 8px;">
+      <button id="modal-btn-cancelar-sessao">Fechar</button>
+      <button id="modal-btn-salvar-sessao" class="sucesso">▶️ Salvar e Iniciar Sessão</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL PARA PULAR PÁGINA -->
+<div id="modal-pular" class="modal-overlay" style="display: none;">
+  <div class="modal-conteudo">
+    <h3>Pular Página</h3>
+    <p>Informe o motivo para desconsiderar ou pular esta página:</p>
+    <div class="campo-form">
+      <textarea id="texto-motivo-pulo" placeholder="Ex.: Página em branco, texto completamente ilegível, escaneamento distorcido..."></textarea>
+    </div>
+    <div style="display: flex; justify-content: flex-end; gap: 8px;">
+      <button id="btn-cancelar-pulo">Cancelar</button>
+      <button id="btn-confirmar-pulo" class="alerta">Confirmar e Pular</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/**
+ * E008 · FERRAMENTA DE ANOTAÇÃO E ORDEM DE LEITURA COM CRONÔMETRO
+ * TCC Ordem de Leitura em Diários Oficiais
+ */
+
+// 1. CONFIGURAÇÃO DE CLASSES DOS DOIS MODOS
+const CLASSES_MODO_A = [
+  { id: "titulo",     nome: "Título",     tecla: "1", cor: "#3b82f6", corBorda: "#1d4ed8" },
+  { id: "texto",      nome: "Texto",      tecla: "2", cor: "#10b981", corBorda: "#047857" },
+  { id: "lista",      nome: "Lista",      tecla: "3", cor: "#8b5cf6", corBorda: "#6d28d9" },
+  { id: "assinatura", nome: "Assinatura", tecla: "4", cor: "#ec4899", corBorda: "#be185d" },
+  { id: "tabela",     nome: "Tabela",     tecla: "5", cor: "#f59e0b", corBorda: "#d97706" },
+  { id: "figura",     nome: "Figura",     tecla: "6", cor: "#06b6d4", corBorda: "#0e7490" },
+  { id: "cabecalho",  nome: "Cabeçalho",  tecla: "7", cor: "#64748b", corBorda: "#475569" },
+  { id: "rodape",     nome: "Rodapé",     tecla: "8", cor: "#475569", corBorda: "#334155" },
+  { id: "quadro",     nome: "Quadro",     tecla: "9", cor: "#ef4444", corBorda: "#b91c1c" },
+  { id: "outro",      nome: "Outro",      tecla: "0", cor: "#14b8a6", corBorda: "#0f766e" }
+];
+
+const CLASSES_MODO_B = [
+  { id: "linha",      nome: "Linha Texto", tecla: "1", cor: "#3b82f6", corBorda: "#1d4ed8" },
+  { id: "tabela",     nome: "Tabela",      tecla: "2", cor: "#10b981", corBorda: "#047857" },
+  { id: "figura",     nome: "Figura",      tecla: "3", cor: "#f59e0b", corBorda: "#d97706" },
+  { id: "quadro",     nome: "Quadro",      tecla: "4", cor: "#ef4444", corBorda: "#b91c1c" },
+  { id: "skip_noise", nome: "Ruído / Pular", tecla: "5", cor: "#64748b", corBorda: "#475569", isRuido: true }
+];
+
+const CHAVE_STORAGE = "e008_anotador_estado_v1";
+
+// ESTADO GLOBAL DA APLICAÇÃO
+const app = {
+  modo: "B — simplificada", // "A — densa" ou "B — simplificada"
+  anotador: "Pedro",
+  semente: 20261102,
+  embaralhar: true,
+  origemModoA: "proposta", // "proposta", "blocos_v3", "branco"
+  dataInicioSessao: new Date().toISOString(),
+
+  tarefas: [],              // Lista de páginas / tarefas da sessão
+  tarefasOriginais: [],     // Cópia da ordem original sem embaralhar
+  indiceAtual: 0,           // Índice da página em exibição
+  classeAtiva: "linha",     // Classe padrão para novas caixas
+  selecionadas: new Set(),  // IDs das caixas selecionadas
+  modoOrdem: false,         // Estado do modo sequencial de leitura
+  modoDividir: false,       // Estado do modo de corte de caixa
+  zoom: 1.0,                // Nível de zoom
+  
+  // CRONÔMETRO E DETECÇÃO DE INATIVIDADE
+  pausadoManual: false,
+  pausadoInatividade: false,
+  ultimoMomentoInteracao: Date.now(),
+  intervaloTimer: null,
+
+  historico: [],            // Pilha de undo (snapshots da página atual)
+  imagensLocais: new Map(), // Cache de arquivos de imagem locais
+  arrastando: null          // Estado de arrasto
+};
+
+// -----------------------------------------------------------------------------
+// PRNG E ALEATORIZAÇÃO COM SEMENTE (Mulberry32)
+// -----------------------------------------------------------------------------
+function criarPRNG(seed) {
+  let s = Math.floor(Math.abs(Number(seed))) || 1;
+  return function() {
+    s |= 0; s = s + 0x6D2B79F5 | 0;
+    let t = Math.imul(s ^ s >>> 15, 1 | s);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+
+function embaralharLista(array, seed) {
+  const rand = criarPRNG(seed);
+  const copia = array.map((item, idx) => ({ ...item }));
+  for (let i = copia.length - 1; i > 0; i--) {
+    const j = Math.floor(rand() * (i + 1));
+    [copia[i], copia[j]] = [copia[j], copia[i]];
+  }
+  return copia;
+}
+
+// -----------------------------------------------------------------------------
+// INICIALIZAÇÃO
+// -----------------------------------------------------------------------------
+document.addEventListener("DOMContentLoaded", () => {
+  renderizarPaletaClasses();
+  configurarEventosUI();
+  configurarAtalhosTeclado();
+  configurarEventosInteracaoTimer();
+  iniciarCronometroGlobal();
+
+  const restaurado = carregarDoLocalStorage();
+  if (!restaurado) {
+    // Abrir modal de boas-vindas na primeira inicialização
+    abrirModalSessao();
+  }
+});
+
+function classesAtuais() {
+  return app.modo.startsWith("A") ? CLASSES_MODO_A : CLASSES_MODO_B;
+}
+
+function renderizarPaletaClasses() {
+  const lista = classesAtuais();
+  const container = document.getElementById("grade-classes");
+  container.innerHTML = "";
+
+  document.getElementById("rotulo-modo-paleta").textContent = app.modo.startsWith("A") ? "Modo A Densa" : "Modo B Simplificada";
+  document.getElementById("atalho-paleta-info").textContent = `Teclas 1 a ${lista.length % 10}`;
+
+  // Se classe ativa não pertencer à lista atual, ajusta
+  if (!lista.some(c => c.id === app.classeAtiva)) {
+    app.classeAtiva = lista[0].id;
+  }
+
+  lista.forEach(c => {
+    const btn = document.createElement("div");
+    btn.className = `btn-classe ${c.id === app.classeAtiva ? "selecionada" : ""}`;
+    btn.id = `btn-classe-${c.id}`;
+    btn.innerHTML = `
+      <div class="classe-info">
+        <span class="ponto-cor" style="background: ${c.cor};"></span>
+        <span>${c.nome}</span>
+      </div>
+      <kbd>${c.tecla}</kbd>
+    `;
+    btn.onclick = () => selecionarClasseAtiva(c.id);
+    container.appendChild(btn);
+  });
+}
+
+function selecionarClasseAtiva(classeId) {
+  app.classeAtiva = classeId;
+  document.querySelectorAll(".btn-classe").forEach(el => el.classList.remove("selecionada"));
+  const btn = document.getElementById(`btn-classe-${classeId}`);
+  if (btn) btn.classList.add("selecionada");
+
+  // Se houver unidades selecionadas, atualiza imediatamente
+  if (app.selecionadas.size > 0) {
+    salvarHistorico();
+    const pag = paginaAtual();
+    const alteradas = [];
+    pag.caixas.forEach(cx => {
+      if (app.selecionadas.has(cx.id) && cx.classe !== classeId) {
+        alteradas.push({ id: cx.id, de: cx.classe, para: classeId });
+        cx.classe = classeId;
+      }
+    });
+    if (alteradas.length > 0) {
+      registrarAcao("reclassificar", { alteradas });
+    }
+    atualizarDetalhesCaixa();
+    renderizarDocumento();
+    salvarAutosave();
+  }
+}
+
+// -----------------------------------------------------------------------------
+// CONTROLE DO CRONÔMETRO E DETECÇÃO DE INATIVIDADE (60 s)
+// -----------------------------------------------------------------------------
+function iniciarCronometroGlobal() {
+  if (app.intervaloTimer) clearInterval(app.intervaloTimer);
+  let ultimaMarcacao = Date.now();
+
+  app.intervaloTimer = setInterval(() => {
+    const agora = Date.now();
+    const delta = agora - ultimaMarcacao;
+    ultimaMarcacao = agora;
+
+    const pag = paginaAtual();
+    if (!pag) return;
+
+    // Checar inatividade após 60 segundos sem interação
+    const tempoSemInteracao = agora - app.ultimoMomentoInteracao;
+    if (!app.pausadoManual && tempoSemInteracao >= 60000) {
+      if (!app.pausadoInatividade) {
+        app.pausadoInatividade = true;
+        pag.tempos.pausas_contagem = (pag.tempos.pausas_contagem || 0) + 1;
+        registrarAcao("pausa_inatividade", { t_inatividade_ms: tempoSemInteracao });
+        atualizarDisplayCronometro();
+      }
+    }
+
+    const estaPausado = app.pausadoManual || app.pausadoInatividade;
+    if (!estaPausado) {
+      pag.tempos.tempo_ativo_ms = (pag.tempos.tempo_ativo_ms || 0) + delta;
+      pag.tempos.tempo_ativo_s = Math.round(pag.tempos.tempo_ativo_ms / 100) / 10;
+    }
+    pag.tempos.tempo_total_ms = (pag.tempos.tempo_total_ms || 0) + delta;
+    pag.tempos.tempo_total_s = Math.round(pag.tempos.tempo_total_ms / 100) / 10;
+
+    atualizarDisplayCronometro();
+  }, 100);
+}
+
+function configurarEventosInteracaoTimer() {
+  const registrarInteracao = () => {
+    app.ultimoMomentoInteracao = Date.now();
+    if (app.pausadoInatividade) {
+      app.pausadoInatividade = false;
+      registrarAcao("retomada_interacao", {});
+      atualizarDisplayCronometro();
+    }
+  };
+
+  window.addEventListener("mousemove", registrarInteracao, { passive: true });
+  window.addEventListener("mousedown", registrarInteracao, { passive: true });
+  window.addEventListener("keydown", registrarInteracao, { passive: true });
+  window.addEventListener("scroll", registrarInteracao, { passive: true });
+}
+
+function alternarPausaManual() {
+  app.pausadoManual = !app.pausadoManual;
+  const pag = paginaAtual();
+  if (app.pausadoManual) {
+    if (pag) pag.tempos.pausas_contagem = (pag.tempos.pausas_contagem || 0) + 1;
+    registrarAcao("pausa_manual", {});
+    document.getElementById("overlay-pausa").style.display = "flex";
+  } else {
+    app.ultimoMomentoInteracao = Date.now();
+    registrarAcao("retomada_manual", {});
+    document.getElementById("overlay-pausa").style.display = "none";
+  }
+  atualizarDisplayCronometro();
+}
+
+function atualizarDisplayCronometro() {
+  const pag = paginaAtual();
+  if (!pag || !pag.tempos) return;
+
+  const ativoS = Math.floor((pag.tempos.tempo_ativo_ms || 0) / 1000);
+  const min = Math.floor(ativoS / 60).toString().padStart(2, "0");
+  const seg = Math.floor(ativoS % 60).toString().padStart(2, "0");
+
+  document.getElementById("cronometro-display").textContent = `${min}:${seg}`;
+
+  const tag = document.getElementById("cronometro-status-tag");
+  const btnPausar = document.getElementById("btn-pausar-cronometro");
+
+  if (app.pausadoManual) {
+    tag.className = "cronometro-tag pausado-manual";
+    tag.textContent = "Pausado";
+    btnPausar.textContent = "▶️ Retomar";
+    btnPausar.className = "sucesso";
+  } else if (app.pausadoInatividade) {
+    tag.className = "cronometro-tag pausado-inativo";
+    tag.textContent = "Inativo (60s)";
+    btnPausar.textContent = "▶️ Retomar";
+    btnPausar.className = "alerta";
+  } else {
+    tag.className = "cronometro-tag ativo";
+    tag.textContent = "Ativo";
+    btnPausar.textContent = "⏸️ Pausar";
+    btnPausar.className = "";
+  }
+}
+
+// -----------------------------------------------------------------------------
+// REGISTRO DE AÇÕES E AUDITORIA (E008)
+// -----------------------------------------------------------------------------
+function registrarAcao(tipo, detalhe = {}) {
+  const pag = paginaAtual();
+  if (!pag) return;
+
+  if (!pag.contagem_acoes) {
+    pag.contagem_acoes = {
+      criar: 0, apagar: 0, mover: 0, redimensionar: 0,
+      reclassificar: 0, ligar_ordem: 0, dividir: 0,
+      juntar: 0, desfazer: 0, pular: 0
+    };
+  }
+  if (!pag.acoes) pag.acoes = [];
+
+  if (pag.contagem_acoes[tipo] !== undefined) {
+    pag.contagem_acoes[tipo]++;
+  }
+
+  const t_ms = Math.round(pag.tempos ? pag.tempos.tempo_ativo_ms : 0);
+  pag.acoes.push({
+    tipo: tipo,
+    t_ms: t_ms,
+    detalhe: detalhe
+  });
+
+  atualizarResumoAcoes();
+  salvarAutosave();
+}
+
+function atualizarResumoAcoes() {
+  const pag = paginaAtual();
+  if (!pag || !pag.contagem_acoes) return;
+
+  const c = pag.contagem_acoes;
+  const total = Object.values(c).reduce((a, b) => a + b, 0);
+  document.getElementById("contador-acoes-badge").textContent = `⚡ ${total} ações`;
+
+  document.getElementById("cnt-criar").textContent = c.criar || 0;
+  document.getElementById("cnt-apagar").textContent = c.apagar || 0;
+  document.getElementById("cnt-mover").textContent = c.mover || 0;
+  document.getElementById("cnt-redimensionar").textContent = c.redimensionar || 0;
+  document.getElementById("cnt-reclassificar").textContent = c.reclassificar || 0;
+  document.getElementById("cnt-ligar_ordem").textContent = c.ligar_ordem || 0;
+  document.getElementById("cnt-dividir").textContent = c.dividir || 0;
+  document.getElementById("cnt-juntar").textContent = c.juntar || 0;
+  document.getElementById("cnt-desfazer").textContent = c.desfazer || 0;
+}
+
+// -----------------------------------------------------------------------------
+// PALAVRAS E COBERTURA DE PALAVRAS
+// -----------------------------------------------------------------------------
+function normalizarBbox(bbox) {
+  let [x0, y0, x1, y1] = bbox.map(Number);
+  return [
+    Math.round(Math.min(x0, x1) * 10) / 10,
+    Math.round(Math.min(y0, y1) * 10) / 10,
+    Math.round(Math.max(x0, x1) * 10) / 10,
+    Math.round(Math.max(y0, y1) * 10) / 10
+  ];
+}
+
+function normalizarPalavras(listaRaw) {
+  if (!Array.isArray(listaRaw)) return [];
+  return listaRaw.map((w, idx) => {
+    if (Array.isArray(w)) {
+      // [texto, x0, y0, x1, y1, line_idx]
+      const x0 = Number(w[1]) || 0;
+      const y0 = Number(w[2]) || 0;
+      const x1 = Number(w[3]) || 0;
+      const y1 = Number(w[4]) || 0;
+      return {
+        id: idx,
+        texto: String(w[0] || ""),
+        bbox: [x0, y0, x1, y1],
+        cx: (x0 + x1) / 2,
+        cy: (y0 + y1) / 2
+      };
+    } else if (typeof w === "object") {
+      const b = w.bbox || [w.x0, w.y0, w.x1, w.y1] || [0,0,0,0];
+      return {
+        id: w.id !== undefined ? w.id : idx,
+        texto: String(w.text || w.texto || ""),
+        bbox: b,
+        cx: (b[0] + b[2]) / 2,
+        cy: (b[1] + b[3]) / 2
+      };
+    }
+    return null;
+  }).filter(Boolean);
+}
+
+function calcularPalavrasCobertas(boxBbox, palavrasNorm) {
+  if (!palavrasNorm || palavrasNorm.length === 0) return [];
+  const [bx0, by0, bx1, by1] = normalizarBbox(boxBbox);
+  const ids = [];
+  palavrasNorm.forEach(p => {
+    if (p.cx >= bx0 - 1.0 && p.cx <= bx1 + 1.0 &&
+        p.cy >= by0 - 1.0 && p.cy <= by1 + 1.0) {
+      ids.push(p.id);
+    }
+  });
+  return ids;
+}
+
+function comporTextoPalavras(idsCobertos, palavrasNorm) {
+  if (!idsCobertos || idsCobertos.length === 0 || !palavrasNorm) return "";
+  const mapa = new Map(palavrasNorm.map(p => [p.id, p.texto]));
+  return idsCobertos.map(id => mapa.get(id) || "").filter(Boolean).join(" ");
+}
+
+// -----------------------------------------------------------------------------
+// IMPORTAÇÃO E PARSER DE TAREFAS (.json e .jsonl)
+// -----------------------------------------------------------------------------
+function carregarArquivoTarefas(conteudoTexto) {
+  try {
+    const textoLimpo = conteudoTexto.trim();
+    let listaTarefasBruta = [];
+
+    // 1. Detectar se é JSON Lines (.jsonl)
+    const linhas = textoLimpo.split(/\r?\n/).map(l => l.trim()).filter(l => l.length > 0);
+    if (linhas.length > 1 && linhas[0].startsWith("{") && linhas[linhas.length - 1].endsWith("}")) {
+      listaTarefasBruta = linhas.map(l => JSON.parse(l));
+    } else {
+      // 2. JSON padrão (.json)
+      const parsed = JSON.parse(textoLimpo);
+      if (Array.isArray(parsed)) {
+        listaTarefasBruta = parsed;
+      } else if (parsed.tasks) {
+        listaTarefasBruta = parsed.tasks;
+      } else if (parsed.paginas) {
+        listaTarefasBruta = parsed.paginas;
+      } else {
+        listaTarefasBruta = [parsed];
+      }
+    }
+
+    // Processar para o modelo interno do anotador
+    const processadas = converterTarefasEntrada(listaTarefasBruta);
+    if (processadas.length === 0) {
+      return alert("Nenhuma página válida encontrada no arquivo.");
+    }
+
+    app.tarefasOriginais = processadas;
+    if (app.embaralhar) {
+      app.tarefas = embaralharLista(processadas, app.semente);
+    } else {
+      app.tarefas = processadas.map(p => ({ ...p }));
+    }
+
+    app.indiceAtual = 0;
+    app.selecionadas.clear();
+    app.historico = [];
+    atualizarBadgesMeta();
+    atualizarListaTarefas();
+    carregarPaginaAtual();
+    salvarAutosave();
+
+    mostrarAviso(`${app.tarefas.length} página(s) carregada(s) no Modo ${app.modo}.`);
+  } catch (err) {
+    alert("Erro ao ler tarefas: " + err.message);
+  }
+}
+
+function converterTarefasEntrada(listaBruta) {
+  return listaBruta.map((item, idx) => {
+    const isLS = item.annotations || (item.data && item.data.image);
+    if (isLS) {
+      return converterItemLabelStudio(item, idx);
+    }
+
+    const pid = item.page_id || item.id || `pag_${idx + 1}`;
+    const imgNome = (item.imagem || `${idx + 1}.jpg`).split(/[\\/]/).pop();
+    const dim = item.dimensions || {};
+    const W = Number(dim.width) || item.largura || 595.2;
+    const H = Number(dim.height) || item.altura || 842.0;
+
+    const palavrasNorm = normalizarPalavras(item.palavras);
+
+    // Selecionar de onde vêm as caixas iniciais
+    let caixasIniciais = [];
+    if (app.modo.startsWith("B")) {
+      // MODO B (Simplificada): As LINHAS da proposta já vêm como unidades
+      const proposta = item.proposta || item.unidades || [];
+      caixasIniciais = proposta.map((p, k) => {
+        let classe = "linha";
+        const tipoOrig = String(p.tipo_original || p.classe || "").toLowerCase();
+        if (tipoOrig === "tabela" || tipoOrig === "table") classe = "tabela";
+        else if (tipoOrig === "figura" || tipoOrig === "picture" || tipoOrig === "imagem") classe = "figura";
+        else if (tipoOrig === "quadro") classe = "quadro";
+        else if (tipoOrig === "cabecalho" || tipoOrig === "rodape") classe = "skip_noise";
+
+        const bbox = normalizarBbox(p.bbox || [0,0,10,10]);
+        const cobertas = calcularPalavrasCobertas(bbox, palavrasNorm);
+        const txt = p.texto || comporTextoPalavras(cobertas, palavrasNorm);
+
+        return {
+          id: p.id || `u${k+1}`,
+          bbox: bbox,
+          classe: classe,
+          texto: txt,
+          palavras_cobertas: cobertas
+        };
+      });
+    } else {
+      // MODO A (Densa)
+      if (app.origemModoA === "proposta") {
+        const proposta = item.proposta || item.unidades || [];
+        caixasIniciais = proposta.map((p, k) => {
+          let classe = p.classe || "texto";
+          if (!CLASSES_MODO_A.some(c => c.id === classe)) classe = "texto";
+          const bbox = normalizarBbox(p.bbox || [0,0,10,10]);
+          const cobertas = calcularPalavrasCobertas(bbox, palavrasNorm);
+          return {
+            id: p.id || `c${k+1}`,
+            bbox: bbox,
+            classe: classe,
+            texto: p.texto || comporTextoPalavras(cobertas, palavrasNorm),
+            palavras_cobertas: cobertas
+          };
+        });
+      } else if (app.origemModoA === "blocos_v3" && Array.isArray(item.blocos_v3) && item.blocos_v3.length > 0) {
+        caixasIniciais = item.blocos_v3.map((b, k) => {
+          const bbox = normalizarBbox(b.bbox || [0,0,10,10]);
+          const cobertas = calcularPalavrasCobertas(bbox, palavrasNorm);
+          return {
+            id: b.id || `v${k+1}`,
+            bbox: bbox,
+            classe: "texto",
+            texto: comporTextoPalavras(cobertas, palavrasNorm),
+            palavras_cobertas: cobertas
+          };
+        });
+      } else {
+        caixasIniciais = []; // Tela em branco
+      }
+    }
+
+    return {
+      page_id: String(pid),
+      n: item.n !== undefined ? item.n : (idx + 1),
+      indice_original: idx,
+      imagem: imgNome,
+      largura: W,
+      altura: H,
+      palavras: palavrasNorm,
+      caixas: caixasIniciais,
+      ordem: item.ordem || [],
+      motivo_pulo: null,
+      tempos: {
+        tempo_ativo_ms: 0,
+        tempo_ativo_s: 0,
+        tempo_total_ms: 0,
+        tempo_total_s: 0,
+        pausas_contagem: 0
+      },
+      contagem_acoes: {
+        criar: 0, apagar: 0, mover: 0, redimensionar: 0,
+        reclassificar: 0, ligar_ordem: 0, dividir: 0,
+        juntar: 0, desfazer: 0, pular: 0
+      },
+      acoes: []
+    };
+  });
+}
+
+function converterItemLabelStudio(item, idx) {
+  const data = item.data || {};
+  const pid = data.page_id || data.id || item.id || `ls_${idx + 1}`;
+  const imagem = (data.image || `${pid}.jpg`).split(/[\\/]/).pop();
+  const ann = (item.annotations || [])[0] || item;
+  const results = ann.result || [];
+  const lead_time = ann.lead_time || 0;
+
+  let origW = 1000, origH = 1000;
+  const caixasMap = {};
+  const ligacoes = [];
+
+  results.forEach(r => {
+    if (r.type === "relation") {
+      let de = r.from_id;
+      let para = r.to_id;
+      if (r.direction === "left") [de, para] = [para, de];
+      if (de && para) ligacoes.push({ de, para });
+      return;
+    }
+    const rid = r.id;
+    if (!rid) return;
+    if (!caixasMap[rid]) {
+      caixasMap[rid] = { id: rid, classe: "texto", texto: "", pct: null, W: null, H: null };
+    }
+    if (r.original_width) origW = r.original_width;
+    if (r.original_height) origH = r.original_height;
+
+    const val = r.value || {};
+    if (r.type === "rectanglelabels" || r.type === "labels") {
+      const labs = val[r.type] || [];
+      if (labs.length > 0) caixasMap[rid].classe = labs[0];
+    } else if (r.type === "textarea") {
+      const txts = val.text || [];
+      caixasMap[rid].texto = txts.join("\n");
+    }
+
+    if (!caixasMap[rid].pct && val.x !== undefined && val.width !== undefined) {
+      caixasMap[rid].pct = [val.x, val.y, val.width, val.height];
+      caixasMap[rid].W = r.original_width || origW;
+      caixasMap[rid].H = r.original_height || origH;
+    }
+  });
+
+  const caixas = Object.values(caixasMap).map(c => {
+    const W = c.W || origW;
+    const H = c.H || origH;
+    let [px, py, pw, ph] = c.pct || [0,0,10,10];
+    return {
+      id: c.id,
+      bbox: normalizarBbox([(px / 100) * W, (py / 100) * H, ((px + pw) / 100) * W, ((py + ph) / 100) * H]),
+      classe: c.classe,
+      texto: c.texto,
+      palavras_cobertas: []
+    };
+  });
+
+  let ordem = [];
+  if (ligacoes.length > 0) {
+    const sucessores = {};
+    const entradas = {};
+    caixas.forEach(c => entradas[c.id] = 0);
+    ligacoes.forEach(l => {
+      sucessores[l.de] = l.para;
+      entradas[l.para] = (entradas[l.para] || 0) + 1;
+    });
+    const cabeca = caixas.find(c => entradas[c.id] === 0 && sucessores[c.id]);
+    if (cabeca) {
+      let atual = cabeca.id;
+      const visitados = new Set();
+      while (atual && !visitados.has(atual)) {
+        visitados.add(atual);
+        ordem.push(atual);
+        atual = sucessores[atual];
+      }
+    }
+  }
+
+  return {
+    page_id: String(pid),
+    n: idx + 1,
+    indice_original: idx,
+    imagem: imagem,
+    largura: origW,
+    altura: origH,
+    palavras: [],
+    caixas: caixas,
+    ordem: ordem,
+    motivo_pulo: null,
+    tempos: {
+      tempo_ativo_ms: Math.round(lead_time * 1000),
+      tempo_ativo_s: lead_time,
+      tempo_total_ms: Math.round(lead_time * 1000),
+      tempo_total_s: lead_time,
+      pausas_contagem: 0
+    },
+    contagem_acoes: { criar: 0, apagar: 0, mover: 0, redimensionar: 0, reclassificar: 0, ligar_ordem: 0, dividir: 0, juntar: 0, desfazer: 0, pular: 0 },
+    acoes: []
+  };
+}
+
+// -----------------------------------------------------------------------------
+// EXPORTAÇÃO (SESSÃO JSON, PÁGINA JSON, LABEL STUDIO)
+// -----------------------------------------------------------------------------
+function exportarSessaoJSON() {
+  if (app.tarefas.length === 0) return alert("Nenhuma tarefa carregada para exportar.");
+
+  const paginasExport = app.tarefas.map((pag, idx) => {
+    // Atualiza palavras cobertas das caixas finais
+    const unidadesFinais = (pag.caixas || []).map(cx => {
+      const cobertas = cx.palavras_cobertas && cx.palavras_cobertas.length > 0
+        ? cx.palavras_cobertas
+        : calcularPalavrasCobertas(cx.bbox, pag.palavras);
+      return {
+        id: cx.id,
+        bbox: normalizarBbox(cx.bbox),
+        classe: cx.classe,
+        texto: cx.texto || comporTextoPalavras(cobertas, pag.palavras),
+        palavras_cobertas: cobertas
+      };
+    });
+
+    return {
+      page_id: pag.page_id,
+      n: pag.n,
+      indice_sessao: idx,
+      indice_original: pag.indice_original,
+      modo: app.modo,
+      tempos: {
+        tempo_ativo_s: Math.round((pag.tempos.tempo_ativo_ms || 0) / 100) / 10,
+        tempo_ativo_ms: Math.round(pag.tempos.tempo_ativo_ms || 0),
+        tempo_total_s: Math.round((pag.tempos.tempo_total_ms || 0) / 100) / 10,
+        pausas_contagem: pag.tempos.pausas_contagem || 0
+      },
+      contagem_acoes: pag.contagem_acoes || {},
+      acoes: pag.acoes || [],
+      unidades: unidadesFinais,
+      ordem: pag.ordem || [],
+      motivo_pulo: pag.motivo_pulo || null
+    };
+  });
+
+  const concluidas = app.tarefas.filter(t => (t.ordem || []).length > 0 || t.motivo_pulo).length;
+  const totalTempoAtivoS = paginasExport.reduce((acc, p) => acc + p.tempos.tempo_ativo_s, 0);
+
+  const payload = {
+    versao_ferramenta: "E008-anotador-v1",
+    modo: app.modo,
+    anotador: app.anotador,
+    semente: app.semente,
+    embaralhado: app.embaralhar,
+    data_inicio: app.dataInicioSessao,
+    data_exportacao: new Date().toISOString(),
+    total_paginas: app.tarefas.length,
+    paginas_concluidas: concluidas,
+    tempo_total_ativo_s: Math.round(totalTempoAtivoS * 10) / 10,
+    paginas: paginasExport
+  };
+
+  const tagModo = app.modo.startsWith("A") ? "densa" : "simplificada";
+  const nomeArq = `anotacao_sessao_e008_${tagModo}_sem${app.semente}_${Date.now()}.json`;
+  baixarJSON(payload, nomeArq);
+}
+
+function exportarPaginaAtualJSON() {
+  const pag = paginaAtual();
+  if (!pag) return alert("Nenhuma página selecionada.");
+
+  const unidadesFinais = (pag.caixas || []).map(cx => {
+    const cobertas = cx.palavras_cobertas && cx.palavras_cobertas.length > 0
+      ? cx.palavras_cobertas
+      : calcularPalavrasCobertas(cx.bbox, pag.palavras);
+    return {
+      id: cx.id,
+      bbox: normalizarBbox(cx.bbox),
+      classe: cx.classe,
+      texto: cx.texto || comporTextoPalavras(cobertas, pag.palavras),
+      palavras_cobertas: cobertas
+    };
+  });
+
+  const payload = {
+    versao_ferramenta: "E008-anotador-v1",
+    modo: app.modo,
+    anotador: app.anotador,
+    semente: app.semente,
+    page_id: pag.page_id,
+    n: pag.n,
+    indice_sessao: app.indiceAtual,
+    tempos: {
+      tempo_ativo_s: Math.round((pag.tempos.tempo_ativo_ms || 0) / 100) / 10,
+      tempo_ativo_ms: Math.round(pag.tempos.tempo_ativo_ms || 0),
+      tempo_total_s: Math.round((pag.tempos.tempo_total_ms || 0) / 100) / 10,
+      pausas_contagem: pag.tempos.pausas_contagem || 0
+    },
+    contagem_acoes: pag.contagem_acoes || {},
+    acoes: pag.acoes || [],
+    unidades: unidadesFinais,
+    ordem: pag.ordem || [],
+    motivo_pulo: pag.motivo_pulo || null
+  };
+
+  const safePid = pag.page_id.replace(/[^a-zA-Z0-9_-]/g, "_");
+  baixarJSON(payload, `anotacao_pag_${safePid}.json`);
+}
+
+function exportarFormatoLabelStudio() {
+  if (app.tarefas.length === 0) return alert("Nenhuma tarefa para exportar.");
+
+  const tarefasLS = app.tarefas.map((pag, idx) => {
+    const W = pag.largura || 1000;
+    const H = pag.altura || 1000;
+    const resultItems = [];
+
+    (pag.caixas || []).forEach(cx => {
+      const [x0, y0, x1, y1] = normalizarBbox(cx.bbox);
+      const pct_x = (x0 / W) * 100;
+      const pct_y = (y0 / H) * 100;
+      const pct_w = ((x1 - x0) / W) * 100;
+      const pct_h = ((y1 - y0) / H) * 100;
+
+      resultItems.push({
+        id: cx.id,
+        type: "rectanglelabels",
+        value: {
+          x: Math.round(pct_x * 10000) / 10000,
+          y: Math.round(pct_y * 10000) / 10000,
+          width: Math.round(pct_w * 10000) / 10000,
+          height: Math.round(pct_h * 10000) / 10000,
+          rotation: 0,
+          rectanglelabels: [cx.classe || "texto"]
+        },
+        original_width: W,
+        original_height: H,
+        from_name: "label",
+        to_name: "image"
+      });
+
+      if (cx.texto) {
+        resultItems.push({
+          id: cx.id,
+          type: "textarea",
+          value: { text: [cx.texto] },
+          from_name: "transcription",
+          to_name: "image"
+        });
+      }
+    });
+
+    const ordem = pag.ordem || [];
+    for (let i = 0; i < ordem.length - 1; i++) {
+      resultItems.push({
+        type: "relation",
+        from_id: ordem[i],
+        to_id: ordem[i + 1],
+        direction: "right",
+        labels: ["continue"]
+      });
+    }
+
+    return {
+      id: idx + 1,
+      data: {
+        image: pag.imagem || `${pag.page_id}.png`,
+        page_id: pag.page_id
+      },
+      annotations: [{
+        id: (idx + 1) * 1000 + 1,
+        lead_time: Math.round((pag.tempos.tempo_ativo_ms || 0) / 1000),
+        result: resultItems,
+        was_cancelled: Boolean(pag.motivo_pulo)
+      }]
+    };
+  });
+
+  baixarJSON(tarefasLS, `export_labelstudio_e008_${Date.now()}.json`);
+}
+
+function baixarJSON(objeto, nomeArquivo) {
+  const blob = new Blob([JSON.stringify(objeto, null, 2)], { type: "application/json;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = nomeArquivo;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+// -----------------------------------------------------------------------------
+// HISTÓRICO DE ALTERAÇÕES (UNDO - Ctrl+Z)
+// -----------------------------------------------------------------------------
+function salvarHistorico() {
+  const pag = paginaAtual();
+  if (!pag) return;
+  const snapshot = {
+    caixas: JSON.parse(JSON.stringify(pag.caixas || [])),
+    ordem: [...(pag.ordem || [])]
+  };
+  app.historico.push(snapshot);
+  if (app.historico.length > 50) app.historico.shift();
+}
+
+function desfazer() {
+  if (app.historico.length === 0) return mostrarAviso("Nada a desfazer.");
+  const ultimo = app.historico.pop();
+  const pag = paginaAtual();
+  if (!pag) return;
+
+  pag.caixas = ultimo.caixas;
+  pag.ordem = ultimo.ordem;
+  app.selecionadas.clear();
+
+  registrarAcao("desfazer", {});
+  atualizarDetalhesCaixa();
+  renderizarDocumento();
+  salvarAutosave();
+  mostrarAviso("Ação desfeita.");
+}
+
+// -----------------------------------------------------------------------------
+// RENDERIZAÇÃO DO PALCO E SVG
+// -----------------------------------------------------------------------------
+function paginaAtual() {
+  return app.tarefas[app.indiceAtual] || null;
+}
+
+function carregarPaginaAtual() {
+  const pag = paginaAtual();
+  if (!pag) return;
+
+  app.selecionadas.clear();
+  app.historico = [];
+  app.ultimoMomentoInteracao = Date.now();
+  atualizarDetalhesCaixa();
+
+  const W = pag.largura || 595.2;
+  const H = pag.altura || 842.0;
+
+  const container = document.getElementById("container-documento");
+  const imgEl = document.getElementById("imagem-pagina");
+  const svgEl = document.getElementById("overlay-svg");
+
+  container.style.width = `${W * app.zoom}px`;
+  container.style.height = `${H * app.zoom}px`;
+  svgEl.setAttribute("viewBox", `0 0 ${W} ${H}`);
+
+  const nomeImg = (pag.imagem || "").split(/[\\/]/).pop();
+  if (app.imagensLocais.has(nomeImg)) {
+    imgEl.src = app.imagensLocais.get(nomeImg);
+    imgEl.style.display = "block";
+    container.style.background = "#ffffff";
+  } else {
+    imgEl.style.display = "none";
+    container.style.background = "#ffffff radial-gradient(#cbd5e1 1px, transparent 1px)";
+    container.style.backgroundSize = "20px 20px";
+  }
+
+  atualizarCabecalhoPagina();
+  atualizarDisplayCronometro();
+  atualizarResumoAcoes();
+  renderizarDocumento();
+}
+
+function renderizarDocumento() {
+  const pag = paginaAtual();
+  if (!pag) return;
+
+  const camadaLinhas = document.getElementById("camada-linhas-ordem");
+  const camadaCaixas = document.getElementById("camada-caixas");
+  const camadaAlcas = document.getElementById("camada-alcas");
+
+  camadaLinhas.innerHTML = "";
+  camadaCaixas.innerHTML = "";
+  camadaAlcas.innerHTML = "";
+
+  const ordem = pag.ordem || [];
+  const caixasMap = new Map((pag.caixas || []).map(c => [c.id, c]));
+  const classesList = classesAtuais();
+
+  // 1. Linhas e Setas da Ordem de Leitura
+  if (ordem.length >= 2) {
+    for (let i = 0; i < ordem.length - 1; i++) {
+      const c1 = caixasMap.get(ordem[i]);
+      const c2 = caixasMap.get(ordem[i + 1]);
+      if (c1 && c2) {
+        const [x0a, y0a, x1a, y1a] = normalizarBbox(c1.bbox);
+        const [x0b, y0b, x1b, y1b] = normalizarBbox(c2.bbox);
+        const c1X = (x0a + x1a) / 2;
+        const c1Y = (y0a + y1a) / 2;
+        const c2X = (x0b + x1b) / 2;
+        const c2Y = (y0b + y1b) / 2;
+
+        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        line.setAttribute("x1", c1X);
+        line.setAttribute("y1", c1Y);
+        line.setAttribute("x2", c2X);
+        line.setAttribute("y2", c2Y);
+        line.setAttribute("class", "svg-linha-ordem");
+        line.setAttribute("marker-end", "url(#seta-ordem)");
+        camadaLinhas.appendChild(line);
+      }
+    }
+  }
+
+  // 2. Unidades / Caixas
+  (pag.caixas || []).forEach(cx => {
+    const [x0, y0, x1, y1] = normalizarBbox(cx.bbox);
+    const w = Math.max(2, x1 - x0);
+    const h = Math.max(2, y1 - y0);
+
+    const classeObj = classesList.find(c => c.id === cx.classe) || classesList[0];
+    const isSel = app.selecionadas.has(cx.id);
+    const idxOrdem = ordem.indexOf(cx.id);
+    const isRuido = cx.classe === "skip_noise";
+
+    const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+
+    const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    rect.setAttribute("x", x0);
+    rect.setAttribute("y", y0);
+    rect.setAttribute("width", w);
+    rect.setAttribute("height", h);
+
+    if (isRuido) {
+      rect.setAttribute("fill", "url(#padrao-ruido)");
+      rect.setAttribute("fill-opacity", "0.4");
+      rect.setAttribute("stroke", isSel ? "#38bdf8" : "#94a3b8");
+      rect.setAttribute("stroke-width", isSel ? "2.5" : "1.2");
+      rect.setAttribute("class", `svg-caixa ruido ${isSel ? "selecionada" : ""}`);
+    } else {
+      rect.setAttribute("fill", classeObj.cor);
+      rect.setAttribute("fill-opacity", isSel ? "0.35" : "0.15");
+      rect.setAttribute("stroke", isSel ? "#38bdf8" : classeObj.corBorda);
+      rect.setAttribute("stroke-width", isSel ? "2.8" : "1.5");
+      rect.setAttribute("class", `svg-caixa ${isSel ? "selecionada" : ""}`);
+    }
+
+    rect.setAttribute("data-id", cx.id);
+    rect.onmousedown = (e) => iniciarArrastoCaixa(e, cx.id);
+    g.appendChild(rect);
+
+    // Etiqueta com classe (se altura permitir)
+    if (h >= 12) {
+      const textLabel = document.createElementNS("http://www.w3.org/2000/svg", "text");
+      textLabel.setAttribute("x", x0 + 3);
+      textLabel.setAttribute("y", y0 + Math.min(h - 2, 11));
+      textLabel.setAttribute("class", "svg-label");
+      textLabel.setAttribute("fill", isRuido ? "#94a3b8" : classeObj.corBorda);
+      textLabel.textContent = `${classeObj.nome}`;
+      g.appendChild(textLabel);
+    }
+
+    // Número de ordem se numerada
+    if (idxOrdem !== -1) {
+      const circ = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      const circX = Math.min(x1 - 10, x0 + w - 10);
+      const circY = y0 + 10;
+      circ.setAttribute("cx", circX);
+      circ.setAttribute("cy", circY);
+      circ.setAttribute("r", "9");
+      circ.setAttribute("fill", "#0284c7");
+      g.appendChild(circ);
+
+      const numTxt = document.createElementNS("http://www.w3.org/2000/svg", "text");
+      numTxt.setAttribute("x", circX);
+      numTxt.setAttribute("y", circY + 4);
+      numTxt.setAttribute("text-anchor", "middle");
+      numTxt.setAttribute("class", "svg-ordem-num");
+      numTxt.textContent = `${idxOrdem + 1}`;
+      g.appendChild(numTxt);
+    }
+
+    camadaCaixas.appendChild(g);
+
+    if (isSel && app.selecionadas.size === 1) {
+      renderizarAlcas(cx, camadaAlcas);
+    }
+  });
+
+  document.getElementById("resumo-ordem").textContent = `${ordem.length} caixa(s) na sequência de leitura`;
+}
+
+function renderizarAlcas(cx, camada) {
+  const [x0, y0, x1, y1] = normalizarBbox(cx.bbox);
+  const pontos = [
+    { dir: "nw", x: x0, y: y0, cur: "nwse-resize" },
+    { dir: "n",  x: (x0 + x1) / 2, y: y0, cur: "ns-resize" },
+    { dir: "ne", x: x1, y: y0, cur: "nesw-resize" },
+    { dir: "e",  x: x1, y: (y0 + y1) / 2, cur: "ew-resize" },
+    { dir: "se", x: x1, y: y1, cur: "nwse-resize" },
+    { dir: "s",  x: (x0 + x1) / 2, y: y1, cur: "ns-resize" },
+    { dir: "sw", x: x0, y: y1, cur: "nesw-resize" },
+    { dir: "w",  x: x0, y: (y0 + y1) / 2, cur: "ew-resize" }
+  ];
+
+  pontos.forEach(p => {
+    const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    rect.setAttribute("x", p.x - 3.5);
+    rect.setAttribute("y", p.y - 3.5);
+    rect.setAttribute("width", 7);
+    rect.setAttribute("height", 7);
+    rect.setAttribute("class", "svg-alca");
+    rect.style.cursor = p.cur;
+    rect.onmousedown = (e) => iniciarArrastoAlca(e, cx.id, p.dir);
+    camada.appendChild(rect);
+  });
+}
+
+function pontoSVG(e) {
+  const svg = document.getElementById("overlay-svg");
+  const pt = svg.createSVGPoint();
+  pt.x = e.clientX;
+  pt.y = e.clientY;
+  return pt.matrixTransform(svg.getScreenCTM().inverse());
+}
+
+// -----------------------------------------------------------------------------
+// EVENTOS DE INTERAÇÃO COM O MOUSE
+// -----------------------------------------------------------------------------
+function iniciarArrastoCaixa(e, caixaId) {
+  e.stopPropagation();
+
+  // Modo Ordem: clique adiciona ou remove da sequência
+  if (app.modoOrdem) {
+    salvarHistorico();
+    const pag = paginaAtual();
+    const pos = pag.ordem.indexOf(caixaId);
+    if (pos === -1) {
+      pag.ordem.push(caixaId);
+      registrarAcao("ligar_ordem", { caixa_id: caixaId, acao: "adicionar", posicao: pag.ordem.length });
+    } else {
+      pag.ordem.splice(pos, 1);
+      registrarAcao("ligar_ordem", { caixa_id: caixaId, acao: "remover", posicao_anterior: pos + 1 });
+    }
+    renderizarDocumento();
+    salvarAutosave();
+    return;
+  }
+
+  // Modo Dividir: clique fatia a caixa na coordenada Y
+  if (app.modoDividir) {
+    executarDivisaoCaixa(caixaId, pontoSVG(e));
+    return;
+  }
+
+  // Seleção normal
+  if (e.shiftKey) {
+    if (app.selecionadas.has(caixaId)) app.selecionadas.delete(caixaId);
+    else app.selecionadas.add(caixaId);
+  } else {
+    if (!app.selecionadas.has(caixaId)) {
+      app.selecionadas.clear();
+      app.selecionadas.add(caixaId);
+    }
+  }
+
+  atualizarDetalhesCaixa();
+  renderizarDocumento();
+
+  // Iniciar arraste para mover
+  const pt = pontoSVG(e);
+  const pag = paginaAtual();
+  const caixasIniciais = new Map();
+  pag.caixas.forEach(c => {
+    if (app.selecionadas.has(c.id)) {
+      caixasIniciais.set(c.id, [...c.bbox]);
+    }
+  });
+
+  app.arrastando = {
+    tipo: "mover",
+    inicioX: pt.x,
+    inicioY: pt.y,
+    caixasIniciais: caixasIniciais,
+    moveu: false
+  };
+
+  salvarHistorico();
+}
+
+function iniciarArrastoAlca(e, caixaId, direcao) {
+  e.stopPropagation();
+  const pt = pontoSVG(e);
+  const pag = paginaAtual();
+  const cx = pag.caixas.find(c => c.id === caixaId);
+  if (!cx) return;
+
+  salvarHistorico();
+  app.arrastando = {
+    tipo: "alca",
+    caixaId: caixaId,
+    direcao: direcao,
+    inicioX: pt.x,
+    inicioY: pt.y,
+    bboxInicial: [...cx.bbox],
+    redimensionou: false
+  };
+}
+
+function configurarEventosUI() {
+  const svg = document.getElementById("overlay-svg");
+
+  svg.onmousedown = (e) => {
+    if (e.target !== svg) return;
+
+    if (!e.shiftKey) {
+      app.selecionadas.clear();
+      atualizarDetalhesCaixa();
+      renderizarDocumento();
+    }
+
+    if (app.modoOrdem || app.modoDividir) return;
+
+    // Iniciar desenho de nova caixa
+    const pt = pontoSVG(e);
+    salvarHistorico();
+    app.arrastando = {
+      tipo: "desenhar",
+      inicioX: pt.x,
+      inicioY: pt.y
+    };
+  };
+
+  window.onmousemove = (e) => {
+    if (!app.arrastando) return;
+    const pt = pontoSVG(e);
+    const pag = paginaAtual();
+    if (!pag) return;
+
+    if (app.arrastando.tipo === "mover") {
+      const dx = pt.x - app.arrastando.inicioX;
+      const dy = pt.y - app.arrastando.inicioY;
+      if (Math.abs(dx) > 2 || Math.abs(dy) > 2) app.arrastando.moveu = true;
+
+      pag.caixas.forEach(c => {
+        if (app.arrastando.caixasIniciais.has(c.id)) {
+          const [x0, y0, x1, y1] = app.arrastando.caixasIniciais.get(c.id);
+          c.bbox = [Math.round(x0 + dx), Math.round(y0 + dy), Math.round(x1 + dx), Math.round(y1 + dy)];
+        }
+      });
+      renderizarDocumento();
+    } else if (app.arrastando.tipo === "alca") {
+      app.arrastando.redimensionou = true;
+      const cx = pag.caixas.find(c => c.id === app.arrastando.caixaId);
+      if (!cx) return;
+      let [x0, y0, x1, y1] = app.arrastando.bboxInicial;
+      const dir = app.arrastando.direcao;
+
+      if (dir.includes("w")) x0 = Math.min(pt.x, x1 - 5);
+      if (dir.includes("e")) x1 = Math.max(pt.x, x0 + 5);
+      if (dir.includes("n")) y0 = Math.min(pt.y, y1 - 5);
+      if (dir.includes("s")) y1 = Math.max(pt.y, y0 + 5);
+
+      cx.bbox = [Math.round(x0), Math.round(y0), Math.round(x1), Math.round(y1)];
+      renderizarDocumento();
+    } else if (app.arrastando.tipo === "desenhar") {
+      const x0 = Math.min(app.arrastando.inicioX, pt.x);
+      const y0 = Math.min(app.arrastando.inicioY, pt.y);
+      const x1 = Math.max(app.arrastando.inicioX, pt.x);
+      const y1 = Math.max(app.arrastando.inicioY, pt.y);
+
+      let preview = document.getElementById("preview-desenho");
+      if (!preview) {
+        preview = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        preview.id = "preview-desenho";
+        preview.setAttribute("fill", "rgba(56, 189, 248, 0.2)");
+        preview.setAttribute("stroke", "#38bdf8");
+        preview.setAttribute("stroke-width", "2");
+        preview.setAttribute("stroke-dasharray", "4, 3");
+        document.getElementById("camada-guias").appendChild(preview);
+      }
+      preview.setAttribute("x", x0);
+      preview.setAttribute("y", y0);
+      preview.setAttribute("width", x1 - x0);
+      preview.setAttribute("height", y1 - y0);
+    }
+  };
+
+  window.onmouseup = () => {
+    if (!app.arrastando) return;
+    const pag = paginaAtual();
+
+    if (app.arrastando.tipo === "desenhar") {
+      const preview = document.getElementById("preview-desenho");
+      if (preview) {
+        const x = parseFloat(preview.getAttribute("x"));
+        const y = parseFloat(preview.getAttribute("y"));
+        const w = parseFloat(preview.getAttribute("width"));
+        const h = parseFloat(preview.getAttribute("height"));
+        preview.remove();
+
+        if (w > 10 && h > 8 && pag) {
+          const bbox = normalizarBbox([x, y, x + w, y + h]);
+          const cobertas = calcularPalavrasCobertas(bbox, pag.palavras);
+          const txt = comporTextoPalavras(cobertas, pag.palavras);
+
+          const novaCaixa = {
+            id: `cx_${Date.now().toString(36)}`,
+            bbox: bbox,
+            classe: app.classeAtiva,
+            texto: txt,
+            palavras_cobertas: cobertas
+          };
+          pag.caixas.push(novaCaixa);
+          app.selecionadas.clear();
+          app.selecionadas.add(novaCaixa.id);
+
+          registrarAcao("criar", { id: novaCaixa.id, classe: novaCaixa.classe, bbox: novaCaixa.bbox });
+          atualizarDetalhesCaixa();
+          renderizarDocumento();
+          salvarAutosave();
+        }
+      }
+    } else if (app.arrastando.tipo === "mover" && app.arrastando.moveu) {
+      registrarAcao("mover", { caixas: Array.from(app.selecionadas) });
+    } else if (app.arrastando.tipo === "alca" && app.arrastando.redimensionou) {
+      registrarAcao("redimensionar", { id: app.arrastando.caixaId });
+      // Recalcular palavras cobertas da caixa redimensionada
+      if (pag) {
+        const cx = pag.caixas.find(c => c.id === app.arrastando.caixaId);
+        if (cx) {
+          cx.palavras_cobertas = calcularPalavrasCobertas(cx.bbox, pag.palavras);
+          if (!cx.texto) cx.texto = comporTextoPalavras(cx.palavras_cobertas, pag.palavras);
+          atualizarDetalhesCaixa();
+        }
+      }
+    }
+
+    app.arrastando = null;
+    salvarAutosave();
+  };
+
+  // Botões de topo e navegação
+  document.getElementById("btn-anterior").onclick = () => mudarPagina(app.indiceAtual - 1);
+  document.getElementById("btn-proxima").onclick = () => mudarPagina(app.indiceAtual + 1);
+  document.getElementById("select-pagina").onchange = (e) => mudarPagina(parseInt(e.target.value));
+
+  document.getElementById("btn-exportar-sessao").onclick = exportarSessaoJSON;
+  document.getElementById("btn-exportar-pagina").onclick = exportarPaginaAtualJSON;
+  document.getElementById("btn-exportar-ls").onclick = exportarFormatoLabelStudio;
+  document.getElementById("btn-desfazer").onclick = desfazer;
+  document.getElementById("btn-pausar-cronometro").onclick = alternarPausaManual;
+  document.getElementById("overlay-pausa").onclick = alternarPausaManual;
+  document.getElementById("btn-retomar-overlay").onclick = alternarPausaManual;
+
+  document.getElementById("input-json").onchange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (evt) => carregarArquivoTarefas(evt.target.result);
+      reader.readAsText(file, "utf-8");
+    }
+  };
+
+  document.getElementById("input-pasta-imagens").onchange = (e) => {
+    const files = Array.from(e.target.files);
+    files.forEach(f => {
+      app.imagensLocais.set(f.name, URL.createObjectURL(f));
+    });
+    mostrarAviso(`${files.length} imagem(ns) carregada(s).`);
+    carregarPaginaAtual();
+  };
+
+  // Zoom
+  document.getElementById("btn-zoom-mais").onclick = () => ajustarZoom(app.zoom + 0.15);
+  document.getElementById("btn-zoom-menos").onclick = () => ajustarZoom(app.zoom - 0.15);
+  document.getElementById("btn-zoom-ajustar").onclick = () => ajustarZoom(1.0);
+
+  // Ações de Caixa
+  document.getElementById("btn-apagar-caixa").onclick = apagarCaixasSelecionadas;
+  document.getElementById("btn-juntar-caixas").onclick = juntarCaixasSelecionadas;
+  document.getElementById("btn-dividir-caixa").onclick = alternarModoDividir;
+  document.getElementById("btn-deselecionar").onclick = () => {
+    app.selecionadas.clear();
+    atualizarDetalhesCaixa();
+    renderizarDocumento();
+  };
+
+  // Modo Ordem
+  document.getElementById("btn-toggle-ordem").onclick = alternarModoOrdem;
+  document.getElementById("btn-limpar-ordem").onclick = () => {
+    salvarHistorico();
+    paginaAtual().ordem = [];
+    registrarAcao("ligar_ordem", { acao: "zerar" });
+    renderizarDocumento();
+    salvarAutosave();
+  };
+
+  // Pular Página Modal
+  document.getElementById("btn-pular").onclick = abrirModalPular;
+  document.getElementById("btn-cancelar-pulo").onclick = fecharModalPular;
+  document.getElementById("btn-confirmar-pulo").onclick = confirmarPulo;
+
+  // Modal Sessão
+  document.getElementById("btn-abrir-sessao").onclick = abrirModalSessao;
+  document.getElementById("badge-modo").onclick = abrirModalSessao;
+  document.getElementById("badge-semente").onclick = abrirModalSessao;
+  document.getElementById("badge-anotador").onclick = abrirModalSessao;
+
+  document.getElementById("modal-btn-cancelar-sessao").onclick = fecharModalSessao;
+  document.getElementById("modal-btn-salvar-sessao").onclick = salvarConfiguracaoSessao;
+  document.getElementById("modal-btn-gerar-semente").onclick = () => {
+    document.getElementById("modal-input-semente").value = Math.floor(Math.random() * 90000000) + 10000000;
+  };
+  document.getElementById("modal-select-modo").onchange = (e) => {
+    const isA = e.target.value.startsWith("A");
+    document.getElementById("modal-bloco-modo-a").style.display = isA ? "flex" : "none";
+  };
+
+  // Filtro de tarefas
+  document.getElementById("input-filtro-tarefas").oninput = (e) => {
+    filtrarListaTarefas(e.target.value);
+  };
+
+  // Textarea de transcrição
+  document.getElementById("detalhe-caixa-texto").oninput = (e) => {
+    if (app.selecionadas.size === 1) {
+      const cid = Array.from(app.selecionadas)[0];
+      const cx = paginaAtual().caixas.find(c => c.id === cid);
+      if (cx) {
+        cx.texto = e.target.value;
+        salvarAutosave();
+      }
+    }
+  };
+}
+
+function ajustarZoom(novoZoom) {
+  app.zoom = Math.max(0.3, Math.min(3.0, novoZoom));
+  document.getElementById("zoom-nivel").textContent = `${Math.round(app.zoom * 100)}%`;
+  carregarPaginaAtual();
+}
+
+// -----------------------------------------------------------------------------
+// OPERAÇÕES: DIVIDIR (S), JUNTAR (M), APAGAR (DEL)
+// -----------------------------------------------------------------------------
+function apagarCaixasSelecionadas() {
+  if (app.selecionadas.size === 0) return;
+  salvarHistorico();
+  const pag = paginaAtual();
+  const idsApagados = Array.from(app.selecionadas);
+
+  pag.caixas = pag.caixas.filter(c => !app.selecionadas.has(c.id));
+  pag.ordem = pag.ordem.filter(id => !app.selecionadas.has(id));
+  app.selecionadas.clear();
+
+  registrarAcao("apagar", { ids: idsApagados });
+  atualizarDetalhesCaixa();
+  renderizarDocumento();
+  salvarAutosave();
+  mostrarAviso(`${idsApagados.length} unidade(s) apagada(s).`);
+}
+
+function juntarCaixasSelecionadas() {
+  if (app.selecionadas.size < 2) return alert("Selecione 2 ou mais caixas para juntar (Shift+clique).");
+  salvarHistorico();
+  const pag = paginaAtual();
+  const caixasAlvo = pag.caixas.filter(c => !app.selecionadas.has(c.id));
+  const caixasJuntar = pag.caixas.filter(c => app.selecionadas.has(c.id));
+
+  let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+  let textos = [];
+  let palavrasUnificadas = new Set();
+
+  caixasJuntar.forEach(c => {
+    const [x0, y0, x1, y1] = normalizarBbox(c.bbox);
+    minX = Math.min(minX, x0);
+    minY = Math.min(minY, y0);
+    maxX = Math.max(maxX, x1);
+    maxY = Math.max(maxY, y1);
+    if (c.texto) textos.push(c.texto);
+    (c.palavras_cobertas || []).forEach(p => palavrasUnificadas.add(p));
+  });
+
+  const novaCaixa = {
+    id: `cx_${Date.now().toString(36)}`,
+    bbox: [minX, minY, maxX, maxY],
+    classe: caixasJuntar[0].classe,
+    texto: textos.join(" "),
+    palavras_cobertas: Array.from(palavrasUnificadas)
+  };
+
+  // Substituir na ordem mantendo a primeira ocorrência
+  let novaOrdem = [];
+  let inserido = false;
+  pag.ordem.forEach(id => {
+    if (app.selecionadas.has(id)) {
+      if (!inserido) {
+        novaOrdem.push(novaCaixa.id);
+        inserido = true;
+      }
+    } else {
+      novaOrdem.push(id);
+    }
+  });
+
+  pag.caixas = [...caixasAlvo, novaCaixa];
+  pag.ordem = novaOrdem;
+  const idsOriginais = Array.from(app.selecionadas);
+  app.selecionadas.clear();
+  app.selecionadas.add(novaCaixa.id);
+
+  registrarAcao("juntar", { ids_unificados: idsOriginais, novo_id: novaCaixa.id });
+  atualizarDetalhesCaixa();
+  renderizarDocumento();
+  salvarAutosave();
+  mostrarAviso("Unidades unificadas com sucesso.");
+}
+
+function alternarModoDividir() {
+  if (app.selecionadas.size !== 1) return alert("Selecione exatamente UMA caixa para dividir.");
+  app.modoDividir = !app.modoDividir;
+  document.getElementById("btn-dividir-caixa").classList.toggle("primario", app.modoDividir);
+  mostrarAviso(app.modoDividir ? "Modo Dividir ativado: clique na linha/caixa onde deseja cortar." : "Modo Dividir desativado.");
+}
+
+function executarDivisaoCaixa(caixaId, ptCorte) {
+  salvarHistorico();
+  const pag = paginaAtual();
+  const cx = pag.caixas.find(c => c.id === caixaId);
+  if (!cx) return;
+
+  const [x0, y0, x1, y1] = normalizarBbox(cx.bbox);
+  const corteY = Math.max(y0 + 3, Math.min(y1 - 3, ptCorte.y));
+
+  const bbox1 = [x0, y0, x1, Math.round(corteY)];
+  const bbox2 = [x0, Math.round(corteY), x1, y1];
+
+  const cob1 = calcularPalavrasCobertas(bbox1, pag.palavras);
+  const cob2 = calcularPalavrasCobertas(bbox2, pag.palavras);
+
+  const caixa1 = {
+    id: `cx_${Date.now().toString(36)}_a`,
+    bbox: bbox1,
+    classe: cx.classe,
+    texto: comporTextoPalavras(cob1, pag.palavras) || cx.texto,
+    palavras_cobertas: cob1
+  };
+  const caixa2 = {
+    id: `cx_${Date.now().toString(36)}_b`,
+    bbox: bbox2,
+    classe: cx.classe,
+    texto: comporTextoPalavras(cob2, pag.palavras),
+    palavras_cobertas: cob2
+  };
+
+  pag.caixas = pag.caixas.filter(c => c.id !== caixaId).concat([caixa1, caixa2]);
+
+  let pos = pag.ordem.indexOf(caixaId);
+  if (pos !== -1) {
+    pag.ordem.splice(pos, 1, caixa1.id, caixa2.id);
+  }
+
+  app.modoDividir = false;
+  document.getElementById("btn-dividir-caixa").classList.remove("primario");
+  app.selecionadas.clear();
+  app.selecionadas.add(caixa1.id);
+
+  registrarAcao("dividir", { id_original: caixaId, novos_ids: [caixa1.id, caixa2.id] });
+  atualizarDetalhesCaixa();
+  renderizarDocumento();
+  salvarAutosave();
+  mostrarAviso("Caixa dividida em duas.");
+}
+
+function alternarModoOrdem() {
+  app.modoOrdem = !app.modoOrdem;
+  const box = document.getElementById("box-ordem");
+  const label = document.getElementById("label-modo-ordem");
+  const btn = document.getElementById("btn-toggle-ordem");
+
+  box.classList.toggle("ativo", app.modoOrdem);
+  label.textContent = app.modoOrdem ? "Modo Ordem: ATIVADO" : "Modo Ordem: DESATIVADO";
+  btn.textContent = app.modoOrdem ? "Desativar Modo Ordem (O)" : "Ativar Modo Ordem (O)";
+  btn.className = app.modoOrdem ? "sucesso" : "primario";
+
+  mostrarAviso(app.modoOrdem ? "Modo Ordem ativado. Clique nas caixas em sequência." : "Modo Ordem desativado.");
+}
+
+// -----------------------------------------------------------------------------
+// ATALHOS DE TECLADO
+// -----------------------------------------------------------------------------
+function configurarAtalhosTeclado() {
+  window.addEventListener("keydown", (e) => {
+    if (["INPUT", "TEXTAREA"].includes(document.activeElement.tagName)) return;
+
+    // Teclas 1 a 9 e 0 para classes
+    const listaClasses = classesAtuais();
+    const tecla = e.key;
+    const classeAlvo = listaClasses.find(c => c.tecla === tecla);
+    if (classeAlvo) {
+      selecionarClasseAtiva(classeAlvo.id);
+      return;
+    }
+
+    // Tecla N: Marcar como ruído (Modo B)
+    if (e.key === "n" || e.key === "N") {
+      if (app.modo.startsWith("B")) {
+        selecionarClasseAtiva("skip_noise");
+        return;
+      }
+    }
+
+    // Tecla P: Pausar / Retomar cronômetro
+    if (e.key === "p" || e.key === "P") {
+      alternarPausaManual();
+      return;
+    }
+
+    // O: Modo Ordem
+    if (e.key === "o" || e.key === "O") {
+      alternarModoOrdem();
+      return;
+    }
+
+    // M: Juntar (Merge)
+    if (e.key === "m" || e.key === "M") {
+      juntarCaixasSelecionadas();
+      return;
+    }
+
+    // S: Dividir (Split)
+    if (e.key === "s" || e.key === "S") {
+      alternarModoDividir();
+      return;
+    }
+
+    // Delete / Backspace: Apagar
+    if (e.key === "Delete" || e.key === "Backspace") {
+      apagarCaixasSelecionadas();
+      return;
+    }
+
+    // Ctrl+Z: Desfazer
+    if (e.ctrlKey && (e.key === "z" || e.key === "Z")) {
+      e.preventDefault();
+      desfazer();
+      return;
+    }
+
+    // Navegação (Setas)
+    if (e.key === "ArrowLeft") {
+      mudarPagina(app.indiceAtual - 1);
+      return;
+    }
+    if (e.key === "ArrowRight") {
+      mudarPagina(app.indiceAtual + 1);
+      return;
+    }
+
+    // Esc: Cancelar
+    if (e.key === "Escape") {
+      app.modoOrdem = false;
+      app.modoDividir = false;
+      app.selecionadas.clear();
+      document.getElementById("box-ordem").classList.remove("ativo");
+      document.getElementById("btn-dividir-caixa").classList.remove("primario");
+      atualizarDetalhesCaixa();
+      renderizarDocumento();
+      return;
+    }
+  });
+}
+
+// -----------------------------------------------------------------------------
+// PULAR PÁGINA
+// -----------------------------------------------------------------------------
+function abrirModalPular() {
+  document.getElementById("texto-motivo-pulo").value = "";
+  document.getElementById("modal-pular").style.display = "flex";
+}
+function fecharModalPular() {
+  document.getElementById("modal-pular").style.display = "none";
+}
+function confirmarPulo() {
+  const motivo = document.getElementById("texto-motivo-pulo").value.trim();
+  const pag = paginaAtual();
+  if (pag) {
+    pag.motivo_pulo = motivo || "Sem motivo informado";
+    registrarAcao("pular", { motivo: pag.motivo_pulo });
+    fecharModalPular();
+    salvarAutosave();
+    atualizarCabecalhoPagina();
+    atualizarListaTarefas();
+    mudarPagina(app.indiceAtual + 1);
+  }
+}
+
+// -----------------------------------------------------------------------------
+// MODAL DE CONFIGURAÇÃO DE SESSÃO
+// -----------------------------------------------------------------------------
+function abrirModalSessao() {
+  document.getElementById("modal-select-modo").value = app.modo;
+  document.getElementById("modal-input-anotador").value = app.anotador;
+  document.getElementById("modal-input-semente").value = app.semente;
+  document.getElementById("modal-check-embaralhar").checked = app.embaralhar;
+  document.getElementById("modal-bloco-modo-a").style.display = app.modo.startsWith("A") ? "flex" : "none";
+  document.getElementById("modal-select-origem-a").value = app.origemModoA;
+  document.getElementById("modal-sessao").style.display = "flex";
+}
+
+function fecharModalSessao() {
+  document.getElementById("modal-sessao").style.display = "none";
+}
+
+function salvarConfiguracaoSessao() {
+  const modoNovo = document.getElementById("modal-select-modo").value;
+  const anotadorNovo = document.getElementById("modal-input-anotador").value.trim() || "Anotador";
+  const sementeNova = parseInt(document.getElementById("modal-input-semente").value) || 20261102;
+  const embaralharNovo = document.getElementById("modal-check-embaralhar").checked;
+  const origemANova = document.getElementById("modal-select-origem-a").value;
+
+  const modoMudou = modoNovo !== app.modo;
+  const sementeMudou = sementeNova !== app.semente || embaralharNovo !== app.embaralhar;
+
+  app.modo = modoNovo;
+  app.anotador = anotadorNovo;
+  app.semente = sementeNova;
+  app.embaralhar = embaralharNovo;
+  app.origemModoA = origemANova;
+
+  atualizarBadgesMeta();
+  renderizarPaletaClasses();
+
+  if (app.tarefasOriginais.length > 0 && (modoMudou || sementeMudou)) {
+    // Reconstruir tarefas a partir das brutas se o modo ou semente mudaram
+    const processadas = converterTarefasEntrada(app.tarefasOriginais);
+    if (app.embaralhar) {
+      app.tarefas = embaralharLista(processadas, app.semente);
+    } else {
+      app.tarefas = processadas.map(p => ({ ...p }));
+    }
+    app.indiceAtual = 0;
+    atualizarListaTarefas();
+    carregarPaginaAtual();
+  }
+
+  fecharModalSessao();
+  salvarAutosave();
+  mostrarAviso(`Sessão configurada: ${app.modo} · Semente ${app.semente} · Anotador ${app.anotador}`);
+}
+
+function atualizarBadgesMeta() {
+  const bModo = document.getElementById("badge-modo");
+  const isA = app.modo.startsWith("A");
+  bModo.className = `badge-meta ${isA ? "modo-a" : "modo-b"}`;
+  bModo.textContent = `Modo: ${isA ? "A — Densa" : "B — Simplificada"}`;
+
+  document.getElementById("badge-semente").textContent = `Semente: ${app.semente}`;
+  document.getElementById("badge-anotador").textContent = `👤 ${app.anotador}`;
+}
+
+// -----------------------------------------------------------------------------
+// NAVEGAÇÃO E LISTAGEM DE TAREFAS
+// -----------------------------------------------------------------------------
+function mudarPagina(novoIndice) {
+  if (novoIndice < 0 || novoIndice >= app.tarefas.length) return;
+  app.indiceAtual = novoIndice;
+  carregarPaginaAtual();
+  atualizarListaTarefas();
+  salvarAutosave();
+}
+
+function atualizarCabecalhoPagina() {
+  const pag = paginaAtual();
+  if (!pag) return;
+
+  const sel = document.getElementById("select-pagina");
+  sel.value = app.indiceAtual;
+
+  const statusEl = document.getElementById("status-pagina");
+  statusEl.className = "tag-status";
+  if (pag.motivo_pulo) {
+    statusEl.classList.add("pulada");
+    statusEl.textContent = "Pulada";
+  } else if ((pag.ordem || []).length > 0 && pag.caixas.length > 0) {
+    statusEl.classList.add("concluida");
+    statusEl.textContent = "Concluída";
+  } else if (pag.caixas && pag.caixas.length > 0) {
+    statusEl.classList.add("rascunho");
+    statusEl.textContent = "Rascunho";
+  } else {
+    statusEl.classList.add("nova");
+    statusEl.textContent = "Nova";
+  }
+
+  const concluidas = app.tarefas.filter(t => (t.ordem || []).length > 0 || t.motivo_pulo).length;
+  const pct = Math.round((concluidas / app.tarefas.length) * 100) || 0;
+  document.getElementById("contador-progresso").textContent = `${concluidas} de ${app.tarefas.length} concluídas (${pct}%)`;
+}
+
+function atualizarListaTarefas() {
+  const container = document.getElementById("lista-tarefas");
+  const sel = document.getElementById("select-pagina");
+  container.innerHTML = "";
+  sel.innerHTML = "";
+
+  document.getElementById("total-paginas-badge").textContent = `${app.tarefas.length} páginas`;
+
+  app.tarefas.forEach((t, idx) => {
+    const opt = document.createElement("option");
+    opt.value = idx;
+    opt.textContent = `Pág ${idx + 1}: ${t.page_id}`;
+    sel.appendChild(opt);
+
+    const div = document.createElement("div");
+    div.className = `item-tarefa ${idx === app.indiceAtual ? "ativa" : ""}`;
+    const statusTxt = t.motivo_pulo ? "Pulada" : (t.ordem && t.ordem.length > 0 ? "Concluída" : "Nova");
+    const tempoS = Math.round((t.tempos.tempo_ativo_ms || 0) / 1000);
+    const min = Math.floor(tempoS / 60);
+    const seg = (tempoS % 60).toString().padStart(2, "0");
+
+    div.innerHTML = `
+      <div class="item-tarefa-cabecalho">
+        <span class="item-tarefa-nome" title="${t.page_id}">${idx + 1}. ${t.page_id}</span>
+        <span style="font-size: 10px; color: ${t.motivo_pulo ? 'var(--aviso)' : (statusTxt === 'Concluída' ? 'var(--sucesso)' : 'var(--tinta-fraca)')};">${statusTxt}</span>
+      </div>
+      <div class="item-tarefa-detalhes">
+        <span>${t.caixas ? t.caixas.length : 0} unid · ⏱️ ${min}:${seg}</span>
+        <span>${t.ordem ? t.ordem.length : 0} ord</span>
+      </div>
+    `;
+    div.onclick = () => mudarPagina(idx);
+    container.appendChild(div);
+  });
+}
+
+function filtrarListaTarefas(termo) {
+  const t = termo.toLowerCase().trim();
+  const itens = document.querySelectorAll(".item-tarefa");
+  app.tarefas.forEach((tarefa, idx) => {
+    const casa = !t || tarefa.page_id.toLowerCase().includes(t);
+    if (itens[idx]) {
+      itens[idx].style.display = casa ? "flex" : "none";
+    }
+  });
+}
+
+function atualizarDetalhesCaixa() {
+  const painelVazio = document.getElementById("painel-caixa-vazio");
+  const painelAtivo = document.getElementById("painel-caixa-ativo");
+
+  if (app.selecionadas.size === 1) {
+    painelVazio.style.display = "none";
+    painelAtivo.style.display = "flex";
+
+    const cid = Array.from(app.selecionadas)[0];
+    const pag = paginaAtual();
+    const cx = pag.caixas.find(c => c.id === cid);
+    if (!cx) return;
+
+    document.getElementById("detalhe-caixa-id").textContent = cx.id;
+    const classeObj = classesAtuais().find(c => c.id === cx.classe) || { nome: cx.classe };
+    document.getElementById("detalhe-caixa-classe").textContent = classeObj.nome;
+
+    const idxOrdem = (pag.ordem || []).indexOf(cx.id);
+    document.getElementById("detalhe-caixa-ordem").textContent = idxOrdem === -1 ? "Não numerada" : `#${idxOrdem + 1}`;
+
+    const [x0, y0, x1, y1] = normalizarBbox(cx.bbox);
+    document.getElementById("detalhe-caixa-dim").textContent = `${Math.round(x1 - x0)}×${Math.round(y1 - y0)} px (${x0},${y0})`;
+
+    const nPalavras = (cx.palavras_cobertas || []).length;
+    document.getElementById("detalhe-caixa-palavras").textContent = `${nPalavras} palavra(s)`;
+    document.getElementById("detalhe-caixa-texto").value = cx.texto || "";
+  } else {
+    painelVazio.style.display = "block";
+    painelAtivo.style.display = "none";
+    if (app.selecionadas.size > 1) {
+      painelVazio.textContent = `${app.selecionadas.size} caixas selecionadas (Pressione M para juntar).`;
+    } else {
+      painelVazio.innerHTML = "Nenhuma unidade selecionada.<br>Clique numa caixa ou arraste no vazio para desenhar.";
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+// PERSISTÊNCIA LOCAL (LOCALSTORAGE)
+// -----------------------------------------------------------------------------
+function salvarAutosave() {
+  try {
+    const estado = {
+      modo: app.modo,
+      anotador: app.anotador,
+      semente: app.semente,
+      embaralhar: app.embaralhar,
+      origemModoA: app.origemModoA,
+      dataInicioSessao: app.dataInicioSessao,
+      tarefas: app.tarefas,
+      tarefasOriginais: app.tarefasOriginais,
+      indiceAtual: app.indiceAtual,
+      salvoEm: new Date().toISOString()
+    };
+    localStorage.setItem(CHAVE_STORAGE, JSON.stringify(estado));
+    const ind = document.getElementById("autosave-indicador");
+    ind.style.opacity = "1";
+    setTimeout(() => ind.style.opacity = "0.7", 800);
+  } catch (e) {
+    console.warn("Falha no autosave do localStorage:", e);
+  }
+}
+
+function carregarDoLocalStorage() {
+  const salvo = localStorage.getItem(CHAVE_STORAGE);
+  if (!salvo) return false;
+  try {
+    const estado = JSON.parse(salvo);
+    if (estado.tarefas && estado.tarefas.length > 0) {
+      app.modo = estado.modo || app.modo;
+      app.anotador = estado.anotador || app.anotador;
+      app.semente = estado.semente || app.semente;
+      app.embaralhar = estado.embaralhar !== undefined ? estado.embaralhar : app.embaralhar;
+      app.origemModoA = estado.origemModoA || app.origemModoA;
+      app.dataInicioSessao = estado.dataInicioSessao || app.dataInicioSessao;
+      app.tarefas = estado.tarefas;
+      app.tarefasOriginais = estado.tarefasOriginais || estado.tarefas;
+      app.indiceAtual = estado.indiceAtual || 0;
+
+      atualizarBadgesMeta();
+      renderizarPaletaClasses();
+      atualizarListaTarefas();
+      carregarPaginaAtual();
+      mostrarAviso("Progresso restaurado automaticamente do cache local.");
+      return true;
+    }
+  } catch (e) {
+    console.warn("Erro ao restaurar do localStorage:", e);
+  }
+  return false;
+}
+
+function mostrarAviso(msg) {
+  console.log("[E008 Anotador]", msg);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "paginas": 44,
+  "fontes_sha256": {
+    "orquestracao/analises/erros_ponta_a_ponta.py": "870c83bdd4bc034eff3982b552ff907ef665cf0aecd0c5adc3c253bd16f38b88",
+    "orquestracao/analises/bancada_ordenadores.py": "42ab35c43393384e73951f8c9969c062e093621ace0e1d3346ebbb77f4e31831",
+    "orquestracao/analises/ordem_sem_bbox.py": "f6d4589ec7752272c3635e3eafbe91b640fd93339cd075fc1a5f2c70aeb8715f",
+    "orquestracao/analises/ordem_sem_bbox_justo.py": "58aca7c6ee1e3bccdcbcd915a62b9fb71bc0814e5e5b8e8d48825d2cf8119736",
+    "orquestracao/analises/ordem_sem_bbox_ls3.py": "3698cd220abba6815a4498f43469a3e578f5c2ec172025b051e8a86b140aaaa5",
+    "src/ri/piloto_japeri.py": "69bf69e12132ef8dff00ef56aea4546a32eed63ddbb9064da5bad603414309c9",
+    "src/eval/metrics.py": "9a84261a7ceaf65e2263c5754fee09f9a54dd1019752271332943064922fe3d7",
+    "src/eval/protocolo.py": "4fadd8fc523408dfc1aebac7e6f3faf85d8c3eb1e63acc9d1be6f8ee49625ba0",
+    "resultados/unidades_sem_caixas/bancadas/golden_v4.jsonl": "683c64e71e63a753587912bc31ffa0973e4b3e7d24fadc08b05f4ce8ef49ea51"
+  },
+  "tau": 0.9859481733498361,
+  "quebras": 6.045454545454546,
+  "aprovada": true
+}

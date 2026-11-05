@@ -32,7 +32,18 @@ arXiv 2607.01018: 88% de arestas certas em multicoluna sem treino; ~20–40% das
 
 ## Execuções
 
-<!-- Preenchido por `src/exp/registro.py registrar`; resumo humano aqui. -->
+- 28/10 e 02/11, Spark (jobs 1053 + 1115, Qwen3-8B, bf16): 175 páginas pontuadas (26,4 s/página),
+  decodificadas localmente → `resultados/ordem_lm_arestas.md`. **Só o termo condicional**
+  log P(t_j | t_i) (ablação; o contrastivo ainda não existe). Na grade de 12 configurações, todas
+  **pioram** as quebras no ajuste v4/RN (Δ médio de +12,2 a +95,9 quebras/página); a seleção
+  congelou a regra. Fonte: `resultados/ordem_lm/avaliacao/Qwen_Qwen3-8B/avaliacao.json`.
+- 02/11 20:33, Spark (job 1137, 16 min): termo marginal log P(t_j | BOS) para 17.610 destinos;
+  decodificação **contrastiva** [log P(t_j|t_i) − log P(t_j)]/|t_j| → `resultados/e003_lm/contrastivo_8b/AVALIACAO.md`.
+  Também piora todas as 12 configurações no ajuste v4/RN (Δ médio de +17,7 a +86,0 quebras/página;
+  pior que a ablação condicional na melhor configuração: +17,7 × +12,2). Seleção congelou a regra.
+- **Leitura:** o LM usado como *decodificador* (somado aos priors da regra com pesos 0,5–2) desmonta a
+  ordem; a grade não testou pesos pequenos do LM. H3 ainda não está refutada na forma do plano
+  (escore do LM como *feature* do grafo, desenho 2×2 com o E004).
 
 ## Conclusão e aprendizado
 

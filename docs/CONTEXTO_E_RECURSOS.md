@@ -68,7 +68,7 @@ Projeto parceiro (repositório `CEIA-Datapolicy/official-diaries-analysis`), mes
   com gemma4 31B no cluster 0,622/0,887; com qwen3.8 27B 0,560/0,839.
 - Kamilla relatou que o XY-cut também foi o melhor nos testes dela, e que havia erros de ordem
   em algumas anotações, já corrigidos.
-- **Regra em vigor:** esses dados **não podem ser usados nem publicados no TCC sem
+- **Regra em vigor (atualizada em 02/11):** uso na pesquisa **autorizado** pelo projeto; os dados e predições página a página **não são publicados** (repositório público) e
   autorização**, e não podem ir para Gemini/Antigravity/Codex. Podem ir ao cluster do CEIA
   (autorizado em 27/10). Ver [DEPENDENCIAS.md](DEPENDENCIAS.md), item 2.
 

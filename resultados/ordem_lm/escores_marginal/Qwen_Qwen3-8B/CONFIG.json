@@ -1,0 +1,31 @@
+{
+  "config": {
+    "modelo": "Qwen/Qwen3-8B",
+    "revisao": "main",
+    "nsp": null,
+    "dtype": "bfloat16",
+    "lote": 8,
+    "max_tokens": 512,
+    "threads": 4,
+    "dispositivo": "cuda",
+    "versao": "causal-continuacao-v2-bos",
+    "script_sha256": "3eb037f2ddbd2ef91bb25689286901a3e2c72a532a1eea031053f9217f79ccdb"
+  },
+  "revisao_resolvida": null,
+  "avisos": [],
+  "nsp_ativo": false,
+  "segundos_carga": 138.8333974527195,
+  "memoria_carga": {
+    "pico_rss_mb": 4772.69140625
+  },
+  "torch": "2.14.0a0+4fdf77b940.nv26.08",
+  "parametros": 8190735360,
+  "gpu": "NVIDIA GB10",
+  "tokenizacao": {
+    "contexto_vazio": "somente_bos",
+    "bos_token_id": 151643,
+    "bos_origem": "config_modelo",
+    "eos_token_id": 151645,
+    "continuacao": "espaco_prefixado_sem_tokens_especiais; FIM=EOS"
+  }
+}

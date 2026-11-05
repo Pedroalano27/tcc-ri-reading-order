@@ -1,0 +1,24 @@
+{
+  "config": {
+    "modelo": "Qwen/Qwen3-8B",
+    "revisao": "main",
+    "nsp": null,
+    "dtype": "bfloat16",
+    "lote": 8,
+    "max_tokens": 512,
+    "threads": 4,
+    "dispositivo": "cuda",
+    "versao": "causal-continuacao-v1",
+    "script_sha256": "43bc8c331aa596aff8df21b3b804f846d9c04b8a2096fba1c7185c607f50b68a"
+  },
+  "revisao_resolvida": null,
+  "avisos": [],
+  "nsp_ativo": false,
+  "segundos_carga": 456.4574165721424,
+  "memoria_carga": {
+    "pico_rss_mb": 5649.546875
+  },
+  "torch": "2.14.0a0+4fdf77b940.nv26.08",
+  "parametros": 8190735360,
+  "gpu": "NVIDIA GB10"
+}

@@ -1,0 +1,36 @@
+{
+  "ancora": {
+    "n": 44,
+    "medias": {
+      "tau": 0.9859481733498361,
+      "quebras": 6.045454545454546
+    },
+    "sequencias_identicas_P2": true
+  },
+  "paginas_fumaca": [
+    "official_diary_MG_congonhas/executive_official_diary_2020-12-10_2591.pdf#p1",
+    "official_diary_MG_congonhas/executive_official_diary_2022-09-02_3022.pdf#p20",
+    "official_diary_RJ_barra_do_pirai/executive_official_diary_2022-05-26_095.pdf#p2"
+  ],
+  "compatibilidade_legados": {
+    "golden_v4": 44,
+    "golden_v3_novo": 27,
+    "teste_silver": 89,
+    "validacao_silver": 15
+  },
+  "paginas_ordem_diferente_entre_escores": {
+    "seletiva": 3,
+    "global": 3
+  },
+  "exemplo_contraste": {
+    "page_id": "official_diary_MG_congonhas/executive_official_diary_2020-12-10_2591.pdf#p1",
+    "id_fonte": "b16",
+    "id_destino": "b46",
+    "logp_soma_condicional": -114.29859992901038,
+    "logp_soma_marginal": -129.26441190451442,
+    "n_tokens": 41,
+    "escore_contrastivo": 0.36501980428058634
+  },
+  "script_sha256": "c5436d0325057f7de8bb441dded3d4cfd9f6b00c30d4fbb79580b7770170985a",
+  "pontuador_sha256": "3eb037f2ddbd2ef91bb25689286901a3e2c72a532a1eea031053f9217f79ccdb"
+}

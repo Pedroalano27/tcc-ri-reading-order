@@ -361,6 +361,41 @@ O que foi feito:
    liga a VPN quando a fase intensiva começar. Antes do commit, os caches regeneráveis (~3 GB)
    foram acrescentados ao `.gitignore`.
 
+## Sessão 11 — 2026-11-02 18h a 2026-11-03 05h: primeira noite da fase intensiva
+
+Filas ligadas às 18:07 (Codex, Antigravity, comandos locais, DGX Spark). Todos os cartões tiveram
+critério fixado antes de rodar; resultados em `experimentos/REGISTRO.md` e nos cartões.
+
+| Exp. | O que foi | Resultado (quebras/pág; τ) | Veredito |
+|---|---|---|---|
+| E001 | Teste cego 90 págs (CE/MA/RJ) + 45 de desenvolvimento, PDFs nunca usados | sobreposição 0 com 1.085 PDFs tocados; lacrado | pronto |
+| E002 | Oráculos (tetos) | grafo matching K32: v4 6,05 → 1,05 | GO |
+| E003 | LM causal Qwen3-8B (Spark) como decodificador, condicional e contrastivo | todas as 12 configs pioram | NÃO GO |
+| E004 | Grafo LightGBM (silver, K24, max-regret) | v3 6,52 / 0,942; silver 24,15 / 0,943 (híbrido 7,89 / 0,959; 26,43 / 0,959) | NÃO GO (τ) |
+| E005 | Seletor aprendido por página | nenhum supera o limiar 67 | NÃO GO |
+| E014 | Cadeias do grafo pela mediana da regra | v4 3,57 / 0,987; falha no RN | NÃO GO |
+| E015 | E014 nas externas, critério novo | v3 τ −0,018 vs regra | NÃO GO |
+| E006 | Correção residual guiada pelo grafo | v3 7,07 / 0,939 | NÃO GO |
+| E009 | Caixas × linhas | linhas zeram erros internos, aumentam os entre unidades; saldo n.s. | inconclusivo |
+| E016 | Hierárquico (fase 1, ajuste) | HIER-1 v4 4,66 / 0,985; oráculo não passa o portão | NÃO GO |
+| E008 | Lote de 36 págs do teste de anotação + ferramenta com cronômetro | pronto | aguarda o Pedro |
+
+**Achado central da noite:** o modelo de arestas aprende bem a continuidade local (menos quebras que o
+híbrido nas duas externas), mas erra a ordem global em páginas densas multicoluna (τ cai); costurar
+cadeias pela regra, corrigir localmente ou ordenar em dois níveis não recuperou o τ dentro dos critérios.
+Diagnóstico (`resultados/diagnostico_tau_v3/RELATORIO.md`): a perda no golden_v3_novo vem de 2 páginas
+densas do RJ, sem unidades gigantes. ChatGPT consultado (consulta 03): priorizar decodificação hierárquica
+e supervisão humana por regiões; manter a margem de τ; não fazer GNN nem LM como decodificador.
+
+**Erros meus registrados:** (1) descrevi a página RN p40 como "um bloco e 6 linhas curtas" — eram duas
+tabelas de ~1.740 palavras (corrigido no cartão E015); (2) o portão do E016 comparou o oráculo hierárquico
+com o teto plano, apertado demais por construção (veredito mantido); (3) chamei de E006 um cartão que
+era do E014 (renumerado; `registro.py novo --id` criado para evitar).
+
+**Infra:** LightGBM ausente no venv (Codex sem rede) → instalado pelo orquestrador; treino do E004 sem
+RAM com o PC em uso → negativos amostrados (decisão documentada no relatório); cota do Codex esgotada
+das 20:37 às 23:25; VPN caiu uma vez depois do job 1115.
+
 ## Problemas encontrados e soluções
 
 | Problema | Causa | Solução |
@@ -422,3 +457,4 @@ O que foi feito:
 | **Uma única avaliação confirmatória**, bootstrap por PDF (02/11) | Testes de significância a cada rodada | Desenvolvimento é exploratório; repetir testes no mesmo conjunto infla falsos positivos (recomendação do ChatGPT, consulta 01) |
 | **Oráculos antes de treinar** (02/11) | Treinar direto um grafo/GNN | Três variantes já "ganharam" só no ajuste; o teto de cada família diz onde vale investir |
 | **Dados da Data Policy no TCC, sem publicar** (02/11) | Não usar; ou publicar junto | Uso autorizado pelo projeto parceiro; o repositório é público, então só entram números agregados |
+| **Critérios fixos mesmo quando o resultado é promissor** (03/11) | Ajustar o limiar depois de ver o resultado | E004/E015/E016 tiveram ganhos de quebras, mas a margem de τ fixada antes não foi atingida; continuação só com cartão novo e critério prévio |

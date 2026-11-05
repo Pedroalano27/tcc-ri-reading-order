@@ -2,9 +2,9 @@
 
 1. Exportação completa com linhas e átomos ls3 congelados; regra e candidatos importados.
 2. Âncora v4 reproduzida: τ 0,985948; 6,045455 quebras/página.
-3. Pontuação integral no cluster ainda pendente; resultados parciais são apenas fumaça.
+3. Escores completos; escolhas restritas a golden_v4 e validação RN.
 4. Golden v3 novo é externo ao ajuste atual, mas já foi consultado, inclusive nos candidatos anteriores.
-5. A pergunta sobre ganho fora do ajuste permanece aberta até a pontuação e avaliação completas.
+5. seletiva: ajuste conservou a regra; global: ajuste conservou a regra.
 
 Relatório gerado por `ordem_lm_arestas.py`. Números medidos em `resultados/ordem_lm/`; estimativas abaixo são fórmulas explícitas.
 
@@ -58,70 +58,115 @@ Reparos/regressões contam sucessores-ouro recuperados/perdidos, não diferença
 
 ## Execução pontuada
 
-Modelo: `Qwen/Qwen3-0.6B`; revisão: `c1899de289a04d12100db370d81485cdf75e47ca`.
-Estado: FUMAÇA/PARCIAL — sem conclusões nem seleção de pesos.
-Configurações predefinidas da fumaça, sem escolha: `{"seletiva": "seletiva_r0.5_t0.5", "global": "global_r0.5_n0.0"}`.
+Modelo: `Qwen/Qwen3-8B`; revisão: `None`.
+Estado: completo.
+Escolhas congeladas: `{"seletiva": "regra", "global": "regra"}`.
 
 | Bancada | Cobertura |
 |---|---:|
-| golden_v4 | 3/44 |
-| validacao_silver | 0/15 |
-| golden_v3_novo | 0/27 |
-| teste_silver | 0/89 |
+| golden_v4 | 44/44 |
+| validacao_silver | 15/15 |
+| golden_v3_novo | 27/27 |
+| teste_silver | 89/89 |
 
-Pontuação: 3 páginas; 8,585 s; média 2,862 s/página; inicialização (download/carga) 54,448 s.
-Memória máxima observada (MiB): `{"cuda_pico_alocado_mb": 1634.0087890625, "cuda_pico_reservado_mb": 3188.0, "pico_rss_mb": 3689.40625, "rss_mb": 3010.640625}`.
+Pontuação: 175 páginas; 4617,166 s; média 26,384 s/página; inicialização (download/carga) 456,457 s.
+Memória máxima observada (MiB): `{"cuda_pico_alocado_mb": 17683.947265625, "cuda_pico_reservado_mb": 30820.0, "pico_rss_mb": 5649.546875}`.
 O pico RSS inclui carga; tempo por página inclui tokenização e transferências, exclui carga e download. Memória CUDA é alocada/reservada pelo PyTorch.
-
-| Página pontuada | Pares | Segundos | Pico GPU alocado (MiB) |
-|---|---:|---:|---:|
-| `official_diary_MG_congonhas/executive_official_diary_2020-12-10_2591.pdf#p1` | 271 | 6,338 | 1634,009 |
-| `official_diary_MG_congonhas/executive_official_diary_2022-09-02_3022.pdf#p20` | 71 | 0,879 | 1311,320 |
-| `official_diary_RJ_barra_do_pirai/executive_official_diary_2022-05-26_095.pdf#p2` | 81 | 1,368 | 1382,663 |
 
 | Bancada | Método | n | Quebras/pág [IC] | τ [IC] | Sucessor linhas [IC] | Arestas certas/ouro | Reparos/regressões |
 |---|---|---:|---:|---:|---:|---:|---:|
-| golden_v4 | regra | 3 | 3,333 [2,500; 5,000] | 0,985223 [0,956637; 0,999515] | 0,824242 [0,545455; 0,963636] | 72/81 (88,89%) | 0/0 |
-| golden_v4 | seletiva_r0.5_t0.5 | 3 | 24,667 [9,000; 32,500] | 0,878590 [0,796933; 0,919418] | 0,151515 [0,136364; 0,181818] | 9/81 (11,11%) | 0/63 |
-| golden_v4 | global_r0.5_n0.0 | 3 | 23,000 [6,000; 31,500] | 0,443039 [0,315273; 0,698572] | 0,272727 [0,181818; 0,454545] | 17/81 (20,99%) | 1/56 |
-| golden_v4 | oraculo | 3 | 1,667 [1,500; 2,000] | 0,977981 [0,949233; 0,992355] | 0,921212 [0,818182; 0,972727] | 76/81 (93,83%) | 4/0 |
+| golden_v4 | regra | 44 | 6,045 [4,023; 8,887] | 0,985948 [0,973495; 0,995020] | 0,927240 [0,878100; 0,960833] | 4448/4685 (94,94%) | 0/0 |
+| golden_v4 | oraculo | 44 | 2,114 [1,277; 3,239] | 0,883272 [0,792640; 0,960416] | 0,975283 [0,955663; 0,989244] | 4613/4685 (98,46%) | 165/0 |
+| validacao_silver | regra | 15 | 16,667 [16,667; 16,667] | 0,957218 [0,957218; 0,957218] | 0,910859 [0,910859; 0,910859] | 4762/5012 (95,01%) | 0/0 |
+| validacao_silver | oraculo | 15 | 10,867 [10,867; 10,867] | 0,828194 [0,828194; 0,828194] | 0,947417 [0,947417; 0,947417] | 4849/5012 (96,75%) | 87/0 |
+| golden_v3_novo | regra | 27 | 9,222 [4,900; 12,867] | 0,959557 [0,915350; 0,997056] | 0,911301 [0,880648; 0,935563] | 2674/2912 (91,83%) | 0/0 |
+| golden_v3_novo | oraculo | 27 | 3,444 [1,682; 5,100] | 0,913020 [0,832075; 0,996596] | 0,960830 [0,929214; 0,978231] | 2825/2912 (97,01%) | 151/0 |
+| teste_silver | regra | 89 | 27,449 [22,184; 32,316] | 0,959565 [0,889505; 0,998435] | 0,840212 [0,770803; 0,940858] | 12501/14848 (84,19%) | 0/0 |
+| teste_silver | oraculo | 89 | 22,787 [15,231; 30,895] | 0,947327 [0,820892; 0,993001] | 0,869017 [0,787942; 0,971826] | 12909/14848 (86,94%) | 408/0 |
 
 | Bancada | Método | Δ quebras [IC veículo] | p veículo | Δ τ [IC veículo] | p veículo |
 |---|---|---:|---:|---:|---:|
-| golden_v4 | seletiva_r0.5_t0.5 | 21,333 [4,000; 30,000] | 0,179712 | -0,106633 [-0,159704; -0,080098] | 0,179712 |
-| golden_v4 | global_r0.5_n0.0 | 19,667 [1,000; 29,000] | 0,179712 | -0,542183 [-0,684242; -0,258065] | 0,179712 |
-| golden_v4 | oraculo | -1,667 [-3,000; -1,000] | 0,179712 | -0,007241 [-0,007403; -0,007160] | 0,179712 |
+| golden_v4 | oraculo | -3,932 [-5,791; -2,565] | 0,000012 | -0,102676 [-0,192367; -0,024131] | 0,328620 |
+| validacao_silver | oraculo | -5,800 [-5,800; -5,800] | 0,317311 | -0,129024 [-0,129024; -0,129024] | 0,317311 |
+| golden_v3_novo | oraculo | -5,778 [-8,644; -2,750] | 0,005857 | -0,046537 [-0,109590; -0,000093] | 0,358326 |
+| teste_silver | oraculo | -4,663 [-13,385; -1,421] | 0,108809 | -0,012238 [-0,068613; 0,000244] | 0,285049 |
 
 ### Diagnóstico por categoria
 
 | Bancada | Método | Categoria | Certas/ouro | Reparos/regressões |
 |---|---|---|---:|---:|
-| golden_v4 | regra | Continuação na mesma coluna | 64/66 | 0/0 |
-| golden_v4 | regra | Fim de coluna → topo da próxima | 0/0 | 0/0 |
-| golden_v4 | regra | Entrada/saída de tabela ou imagem | 1/1 | 0/0 |
-| golden_v4 | regra | Salto ou fronteira de elemento transversal | 0/0 | 0/0 |
-| golden_v4 | regra | Cabeçalho/rodapé/marca marginal | 3/10 | 0/0 |
-| golden_v4 | regra | Outro | 4/4 | 0/0 |
-| golden_v4 | seletiva_r0.5_t0.5 | Continuação na mesma coluna | 7/66 | 0/57 |
-| golden_v4 | seletiva_r0.5_t0.5 | Fim de coluna → topo da próxima | 0/0 | 0/0 |
-| golden_v4 | seletiva_r0.5_t0.5 | Entrada/saída de tabela ou imagem | 0/1 | 0/1 |
-| golden_v4 | seletiva_r0.5_t0.5 | Salto ou fronteira de elemento transversal | 0/0 | 0/0 |
-| golden_v4 | seletiva_r0.5_t0.5 | Cabeçalho/rodapé/marca marginal | 0/10 | 0/3 |
-| golden_v4 | seletiva_r0.5_t0.5 | Outro | 2/4 | 0/2 |
-| golden_v4 | global_r0.5_n0.0 | Continuação na mesma coluna | 13/66 | 0/51 |
-| golden_v4 | global_r0.5_n0.0 | Fim de coluna → topo da próxima | 0/0 | 0/0 |
-| golden_v4 | global_r0.5_n0.0 | Entrada/saída de tabela ou imagem | 0/1 | 0/1 |
-| golden_v4 | global_r0.5_n0.0 | Salto ou fronteira de elemento transversal | 0/0 | 0/0 |
-| golden_v4 | global_r0.5_n0.0 | Cabeçalho/rodapé/marca marginal | 2/10 | 1/2 |
-| golden_v4 | global_r0.5_n0.0 | Outro | 2/4 | 0/2 |
-| golden_v4 | oraculo | Continuação na mesma coluna | 64/66 | 0/0 |
-| golden_v4 | oraculo | Fim de coluna → topo da próxima | 0/0 | 0/0 |
-| golden_v4 | oraculo | Entrada/saída de tabela ou imagem | 1/1 | 0/0 |
-| golden_v4 | oraculo | Salto ou fronteira de elemento transversal | 0/0 | 0/0 |
-| golden_v4 | oraculo | Cabeçalho/rodapé/marca marginal | 7/10 | 4/0 |
-| golden_v4 | oraculo | Outro | 4/4 | 0/0 |
+| golden_v4 | regra | Continuação na mesma coluna | 3101/3149 | 0/0 |
+| golden_v4 | regra | Fim de coluna → topo da próxima | 10/13 | 0/0 |
+| golden_v4 | regra | Entrada/saída de tabela ou imagem | 52/60 | 0/0 |
+| golden_v4 | regra | Salto ou fronteira de elemento transversal | 8/26 | 0/0 |
+| golden_v4 | regra | Cabeçalho/rodapé/marca marginal | 82/213 | 0/0 |
+| golden_v4 | regra | Outro | 1195/1224 | 0/0 |
+| golden_v4 | oraculo | Continuação na mesma coluna | 3136/3149 | 35/0 |
+| golden_v4 | oraculo | Fim de coluna → topo da próxima | 10/13 | 0/0 |
+| golden_v4 | oraculo | Entrada/saída de tabela ou imagem | 55/60 | 3/0 |
+| golden_v4 | oraculo | Salto ou fronteira de elemento transversal | 19/26 | 11/0 |
+| golden_v4 | oraculo | Cabeçalho/rodapé/marca marginal | 177/213 | 95/0 |
+| golden_v4 | oraculo | Outro | 1216/1224 | 21/0 |
+| validacao_silver | regra | Continuação na mesma coluna | 2224/2245 | 0/0 |
+| validacao_silver | regra | Fim de coluna → topo da próxima | 3/3 | 0/0 |
+| validacao_silver | regra | Entrada/saída de tabela ou imagem | 10/18 | 0/0 |
+| validacao_silver | regra | Salto ou fronteira de elemento transversal | 6/13 | 0/0 |
+| validacao_silver | regra | Cabeçalho/rodapé/marca marginal | 46/132 | 0/0 |
+| validacao_silver | regra | Outro | 2473/2601 | 0/0 |
+| validacao_silver | oraculo | Continuação na mesma coluna | 2243/2245 | 19/0 |
+| validacao_silver | oraculo | Fim de coluna → topo da próxima | 3/3 | 0/0 |
+| validacao_silver | oraculo | Entrada/saída de tabela ou imagem | 12/18 | 2/0 |
+| validacao_silver | oraculo | Salto ou fronteira de elemento transversal | 9/13 | 3/0 |
+| validacao_silver | oraculo | Cabeçalho/rodapé/marca marginal | 96/132 | 50/0 |
+| validacao_silver | oraculo | Outro | 2486/2601 | 13/0 |
+| golden_v3_novo | regra | Continuação na mesma coluna | 1767/1882 | 0/0 |
+| golden_v3_novo | regra | Fim de coluna → topo da próxima | 6/8 | 0/0 |
+| golden_v3_novo | regra | Entrada/saída de tabela ou imagem | 57/66 | 0/0 |
+| golden_v3_novo | regra | Salto ou fronteira de elemento transversal | 5/7 | 0/0 |
+| golden_v3_novo | regra | Cabeçalho/rodapé/marca marginal | 46/87 | 0/0 |
+| golden_v3_novo | regra | Outro | 793/862 | 0/0 |
+| golden_v3_novo | oraculo | Continuação na mesma coluna | 1858/1882 | 91/0 |
+| golden_v3_novo | oraculo | Fim de coluna → topo da próxima | 6/8 | 0/0 |
+| golden_v3_novo | oraculo | Entrada/saída de tabela ou imagem | 64/66 | 7/0 |
+| golden_v3_novo | oraculo | Salto ou fronteira de elemento transversal | 5/7 | 0/0 |
+| golden_v3_novo | oraculo | Cabeçalho/rodapé/marca marginal | 64/87 | 18/0 |
+| golden_v3_novo | oraculo | Outro | 828/862 | 35/0 |
+| teste_silver | regra | Continuação na mesma coluna | 6960/7145 | 0/0 |
+| teste_silver | regra | Fim de coluna → topo da próxima | 28/33 | 0/0 |
+| teste_silver | regra | Entrada/saída de tabela ou imagem | 84/126 | 0/0 |
+| teste_silver | regra | Salto ou fronteira de elemento transversal | 114/183 | 0/0 |
+| teste_silver | regra | Cabeçalho/rodapé/marca marginal | 127/307 | 0/0 |
+| teste_silver | regra | Outro | 5188/7054 | 0/0 |
+| teste_silver | oraculo | Continuação na mesma coluna | 7121/7145 | 161/0 |
+| teste_silver | oraculo | Fim de coluna → topo da próxima | 29/33 | 1/0 |
+| teste_silver | oraculo | Entrada/saída de tabela ou imagem | 90/126 | 6/0 |
+| teste_silver | oraculo | Salto ou fronteira de elemento transversal | 152/183 | 38/0 |
+| teste_silver | oraculo | Cabeçalho/rodapé/marca marginal | 193/307 | 66/0 |
+| teste_silver | oraculo | Outro | 5324/7054 | 136/0 |
 
-Avaliação detalhada por página, tempos, grade, seleção e contrastes em `avaliacao/Qwen_Qwen3-0.6B/avaliacao.json`. Predições no contrato estrito `resultados/ordenadores_sem_caixas/pred/lm_arestas_<modelo>_<variante>__linhas__<bancada>.jsonl` (somente `page_id` e `ordem`, como exige `indice_pred`).
+### Grade — somente ajuste
+
+| Configuração | Δ quebras médio v4/RN | Δ τ médio v4/RN |
+|---|---:|---:|
+| seletiva_r0.5_t0.5 | 95,926515 | -0,061183 |
+| seletiva_r0.5_t1.5 | 65,121970 | -0,044542 |
+| seletiva_r1.0_t0.5 | 83,071212 | -0,051482 |
+| seletiva_r1.0_t1.5 | 46,521212 | -0,021424 |
+| seletiva_r2.0_t0.5 | 46,521212 | -0,021424 |
+| seletiva_r2.0_t1.5 | 20,428788 | -0,014444 |
+| global_r0.5_n0.0 | 77,825758 | -0,255272 |
+| global_r0.5_n0.2 | 77,825758 | -0,255272 |
+| global_r1.0_n0.0 | 51,089394 | -0,245254 |
+| global_r1.0_n0.2 | 51,089394 | -0,245254 |
+| global_r2.0_n0.0 | 12,205303 | -0,188459 |
+| global_r2.0_n0.2 | 12,205303 | -0,188459 |
+
+Avaliação detalhada por página, tempos, grade, seleção e contrastes em `avaliacao/Qwen_Qwen3-8B/avaliacao.json`. Predições no contrato estrito `resultados/ordenadores_sem_caixas/pred/lm_arestas_<modelo>_<variante>__linhas__<bancada>.jsonl` (somente `page_id` e `ordem`, como exige `indice_pred`).
+
+### Leitura dos resultados
+
+seletiva: ajuste conservou a regra; global: ajuste conservou a regra.
+Avaliar também os contrastes de τ: reduzir quebras não garante preservar a ordem global. Seleção e testes sem correção de multiplicidade são exploratórios; o Golden v4 já foi usado no desenvolvimento da regra, e golden_v3_novo foi consultado antes. A referência silver é o fluxo PDF, com limitações em tabelas. Os percentuais não demonstram reprodução dos resultados de outro corpus.
 
 ## Limite dos candidatos
 

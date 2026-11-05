@@ -1,0 +1,10 @@
+{
+ "ajuste_v4_RN/contrastivo_melhor_global_r2.0": {
+  "quebras": 17.726515,
+  "tau": -0.158124
+ },
+ "ajuste_v4_RN/contrastivo_melhor_seletiva_r2.0_t1.5": {
+  "quebras": 41.686364,
+  "tau": -0.010058
+ }
+}

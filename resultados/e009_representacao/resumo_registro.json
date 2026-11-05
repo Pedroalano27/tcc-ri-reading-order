@@ -1,0 +1,62 @@
+{
+ "golden_v4/A_regra": {
+  "tau": 0.9800007838073242,
+  "quebras": 5.4772727272727275,
+  "sucessor": 0.9296280293125453
+ },
+ "golden_v4/A_hibrido67": {
+  "tau": 0.9658344811752696,
+  "quebras": 4.75,
+  "sucessor": 0.9639802577845352
+ },
+ "golden_v4/B_regra": {
+  "tau": 0.9859481733498362,
+  "quebras": 6.045454545454546,
+  "sucessor": 0.9272403501010136
+ },
+ "golden_v4/B_hibrido67": {
+  "tau": 0.9797375818109462,
+  "quebras": 5.136363636363637,
+  "sucessor": 0.9661428806892427
+ },
+ "golden_v3_novo/A_regra": {
+  "tau": 0.944567413914818,
+  "quebras": 11.0,
+  "sucessor": 0.9038821221222612
+ },
+ "golden_v3_novo/A_hibrido67": {
+  "tau": 0.9703376779746947,
+  "quebras": 8.962962962962964,
+  "sucessor": 0.931416296179621
+ },
+ "golden_v3_novo/B_regra": {
+  "tau": 0.9595574053404858,
+  "quebras": 9.222222222222221,
+  "sucessor": 0.9113013479721646
+ },
+ "golden_v3_novo/B_hibrido67": {
+  "tau": 0.9589772112634248,
+  "quebras": 7.888888888888889,
+  "sucessor": 0.9384097661491402
+ },
+ "teste_silver/A_regra": {
+  "tau": 0.9525009010390619,
+  "quebras": 23.528089887640448,
+  "sucessor": 0.8596909342106271
+ },
+ "teste_silver/A_hibrido67": {
+  "tau": 0.9442806201042702,
+  "quebras": 22.741573033707866,
+  "sucessor": 0.8640518502442617
+ },
+ "teste_silver/B_regra": {
+  "tau": 0.9595653453976628,
+  "quebras": 27.44943820224719,
+  "sucessor": 0.8402116805771741
+ },
+ "teste_silver/B_hibrido67": {
+  "tau": 0.9590921317931348,
+  "quebras": 26.426966292134832,
+  "sucessor": 0.8495245161749768
+ }
+}

@@ -1,0 +1,45 @@
+{
+ "page_id": "official_diary_rn/DOE-RN_2022-12-29_Ordinaria.pdf#p40",
+ "pagina_sha256": "73fe58144bd698be938d8f393db7a2268a29494b2143f9fdaa396033d8f76183",
+ "ordem": [
+  "b4",
+  "b2",
+  "b1",
+  "b6",
+  "b0",
+  "b5",
+  "b3"
+ ],
+ "diagnostico": {
+  "unidades": 7,
+  "entrada": [
+   "b5",
+   "b1",
+   "b0",
+   "b6",
+   "b2",
+   "b3",
+   "b4"
+  ],
+  "coordenadas_limitadas": 0,
+  "rede_ms": 91.67560000059893,
+  "chamadas": 1,
+  "max_caixas_chamada": 7,
+  "rodadas_conflito": 0,
+  "tempo_ms": 92.09310000005644
+ },
+ "modelo": {
+  "carga_ms": 1398.001800000202,
+  "threads": 4,
+  "parametros": 356583422,
+  "pesos_bytes": 713217212,
+  "arquivos_bytes": 713241660,
+  "torch": "2.9.1+cu128",
+  "transformers": "5.16.1",
+  "dispositivo": "cpu",
+  "dtype": "torch.float32",
+  "carregamento_assincrono": false,
+  "disable_mmap": true
+ },
+ "gerado_em_utc": "2026-11-03T05:03:00.639992+00:00"
+}

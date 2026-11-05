@@ -1,0 +1,56 @@
+{
+  "versao": "pares-lm-marginal-v1",
+  "ancora": {
+    "n": 44,
+    "medias": {
+      "tau": 0.9859481733498361,
+      "quebras": 6.045454545454546
+    },
+    "sequencias_identicas_P2": true
+  },
+  "condicional_manifesto_sha256": "0f0aa5cd5884976a80e5bee407bede5a94338009b9bb3cf8429d12a43f319657",
+  "exportador_sha256": "b3fceb28b96407e204964bec88f232857e0b2146f2fa6ed4078924cf7fc46116",
+  "contexto": "somente BOS",
+  "config_condicional": {
+    "nivel": 3,
+    "contexto": "caminho",
+    "palavras_contexto": 48,
+    "palavras_continuacao": 24,
+    "regra": "projecao_local_margens_s0.45_g1.2_v0.08"
+  },
+  "bancadas": {
+    "golden_v4": {
+      "paginas": 44,
+      "destinos": 3761,
+      "palavras_continuacao": 29320,
+      "bytes": 486646,
+      "sha256": "fbc80cd3ede4165c9c895f40d2d6de6e7137c7b416f7c546e71ecf69d47cdb28",
+      "condicional_sha256": "fcfced9b40c0cab8c401ae6e047bc8fc573667a72b32d58f0146a029930cf47c"
+    },
+    "golden_v3_novo": {
+      "paginas": 27,
+      "destinos": 2275,
+      "palavras_continuacao": 16980,
+      "bytes": 301047,
+      "sha256": "ad5cf86c36b3931adbda35772a0323004d57c387364951f22aff59cda8004f17",
+      "condicional_sha256": "397fa1a093bb06bafa972b7279d8a4376687416f1eb441a833b80c0bc28ec48a"
+    },
+    "teste_silver": {
+      "paginas": 89,
+      "destinos": 8995,
+      "palavras_continuacao": 80086,
+      "bytes": 1237808,
+      "sha256": "8fb23435f51dcf111c0c4856831b2e8961320b4d68ac51f1b863fdcc85411fc0",
+      "condicional_sha256": "eefed09dcacaff3bb418c8bddcf4ed20984452d600999f77b8ec5840fa3db20d"
+    },
+    "validacao_silver": {
+      "paginas": 15,
+      "destinos": 2579,
+      "palavras_continuacao": 24065,
+      "bytes": 357109,
+      "sha256": "3fabfead83fd3b428e2017aa83800158fbd09858edcddb1382643944c10aa5da",
+      "condicional_sha256": "982eaad5c01756347d3120a609814ad601c306ca02eaaffc0c62e84520143efc"
+    }
+  },
+  "segundos_exportacao": 4.1631621000015
+}

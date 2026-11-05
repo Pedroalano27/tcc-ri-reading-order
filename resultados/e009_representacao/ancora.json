@@ -1,0 +1,228 @@
+{
+ "aprovada": true,
+ "n": 44,
+ "tau": 0.9859481733498361,
+ "quebras": 6.045454545454546,
+ "paginas": [
+  {
+   "page_id": "official_diary_MG_congonhas/executive_official_diary_2020-12-10_2591.pdf#p1",
+   "tau": 0.9990309764527275,
+   "quebras": 5
+  },
+  {
+   "page_id": "official_diary_MG_congonhas/executive_official_diary_2022-09-02_3022.pdf#p20",
+   "tau": 1.0,
+   "quebras": 0
+  },
+  {
+   "page_id": "official_diary_RJ_barra_do_pirai/executive_official_diary_2022-05-26_095.pdf#p2",
+   "tau": 0.9566367001586463,
+   "quebras": 5
+  },
+  {
+   "page_id": "official_diary_RJ_barra_do_pirai/executive_official_diary_2023-11-24_214.pdf#p3",
+   "tau": 0.9990666007796628,
+   "quebras": 7
+  },
+  {
+   "page_id": "official_diary_RJ_barra_do_pirai/executive_official_diary_2026-01-16_010.pdf#p2",
+   "tau": 0.9536723163841808,
+   "quebras": 5
+  },
+  {
+   "page_id": "official_diary_RJ_duque_de_caxias/executive_official_diary_2022-09-28_Boletim_7197.pdf#p44",
+   "tau": 0.7806049794219365,
+   "quebras": 9
+  },
+  {
+   "page_id": "official_diary_RJ_duque_de_caxias/executive_official_diary_2025-05-02_Boletim_7582_vol2.pdf#p0",
+   "tau": 0.9781627403887101,
+   "quebras": 11
+  },
+  {
+   "page_id": "official_diary_RJ_seropedica/executive_official_diary_2022-05-09_986.pdf#p2",
+   "tau": 0.9683311662746112,
+   "quebras": 9
+  },
+  {
+   "page_id": "official_diary_RJ_seropedica/executive_official_diary_2022-05-09_986.pdf#p3",
+   "tau": 0.9963867514218802,
+   "quebras": 9
+  },
+  {
+   "page_id": "official_diary_RJ_volta_redonda/executive_official_diary_2023-09-22_1987-extra.pdf#p16",
+   "tau": 0.9981265272875376,
+   "quebras": 3
+  },
+  {
+   "page_id": "official_diary_ac/executive_official_diary_2022-08-03.pdf#p109",
+   "tau": 0.9998869708824435,
+   "quebras": 2
+  },
+  {
+   "page_id": "official_diary_ac/executive_official_diary_2025-02-11.pdf#p114",
+   "tau": 0.9257860931137264,
+   "quebras": 10
+  },
+  {
+   "page_id": "official_diary_al/DOEAL-2021-10-06-COMPLETO_87_152.pdf#p0",
+   "tau": 0.9980510013954831,
+   "quebras": 3
+  },
+  {
+   "page_id": "official_diary_al/DOEAL-2023-03-22-COMPLETO_54_172.pdf#p0",
+   "tau": 0.9998246041829764,
+   "quebras": 4
+  },
+  {
+   "page_id": "official_diary_al/DOEAL-2026-01-16-SUPLEMENTO.pdf#p9",
+   "tau": 0.9994601889338731,
+   "quebras": 5
+  },
+  {
+   "page_id": "official_diary_am_manaus/2023-03-13_caderno_2.pdf#p22",
+   "tau": 1.0,
+   "quebras": 0
+  },
+  {
+   "page_id": "official_diary_ap/2024-02-20_DOEn8106_Edicao Ordinaria.pdf#p35",
+   "tau": 0.9949240997265112,
+   "quebras": 6
+  },
+  {
+   "page_id": "official_diary_ap/2024-05-07_DOEn8159_Edicao Ordinaria.pdf#p373",
+   "tau": 0.9999999999999999,
+   "quebras": 0
+  },
+  {
+   "page_id": "official_diary_ba_salvador/dom-8379-27-09-2022.pdf#p5",
+   "tau": 0.9904052006269942,
+   "quebras": 10
+  },
+  {
+   "page_id": "official_diary_ce/do20220530p02.pdf#p53",
+   "tau": 0.999938895536828,
+   "quebras": 7
+  },
+  {
+   "page_id": "official_diary_ma/executive_official_diary_2023-03-06.pdf#p71",
+   "tau": 0.9999999999999998,
+   "quebras": 0
+  },
+  {
+   "page_id": "official_diary_mg/executive_official_diary_2021-07-06.pdf#p28",
+   "tau": 0.9936544904796928,
+   "quebras": 14
+  },
+  {
+   "page_id": "official_diary_ms/executive_official_diary_46741_2021-06-29.pdf#p48",
+   "tau": 0.9988636363636363,
+   "quebras": 2
+  },
+  {
+   "page_id": "official_diary_ms/executive_official_diary_48733_2024-11-05.pdf#p233",
+   "tau": 1.0,
+   "quebras": 0
+  },
+  {
+   "page_id": "official_diary_pb/Diario Oficial 10-01-2026 Portal.pdf#p26",
+   "tau": 0.9999318917078155,
+   "quebras": 2
+  },
+  {
+   "page_id": "official_diary_pb/Diario Oficial 10-09-2025 Portal.pdf#p41",
+   "tau": 0.963683036863245,
+   "quebras": 13
+  },
+  {
+   "page_id": "official_diary_pe/2023-02-02_1-Poder Executivo.pdf#p6",
+   "tau": 0.9999983823717344,
+   "quebras": 3
+  },
+  {
+   "page_id": "official_diary_pi_v2/executive_official_diary_2024_01_12_9_2024_243_297.pdf#p0",
+   "tau": 0.9988958410011043,
+   "quebras": 2
+  },
+  {
+   "page_id": "official_diary_pi_v2/executive_official_diary_2025_11_07_216_2025.pdf#p2",
+   "tau": 0.9999414048194535,
+   "quebras": 2
+  },
+  {
+   "page_id": "official_diary_pr_curitiba/24-Supl1_2024-02-05.pdf#p4",
+   "tau": 1.0,
+   "quebras": 0
+  },
+  {
+   "page_id": "official_diary_rj/Parte II (Poder Legislativo)_2024-02-06.pdf#p1",
+   "tau": 0.9951194466981159,
+   "quebras": 51
+  },
+  {
+   "page_id": "official_diary_rj_japeri/JAPERI-5606-09-DE-MAIO-2024.pdf#p3",
+   "tau": 0.9937254901960787,
+   "quebras": 2
+  },
+  {
+   "page_id": "official_diary_rj_japeri/JAPERI-5690-06-DE-SETEMBRO-2024.pdf#p13",
+   "tau": 0.9470175823831108,
+   "quebras": 15
+  },
+  {
+   "page_id": "official_diary_rn/DOE-RN_2022-12-29_Ordinaria.pdf#p59",
+   "tau": 0.9999999999999998,
+   "quebras": 1
+  },
+  {
+   "page_id": "official_diary_ro/executive_official_diary_2023-07-26_304_320.pdf#p0",
+   "tau": 0.9995230880051664,
+   "quebras": 9
+  },
+  {
+   "page_id": "official_diary_ro/executive_official_diary_suplemento_2026-01-09.pdf#p16",
+   "tau": 1.0,
+   "quebras": 0
+  },
+  {
+   "page_id": "official_diary_rr/2021-09-23_DiarioRR.pdf#p10",
+   "tau": 0.9996715145642229,
+   "quebras": 2
+  },
+  {
+   "page_id": "official_diary_rs_porto_alegre/4689_cl_20230227_legislativo.pdf#p1",
+   "tau": 0.9998003565062389,
+   "quebras": 3
+  },
+  {
+   "page_id": "official_diary_rs_porto_alegre/4689_cl_20230227_legislativo.pdf#p2",
+   "tau": 1.0,
+   "quebras": 0
+  },
+  {
+   "page_id": "official_diary_sc/2023-11-27_22151.pdf#p28",
+   "tau": 0.9999870741748478,
+   "quebras": 6
+  },
+  {
+   "page_id": "official_diary_se/DOE-SE_2023-03-10_5100.pdf#p14",
+   "tau": 0.9835900337748226,
+   "quebras": 13
+  },
+  {
+   "page_id": "official_diary_se/DOE-SE_2026-01-16_7401.pdf#p31",
+   "tau": 0.9962477213871006,
+   "quebras": 6
+  },
+  {
+   "page_id": "official_diary_to/2022-12-13_4783.pdf#p10",
+   "tau": 0.9874454050362169,
+   "quebras": 5
+  },
+  {
+   "page_id": "official_diary_to/2024-04-17_5147.pdf#p47",
+   "tau": 0.9863274180914566,
+   "quebras": 5
+  }
+ ]
+}
