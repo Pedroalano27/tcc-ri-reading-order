@@ -69,3 +69,10 @@ resultados/kaggle/detector_ls/
 docs/envio_professor_0410/*.zip
 # configuracao local do Ultralytics
 Ultralytics/
+
+# caches dos experimentos de novembro (regeneraveis; o E004 passa de 9 GB)
+resultados/**/cache/
+resultados/e004_grafo/execucao_retomada.log
+# imagens renderizadas dos lotes novos (regeneraveis dos PDFs)
+resultados/e001_teste_cego/*/img/
+resultados/e008_anotacao/lote/img/

@@ -1,0 +1,249 @@
+lightgbm 4.7.0
+Âncora reproduzida: {'tau': 0.9859481733498361, 'quebras': 6.045454545454546}
+Diagnostico golden_v4: 1 paginas
+Diagnostico golden_v4: 2 paginas
+Diagnostico golden_v4: 3 paginas
+Diagnostico golden_v4: 4 paginas
+Diagnostico golden_v4: 5 paginas
+Diagnostico golden_v4: 6 paginas
+Diagnostico golden_v4: 7 paginas
+Diagnostico golden_v4: 8 paginas
+Diagnostico golden_v4: 9 paginas
+Diagnostico golden_v4: 10 paginas
+Diagnostico golden_v4: 11 paginas
+Diagnostico golden_v4: 12 paginas
+Diagnostico golden_v4: 13 paginas
+Diagnostico golden_v4: 14 paginas
+Diagnostico golden_v4: 15 paginas
+Diagnostico golden_v4: 16 paginas
+Diagnostico golden_v4: 17 paginas
+Diagnostico golden_v4: 18 paginas
+Diagnostico golden_v4: 19 paginas
+Diagnostico golden_v4: 20 paginas
+Diagnostico golden_v4: 21 paginas
+Diagnostico golden_v4: 22 paginas
+Diagnostico golden_v4: 23 paginas
+Diagnostico golden_v4: 24 paginas
+Diagnostico golden_v4: 25 paginas
+Diagnostico golden_v4: 26 paginas
+Diagnostico golden_v4: 27 paginas
+Diagnostico golden_v4: 28 paginas
+Diagnostico golden_v4: 29 paginas
+Diagnostico golden_v4: 30 paginas
+Diagnostico golden_v4: 31 paginas
+Diagnostico golden_v4: 32 paginas
+Diagnostico golden_v4: 33 paginas
+Diagnostico golden_v4: 34 paginas
+Diagnostico golden_v4: 35 paginas
+Diagnostico golden_v4: 36 paginas
+Diagnostico golden_v4: 37 paginas
+Diagnostico golden_v4: 38 paginas
+Diagnostico golden_v4: 39 paginas
+Diagnostico golden_v4: 40 paginas
+Diagnostico golden_v4: 41 paginas
+Diagnostico golden_v4: 42 paginas
+Diagnostico golden_v4: 43 paginas
+Diagnostico golden_v4: 44 paginas
+Diagnostico validacao_silver: 1 paginas
+Diagnostico validacao_silver: 2 paginas
+Diagnostico validacao_silver: 3 paginas
+Diagnostico validacao_silver: 4 paginas
+Diagnostico validacao_silver: 5 paginas
+Diagnostico validacao_silver: 6 paginas
+Diagnostico validacao_silver: 7 paginas
+Diagnostico validacao_silver: 8 paginas
+Diagnostico validacao_silver: 9 paginas
+Diagnostico validacao_silver: 10 paginas
+Diagnostico validacao_silver: 11 paginas
+Diagnostico validacao_silver: 12 paginas
+Diagnostico validacao_silver: 13 paginas
+Diagnostico validacao_silver: 14 paginas
+Diagnostico validacao_silver: 15 paginas
+Features de treino: 1/3140 paginas
+Features de treino: 20/3140 paginas
+Features de treino: 40/3140 paginas
+Features de treino: 60/3140 paginas
+Features de treino: 80/3140 paginas
+Features de treino: 100/3140 paginas
+Features de treino: 120/3140 paginas
+Features de treino: 140/3140 paginas
+Features de treino: 160/3140 paginas
+Features de treino: 180/3140 paginas
+Features de treino: 200/3140 paginas
+Features de treino: 220/3140 paginas
+Features de treino: 240/3140 paginas
+Features de treino: 260/3140 paginas
+Features de treino: 280/3140 paginas
+Features de treino: 300/3140 paginas
+Features de treino: 320/3140 paginas
+Features de treino: 340/3140 paginas
+Features de treino: 360/3140 paginas
+Features de treino: 380/3140 paginas
+Features de treino: 400/3140 paginas
+Features de treino: 420/3140 paginas
+Features de treino: 440/3140 paginas
+Features de treino: 460/3140 paginas
+Features de treino: 480/3140 paginas
+Features de treino: 500/3140 paginas
+Features de treino: 520/3140 paginas
+Features de treino: 540/3140 paginas
+Features de treino: 560/3140 paginas
+Features de treino: 580/3140 paginas
+Features de treino: 600/3140 paginas
+Features de treino: 620/3140 paginas
+Features de treino: 640/3140 paginas
+Features de treino: 660/3140 paginas
+Features de treino: 680/3140 paginas
+Features de treino: 700/3140 paginas
+Features de treino: 720/3140 paginas
+Features de treino: 740/3140 paginas
+Features de treino: 760/3140 paginas
+Features de treino: 780/3140 paginas
+Features de treino: 800/3140 paginas
+Features de treino: 820/3140 paginas
+Features de treino: 840/3140 paginas
+Features de treino: 860/3140 paginas
+Features de treino: 880/3140 paginas
+Features de treino: 900/3140 paginas
+Features de treino: 920/3140 paginas
+Features de treino: 940/3140 paginas
+Features de treino: 960/3140 paginas
+Features de treino: 980/3140 paginas
+Features de treino: 1000/3140 paginas
+Features de treino: 1020/3140 paginas
+Features de treino: 1040/3140 paginas
+Features de treino: 1060/3140 paginas
+Features de treino: 1080/3140 paginas
+Features de treino: 1100/3140 paginas
+Features de treino: 1120/3140 paginas
+Features de treino: 1140/3140 paginas
+Features de treino: 1160/3140 paginas
+Features de treino: 1180/3140 paginas
+Features de treino: 1200/3140 paginas
+Features de treino: 1220/3140 paginas
+Features de treino: 1240/3140 paginas
+Features de treino: 1260/3140 paginas
+Features de treino: 1280/3140 paginas
+Features de treino: 1300/3140 paginas
+Features de treino: 1320/3140 paginas
+Features de treino: 1340/3140 paginas
+Features de treino: 1360/3140 paginas
+Features de treino: 1380/3140 paginas
+Features de treino: 1400/3140 paginas
+Features de treino: 1420/3140 paginas
+Features de treino: 1440/3140 paginas
+Features de treino: 1460/3140 paginas
+Features de treino: 1480/3140 paginas
+Features de treino: 1500/3140 paginas
+Features de treino: 1520/3140 paginas
+Features de treino: 1540/3140 paginas
+Features de treino: 1560/3140 paginas
+Features de treino: 1580/3140 paginas
+Features de treino: 1600/3140 paginas
+Features de treino: 1620/3140 paginas
+Features de treino: 1640/3140 paginas
+Features de treino: 1660/3140 paginas
+Features de treino: 1680/3140 paginas
+Features de treino: 1700/3140 paginas
+Features de treino: 1720/3140 paginas
+Features de treino: 1740/3140 paginas
+Features de treino: 1760/3140 paginas
+Features de treino: 1780/3140 paginas
+Features de treino: 1800/3140 paginas
+Features de treino: 1820/3140 paginas
+Features de treino: 1840/3140 paginas
+Features de treino: 1860/3140 paginas
+Features de treino: 1880/3140 paginas
+Features de treino: 1900/3140 paginas
+Features de treino: 1920/3140 paginas
+Features de treino: 1940/3140 paginas
+Features de treino: 1960/3140 paginas
+Features de treino: 1980/3140 paginas
+Features de treino: 2000/3140 paginas
+Features de treino: 2020/3140 paginas
+Features de treino: 2040/3140 paginas
+Features de treino: 2060/3140 paginas
+Features de treino: 2080/3140 paginas
+Features de treino: 2100/3140 paginas
+Features de treino: 2120/3140 paginas
+Features de treino: 2140/3140 paginas
+Features de treino: 2160/3140 paginas
+Features de treino: 2180/3140 paginas
+Features de treino: 2200/3140 paginas
+Features de treino: 2220/3140 paginas
+Features de treino: 2240/3140 paginas
+Features de treino: 2260/3140 paginas
+Features de treino: 2280/3140 paginas
+Features de treino: 2300/3140 paginas
+Features de treino: 2320/3140 paginas
+Features de treino: 2340/3140 paginas
+Features de treino: 2360/3140 paginas
+Features de treino: 2380/3140 paginas
+Features de treino: 2400/3140 paginas
+Features de treino: 2420/3140 paginas
+Features de treino: 2440/3140 paginas
+Features de treino: 2460/3140 paginas
+Features de treino: 2480/3140 paginas
+Features de treino: 2500/3140 paginas
+Features de treino: 2520/3140 paginas
+Features de treino: 2540/3140 paginas
+Features de treino: 2560/3140 paginas
+Features de treino: 2580/3140 paginas
+Features de treino: 2600/3140 paginas
+Features de treino: 2620/3140 paginas
+Features de treino: 2640/3140 paginas
+Features de treino: 2660/3140 paginas
+Features de treino: 2680/3140 paginas
+Features de treino: 2700/3140 paginas
+Features de treino: 2720/3140 paginas
+Features de treino: 2740/3140 paginas
+Features de treino: 2760/3140 paginas
+Features de treino: 2780/3140 paginas
+Features de treino: 2800/3140 paginas
+Features de treino: 2820/3140 paginas
+Features de treino: 2840/3140 paginas
+Features de treino: 2860/3140 paginas
+Features de treino: 2880/3140 paginas
+Features de treino: 2900/3140 paginas
+Features de treino: 2920/3140 paginas
+Features de treino: 2940/3140 paginas
+Features de treino: 2960/3140 paginas
+Features de treino: 2980/3140 paginas
+Features de treino: 3000/3140 paginas
+Features de treino: 3020/3140 paginas
+Features de treino: 3040/3140 paginas
+Features de treino: 3060/3140 paginas
+Features de treino: 3080/3140 paginas
+Features de treino: 3100/3140 paginas
+Features de treino: 3120/3140 paginas
+Features de treino: 3140/3140 paginas
+Treino h0_fold0: 20/120 arvores
+Treino h0_fold0: 40/120 arvores
+Treino h0_fold0: 60/120 arvores
+Treino h0_fold0: 80/120 arvores
+Treino h0_fold0: 100/120 arvores
+Treino h0_fold0: 120/120 arvores
+Treino h0_fold0: 120/120 arvores
+Traceback (most recent call last):
+  File "C:\Users\pedro\dev\tcc-ri-reading-order\orquestracao\analises\e004_grafo.py", line 1120, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "C:\Users\pedro\dev\tcc-ri-reading-order\orquestracao\analises\e004_grafo.py", line 1087, in main
+    modelo, treino = treinar(lgb, registros)
+                     ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pedro\dev\tcc-ri-reading-order\orquestracao\analises\e004_grafo.py", line 634, in treinar
+    aval = {str(a): {uf: loss_veiculo(modelo, mats[uf], a) for uf in validas}
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pedro\dev\tcc-ri-reading-order\orquestracao\analises\e004_grafo.py", line 634, in <dictcomp>
+    aval = {str(a): {uf: loss_veiculo(modelo, mats[uf], a) for uf in validas}
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pedro\dev\tcc-ri-reading-order\orquestracao\analises\e004_grafo.py", line 634, in <dictcomp>
+    aval = {str(a): {uf: loss_veiculo(modelo, mats[uf], a) for uf in validas}
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pedro\dev\tcc-ri-reading-order\orquestracao\analises\e004_grafo.py", line 581, in loss_veiculo
+    vigiar()
+  File "C:\Users\pedro\dev\tcc-ri-reading-order\orquestracao\analises\e004_grafo.py", line 136, in vigiar
+    exigir(not mem or mem["ram_livre_mb"] >= 800 and mem["commit_livre_mb"] >= 1200,
+  File "C:\Users\pedro\dev\tcc-ri-reading-order\orquestracao\analises\e004_grafo.py", line 93, in exigir
+    raise ValueError(mensagem)
+ValueError: Memoria insuficiente; cache preservado: {'ram_livre_mb': 799.89453125, 'commit_livre_mb': 6170.96484375}

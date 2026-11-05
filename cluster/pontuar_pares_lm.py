@@ -2,6 +2,8 @@
 
 Somente biblioteca padrao, torch e transformers. Nao importa o repositorio.
 Usa lotes com padding esquerdo e mascara apenas os tokens da continuacao.
+Contexto vazio usa somente BOS (tokenizer ou config do modelo), sem quebra de
+linha. Contextos nao vazios preservam a tokenizacao dos escores condicionais v1.
 Cada pagina e uma unidade de retomada, validada por hash do conteudo/config.
 Uso: python -B pontuar_pares_lm.py --entrada pares --saida escores
      --modelo Qwen/Qwen3-8B --dtype bfloat16 --lote 8 --dispositivo cuda
@@ -104,7 +106,13 @@ class Pontuador:
         self.model = AutoModelForCausalLM.from_pretrained(
             a.modelo, revision=a.revisao, torch_dtype=getattr(torch, a.dtype),
             trust_remote_code=False).to(a.dispositivo).eval()
-        self.revisao = getattr(self.model.config, "_commit_hash", None)
+        self.revisao = (getattr(self.model.config, "_commit_hash", None) or
+                        self.tok.init_kwargs.get("_commit_hash"))
+        self.bos = self.tok.bos_token_id
+        self.bos_origem = "tokenizer"
+        if self.bos is None:
+            self.bos = getattr(self.model.config, "bos_token_id", None)
+            self.bos_origem = "config_modelo"
         if a.nsp:
             from transformers import BertForNextSentencePrediction
             try:
@@ -118,6 +126,23 @@ class Pontuador:
             except (ValueError, OSError) as exc:
                 self.avisos.append("NSP ignorado: " + str(exc))
                 print(self.avisos[-1], flush=True)
+
+    def tokenizar(self, par):
+        """Mesma continuacao em ambos os termos; contexto vazio e BOS puro."""
+        if par["contexto"] == "":
+            if not isinstance(self.bos, int) or self.bos < 0:
+                raise ValueError("Modelo sem BOS explicito; nao pontue marginal com EOS arbitrario")
+            ctx = [self.bos]
+        else:
+            ctx = self.tok.encode(par["contexto"] + "\n", add_special_tokens=True)
+        cont = ([self.tok.eos_token_id] if par["id_destino"] is None else
+                self.tok.encode(" " + par["continuacao"], add_special_tokens=False))
+        if not cont or len(cont) >= self.a.max_tokens:
+            raise ValueError("Continuacao vazia ou maior que --max-tokens")
+        ctx = ctx[-(self.a.max_tokens-len(cont)):]
+        if not ctx:
+            ctx = [self.tok.eos_token_id]
+        return ctx, cont
 
     def pontuar(self, pares):
         if self.falso:
@@ -134,15 +159,7 @@ class Pontuador:
                 ids = indices[inicio:inicio+self.a.lote]
                 seqs, ncont = [], []
                 for i in ids:
-                    p = pares[i]
-                    ctx = self.tok.encode(p["contexto"] + "\n", add_special_tokens=True)
-                    cont = ([self.tok.eos_token_id] if p["id_destino"] is None else
-                            self.tok.encode(" " + p["continuacao"], add_special_tokens=False))
-                    if not cont or len(cont) >= self.a.max_tokens:
-                        raise ValueError("Continuacao vazia ou maior que --max-tokens")
-                    ctx = ctx[-(self.a.max_tokens-len(cont)):]
-                    if not ctx:
-                        ctx = [self.tok.eos_token_id]
+                    ctx, cont = self.tokenizar(pares[i])
                     seqs.append(ctx + cont)
                     ncont.append(len(cont))
                 tam = max(map(len, seqs))
@@ -195,7 +212,7 @@ def main():
     ap.add_argument("--bancada")
     ap.add_argument("--limite-paginas", type=int, default=0)
     a = ap.parse_args()
-    if a.lote < 1 or a.max_tokens < 2 or a.limite_paginas < 0:
+    if a.lote < 1 or a.max_tokens < 2 or a.limite_paginas < 0 or a.threads < 1:
         ap.error("Lote/max-tokens/limite invalidos")
     caminhos = sorted(a.entrada.glob((a.bancada or "*") + ".jsonl"))
     if not caminhos:
@@ -203,7 +220,7 @@ def main():
     saida = a.saida / sanitizar(a.modelo)
     saida.mkdir(parents=True, exist_ok=True)
     cfg = {k:v for k,v in vars(a).items() if k not in ("entrada", "saida", "bancada", "limite_paginas")}
-    cfg["versao"] = "causal-continuacao-v1"
+    cfg["versao"] = "causal-continuacao-v2-bos"
     cfg["script_sha256"] = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
     cp = saida / "CONFIG.json"
     if cp.exists() and json.loads(cp.read_text(encoding="utf-8"))["config"] != cfg:
@@ -218,6 +235,9 @@ def main():
         meta["torch"] = pont.torch.__version__
         meta["parametros"] = sum(p.numel() for p in pont.model.parameters())
         meta["gpu"] = pont.torch.cuda.get_device_name() if a.dispositivo == "cuda" else None
+        meta["tokenizacao"] = {"contexto_vazio": "somente_bos", "bos_token_id": pont.bos,
+                               "bos_origem": pont.bos_origem, "eos_token_id": pont.tok.eos_token_id,
+                               "continuacao": "espaco_prefixado_sem_tokens_especiais; FIM=EOS"}
     if cp.exists():
         velho = json.loads(cp.read_text(encoding="utf-8"))
         if velho["revisao_resolvida"] != meta["revisao_resolvida"]:
@@ -236,6 +256,8 @@ def main():
                 if pid in ja:
                     if ja[pid]["pares_sha256"] != sha:
                         raise ValueError("Pares mudaram para pagina ja pontuada: " + pid)
+                    if ja[pid]["config_sha256"] != digest(cfg):
+                        raise ValueError("Configuracao misturada na retomada: " + pid)
                     continue
                 if pont.torch and a.dispositivo == "cuda":
                     pont.torch.cuda.reset_peak_memory_stats()

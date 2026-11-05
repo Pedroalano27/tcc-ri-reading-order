@@ -1,0 +1,48 @@
+OpenAI Codex v0.160.0
+--------
+workdir: C:\Users\pedro\dev\tcc-ri-reading-order
+model: gpt-6.1-sol
+provider: openai
+approval: never
+sandbox: workspace-write [workdir, /tmp, $TMPDIR]
+reasoning effort: xhigh
+reasoning summaries: none
+session id: 01a19f24-37e3-7b12-a2e0-091fabf42321
+--------
+user
+Você trabalha no repositório de um TCC sobre ORDEM DE LEITURA em diários oficiais brasileiros (PDFs multicoluna). Escreva tudo em português.
+
+ANTES DE COMEÇAR leia: docs/PLANO_PESQUISA.md (o plano e as hipóteses), experimentos/NAO_FUNCIONOU.md (o que já falhou; não repita sem motivo novo) e o cartão do experimento citado na tarefa (experimentos/cards/<ID>_*.md).
+
+REGRAS (valem sempre):
+- Crie SOMENTE os arquivos pedidos. NÃO edite arquivos existentes, salvo se a tarefa mandar (importe e embrulhe). Scripts novos em orquestracao/analises/ ou src/; saídas em resultados/<pasta do experimento>/.
+- NÃO grave nada sob data/ (somente leitura). Nunca edite nem regenere anotação humana (data/golden/**, data/diamond/**) nem data/raw/. data/labelstudio/ é do projeto parceiro Data Policy: NÃO leia nem use (bloqueado até autorização).
+- NÃO edite COMUNICACAO_AGENTES.md, docs/ nem experimentos/REGISTRO.md. NÃO faça commit, push ou merge.
+- TESTE CEGO: as páginas listadas em experimentos/TESTE_CEGO.lock (quando existir) NUNCA podem ser abertas, avaliadas ou usadas para escolher nada. Só o orquestrador as avalia, uma vez, no fim.
+- Máquina: Windows, 16 GB de RAM, RTX 4050 6 GB (pode estar ocupada; só use GPU se a tarefa disser). Um processo pesado por vez, sem multiprocessing, num_workers=0, torch.set_num_threads(4). Grave caches e resultados parciais para retomar depois de queda (o laptop reinicia sem aviso).
+- Python: venv/Scripts/python.exe -B, executado da raiz. Abra arquivos com encoding="utf-8".
+
+PROTOCOLO (não mudar):
+- Representação: LINHAS + átomos ls3 (resultados/unidades_sem_caixas/). Régua: importar orquestracao/analises/erros_ponta_a_ponta.py e orquestracao/analises/bancada_ordenadores.py (τ de palavras, quebras por página, fidelidade de 12, sucessor de linhas). Não reimplemente a métrica.
+- Entrada embaralhada com random.Random(f"entrada-{page_id}") (src/eval/protocolo.py).
+- Ajuste (escolha de qualquer parâmetro, limiar ou checkpoint) SÓ em golden_v4 + validação silver RN. golden_v3_novo e teste silver CE/MA/RJ são externos (declare que o golden_v3_novo já foi consultado em rodadas anteriores).
+- Âncora obrigatória antes de qualquer número novo: regra de colunas no golden_v4 = τ 0,985948 e 6,045455 quebras por página. Se não reproduzir, pare e explique.
+- Reporte: as três bancadas separadas; Δ contra a regra com IC95 por veículo (bootstrap por veículo) e Wilcoxon por veículo; páginas que melhoram/igualam/pioram; reparos e regressões de sucessores.
+- Todo número de relatório sai da execução do script (o script escreve o relatório). Não invente números. Declare limitações.
+
+AGENTES:
+- NÃO despache subagentes.
+- SE VOCÊ É O ANTIGRAVITY (agy, Gemini): NÃO use ferramenta de terminal (é negada e a execução falha). Só ler, buscar e ESCREVER arquivos; você DEVE escrever o arquivo pedido. O orquestrador executa o script e devolve o erro.
+- SE VOCÊ É O CODEX: você PODE e DEVE rodar o que escrever (um processo por vez) e corrigir até funcionar; nunca entregue código que você não executou.
+
+TAREFA E004 (retomada) — o LightGBM foi instalado no venv (4.7.0) e `venv/Scripts/python.exe -B orquestracao/analises/e004_grafo.py` agora roda: features de treino prontas em cache (3.140 páginas, 15.443.552 pares, matrizes de 4,0 GB), mas o TREINO para em `vigiar()` com "Memoria insuficiente" (RAM livre ~600 MB num PC de 16 GB que o Pedro usa ao mesmo tempo). Veja orquestracao/fase_nov/cmd/03_E004_E005_rodar.t3.log.
+Faça o treino caber com folga em ~3 GB de RAM, sem invalidar os caches de features já calculados:
+1. Amostragem de negativos NO TREINO (não na avaliação): mantenha todos os positivos, todos os negativos com rank ≤ 4 entre os candidatos de i (negativos difíceis) e uma fração aleatória fixa (semente 7) dos demais, escolhida para o conjunto ficar ≤ 4 milhões de pares; corrija as probabilidades pela taxa de amostragem antes da calibração (ou calibre só no OOF não amostrado). Documente a fração e a correção no relatório como decisão de método. Faça as matrizes amostradas em memmap por veículo, como hoje.
+2. Reduza a pressão de memória do LightGBM: max_bin ≤ 63, `free_raw_data=True`, construir o Dataset uma vez por fold e liberar; se ainda faltar, reduza os folds de hiperparâmetros (no máximo 2 configurações × 3 folds) e diga isso.
+3. Mantenha o limiar de segurança de memória (não o remova), mas meça o pico de RSS do processo e registre no relatório.
+4. Rode até o fim (treino, seleção no ajuste, externas) e gere RELATORIO.md e resumo_registro.json conforme a tarefa 04 (orquestracao/fase_nov/codex/04_E004_grafo_lightgbm.txt — releia-a). Depois rode `venv/Scripts/python.exe -B orquestracao/analises/e005_seletor.py` para o E005 incluir o grafo, e confira resultados/e005_seletor/RELATORIO.md.
+Restrições: sem GPU, sem data/labelstudio, não escrever em data/, não tocar no teste cego. Não apague resultados/e004_grafo/cache (é retomável).
+
+2026-11-03T02:01:54.925078Z ERROR rmcp::transport::worker: worker quit with fatal: Transport channel closed, when AuthRequired(AuthRequiredError { www_authenticate_header: "Bearer error=\"invalid_token\", error_description=\"No authorization provided\", resource_metadata=\"https://mcp.neon.tech/.well-known/oauth-protected-resource/mcp\"" })
+ERROR: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at 11:07 PM.
+ERROR: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at 11:07 PM.

@@ -1,0 +1,9 @@
+#SAIDA: resultados/e006_residual/RELATORIO.md
+TAREFA E006 — CORREÇÃO RESIDUAL LOCAL GUIADA PELO MODELO DE ARESTAS. Leia experimentos/cards/E006_*.md (critérios JÁ DECIDIDOS — não altere), experimentos/cards/E015_*.md (conclusão), resultados/e002_oraculos/RELATORIO.md (seção residual), resultados/reordenacao_restrita.md, orquestracao/analises/reordenacao_restrita.py, orquestracao/analises/e002_oraculos.py e orquestracao/analises/e004_grafo.py.
+Escreva orquestracao/analises/e006_residual.py (CPU; importe operações do residual do E002 e o modelo/escores calibrados do E004 sem retreinar):
+1. Ordem inicial = híbrido 67 (predições salvas). Operações: troca de vizinhas; mover bloco de 1–4 unidades de texto até 8 posições sem atravessar margens/átomos/pontes; reinserir linha de margem/cabeçalho/rodapé/título antes/depois dos candidatos — as mesmas do oráculo residual do E002.
+2. Ganho de uma operação = soma do log P(aresta) do E004 nas arestas novas − nas removidas. Busca gulosa: aplica a operação de maior ganho enquanto ganho > limiar λ; máximo de M operações por página.
+3. Escolha λ ∈ {0; 0,5; 1; 2; 4} e M ∈ {5; 20; ∞} SÓ no ajuste (golden_v4 + RN, peso igual), minimizando quebras com τ ≥ híbrido − 0,005; congele; rode golden_v3_novo e teste_silver uma vez.
+4. Compare com regra, híbrido 67, regra_reordena (reordenação restrita atual) e o oráculo residual (teto). Reporte τ, quebras/pág, quebras/1.000 palavras, sucessor, Δ com IC95 bootstrap por veículo, melhor/igual/pior, reparos/regressões de sucessores, nº de operações por tipo, e o veredito item a item pelo cartão.
+Gere resultados/e006_residual/RELATORIO.md (resumo de 6 linhas + veredito) e resultados/e006_residual/resumo_registro.json ({"<bancada>/<método>": {"tau","quebras","sucessor"}}, sem nulos).
+Restrições: sem GPU, sem data/labelstudio, não escrever em data/, não tocar no teste cego; vigie a RAM.

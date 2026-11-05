@@ -1,0 +1,9 @@
+#SAIDA: resultados/e009_representacao/RELATORIO.md
+TAREFA E009 — CAIXAS AUTOMÁTICAS × LINHAS AUTOMÁTICAS, COM COBERTURA CONTROLADA. Leia experimentos/cards/E009_*.md (critérios JÁ DECIDIDOS — não altere), docs/RELATORIO_NOITE_0410.md (origem do 213 → 29), resultados/unidades_sem_caixas.md, resultados/ordenadores_sem_caixas.md e os scripts que geraram essas comparações (procure em orquestracao/analises/ por unidades_sem_caixas, bancada_ordenadores e extrator_*).
+Escreva orquestracao/analises/e009_representacao.py (CPU; reuse caches de detecção/extração existentes; se faltar a predição de caixas para alguma página, diga quantas e NÃO rode o detector na GPU sem registrar isso):
+1. Para golden_v4 e golden_v3_novo (e teste_silver como sensibilidade): representação A = caixas automáticas de parágrafo do detector usado em outubro; B = linhas + átomos ls3 (a atual). Mesmas páginas e mesmas palavras; mapeie cada unidade para os IDs de palavra cobertos e reporte cobertura (% de palavras-ouro cobertas, duplicadas, órfãs) por representação.
+2. Ordenadores fixos: regra de colunas e híbrido 67 (se o híbrido não se aplicar a caixas, explique e use LayoutReader pronto + regra pelo mesmo limiar 67 em unidades). Expansão interna das unidades: ordem de leitura natural dentro da unidade (a mesma régua).
+3. Métricas da régua: quebras/página, decomposição em quebras DENTRO de unidade × ENTRE unidades, τ, sucessor; Δ B − A com IC95 bootstrap por veículo; melhor/igual/pior.
+4. Veredito pelo cartão; reconstrua o número histórico 213 → 29 e diga se ele se confirma com a régua atual.
+Gere resultados/e009_representacao/RELATORIO.md (resumo de 6 linhas + veredito) e resultados/e009_representacao/resumo_registro.json ({"<bancada>/<rep>_<ordenador>": {"tau","quebras","sucessor"}}, sem nulos).
+Restrições: sem GPU (ver item), sem data/labelstudio, não escrever em data/, não tocar no teste cego.

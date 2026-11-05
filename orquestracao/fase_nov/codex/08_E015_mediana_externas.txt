@@ -1,0 +1,9 @@
+#SAIDA: resultados/e015_mediana/RELATORIO.md
+TAREFA E015 — VARIANTE (b) "MEDIANA" DO E014 NAS EXTERNAS, COM SALVAGUARDA. Leia experimentos/cards/E015_*.md (critérios JÁ DECIDIDOS antes desta execução — não altere), experimentos/cards/E014_*.md, resultados/e014_cadeias/RELATORIO.md e orquestracao/analises/e014_cadeias.py.
+Escreva orquestracao/analises/e015_mediana.py importando do e014_cadeias.py (sem copiar lógica, sem retreinar, sem nova seleção de parâmetros):
+1. AJUSTE (golden_v4 + validação RN): aplique a salvaguarda do cartão — na página, se o τ de Kendall entre a ordem de (b) e a ordem da regra (sem referência) for < 0, use a ordem da regra. Mostre o efeito na página official_diary_rn/DOE-RN_2022-12-29_Ordinaria.pdf#p40 e no conjunto, e quantas páginas acionam a salvaguarda. Explique com ids de linha por que essa página inverte (ex.: cadeia gigante com mediana deslocada). NÃO ajuste a salvaguarda depois de olhar as externas: congele-a e grave o código/hash antes do passo 2.
+2. EXTERNAS (golden_v3_novo, teste_silver), uma única vez: (b) e (b)+salvaguarda, contra regra, híbrido 67 e grafo E004: τ, quebras/pág, quebras/1.000 palavras, sucessor; Δ quebras e Δ τ vs híbrido e vs regra com IC95 bootstrap por veículo; melhor/igual/pior; páginas com Δτ < −0,5 vs regra (liste).
+3. Aplique o critério do cartão item a item e dê o veredito GO/NÃO GO para (b)+salvaguarda (o método candidato) — (b) sem salvaguarda é só referência.
+4. Exploratório, depois do veredito: híbrido 67 com (b)+salvaguarda no lugar da regra nas páginas densas (> 67 unidades).
+Gere resultados/e015_mediana/RELATORIO.md (resumo de 6 linhas + veredito) e resultados/e015_mediana/resumo_registro.json ({"<bancada>/<método>": {"tau","quebras","sucessor"}}, sem nulos).
+Restrições: sem GPU, sem data/labelstudio, não escrever em data/, não tocar no teste cego.

@@ -1,0 +1,42 @@
+O rascunho completo da seção de resultados da fase de novembro foi redigido em português acadêmico (estilo ABNT, terceira pessoa) e salvo em:
+
+📄 [**`resultados/escrita/cap_resultados_nov_rascunho.md`**](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/escrita/cap_resultados_nov_rascunho.md)
+
+---
+
+### Síntese da Estrutura e dos Eixos Cobertos
+
+1. **Protocolo Experimental e Governança:**
+   - Formalização do pré-registro de hipóteses e critérios de parada (*GO* / *NÃO GO*) em cartões experimentais;
+   - Reprodução estrita da âncora determinística da regra de colunas no `golden_v4` ($\tau = 0,985948$; $6,045455$ quebras/página) <!-- fonte: experimentos/cards/E001_teste_cego_lacrado_e_desenvolvimento_nov.md -->;
+   - Separação entre conjunto de ajuste (`golden_v4` + validação RN), bancadas externas (`golden_v3_novo` e teste silver CE/MA/RJ) e o teste cego lacrado (E001, 90 páginas, 0 sobreposição com os 1.085 PDFs do acervo, lacre criptográfico imutável em `experimentos/TESTE_CEGO.lock`) <!-- fonte: experimentos/cards/E001_teste_cego_lacrado_e_desenvolvimento_nov.md -->;
+   - Definição do desfecho primário (quebras de leitura por página), controle normalizado (quebras/1.000 palavras), desfecho secundário ($\tau$ de Kendall de palavras), diagnósticos de transição (acurácia de sucessor de linhas e *Fid12*) e controle de 100% de cobertura textual.
+
+2. **Limites Alcançáveis (Oráculos E002 e E016):**
+   - Cobertura de candidatos: $99,97\%$ na mesma coluna, mas deficiência em transposições de coluna ($69,23\%$) <!-- fonte: resultados/e002_oraculos/RELATORIO.md -->;
+   - Tetos de quebras no `golden_v4`: regra ($6,045$), híbrido 67 ($5,136$), oráculo de roteamento ($3,591$), oráculo residual ($1,909$) e oráculo de *matching* de arestas com $K=32$ ($1,045$) <!-- fonte: experimentos/cards/E002_oraculos_do_grafo_e_do_roteamento_por_pa.md -->;
+   - Oráculo hierárquico (E016): partição em $7,5$ segmentos estruturais por página ($94,3\%$ dos sucessores dentro de segmentos); teto com segmentos perfeitos atinge $2,795$ quebras e $\tau = 0,9935$ <!-- fonte: experimentos/cards/E016_oraculo_e_decodificacao_hierarquica_linh.md -->;
+   - Decomposição do erro hierárquico: o nível que mais penaliza a leitura é o classificador interno de arestas ($4,250$ quebras com macro-ordem perfeita), e não a macro-ordem dos blocos ($3,250$ quebras com ordem interna perfeita e regra entre segmentos) <!-- fonte: experimentos/cards/E016_oraculo_e_decodificacao_hierarquica_linh.md -->.
+
+3. **Sinais de Ordenação:**
+   - **Geometria Aprendida (E004):** Treinamento do LightGBM em 3.140 páginas silver ($4.000.000$ de pares balanceados com negativos difíceis); dominância de `sucessor_regra` no ganho ($14.252.259,971$); redução massiva de quebras ($3,614$ no v4, $6,519$ no v3_novo e $24,146$ no silver), superando o híbrido 67 em todas as bancadas externas, porém reprovado por degradação do $\tau$ ($\Delta\tau = -0,017$) <!-- fonte: resultados/e004_grafo/RELATORIO.md -->;
+   - **Continuidade Linguística (E003):** Avaliação de 87.120 pares com Qwen3-8B (DGX Spark); ablação condicional simples ($\log P(t_j \mid t_i)$) aumentou as quebras de $+12,2$ a $+95,9$ quebras/página; formulação contrastiva aumentou de $+17,7$ a $+86,0$; congelamento formal na regra pelo protocolo <!-- fonte: experimentos/cards/E003_lm_causal_contrastivo_nas_arestas.md -->;
+   - **Seleção por Página (E005):** Validação cruzada LOVO (160 observações, 27 veículos); sobreajuste de árvores e LightGBM ($+3,78$ e $+5,06$ quebras vs híbrido); regressão logística com IC amplo cruzando zero ($-4,96$ a $+1,64$); manutenção congelada da heurística univariada de densidade física (limiar 67) <!-- fonte: resultados/e005_seletor/RELATORIO.md -->.
+
+4. **A Tensão entre Continuidade Local e Ordem Global:**
+   - Investigação de cadeias (E014/E015): ordenação pela mediana da regra recuperou o $\tau$ no `golden_v4` ($0,9867$ com $3,568$ quebras), mas violou os limites no `golden_v3_novo` ($\tau = 0,9417$ vs $0,9596$ da regra) <!-- fonte: experimentos/cards/E015_cadeias_do_grafo_ordenadas_pela_mediana_.md -->;
+   - Correção residual local (E006): redução de quebras ($4,432$ no v4, $7,074$ no v3_novo e $24,888$ no silver), mas violação do critério de $\tau$ no v3_novo ($\tau = 0,939$) e excesso de regressões ($36,7\%$ dos reparos) <!-- fonte: experimentos/cards/E006_correcao_residual_local_guiada_pelo_mode.md -->;
+   - Diagnóstico algébrico (`diagnostico_tau_v3`): contraprova de átomos gigantes (explicam 0,00% da perda bruta no v3); demonstração de que a penalização quadrática de inversões macroscópicas em poucas páginas críticas (Tocantins p10 e p47 no v4 com colunas invertidas; páginas densas do RJ no v3) domina a média do $\tau$ de palavras <!-- fonte: resultados/diagnostico_tau_v3/RELATORIO.md -->;
+   - Decodificação hierárquica (E016): o algoritmo HIER-1 atingiu $4,659$ quebras com $\tau = 0,9854$ no `golden_v4` (superando o híbrido 67); registro formal do erro de desenho no portão da Fase 1 (exigência matematicamente inatingível frente ao piso de quebras imposto pelas fronteiras dos blocos) e preservação estrita do veredito NÃO GO <!-- fonte: experimentos/cards/E016_oraculo_e_decodificacao_hierarquica_linh.md -->.
+
+5. **Granularidade e Representação (E009):**
+   - Comparação pareada sob cobertura controlada de 100%: as linhas reduzem drasticamente as quebras internas às unidades (no v4: de $1,591$ para $0,545$; no v3_novo: de $5,30$ para $0,26$), mas aumentam proporcionalmente as quebras nas fronteiras inter-unidades (no v4: de $3,886$ para $5,500$; no v3_novo: de $5,70$ para $8,96$) <!-- fonte: resultados/e009_representacao/RELATORIO.md -->;
+   - No cômputo global, não há ganho estatisticamente significativo ($\Delta = +0,568$ no v4 sob a regra); conclusão de que as linhas **deslocam** o problema da segmentação para a combinatória da ordenação <!-- fonte: experimentos/cards/E009_representacao_para_inferencia_caixas_aut.md -->.
+
+6. **Síntese e Implicações:**
+   - Tabela sinóptica consolidando os 12 principais métodos, controles e oráculos através de todas as bancadas;
+   - Confirmação do híbrido 67 como baseline consolidado e insuperado para o teste confirmatório ($5,14$ quebras no v4, $7,89$ no v3_novo e $26,43$ no silver, com todos os ICs por veículo abaixo de zero) <!-- fonte: experimentos/NAO_FUNCIONOU.md -->;
+   - Sistematização do valor metodológico e conceitual dos resultados negativos (*NÃO GO*) para o texto do TCC.
+
+---
+*Todos os valores numéricos no arquivo gerado acompanham a anotação explícita de proveniência (`<!-- fonte: caminho -->`).*

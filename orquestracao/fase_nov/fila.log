@@ -1,0 +1,72 @@
+02/11 18:07:20 [cmd] fila iniciada
+02/11 18:07:20 [codex] fila iniciada
+02/11 18:07:20 [agy] fila iniciada
+02/11 18:07:21 [codex] comecando 01_E002_oraculos.txt
+02/11 18:07:21 [cmd] comecando 01_E003_spark_rn.txt
+02/11 18:07:21 [agy] comecando 01_E008_ferramenta_cronometro.txt
+02/11 18:14:47 [agy] agy ok 01_E008_ferramenta_cronometro.txt
+02/11 18:20:27 [codex] codex ok 01_E002_oraculos.txt em 13 min
+02/11 18:20:30 [codex] comecando 02_E001_teste_cego.txt
+02/11 18:33:23 [cmd] cmd ok 01_E003_spark_rn.txt em 26 min
+02/11 18:42:06 [agy] comecando 02_escrita_trabalhos_relacionados.txt
+02/11 18:50:10 [agy] agy ok 02_escrita_trabalhos_relacionados.txt
+02/11 19:13:53 [agy] comecando 03_escrita_metodologia.txt
+02/11 19:20:22 [agy] agy ok 03_escrita_metodologia.txt
+02/11 19:25:01 [codex] codex ok 02_E001_teste_cego.txt em 64 min
+02/11 19:28:05 [codex] comecando 03_E003_lm_contrastivo.txt
+02/11 19:51:49 [codex] codex ok 03_E003_lm_contrastivo.txt em 23 min
+02/11 19:54:57 [codex] ALERTA: arquivos sob data/ mudaram durante 03_E003_lm_contrastivo.txt: data/diamond/e001_desenvolvimento/img/001.jpg data/diamond/e001_desenvolvimento/img/002.jpg data/diamond/e001_desenvolvimento/img/003.jpg data/diamond/e001_desenvolvimento/img/004.jpg data/diamond/e001_desenvolvimento/img/005.jpg 
+02/11 19:54:58 [codex] comecando 04_E004_grafo_lightgbm.txt
+02/11 20:17:12 [cmd] comecando 02_E003_spark_marginal.txt
+02/11 20:23:59 [codex] codex ok 04_E004_grafo_lightgbm.txt em 29 min
+02/11 20:27:26 [codex] comecando 05_E005_seletor.txt
+02/11 20:36:04 [codex] codex ok 05_E005_seletor.txt em 8 min
+02/11 20:36:06 [codex] comecando 06_E008_lote_cruzado.txt
+02/11 20:37:06 [codex] codex FALHA RAPIDA em 06_E008_lote_cruzado.txt (rc=1, 59s): tokens used 66.486  | espero 20 min
+02/11 20:46:37 [cmd] cmd ok 02_E003_spark_marginal.txt em 29 min
+02/11 20:49:40 [cmd] comecando 03_E004_E005_rodar.txt
+02/11 20:52:33 [cmd] cmd tentativa 1 de 03_E004_E005_rodar.txt falhou (rc=1, 2 min): ValueError: Memoria insuficiente; cache preservado: {'ram_livre_mb': 799.89453125, 'commit_livre_mb': 6170.96484375}
+02/11 20:55:59 [cmd] comecando 03_E004_E005_rodar.txt
+02/11 20:57:08 [codex] comecando 06_E008_lote_cruzado.txt
+02/11 20:57:16 [codex] codex FALHA RAPIDA em 06_E008_lote_cruzado.txt (rc=1, 6s): ERROR: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at 11:0 | espero 20 min
+02/11 20:58:19 [cmd] cmd tentativa 2 de 03_E004_E005_rodar.txt falhou (rc=1, 2 min): ValueError: Memoria insuficiente; cache preservado: {'ram_livre_mb': 516.3671875, 'commit_livre_mb': 5612.1171875}
+02/11 20:58:19 [cmd] cmd DESISTIU de 03_E004_E005_rodar.txt
+02/11 21:17:19 [codex] comecando 06_E008_lote_cruzado.txt
+02/11 21:17:24 [codex] codex FALHA RAPIDA em 06_E008_lote_cruzado.txt (rc=1, 5s): ERROR: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at 11:0 | espero 20 min
+02/11 21:19:30 [cmd] comecando 03_E004_E005_rodar.txt
+02/11 21:21:35 [cmd] cmd tentativa 3 de 03_E004_E005_rodar.txt falhou (rc=1, 2 min): ValueError: Memoria insuficiente; cache preservado: {'ram_livre_mb': 617.61328125, 'commit_livre_mb': 5886.890625}
+02/11 21:21:35 [cmd] cmd DESISTIU de 03_E004_E005_rodar.txt
+02/11 21:37:26 [codex] comecando 06_E008_lote_cruzado.txt
+02/11 21:37:32 [codex] codex FALHA RAPIDA em 06_E008_lote_cruzado.txt (rc=1, 4s): ERROR: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at 11:0 | espero 20 min
+02/11 21:57:34 [codex] comecando 05b_E004_memoria.txt
+02/11 21:57:38 [codex] codex FALHA RAPIDA em 05b_E004_memoria.txt (rc=1, 4s): ERROR: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at 11:0 | espero 20 min
+02/11 22:17:40 [codex] comecando 05b_E004_memoria.txt
+02/11 22:17:44 [codex] codex FALHA RAPIDA em 05b_E004_memoria.txt (rc=1, 3s): ERROR: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at 11:0 | espero 20 min
+02/11 22:37:47 [codex] comecando 05b_E004_memoria.txt
+02/11 22:37:51 [codex] codex FALHA RAPIDA em 05b_E004_memoria.txt (rc=1, 4s): ERROR: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at 11:0 | espero 20 min
+02/11 23:01:52 [codex] comecando 05b_E004_memoria.txt
+02/11 23:01:57 [codex] codex FALHA RAPIDA em 05b_E004_memoria.txt (rc=1, 4s): ERROR: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at 11:0 | espero 20 min
+02/11 23:24:56 [codex] comecando 05b_E004_memoria.txt
+02/11 23:48:33 [codex] codex ok 05b_E004_memoria.txt em 23 min
+02/11 23:51:25 [codex] comecando 06_E008_lote_cruzado.txt
+03/11 00:13:08 [codex] codex ok 06_E008_lote_cruzado.txt em 21 min
+03/11 00:16:55 [codex] comecando 07_E014_cadeias.txt
+03/11 00:32:30 [codex] codex ok 07_E014_cadeias.txt em 15 min
+03/11 00:48:25 [codex] comecando 08_E015_mediana_externas.txt
+03/11 01:00:18 [codex] codex ok 08_E015_mediana_externas.txt em 11 min
+03/11 01:20:11 [codex] comecando 09_E006_residual.txt
+03/11 01:32:39 [codex] codex ok 09_E006_residual.txt em 12 min
+03/11 02:00:51 [cmd] comecando 04_E006_completar.txt
+03/11 02:07:08 [cmd] cmd ok 04_E006_completar.txt em 6 min
+03/11 02:32:39 [codex] comecando 10_diagnostico_tau_v3.txt
+03/11 02:43:53 [codex] codex ok 10_diagnostico_tau_v3.txt em 11 min
+03/11 03:14:41 [codex] comecando 11_E009_representacao.txt
+03/11 03:27:47 [codex] codex ok 11_E009_representacao.txt em 13 min
+03/11 04:23:47 [codex] comecando 12_E016_hierarquico.txt
+03/11 04:39:44 [codex] codex ok 12_E016_hierarquico.txt em 15 min
+03/11 04:55:55 [agy] comecando 04_escrita_resultados_nov.txt
+03/11 05:02:58 [agy] agy ok 04_escrita_resultados_nov.txt
+04/11 23:56:28 [cmd] fila iniciada
+04/11 23:56:28 [codex] fila iniciada
+04/11 23:56:28 [agy] fila iniciada
+04/11 23:56:28 [codex] comecando 13_E017_hier1_externas.txt

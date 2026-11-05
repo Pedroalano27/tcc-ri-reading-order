@@ -46,10 +46,16 @@ DADOS = [
 
 
 def sha(path: Path, n=16) -> str:
+    """Hash de um arquivo; de uma pasta, hash dos caminhos relativos e conteudos (ignora img/)."""
     h = hashlib.sha256()
-    with open(path, "rb") as f:
-        for bloco in iter(lambda: f.read(1 << 20), b""):
-            h.update(bloco)
+    arquivos = [path] if path.is_file() else sorted(
+        q for q in path.rglob("*") if q.is_file() and "img" not in q.relative_to(path).parts)
+    for q in arquivos:
+        if q != path:
+            h.update(q.relative_to(path).as_posix().encode())
+        with open(q, "rb") as f:
+            for bloco in iter(lambda: f.read(1 << 20), b""):
+                h.update(bloco)
     return h.hexdigest()[:n]
 
 
@@ -68,7 +74,9 @@ def proximo_id() -> str:
 
 def novo(a):
     CARDS.mkdir(parents=True, exist_ok=True)
-    eid = proximo_id()
+    eid = a.id or proximo_id()
+    if list(CARDS.glob(f"{eid}_*.md")):
+        sys.exit(f"cartao {eid} ja existe")
     slug = re.sub(r"[^a-z0-9]+", "_", a.titulo.lower()).strip("_")[:40]
     txt = MODELO.read_text(encoding="utf-8")
     txt = (txt.replace("{ID}", eid).replace("{TITULO}", a.titulo)
@@ -123,7 +131,9 @@ def tabela(_a):
             "| ID | Quando | Commit | Ambiente | Bancada | τ | Quebras/pág | Sucessor | Veredito | Nota |",
             "|---|---|---|---|---|---:|---:|---:|---|---|"]
     for l in linhas:
-        for banc, m in (l["metricas"] or {"-": {}}).items():
+        met = l["metricas"] if isinstance(l["metricas"], dict) and l["metricas"] else {"-": {}}
+        for banc, m in met.items():
+            m = m if isinstance(m, dict) else {}
             out.append(f"| {l['id']} | {l['quando'][:16]} | {l['commit']}{'*' if l.get('arvore_suja') else ''} | "
                        f"{l['ambiente']} | {banc} | {fmt(m.get('tau', ''))} | {fmt(m.get('quebras', ''))} | "
                        f"{fmt(m.get('sucessor', ''))} | {l['veredito']} | {l['nota'][:80]} |")
@@ -143,6 +153,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="acao", required=True)
     n = sub.add_parser("novo"); n.add_argument("--titulo", required=True)
+    n.add_argument("--id", help="ID do plano (ex.: E006); padrao: proximo livre")
     n.add_argument("--frente", required=True, choices=("ordenacao", "anotacao", "dataset", "infra"))
     n.add_argument("--hipotese")
     r = sub.add_parser("registrar"); r.add_argument("--id", required=True)

@@ -1,0 +1,8 @@
+02/11 18:07:25 sincronizado
+02/11 18:07:26 e003_rn enviado: job 1115 (--partition=hpc-spark-45 --time=06:00:00 cluster/job_pontuar.sh Qwen/Qwen3-8B)
+02/11 18:28:05 e003_rn (job 1115): COMPLETED
+02/11 18:28:12 trazido ~/tcc/ordem_lm/escores -> resultados/ordem_lm/escores
+02/11 20:17:26 sincronizado
+02/11 20:17:45 e003_marginal enviado: job 1137 (--partition=hpc-spark-45 --time=03:00:00 cluster/job_pontuar.sh Qwen/Qwen3-8B --entrada pares_marginal --saida escores_marginal)
+02/11 20:33:19 e003_marginal (job 1137): COMPLETED
+02/11 20:33:24 trazido ~/tcc/ordem_lm/escores_marginal -> resultados/ordem_lm/escores_marginal

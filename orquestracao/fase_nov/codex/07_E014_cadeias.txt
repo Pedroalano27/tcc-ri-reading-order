@@ -1,0 +1,11 @@
+#SAIDA: resultados/e014_cadeias/RELATORIO.md
+TAREFA E014 — RECUPERAR O τ DO GRAFO DO E004 SEM PERDER O GANHO DE QUEBRAS. Leia experimentos/cards/E014_*.md (critérios JÁ DECIDIDOS — não altere), experimentos/cards/E004_*.md e resultados/e004_grafo/RELATORIO.md (seções golden_v4 e varredura), e orquestracao/analises/e004_grafo.py.
+Diagnóstico pedido primeiro (só no ajuste golden_v4 + RN): para a ordem do grafo selecionado (grafo_K24_maxregret_t0.00), decomponha a perda de τ: quantas palavras/linhas estão em cadeias (trechos contínuos de sucessores do grafo) corretas internamente mas posicionadas fora de ordem entre si, versus erros dentro das cadeias; mostre 5 páginas com maior queda de τ e o que aconteceu (texto curto, ids de linha).
+Depois escreva orquestracao/analises/e014_cadeias.py (CPU, reusa o modelo e os escores calibrados do E004 SEM RETREINAR; importe do e004_grafo.py em vez de copiar) com variantes:
+ (a) cadeias do grafo ordenadas pela posição na ordem da regra da 1ª linha de cada cadeia;
+ (b) idem pela posição mediana na regra;
+ (c) grafo como corretor local: parte da ordem da regra e aceita a aresta do grafo só quando i e j estão na mesma coluna da regra (ou j é margem/cabeçalho/rodapé), costurando o resto pela regra;
+ (d) (c) + reinserção de linhas de margem/cabeçalho/rodapé conforme o grafo.
+Selecione UMA variante só no ajuste (critério do cartão: τ ≥ regra − 0,005 e maior redução de quebras), congele, e só então rode golden_v3_novo e teste_silver. Compare com regra, híbrido 67 e o grafo do E004 (Δ quebras e Δ τ com IC95 bootstrap por veículo, melhor/igual/pior, quebras por 1.000 palavras). Reporte também a combinação "híbrido 67 com a variante no lugar da regra nas páginas densas" como análise exploratória (sem seleção).
+Gere resultados/e014_cadeias/RELATORIO.md (resumo de 6 linhas + veredito pelo cartão) e resultados/e014_cadeias/resumo_registro.json ({"<bancada>/<método>": {"tau","quebras","sucessor"}}, sem valores nulos).
+Restrições: sem GPU, sem data/labelstudio, não escrever em data/, não tocar no teste cego; vigie a RAM como o E004.

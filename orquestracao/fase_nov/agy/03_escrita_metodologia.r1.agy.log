@@ -1,0 +1,34 @@
+## FEITO
+Elaborou-se e gravou-se o rascunho completo do capítulo **Metodologia** do TCC (cerca de 3.900 palavras de texto acadêmico em terceira pessoa, padrão ABNT) em [resultados/escrita/cap_metodologia_rascunho.md](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/escrita/cap_metodologia_rascunho.md), cobrindo integralmente as seis seções estruturais solicitadas:
+
+1. **Acervo de diários oficiais:** Origem primária (4.644 PDFs em 8 arquivos compactados cedidos pelo orientador em 09/09/2026, totalizando 18,7 GB descompactados e ~310.000 páginas); cobertura geográfica (23 UFs e 8 municípios; ausência de GO, DF, ES e MT); descarte do Piauí (`official_diary_pi`) por 86% de caracteres corrompidos `(cid:N)` e restrições no Acre (32%); aproveitamento de dados digitais sem OCR (~96%); menção protocolar autorizada a anotações de projeto parceiro; e divergência da ordem do fluxo nativo do PDF frente à leitura humana em 19 dos 30 veículos analisados.
+2. **Representação em linhas e átomos estruturais (ls3):** Histórico de superação das caixas de parágrafo (v1 com 28,6% de sobreposição em 78% das páginas decorrente de entradas em negrito e texto justificado; dilema de hiperfragmentação e autofusão em v2/B/C); fundamentação das linhas físicas e dos átomos indivisíveis de tabela e imagem detectados pelo modelo YOLO `ls3` (mAP50 de 0,826); evidência empírica formal do experimento de ponta a ponta (queda do piso irredutível de erro interno de 213 para 29 quebras, redução média de 55,1% nas quebras totais de P2 frente a P1); e demonstração dos tetos teóricos de ordenação (0,89 quebra no `golden_v4` em linhas contra 5,20 em faixas de coluna).
+3. **Conjuntos de avaliação e partição de dados:** Caracterização detalhada dos conjuntos `golden_v4` (44 páginas, ajuste), `golden_v3_novo` (27 páginas, desenvolvimento externo já consultado), validação silver RN (15 páginas, seleção de checkpoints), teste silver CE/MA/RJ (89 páginas, avaliação externa não supervisionada), treino silver (3.140 páginas congeladas) e teste cego planejado E001 (90 páginas lacradas sob `TESTE_CEGO.lock`); discussão metodológica do reúso repetido de amostras (*test set fatigue* / sobreajuste de projeto) ilustrada pelo caso das regras de margem por repetição.
+4. **Métricas de avaliação:** Formalização matemática em LaTeX do coeficiente $\tau$ de Kendall ponderado por palavras, das quebras de continuidade por página ($Q$) e por 1.000 palavras ($Q_{\text{mil}}$), da acurácia de sucessor de linhas ($\text{Acc}_{\text{suc}}$) e da cobertura textual de palavras ($\text{Cob}$); acompanhadas de um exemplo pedagógico completo de página de duas colunas com 4 linhas e 8 palavras demonstrando numericamente a insensibilidade do $\tau$ frente ao colapso imediato da continuidade local e dos sucessores de linha.
+5. **Protocolo experimental e inferência estatística:** Princípio mandatório da Âncora da Regra de Colunas ($\tau = 0,985948$ e $6,045455$ quebras no `golden_v4`); entrada embaralhada reprodutível com `random.Random(f"entrada-{page_id}")`; inferência estatística por *bootstrap* agrupado por veículo/PDF ($B = 5.000$ iterações) e testes pareados de Wilcoxon/Pratt com correção de Holm-Bonferroni; pré-registro sistemático de hipóteses e cartões de experimento (`experimentos/cards/`); e documentação obrigatória de resultados negativos em `experimentos/NAO_FUNCIONOU.md`.
+6. **Ameaças à validade:** Análise crítica cobrindo validade de conclusão e poder estatístico (tamanho amostral humano e variância de 0,3 a 0,5 quebra entre sementes neurais), validade interna (anotador único especialista, viés de ancoragem no Diamond e simultaneidade de mudanças geométricas e de ordem), validade de construto (saturação do BLEU em 82,7 mesmo em páginas invertidas) e validade externa (lacunas federativas e 13,8% de páginas contendo texto em imagens rasterizadas sem camada digital).
+
+Todos os dados quantitativos citados no texto foram mapeados para seus respectivos arquivos de origem através de comentários HTML `<!-- fonte: ... -->`, e foram inseridas as marcações de figuras existentes `[FIGURA: ...]` onde pertinente.
+
+---
+
+## ARQUIVOS
+- [resultados/escrita/cap_metodologia_rascunho.md](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/escrita/cap_metodologia_rascunho.md) *(novo arquivo contendo o rascunho completo do capítulo Metodologia)*
+
+---
+
+## EVIDÊNCIA
+- Arquivo gravado com sucesso no destino `#SAIDA: resultados/escrita/cap_metodologia_rascunho.md`.
+- Verificação de fontes de todos os números citados no capítulo:
+  - Acervo: 4.644 PDFs e 310.000 páginas <!-- fonte: docs/ACERVO.md -->; 14,6 GB compactados, 18,7 GB descompactados e 16 arquivos auxiliares <!-- fonte: docs/DIARIO_DE_BORDO.md -->; 23 UFs e 8 municípios <!-- fonte: docs/ACERVO.md -->; 96% digitais, 86% PI, 32% AC, 2,8% RJ, 1,1% PE <!-- fonte: docs/ACERVO.md -->.
+  - Representação: 28,6% de sobreposição em 78% das páginas <!-- fonte: docs/DIARIO_DE_BORDO.md -->; 213 quebras internas em P1/P1m para 29 em P2 <!-- fonte: resultados/erros_ponta_a_ponta.md -->; redução de 16,14 (P1) e 9,87 (P1m) para 7,25 quebras/pág (P2) em 71 páginas <!-- fonte: resultados/erros_ponta_a_ponta.md -->; mAP50 de 0,826 do detector ls3 <!-- fonte: docs/CONTEXTO_E_RECURSOS.md -->; teto de 0,89 e 0,70 quebra em linhas contra 5,20 em faixas <!-- fonte: docs/RELATORIO_NOITE_0410.md -->.
+  - Conjuntos: `golden_v4` com 44 páginas <!-- fonte: docs/RELATORIO_V4.md -->; `golden_v3_novo` com 27 páginas <!-- fonte: resultados/erros_ponta_a_ponta.md -->; validação RN com 15 páginas <!-- fonte: docs/DIARIO_DE_BORDO.md -->; teste silver com 89 páginas <!-- fonte: docs/RELATORIO_NOITE_0410.md -->; treino silver com 3.140 páginas <!-- fonte: docs/RELATORIO_NOITE_0410.md -->; teste cego com 90 páginas <!-- fonte: docs/PLANO_PESQUISA.md -->; sobreajuste de margem (6,05 → 4,89 no v4 vs +1,00 no v3 novo) <!-- fonte: docs/RELATORIO_NOITE_0410.md -->; limiar 67 do híbrido <!-- fonte: docs/RELATORIO_NOITE_0410.md -->.
+  - Métricas e Protocolo: Âncora de $\tau = 0,985948$ e $6,045455$ quebras <!-- fonte: orquestracao/analises/bancada_ordenadores.py -->; $B = 5.000$ iterações de bootstrap <!-- fonte: resultados/erros_ponta_a_ponta.md -->; BLEU de 82,7 com página invertida <!-- fonte: docs/DIARIO_DE_BORDO.md -->; 13,8% de páginas gráficas <!-- fonte: docs/RELATORIO_V4.md -->; variabilidade estocástica de 0,3 a 0,5 quebra entre sementes 42 e 43 <!-- fonte: docs/RELATORIO_NOITE_0410.md -->.
+- Figuras mapeadas:
+  - `[FIGURA: docs/figuras/fig1_caracterizacao_por_veiculo.png]` na Seção 1.2
+  - `[FIGURA: docs/figuras/fig2_problema_pagina_real.png]` na Seção 2.3
+
+---
+
+## PENDÊNCIAS
+- Nenhuma pendência no escopo da escrita deste capítulo. O texto está pronto para ser revisado pelo Claude e pelo Pedro, com todas as referências cruzadas e comentários de rastreabilidade numérica intactos.

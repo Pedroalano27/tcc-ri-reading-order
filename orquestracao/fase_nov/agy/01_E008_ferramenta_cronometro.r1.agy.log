@@ -1,0 +1,55 @@
+A preparação da ferramenta para o experimento **E008** (*Protocolo de Anotação Densa × Simplificada*) foi concluída. 
+
+Nenhum arquivo existente foi modificado, nenhum comando de terminal foi disparado e nenhum dado sob `data/` foi alterado.
+
+Foram criados dois novos arquivos na pasta de resultados do experimento:
+- [anotador.html](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/e008_anotacao/ferramenta/anotador.html)
+- [LEIAME.md](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/e008_anotacao/ferramenta/LEIAME.md)
+
+---
+
+### Principais Funcionalidades Implementadas
+
+1. **Dois Modos Selecionáveis no Início e Gravados no JSON:**
+   - **`Modo A — Densa`:** Paleta com 10 classes funcionais completas (`titulo`, `texto`, `lista`, `assinatura`, `tabela`, `figura`, `cabecalho`, `rodape`, `quadro`, `outro`). Permite desenhar e corrigir todas as caixas de parágrafo e definir a ordem.
+   - **`Modo B — Simplificada`:** As linhas automáticas do extrator novo já vêm pré-carregadas como unidades atômicas (`linha`). Paleta reduzida com 5 classes (`linha`, `tabela`, `figura`, `quadro`, `skip_noise`). O anotador apenas ajusta átomos, marca ruídos (`skip_noise`, tecla `5` ou `N`), fatia linhas que cruzaram a calha (`S`), junta pedaços (`M`) e clica a sequência de ordem (`O`).
+
+2. **Cronômetro Preciso com Detecção de Inatividade (60 s):**
+   - Contabiliza o **tempo ativo** (`tempo_ativo_s` e `tempo_ativo_ms`) por página.
+   - Se o anotador ficar 60 segundos sem interagir (mouse/teclado), o timer entra em pausa automática (`Inativo (60s)`), retomando no primeiro toque.
+   - Botão **`⏸️ Pausar`** (atalho `P`) com overlay escuro para pausas manuais intencionais.
+
+3. **Auditoria e Log de Ações com Timestamp Relativo:**
+   - Contadores e lista cronológica detalhada com carimbo de tempo em ms para: `criar`, `apagar`, `mover`, `redimensionar`, `reclassificar`, `ligar_ordem`, `dividir`, `juntar`, `desfazer`, `pular`.
+
+4. **Entrada Flexível e Cálculo de Cobertura de Palavras (H9):**
+   - Lê nativamente tanto `.jsonl` (como `data/diamond/lote_sem_paragrafos/tarefas.jsonl`) quanto `.json` ou exports do Label Studio.
+   - Calcula geometricamente os IDs das palavras contidas dentro de cada unidade (`palavras_cobertas`), preenchendo o texto automaticamente e permitindo auditar a preservação integral de conteúdo.
+
+5. **Aleatorização Determinística por Semente (PRNG):**
+   - Algoritmo Mulberry32 para embaralhar a ordem das páginas a partir da semente informada no modal inicial (ex.: `20261102`). A semente e a ordem são gravadas no resultado.
+
+6. **Exportação Tripla:**
+   - **`💾 Exportar Sessão (JSON)`:** Arquivo consolidado com metadados da sessão, tempos ativos, contagem de ações, log detalhado e unidades com coordenadas, classes e IDs de palavras cobertas.
+   - **`📄 Exportar Página`:** Exporta o JSON focado apenas na página corrente.
+   - **`🏷️ Label Studio`:** Mantém 100% de compatibilidade com o formato de importação/exportação do Label Studio.
+
+7. **100% Offline via `file://`:**
+   - Zero dependências de servidor web ou bibliotecas remotas; conta com auto-save no `localStorage` contra quedas de energia.
+
+---
+
+### Roteiro de 5 Minutos para Teste Prático
+
+1. Dê duplo clique em [anotador.html](file:///C:/Users/pedro/dev/tcc-ri-reading-order/resultados/e008_anotacao/ferramenta/anotador.html).
+2. Na janela de configuração de sessão:
+   - Modo: **`B — Simplificada`**;
+   - Anotador: `Pedro`;
+   - Semente: `20261102`; clique em **Salvar e Iniciar**.
+3. Clique em **`📂 Abrir Tarefas`** e selecione `data/diamond/lote_sem_paragrafos/tarefas.jsonl`.
+4. Teste na página 1:
+   - Marcar ruído: selecione uma linha de cabeçalho e aperte `5` ou `N` (fica hachurada).
+   - Cortar linha: selecione uma linha, aperte `S` e clique no ponto de corte.
+   - Modo ordem: aperte `O` e clique em 5 caixas na sequência (setas e numeração surgem instantaneamente).
+   - Pausa: aperte `P` para pausar e retomar.
+5. Clique em **`💾 Exportar Sessão (JSON)`** e confira no arquivo gerado os campos `modo`, `semente`, `tempo_ativo_s`, `acoes` e `palavras_cobertas`.

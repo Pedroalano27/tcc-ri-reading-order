@@ -1,0 +1,7 @@
+#SAIDA: resultados/e006_residual/RELATORIO.md
+# E006: completa as 2 predicoes LayoutReader que faltam no RN (CPU, autorizado pelo orquestrador em 03/11 02:00)
+# e segue a execucao retomavel ate selecao, congelamento e externas.
+set -e
+venv/Scripts/python.exe -B orquestracao/analises/e006_residual.py --gerar-rn
+head -8 resultados/e006_residual/RELATORIO.md
+grep -q "PENDENTE" resultados/e006_residual/RELATORIO.md && { echo "ainda pendente"; exit 1; } || true
